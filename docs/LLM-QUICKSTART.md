@@ -39,6 +39,18 @@ tooling. Do not mix a v0.32b source build into a normal v0.32 install. The
 v0.32b patcher works on a verified v0.32 base, makes a new copy, and leaves the
 base intact. Do not commit runtime saves, accounts, logs, or private backups.
 
+The v0.32 beta follow-up touches shared bot routing, Bounty Master selection,
+and gamebot-generated charm-pet lifecycle code. Both current branches contain
+those shared fixes; do not copy the
+optional class's pet spells or assets into normal v0.32. The larger orb and
+sneezer camps and the cniogcrag model repair are narrow world-data changes,
+  not a reason to replace a player's saved database. The guarded
+  `source/server/tools/patch_v032_beta_refresh_world.py` script reproduces
+  this exact delta on a disposable clean v0.32 database (`--apply` creates
+  a backup); the playable ZIP already contains it. Verify Darkness Falls
+navigation and charm cleanup in a live disposable run before claiming them
+fully tested.
+
 For legacy work, use the matching v0.3/v0.31/v0.31b tag or maintained branch.
 The old [v0.31b branch](https://github.com/shadowofze/OfflineDAoC/tree/release/v0.31b-sluaghbinder)
 and [release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b)

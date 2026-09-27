@@ -50,12 +50,12 @@ downloads remain available as legacy versions.
 
 For the optional path, use **DOWNLOAD-AND-PLAY-v0.32b.cmd**. It assembles the
 normal v0.32 game first, checks the optional patch, and makes the Sluaghbinder
-copy. If you already have a clean v0.32 folder, use the v0.32b release's
-`Sluaghbinder-v0.32b-beta-maintenance-patch.zip` and its included install
-command, following that archive's instructions. The patcher leaves the selected
+copy. If you already have a clean v0.32 folder, use the current v0.32b patch
+ZIP `Sluaghbinder-v0.32b-darkness-falls-beta-refresh-20260926-patch.zip`
+linked on that release page and its included install command, following
+that archive's instructions. The patcher leaves the selected
 base untouched and writes a rollback command into the optional copy. If you do
-not want the class, simply play the normal v0.32 folder. The original
-v0.32b beta patch ZIP is historical and superseded by the current one.
+not want the class, simply play the normal v0.32 folder.
 
 Never point an installer at an existing destination. If you handle an archive
 yourself, extract the **entire** archive into a normal folder; never run files
@@ -89,6 +89,10 @@ zone. Ask the master to **show location** or use `/bountylocation` for direction
 You may reroll a target as often as you like, but that contract pays half XP;
 refreshing a contract you have outleveled has no penalty. Level-50 bounties
 send you after major bosses for gear and gold rather than XP.
+The master also avoids assigning the monster you just completed again,
+including another camp with the same monster name. If no different monster
+is eligible at your level, the master tells you rather than silently repeating
+the previous hunt.
 
 ## Watch the demos
 

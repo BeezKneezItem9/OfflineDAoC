@@ -1,5 +1,28 @@
 # Offline DAoC changelog
 
+## 2026-09-26 — v0.32b Darkness Falls Beta refresh
+
+- Includes the normal v0.32 refresh: Midgard bots use their reachable Darkness
+  Falls entrance; low-level familiar goals stay in each realm's own wing.
+  Solo bots search nearby reachable familiars after a room clears, then wait
+  for their original camp to respawn instead of abandoning it early. Survivors
+  of a party wipe can leave the dungeon and regroup.
+- Bounty Masters remember the last completed monster across relogs and do not
+  assign that same species twice in a row. The Lough Derg level-10 empyrean
+  orb camp has ten orbs; the Domnann level-14 sneezer camp has eight. Insidious
+  cniogcrags consistently use their visible model. These are shared world
+  changes from the normal v0.32 base, not optional class spawns.
+- Bot-created synthetic charm candidates are removed when a cast is
+  interrupted or their owner disappears. Failed candidates cannot linger and
+  respawn as stray monsters, and normal later charm attempts remain possible.
+- Sluagh Covenant companion and gamebots now use their one-minute Cairnheart
+  pet heal only when the pet needs it, let the effect run, and can rest. Their
+  routine pet buffs advance at the normal cast pace once the exact prior
+  effect appears; an unconfirmed cast or combat keeps the old retry pacing.
+  Other pet classes and Sluaghbinder specs retain their prior behavior.
+- Source/unit checks passed; these newest changes still need a live game run.
+  Darkness Falls raids remain unimplemented and this release remains Beta.
+
 ## 2026-09-26 — v0.32b Darkness Falls Beta maintenance
 
 - Fixed a solo Bard bot null-group error in the newly added grouped-PvE mez

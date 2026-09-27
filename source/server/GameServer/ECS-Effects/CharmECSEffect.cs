@@ -58,6 +58,9 @@ namespace DOL.GS
         internal static bool RegisterOwner(GameLiving caster, IControlledBrain brain) =>
             caster is GamePlayer or IGamePlayer && caster.AddControlledBrain(brain);
 
+        internal static bool IsCurrentBotSyntheticCharmBrain(object currentBrain, object endingBrain) =>
+            endingBrain != null && ReferenceEquals(currentBrain, endingBrain);
+
         public override void OnStopEffect()
         {
             if (Owner is not GameNPC charmNpc)
@@ -66,10 +69,18 @@ namespace DOL.GS
             foreach (ECSGameSpellEffect immunityEffect in charmNpc.effectListComponent.GetSpellEffects().Where(e => e.TriggersImmunity && e is ECSImmunityEffect))
                 immunityEffect.End();
 
-            ControlledMobBrain oldBrain = SpellHandler.Caster.ControlledBrain as ControlledMobBrain;
-            SpellHandler.Caster.RemoveControlledBrain(oldBrain);
-            bool keepSongAlive = false;
             bool syntheticAutonomousPet = charmNpc.TempProperties.GetProperty<bool>(AutonomousPetSupport.SyntheticCharmPetProperty);
+            bool gameBotSyntheticPet = syntheticAutonomousPet && SpellHandler.Caster is GameBot;
+            // A stale generated pet can end after its GameBot has acquired a
+            // replacement. Never release the replacement's controlled brain.
+            // Ordinary and player charm keep their existing release path.
+            ControlledMobBrain oldBrain = gameBotSyntheticPet
+                ? charmNpc.Brain as ControlledMobBrain
+                : SpellHandler.Caster.ControlledBrain as ControlledMobBrain;
+            if (!gameBotSyntheticPet || IsCurrentBotSyntheticCharmBrain(
+                    SpellHandler.Caster.ControlledBrain, oldBrain))
+                SpellHandler.Caster.RemoveControlledBrain(oldBrain);
+            bool keepSongAlive = false;
 
             if (oldBrain != null)
             {

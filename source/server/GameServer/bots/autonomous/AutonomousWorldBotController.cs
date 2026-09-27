@@ -36,6 +36,7 @@ namespace DOL.GS
         private const int DungeonBlockerRadius = 1450;
         private const int ZonePointArrivalRadius = 190;
         private const int EmptyCampReplanMilliseconds = 75_000;
+        private const int DarknessFallsSoloRespawnHoldMilliseconds = 240_000;
         private const int EmptyGroupCampRoamMilliseconds = 180_000;
         private const int RouteStallReplotMilliseconds = 12_000;
         private const int RouteRecoveryAttemptsBeforeNewGoal = AutonomousRouteRecoveryPolicy.MaximumLocalAttempts;
@@ -320,8 +321,8 @@ namespace DOL.GS
                     return TravelAcrossRegions(bot);
 
                 if (_groupDirective?.IsDynamic == true &&
-                    !AutonomousBotGroupCoordinator.IsAssemblyPhase(_groupDirective.Phase) &&
-                    (_groupDirective.GroupCombatActive || _groupDirective.RecoveringBetweenPulls) &&
+                    AutonomousBotGroupCoordinator.ShouldPauseForGroupPullRecovery(_groupDirective.Phase,
+                        _groupDirective.GroupCombatActive, _groupDirective.RecoveringBetweenPulls) &&
                     (AutonomousRealmRaid.GetView(bot.Group) == null ||
                      _groupDirective.Leader?.CurrentRegionID == bot.CurrentRegionID && bot.GetDistanceTo(_groupDirective.Leader) <= 1800))
                 {
@@ -2165,6 +2166,26 @@ namespace DOL.GS
                         _camp.MonsterName, _camp.ZoneName);
                     return true;
                 }
+                if (_camp.RegionId == AutonomousDarknessFallsPolicy.RegionId &&
+                    (bot.Group?.MemberCount ?? 1) <= 1)
+                {
+                    // One certified DF room can contain only one spawn. Its
+                    // ordinary respawn is longer than the outdoor empty-camp
+                    // timeout. First try another live, certified room in this
+                    // realm's wing; otherwise allow the original to respawn.
+                    if (TryContinueNearbyDarknessFallsGrind(bot)) return true;
+                    if (GameLoop.GameLoopTime - _emptyCampSinceTick <
+                        DarknessFallsSoloRespawnHoldMilliseconds)
+                    {
+                        _patrolDestination = null;
+                        bot.StopMovingOnPath();
+                        bot.StopMoving();
+                        SetStatus(bot, $"Waiting for {_camp.MonsterName} to respawn", GoalText(),
+                            "No reachable live copy remains in this wing; holding the certified room for its respawn",
+                            _camp.MonsterName, _camp.ZoneName);
+                        return true;
+                    }
+                }
                 AbandonCamp(bot, $"No live {_camp.MonsterName} remained at the camp");
                 return true;
             }
@@ -2556,7 +2577,11 @@ namespace DOL.GS
                         eRealm.Hibernia => cell.DarknessFallsHiberniaDistance,
                         _ => float.PositiveInfinity
                     };
-                    if (!float.IsFinite(entryDistance)) continue;
+                    float nearestEntranceDistance = MathF.Min(cell.DarknessFallsAlbionDistance,
+                        MathF.Min(cell.DarknessFallsMidgardDistance, cell.DarknessFallsHiberniaDistance));
+                    if (!AutonomousDarknessFallsNavigation.CanUseOrdinaryCamp(bot.Realm,
+                            cell.DarknessFallsWing, validLevels.Min(), entryDistance,
+                            nearestEntranceDistance)) continue;
                     darknessFallsRoutes[cell.Id] = (cell.DarknessFallsWing, entryDistance);
                 }
 

@@ -1,6 +1,9 @@
 OFFLINE DAOC v0.32b - DARKNESS FALLS BETA + SLUAGHBINDER VERIFICATION
 
-The optional server source builds in Release and passed 2,047 automated tests.
+The refreshed optional server source builds in Release and passed 2,072
+automated tests. Five player-charm menu tests were excluded because their
+isolated harness lacks an initialized server database. The newest Covenant
+pet-AI and shared world changes still need live bot and in-client checks.
 The v0.32b launcher passed 96 automated tests. The clean public world preflight
 checks all 85 reserved raid/event spawns, 2,492 Darkness Falls spawns, all-
 realm access, familiar templates, and absence of player accounts and saves.

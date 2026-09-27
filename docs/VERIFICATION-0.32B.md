@@ -5,18 +5,42 @@ v0.32 verification record is [separate](VERIFICATION-0.32.md).
 
 ## Isolated source checks
 
-- The optional Release server and launcher builds completed with zero errors.
-- After the September 26 Bard, High Lord Oro, and ordinary Darkness Falls
-  bounty maintenance fixes, the isolated optional server test run passed
-  **2,055/2,055** tests. Focused Bard/DF policy tests passed **41/41**;
-  focused bounty tests passed **7/7**. The Release build completed with
-  zero errors.
+- The refreshed optional Release server build completed with zero errors.
+  Its broader suite passed **2,072/2,072** tests, excluding five known
+  player-charm menu tests whose isolated harness lacks an initialized server
+  database. The optional server DLL SHA-256 is
+  `C00B2C49EE46602050D7913D4CAC89A2441CA72C7336D02BA0B625A3EE11F8EC`
+  in the staged optional patch's three runtime locations.
 - The optional launcher tests passed **96/96**; its displayed version is 0.32b.
+- The current optional patch manifest seals against the refreshed normal
+  v0.32 server hash. The shared clean world passed SQLite `quick_check`
+  and public-world preflight; no live account, character, or bot save database
+  was used as a release base.
 - A focused check covered **24 non-Darkness Falls dungeon route regions**;
   it passed. That protects the unrelated route catalog against the new
   Darkness Falls policy in the tested source.
 
-## Disposable package install and rollback
+## Refreshed package install and rollback
+
+- A disposable complete normal v0.32 folder accepted the refreshed normal
+  update. The refreshed optional patch verified that base and installed into
+  a separate sibling copy; the original base server DLL stayed at SHA-256
+  `51156A6B8B649ACCACF0CC6176AEAAAA42D69C8AFA8439A72323E5DDBE7B80FC`.
+- The optional copy used the tested optional server DLL SHA-256 above. Its
+  clean database passed SQLite `quick_check`, kept the ten-orb camp, and
+  contained Sluaghbinder specializations. Running the supplied rollback on
+  that copy restored the normal server DLL, removed the class rows, and
+  passed SQLite `quick_check` again. The normal sibling was not changed.
+- The source world-data script applied to a disposable copy of the previous
+  clean v0.32 database produced precisely the refreshed Mob and NpcTemplate
+  rows; repeating it made zero further changes. No server or client was
+  launched for this smoke test, so in-game behavior remains unverified.
+
+## Earlier disposable package install and rollback
+
+The figures in this section describe the **first September 26 maintenance
+package**, not the refreshed patch. They remain as historical evidence and
+must not be read as a live or install test of the newest archive.
 
 - The September 26 patch was sealed against a complete, clean normal v0.32
   installation with the new Bard/Oro/Bounty fixes. Its manifest records the
@@ -36,9 +60,9 @@ v0.32 verification record is [separate](VERIFICATION-0.32.md).
 - The Windows PowerShell 5.1 installer, manifest sealer, and rollback were
   checked with extended paths so deeply nested Desktop folders work.
 
-The staged optional launcher DLL SHA-256 is
+The earlier staged optional launcher DLL SHA-256 was
 `49011B42074292CFCE2084827CFF2429525F2FFD449FF017C32C929136216812`;
-the optional server DLL SHA-256 is
+the earlier optional server DLL SHA-256 was
 `BBE31AA4409FD8C44C17ECEB7DDCDCC8D1EB5D449BE6774859AD860F7A83D3D7`.
 The release manifest and `SHA256SUMS.txt` identify the final uploaded ZIPs.
 These package checks do **not** establish a successful in-client launch or a

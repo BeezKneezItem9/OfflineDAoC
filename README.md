@@ -44,6 +44,11 @@ The current downloads are [v0.32 Darkness Falls Beta](https://github.com/shadowo
 for normal play and [v0.32b Darkness Falls Beta](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b)
 for the optional Sluaghbinder class. They contain all shared fixes through v0.31,
 including Bounty Masters, Bard and companion song repairs, and bot route fixes.
+The latest beta refresh improves Darkness Falls entrance and familiar-camp
+routes, prevents consecutive duplicate bounties, expands two scarce camps,
+fixes invisible cniogcrags, and cleans up failed bot-created charm pets.
+v0.32b also fixes Sluagh Covenant pet-heal and pet-buff timing. These newest
+fixes have source tests but still need a longer live game check.
 **Beta** means the owner has not yet completed a long live bot test in Darkness
 Falls. Darkness Falls raid AI is not implemented; Legion, the hardest
 level-70+ encounters, and unreachable flying targets are excluded from

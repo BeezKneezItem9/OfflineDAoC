@@ -19,6 +19,7 @@ public sealed partial class AutonomousWorldBotController
     private Vector3 _darknessFallsLastExitProbePosition;
     private long _darknessFallsNextExitProbeTick;
     private int _darknessFallsExitCandidateWindow;
+    private long _darknessFallsNextNearbyCampProbeTick;
 
     /// <summary>Ordinary DF grinds use the exact spawn's ordered, realm-specific
     /// native route legs. Never ask Detour for one long 256-node partial route
@@ -61,6 +62,76 @@ public sealed partial class AutonomousWorldBotController
         }
 
         if (AdvanceDarknessFallsRoute(bot, $"Approaching {_camp.MonsterName}")) return true;
+        return false;
+    }
+
+    /// <summary>After a one-spawn room empties, keep the same monster objective
+    /// inside this realm's wing. Every replacement has a live, appropriate-level
+    /// target and a complete certified route from the bot's current floor.</summary>
+    private bool TryContinueNearbyDarknessFallsGrind(GameBot bot)
+    {
+        if (_camp?.RegionId != AutonomousDarknessFallsPolicy.RegionId ||
+            bot.CurrentRegionID != AutonomousDarknessFallsPolicy.RegionId ||
+            (bot.Group?.MemberCount ?? 1) > 1 ||
+            !AutonomousDarknessFallsNavigation.IsReady)
+            return false;
+
+        long now = GameLoop.GameLoopTime;
+        if (now < _darknessFallsNextNearbyCampProbeTick) return false;
+        _darknessFallsNextNearbyCampProbeTick = now + 15_000;
+        Zone zone = bot.CurrentZone;
+        if (zone == null) return false;
+        Vector3 current = new(bot.X, bot.Y, bot.Z);
+        ConColor maximumCon = MaximumTargetCon(1);
+        GameNPC[] live = bot.GetNPCsInRadius(TargetSearchRadius)
+            .Where(npc => npc.IsAlive && IsExperienceMonster(npc) &&
+                npc.CurrentZone == zone &&
+                string.Equals(npc.Name, _camp.MonsterName, StringComparison.OrdinalIgnoreCase) &&
+                AutonomousDarknessFallsNavigation.TryGetProof(npc.InternalID, out _) &&
+                GameServer.ServerRules.IsAllowedToAttack(bot, npc, true))
+            .Where(npc =>
+            {
+                ConColor con = ConLevels.GetConColor(bot.GetConLevel(npc));
+                return con >= ConColor.GREEN && con <= maximumCon;
+            }).ToArray();
+        if (live.Length == 0) return false;
+
+        foreach (CampCatalogCell candidate in CampCatalogSnapshot()
+            .Where(cell => cell.RegionId == AutonomousDarknessFallsPolicy.RegionId &&
+                cell.Zone == zone && cell.Id != _camp.Id &&
+                AutonomousDarknessFallsNavigation.IsNearbySameWingCamp(bot.Realm,
+                    cell.DarknessFallsWing, _camp.MonsterName, cell.MonsterName, current,
+                    new(cell.X, cell.Y, cell.Z), TargetSearchRadius))
+            .OrderBy(cell => Vector3.DistanceSquared(current, new(cell.X, cell.Y, cell.Z))))
+        {
+            if (!AutonomousDarknessFallsRoutePlan.TryGetCampMobId(candidate.Id, out string mobId) ||
+                // Nearby certified rooms overlap. A live neighbor must not
+                // make this representative's still-empty room look occupied.
+                !live.Any(npc => string.Equals(npc.InternalID, mobId,
+                    StringComparison.OrdinalIgnoreCase)) ||
+                !AutonomousDarknessFallsNavigation.TryGetProof(mobId, out var proof) ||
+                !AutonomousDarknessFallsRoutePlan.TryGetWaypoints(
+                    proof.Routes?.SingleOrDefault(route => route.Realm == bot.Realm)?.InWaypoints,
+                    out Vector3[] incoming))
+                continue;
+
+            string key = $"in:{bot.Realm}:{mobId}";
+            if (!StartDarknessFallsRoute(bot, key, incoming)) continue;
+            _darknessFallsLastProofId = mobId;
+            _camp = new(candidate.Id, candidate.MonsterName, candidate.ZoneName,
+                candidate.RegionId, candidate.X, candidate.Y, candidate.Z,
+                candidate.LiveMobCount, candidate.IsDungeon, candidate.IsFrontier);
+            _emptyCampSinceTick = 0;
+            _patrolDestination = null;
+            _nextMoveOrderTick = 0;
+            if (bot.PersistentRecord != null)
+                bot.PersistentRecord.CurrentCampId = candidate.Id;
+            BeginCampDiagnostics(bot);
+            SetStatus(bot, $"Searching another {_camp.MonsterName} room", GoalText(),
+                "The previous room is empty; following a complete route to a live copy in this realm's wing",
+                _camp.MonsterName, _camp.ZoneName);
+            return true;
+        }
         return false;
     }
 

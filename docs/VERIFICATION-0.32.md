@@ -4,6 +4,37 @@ This page records what can be claimed for the **normal** v0.32 release. Keep
 package checks, source tests, and actual client gameplay separate. Do not
 reuse v0.31 test counts as v0.32 results.
 
+## Follow-up maintenance evidence
+
+- The class-neutral follow-up source is staged against the normal v0.32
+  branch, with no Sluaghbinder pet-spell code or client assets introduced.
+  `git diff --check` passed, and 38 focused Darkness Falls, bounty, group
+  recovery, and synthetic-charm lifecycle tests passed with zero failures.
+- The full refreshed normal server suite passed **2,065/2,065**. The unchanged
+  normal launcher source passed **97/97** tests. The matching tested
+  `GameServer.dll` SHA-256 is
+  `51156A6B8B649ACCACF0CC6176AEAAAA42D69C8AFA8439A72323E5DDBE7B80FC`
+  in all three staged server locations.
+- The updated clean public database passed SQLite `quick_check` and the
+  public v0.32 world preflight. It contains only the narrow world-data delta
+  below, not the author's account or save database.
+- The intended world-data delta is narrow: nine additional level-10
+  empyrean orbs near the Lough Derg camp, seven additional level-14 sneezers
+  near the Domnann camp, and the insidious cniogcrag template plus one spawn
+  changed from the invisible model choice to visible model 769. The author's
+  live database must not be substituted for the clean release database.
+- The source includes a guarded world-data script for this delta. Applied to
+  a disposable copy of the previous clean v0.32 database, it produced the
+  exact same Mob and NpcTemplate rows as the refreshed playable database;
+  a second run changed zero rows.
+- A disposable complete v0.32 installation accepted the refreshed normal
+  update files. Its installed server DLL matched the tested SHA-256 above.
+  The refreshed v0.32b patch then installed in a separate sibling copy;
+  that install and rollback are described in the optional verification page.
+- In-client confirmation is still outstanding for the new spawn density,
+  cniogcrag visibility, nonrepeating bounty assignments, interrupted-charm
+  cleanup, and a longer all-realm Darkness Falls bot run.
+
 ## Implementation evidence
 
 - The server contains Darkness Falls entrance and realm-access checks, a
@@ -16,7 +47,10 @@ reuse v0.31 test counts as v0.32 results.
   quests, patch tool, and optional client assets before the source or playable
   package is published.
 
-## Release checks
+## Earlier beta-maintenance package checks
+
+The figures and hashes in this section describe the previously published
+2026-09-26 beta-maintenance assets, not the refreshed files above.
 
 - Isolated normal Release server build: successful, zero errors.
 - Full normal server suite after the beta maintenance fixes: **2,051/2,051**

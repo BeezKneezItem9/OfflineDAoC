@@ -29,6 +29,16 @@ floor-reachable ordinary Darkness Falls monsters. Unverified, flying, and
 raid targets are excluded; home-realm dungeon targets and the level-50
 epic bounty list are unchanged. No Darkness Falls raids were added.
 
+The latest beta refresh sends Midgard bots through their reachable Darkness
+Falls entrance, keeps low-level familiar goals within each realm's wing, and
+lets surviving party members leave after a wipe. Solo bots look for a nearby
+reachable familiar after a room clears or wait for the camp's respawn instead
+of giving up early. Shared Bounty Masters avoid repeating the same completed
+species across relogs; the Lough Derg empyrean orb and Domnann sneezer camps
+were expanded, and insidious cniogcrags use a visible model. Bot-created
+synthetic charm candidates no longer linger or respawn if the cast fails.
+These changes also belong to normal v0.32; they are not Sluaghbinder-only.
+
 ## Optional class included
 
 Sluaghbinder is a Hibernian player class. New characters start as Acolytes
@@ -39,6 +49,13 @@ and autonomous Sluaghbinder bots use class-specific builds and pet behavior.
 The private Dullahan and Zombie Defender visuals, Zombie Priest equipment,
 and Covenant pet heal timing from v0.31b remain part of the optional version.
 See the [legacy v0.31b notes](RELEASE-0.31B.md) for the original class detail.
+This refresh additionally makes Covenant companion and gamebots wait for their
+one-minute Cairnheart pet heal to expire, recasting only when the pet still
+needs healing. The heal no longer acts as a routine buff or delays rest.
+Distinct routine pet buffs can follow the prior confirmed effect at the
+normal cast pace outside combat; interrupted/unconfirmed casts and combat
+keep their previous safety delay. This has automated coverage but still
+needs a live class-bot check.
 
 ## Download, source, and rollback
 
@@ -46,11 +63,11 @@ From the [v0.32b release](https://github.com/shadowofze/OfflineDAoC/releases/tag
 download `DOWNLOAD-AND-PLAY-v0.32b.cmd` and `Get-OfflineDAoC.ps1` into one new
 folder. Double-click the helper. It verifies and assembles the normal v0.32
 game, then applies the current
-`Sluaghbinder-v0.32b-beta-maintenance-patch.zip` in a
+`Sluaghbinder-v0.32b-darkness-falls-beta-refresh-20260926-patch.zip` in a
 new sibling copy. The normal v0.32 base stays intact. If you already have a
 clean v0.32 folder, use the patch archive's included installer and its
-instructions. The original v0.32b beta patch ZIP is superseded because it
-predates the Bard and Darkness Falls fixes. The optional copy receives a
+instructions. Earlier v0.32b beta patch ZIPs remain available but predate
+this refresh. The optional copy receives a
 rollback command; keep the base
 and earlier versions until you have checked the new installation. Stop both
 servers before importing saves or applying the patch.

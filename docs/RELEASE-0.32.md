@@ -7,6 +7,47 @@ quests, or optional client assets. Choose the separate
 The beta label stays until the owner has had time to test the bots in the
 dungeon more thoroughly.
 
+## Beta maintenance correction
+
+The first v0.32 bot-goal certificate assumed High Lord Oro always kept the
+same level. His existing level-65–70 template chooses a new level and saves
+it when the server starts, which could close all ordinary Darkness Falls
+bot goals. The certificate now accepts only that exact level range for his
+specific spawn while retaining its strict checks for all other monsters,
+locations, and routes. No boss balance or database values were changed.
+Solo Bard gamebots also cannot use group-only PvE add mez when no actual
+group exists. These repairs still require live bot observation after
+installation; the Darkness Falls beta and raid limits below remain.
+Ordinary level-1–49 Bounty Master hunts may also select monsters from
+certified, reachable Darkness Falls camps. The existing home-realm dungeon
+hunts and level-50 boss list are unchanged; unverified and raid spawns cannot
+give bounty credit.
+
+The original and first-maintenance v0.32 ZIPs remain available as historical
+assets. The beta-refresh ZIP named below is the current download.
+
+## Follow-up beta maintenance
+
+Midgard bots now approach the normal realm entrance instead of an unreachable
+relic-side portal. Low-level camp selection stays in each bot's own realm
+wing. If a solo bot clears a room, it may continue to a nearby, live monster
+of the same name only when the route to that exact spawn is certified;
+otherwise it waits for the assigned spawn to return rather than leaving after
+the former 75-second timeout. Surviving party members can leave and regroup
+after a Darkness Falls wipe. Monster strength and the raid exclusions below
+were not changed.
+
+Outside Darkness Falls, Lough Derg's empyrean-orb camp has ten level-10
+monsters, Domnann's sneezer camp has eight spaced level-14 monsters, and
+insidious cniogcrags use their visible model consistently. Bounty Masters
+avoid repeating the last completed monster species across relogs and zones.
+Temporary gamebot-created charm pets are cleaned up after an interrupted
+charm or vanished owner, rather than lingering and respawning as world mobs;
+this also covers eligible `/spawn` companions. Player-created charm behavior
+remains separate. The [changelog](../CHANGELOG.md) has the simple breakdown.
+These follow-up changes still need a longer live run and direct in-client
+checks, so the **Beta** label remains.
+
 ## Darkness Falls implementation
 
 - Albion, Midgard, and Hibernia can all enter in this offline setup. Bots
@@ -15,7 +56,9 @@ dungeon more thoroughly.
 - Autonomous bots can select ordinary, reachable dungeon monsters for solo or
   group grinding. Their routes stage parties at the entrance, use the installed
   walkable navigation mesh, check the floor and corridor before pulling, and
-  fall back from a failed camp. Ordinary combat, recovery, XP, loot, and group
+  fall back from a failed camp. Low-level bots stay in their own entrance wing;
+  a cleared familiar room can lead to another reachable local familiar or a
+  wait for respawn. Ordinary combat, recovery, XP, loot, and group
   defense still use the game's shared systems.
 - The routes handle one-way descents and ledges as one-way movement. Bots leave
   by a valid exit for their own realm rather than trying to climb back up a
@@ -48,7 +91,7 @@ in this download; they are not claimed as new Darkness Falls mechanics.
 On the [v0.32 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32),
 download `DOWNLOAD-AND-PLAY-v0.32.cmd` and `Get-OfflineDAoC.ps1` into one new
 folder and double-click the helper. It obtains and verifies the preserved
-v0.31 base and `OfflineDAoC-v0.32-darkness-falls-beta-update.zip`, then builds
+v0.31 base and `OfflineDAoC-v0.32-darkness-falls-beta-refresh-20260926-update.zip`, then builds
 a **new** v0.32 playable folder. It keeps the v0.31 sibling available. Read
 `READ ME FIRST.txt` in the new game folder and use `START OFFLINE DAOC.cmd`.
 No Git or LLM is needed. [Detailed player instructions](PLAY.md) cover the

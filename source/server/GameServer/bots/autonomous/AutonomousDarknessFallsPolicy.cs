@@ -20,6 +20,17 @@ public static class AutonomousDarknessFallsPolicy
         _ => 0,
     };
 
+    // Normal home-side entrances. Other real DF entries (including relic
+    // portals) remain available to players, but autonomous bots must not
+    // choose them solely because they are closer in a straight line.
+    public static ushort HomeEntranceZonePointId(eRealm realm) => realm switch
+    {
+        eRealm.Albion => 81,
+        eRealm.Midgard => 84,
+        eRealm.Hibernia => 87,
+        _ => 0,
+    };
+
     // Each physical DF exit has a DB row for every realm. Matching the row's
     // Realm and TargetRegion alone would still let a bot leave via another
     // faction's corridor. These are the exits below each home entrance.
@@ -63,14 +74,22 @@ public static class AutonomousDarknessFallsPolicy
         return homeRegion != 0 && sourceRegion == homeRegion && canEnter?.Invoke(realm) == true;
     }
 
-    /// <summary>DF has realm-specific DB rows at all six physical exits. A bot
-    /// may use only the physical portal below its own entrance, its own row,
-    /// and its own home destination. Deep shared exits remain closed to bots
-    /// until their physical approach is independently certified.</summary>
-    public static bool CanUsePortalRow(eRealm realm, DbZonePoint point) =>
-        point != null && (point.SourceRegion != RegionId || point.TargetRegion == RegionId ||
-            HomeRegion(realm) != 0 && point.TargetRegion == HomeRegion(realm) &&
-            point.Realm == (ushort)realm && point.Id == HomeExitZonePointId(realm));
+    /// <summary>Autonomous bots use only their normal home entrance and the
+    /// physical exit below it. Hibernia's normal entrance is a realm-neutral
+    /// DB row, so its exact ID and home source make that exception safe.
+    /// Player portal behavior and the database are not changed.</summary>
+    public static bool CanUsePortalRow(eRealm realm, DbZonePoint point)
+    {
+        if (point == null) return false;
+        if (point.TargetRegion == RegionId && point.SourceRegion != RegionId)
+            return HomeRegion(realm) != 0 && point.SourceRegion == HomeRegion(realm) &&
+                point.Id == HomeEntranceZonePointId(realm) &&
+                (realm == eRealm.Hibernia ? point.Realm == 0 : point.Realm == (ushort)realm);
+        if (point.SourceRegion != RegionId || point.TargetRegion == RegionId)
+            return true;
+        return HomeRegion(realm) != 0 && point.TargetRegion == HomeRegion(realm) &&
+            point.Realm == (ushort)realm && point.Id == HomeExitZonePointId(realm);
+    }
 
     /// <summary>An already-inside bot may still select its own physical exit
     /// after ordinary DF goals are closed by a stale or absent certificate.
