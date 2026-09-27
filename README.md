@@ -46,7 +46,12 @@ for the optional Sluaghbinder class. They contain all shared fixes through v0.31
 including Bounty Masters, Bard and companion song repairs, and bot route fixes.
 The v0.32 beta maintenance update also permits eligible Bounty Master hunts
 in certified Darkness Falls camps and fixes Oro's restart level check and
-solo Bard add-mez gating. Live Darkness Falls bot behavior still needs testing.
+solo Bard add-mez gating. The latest maintenance also keeps low-level bots in
+their own entrance wing, lets them continue to a nearby reachable monster or
+wait for a cleared spawn, and repairs Midgard's entrance choice and party-wipe
+regrouping. Bounties avoid repeating the last completed monster; small orb
+and sneezer camps have more spawns. Live Darkness Falls bot behavior still
+needs testing.
 **Beta** means the owner has not yet completed a long live bot test in Darkness
 Falls. Darkness Falls raid AI is not implemented; Legion, the hardest
 level-70+ encounters, and unreachable flying targets are excluded from

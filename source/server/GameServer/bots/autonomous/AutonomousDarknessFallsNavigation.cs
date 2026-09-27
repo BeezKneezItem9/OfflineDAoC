@@ -442,6 +442,25 @@ public static class AutonomousDarknessFallsNavigation
         Math.Abs(camp.Z - monster.Z) <= 220 &&
         Vector2.DistanceSquared(new(camp.X, camp.Y), new(monster.X, monster.Y)) <= 1200 * 1200;
 
+    /// <summary>Ordinary low-level goals stay in the bot's own entrance wing.
+    /// A higher-level spawn can also be used from a genuinely shared interior
+    /// corridor, but never because it is merely a same-name copy beside the
+    /// opposite realm's entrance.</summary>
+    public static bool CanUseOrdinaryCamp(eRealm realm, eRealm nearestWing, int level,
+        float ownEntranceDistance, float nearestEntranceDistance) =>
+        realm != eRealm.None && float.IsFinite(ownEntranceDistance) &&
+        float.IsFinite(nearestEntranceDistance) &&
+        (nearestWing == realm || level >= 30 && nearestEntranceDistance >= 15_000 &&
+            ownEntranceDistance - nearestEntranceDistance <= 18_000);
+
+    public static bool IsNearbySameWingCamp(eRealm realm, eRealm wing,
+        string assignedName, string candidateName, Vector3 from, Vector3 candidate,
+        float maximumDistance) =>
+        realm != eRealm.None && wing == realm &&
+        string.Equals(assignedName, candidateName, StringComparison.OrdinalIgnoreCase) &&
+        maximumDistance > 0 && Vector2.DistanceSquared(
+            new(from.X, from.Y), new(candidate.X, candidate.Y)) <= maximumDistance * maximumDistance;
+
     public static eRealm ClosestWing(SpawnProof proof)
     {
         RouteProof route = proof?.Routes?.OrderBy(route => route.DistanceFromEntrance).FirstOrDefault();

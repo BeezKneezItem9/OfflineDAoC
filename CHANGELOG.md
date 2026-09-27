@@ -1,5 +1,35 @@
 # Offline DAoC changelog
 
+## 2026-09-26 — v0.32 Darkness Falls Beta follow-up maintenance
+
+- Midgard autonomous bots choose their normal Darkness Falls entrance rather
+  than a relic-side portal they cannot reach. Low-level bots choose camps in
+  their own realm's wing. After clearing a familiar room, a solo bot can move
+  to a nearby live familiar only when a route to that exact spawn is verified;
+  otherwise it waits for its assigned spawn to return instead of abandoning
+  the dungeon after the old 75-second timeout.
+- A surviving Darkness Falls party member can leave and regroup after the
+  rest of its party wipes, rather than waiting alone inside indefinitely.
+  These are routing and recovery changes, not changes to monster difficulty.
+- The Lough Derg empyrean-orb camp now has ten level-10 spawns, and the
+  Domnann sneezer camp has eight spaced level-14 spawns. Insidious
+  cniogcrags now consistently use the visible cniogcrag model. Existing
+  monsters' combat, loot, and respawn rules were not deliberately changed.
+- Bounty Masters remember the last completed monster across relogs and do
+  not assign that same species immediately again, including its spawns in
+  another zone. A reroll still requires a different monster. If none is
+  eligible at that level, the current assignment is not silently repeated.
+- Generated charm pets belonging to gamebots, including eligible `/spawn`
+  companions, are removed if a charm is interrupted or the owner disappears.
+  These temporary candidates cannot inherit a world monster's respawn timer;
+  failed attempts do not permanently prevent another normal charm attempt.
+  Player-created charm candidates keep their separate behavior.
+- These fixes were compiled and focused policy tests passed. An extended
+  three-realm live Darkness Falls run, in-client confirmation of the new
+  camps, and interrupted-charm observation are still pending. Darkness Falls
+  remains **Beta**. Raid AI, Legion, the hardest level-70+ encounters, and
+  unreachable flying targets remain outside ordinary bot goals.
+
 ## 2026-09-26 — v0.32 Darkness Falls Beta maintenance
 
 - Fixed a Darkness Falls goal-certification issue that could prevent all

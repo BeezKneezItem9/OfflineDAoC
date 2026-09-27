@@ -63,4 +63,21 @@ public sealed class UT_OvernightPveGroupRecovery
         Assert.That(AutonomousBotGroupCoordinator.PhaseAfterCasualty("Grinding", false),
             Is.EqualTo("Grinding"));
     }
+
+    [Test]
+    public void RegroupTravelTakesPriorityOverBetweenPullRecovery()
+    {
+        Assert.That(AutonomousBotGroupCoordinator.ShouldPauseForGroupPullRecovery("Regrouping", false, true),
+            Is.False, "A survivor must leave the dungeon to rejoin released members");
+        Assert.That(AutonomousBotGroupCoordinator.ShouldPauseForGroupPullRecovery("Regrouping", true, true),
+            Is.False, "Local defensive combat is handled before regroup routing");
+        Assert.That(AutonomousBotGroupCoordinator.ShouldPauseForGroupPullRecovery("Grinding", false, true),
+            Is.True, "Ordinary between-pull recovery still protects the active camp");
+        Assert.That(AutonomousBotGroupCoordinator.ShouldPauseForGroupPullRecovery("Grinding", true, false),
+            Is.True, "Group combat still pauses a non-engaged member at the active camp");
+        Assert.That(AutonomousBotGroupCoordinator.ShouldPauseForGroupPullRecovery("Waiting for resurrection", false, true),
+            Is.True, "A nearby corpse still gets the normal resurrection window");
+        Assert.That(AutonomousBotGroupCoordinator.ShouldPauseForGroupPullRecovery("Meeting up", false, true),
+            Is.False, "Initial assembly still uses its normal travel route");
+    }
 }

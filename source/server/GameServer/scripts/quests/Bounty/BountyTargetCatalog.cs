@@ -92,7 +92,8 @@ namespace DOL.GS
         private static readonly object CacheLock = new();
         private static readonly Dictionary<eRealm, IReadOnlyList<BountyTargetCandidate>> CachedSpawns = new();
 
-        public static IReadOnlyList<BountyTargetCandidate> GetEligible(eRealm realm, byte level)
+        public static IReadOnlyList<BountyTargetCandidate> GetEligible(eRealm realm, byte level,
+            string excludedMonsterName = null)
         {
             if (level is < 1 or > 49)
                 return Array.Empty<BountyTargetCandidate>();
@@ -100,7 +101,15 @@ namespace DOL.GS
             // Home-realm spawns are stable and cached. DF is intentionally read
             // from its live certificate on every assignment: startup before
             // certificate readiness must not cache an empty DF pool forever.
-            var candidates = GetCachedSpawns(realm).Concat(GetCertifiedDarknessFallsSpawns(realm)).ToArray();
+            // Exclude a just-completed species before choosing the preferred
+            // density tier or currently alive camps. Filtering only the final
+            // live pool can incorrectly offer the same monster again while a
+            // different eligible species is merely awaiting respawn.
+            var candidates = ExcludeMonsterName(
+                GetCachedSpawns(realm).Concat(GetCertifiedDarknessFallsSpawns(realm)),
+                excludedMonsterName);
+            if (candidates.Length == 0)
+                return candidates;
             int preferredSpawns = level >= 40 ? 5 : 3;
             var exact = candidates.Where(target => target.Level == level).ToArray();
             var pool = exact.Where(target => target.SpawnCount >= preferredSpawns).ToArray();
@@ -129,6 +138,19 @@ namespace DOL.GS
             var currentlySpawned = pool.Where(target => liveKeys.Contains(
                 (target.RegionId, target.ZoneId, target.Level, target.Name))).ToArray();
             return currentlySpawned.Length > 0 ? currentlySpawned : pool;
+        }
+
+        public static BountyTargetCandidate[] ExcludeMonsterName(
+            IEnumerable<BountyTargetCandidate> candidates, string excludedMonsterName)
+        {
+            if (candidates == null)
+                return Array.Empty<BountyTargetCandidate>();
+            if (string.IsNullOrWhiteSpace(excludedMonsterName))
+                return candidates.ToArray();
+
+            string normalizedName = excludedMonsterName.Trim();
+            return candidates.Where(candidate => !string.Equals(candidate.Name?.Trim(), normalizedName,
+                StringComparison.OrdinalIgnoreCase)).ToArray();
         }
 
         public static IReadOnlyList<BountyTargetCandidate> GetEpicCandidates(eRealm realm)

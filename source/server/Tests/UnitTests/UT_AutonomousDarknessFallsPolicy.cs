@@ -47,6 +47,45 @@ public class UT_AutonomousDarknessFallsPolicy
     }
 
     [Test]
+    public void DarknessFallsEntrance_UsesOnlyNormalHomePortalRows()
+    {
+        var albion = new DbZonePoint { Id = 81, SourceRegion = 1, TargetRegion = 249, Realm = 1 };
+        var albionRelic = new DbZonePoint { Id = 79, SourceRegion = 1, TargetRegion = 249, Realm = 1 };
+        var midgard = new DbZonePoint { Id = 84, SourceRegion = 100, TargetRegion = 249, Realm = 2 };
+        var midgardYggdra = new DbZonePoint { Id = 83, SourceRegion = 100, TargetRegion = 249, Realm = 2 };
+        var midgardUppland = new DbZonePoint { Id = 82, SourceRegion = 100, TargetRegion = 249, Realm = 2 };
+        // The installed Hibernia home entrance is the realm-neutral ID 87 row.
+        var hibernia = new DbZonePoint { Id = 87, SourceRegion = 200, TargetRegion = 249, Realm = 0 };
+        var hiberniaOther = new DbZonePoint { Id = 86, SourceRegion = 200, TargetRegion = 249, Realm = 3 };
+        Assert.Multiple(() =>
+        {
+            Assert.That(AutonomousDarknessFallsPolicy.HomeEntranceZonePointId(eRealm.Albion), Is.EqualTo(81));
+            Assert.That(AutonomousDarknessFallsPolicy.HomeEntranceZonePointId(eRealm.Midgard), Is.EqualTo(84));
+            Assert.That(AutonomousDarknessFallsPolicy.HomeEntranceZonePointId(eRealm.Hibernia), Is.EqualTo(87));
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Albion, albion), Is.True);
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Midgard, midgard), Is.True);
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Hibernia, hibernia), Is.True);
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Albion, albionRelic), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Midgard, midgardYggdra), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Midgard, midgardUppland), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Hibernia, hiberniaOther), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Midgard, albion), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Albion, midgard), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Hibernia,
+                new DbZonePoint { Id = 87, SourceRegion = 100, TargetRegion = 249, Realm = 0 }), Is.False,
+                "The neutral Hibernia row is valid only at its own home source.");
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Hibernia,
+                new DbZonePoint { Id = 87, SourceRegion = 200, TargetRegion = 249, Realm = 3 }), Is.False,
+                "The installed Hibernia entrance is its exact neutral DB row.");
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.Midgard,
+                new DbZonePoint { Id = 84, SourceRegion = 100, TargetRegion = 249, Realm = 0 }), Is.False,
+                "Midgard must use its own realm-specific normal entrance row.");
+            Assert.That(AutonomousDarknessFallsPolicy.CanUsePortalRow(eRealm.None,
+                new DbZonePoint { Id = 0, SourceRegion = 0, TargetRegion = 249, Realm = 0 }), Is.False);
+        });
+    }
+
+    [Test]
     public void DarknessFallsExit_UsesOnlyOwnRealmSpecificPortalRow()
     {
         var albion = new DbZonePoint { Id = 74, SourceRegion = 249, TargetRegion = 1, Realm = 1 };
@@ -141,7 +180,7 @@ public class UT_AutonomousDarknessFallsPolicy
             "A normal startup roll of Oro's 65-70 template must not close every ordinary DF goal.");
         oro.Level = 71;
         Assert.That(AutonomousDarknessFallsNavigation.HasFullCombatCoverage(mobs, proofs), Is.False);
-        oro.Level = 69;
+        oro.Level = 67;
         proofs[0].Spawn[2]++;
         Assert.That(AutonomousDarknessFallsNavigation.HasFullCombatCoverage(mobs, proofs), Is.False,
             "A moved spawn invalidates the complete certificate.");

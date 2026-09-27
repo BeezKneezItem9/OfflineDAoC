@@ -247,6 +247,12 @@ public static class AutonomousPetSupport
     /// </summary>
     public static bool CanCreateSyntheticCharmInRegion(bool isCapitalCity) => !isCapitalCity;
 
+    internal static int SyntheticCharmRespawnInterval(int inheritedInterval, bool gameBotOwner) =>
+        gameBotOwner ? -1 : inheritedInterval;
+
+    internal static bool IsExpiredSyntheticCharmBinding(long now, long unboundSinceTick) =>
+        unboundSinceTick != 0 && now - unboundSinceTick >= 2_000;
+
     public static bool Maintain(
         GameLiving owner,
         GameLiving combatTarget,
@@ -1022,8 +1028,68 @@ public static class AutonomousPetSupport
     {
         if (owner != null && PendingCharms.TryRemove(owner, out PendingCharm pending))
             DeleteSyntheticCharm(pending.Mob);
-        if (owner != null)
-            ActiveSyntheticCharms.TryRemove(owner, out _);
+        if (owner != null && ActiveSyntheticCharms.TryRemove(owner, out ActiveSyntheticCharm active) &&
+            owner.ControlledBrain?.Body != active.Mob)
+        {
+            // A released charm has no controlled brain. Deleting the tracking
+            // entry alone used to strand its synthetic body in the world.
+            DeleteSyntheticCharm(active.Mob);
+        }
+    }
+
+    private static void WatchGameBotSyntheticCharm(GameBot owner, GameNPC mob)
+    {
+        long unboundSinceTick = 0;
+        _ = new ECSGameTimer(mob, _ =>
+        {
+            if (mob.ObjectState is not GameObject.eObjectState.Active || !mob.IsAlive)
+            {
+                ForgetSyntheticCharm(owner, mob);
+                return 0;
+            }
+
+            if (owner.ObjectState is not GameObject.eObjectState.Active || !owner.IsAlive ||
+                owner.CurrentRegion != mob.CurrentRegion)
+            {
+                ForgetSyntheticCharm(owner, mob);
+                DeleteSyntheticCharm(mob);
+                return 0;
+            }
+
+            if (owner.ControlledBrain?.Body == mob)
+            {
+                unboundSinceTick = 0;
+                return 5_000;
+            }
+
+            long now = GameLoop.GameLoopTime;
+            if (PendingCharms.TryGetValue(owner, out PendingCharm pending) && pending.Mob == mob &&
+                (now < pending.ExpiresAtTick || owner.IsCasting))
+            {
+                // The normal charm cast still owns this candidate. Do not
+                // remove a successful cast just because its effect is pending.
+                unboundSinceTick = 0;
+                return 1_000;
+            }
+
+            unboundSinceTick = unboundSinceTick == 0 ? now : unboundSinceTick;
+            if (!IsExpiredSyntheticCharmBinding(now, unboundSinceTick))
+                return 1_000;
+
+            ForgetSyntheticCharm(owner, mob);
+            DeleteSyntheticCharm(mob);
+            return 0;
+        }, 3_000);
+    }
+
+    private static void ForgetSyntheticCharm(GameLiving owner, GameNPC mob)
+    {
+        if (PendingCharms.TryGetValue(owner, out PendingCharm pending) && pending.Mob == mob)
+            ((ICollection<KeyValuePair<GameLiving, PendingCharm>>)PendingCharms)
+                .Remove(new KeyValuePair<GameLiving, PendingCharm>(owner, pending));
+        if (ActiveSyntheticCharms.TryGetValue(owner, out ActiveSyntheticCharm active) && active.Mob == mob)
+            ((ICollection<KeyValuePair<GameLiving, ActiveSyntheticCharm>>)ActiveSyntheticCharms)
+                .Remove(new KeyValuePair<GameLiving, ActiveSyntheticCharm>(owner, active));
     }
 
     private static bool ReconcileActiveSyntheticCharm(GameLiving owner, long now,
@@ -1227,6 +1293,12 @@ public static class AutonomousPetSupport
         DbMob template = selectedTemplate ?? templates[Random.Shared.Next(templates.Length)];
         GameNPC mob = new();
         mob.LoadFromDatabase(template);
+        // This body is a temporary charm candidate, not a world spawn.
+        // Zero means "use the default respawn interval" in GameNPC, so
+        // only a negative value prevents an uncharmed, killed candidate
+        // from repeatedly respawning at the bot's former location.
+        if (owner is GameBot)
+            mob.RespawnInterval = SyntheticCharmRespawnInterval(mob.RespawnInterval, true);
         if (template.Region == DarknessFallsCharmPolicy.RegionId &&
             DarknessFallsCharmPolicy.TryGetCharmBodyType(template, out ushort dfBodyType))
         {
@@ -1270,6 +1342,8 @@ public static class AutonomousPetSupport
             mob.Delete();
             return false;
         }
+        if (owner is GameBot gameBot)
+            WatchGameBotSyntheticCharm(gameBot, mob);
         candidate = mob;
         return true;
     }

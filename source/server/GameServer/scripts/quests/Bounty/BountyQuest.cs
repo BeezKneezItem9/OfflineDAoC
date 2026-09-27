@@ -16,6 +16,8 @@ namespace DOL.GS.Quests
     public sealed class BountyQuest : RewardQuest
     {
         private const int TargetDisplayByteLimit = 56;
+        private const string LastCompletedTargetKey = "BountyLastCompletedTargetName";
+        private static readonly Logging.Logger Log = Logging.LoggerManager.Create(typeof(BountyQuest));
         private readonly object _completionLock = new();
         private BountyTargetCandidate _targetCache;
 
@@ -172,9 +174,12 @@ namespace DOL.GS.Quests
         public override void OnQuestAssigned(GamePlayer player)
         {
             QuestGiver = BountyMasterRuntime.GetMaster(player.Realm);
-            if (!Assign(player.Level, false, null))
+            string previousName = GetLastCompletedTargetName(player);
+            if (!Assign(player.Level, false, previousName))
             {
-                player.Out.SendMessage("No safe bounty could be selected right now. Please speak to the Bounty Master again.",
+                player.Out.SendMessage(string.IsNullOrWhiteSpace(previousName)
+                        ? "No safe bounty could be selected right now. Please speak to the Bounty Master again."
+                        : "No different monster is eligible at this level right now. Your last hunt will not be assigned twice in a row.",
                     eChatType.CT_System, eChatLoc.CL_SystemWindow);
                 AbortQuest();
                 return;
@@ -211,7 +216,7 @@ namespace DOL.GS.Quests
                 return false;
 
             BountyTargetCandidate previous = Target;
-            if (!Assign(AssignedLevel, true, previous))
+            if (!Assign(AssignedLevel, true, previous?.Name))
             {
                 m_questPlayer.Out.SendMessage("No different monster is available for this level right now. Your bounty and reward are unchanged.",
                     eChatType.CT_System, eChatLoc.CL_SystemWindow);
@@ -254,6 +259,7 @@ namespace DOL.GS.Quests
                     !QuestGiver.IsWithinRadius(m_questPlayer, 600))
                     return false;
 
+                string completedTargetName = Target?.Name;
                 BountyRewardResult reward = BountyRewardService.Grant(m_questPlayer, AssignedLevel, WasRerolled);
                 if (!reward.Granted)
                 {
@@ -269,6 +275,7 @@ namespace DOL.GS.Quests
                 // identical completed quests. Keep no completed Quest rows.
                 m_questPlayer.RemoveFinishedQuest(this);
                 DeleteFromDatabase();
+                RememberCompletedTarget(m_questPlayer, completedTargetName);
                 m_questPlayer.Out.SendMessage(AssignedLevel == 50
                         ? $"Bounty paid: 100 gold and {reward.ItemCount} exceptional class item(s)."
                         : $"Bounty paid: {reward.ExperienceGranted:N0} experience and {reward.ItemCount} class item(s).",
@@ -294,19 +301,29 @@ namespace DOL.GS.Quests
                 BountyMapMarkers.Set(m_questPlayer, target.RegionId, target.X, target.Y, target.Z);
         }
 
-        private bool Assign(byte level, bool rerolled, BountyTargetCandidate previous)
+        /// <summary>
+        /// Select by monster name, not representative spawn ID: one species can
+        /// appear at several levels and camps. No consecutive assignment repeats
+        /// the previous species, including level-50 targets and rerolls.
+        /// </summary>
+        public static BountyTargetCandidate[] GetAssignmentChoices(
+            IReadOnlyList<BountyTargetCandidate> pool, string previousName)
+        {
+            if (pool == null || pool.Count == 0)
+                return Array.Empty<BountyTargetCandidate>();
+
+            return BountyTargetCatalog.ExcludeMonsterName(pool, previousName);
+        }
+
+        private bool Assign(byte level, bool rerolled, string previousName)
         {
             IReadOnlyList<BountyTargetCandidate> pool = level == 50
                 ? BountyTargetCatalog.GetEpicCandidates(m_questPlayer.Realm)
-                : BountyTargetCatalog.GetEligible(m_questPlayer.Realm, level);
+                : BountyTargetCatalog.GetEligible(m_questPlayer.Realm, level, previousName);
             if (pool.Count == 0)
                 return false;
 
-            BountyTargetCandidate[] choices = previous == null
-                ? pool.ToArray()
-                : pool.Where(candidate => candidate.IsEpic
-                        ? candidate.RepresentativeMobId != previous.RepresentativeMobId
-                        : !string.Equals(candidate.Name, previous.Name, StringComparison.OrdinalIgnoreCase)).ToArray();
+            BountyTargetCandidate[] choices = GetAssignmentChoices(pool, previousName);
             if (choices.Length == 0)
                 return false;
 
@@ -341,6 +358,57 @@ namespace DOL.GS.Quests
             m_questPlayer.Out.SendQuestUpdate(this);
             BountyMasterRuntime.UpdateIndicator(m_questPlayer);
             return true;
+        }
+
+        private static string GetLastCompletedTargetName(GamePlayer player)
+        {
+            string cached = player.TempProperties.GetProperty<string>(LastCompletedTargetKey);
+            if (!string.IsNullOrWhiteSpace(cached))
+                return cached;
+
+            try
+            {
+                DbCoreCharacterXCustomParam record = DOLDB<DbCoreCharacterXCustomParam>.SelectObject(
+                    DB.Column("DOLCharactersObjectId").IsEqualTo(player.ObjectId)
+                        .And(DB.Column("KeyName").IsEqualTo(LastCompletedTargetKey)));
+                if (!string.IsNullOrWhiteSpace(record?.Value))
+                    player.TempProperties.SetProperty(LastCompletedTargetKey, record.Value);
+                return record?.Value;
+            }
+            catch (Exception ex)
+            {
+                // Bounties remain available if this optional history read fails.
+                Log.Warn($"Could not read last completed bounty target for {player.ObjectId}", ex);
+                return null;
+            }
+        }
+
+        private static void RememberCompletedTarget(GamePlayer player, string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                return;
+
+            // The reward and quest close first. A history-write failure must
+            // never leave a paid quest claimable again.
+            player.TempProperties.SetProperty(LastCompletedTargetKey, name);
+            try
+            {
+                DbCoreCharacterXCustomParam record = DOLDB<DbCoreCharacterXCustomParam>.SelectObject(
+                    DB.Column("DOLCharactersObjectId").IsEqualTo(player.ObjectId)
+                        .And(DB.Column("KeyName").IsEqualTo(LastCompletedTargetKey)));
+                if (record == null)
+                    GameServer.Database.AddObject(new DbCoreCharacterXCustomParam(player.ObjectId,
+                        LastCompletedTargetKey, name));
+                else
+                {
+                    record.Value = name;
+                    GameServer.Database.SaveObject(record);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Could not save last completed bounty target for {player.ObjectId}", ex);
+            }
         }
 
         private void RestoreGoal()

@@ -1,6 +1,9 @@
 OFFLINE DAOC v0.32 - DARKNESS FALLS BETA VERIFICATION
 
-The normal server source builds in Release and passed 2,043 automated tests.
+The refreshed normal server source builds in Release and passed 2,065
+automated tests. The clean public database passes SQLite quick_check after
+the exact orb, sneezer, and cniogcrag updates. The newest changes still need
+live bot and in-client checks.
 The v0.32 launcher passed 97 automated tests. The clean public world preflight
 checks all 85 reserved raid/event spawns, 2,492 Darkness Falls spawns, all-
 realm access, familiar templates, and absence of player accounts and saves.

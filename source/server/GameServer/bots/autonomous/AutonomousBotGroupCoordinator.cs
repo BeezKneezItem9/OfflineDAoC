@@ -815,6 +815,14 @@ public static partial class AutonomousBotGroupCoordinator
     public static bool IsAssemblyPhase(string phase) =>
         phase is "Leader staging" or "Meeting up";
 
+    // A casualty regroup must travel to the rendezvous before the party can
+    // recover together. Holding for full resources here strands survivors in
+    // the dungeon after their released group members return to town.
+    public static bool ShouldPauseForGroupPullRecovery(string phase, bool groupCombatActive,
+        bool recoveringBetweenPulls) =>
+        phase != "Regrouping" && !IsAssemblyPhase(phase) &&
+        (groupCombatActive || recoveringBetweenPulls);
+
     public static string PhaseAfterCasualty(string previousPhase, bool regrouping) =>
         regrouping ? "Regrouping" : previousPhase is "Traveling" or "Grinding"
             ? previousPhase : "Traveling";
