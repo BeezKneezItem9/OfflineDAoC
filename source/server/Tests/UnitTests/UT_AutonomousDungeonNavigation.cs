@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using DOL.GS;
 using NUnit.Framework;
@@ -149,6 +150,70 @@ namespace DOL.UnitTests
                 Assert.That(AutonomousDungeonPolicy.IsReliableAutonomousGoal(221, "haunt"), Is.True,
                     "The exclusion is restricted to the audited Nisse objective");
             });
+        }
+
+        [Test]
+        public void CursedTombCaveSpiderBehindHigherLevelEntrancePackIsNotAssigned()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(AutonomousDungeonPolicy.IsReliableAutonomousGoal(128, "cave spider"), Is.False);
+                Assert.That(AutonomousDungeonPolicy.IsReliableAutonomousGoal(128, "tomb sentry"), Is.True);
+                Assert.That(AutonomousDungeonPolicy.IsReliableAutonomousGoal(129, "cave spider"), Is.True);
+            });
+        }
+
+        [Test]
+        public void FirstCursedTombGroupCampPrefersEntryWithoutClosingLaterOrOtherGoals()
+        {
+            var entry = (Region: (ushort)128, Point: new Vector3(32882, 33644, 16008));
+            var deep = (Region: (ushort)128, Point: new Vector3(37473, 34612, 15393));
+            var upperFloor = (Region: (ushort)128, Point: new Vector3(31900, 33000, 16600));
+            var otherDungeon = (Region: (ushort)129, Point: new Vector3(33000, 33000, 16000));
+            var cells = new[] { entry, deep, upperFloor, otherDungeon };
+            var first = AutonomousDungeonPolicy.PreferFirstCursedTombGroupCamps(cells,
+                formedGroup: true, hasInteriorProgress: false, camp => camp.Region, camp => camp.Point);
+            var later = AutonomousDungeonPolicy.PreferFirstCursedTombGroupCamps(cells,
+                formedGroup: true, hasInteriorProgress: true, camp => camp.Region, camp => camp.Point);
+            var solo = AutonomousDungeonPolicy.PreferFirstCursedTombGroupCamps(cells,
+                formedGroup: false, hasInteriorProgress: false, camp => camp.Region, camp => camp.Point);
+            var noEntry = AutonomousDungeonPolicy.PreferFirstCursedTombGroupCamps(
+                new[] { deep, otherDungeon }, formedGroup: true, hasInteriorProgress: false,
+                camp => camp.Region, camp => camp.Point);
+            Assert.Multiple(() =>
+            {
+                Assert.That(AutonomousDungeonPolicy.IsCursedTombEntryStage(151, new(300000, 330000, 5000)), Is.True);
+                Assert.That(AutonomousDungeonPolicy.IsCursedTombEntryStage(128, new(31700, 33000, 16000)), Is.True);
+                Assert.That(AutonomousDungeonPolicy.IsCursedTombEntryStage(128, new(34500, 33000, 16000)), Is.False);
+                Assert.That(first, Is.EquivalentTo(new[] { entry, otherDungeon }));
+                Assert.That(later, Is.EquivalentTo(cells));
+                Assert.That(solo, Is.EquivalentTo(cells));
+                Assert.That(noEntry, Is.EquivalentTo(new[] { deep, otherDungeon }));
+            });
+        }
+
+        [Test]
+        public void CursedTombHasVerifiedEntryRoomGoalSpawns()
+        {
+            var entry = AutonomousDungeonGoalCatalog.VerifiedPointsForRegion(128)
+                .Where(point => AutonomousDungeonPolicy.IsCursedTombEntryStage(128, point.Position))
+                .ToArray();
+            Assert.Multiple(() =>
+            {
+                Assert.That(entry.Length, Is.GreaterThanOrEqualTo(5));
+                Assert.That(entry.Any(point => point.Name == "roaming corpse"), Is.True);
+            });
+        }
+
+        [Test]
+        public void DungeonRoomsNeverCombineDifferentLiveMonsterLevels()
+        {
+            Vector3 koalinthRoom = new(28576, 32270, 17026);
+            var low = AutonomousWorldBotController.LiveRoomKey(koalinthRoom, 18);
+            var high = AutonomousWorldBotController.LiveRoomKey(koalinthRoom, 27);
+            Assert.That(low, Is.Not.EqualTo(high));
+            Assert.That(low, Is.EqualTo(AutonomousWorldBotController.LiveRoomKey(
+                koalinthRoom + new Vector3(20, 20, 5), 18)));
         }
 
         [Test]

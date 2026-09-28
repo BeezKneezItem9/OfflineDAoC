@@ -4,6 +4,20 @@ This page records what can be claimed for the **normal** v0.32 release. Keep
 package checks, source tests, and actual client gameplay separate. Do not
 reuse v0.31 test counts as v0.32 results.
 
+## September 28 shared stability source checks
+
+- The isolated normal Release server build completed with zero errors. The
+  complete server suite passed **2,115/2,115** tests. `git diff --check`
+  passed for the changed server source. A source scan found no Sluaghbinder
+  references in normal GameServer or Tests code.
+- These checks cover the current Savage, dungeon, meetup, frontier, merchant,
+  helmet, companion-speed, and Darkness Falls exterior-route changes. They
+  do not establish live bot outcome rates or a long Darkness Falls run.
+- The three portal visuals are client-side map assets. Their in-client
+  appearance and travel behavior are not proven by the server test suite.
+- Package ZIP checks and final artifact hashes are recorded with the
+  release assets, not inferred from this source test.
+
 ## Follow-up maintenance evidence
 
 - The class-neutral follow-up source is staged against the normal v0.32

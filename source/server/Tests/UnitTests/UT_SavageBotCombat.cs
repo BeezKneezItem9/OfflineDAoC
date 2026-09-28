@@ -115,15 +115,21 @@ public class UT_SavageBotCombat
     }
 
     [Test]
-    public void SoloSavageOnlyPullsReachableTargetsInsideTheAssignedCampCell()
+    public void SoloSavageUsesStrictPullProofOnlyWhereTheCampRequiresIt()
     {
         Assert.Multiple(() =>
         {
-            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(eCharacterClass.Savage, false), Is.True);
-            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(eCharacterClass.Savage, true), Is.False);
-            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(eCharacterClass.Berserker, false), Is.False);
-            Assert.That(SavageBotCombatPolicy.IsWithinAssignedCamp(554470, 562177, 557070, 562177), Is.True);
-            Assert.That(SavageBotCombatPolicy.IsWithinAssignedCamp(554470, 562177, 557071, 562177), Is.False);
+            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(
+                eCharacterClass.Savage, false, false, false), Is.False,
+                "A normal outdoor Savage should not be rejected by dungeon-grade route proof");
+            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(
+                eCharacterClass.Savage, false, true, false), Is.True);
+            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(
+                eCharacterClass.Savage, false, false, true), Is.True);
+            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(
+                eCharacterClass.Savage, true, false, true), Is.False);
+            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(
+                eCharacterClass.Berserker, false, true, true), Is.False);
         });
     }
 

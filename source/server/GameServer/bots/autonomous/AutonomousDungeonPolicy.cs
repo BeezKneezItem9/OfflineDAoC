@@ -23,6 +23,38 @@ namespace DOL.GS
 
         public static bool IsStarterDungeonRegion(ushort region) => region is 21 or 129 or 221;
 
+        private static readonly Vector3 CursedTombArrival = new(31700, 33000, 16000);
+
+        public static bool IsCursedTombEntryStage(ushort leaderRegion, Vector3 leaderPosition) =>
+            leaderRegion != 128 || AtCursedTombEntrance(leaderPosition);
+
+        private static bool AtCursedTombEntrance(Vector3 point) =>
+            MathF.Abs(point.Z - CursedTombArrival.Z) <= 500 &&
+            Vector2.DistanceSquared(new(point.X, point.Y),
+                new(CursedTombArrival.X, CursedTombArrival.Y)) <= 2_000 * 2_000;
+
+        /// <summary>
+        /// On a formed party's first Cursed Tomb assignment, favor the verified
+        /// entrance-room spawn cells it can start killing immediately. In the
+        /// overnight run, distant initial goals left otherwise productive
+        /// parties fighting the respawning entry pack without target credit.
+        /// The caller supplies only already-legal, level-valid camps and turns
+        /// this preference off once real interior combat progress is observed.
+        /// Other dungeons, solo goals and the later Cursed Tomb pool are intact.
+        /// </summary>
+        public static T[] PreferFirstCursedTombGroupCamps<T>(IEnumerable<T> candidates,
+            bool formedGroup, bool hasInteriorProgress, Func<T, ushort> region,
+            Func<T, Vector3> position)
+        {
+            T[] available = candidates?.ToArray() ?? [];
+            if (!formedGroup || hasInteriorProgress || region == null || position == null)
+                return available;
+            bool AtEntrance(T camp) => region(camp) == 128 &&
+                AtCursedTombEntrance(position(camp));
+            if (!available.Any(AtEntrance)) return available;
+            return available.Where(camp => region(camp) != 128 || AtEntrance(camp)).ToArray();
+        }
+
         // Nisse's two haunt packs mix level-18 and level-29 creatures deep in
         // the same branch. The live audit showed hundreds of bots clearing
         // unrelated corridor mobs while never producing a valid haunt kill.
@@ -31,6 +63,12 @@ namespace DOL.GS
         public static bool IsReliableAutonomousGoal(ushort region, string name) =>
             (region != AutonomousDarknessFallsPolicy.RegionId || AutonomousDarknessFallsNavigation.IsReady) &&
             !(region == 129 && string.Equals(name, "haunt", StringComparison.OrdinalIgnoreCase)) &&
+            // Cursed Tomb's two level-13/14 cave spiders are behind the
+            // entrance's five level-19/20 roaming corpses. The overnight
+            // run repeatedly left solo bots fighting those respawns at
+            // 31700,33000 without reaching a spider. Keep the actual mobs
+            // for players; exclude only this unsafe autonomous objective.
+            !(region == 128 && string.Equals(name, "cave spider", StringComparison.OrdinalIgnoreCase)) &&
             // Installed entrance-to-husk corridors cross aggressive level
             // 36-43 packs. Level 10-11 husks cannot be safe XP goals for the
             // low-level bots that qualify for them. Do not alter any monsters.

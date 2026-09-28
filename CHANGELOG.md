@@ -1,5 +1,45 @@
 # Offline DAoC changelog
 
+## 2026-09-28 — v0.32 Darkness Falls Beta shared stability update
+
+- Savage solo bots can use normal outdoor camp target searches instead of
+  rejecting safe pulls for lacking a dungeon-style route proof. Dungeons and
+  audited risky camps keep the stricter check.
+- Cursed Tomb no longer assigns low-level cave spiders behind its much
+  stronger entrance pack. A newly arrived group first favors reachable
+  entrance-area targets; deeper goals remain available after it moves in.
+  Koalinth's mixed-level rooms keep each goal tied to a live spawn of the
+  advertised level, and groups may start an ordinary pull at 90/80/80
+  readiness while post-combat recovery still finishes fully.
+- Group meetup failures try a genuinely different, validated location and a
+  bounded retry. Removing a no-show does not restart the whole attendance
+  clock; a viable PvE group can continue without one unreachable member.
+  Revived members reunite locally only across a complete two-way path. A
+  missing zone during town selection no longer crashes group coordination.
+- The audited Hibernia Darkness Falls exterior loop can use a real paid
+  stable ticket only if boarding and the portal-side landing connect. With
+  no such ticket at that exact loop, the bot replans instead of pacing until
+  the watchdog expires. A failed short recovery waypoint in Lough Derg now
+  tries a different verified step toward the real goal. Midgard combat
+  defeats were not treated as route failures; monster difficulty is unchanged.
+- Full backpacks can sell redundant spare weapons at a reached merchant;
+  equipped gear, useful swaps, spare instruments, upgrades, and real coins
+  remain protected. Ordinary PvE grind goals stay out of enemy frontiers,
+  without changing RvR or realm events. The Gotar pine-imp and Vale of
+  Mularn hill-person camp catalogs use actual live levels so they do not
+  advertise targets of a level absent from those spawns.
+- `/gminfo` now reports a target's helmet name, model, and extension. Model
+  840 scale coifs with stored extensions 2 or 3 display using the proven
+  extension-0 appearance; saved items and stats are unchanged. Moving
+  Enchanter, Sorcerer, Healer, and Runemaster companions may stop briefly
+  to cast their own learned group speed, then catch up. The three classic-side
+  Shrouded Isles portal visuals are present at Cotswold, Mularn, and Mag
+  Mell; they remain collision-free and are not player travel portals.
+- This is the same shared update in v0.32b. Sluaghbinder remains absent from
+  normal v0.32. Both releases remain **Darkness Falls Beta**: raids and the
+  hardest unverified bot goals are still not implemented. Source tests and
+  package checks are reported separately from live bot observation.
+
 ## 2026-09-26 — v0.32 Darkness Falls Beta follow-up maintenance
 
 - Midgard autonomous bots choose their normal Darkness Falls entrance rather

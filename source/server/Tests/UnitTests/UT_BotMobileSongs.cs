@@ -433,6 +433,81 @@ namespace DOL.UnitTests
             Assert.That(bot.castingComponent.SpellHandler?.Spell, Is.SameAs(song));
         }
 
+        [TestCase(typeof(ClassEnchanter))]
+        [TestCase(typeof(ClassSorcerer))]
+        [TestCase(typeof(ClassHealer))]
+        [TestCase(typeof(ClassRunemaster))]
+        public void MovingCompanionStopsForOnlyItsNativeGroupSpeed(Type type)
+        {
+            Bot bot = NewBot(type); Player player = Actor<Player>(); player.Moving = true;
+            CompanionGroup(bot, player);
+            Spell speed = Song("SpeedEnhancement", cast: 3, id: 99986);
+            Spell buff = new(new DbSpell { SpellID = 99987, Type = "StrengthBuff", Target = "Realm",
+                Range = 1500, Duration = 600, CastTime = 3 }, 1);
+            bot.MiscSpells = new List<Spell> { buff, speed };
+            bot.CaptureCasts = true;
+
+            Assert.That(CompanionFollowPolicy.CanStopForNativeTravelSpeed(bot, speed), Is.True);
+            Assert.That(CompanionFollowPolicy.DeferBuff(bot, buff), Is.True);
+            Assert.That(CompanionFollowPolicy.DeferBuff(bot, speed), Is.False);
+            Active(bot, speed);
+            Assert.That(CompanionFollowPolicy.ObserveAndCancelBuffs(bot, out bool started), Is.False);
+            Assert.That(started, Is.True);
+            Assert.That(bot.castingComponent.SpellHandler?.Spell, Is.SameAs(speed),
+                "The movement observer must not cancel a legal native speed cast.");
+            CompanionFollowPolicy.ObserveAndCancelBuffs(bot, out started);
+            Assert.That(started, Is.False, "Only the movement edge refreshes the upkeep scan.");
+
+            bot.castingComponent.ClearSpellHandlers();
+            Assert.That(typeof(BotBrain).GetMethod("TryMaintainTravelAndClassBuffs", Hidden)
+                .Invoke(bot.Brain, null), Is.EqualTo(true));
+            Assert.That(bot.LastRequested, Is.SameAs(speed));
+            Assert.That(bot.Stops, Is.GreaterThanOrEqualTo(2), "A non-mobile pulse needs a real casting stop.");
+
+            bot.LastRequested = null;
+            Active(bot, speed);
+            bot.castingComponent.SpellHandler.Target = bot;
+            Assert.That(typeof(BotBrain).GetMethod("FindMissingMaintenanceTarget", Hidden)
+                .Invoke(bot.Brain, new object[] { speed }), Is.Null,
+                "A briefly missing group-member child effect must not restart the caster's pulse.");
+
+            MethodInfo follow = typeof(BotBrain).GetMethod("FollowFormation", Hidden);
+            player.PositionX = 1_000;
+            bot.Walks = 0;
+            follow.Invoke(bot.Brain, new object[] { false });
+            Assert.That(bot.Walks, Is.Zero, "Following must not interrupt the native three-second cast.");
+            Assert.That(CompanionFollowPolicy.HasFormationOrder(bot), Is.False);
+            bot.castingComponent.ClearSpellHandlers();
+            Assert.That(CompanionFollowPolicy.NativeTravelSpeedCastInProgress(bot), Is.False);
+            follow.Invoke(bot.Brain, new object[] { false });
+            Assert.That(CompanionFollowPolicy.HasFormationOrder(bot), Is.True,
+                "The normal formation order resumes when its cast completes.");
+        }
+
+        [Test]
+        public void NativeTravelSpeedNeverExpandsToDistantOrAutonomousBots()
+        {
+            Bot bot = NewBot(typeof(ClassEnchanter)); Player player = Actor<Player>(); player.Moving = true;
+            CompanionGroup(bot, player);
+            Spell speed = Song("SpeedEnhancement", cast: 3, id: 99988);
+            bot.MiscSpells = new List<Spell> { speed };
+            bot.CaptureCasts = true;
+            player.PositionX = 1_000;
+            Assert.That(CompanionFollowPolicy.CanStopForNativeTravelSpeed(bot, speed), Is.False);
+            Assert.That(CompanionFollowPolicy.DeferBuff(bot, speed), Is.True,
+                "Catch up before beginning a three-second stationary cast outside group range.");
+            Assert.That(typeof(BotBrain).GetMethod("TryMaintainTravelAndClassBuffs", Hidden)
+                .Invoke(bot.Brain, null), Is.EqualTo(false));
+            Assert.That(bot.LastRequested, Is.Null);
+
+            player.PositionX = 100;
+            Field(typeof(GameBot), bot, "<IsAutonomousWorldBot>k__BackingField", true);
+            Assert.That(CompanionFollowPolicy.CanStopForNativeTravelSpeed(bot, speed), Is.False);
+            Assert.That(CompanionFollowPolicy.DeferBuff(bot, speed), Is.False,
+                "Persistent world bots retain their existing speed maintenance path.");
+            Assert.That(CompanionFollowPolicy.IsOrdinaryBuff(bot, speed), Is.True);
+        }
+
         [TestCase(typeof(ClassBard))]
         [TestCase(typeof(ClassSkald))]
         [TestCase(typeof(ClassMinstrel))]

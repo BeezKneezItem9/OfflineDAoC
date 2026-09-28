@@ -44,7 +44,14 @@ The current downloads are [v0.32 Darkness Falls Beta](https://github.com/shadowo
 for normal play and [v0.32b Darkness Falls Beta](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b)
 for the optional Sluaghbinder class. They contain all shared fixes through v0.31,
 including Bounty Masters, Bard and companion song repairs, and bot route fixes.
-The v0.32 beta maintenance update also permits eligible Bounty Master hunts
+The September 28 update also improves Savage outdoor pulls, Cursed Tomb and
+Koalinth goals, group meetups and recovery, Hibernia Darkness Falls exterior
+travel, backpack selling, and ordinary PvE frontier boundaries. It corrects
+model-840 scale-coif display, adds helmet details to `/gminfo`, improves
+moving-companion group-speed casting, and restores the three collision-free
+classic-side Shrouded Isles portal visuals. These shared fixes are in both
+editions and still need a long live bot check. The earlier v0.32 beta
+maintenance update also permits eligible Bounty Master hunts
 in certified Darkness Falls camps and fixes Oro's restart level check and
 solo Bard add-mez gating. The latest maintenance also keeps low-level bots in
 their own entrance wing, lets them continue to a nearby reachable monster or

@@ -28,10 +28,13 @@ namespace DOL.UnitTests
         private sealed class ExchangeBot : GameBot
         {
             private ExchangeBot() : base((OfflineWorldBotRecord)null) { }
+            public bool AllowTestEquipment;
             public override byte Level { get; set; } = 10;
             public override int EffectiveLevel => Level;
             public override eRealm Realm { get; set; } = eRealm.Hibernia;
             public override ICharacterClass CharacterClass => new ClassEnchanter();
+            public override bool HasAbilityToUseItem(DbItemTemplate item) =>
+                AllowTestEquipment || base.HasAbilityToUseItem(item);
             public override void RefreshItemBonuses() { }
         }
 
@@ -230,6 +233,64 @@ namespace DOL.UnitTests
             Assert.That(AutonomousBotEconomy.FindValuableListingCandidate(bot), Is.Null);
             Assert.That(bot.Inventory.AllItems, Does.Contain(instrument));
             Assert.That(bot.Inventory.AllItems, Does.Contain(shield));
+        }
+
+        [Test]
+        public void FortyUsableFocusStaves_KeepOnlyBestSpare_AndLeaveSaleCandidates()
+        {
+            ExchangeBot bot = Bot(9904, 500);
+            bot.AllowTestEquipment = true;
+            DbInventoryItem worn = Staff("worn focus staff", 12);
+            Assert.That(bot.Inventory.AddItem(eInventorySlot.TwoHandWeapon, worn), Is.True);
+            List<DbInventoryItem> backpack = [];
+            for (eInventorySlot slot = eInventorySlot.FirstBackpack; slot <= eInventorySlot.LastBackpack; slot++)
+            {
+                DbInventoryItem staff = Staff($"spare focus staff {slot}", slot == eInventorySlot.LastBackpack ? 9 : 3);
+                staff.IsTradable = false;
+                Assert.That(bot.Inventory.AddItem(slot, staff), Is.True);
+                backpack.Add(staff);
+            }
+
+            DbInventoryItem bestSpare = backpack[^1];
+            DbInventoryItem sale = AutonomousBotEconomy.FindVendorTrashCandidate(bot);
+            Assert.That(sale, Is.Not.Null, "Thirty-nine obsolete staves must not be reserved as loadout gear");
+            Assert.That(sale, Is.Not.SameAs(bestSpare));
+            Assert.That(bot.Inventory.AllItems, Does.Contain(worn));
+
+            foreach (DbInventoryItem staff in backpack)
+            {
+                staff.IsDropable = false;
+                staff.IsTradable = false;
+            }
+            Assert.That(AutonomousBotEconomy.TryClearBlockedBackpackAtMerchant(bot, true, out int removed), Is.True);
+            Assert.That(removed, Is.EqualTo(39));
+            Assert.That(bot.Inventory.AllItems, Does.Contain(bestSpare));
+            Assert.That(bot.Inventory.GetItem(eInventorySlot.TwoHandWeapon), Is.SameAs(worn));
+            Assert.That(bot.PersistentRecord.MoneyCopper, Is.EqualTo(500));
+        }
+
+        [Test]
+        public void BlockedBackpack_KeepsOneOfEachInstrumentKind_WithoutKeepingDuplicates()
+        {
+            ExchangeBot bot = Bot(9905, 700);
+            List<DbInventoryItem> backpack = FillBackpack(bot);
+            foreach (DbInventoryItem item in backpack)
+            {
+                item.IsDropable = false;
+                item.IsTradable = false;
+            }
+            backpack[0].Object_Type = backpack[1].Object_Type = backpack[2].Object_Type =
+                (int)eObjectType.Instrument;
+            backpack[0].DPS_AF = backpack[1].DPS_AF = 1;
+            backpack[2].DPS_AF = 2;
+            backpack[1].Level = 12;
+
+            Assert.That(AutonomousBotEconomy.TryClearBlockedBackpackAtMerchant(bot, true, out int removed), Is.True);
+            Assert.That(removed, Is.EqualTo(38));
+            Assert.That(bot.Inventory.AllItems, Does.Not.Contain(backpack[0]));
+            Assert.That(bot.Inventory.AllItems, Does.Contain(backpack[1]));
+            Assert.That(bot.Inventory.AllItems, Does.Contain(backpack[2]));
+            Assert.That(bot.PersistentRecord.MoneyCopper, Is.EqualTo(700));
         }
 
         [Test]
@@ -508,6 +569,8 @@ namespace DOL.UnitTests
                 MoneyCopper = copper
             });
             Field(typeof(GameLiving), bot, "<TempProperties>k__BackingField", new PropertyCollection());
+            Field(typeof(GameLiving), bot, "_abilitiesLock", new System.Threading.Lock());
+            Field(typeof(GameLiving), bot, "m_abilities", new Dictionary<string, Ability>());
             Field(typeof(GameNPC), bot, "m_brains", new ArrayList());
             AutonomousBotRegistry.Register(bot);
             _bots.Add(bot);
@@ -621,6 +684,17 @@ namespace DOL.UnitTests
                 IsDropable = true
             };
             return GameInventoryItem.Create(template);
+        }
+
+        private static DbInventoryItem Staff(string name, int level)
+        {
+            DbInventoryItem item = Item(name, eInventorySlot.TwoHandWeapon);
+            item.Object_Type = (int)eObjectType.Staff;
+            item.Level = level;
+            item.DPS_AF = 30;
+            item.SPD_ABS = 40;
+            item.Price = 1;
+            return item;
         }
 
         private static void Field(Type type, object target, string name, object value) => type

@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using DOL.Database;
 
 namespace DOL.GS;
@@ -90,6 +91,18 @@ public static class AutonomousDarknessFallsPolicy
         return HomeRegion(realm) != 0 && point.TargetRegion == HomeRegion(realm) &&
             point.Realm == (ushort)realm && point.Id == HomeExitZonePointId(realm);
     }
+
+    /// <summary>The installed outdoor itinerary reverses across this exact
+    /// Lough Derg/Valley seam while heading for Hibernia's home DF entrance.
+    /// A solo bot without a connected real ticket should replan here rather
+    /// than oscillate until the forty-five-minute watchdog expires.</summary>
+    public static bool IsAuditedHiberniaExteriorLoop(eRealm realm, DbZonePoint crossing,
+        ushort currentRegion, ushort currentZone, Vector3 position, int groupSize) =>
+        groupSize <= 1 && realm == eRealm.Hibernia &&
+        crossing?.Id == HomeEntranceZonePointId(eRealm.Hibernia) &&
+        CanUsePortalRow(realm, crossing) && currentRegion == HomeRegion(realm) &&
+        currentZone == 206 &&
+        Vector3.DistanceSquared(position, new Vector3(385088, 483424, 7262)) <= 192 * 192;
 
     /// <summary>An already-inside bot may still select its own physical exit
     /// after ordinary DF goals are closed by a stale or absent certificate.

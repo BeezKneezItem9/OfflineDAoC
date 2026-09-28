@@ -146,6 +146,52 @@ namespace DOL.GS.Tests
         }
 
         [Test]
+        public void RepeatedRouteFailureShortensOnlyItsMembersMeetupDeadline()
+        {
+            var attendance = new AutonomousRendezvousAttendance();
+            DateTime utc = new(2026, 9, 27, 5, 0, 0, DateTimeKind.Utc);
+            attendance.Add(1, 0, utc);
+            attendance.Add(2, 0, utc);
+            attendance.LimitDeadline(1, 60_000, AutonomousBotGroupCoordinator.UnreachableRouteGraceMilliseconds,
+                utc.AddMinutes(1));
+            Assert.That(attendance.DeadlineUtc(1), Is.EqualTo(utc.AddMinutes(3)));
+            Assert.That(attendance.DeadlineUtc(2), Is.EqualTo(utc.AddMinutes(15)));
+            // Repeated reports cannot keep extending a proven failure.
+            attendance.LimitDeadline(1, 120_000, AutonomousBotGroupCoordinator.UnreachableRouteGraceMilliseconds,
+                utc.AddMinutes(2));
+            Assert.That(attendance.DeadlineUtc(1), Is.EqualTo(utc.AddMinutes(3)));
+            Assert.That(attendance.Observe(1, 3 * 60_000 - 1, false), Is.False);
+            Assert.That(attendance.Observe(1, 3 * 60_000, false), Is.True);
+            Assert.That(attendance.Observe(2, 3 * 60_000, false), Is.False);
+        }
+
+        [Test]
+        public void RouteReselectionNeedsARealChangeNotTheSameTownSquare()
+        {
+            Vector3 original = new(1000, 1000, 100);
+            Assert.That(AutonomousBotGroupCoordinator.IsMaterialRendezvousChange(1, original,
+                1, new Vector3(1050, 990, 100)), Is.False);
+            Assert.That(AutonomousBotGroupCoordinator.IsMaterialRendezvousChange(1, original,
+                1, new Vector3(1200, 1000, 100)), Is.True);
+            Assert.That(AutonomousBotGroupCoordinator.IsMaterialRendezvousChange(1, original,
+                10, original), Is.True);
+        }
+
+        [Test]
+        public void RosterReductionReassignsSlotsWithoutRestartingEveryMembersMeetupClock()
+        {
+            var attendance = new AutonomousRendezvousAttendance();
+            DateTime utc = new(2026, 9, 27, 5, 0, 0, DateTimeKind.Utc);
+            attendance.Add(1, 0, utc);
+            attendance.Add(2, 0, utc);
+            attendance.RebaseAfterRosterReduction(new long[] { 1 }, 14 * 60_000L,
+                utc.AddMinutes(14));
+            Assert.That(attendance.DeadlineUtc(1), Is.EqualTo(utc.AddMinutes(16)));
+            Assert.That(attendance.DeadlineUtc(2), Is.Null);
+            Assert.That(attendance.Observe(1, 16 * 60_000L, false), Is.True);
+        }
+
+        [Test]
         public void OutdoorFormationAllowsNaturalSpacingButInteriorStagingStaysTight()
         {
             Assert.Multiple(() =>

@@ -9,6 +9,7 @@ namespace DOL.GS
     public static class CompanionFollowPolicy
     {
         public const int SettleMilliseconds = 600;
+        private const int NativeTravelSpeedStartRadius = 650;
         private static readonly ConditionalWeakTable<GameBot, State> States = new();
 
         public sealed class State
@@ -58,7 +59,8 @@ namespace DOL.GS
 
         public static bool IsOrdinaryBuff(GameLiving caster, Spell spell)
         {
-            if (spell == null || spell.IsHarmful || spell.IsHealing || BotSongTwistPolicy.IsMobileSong(caster, spell)) return false;
+            if (spell == null || spell.IsHarmful || spell.IsHealing || BotSongTwistPolicy.IsMobileSong(caster, spell) ||
+                caster is GameBot bot && IsNativeCompanionTravelSpeed(bot, spell)) return false;
             if (spell.SpellType == eSpellType.PetSpell && spell.SubSpellID > 0)
             {
                 Spell payload = SkillBase.GetSpellByID(spell.SubSpellID);
@@ -67,8 +69,40 @@ namespace DOL.GS
             return BotBrain.IsMaintainableClassBuff(spell);
         }
 
-        public static bool DeferBuff(GameLiving caster, Spell spell) => caster is GameBot bot &&
-            Applies(bot) && IsOrdinaryBuff(bot, spell) && WaitingForLeaderToStop(bot);
+        // These four classes learn a stationary, three-second group speed pulse.
+        // Unlike a performer's mobile song, it requires a real stop and cast.
+        // Restrict the exception to temporary player companions and learned
+        // native speed spells; ordinary buffs and world-bot behavior stay put.
+        private static bool HasNativeTravelSpeed(GameBot bot) =>
+            bot is { IsTemporaryGroupHelper: true, IsAutonomousWorldBot: false, IsPlayerLedGroup: true } &&
+            bot.CharacterClass != null &&
+            (eCharacterClass)bot.CharacterClass.ID is
+                (eCharacterClass.Enchanter or eCharacterClass.Sorcerer or
+                 eCharacterClass.Healer or eCharacterClass.Runemaster);
+
+        public static bool IsNativeCompanionTravelSpeed(GameBot bot, Spell spell) =>
+            HasNativeTravelSpeed(bot) &&
+            spell is { SpellType: eSpellType.SpeedEnhancement, Target: eSpellTarget.GROUP,
+                       IsPulsing: true, IsHarmful: false, NeedInstrument: false } &&
+            spell.CastTime > 0;
+
+        public static bool CanStopForNativeTravelSpeed(GameBot bot) =>
+            HasNativeTravelSpeed(bot) && Applies(bot) &&
+            bot.PlayerGroupLeader is { IsMoving: true, InCombat: false, IsAttacking: false } leader &&
+            !bot.InCombat && !bot.IsAttacking && !bot.IsOnStableMasterRoute &&
+            bot.IsWithinRadius(leader, NativeTravelSpeedStartRadius);
+
+        public static bool CanStopForNativeTravelSpeed(GameBot bot, Spell spell) =>
+            CanStopForNativeTravelSpeed(bot) && IsNativeCompanionTravelSpeed(bot, spell);
+
+        public static bool DeferBuff(GameLiving caster, Spell spell)
+        {
+            if (caster is not GameBot bot || !Applies(bot) || !WaitingForLeaderToStop(bot))
+                return false;
+            if (IsNativeCompanionTravelSpeed(bot, spell))
+                return !CanStopForNativeTravelSpeed(bot, spell);
+            return IsOrdinaryBuff(bot, spell);
+        }
 
         // Do not discard a queued heal, resurrection, attack or mobile song.
         public static bool CancelOrdinaryBuffs(GameLiving caster)
@@ -88,12 +122,17 @@ namespace DOL.GS
 
         // True on settling, so existing selectors can retry without retaining
         // a canceled-cast backoff. No new timer, population scan or persistence.
-        public static bool ObserveAndCancelBuffs(GameBot bot)
+        public static bool ObserveAndCancelBuffs(GameBot bot) => ObserveAndCancelBuffs(bot, out _);
+
+        public static bool ObserveAndCancelBuffs(GameBot bot, out bool nativeSpeedTravelStarted)
         {
+            nativeSpeedTravelStarted = false;
             if (!Applies(bot)) return false;
             State state = For(bot);
             bool waiting = WaitingForLeaderToStop(bot);
             bool settled = state.BuffsBlocked && !waiting;
+            nativeSpeedTravelStarted = waiting && !state.BuffsBlocked &&
+                bot.PlayerGroupLeader.IsMoving && HasNativeTravelSpeed(bot);
             state.BuffsBlocked = waiting;
             if (waiting)
             {
@@ -102,6 +141,16 @@ namespace DOL.GS
                     servant.CancelCompanionTravelBuffs();
             }
             return settled;
+        }
+
+        public static bool NativeTravelSpeedCastInProgress(GameBot bot)
+        {
+            if (bot?.castingComponent == null) return false;
+            var casting = bot.castingComponent;
+            return IsNativeCompanionTravelSpeed(bot, casting.SpellHandler?.Spell) ||
+                   IsNativeCompanionTravelSpeed(bot, casting.QueuedSpellHandler?.Spell) ||
+                   casting.TryPeekPendingSpell(out Spell pending) &&
+                   IsNativeCompanionTravelSpeed(bot, pending);
         }
 
         public static void BeginFormation(GameBot bot, Vector3 point)

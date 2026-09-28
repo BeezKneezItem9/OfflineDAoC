@@ -26,6 +26,11 @@ public static partial class AutonomousBotGroupCoordinator
     // intended formation point was still inside that broad radius.
     private const int CohesionRadius = 500;
     private const int MaximumPveRecruitmentDistance = 30_000;
+    // A verified broken route gets one bounded retry. Initial attendance then
+    // sheds that no-show; an active locked party ends its task instead of
+    // holding every survivor in a permanent regroup.
+    public const long UnreachableRouteRetryMilliseconds = 60_000;
+    public const long UnreachableRouteGraceMilliseconds = 2 * 60_000L;
     public const long LeaderStagingTimeoutMilliseconds = 20 * 60_000L;
     private static readonly object Sync = new();
     private static readonly Dictionary<Group, Session> Sessions = new();
@@ -110,6 +115,8 @@ public static partial class AutonomousBotGroupCoordinator
         public AutonomousRendezvousAttendance Attendance { get; } = new();
         public Dictionary<long, Vector3> RendezvousSlots { get; } = new();
         public HashSet<long> HeldUnreachableMembers { get; } = new();
+        public Dictionary<long, long> UnreachableSince { get; } = new();
+        public HashSet<long> UnreachableRetried { get; } = new();
         public Dictionary<long, long> ExpeditionRouteRetry { get; } = new();
         public bool RendezvousReselectionAttempted { get; set; }
         public long NextAttendanceTick { get; set; }
@@ -824,7 +831,7 @@ public static partial class AutonomousBotGroupCoordinator
         (groupCombatActive || recoveringBetweenPulls);
 
     public static string PhaseAfterCasualty(string previousPhase, bool regrouping) =>
-        regrouping ? "Regrouping" : previousPhase is "Traveling" or "Grinding"
+        regrouping ? "Regrouping" : previousPhase is "Traveling" or "Grinding" or "Choosing group target"
             ? previousPhase : "Traveling";
 
     public static bool HasLeaderStagingTimedOut(string phase, long deadlineTick, long nowTick) =>
@@ -855,7 +862,9 @@ public static partial class AutonomousBotGroupCoordinator
     }
 
     /// <summary>At most eight actors; catches a death even between coordinator pulses.
-    /// This gates proactive pulls only, never attacked-by-enemy responses.</summary>
+    /// Proactive pulls use 90/80/80 readiness, but an active post-combat
+    /// recovery episode still runs to full. Attacked-by-enemy responses are
+    /// never gated here.</summary>
     public static bool CanInitiateNewPull(GameBot bot, bool corridorBlocker = false)
     {
         if (bot?.IsAutonomousWorldBot != true || bot.IsTemporaryGroupHelper || bot.IsPlayerLedGroup || bot.Group == null)
@@ -883,7 +892,7 @@ public static partial class AutonomousBotGroupCoordinator
             bool combatActor = AutonomousRvrStaging.UsesIndependentCombatActors(session.ObjectiveKind) || bot == puller;
             return !IsAssemblyPhase(session.Phase) && !session.Recovery.IsRegrouping && combatActor &&
                 !session.Recovery.HasCasualty(RecoveryMembers(session, members, false)) &&
-                !session.RecoveringBetweenPulls && MembersFullyRecovered(members) &&
+                !session.RecoveringBetweenPulls && MembersReadyForPull(members) &&
                 (session.ObjectiveKind != eAutonomousObjectiveKind.GroupPve ||
                     HasActivePveComposition(session, members)) &&
                 members.Length >= 2 && members.All(member => !member.IsOnStableMasterRoute &&
@@ -913,6 +922,23 @@ public static partial class AutonomousBotGroupCoordinator
     private static bool MembersFullyRecovered(GameBot[] members) => members.Length >= 2 &&
         members.All(member => AutonomousRestPolicy.IsFullyRecovered(member.HealthPercent,
             member.ManaPercent, member.EndurancePercent, member.MaxMana > 0));
+
+    // Full recovery is still required after a fight. A new pull outside that
+    // recovery episode uses the same safe 90/80/80 threshold as regrouping:
+    // passive songs, buffs and normal travel can leave a member at 99%, while
+    // the puller's hold branch does not start a rest just for that last point.
+    private static bool MembersReadyForPull(GameBot[] members) => members.Length >= 2 &&
+        members.All(member => ReadyForGroupPull(member.HealthPercent, member.ManaPercent,
+            member.EndurancePercent, member.MaxMana > 0));
+
+    public static bool ReadyForGroupPull(int health, int power, int endurance, bool usesPower) =>
+        AutonomousGroupRecoveryState.ResourcesReady(health, power, endurance, usesPower);
+
+    public static bool ShouldRecoverAfterGroupCombat(bool alreadyRecovering,
+        int health, int power, int endurance, bool usesPower) =>
+        alreadyRecovering
+            ? health < 100 || usesPower && power < 100 || endurance < 100
+            : !ReadyForGroupPull(health, power, endurance, usesPower);
 
     public static Vector3 FormationPoint(GameBot bot, Vector3 center, bool tight)
     {
@@ -969,13 +995,32 @@ public static partial class AutonomousBotGroupCoordinator
         lock (Sync)
         {
             if (!TryGetSession(bot.Group, out Session session) || session.Id != groupId) return false;
-            if (session.RaidMusterEvent != null && session.ExpeditionRouteRetry.TryGetValue(MemberKey(bot), out long retry) &&
+            long key = MemberKey(bot);
+            if (AtRendezvous(session, bot))
+            {
+                session.HeldUnreachableMembers.Remove(key);
+                session.UnreachableSince.Remove(key);
+                session.UnreachableRetried.Remove(key);
+                return false;
+            }
+            if (session.RaidMusterEvent != null && session.ExpeditionRouteRetry.TryGetValue(key, out long retry) &&
                 GameLoop.GameLoopTime >= retry)
             {
-                session.ExpeditionRouteRetry.Remove(MemberKey(bot));
-                session.HeldUnreachableMembers.Remove(MemberKey(bot));
+                session.ExpeditionRouteRetry.Remove(key);
+                session.HeldUnreachableMembers.Remove(key);
             }
-            return session.HeldUnreachableMembers.Contains(MemberKey(bot));
+            else if (session.RaidMusterEvent == null &&
+                     session.UnreachableSince.TryGetValue(key, out long firstFailure) &&
+                     session.HeldUnreachableMembers.Contains(key) &&
+                     GameLoop.GameLoopTime >= firstFailure + UnreachableRouteRetryMilliseconds &&
+                     session.UnreachableRetried.Add(key))
+            {
+                // Release exactly one ordinary retry from the current floor.
+                // Keep firstFailure so repeated failures cannot restart the
+                // shortened attendance or regroup grace window.
+                session.HeldUnreachableMembers.Remove(key);
+            }
+            return session.HeldUnreachableMembers.Contains(key);
         }
     }
 
@@ -1003,9 +1048,9 @@ public static partial class AutonomousBotGroupCoordinator
             center.Y + (float)(Math.Sin(angle) * radius), center.Z);
     }
 
-    /// <summary>Stops reissuing an impossible route while preserving the full
-    /// fifteen-minute initial meetup contract. One coordinator-level reselection
-    /// is allowed before the member waits for ordinary no-show expiry.</summary>
+    /// <summary>Stops reissuing an impossible route. One distinct coordinator
+    /// reselection and one bounded retry are allowed; only a repeat failure
+    /// shortens that member's ordinary fifteen-minute attendance window.</summary>
     public static bool ReportUnreachableRendezvous(GameBot bot, string groupId, string reason)
     {
         if (bot?.Group == null || string.IsNullOrWhiteSpace(groupId))
@@ -1030,9 +1075,24 @@ public static partial class AutonomousBotGroupCoordinator
             {
                 session.RendezvousReselectionAttempted = true;
                 GameBot leader = ChooseLeader(session, BotMembers(group));
-                if (leader != null && TryChooseRendezvous(leader, session.ObjectiveKind, out Vector3 replacement,
-                        out string replacementName, out ushort replacementRegion))
+                // The old retry chose from the leader's town again, commonly
+                // shifting the same blocked point by a few units. First look
+                // for a reachable town near the reporter, then near the leader.
+                // TryChooseRendezvous validates all same-region party members.
+                // A reporter may be stranded on a raised polygon while the
+                // leader's original town is also disconnected. The remaining
+                // PvE members provide a few more real, validated town anchors;
+                // this runs only after a route failure, never in the AI tick.
+                IEnumerable<GameBot> anchors = session.ObjectiveKind == eAutonomousObjectiveKind.GroupPve
+                    ? new[] { bot, leader }.Concat(BotMembers(group).Where(member => member.IsAlive))
+                    : new[] { bot, leader };
+                foreach (GameBot anchor in anchors.Where(candidate => candidate != null).Distinct())
                 {
+                    if (!TryChooseRendezvous(anchor, session.ObjectiveKind, out Vector3 replacement,
+                            out string replacementName, out ushort replacementRegion) ||
+                        !IsMaterialRendezvousChange(session.RendezvousRegion, session.Rendezvous,
+                            replacementRegion, replacement))
+                        continue;
                     Vector3 previous = session.Rendezvous;
                     string previousName = session.RendezvousName;
                     ushort previousRegion = session.RendezvousRegion;
@@ -1045,6 +1105,9 @@ public static partial class AutonomousBotGroupCoordinator
                             RebaseAttendance(session, BotMembers(group));
                         else
                             session.Attendance.Reset();
+                        session.HeldUnreachableMembers.Clear();
+                        session.UnreachableSince.Clear();
+                        session.UnreachableRetried.Clear();
                         Log.Warn($"AUTONOMOUS_GROUP_RENDEZVOUS_RESELECTED group={session.Id} bot=\"{bot.Name}\" " +
                                  $"from={(int)previous.X},{(int)previous.Y},{(int)previous.Z} " +
                                  $"to={(int)replacement.X},{(int)replacement.Y},{(int)replacement.Z} reason=\"{reason}\"");
@@ -1057,8 +1120,27 @@ public static partial class AutonomousBotGroupCoordinator
                 }
             }
 
-            if (!session.HeldUnreachableMembers.Add(MemberKey(bot)))
+            long key = MemberKey(bot);
+            if (!session.HeldUnreachableMembers.Add(key))
                 return true;
+            long now = GameLoop.GameLoopTime;
+            session.UnreachableSince.TryAdd(key, now);
+            if (session.UnreachableRetried.Contains(key))
+            {
+                if (session.Phase == "Meeting up")
+                    session.Attendance.LimitDeadline(key, now, UnreachableRouteGraceMilliseconds);
+                else if (session.Phase == "Leader staging" && bot == session.Leader &&
+                         session.LeaderStagingDeadlineTick > 0)
+                {
+                    long limited = Math.Min(session.LeaderStagingDeadlineTick,
+                        now + UnreachableRouteGraceMilliseconds);
+                    if (limited < session.LeaderStagingDeadlineTick)
+                    {
+                        session.LeaderStagingDeadlineTick = limited;
+                        session.LeaderStagingDeadlineUtc = DateTime.UtcNow.AddMilliseconds(limited - now);
+                    }
+                }
+            }
             Log.Warn($"AUTONOMOUS_GROUP_UNREACHABLE_RENDEZVOUS group={session.Id} bot=\"{bot.Name}\" " +
                      $"id={bot.DatabaseID} region={bot.CurrentRegionID} position={bot.X},{bot.Y},{bot.Z} " +
                      $"rendezvous={session.RendezvousRegion}:{(int)session.Rendezvous.X},{(int)session.Rendezvous.Y},{(int)session.Rendezvous.Z} " +
@@ -1066,6 +1148,12 @@ public static partial class AutonomousBotGroupCoordinator
             return true;
         }
     }
+
+    public static bool IsMaterialRendezvousChange(ushort previousRegion, Vector3 previous,
+        ushort candidateRegion, Vector3 candidate) =>
+        previousRegion != candidateRegion ||
+        Vector2.DistanceSquared(new(previous.X, previous.Y), new(candidate.X, candidate.Y)) >= 128 * 128 ||
+        MathF.Abs(previous.Z - candidate.Z) >= 160;
 
     public static void OnMemberRemoved(Group group, GameLiving living)
     {
@@ -1489,7 +1577,8 @@ public static partial class AutonomousBotGroupCoordinator
             {
                 group = session.Id, leader = leader.Name, id = leader.DatabaseID,
                 level = leader.Level, className = leader.ClassName, realm = leader.Realm.ToString(),
-                waitedSeconds = LeaderStagingTimeoutMilliseconds / 1000,
+                ordinaryWindowSeconds = LeaderStagingTimeoutMilliseconds / 1000,
+                shortenedAfterRepeatedRouteFailure = session.UnreachableRetried.Contains(MemberKey(leader)),
                 region = leader.CurrentRegionID, x = leader.X, y = leader.Y, z = leader.Z,
                 rendezvousTown = session.RendezvousName, rendezvousRegion = session.RendezvousRegion,
                 rendezvousX = session.Rendezvous.X, rendezvousY = session.Rendezvous.Y,
@@ -1516,7 +1605,13 @@ public static partial class AutonomousBotGroupCoordinator
         }
         else if (session.CombatObserved && !session.Recovery.IsRegrouping)
         {
-            session.RecoveringBetweenPulls = !MembersFullyRecovered(members);
+            // Near-full resources after a trivial defense do not require an
+            // exact-100 rest that no controller branch would initiate. Once a
+            // real low-resource recovery begins, keep the existing full-rest
+            // contract before the next elective pull.
+            session.RecoveringBetweenPulls = members.Any(member => ShouldRecoverAfterGroupCombat(
+                session.RecoveringBetweenPulls, member.HealthPercent, member.ManaPercent,
+                member.EndurancePercent, member.MaxMana > 0));
             if (!session.RecoveringBetweenPulls)
                 session.CombatObserved = false;
         }
@@ -1577,18 +1672,16 @@ public static partial class AutonomousBotGroupCoordinator
                 // A nearby resurrection already put the whole party back in
                 // formation. Record the death once, then recover resources at
                 // the current camp instead of sending everybody back to town.
-                bool together = members.All(member =>
-                    member.CurrentRegionID == leader.CurrentRegionID &&
-                    member.GetDistanceTo(leader) <= PullCohesionRadius(
-                        corridorBlocker: true, inDungeon: leader.CurrentZone?.IsDungeon == true));
+                bool together = RevivedMembersCanReformLocally(members, leader);
                 bool localRecovery = session.Recovery.TryResumeLocally(
                     RecoveryMembers(session, members, false), together);
                 session.Phase = PhaseAfterCasualty(session.PhaseBeforeCasualty,
                     session.Recovery.IsRegrouping);
                 session.PhaseBeforeCasualty = string.Empty;
                 session.CorpseCombatClearSince.Clear();
-                session.RecoveringBetweenPulls = !MembersFullyRecovered(members);
-                Log.Info($"AUTONOMOUS_GROUP_RESURRECTION_SUCCEEDED group={session.Id} localRecovery={localRecovery}");
+                session.RecoveringBetweenPulls = !MembersReadyForPull(members);
+                Log.Info($"AUTONOMOUS_GROUP_CASUALTY_CLEARED group={session.Id} localRecovery={localRecovery} " +
+                    $"returning={members.Count(member => member.IsReturningAfterRelease)}");
             }
         }
         if (session.Recovery.Observe(RecoveryMembers(session, members, false), session.TaskClock.HasStarted))
@@ -1604,6 +1697,10 @@ public static partial class AutonomousBotGroupCoordinator
             session.DungeonArrivalHoldUntilTick = 0;
             session.Phase = "Regrouping";
             session.LeaderReadyForAssembly = false;
+            session.HeldUnreachableMembers.Clear();
+            session.UnreachableSince.Clear();
+            session.UnreachableRetried.Clear();
+            session.RendezvousReselectionAttempted = false;
             if (session.ObjectiveKind == eAutonomousObjectiveKind.GroupPve)
                 session.RecoveryRendezvousChosen = false;
             ChooseRecoveryRendezvous(session, members[0].Realm);
@@ -1614,6 +1711,34 @@ public static partial class AutonomousBotGroupCoordinator
         }
         // Readiness/mesh checks happen at most once per second per PARTY, not
         // once for every member's AI turn. Casualty detection above stays immediate.
+        if (session.Recovery.IsRegrouping && session.RaidMusterEvent == null)
+        {
+            GameBot[] unreachable = members.Where(member =>
+                session.UnreachableSince.TryGetValue(MemberKey(member), out long failedAt) &&
+                session.HeldUnreachableMembers.Contains(MemberKey(member)) &&
+                GameLoop.GameLoopTime - failedAt >=
+                    UnreachableRouteRetryMilliseconds + UnreachableRouteGraceMilliseconds &&
+                !AtRendezvous(session, member)).ToArray();
+            if (unreachable.Length > 0)
+            {
+                if (session.ObjectiveKind == eAutonomousObjectiveKind.GroupPve)
+                {
+                    // A single disconnected member should not disband a
+                    // recoverable party. The existing roster-reduction path
+                    // still requires a tank, healer, and attacker and ends the
+                    // task if that viable core has been lost.
+                    ReducePvePartyAfterNoShows(session, members, unreachable, GameLoop.GameLoopTime);
+                    if (session.Ending) return false;
+                    members = BotMembers(session.Group);
+                }
+                else
+                {
+                    FinishGroupTask(session,
+                        "A regroup member has no connected route to the safe rendezvous after a bounded retry");
+                    return false;
+                }
+            }
+        }
         if (session.Recovery.IsRegrouping && GameLoop.GameLoopTime >= session.NextRecoveryReadinessTick)
         {
             session.NextRecoveryReadinessTick = GameLoop.GameLoopTime + 1_000;
@@ -1661,6 +1786,70 @@ public static partial class AutonomousBotGroupCoordinator
         WriteSessionMetadata(session, members);
         return true;
     }
+
+    private static bool RevivedMembersCanReformLocally(GameBot[] members, GameBot leader)
+    {
+        if (leader?.CurrentRegion == null || members == null || members.Length < 2)
+            return false;
+        IPathfindingMgr nav = PathfindingProvider.Instance;
+        Zone destinationZone = leader.CurrentZone;
+        if (destinationZone == null || !nav.IsAvailable || !nav.HasNavmesh(destinationZone) ||
+            !AutonomousNavigationSurface.TryFloor(nav, destinationZone,
+                new(leader.X, leader.Y, leader.Z), out Vector3 destination))
+            return false;
+        foreach (GameBot member in members)
+        {
+            if (member == leader)
+                continue;
+            bool sameRegion = member.CurrentRegionID == leader.CurrentRegionID;
+            bool sameZone = member.CurrentZone == destinationZone;
+            int distance = member.GetDistanceTo(leader);
+            if (!sameRegion || !sameZone || distance > 1_800 ||
+                !AutonomousNavigationSurface.TryFloor(nav, destinationZone,
+                    new(member.X, member.Y, member.Z), out Vector3 start))
+                return false;
+            // Proximity is not connectivity: two Koalinth rooms may be only a
+            // few units apart across a wall. Both complete corridors must be
+            // proved on the same floor so one-way drops also cannot masquerade
+            // as a locally reunited party. Missing mesh proof means regroup.
+            bool connectedBothWays = HasExactLocalCorridor(nav, destinationZone, start, destination) &&
+                HasExactLocalCorridor(nav, destinationZone, destination, start);
+            if (!CanCountLocalRevival(distance, sameRegion, sameZone, true, connectedBothWays))
+                return false;
+        }
+        return true;
+    }
+
+    public static bool CanCountLocalRevival(int distance, bool sameRegion, bool sameZone,
+        bool hasNavmeshProof, bool connectedBothWays) =>
+        distance >= 0 && distance <= 1_800 && sameRegion && sameZone &&
+        hasNavmeshProof && connectedBothWays;
+
+    private static bool HasExactLocalCorridor(IPathfindingMgr nav, Zone zone, Vector3 start, Vector3 end)
+    {
+        // The ordinary route helper deliberately accepts a partial path that
+        // ends within 48 units. That is useful for movement but could mistake
+        // a thin wall between neighboring dungeon rooms for a local reunion.
+        // Require Detour's actual complete path in both directions here.
+        Span<WrappedPathfindingNode> nodes = stackalloc WrappedPathfindingNode[256];
+        try
+        {
+            PathfindingResult result = nav.GetPathStraight(zone, start, end, nav.DefaultFilters, nodes);
+            return IsCompleteLocalReunionSegment(result, nodes, start, end);
+        }
+        catch
+        {
+            // Mesh failure cannot be treated as evidence of local reunion.
+            return false;
+        }
+    }
+
+    public static bool IsCompleteLocalReunionSegment(PathfindingResult result,
+        ReadOnlySpan<WrappedPathfindingNode> nodes, Vector3 start, Vector3 end) =>
+        result.Status == PathfindingStatus.PathFound && result.NodeCount > 0 &&
+        result.NodeCount <= nodes.Length &&
+        Vector3.DistanceSquared(nodes[0].Position, start) <= 48 * 48 &&
+        Vector3.DistanceSquared(nodes[result.NodeCount - 1].Position, end) <= 48 * 48;
 
     private static bool AtRendezvous(Session session, GameBot member) =>
         // Physical attendance is authoritative. IsReturningAfterRelease can
@@ -1732,7 +1921,11 @@ public static partial class AutonomousBotGroupCoordinator
         session.Camp = null;
         session.PreferredLevelBonus = RollPreferredLevelBonus(remaining.Length) - session.WipePenalty;
         foreach (GameBot member in missing)
+        {
             session.HeldUnreachableMembers.Remove(MemberKey(member));
+            session.UnreachableSince.Remove(MemberKey(member));
+            session.UnreachableRetried.Remove(MemberKey(member));
+        }
         if (leader != null && missing.Contains(leader) && remaining.Length >= 2)
         {
             GameBot replacement = ChooseLeader(session, remaining);
@@ -1765,9 +1958,9 @@ public static partial class AutonomousBotGroupCoordinator
         {
             Log.Warn($"AUTONOMOUS_GROUP_MEETUP_FAILED group={session.Id} leader=\"{leader.Name}\" " +
                      $"town=\"{session.RendezvousName}\" invited={members.Length - 1} " +
-                     $"reason=\"Every invited member missed the 15-minute meetup window\"");
+                     $"reason=\"Every invited member missed the meetup deadline\"");
             FinishGroupTask(session,
-                $"Every invited member missed the 15-minute meetup with leader {leader.Name} in {session.RendezvousName}");
+                $"Every invited member missed the meetup deadline with leader {leader.Name} in {session.RendezvousName}");
             return;
         }
         if (remaining.Length < 2)
@@ -1780,14 +1973,17 @@ public static partial class AutonomousBotGroupCoordinator
         // Remaining members finish settling into their new slots, then the
         // existing leader selector chooses a fresh camp for this actual size.
         if (TryBuildRendezvousSlots(session, remaining))
-            RebaseAttendance(session, remaining);
+            RebaseAttendance(session, remaining, preserveDeadlines: true);
         WriteSessionMetadata(session, remaining);
     }
 
-    private static void RebaseAttendance(Session session, GameBot[] members)
+    private static void RebaseAttendance(Session session, GameBot[] members, bool preserveDeadlines = false)
     {
         long now = GameLoop.GameLoopTime;
-        session.Attendance.Rebase(members.Select(MemberKey), now);
+        if (preserveDeadlines)
+            session.Attendance.RebaseAfterRosterReduction(members.Select(MemberKey), now);
+        else
+            session.Attendance.Rebase(members.Select(MemberKey), now);
         foreach (GameBot member in members)
             session.Attendance.Observe(MemberKey(member), now, AtRendezvous(session, member));
     }
@@ -1821,7 +2017,11 @@ public static partial class AutonomousBotGroupCoordinator
         {
             foreach (GameBot member in missing)
             {
-                session.PveRoles.Remove(MemberKey(member));
+                long key = MemberKey(member);
+                session.PveRoles.Remove(key);
+                session.HeldUnreachableMembers.Remove(key);
+                session.UnreachableSince.Remove(key);
+                session.UnreachableRetried.Remove(key);
                 session.Group.RemoveMember(member, retainSingleRemainingMember: true);
                 AutonomousObjectiveAssignments.BeginSoloAfterGroupTask(member,
                     "Could not reach the PvE rendezvous; choosing independent work");
@@ -1864,6 +2064,7 @@ public static partial class AutonomousBotGroupCoordinator
             session.RendezvousRegion = region;
             session.Phase = "Leader staging";
             session.LeaderReadyForAssembly = false;
+            session.RendezvousReselectionAttempted = false;
             session.Attendance.Reset();
             session.LeaderStagingDeadlineTick = now + LeaderStagingTimeoutMilliseconds;
             session.LeaderStagingDeadlineUtc = DateTime.UtcNow.AddMilliseconds(LeaderStagingTimeoutMilliseconds);
@@ -1875,7 +2076,7 @@ public static partial class AutonomousBotGroupCoordinator
             return;
         }
 
-        RebaseAttendance(session, remaining);
+        RebaseAttendance(session, remaining, preserveDeadlines: true);
         Log.Warn($"AUTONOMOUS_GROUP_PARTIAL_ROSTER group={session.Id} " +
                  $"removed=\"{string.Join(",", missing.Select(member => member.Name))}\" " +
                  $"remaining={remaining.Length} reason=unreachable-rendezvous action=continue");
@@ -2102,13 +2303,21 @@ public static partial class AutonomousBotGroupCoordinator
         AutonomousWorldBotController.IsIdleTownArea(area);
 
     private static bool IsTownArea(GameObject obj) => obj?.CurrentRegion?.IsCapitalCity == true ||
-        obj?.CurrentAreas?.OfType<AbstractArea>().Any(IsNamedRendezvousArea) == true;
+        NamedTownArea(obj) != null;
 
     private static string TownName(GameObject obj) => obj?.CurrentRegion?.IsCapitalCity == true
         ? obj.CurrentRegion.Description
-        : obj?.CurrentAreas?.OfType<AbstractArea>()
-            .FirstOrDefault(IsNamedRendezvousArea)?.Description ??
-          obj?.CurrentZone?.Description ?? "reachable town";
+        : NamedTownArea(obj)?.Description ?? obj?.CurrentZone?.Description ?? "reachable town";
+
+    // CurrentAreas dereferences CurrentZone without a guard. A bot or town NPC
+    // can lose its zone during a cross-region handoff on a different AI turn;
+    // checking the zone snapshot avoids taking down group coordination.
+    private static AbstractArea NamedTownArea(GameObject obj)
+    {
+        Zone zone = obj?.CurrentZone;
+        return zone?.GetAreasOfSpot(obj.X, obj.Y, obj.Z)?
+            .OfType<AbstractArea>().FirstOrDefault(IsNamedRendezvousArea);
+    }
 
     private static void ChooseRecoveryRendezvous(Session session, eRealm realm)
     {
