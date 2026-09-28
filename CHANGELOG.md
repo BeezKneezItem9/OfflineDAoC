@@ -1,5 +1,30 @@
 # Offline DAoC changelog
 
+## 2026-09-28 — v0.32b Darkness Falls Beta shared stability update
+
+- Carries the current normal v0.32 fixes: Savages find ordinary outdoor
+  targets; Cursed Tomb and Koalinth goals use reachable, level-matched
+  camps; group readiness, meetups, resurrection regrouping, and the audited
+  Hibernia Darkness Falls approach are repaired without changing monster
+  strength. A failed short Lough Derg detour can try another verified step.
+- Full-bag bots can sell redundant spare gear while retaining equipped
+  items, useful weapon swaps, instruments, upgrades, and real money.
+  Ordinary PvE goals no longer send a realm into an enemy frontier; RvR and
+  realm events are unaffected. Two camps with mismatched catalog levels now
+  use the levels of their live monsters.
+- `/gminfo` reports the equipped helmet model and extension. Model-840
+  scale coifs with stored extensions 2 or 3 use the working extension-0
+  visual without altering item stats or saved data. Moving native-speed
+  caster companions can stop for their learned speed buff and catch up.
+  Cotswold, Mularn, and Mag Mell show collision-free classic-side Shrouded
+  Isles portal visuals; no player portal travel or bot-route behavior was
+  added.
+- The optional Sluaghbinder class, Covenant pet support, quests, and private
+  visuals are retained in v0.32b only. Normal v0.32 stays class-free. Both
+  editions remain **Darkness Falls Beta**, with no Darkness Falls raid AI or
+  hardest-content bot goals. Source tests and package checks do not replace
+  a live, long-running bot verification.
+
 ## 2026-09-26 — v0.32b Darkness Falls Beta refresh
 
 - Includes the normal v0.32 refresh: Midgard bots use their reachable Darkness

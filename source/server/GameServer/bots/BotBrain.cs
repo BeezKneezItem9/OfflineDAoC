@@ -1009,6 +1009,11 @@ namespace DOL.AI.Brain
 
         private void FollowFormation(bool ambientWander = false)
         {
+            // Any FOLLOW entry or support path must honor a temporary caster's
+            // non-mobile speed cast, even if the leader leaves IDLE range while
+            // those three seconds are in progress.
+            if (CompanionFollowPolicy.NativeTravelSpeedCastInProgress(BotBody))
+                return;
             // The traveling-performer preflight may already have issued this
             // turn's path. Do not calculate a duplicate raid formation path.
             if (_lastPerformerFollowTick == GameLoop.GameLoopTime)
@@ -1110,11 +1115,17 @@ namespace DOL.AI.Brain
 
         public override void Think()
         {
-            if (CompanionFollowPolicy.ObserveAndCancelBuffs(BotBody))
+            bool nativeSpeedTravelStarted;
+            if (CompanionFollowPolicy.ObserveAndCancelBuffs(BotBody, out nativeSpeedTravelStarted))
             {
                 _nextMaintenanceBuffTick = 0;
                 _nextDeployablePetTick = 0;
             }
+            // A parked companion may have just completed a no-missing-buffs
+            // scan. On the first moving owner pulse, check native group speed
+            // immediately instead of waiting for that idle-scan backoff.
+            if (nativeSpeedTravelStarted)
+                _nextMaintenanceBuffTick = 0;
             EnforceCompanionEngagementRange();
             GameLiving nearbyPull = CompanionEngagementMode.NearbyPull(BotBody);
             if (nearbyPull != null && CanAggroTarget(nearbyPull)) AssistPlayerAttack(nearbyPull);
@@ -1499,6 +1510,11 @@ namespace DOL.AI.Brain
         {
             if (service?.ObjectState != GameObject.eObjectState.Active || BotBody == null ||
                 !BotBody.IsWithinRadius(service, GS.ServerProperties.Properties.WORLD_PICKUP_DISTANCE)) return false;
+            // The world controller already selected a reachable merchant and stopped
+            // beside it. Use that exact merchant on this turn; another AI action can
+            // otherwise postpone the ordinary merchant pulse indefinitely.
+            if (service is GameMerchant merchant && service is not RealmExchangeBroker)
+                return TryHandleAutonomousMerchantService(merchant);
             if (service is not RealmExchangeBroker broker) return false;
             bool handled = TryHandleAutonomousRealmExchange(broker);
             if (handled)
@@ -1634,7 +1650,7 @@ namespace DOL.AI.Brain
         /// movement side effects, cannot affect /spawn helpers, and uses only saved bot inventory
         /// and copper through AutonomousBotEconomy.
         /// </summary>
-        private bool TryHandleAutonomousMerchantService()
+        private bool TryHandleAutonomousMerchantService(GameMerchant arrivedMerchant = null)
         {
             GameBot bot = BotBody;
             long now = GameLoop.GameLoopTime;
@@ -1654,12 +1670,17 @@ namespace DOL.AI.Brain
             // Consider only merchants the bot can actually interact with and
             // prefer the nearest one; the normal sale/range checks remain the
             // final authority.
-            GameMerchant merchant = bot.GetNPCsInRadius(interactionRadius)
-                .OfType<GameMerchant>()
-                .Where(candidate => candidate.IsWithinRadius(bot, interactionRadius))
-                .OrderBy(candidate => bot.GetDistanceTo(candidate))
-                .FirstOrDefault();
+            GameMerchant merchant = arrivedMerchant;
             if (merchant == null)
+                merchant = bot.GetNPCsInRadius(interactionRadius)
+                    .OfType<GameMerchant>()
+                    .Where(candidate => candidate.IsWithinRadius(bot, interactionRadius) &&
+                                        (candidate.Realm == eRealm.None || candidate.Realm == bot.Realm))
+                    .OrderBy(candidate => bot.GetDistanceTo(candidate))
+                    .FirstOrDefault();
+            if (merchant?.ObjectState != GameObject.eObjectState.Active ||
+                !merchant.IsWithinRadius(bot, interactionRadius) ||
+                merchant.Realm != eRealm.None && merchant.Realm != bot.Realm)
                 return false;
 
             if (bot.Inventory?.AllItems.Any(i=>BotSiegeRuntime.IsSupply(i.Id_nb))==true)
@@ -1688,6 +1709,20 @@ namespace DOL.AI.Brain
                     _nextMerchantServiceTick = now + 3_000;
                     return true;
                 }
+            }
+
+            // Legacy full bags can contain a still-useful equipment upgrade.
+            // Wear it first, without discarding or vending it; the displaced
+            // piece becomes an ordinary backpack candidate on the next pulse.
+            if (usedSlots >= capacity &&
+                AutonomousBotEconomy.TryEquipBestOwnedUpgrade(bot, out DbInventoryItem equippedUpgrade))
+            {
+                SetMerchantStatus(bot, $"Equipped {equippedUpgrade.Name} before clearing the backpack",
+                    "The replaced equipment remains in the real inventory for appraisal");
+                AutonomousStuckWatchdog.MarkProgress(bot, eAutonomousProgressKind.Inventory);
+                AutonomousObjectiveAssignments.TryCompleteBetweenTaskServicesIfSatisfied(bot);
+                _nextMerchantServiceTick = now + 3_000;
+                return true;
             }
 
             // An old character may carry 40 non-vendorable quest/reputation
@@ -1749,7 +1784,9 @@ namespace DOL.AI.Brain
         private bool TryMaintainTravelAndClassBuffs()
         {
             GameBot bot = BotBody;
-            if (CompanionFollowPolicy.WaitingForLeaderToStop(bot)) return false;
+            bool waitingForLeader = CompanionFollowPolicy.WaitingForLeaderToStop(bot);
+            if (waitingForLeader && !CompanionFollowPolicy.CanStopForNativeTravelSpeed(bot))
+                return false;
             if (bot == null || !bot.IsAlive || bot.IsOnStableMasterRoute || bot.InCombat || HasAggro ||
                 bot.IsAttacking || bot.IsCasting || bot.IsStunned || bot.IsMezzed || bot.IsSilenced ||
                 bot.castingComponent?.HasPendingSkillRequests == true ||
@@ -1766,6 +1803,7 @@ namespace DOL.AI.Brain
                                  spell.Target is not (eSpellTarget.PET or eSpellTarget.CONTROLLED)) &&
                                 (spell.Target is not (eSpellTarget.PET or eSpellTarget.CONTROLLED) ||
                                  AutonomousPetSupport.ShouldMaintainRoutinePetBuff(spell, false)) &&
+                                (!waitingForLeader || CompanionFollowPolicy.CanStopForNativeTravelSpeed(bot, spell)) &&
                                 !BotSongTwistPolicy.IsReservedPulse(bot, spell))
                 .DistinctBy(spell => spell.ID)
                 .ToList();
@@ -2122,6 +2160,11 @@ namespace DOL.AI.Brain
 
             if (spell.Target == eSpellTarget.GROUP)
             {
+                // A moving native-speed companion only needs to start its own
+                // pulse. A group member briefly missing the child effect is
+                // not grounds to stop again and restart the three-second cast.
+                if (CompanionFollowPolicy.IsNativeCompanionTravelSpeed(BotBody, spell))
+                    return LivingHasEffect(Body, spell) ? null : Body;
                 IEnumerable<GameLiving> members = Body.Group?.GetMembersInTheGroup() ?? [Body];
                 return members.Any(member => member.IsAlive && Body.IsWithinRadius(member, Math.Max(350, spell.Range)) && !LivingHasEffect(member, spell)) ||
                        FindMissingPartyPetBuffTarget(spell) != null
@@ -2424,6 +2467,12 @@ namespace DOL.AI.Brain
                     _brain.FollowDuringMobileSong();
                     return;
                 }
+
+                // A native caster-speed pulse is not a mobile performer song.
+                // Keep the temporary companion planted for the real cast; the
+                // next FOLLOW pulse resumes formation as soon as it finishes.
+                if (CompanionFollowPolicy.NativeTravelSpeedCastInProgress(_brain.BotBody))
+                    return;
 
                 // Temporary companions already passed through the strict rest
                 // preflight before songs, buffs, pets, roleplay, and this FSM.

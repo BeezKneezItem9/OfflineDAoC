@@ -175,6 +175,8 @@ namespace DOL.GS.Commands
 					info.Add(" ");
 					if (target.Race > 0)
 						info.Add(" + Race:  " + target.Race);
+					if (target is GameBot bot)
+						info.Add(" + Bot gender ID: " + bot.GenderId);
 
 					if (target.BodyType > 0)
 						info.Add(" + Body Type:  " + target.BodyType);
@@ -188,6 +190,9 @@ namespace DOL.GS.Commands
 						
 					if (target.Inventory != null)
 						info.Add(" + Inventory: " + target.Inventory.AllItems.Count + " items");
+					DbInventoryItem npcHead = target.Inventory?.GetItem(eInventorySlot.HeadArmor);
+					if (npcHead != null)
+						info.Add($" + Equipped head: {npcHead.Name} | model {npcHead.Model} | extension {npcHead.Extension} | template {npcHead.Id_nb}");
 						
 					info.Add(" ");
 					info.Add(" + Mob_ID:  " + target.InternalID);
@@ -362,6 +367,9 @@ namespace DOL.GS.Commands
 					info.Add("  ----- Wearing:");
 					foreach (DbInventoryItem item in target.Inventory.EquippedItems)
 						info.Add(" [" + GlobalConstants.SlotToName(item.Item_Type) + "] " + item.Name);
+					DbInventoryItem playerHead = target.Inventory.GetItem(eInventorySlot.HeadArmor);
+					if (playerHead != null)
+						info.Add($"  - Equipped head model: {playerHead.Model} | extension {playerHead.Extension} | template {playerHead.Id_nb}");
 					info.Add(" ");
 				}
 

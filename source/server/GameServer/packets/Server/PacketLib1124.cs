@@ -84,7 +84,8 @@ namespace DOL.GS.PacketHandler
 						pak.WriteShort(model);
 
 						if (item.SlotPosition > Slot.RANGED || item.SlotPosition < Slot.RIGHTHAND)
-							pak.WriteByte((byte)item.Extension);
+							pak.WriteByte(HelmetAppearanceCompatibility.VisibleExtension(
+								item.SlotPosition, item.Model, item.Extension));
 
 						if ((texture & ~0xFF) != 0)
 							pak.WriteShort((ushort)texture);

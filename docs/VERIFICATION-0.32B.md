@@ -3,7 +3,18 @@
 This page is for the optional Sluaghbinder source and package. The normal
 v0.32 verification record is [separate](VERIFICATION-0.32.md).
 
-## Isolated source checks
+## September 28 isolated source checks
+
+- The optional Release GameServer build completed with zero errors, and
+  **2,130/2,130** server tests passed in the staged source checkout.
+- The staged optional `GameServer.dll` SHA-256 is
+  `1573A706C28E677F6342DCEAC2E4636F89D16EA2F6B8456AC64B1555E7611553`.
+  This identifies the new build, not the previous September 26 package.
+- These checks cover the current shared bot-routing, grouping, economy,
+  helmet, and companion-speed source plus Sluaghbinder. They do not by
+  themselves establish a packaged-install check or a long live gameplay run.
+
+## Previous September 26 isolated source checks
 
 - The refreshed optional Release server build completed with zero errors.
   Its broader suite passed **2,072/2,072** tests, excluding five known
@@ -20,7 +31,10 @@ v0.32 verification record is [separate](VERIFICATION-0.32.md).
   it passed. That protects the unrelated route catalog against the new
   Darkness Falls policy in the tested source.
 
-## Refreshed package install and rollback
+## Previous September 26 refreshed package install and rollback
+
+The checks below apply to the older September 26 refresh. They do not verify
+the September 28 ZIP merely because the version number remains v0.32b.
 
 - A disposable complete normal v0.32 folder accepted the refreshed normal
   update. The refreshed optional patch verified that base and installed into

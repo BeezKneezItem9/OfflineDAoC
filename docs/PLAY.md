@@ -26,6 +26,13 @@ The [v0.3](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3),
 [v0.31b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b)
 downloads remain available as legacy versions.
 
+The September 28 v0.32/v0.32b update includes the shared bot travel, group,
+dungeon-goal, full-backpack, and visible scale-helmet fixes. It also keeps the
+classic-side Shrouded Isles portals visible without changing their player
+travel or existing bot routes. v0.32b adds Sluaghbinder to the same normal
+v0.32 base; [its release notes](RELEASE-0.32B.md) explain the shared fixes
+and remaining Darkness Falls beta limits.
+
 1. On your chosen **Releases** page, download its named `.cmd` helper and
    `Get-OfflineDAoC.ps1` into the **same new folder**. Use files from the same
    release; an older helper may select an older version.
@@ -51,7 +58,7 @@ downloads remain available as legacy versions.
 For the optional path, use **DOWNLOAD-AND-PLAY-v0.32b.cmd**. It assembles the
 normal v0.32 game first, checks the optional patch, and makes the Sluaghbinder
 copy. If you already have a clean v0.32 folder, use the current v0.32b patch
-ZIP `Sluaghbinder-v0.32b-darkness-falls-beta-refresh-20260926-patch.zip`
+ZIP `Sluaghbinder-v0.32b-darkness-falls-beta-20260928-patch.zip`
 linked on that release page and its included install command, following
 that archive's instructions. The patcher leaves the selected
 base untouched and writes a rollback command into the optional copy. If you do

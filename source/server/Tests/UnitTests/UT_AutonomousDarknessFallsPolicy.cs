@@ -86,6 +86,38 @@ public class UT_AutonomousDarknessFallsPolicy
     }
 
     [Test]
+    public void HiberniaExteriorLoopGuard_OnlyMatchesTheAuditedSoloPortalSeam()
+    {
+        var portal = new DbZonePoint
+        {
+            Id = 87, SourceRegion = 200, TargetRegion = 249, Realm = 0
+        };
+        Vector3 seam = new(385088, 483424, 7262);
+        Assert.Multiple(() =>
+        {
+            Assert.That(AutonomousDarknessFallsPolicy.IsAuditedHiberniaExteriorLoop(
+                eRealm.Hibernia, portal, 200, 206, seam, 1), Is.True);
+            Assert.That(AutonomousDarknessFallsPolicy.IsAuditedHiberniaExteriorLoop(
+                eRealm.Hibernia, portal, 200, 206, seam + new Vector3(100, 0, 0), 1), Is.True);
+            Assert.That(AutonomousDarknessFallsPolicy.IsAuditedHiberniaExteriorLoop(
+                eRealm.Hibernia, portal, 200, 206, seam + new Vector3(193, 0, 0), 1), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.IsAuditedHiberniaExteriorLoop(
+                eRealm.Hibernia, portal, 200, 200, seam, 1), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.IsAuditedHiberniaExteriorLoop(
+                eRealm.Hibernia, portal, 181, 206, seam, 1), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.IsAuditedHiberniaExteriorLoop(
+                eRealm.Hibernia, portal, 200, 206, seam, 8), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.IsAuditedHiberniaExteriorLoop(
+                eRealm.Midgard, portal, 200, 206, seam, 1), Is.False);
+            Assert.That(AutonomousDarknessFallsPolicy.IsAuditedHiberniaExteriorLoop(
+                eRealm.Hibernia, new DbZonePoint
+                {
+                    Id = 86, SourceRegion = 200, TargetRegion = 249, Realm = 3
+                }, 200, 206, seam, 1), Is.False);
+        });
+    }
+
+    [Test]
     public void DarknessFallsExit_UsesOnlyOwnRealmSpecificPortalRow()
     {
         var albion = new DbZonePoint { Id = 74, SourceRegion = 249, TargetRegion = 1, Realm = 1 };

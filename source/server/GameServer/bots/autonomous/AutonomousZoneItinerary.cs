@@ -114,6 +114,20 @@ namespace DOL.GS
                 if (via != null && via != from && via != to && allowed?.Invoke(via) != false &&
                     TryNextStep(region, from, via, start, road, nav, out step, allowed)) return true;
             }
+            // The direct Shannon/Silvermine -> Koalinth topology chooses a
+            // high Lough Derg/Connacht seam near (319584,483264,11299).
+            // Although each individual border is walkable, that Connacht
+            // shelf has no connected continuation to Cliffs of Moher. Stage
+            // the first two borders toward the installed lower Lough Derg
+            // road instead. The ordinary final-zone corridor proof then
+            // selects a low seam; no actor is moved or teleported here.
+            if (region.ID == 200 && from.ID is 201 or 202 && to.ID == 203)
+            {
+                Vector3 road = new(342015, 498967, 4980);
+                Zone via = region.GetZone((int)road.X, (int)road.Y);
+                if (via != null && via != from && via != to && allowed?.Invoke(via) != false &&
+                    TryNextStep(region, from, via, start, road, nav, out step, allowed)) return true;
+            }
             // Same-XY altitude correction for planning only. The mover repairs
             // the actor on a failed raw path; never substitute another XY island.
             AutonomousNavigationSurface.TryFloor(nav, from, start, out start);

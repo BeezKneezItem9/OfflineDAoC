@@ -163,10 +163,18 @@ namespace DOL.GS
                             DistanceSquared(item.Point.Spawn[0], item.Point.Spawn[1], zone.XOffset + entry.LocalX, zone.YOffset + entry.LocalY) <= TargetSearchRadius * TargetSearchRadius)
                             .OrderBy(item => Vector3.DistanceSquared(item.Point.Position, new(zone.XOffset + entry.LocalX, zone.YOffset + entry.LocalY, entry.Z))).ToArray();
                         if (matches.Length == 0) continue;
-                        Vector3 p = matches[0].Point.Position;
-                        cells.Add(new(entry.Id, entry.Name, entry.Zone, entry.RegionId, (int)p.X, (int)p.Y, (int)p.Z,
-                            matches.Select(item => item.Npc.EffectiveLevel).Distinct().ToArray(), matches.Length, zone, true,
-                            IsFrontierZone(entry.RegionId, entry.ZoneId), NeedsProjection: false));
+                        // A bestiary entry can cover several levels in the same
+                        // room. Do not advertise the low level while pointing
+                        // its party at the first (possibly high-level) spawn.
+                        foreach (var levelRoom in matches.GroupBy(item => item.Npc.EffectiveLevel))
+                        {
+                            var first = levelRoom.OrderBy(item => Vector3.DistanceSquared(item.Point.Position,
+                                new(zone.XOffset + entry.LocalX, zone.YOffset + entry.LocalY, entry.Z))).First();
+                            Vector3 p = first.Point.Position;
+                            cells.Add(new($"{entry.Id}:L{levelRoom.Key}", entry.Name, entry.Zone, entry.RegionId,
+                                (int)p.X, (int)p.Y, (int)p.Z, [levelRoom.Key], levelRoom.Count(), zone, true,
+                                IsFrontierZone(entry.RegionId, entry.ZoneId), NeedsProjection: false));
+                        }
                         representedLevels.UnionWith(matches.Select(item => item.Npc.EffectiveLevel));
                     }
 
@@ -235,16 +243,23 @@ namespace DOL.GS
                 return;
             }
 
-            foreach (var room in verified.GroupBy(item => ((int)item.Point.Position.X / 900,
-                         (int)item.Point.Position.Y / 900, (int)item.Point.Position.Z / 200)))
+            foreach (var room in verified.GroupBy(item => LiveRoomKey(item.Point.Position,
+                         item.Npc.EffectiveLevel)))
             {
                 var first = room.First();
                 Vector3 p = first.Point.Position;
                 string id = $"dungeon-live:{zone.ID}:{room.Key}:{normalizedName}";
                 cells.Add(new(id, first.Npc.Name, zone.Description, zone.ZoneRegion.ID,
-                    (int)p.X, (int)p.Y, (int)p.Z, room.Select(item => item.Npc.EffectiveLevel).Distinct().ToArray(),
+                    (int)p.X, (int)p.Y, (int)p.Z, [room.Key.Level],
                     room.Count(), zone, true, IsFrontierZone(zone.ZoneRegion.ID, zone.ID), NeedsProjection: false));
             }
         }
+
+        // Keep a camp's advertised level tied to its actual, proven spawn.
+        // Koalinth sentinel rooms include both level-18 and level-27 live
+        // variants. One shared center/ID can send a low-level party toward
+        // a different level than the one that qualified the goal.
+        public static (int X, int Y, int Z, int Level) LiveRoomKey(Vector3 position, int level) =>
+            ((int)position.X / 900, (int)position.Y / 900, (int)position.Z / 200, level);
     }
 }

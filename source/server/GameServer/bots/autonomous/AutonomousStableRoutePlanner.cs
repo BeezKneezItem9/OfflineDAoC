@@ -308,6 +308,65 @@ public static class AutonomousStableRoutePlanner
         return null;
     }
 
+    /// <summary>
+    /// Use a real ticket whose landing can walk to an authoritative portal's
+    /// activation radius. A straight-line walk estimate is not a valid fallback
+    /// when the outdoor zone itinerary reverses across a disconnected seam.
+    /// </summary>
+    public static Choice FindDirectRideToConnectedPortal(GameBot bot, Vector3 portal, int arrivalRadius,
+        IReadOnlySet<GameStableMaster> excludedBoardingMasters = null)
+    {
+        if (bot?.CurrentRegion == null || arrivalRadius <= 0)
+            return null;
+
+        IPathfindingMgr nav = PathfindingProvider.Instance;
+        Zone portalZone = bot.CurrentRegion.GetZone((int)portal.X, (int)portal.Y);
+        if (portalZone == null || !nav.IsAvailable || !nav.HasNavmesh(portalZone))
+            return null;
+
+        long money = bot.DatabaseID > 0 ? AutonomousBotEconomy.GetMoney(bot.DatabaseID) : 0;
+        double speed = Math.Max(1, (int)bot.MaxSpeed);
+        Vector3 source = new(bot.X, bot.Y, bot.Z);
+        DateTime nowUtc = DateTime.UtcNow;
+        var eligible = new List<(Candidate Candidate, double Seconds)>();
+        foreach (Candidate candidate in GetCandidates(bot))
+        {
+            long price = Math.Max(0L, (long)candidate.Ticket.Price);
+            if (price > money || excludedBoardingMasters?.Contains(candidate.Master) == true ||
+                bot.CurrentRegion.GetZone(candidate.End.X, candidate.End.Y) != portalZone)
+                continue;
+
+            Vector3 landing = new(candidate.End.X, candidate.End.Y, candidate.End.Z);
+            if (!AutonomousZonePointApproach.TryResolve(nav, portalZone, landing, portal,
+                    arrivalRadius, out Vector3 approach))
+                continue;
+
+            double seconds = Distance(bot.X, bot.Y, candidate.BoardingPoint.X, candidate.BoardingPoint.Y) / speed +
+                             candidate.RideSeconds +
+                             Distance(landing.X, landing.Y, approach.X, approach.Y) / speed;
+            eligible.Add((candidate, seconds));
+        }
+
+        foreach ((Candidate candidate, double seconds) in eligible.OrderBy(entry => entry.Seconds))
+        {
+            var probe = new AutonomousStableBoardingFailureCache.Probe(bot.DatabaseID, bot.ObjectID,
+                bot.CurrentRegionID, bot.CurrentZone?.ID ?? 0, candidate.BoardingPoint, source);
+            if (FirstBoardingFailures.WasRecentlyUnreachable(probe, nowUtc))
+                continue;
+            if (!CanWalkToFirstBoardingLeg(bot, candidate.BoardingPoint))
+            {
+                FirstBoardingFailures.RememberUnreachable(probe, nowUtc);
+                continue;
+            }
+
+            return new Choice(candidate.Master, candidate.Ticket, CloneRoute(candidate.Route),
+                TicketDestination(candidate.Ticket), candidate.RideSeconds, seconds,
+                Distance(bot.X, bot.Y, portal.X, portal.Y) / speed, 1,
+                Math.Max(0L, (long)candidate.Ticket.Price), candidate.BoardingPoint, candidate.InteractionPoint);
+        }
+        return null;
+    }
+
     private static bool CanWalkToFirstBoardingLeg(GameBot bot, Vector3 boarding)
     {
         Region region = bot.CurrentRegion;

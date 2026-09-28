@@ -29,7 +29,7 @@ floor-reachable ordinary Darkness Falls monsters. Unverified, flying, and
 raid targets are excluded; home-realm dungeon targets and the level-50
 epic bounty list are unchanged. No Darkness Falls raids were added.
 
-The latest beta refresh sends Midgard bots through their reachable Darkness
+The September 26 beta refresh sends Midgard bots through their reachable Darkness
 Falls entrance, keeps low-level familiar goals within each realm's wing, and
 lets surviving party members leave after a wipe. Solo bots look for a nearby
 reachable familiar after a room clears or wait for the camp's respawn instead
@@ -38,6 +38,41 @@ species across relogs; the Lough Derg empyrean orb and Domnann sneezer camps
 were expanded, and insidious cniogcrags use a visible model. Bot-created
 synthetic charm candidates no longer linger or respawn if the cast fails.
 These changes also belong to normal v0.32; they are not Sluaghbinder-only.
+
+## September 28 shared stability update
+
+This optional release also carries the current normal v0.32 bot fixes:
+
+- Savages can search ordinary outdoor camps for targets, while dungeon and
+  known-risky camp checks stay strict. Cursed Tomb no longer assigns its
+  low-level cave-spider goal behind a much stronger entrance pack. Koalinth
+  goals distinguish mixed-level spawns and use the connected approach.
+- Groups can begin a normal pull at 90/80/80 readiness rather than waiting for
+  every member to reach 100%; draining fights still recover fully. Meetups
+  can try a different validated point after a route failure, stop resetting
+  every member's timer for a no-show, and continue with a viable party after
+  bounded retries. Revived members only reform locally with a two-way path.
+  The repeat Lough Derg short-detour failure has an alternate verified step.
+- Hibernian solo bots can take a verified, paid stable route around a repeated
+  outdoor zone-border loop on the way to Darkness Falls. Ordinary PvE goals
+  do not send bots into another realm's frontier; RvR and realm-event travel
+  are unchanged. These are routing fixes, not easier monster combat.
+- Surplus backpack gear can be sold when bags are full, while equipped items,
+  useful weapon swaps, and spare instruments remain protected. Cursed Tomb
+  groups prefer an entrance-area goal first, and two falsely empty camps use
+  the levels of their live monsters.
+- `/gminfo` reports a bot's helmet model and extension. Scale coif model 840
+  with stored extension 2 or 3 uses the visible extension-0 appearance without
+  changing its stats or saved item. Moving Enchanter/Sorcerer-style companion
+  speed casters can stop to cast and catch up. Classic-side Shrouded Isles
+  portal visuals at Mag Mell, Cotswold, and Mularn remain collision-free;
+  player portal travel and bot routes were not changed.
+
+The Cardova level-32 dux report was a raw-database versus template-level
+misread, so that monster was not changed. Midgard Darkness Falls combat defeats
+were not treated as route failures, and monster difficulty was not changed.
+The Release server build and 2,130 optional source tests passed. A fresh long
+live run is still needed to measure these fixes in play.
 
 ## Optional class included
 
@@ -63,11 +98,11 @@ From the [v0.32b release](https://github.com/shadowofze/OfflineDAoC/releases/tag
 download `DOWNLOAD-AND-PLAY-v0.32b.cmd` and `Get-OfflineDAoC.ps1` into one new
 folder. Double-click the helper. It verifies and assembles the normal v0.32
 game, then applies the current
-`Sluaghbinder-v0.32b-darkness-falls-beta-refresh-20260926-patch.zip` in a
+`Sluaghbinder-v0.32b-darkness-falls-beta-20260928-patch.zip` in a
 new sibling copy. The normal v0.32 base stays intact. If you already have a
 clean v0.32 folder, use the patch archive's included installer and its
 instructions. Earlier v0.32b beta patch ZIPs remain available but predate
-this refresh. The optional copy receives a
+this update. The optional copy receives a
 rollback command; keep the base
 and earlier versions until you have checked the new installation. Stop both
 servers before importing saves or applying the patch.

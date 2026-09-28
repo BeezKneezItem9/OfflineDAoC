@@ -216,6 +216,29 @@ public class UT_AutonomousBotDecisionEngine
                 "Leader staging", 1_200_000, 1_200_000), Is.True);
             Assert.That(AutonomousBotGroupCoordinator.HasLeaderStagingTimedOut(
                 "Meeting up", 1_200_000, 1_200_000), Is.False);
+            Assert.That(AutonomousBotGroupCoordinator.PhaseAfterCasualty("Choosing group target", false),
+                Is.EqualTo("Choosing group target"));
+        });
+    }
+
+    [Test]
+    public void GroupPullReadinessDoesNotRequireAnIdleMemberToHaveExactlyFullResources()
+    {
+        Assert.Multiple(() =>
+        {
+            Assert.That(AutonomousBotGroupCoordinator.ReadyForGroupPull(99, 99, 99, true), Is.True);
+            Assert.That(AutonomousBotGroupCoordinator.ReadyForGroupPull(89, 99, 99, true), Is.False);
+            Assert.That(AutonomousBotGroupCoordinator.ReadyForGroupPull(99, 79, 99, true), Is.False);
+            Assert.That(AutonomousBotGroupCoordinator.ReadyForGroupPull(99, 99, 79, true), Is.False);
+            Assert.That(AutonomousBotGroupCoordinator.ReadyForGroupPull(99, 0, 99, false), Is.True);
+            Assert.That(AutonomousBotGroupCoordinator.ShouldRecoverAfterGroupCombat(false,
+                99, 99, 99, true), Is.False, "near-full defense must not start an endless exact-full hold");
+            Assert.That(AutonomousBotGroupCoordinator.ShouldRecoverAfterGroupCombat(false,
+                80, 99, 99, true), Is.True);
+            Assert.That(AutonomousBotGroupCoordinator.ShouldRecoverAfterGroupCombat(true,
+                99, 99, 99, true), Is.True, "a begun post-fight rest still runs to full");
+            Assert.That(AutonomousBotGroupCoordinator.ShouldRecoverAfterGroupCombat(true,
+                100, 100, 100, true), Is.False);
         });
     }
 

@@ -1,4 +1,5 @@
 using DOL.GS;
+using System.Numerics;
 using NUnit.Framework;
 using Member = DOL.GS.AutonomousGroupRecoveryState.Member;
 
@@ -41,6 +42,30 @@ public sealed class UT_OvernightPveGroupRecovery
         Assert.That(recovery.TryResumeLocally(members, together: true), Is.True);
         Assert.That(recovery.Observe(members, taskStarted: true), Is.False);
         Assert.That(recovery.IsRegrouping, Is.False);
+    }
+
+    [Test]
+    public void ANearbyRevivalAcrossAWallDoesNotCountAsLocalReunion()
+    {
+        Assert.That(AutonomousBotGroupCoordinator.CanCountLocalRevival(20, true, true, true, false),
+            Is.False, "proximity cannot override a disconnected corridor");
+        Assert.That(AutonomousBotGroupCoordinator.CanCountLocalRevival(20, true, true, false, true),
+            Is.False, "missing navmesh proof must use normal regroup");
+        Assert.That(AutonomousBotGroupCoordinator.CanCountLocalRevival(200, true, false, true, true), Is.False);
+        Assert.That(AutonomousBotGroupCoordinator.CanCountLocalRevival(1_801, true, true, true, true), Is.False);
+        Assert.That(AutonomousBotGroupCoordinator.CanCountLocalRevival(1_800, true, true, true, true), Is.True);
+    }
+
+    [Test]
+    public void PartialPathNearAnOppositeRoomIsNotProofOfReunion()
+    {
+        Vector3 start = new(100, 100, 0), end = new(120, 100, 0);
+        WrappedPathfindingNode[] nodes = [
+            new(start, (EDtPolyFlags)0), new(new Vector3(118, 100, 0), (EDtPolyFlags)0)];
+        Assert.That(AutonomousBotGroupCoordinator.IsCompleteLocalReunionSegment(
+            new(PathfindingStatus.PartialPathFound, 2), nodes, start, end), Is.False);
+        Assert.That(AutonomousBotGroupCoordinator.IsCompleteLocalReunionSegment(
+            new(PathfindingStatus.PathFound, 2), nodes, start, end), Is.True);
     }
 
     [Test]

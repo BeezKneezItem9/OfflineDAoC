@@ -129,6 +129,30 @@ public sealed class UT_AutonomousGroupRecoveryState
         Assert.That(recovery.TryComplete(members, 11_000), Is.True);
     }
 
+    [Test]
+    public void DisconnectedMemberLeavingDoesNotRestartTheRemainingGroupsTask()
+    {
+        var recovery = new AutonomousGroupRecoveryState();
+        var clock = new AutonomousGroupTaskClock(eAutonomousObjectiveKind.GroupPve, new Random(7));
+        clock.Start(100, DateTime.UtcNow);
+        long deadline = clock.DeadlineTick.Value;
+        Member[] original = Ready();
+        recovery.Observe(original, true);
+        original[2] = original[2] with { Deaths = 1, Returning = true,
+            AtRendezvous = false };
+        Assert.That(recovery.Observe(original, true), Is.True);
+        Assert.That(recovery.TryComplete(original, 1_000), Is.False);
+
+        // Coordinator may remove an unreachable member only after its bounded
+        // route retry and viable-composition check. Recovery then settles the
+        // remaining roster without reviving the old clock or stale member.
+        Member[] remaining = [original[0], original[1]];
+        Assert.That(recovery.TryComplete(remaining, 1_000), Is.False);
+        Assert.That(recovery.TryComplete(remaining, 6_000), Is.True);
+        Assert.That(clock.DeadlineTick, Is.EqualTo(deadline));
+        Assert.That(clock.Start(6_000, DateTime.UtcNow), Is.False);
+    }
+
     [TestCase(90, 80, 80, true, true)]
     [TestCase(89, 100, 100, true, false)]
     [TestCase(100, 79, 100, true, false)]

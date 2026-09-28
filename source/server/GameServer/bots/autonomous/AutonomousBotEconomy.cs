@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -250,6 +251,32 @@ namespace DOL.GS;
             return true;
         }
 
+        /// <summary>
+        /// Repairs an older, full backpack before any disposal decision. Equipping the best
+        /// owned upgrade swaps the previous worn item into its backpack slot, where normal
+        /// merchant appraisal can then decide whether it is actually surplus.
+        /// </summary>
+        public static bool TryEquipBestOwnedUpgrade(GameBot bot, out DbInventoryItem equipped)
+        {
+            equipped = null;
+            if (bot?.IsAutonomousWorldBot != true || bot.Inventory == null)
+                return false;
+
+            DbInventoryItem candidate = bot.Inventory.AllItems
+                .Where(item => item != null && item.OwnerLot == 0 &&
+                               item.SlotPosition >= (int)eInventorySlot.FirstBackpack &&
+                               item.SlotPosition <= (int)eInventorySlot.LastBackpack &&
+                               TryGetEquipmentUpgrade(bot, item, out _))
+                .OrderByDescending(EquipmentValue)
+                .ThenBy(item => item.SlotPosition)
+                .FirstOrDefault();
+            if (candidate == null || !TryEquipOwnedUpgrade(bot, candidate, "merchant-service"))
+                return false;
+
+            equipped = candidate;
+            return true;
+        }
+
         private static void LogEquipmentUpgrade(GameBot bot, DbInventoryItem item,
             DbInventoryItem replaced, eInventorySlot slot, string source)
         {
@@ -355,7 +382,9 @@ namespace DOL.GS;
             if (backpack.Length != capacity || !IsBackpackFull(bot))
                 return false;
 
-            foreach (DbInventoryItem item in backpack.Where(item => !IsOperationalLoadoutItem(bot, item)))
+            HashSet<DbInventoryItem> operationalLoadout = FindOperationalLoadoutItems(bot);
+            foreach (DbInventoryItem item in backpack.Where(item =>
+                         !operationalLoadout.Contains(item) && !TryGetEquipmentUpgrade(bot, item, out _)))
             {
                 if (bot.Inventory.RemoveItem(item))
                     removed++;
@@ -374,22 +403,55 @@ namespace DOL.GS;
             return true;
         }
 
-        private static bool IsOperationalLoadoutItem(GameBot bot, DbInventoryItem item)
+        /// <summary>
+        /// Keep one best spare per usable weapon shape and one per instrument kind, not every
+        /// usable weapon ever looted. A caster can otherwise retain forty obsolete focus
+        /// staves, making both merchant sale and the blocked-backpack failsafe impossible.
+        /// Equipped gear is outside the backpack and is never considered here.
+        /// </summary>
+        private static HashSet<DbInventoryItem> FindOperationalLoadoutItems(GameBot bot)
         {
-            if (item == null)
-                return false;
-            if (item is GameInventoryRelic || BotSiegeRuntime.IsSupply(item.Id_nb))
-                return true;
-            eObjectType type = (eObjectType)item.Object_Type;
-            // Song twisting pulls instruments directly out of backpack slots.
-            // Weapons can also be displaced there when a different kit is worn.
-            if (type is eObjectType.Instrument or eObjectType.Shield)
-                return true;
-            if (BotWeaponStats.IsMeleeWeapon(type))
-                return BotWeaponStats.CanUseMelee(bot, item);
-            if (BotRangedCombat.IsRangedWeaponType(type))
-                return BotRangedCombat.CanUse(bot, item);
-            return false;
+            HashSet<DbInventoryItem> retained = new();
+            if (bot?.Inventory == null)
+                return retained;
+
+            Dictionary<(int Kind, int Type, int Shape), DbInventoryItem> bestByRole = new();
+            foreach (DbInventoryItem item in bot.Inventory.AllItems)
+            {
+                if (item == null || item.OwnerLot != 0 ||
+                    item.SlotPosition < (int)eInventorySlot.FirstBackpack ||
+                    item.SlotPosition > (int)eInventorySlot.LastBackpack)
+                    continue;
+                if (item is GameInventoryRelic || BotSiegeRuntime.IsSupply(item.Id_nb))
+                {
+                    retained.Add(item);
+                    continue;
+                }
+
+                eObjectType type = (eObjectType)item.Object_Type;
+                (int Kind, int Type, int Shape) role;
+                if (type == eObjectType.Instrument)
+                    // Lute/drum/flute use DPS_AF as the instrument kind; songs may
+                    // pull these from a backpack even when another is equipped.
+                    role = (1, item.DPS_AF, 0);
+                else if (type == eObjectType.Shield)
+                    role = (2, item.Item_Type, item.Hand);
+                else if (BotWeaponStats.IsMeleeWeapon(type) && BotWeaponStats.CanUseMelee(bot, item))
+                    role = (3, item.Object_Type, item.Item_Type);
+                else if (BotRangedCombat.IsRangedWeaponType(type) && BotRangedCombat.CanUse(bot, item))
+                    role = (4, item.Object_Type, item.Item_Type);
+                else
+                    continue;
+
+                if (!bestByRole.TryGetValue(role, out DbInventoryItem incumbent) ||
+                    EquipmentValue(item) > EquipmentValue(incumbent) ||
+                    EquipmentValue(item) == EquipmentValue(incumbent) && item.SlotPosition < incumbent.SlotPosition)
+                    bestByRole[role] = item;
+            }
+
+            foreach (DbInventoryItem item in bestByRole.Values)
+                retained.Add(item);
+            return retained;
         }
 
     private static eInventorySlot ResolveEquipmentSlot(GameBot bot, DbInventoryItem item)
@@ -431,11 +493,12 @@ namespace DOL.GS;
             (!IsBackpackFull(bot) && !AutonomousObjectiveAssignments.IsBetweenPveTasks(bot)))
             return null;
 
+            HashSet<DbInventoryItem> operationalLoadout = FindOperationalLoadoutItems(bot);
             return bot.Inventory.AllItems
             .Where(item => item != null && item.IsTradable && !string.IsNullOrWhiteSpace(item.Name) &&
                            item.OwnerLot == 0 && item.SlotPosition >= (int)eInventorySlot.FirstBackpack &&
                            item.SlotPosition <= (int)eInventorySlot.LastBackpack &&
-                           !BotSiegeRuntime.IsSupply(item.Id_nb) && !IsOperationalLoadoutItem(bot, item) &&
+                           !operationalLoadout.Contains(item) &&
                            !TryGetEquipmentUpgrade(bot, item, out _))
             .Select(item => new ListingCandidate(item, RecommendListingPrice(item)))
             .Where(candidate => candidate.PriceCopper >= Math.Max(50, candidate.Item.Level * candidate.Item.Level * 4))
@@ -450,21 +513,23 @@ namespace DOL.GS;
 
             bool trainedCrafter = !string.IsNullOrWhiteSpace(bot.PersistentRecord?.SerializedCraftingSkills);
             bool canList = HasListingSpace(bot);
+            HashSet<DbInventoryItem> operationalLoadout = FindOperationalLoadoutItems(bot);
             return bot.Inventory.AllItems
                 .Where(item => item != null && item.IsDropable && item.OwnerLot == 0 &&
                                item.SlotPosition >= (int)eInventorySlot.FirstBackpack &&
                                item.SlotPosition <= (int)eInventorySlot.LastBackpack)
-                .Where(item => !IsProtectedFromVendor(bot, item, trainedCrafter, canList))
+                .Where(item => !IsProtectedFromVendor(bot, item, trainedCrafter, canList, operationalLoadout))
                 .Where(item => CalculateStandardVendorSaleCopper(item) > 0)
                 .OrderBy(item => EquipmentValue(item))
                 .ThenBy(item => item.Price)
                 .FirstOrDefault();
         }
 
-        private static bool IsProtectedFromVendor(GameBot bot, DbInventoryItem item, bool trainedCrafter, bool canList)
+        private static bool IsProtectedFromVendor(GameBot bot, DbInventoryItem item, bool trainedCrafter,
+            bool canList, HashSet<DbInventoryItem> operationalLoadout)
         {
             if (item is GameInventoryRelic || BotSiegeRuntime.IsSupply(item.Id_nb) ||
-                IsOperationalLoadoutItem(bot, item))
+                operationalLoadout.Contains(item))
                 return true;
             if (TryGetEquipmentUpgrade(bot, item, out _))
                 return true;
@@ -493,7 +558,8 @@ namespace DOL.GS;
                 return false;
 
             bool trainedCrafter = !string.IsNullOrWhiteSpace(bot.PersistentRecord?.SerializedCraftingSkills);
-            if (IsProtectedFromVendor(bot, item, trainedCrafter, HasListingSpace(bot)))
+            if (IsProtectedFromVendor(bot, item, trainedCrafter, HasListingSpace(bot),
+                    FindOperationalLoadoutItems(bot)))
                 return false;
 
             copper = CalculateStandardVendorSaleCopper(item);

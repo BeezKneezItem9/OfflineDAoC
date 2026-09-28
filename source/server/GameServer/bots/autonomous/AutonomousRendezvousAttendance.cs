@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 
 namespace DOL.GS
@@ -36,6 +37,19 @@ namespace DOL.GS
         public DateTime? DeadlineUtc(long memberId) => !_arrived.Contains(memberId) &&
             _dueUtc.TryGetValue(memberId, out DateTime due) ? due : null;
 
+        /// <summary>A proven disconnected route should get a short chance to
+        /// recover, not consume the entire ordinary fifteen-minute meetup.
+        /// Never extend a deadline that is already closer.</summary>
+        public void LimitDeadline(long memberId, long now, long graceMilliseconds, DateTime? utcNow = null)
+        {
+            Add(memberId, now, utcNow);
+            long limited = Math.Min(_due[memberId], now + Math.Max(0, graceMilliseconds));
+            if (limited >= _due[memberId]) return;
+            _due[memberId] = limited;
+            _dueUtc[memberId] = (utcNow ?? DateTime.UtcNow).AddMilliseconds(Math.Max(0, limited - now));
+            Revision++;
+        }
+
         public bool Observe(long memberId, long now, bool atRendezvous)
         {
             Add(memberId, now);
@@ -63,6 +77,24 @@ namespace DOL.GS
             Revision++;
             foreach (long memberId in memberIds)
                 Add(memberId, now, utcNow);
+        }
+
+        /// <summary>A smaller party gets new formation slots, but repeated
+        /// no-shows must not buy a fresh fifteen-minute wait for everyone else.
+        /// Give a member with an imminent old deadline two minutes to reach
+        /// its reassigned slot; preserve all later original deadlines.</summary>
+        public void RebaseAfterRosterReduction(IEnumerable<long> memberIds, long now, DateTime? utcNow = null)
+        {
+            var previous = new Dictionary<long, long>(_due);
+            DateTime utc = utcNow ?? DateTime.UtcNow;
+            Rebase(memberIds, now, utc);
+            foreach (long memberId in _due.Keys.ToArray())
+            {
+                if (!previous.TryGetValue(memberId, out long formerDeadline)) continue;
+                long deadline = Math.Min(_due[memberId], Math.Max(formerDeadline, now + 2 * 60_000L));
+                _due[memberId] = deadline;
+                _dueUtc[memberId] = utc.AddMilliseconds(deadline - now);
+            }
         }
 
         public void Reset()

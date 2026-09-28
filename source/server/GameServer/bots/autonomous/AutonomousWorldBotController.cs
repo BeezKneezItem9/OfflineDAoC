@@ -65,6 +65,8 @@ namespace DOL.GS
         private long _nextStatusSaveTick;
         private long _nextStableCheckTick;
         private AutonomousStableRoutePlanner.Choice _pendingStableChoice;
+        private bool _pendingStablePortalRide;
+        private bool _connectedPortalRideSearchFoundNoChoice;
         private string _meetupHorseFailedGroupId = string.Empty;
         private AutonomousCapitalTransit.Plan _capitalTransit;
         private string _capitalTransitAssignment;
@@ -768,8 +770,24 @@ namespace DOL.GS
                 return true;
             }
             distance = Distance(bot.X, bot.Y, crossing.SourceX, crossing.SourceY);
-            if (TryBeginFasterStableRoute(bot, waypoint, "the next zone connection"))
+            // The installed Lough Derg/Valley itinerary toward this Connacht
+            // portal reverses at the same seam. Prefer a real ticket only when
+            // its first walk and final portal activation approach both connect.
+            bool connectedPortalRide = bot.Realm == eRealm.Hibernia &&
+                crossing.Id == AutonomousDarknessFallsPolicy.HomeEntranceZonePointId(eRealm.Hibernia) &&
+                bot.CurrentRegionID == AutonomousDarknessFallsPolicy.HomeRegion(eRealm.Hibernia) &&
+                bot.CurrentZone != bot.CurrentRegion.GetZone(crossing.SourceX, crossing.SourceY);
+            if (TryBeginFasterStableRoute(bot, waypoint, "the next zone connection",
+                    connectedPortalRide ? rawWaypoint : null))
                 return true;
+            if (_connectedPortalRideSearchFoundNoChoice &&
+                AutonomousDarknessFallsPolicy.IsAuditedHiberniaExteriorLoop(
+                    bot.Realm, crossing, bot.CurrentRegionID, bot.CurrentZone?.ID ?? 0,
+                    new Vector3(bot.X, bot.Y, bot.Z), bot.Group?.MemberCount ?? 1))
+            {
+                AbandonCamp(bot, "No connected real ticket past the audited Hibernia DF exterior seam");
+                return true;
+            }
             if (!IssuePath(bot, waypoint, preciseArrival: true))
                 return true;
             SetStatus(bot, $"Traveling to {camp.MonsterName}", GoalText(),
@@ -2386,7 +2404,10 @@ namespace DOL.GS
         private GameNPC FindCampTarget(GameBot bot)
         {
             bool soloSavage = SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(
-                (eCharacterClass)bot.CharacterClass.ID, _groupDirective?.IsDynamic == true);
+                (eCharacterClass)bot.CharacterClass.ID, _groupDirective?.IsDynamic == true,
+                bot.CurrentZone?.IsDungeon == true || _camp.IsDungeon,
+                AutonomousAuditedCampPolicy.RequiresVerifiedTargetRoute(_camp.RegionId, _camp.MonsterName) ||
+                    IsSourceEmptyCamp(_camp.Id));
             long nowTick = GameLoop.GameLoopTime;
             if (soloSavage && nowTick >= _nextFailedSoloPullRoutePruneTick)
             {
@@ -2409,11 +2430,9 @@ namespace DOL.GS
                 // nor group execution may reject that named monster by level.
                 .Where(npc => AutonomousPveTargetPolicy.IsAssignedTarget(
                     _camp.MonsterName, npc.Name, npc.EffectiveLevel))
-                // A Savage must reach melee range. Do not keep repulling a
-                // disconnected lookalike from the expanded search ring or a
-                // same-name spawn outside the assigned camp's kill cell.
-                .Where(npc => !soloSavage ||
-                    SavageBotCombatPolicy.IsWithinAssignedCamp(_camp.X, _camp.Y, npc.X, npc.Y))
+                // Ordinary outdoor Savages use the same live-target search as
+                // other melee classes. Only dungeons and audited risky camps
+                // require the extra reversible approach proof below.
                 .Where(npc => GameServer.ServerRules.IsAllowedToAttack(bot, npc, true))
                 .Where(npc => bot.CurrentZone?.IsDungeon != true ||
                     PathfindingProvider.Instance.HasLineOfSight(bot.CurrentZone, new(bot.X, bot.Y, bot.Z),
@@ -2549,6 +2568,8 @@ namespace DOL.GS
                          .Where(cell => !rejectedDungeons.Contains(cell.Id) && reachableRegions.Contains(cell.RegionId) &&
                                         (sharedGroup || !_recentFailedSoloCamps.ContainsKey(cell.Id)) &&
                                         IsZoneAccessible(bot.Realm, cell.Zone, bot.CurrentRegionID) &&
+                                        AutonomousOrdinaryPveRealmPolicy.CanAssignCamp(bot.Realm, cell.RegionId,
+                                            cell.Zone?.ID ?? 0) &&
                                         AutonomousAuditedCampPolicy.CanAssignToParty(cell.Id, groupSize)))
             {
                 int[] validLevels = cell.Levels.Where(level =>
@@ -2632,6 +2653,14 @@ namespace DOL.GS
                     categoryCandidates, groupSize, planningLevel, Random.Shared);
                 legal = categoryCandidates.Where(camp => environment == AutonomousBotDecisionEngine.PveEnvironment.Dungeon
                     ? camp.IsDungeon : !camp.IsDungeon);
+                GameBot groupLeader = _groupDirective.Leader ?? bot;
+                legal = AutonomousDungeonPolicy.PreferFirstCursedTombGroupCamps(legal,
+                    formedGroup: true,
+                    hasInteriorProgress: !AutonomousDungeonPolicy.IsCursedTombEntryStage(
+                        groupLeader.CurrentRegionID, new Vector3(groupLeader.X, groupLeader.Y, groupLeader.Z)),
+                    region: camp => camp.RegionId,
+                    position: camp => new Vector3(destinations[camp.Id].X,
+                        destinations[camp.Id].Y, destinations[camp.Id].Z));
                 int selectedLevel = AutonomousGroupTargetPolicy.SelectFixedEightManLevel(
                     legal.Select(camp => camp.AverageMobLevel), planningLevel,
                     _groupDirective.PreferredLevelBonus);
@@ -2811,11 +2840,20 @@ namespace DOL.GS
                     if (members.Length == 0)
                         continue;
 
+                    // A source name/location can be period-correct while its
+                    // historic level does not match any present live spawn.
+                    // Advertising that absent level makes a bot arrive at a
+                    // populated camp yet see zero valid targets forever.
+                    int[] observedLevels = AutonomousCampLevelPolicy.ObservedAuthoredLevels(
+                        entry.Levels, members.Select(npc => npc.EffectiveLevel));
+                    if (observedLevels.Length == 0)
+                        continue;
+
                     int x = authoritativeX;
                     int y = authoritativeY;
                     int z = entry.Z;
                     cells.Add(new CampCatalogCell(entry.Id, entry.Name, entry.Zone, entry.RegionId,
-                        x, y, z, entry.Levels, members.Length, zone,
+                        x, y, z, observedLevels, members.Length, zone,
                         zone.ZoneRegion.IsDungeon || zone.IsDungeon,
                         IsFrontierZone(entry.RegionId, entry.ZoneId)));
                 }
@@ -3163,8 +3201,10 @@ namespace DOL.GS
             return true;
         }
 
-        private bool TryBeginFasterStableRoute(GameBot bot, Vector3 waypoint, string destinationName)
+        private bool TryBeginFasterStableRoute(GameBot bot, Vector3 waypoint, string destinationName,
+            Vector3? connectedPortal = null)
         {
+            _connectedPortalRideSearchFoundNoChoice = false;
             var expedition = AutonomousRealmRaid.GetTravelView(bot);
             bool independentExpeditionTravel = expedition != null && (expedition.Muster ||
                 _groupDirective?.Leader == null || !_groupDirective.Leader.IsAlive ||
@@ -3215,7 +3255,8 @@ namespace DOL.GS
             bool waypointChanged = Vector3.DistanceSquared(_pendingStableWaypoint, waypoint) > 500 * 500;
             bool pendingInvalid = _pendingStableChoice != null &&
                                   (_pendingStableChoice.Master.ObjectState is not GameObject.eObjectState.Active ||
-                                   _pendingStableChoice.Master.CurrentRegion != bot.CurrentRegion || waypointChanged);
+                                   _pendingStableChoice.Master.CurrentRegion != bot.CurrentRegion || waypointChanged ||
+                                   _pendingStablePortalRide != connectedPortal.HasValue);
             if (pendingInvalid)
                 _pendingStableChoice = null;
 
@@ -3226,10 +3267,19 @@ namespace DOL.GS
                 foreach (GameStableMaster expired in _failedBoardingMasters
                              .Where(pair => pair.Value <= GameLoop.GameLoopTime).Select(pair => pair.Key).ToArray())
                     _failedBoardingMasters.Remove(expired);
-                _pendingStableChoice = AutonomousStableRoutePlanner.FindBest(bot, waypoint,
-                    _failedBoardingMasters.Count == 0 ? null : _failedBoardingMasters.Keys.ToHashSet(),
-                    expedition == null && _groupDirective?.ObjectiveKind == eAutonomousObjectiveKind.GroupPve &&
-                    AutonomousBotGroupCoordinator.IsAssemblyPhase(_groupDirective.Phase));
+                IReadOnlySet<GameStableMaster> excluded = _failedBoardingMasters.Count == 0
+                    ? null : _failedBoardingMasters.Keys.ToHashSet();
+                if (connectedPortal.HasValue)
+                {
+                    _pendingStableChoice = AutonomousStableRoutePlanner.FindDirectRideToConnectedPortal(
+                        bot, connectedPortal.Value, ZonePointArrivalRadius - 16, excluded);
+                    _connectedPortalRideSearchFoundNoChoice = _pendingStableChoice == null;
+                }
+                else
+                    _pendingStableChoice = AutonomousStableRoutePlanner.FindBest(bot, waypoint, excluded,
+                        expedition == null && _groupDirective?.ObjectiveKind == eAutonomousObjectiveKind.GroupPve &&
+                        AutonomousBotGroupCoordinator.IsAssemblyPhase(_groupDirective.Phase));
+                _pendingStablePortalRide = connectedPortal.HasValue;
                 _pendingStableWaypoint = waypoint;
                 _boardingProgressPosition = new(bot.X, bot.Y, bot.Z);
                 _boardingProgressTick = GameLoop.GameLoopTime;
@@ -3540,9 +3590,20 @@ namespace DOL.GS
                     new(current.X, current.Y), new(destination.X, destination.Y));
             }
             _routeStallReplans++;
+            // A PathTo order aimed at a short recovery corner can report a
+            // partial path even while the actor still has a complete native
+            // corridor to the real camp goal. Do not make the failed corner
+            // the next recovery's onward goal or select it again.
+            bool bypassFailedCorner = !AutonomousRouteRecoveryPolicy.ShouldAbandon(_routeStallReplans) &&
+                AutonomousCorridorRecovery.ShouldBypassFailedCorner(
+                    PathfindingProvider.Instance, bot.CurrentZone,
+                    bot.CurrentRegion?.GetZone((int)destination.X, (int)destination.Y),
+                    current, destination, _routeRecoveryWaypoint, failedDestination);
+            Vector3 onwardDestination = bypassFailedCorner ? destination : failedDestination;
+            Vector3? rejectedCorner = bypassFailedCorner ? failedDestination : null;
             if (AutonomousRouteRecoveryPolicy.ShouldAbandon(_routeStallReplans) ||
-                !TryFindLocalRecoveryWaypoint(bot, current, destination, failedDestination,
-                    _routeStallReplans, out Vector3 recovery))
+                !TryFindLocalRecoveryWaypoint(bot, current, destination, onwardDestination,
+                    _routeStallReplans, rejectedCorner, out Vector3 recovery))
             {
                 Log.Warn($"AUTONOMOUS_ROUTE_RECOVERY bot={bot.Name} id={bot.DatabaseID} " +
                          $"level={bot.Level} realm={bot.Realm} class=\"{bot.ClassName}\" " +
@@ -3609,6 +3670,7 @@ namespace DOL.GS
             Vector3 destination,
             Vector3 onwardDestination,
             int attempt,
+            Vector3? rejectedCorner,
             out Vector3 recovery)
         {
             recovery = default;
@@ -3619,7 +3681,7 @@ namespace DOL.GS
             // Recover along the existing corridor before trying geometric side
             // steps. A direction drawn straight at the final target can point
             // across a cliff/wall even when the real route is fully connected.
-            if (AutonomousCorridorRecovery.TryNextCorner(PathfindingProvider.Instance, zone,
+            if (!rejectedCorner.HasValue && AutonomousCorridorRecovery.TryNextCorner(PathfindingProvider.Instance, zone,
                     current, onwardDestination, out recovery))
                 return true;
 
@@ -3650,6 +3712,7 @@ namespace DOL.GS
                     Vector3? surface = AutonomousNavigationSurface.MoveAlongGround(
                         PathfindingProvider.Instance, zone, current, raw);
                     if (!surface.HasValue || Vector3.DistanceSquared(current, surface.Value) < 80 * 80 ||
+                        !AutonomousCorridorRecovery.IsOutsideFailedCorner(surface.Value, rejectedCorner) ||
                         !PathfindingProvider.Instance.HasLineOfSight(
                             zone, current, surface.Value, PathfindingProvider.Instance.DefaultFilters))
                         continue;

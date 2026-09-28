@@ -7,6 +7,25 @@ quests, or optional client assets. Choose the separate
 The beta label stays until the owner has had time to test the bots in the
 dungeon more thoroughly.
 
+## September 28 shared stability update
+
+This download adds the tested local fixes for Savage outdoor pulls;
+Cursed Tomb and Koalinth goal selection; group pull readiness, meetup,
+resurrection, and no-show recovery; the audited Hibernia Darkness Falls
+exterior stable loop; and the Lough Derg short-detour hotspot. It also lets
+bots sell redundant backpack gear while protecting equipment, useful weapon
+swaps, instruments, upgrades, and coins; keeps ordinary PvE goals out of
+enemy frontiers; and corrects two falsely empty camp level catalogs.
+
+`/gminfo` reports helmet model and extension. Scale coif model 840 with
+stored extension 2 or 3 uses the working extension-0 display without changing
+the item. Moving companions with learned native group speed can pause to
+cast it and catch up. Classic-side Shrouded Isles portals are visible at
+Cotswold, Mularn, and Mag Mell, but remain collision-free visuals without
+player travel or bot-route changes. See the [changelog](../CHANGELOG.md) for
+the plain-language detail. Monster difficulty and Darkness Falls raid limits
+are unchanged; the new build still needs a live bot run.
+
 ## Beta maintenance correction
 
 The first v0.32 bot-goal certificate assumed High Lord Oro always kept the
@@ -23,8 +42,8 @@ certified, reachable Darkness Falls camps. The existing home-realm dungeon
 hunts and level-50 boss list are unchanged; unverified and raid spawns cannot
 give bounty credit.
 
-The original and first-maintenance v0.32 ZIPs remain available as historical
-assets. The beta-refresh ZIP named below is the current download.
+The original and earlier maintenance v0.32 ZIPs remain available as
+historical assets. The September 28 ZIP named below is the current download.
 
 ## Follow-up beta maintenance
 
@@ -91,7 +110,7 @@ in this download; they are not claimed as new Darkness Falls mechanics.
 On the [v0.32 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32),
 download `DOWNLOAD-AND-PLAY-v0.32.cmd` and `Get-OfflineDAoC.ps1` into one new
 folder and double-click the helper. It obtains and verifies the preserved
-v0.31 base and `OfflineDAoC-v0.32-darkness-falls-beta-refresh-20260926-update.zip`, then builds
+v0.31 base and `OfflineDAoC-v0.32-darkness-falls-beta-20260928-update.zip`, then builds
 a **new** v0.32 playable folder. It keeps the v0.31 sibling available. Read
 `READ ME FIRST.txt` in the new game folder and use `START OFFLINE DAOC.cmd`.
 No Git or LLM is needed. [Detailed player instructions](PLAY.md) cover the

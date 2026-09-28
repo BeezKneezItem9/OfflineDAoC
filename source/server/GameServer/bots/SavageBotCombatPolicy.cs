@@ -10,7 +10,6 @@ namespace DOL.GS;
 /// </summary>
 public static class SavageBotCombatPolicy
 {
-    public const int AssignedCampRadius = 2600;
     public const int FailedSoloPullRouteRetryMilliseconds = 6_000;
     // A normal short patrol step must not force the same failed native path
     // probe on the next brain tick. A materially new approach still retries.
@@ -36,15 +35,15 @@ public static class SavageBotCombatPolicy
         Vector3.DistanceSquared(failure.Target, target) <=
             FailedSoloPullTargetMovement * FailedSoloPullTargetMovement;
 
-    public static bool NeedsVerifiedSoloPullRoute(eCharacterClass characterClass, bool dynamicGroup) =>
-        characterClass == eCharacterClass.Savage && !dynamicGroup;
-
-    public static bool IsWithinAssignedCamp(int campX, int campY, int targetX, int targetY)
-    {
-        long dx = (long)campX - targetX;
-        long dy = (long)campY - targetY;
-        return dx * dx + dy * dy <= (long)AssignedCampRadius * AssignedCampRadius;
-    }
+    // Ordinary outdoor melee camps already use the live-target search and
+    // watchdog used by Warriors and Berserkers. Requiring a reversible dungeon
+    // corridor for every Savage pull rejects otherwise usable outdoor spawns,
+    // especially near the edge of a historical 5,000-unit camp. Keep the
+    // stricter route check where the assigned camp actually needs it.
+    public static bool NeedsVerifiedSoloPullRoute(eCharacterClass characterClass,
+        bool dynamicGroup, bool isDungeon, bool isAuditedOutdoorCamp) =>
+        characterClass == eCharacterClass.Savage && !dynamicGroup &&
+        (isDungeon || isAuditedOutdoorCamp);
 
     public static bool IsInstantCombatAction(Spell spell) => spell != null && spell.CastTime == 0 &&
         spell.SpellType is eSpellType.SavageEnduranceHeal or
