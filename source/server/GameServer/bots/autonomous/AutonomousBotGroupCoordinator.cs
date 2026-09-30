@@ -498,6 +498,10 @@ public static partial class AutonomousBotGroupCoordinator
         if (bot?.IsAutonomousWorldBot != true || bot.IsTemporaryGroupHelper ||
             bot.IsPlayerLedGroup)
             return false;
+        // Solo actors can never hold a session. Answer without the global
+        // coordinator lock, which every grouped actor's Pulse also contends for.
+        if (bot.Group == null)
+            return false;
         lock (Sync)
         {
             // Membership can change between the brain thread and coordinator.
@@ -810,11 +814,35 @@ public static partial class AutonomousBotGroupCoordinator
             return false;
         }
 
+        bool savageMeleePull = SavageBotCombatPolicy.MustMeleePull(
+            (eCharacterClass)puller.CharacterClass.ID);
+        if (savageMeleePull && puller.TargetObject == blocker &&
+            brain.GetBaseAggroAmount(blocker) > 0 &&
+            brain.FSM.GetCurrentState()?.StateType == eFSMStateType.AGGRO)
+            return true;
+        // An actual fight has priority over a follower's corridor report.
+        // Never replace a Savage's current enemy with a new elective pull.
+        if (savageMeleePull && (brain.HasAggro || puller.InCombat || puller.IsAttacking))
+        {
+            puller = null;
+            return false;
+        }
+        if (savageMeleePull &&
+            AutonomousWorldBotController.IsSavageMeleePullHandoffCoolingDown(puller, blocker))
+        {
+            puller = null;
+            return false;
+        }
         if (AutonomousDefensivePull.TryBegin(puller, blocker)) return true;
         puller.TargetObject = blocker;
         brain.AddToAggroList(blocker, Math.Max(25, blocker.EffectiveLevel * 10));
         brain.CommitDungeonPull(blocker);
         brain.FSM.SetCurrentState(eFSMStateType.AGGRO);
+        if (savageMeleePull)
+        {
+            AutonomousWorldBotController.QueueSavageMeleePullHandoff(puller, blocker);
+            brain.NextThinkTick = GameLoop.GameLoopTime;
+        }
         MarkCombatObserved(puller.Group);
         return true;
     }
@@ -1294,8 +1322,10 @@ public static partial class AutonomousBotGroupCoordinator
         {
             // Bad geometry must not turn one formation pass into thousands of
             // native queries. Continue with more candidates on the next pass.
-            if (rendezvousChecks >= 4) break;
-            if (claimed.Contains(leader) || Random.Shared.NextDouble() >= 0.35)
+            // (Raised from 4 checks / 35% leader draw: only 248 groups formed in
+            // an eight-hour run while 3,640 bots timed out waiting.)
+            if (rendezvousChecks >= 6) break;
+            if (claimed.Contains(leader) || Random.Shared.NextDouble() >= 0.6)
                 continue;
             // RvR reserves are realm-local: Albion grouping cannot consume the
             // independent Midgard/Hibernia roamer reserve, and vice versa.
@@ -1307,7 +1337,9 @@ public static partial class AutonomousBotGroupCoordinator
             int largestAllowed = Math.Min(8, leaderSlots - (objectiveKind == eAutonomousObjectiveKind.RvR
                 ? claimed.Count(candidate => candidate.Realm == leader.Realm)
                 : 0));
-            int minimumRequired = objectiveKind == eAutonomousObjectiveKind.GroupPve ? 8 : 2;
+            // PvE prefers a full eight, but a region short on healers or tanks
+            // may start a smaller viable party (see PveRosterTemplates).
+            int minimumRequired = objectiveKind == eAutonomousObjectiveKind.GroupPve ? MinimumPveFormationSize : 2;
             if (largestAllowed < minimumRequired)
             {
                 // One realm's full reserve must not prevent a later realm from
@@ -1342,8 +1374,10 @@ public static partial class AutonomousBotGroupCoordinator
             GameBot[] compatible;
             if (objectiveKind == eAutonomousObjectiveKind.GroupPve)
             {
-                if (!TryBuildPveRoster(leader, compatiblePool, out compatible, out pveRoles))
+                if (!TryBuildPveRoster(leader, compatiblePool, out compatible, out pveRoles,
+                        MinimumPveFormationSize, largestAllowed))
                     continue;
+                rolledSize = compatible.Length + 1;
             }
             else
             {
@@ -2431,11 +2465,18 @@ public static partial class AutonomousBotGroupCoordinator
         };
     }
 
+    /// <summary>
+    /// Group camps are +3 to +bonus over the party level. A full eight keeps
+    /// the +3..+10 roll; smaller parties keep the +3 floor with a lower top.
+    /// </summary>
     public static int RollPreferredLevelBonus(int groupSize, Random random = null)
     {
         random ??= Random.Shared;
-        return random.Next(3, 11);
+        int highest = groupSize >= 8 ? 10 : groupSize == 7 ? 8 : 6;
+        return random.Next(3, highest + 1);
     }
+
+    public const int MinimumPveFormationSize = 5;
 
     private static readonly BotPveGroupRole[] RequiredPveSlots =
     [
@@ -2443,6 +2484,22 @@ public static partial class AutonomousBotGroupCoordinator
         BotPveGroupRole.Healer, BotPveGroupRole.Healer,
         BotPveGroupRole.Buffer,
         BotPveGroupRole.Attacker, BotPveGroupRole.Attacker, BotPveGroupRole.Attacker
+    ];
+
+    private const BotPveGroupRole T = BotPveGroupRole.Tank, H = BotPveGroupRole.Healer,
+        B = BotPveGroupRole.Buffer, A = BotPveGroupRole.Attacker;
+
+    /// <summary>
+    /// Largest and most complete first, so the full eight is always tried before
+    /// any smaller party. Every template keeps at least one tank, one healer and
+    /// one attacker, which is what CanUsePveCombatRoster requires.
+    /// </summary>
+    private static readonly BotPveGroupRole[][] PveRosterTemplates =
+    [
+        RequiredPveSlots,
+        [T, T, H, H, A, A, A], [T, T, H, B, A, A, A], [T, H, H, B, A, A, A],
+        [T, T, H, H, A, A], [T, H, H, B, A, A], [T, T, H, B, A, A], [T, H, B, A, A, A], [T, T, H, A, A, A],
+        [T, H, H, A, A], [T, T, H, A, A], [T, H, B, A, A], [T, H, A, A, A]
     ];
 
     public static bool LevelsCompatible(int first, int second) =>
@@ -2454,29 +2511,50 @@ public static partial class AutonomousBotGroupCoordinator
         distanceFromLeader >= 0 && distanceFromLeader <= MaximumPveRecruitmentDistance;
 
     private static bool TryBuildPveRoster(GameBot leader, GameBot[] candidates, out GameBot[] selected,
-        out Dictionary<long, BotPveGroupRole> roles)
+        out Dictionary<long, BotPveGroupRole> roles, int minimumSize = 8, int maximumSize = 8)
     {
         selected = [];
         roles = null;
-        GameBot[] pool = candidates.Where(candidate => candidate?.CharacterClass != null).ToArray();
-        foreach (int leaderSlot in Enumerable.Range(0, RequiredPveSlots.Length)
-                     .Where(index => BotPartyRoles.CanFill((eCharacterClass)leader.CharacterClass.ID, RequiredPveSlots[index]))
-                     .OrderBy(_ => Random.Shared.Next()))
+        GameBot[] pool = candidates.Where(candidate => candidate?.CharacterClass != null)
+            .OrderBy(_ => Random.Shared.Next()).ToArray();
+        eCharacterClass[] poolClasses = pool.Select(candidate => (eCharacterClass)candidate.CharacterClass.ID).ToArray();
+        if (!TryMatchPveRoster((eCharacterClass)leader.CharacterClass.ID, poolClasses, minimumSize, maximumSize,
+                out BotPveGroupRole[] template, out int[] owners))
+            return false;
+        GameBot[] slotted = owners.Select(owner => owner < 0 ? leader : pool[owner]).ToArray();
+        selected = slotted.Where(owner => owner != leader).ToArray();
+        roles = new Dictionary<long, BotPveGroupRole>();
+        for (int index = 0; index < slotted.Length; index++)
+            roles[MemberKey(slotted[index])] = template[index];
+        return true;
+    }
+
+    /// <summary>
+    /// Fills the first template (largest first) whose size is allowed. owners
+    /// holds a pool index per slot, or -1 for the leader.
+    /// </summary>
+    private static bool TryMatchPveRoster(eCharacterClass leader, eCharacterClass[] pool, int minimumSize,
+        int maximumSize, out BotPveGroupRole[] template, out int[] owners)
+    {
+        foreach (BotPveGroupRole[] candidateTemplate in PveRosterTemplates)
         {
-            var owners = new GameBot[RequiredPveSlots.Length];
-            owners[leaderSlot] = leader;
-            foreach (GameBot candidate in pool.OrderBy(_ => Random.Shared.Next()))
-                TryMatchPveSlot(candidate, owners, new bool[RequiredPveSlots.Length], leaderSlot);
-            if (owners.Any(owner => owner == null))
+            if (candidateTemplate.Length < minimumSize || candidateTemplate.Length > maximumSize)
                 continue;
-            selected = owners.Where(owner => owner != leader).Distinct().ToArray();
-            if (selected.Length != 7)
-                continue;
-            roles = new Dictionary<long, BotPveGroupRole>();
-            for (int index = 0; index < owners.Length; index++)
-                roles[MemberKey(owners[index])] = RequiredPveSlots[index];
-            return true;
+            template = candidateTemplate;
+            foreach (int leaderSlot in Enumerable.Range(0, template.Length)
+                         .Where(index => BotPartyRoles.CanFill(leader, candidateTemplate[index]))
+                         .OrderBy(_ => Random.Shared.Next()))
+            {
+                owners = Enumerable.Repeat(int.MinValue, template.Length).ToArray();
+                owners[leaderSlot] = -1;
+                for (int candidate = 0; candidate < pool.Length; candidate++)
+                    TryMatchPveSlot(candidate, pool, template, owners, new bool[template.Length], leaderSlot);
+                if (owners.All(owner => owner != int.MinValue))
+                    return true;
+            }
         }
+        template = null;
+        owners = null;
         return false;
     }
 
@@ -2484,21 +2562,23 @@ public static partial class AutonomousBotGroupCoordinator
         out Dictionary<long, BotPveGroupRole> roles)
     {
         roles = null;
-        if (members.Length != 8 || leader == null)
+        if (members.Length < MinimumPveFormationSize || members.Length > 8 || leader == null)
             return false;
-        return TryBuildPveRoster(leader, members.Where(member => member != leader).ToArray(), out GameBot[] selected, out roles) &&
-               selected.Length == 7 && selected.All(members.Contains);
+        return TryBuildPveRoster(leader, members.Where(member => member != leader).ToArray(), out GameBot[] selected,
+                   out roles, members.Length, members.Length) &&
+               selected.Length == members.Length - 1 && selected.All(members.Contains);
     }
 
-    private static bool TryMatchPveSlot(GameBot candidate, GameBot[] owners, bool[] visited, int reservedLeaderSlot)
+    private static bool TryMatchPveSlot(int candidate, eCharacterClass[] pool, BotPveGroupRole[] template,
+        int[] owners, bool[] visited, int reservedLeaderSlot)
     {
-        eCharacterClass characterClass = (eCharacterClass)candidate.CharacterClass.ID;
-        for (int slot = 0; slot < RequiredPveSlots.Length; slot++)
+        for (int slot = 0; slot < template.Length; slot++)
         {
-            if (slot == reservedLeaderSlot || visited[slot] || !BotPartyRoles.CanFill(characterClass, RequiredPveSlots[slot]))
+            if (slot == reservedLeaderSlot || visited[slot] || !BotPartyRoles.CanFill(pool[candidate], template[slot]))
                 continue;
             visited[slot] = true;
-            if (owners[slot] == null || TryMatchPveSlot(owners[slot], owners, visited, reservedLeaderSlot))
+            if (owners[slot] == int.MinValue ||
+                TryMatchPveSlot(owners[slot], pool, template, owners, visited, reservedLeaderSlot))
             {
                 owners[slot] = candidate;
                 return true;
@@ -2506,6 +2586,11 @@ public static partial class AutonomousBotGroupCoordinator
         }
         return false;
     }
+
+    /// <summary>Party size PvE formation would build from these classes (0 when none fits).</summary>
+    public static int PveFormationSize(eCharacterClass leader, params eCharacterClass[] candidates) =>
+        TryMatchPveRoster(leader, candidates, MinimumPveFormationSize, 8, out BotPveGroupRole[] template, out _)
+            ? template.Length : 0;
 
     private static bool HasActivePveComposition(Session session, GameBot[] members) =>
         session != null && members != null &&

@@ -1,7 +1,7 @@
 """Guarded 1.65 Darkness Falls creature taxonomy migration.
 
-Only run while the target server is stopped. The script takes a SQLite online
-backup outside the runtime tree before its single transaction.
+Only run while the isolated new class test server is stopped. The script takes a
+SQLite online backup outside the runtime tree before its single transaction.
 It deliberately does not infer that every DF "Monster" is a charmable demon.
 """
 
@@ -48,9 +48,10 @@ SPECIES_TYPE = {
 }
 
 
-def verify_runtime_database(path: Path, connection: sqlite3.Connection) -> None:
-    if path.name != "opendaoc.sqlite3.db":
-        raise RuntimeError("Expected a runtime/data/opendaoc.sqlite3.db file")
+def verify_isolated_database(path: Path, connection: sqlite3.Connection) -> None:
+    normalized = [part.casefold() for part in path.resolve().parts]
+    if "new class test" not in normalized or path.name != "opendaoc.sqlite3.db":
+        raise RuntimeError("Refusing to edit anything except new class test/runtime/data/opendaoc.sqlite3.db")
     if path.parent.name.casefold() != "data" or path.parent.parent.name.casefold() != "runtime":
         raise RuntimeError("Unexpected runtime database location")
     if connection.execute("SELECT COUNT(*) FROM Mob WHERE Region=?", (REGION,)).fetchone()[0] < 2000:
@@ -136,23 +137,19 @@ def main() -> None:
     parser.add_argument("--apply", action="store_true", help="write changes; default is validation only")
     arguments = parser.parse_args()
     database = arguments.database.resolve()
-    if not database.is_file():
-        raise RuntimeError(f"Database does not exist: {database}")
-    mode = "rw" if arguments.apply else "ro"
+    mode = "rwc" if arguments.apply else "ro"
     connection = sqlite3.connect(f"file:{database}?mode={mode}", uri=True)
     try:
-        verify_runtime_database(database, connection)
-        print("Verified Darkness Falls runtime database:", database)
+        verify_isolated_database(database, connection)
+        print("Verified isolated Darkness Falls database:", database)
         if not arguments.apply:
             print("Dry-run validation only; use --apply while the server is stopped")
             return
-        backup_dir = arguments.backup_dir.resolve()
-        runtime_dir = database.parent.parent
-        if backup_dir == runtime_dir or runtime_dir in backup_dir.parents:
-            raise RuntimeError("Backups must be outside the runtime tree")
-        backup_dir.mkdir(parents=True, exist_ok=True)
+        if "offline daoc sluaghbinder version" not in arguments.backup_dir.resolve().as_posix().casefold():
+            raise RuntimeError("Backups must go in OFFLINE DAOC SLUAGHBINDER VERSION")
+        arguments.backup_dir.mkdir(parents=True, exist_ok=True)
         stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%d-%H%M%S")
-        backup_path = backup_dir / f"before-df-charm-{stamp}.sqlite3.db"
+        backup_path = arguments.backup_dir / f"before-df-charm-{stamp}.sqlite3.db"
         if backup_path.exists():
             raise RuntimeError("Backup path already exists")
         backup = sqlite3.connect(str(backup_path))

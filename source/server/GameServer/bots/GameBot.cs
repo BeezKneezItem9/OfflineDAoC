@@ -2214,6 +2214,8 @@ namespace DOL.GS
             eCharacterClass temporaryClass = (eCharacterClass)ClassId;
             BotSpec = temporaryClass == eCharacterClass.Bonedancer
                 ? new BonedancerBotSpec(BotSpec.ChooseRandomSpecialization(temporaryClass), 0, false)
+                : temporaryClass == eCharacterClass.Sluaghbinder
+                    ? new SluaghbinderBotSpec(BotSpec.ChooseRandomSpecialization(temporaryClass), 0, false)
                 : BotSpec.GetSpec(temporaryClass, BotSpec.ChooseRandomSpecialization(temporaryClass));
             LoadClassSpecializations(false);
             SpendSpecPoints(Level, 0);
@@ -2230,7 +2232,9 @@ namespace DOL.GS
             RespawnInterval = -1;
 
             // Set up BotBrain — replaces old BotAI system
-            var brain = new DOL.AI.Brain.BotBrain();
+            var brain = temporaryClass == eCharacterClass.Sluaghbinder
+                ? new DOL.AI.Brain.SluaghbinderBotBrain()
+                : new DOL.AI.Brain.BotBrain();
             brain.IsHealer = IsHealerClass();
             SetOwnBrain(brain);
 
@@ -2292,6 +2296,8 @@ namespace DOL.GS
                 eCharacterClass.Savage => new SavageBotSpec(
                     BotSpec.ChoosePersistentSpecialization(persistentClass, record.BotId),
                     SavageBotSpec.WeaponFromPersistedSpecs(record.SerializedSpecs)),
+                eCharacterClass.Sluaghbinder => new SluaghbinderBotSpec(
+                    BotSpec.ChoosePersistentSpecialization(persistentClass, record.BotId), record.BotId, true),
                 _ => BotSpec.GetSpec(persistentClass,
                     BotSpec.ChoosePersistentSpecialization(persistentClass, record.BotId)),
             };
@@ -2299,8 +2305,14 @@ namespace DOL.GS
             LoadPersistedSpecs(record.SerializedSpecs);
             bool buildLocked = BotLifetimeBuild.Restore(BotSpec, record.SerializedBuildPlan);
             if (!buildLocked)
-            {
                 BotLifetimeBuild.AlignWithInvestedWeapons(BotSpec, GetBaseSpecLevel);
+            // A saved build can predate the Savage's trained weapon line. Its
+            // old weapon field must not override the specialization restored
+            // from the character record.
+            bool savagePlanCorrected = persistentClass == eCharacterClass.Savage &&
+                SavageBotSpec.AlignWithPersistedSpecs(BotSpec, record.SerializedSpecs);
+            if (!buildLocked || savagePlanCorrected)
+            {
                 record.SerializedBuildPlan = BotLifetimeBuild.Encode(BotSpec);
                 MarkAutonomousStateDirty();
             }
@@ -2333,7 +2345,9 @@ namespace DOL.GS
             Endurance = Math.Clamp(record.Endurance, 0, MaxEndurance);
             RespawnInterval = -1;
 
-            var brain = new DOL.AI.Brain.BotBrain { IsHealer = IsHealerClass() };
+            var brain = persistentClass == eCharacterClass.Sluaghbinder
+                ? new DOL.AI.Brain.SluaghbinderBotBrain { IsHealer = IsHealerClass() }
+                : new DOL.AI.Brain.BotBrain { IsHealer = IsHealerClass() };
             SetOwnBrain(brain);
             InitControlledBrainArray(1);
         }
@@ -2940,7 +2954,8 @@ namespace DOL.GS
             // weapon before the class grants the planned line.  Reconcile at
             // the exact unlock level without changing the bot's lifetime plan.
             eCharacterClass trainedClass = (eCharacterClass)CharacterClass.ID;
-            if (!ShouldUsePlannedTwoHandedPrimary(trainedClass, previous,
+            if (trainedClass == eCharacterClass.Savage ||
+                !ShouldUsePlannedTwoHandedPrimary(trainedClass, previous,
                     BotSpec?.Is2H == true, BotSpec?.WeaponTwoType ?? 0) &&
                 ShouldUsePlannedTwoHandedPrimary(trainedClass, Level,
                     BotSpec?.Is2H == true, BotSpec?.WeaponTwoType ?? 0))
@@ -3512,6 +3527,20 @@ namespace DOL.GS
             if (CharacterClass == null)
                 return;
 
+            // Sluaghbinder is a hybrid combat class, but its three baseline
+            // lines and the selected advanced line are ordinary list-caster
+            // spell lines.  The generic hybrid path only reads
+            // Specialization.HybridSpellList lines, so it silently produced a
+            // spell-less bot (no Raise spell, pet upkeep, self buffs, or
+            // instant Rot/Bane abilities).  Build its learned catalog from
+            // both sources while retaining the originating line for power and
+            // line-specific rank selection.
+            if (CharacterClass.ID == (int)eCharacterClass.Sluaghbinder)
+            {
+                SetSluaghbinderSpells();
+                return;
+            }
+
             // Casters use list spells (highest level per type), hybrids use all usable skills
             if (CharacterClass.ClassType == eClassType.ListCaster)
                 SetCasterSpells();
@@ -3520,6 +3549,98 @@ namespace DOL.GS
 
             if (IsEndgameCompanion)
                 Spells = TemporaryCompanionBalance.HighestRanks(Spells, Level, SkillBase.GetSpellByID);
+        }
+
+        private void SetSluaghbinderSpells()
+        {
+            List<(Spell Spell, SpellLine Line)> learned = new();
+
+            // Baseline and selected advanced lines are represented by the
+            // normal list-spell resolver.  Refreshing here is intentional:
+            // companions and persistent bots can be promoted/trained after
+            // construction and must see the newly learned ranks immediately.
+            foreach (Tuple<SpellLine, List<Skill>> tuple in GetAllUsableListSpells(true))
+            {
+                if (tuple?.Item1 == null || tuple.Item2 == null)
+                    continue;
+
+                // The Sluaghbinder bot build commits to one advanced path.
+                // GetSpellLinesForLiving intentionally exposes class-hint
+                // lines to NPCs, so explicitly keep only the baseline lines
+                // plus the path recorded by SluaghbinderBotSpec.  Otherwise
+                // an untrained Bulwark/Bane/Covenant line could leak its
+                // abilities into every bot at the NPC 75%-level estimate.
+                if (!IsSluaghbinderLineAllowed(tuple.Item1))
+                    continue;
+
+                foreach (Spell spell in tuple.Item2.OfType<Spell>())
+                {
+                    if (spell.Level <= Level && !SluaghbinderBotPolicy.IsPlayerOnlyServiceSpell(spell))
+                        learned.Add((spell, tuple.Item1));
+                }
+            }
+
+            // Keep this second pass for future class extensions that expose a
+            // spell line through HybridSpellList.  It also prevents this
+            // dedicated branch from regressing if a weapon/style-backed spell
+            // is added to the class later.
+            foreach (Tuple<Skill, Skill> tuple in GetAllUsableSkills(true))
+            {
+                if (tuple?.Item1 is not Spell spell || spell.Level > Level ||
+                    SluaghbinderBotPolicy.IsPlayerOnlyServiceSpell(spell))
+                    continue;
+
+                SpellLine line = tuple.Item2 as SpellLine ?? ResolvePowerSpellLine(spell, null);
+                if (!IsSluaghbinderLineAllowed(line))
+                    continue;
+                learned.Add((spell, line));
+            }
+
+            // Select one legal rank per effect role *within its spell line*.
+            // The line is part of the key so Abhartach's Rot and the advanced
+            // Abhartach's Bane DoT remain separate abilities and can stack as
+            // intended.  The generic caster selector does not include that
+            // line identity and would collapse them into one spell.
+            List<(Spell Spell, SpellLine Line)> selected = learned
+                .Where(entry => entry.Spell != null)
+                .GroupBy(entry => new
+                {
+                    LineId = entry.Line?.ID ?? 0,
+                    entry.Spell.DamageType,
+                    entry.Spell.SpellType,
+                    entry.Spell.Frequency,
+                    entry.Spell.CastTime,
+                    entry.Spell.Target,
+                    entry.Spell.Group,
+                    entry.Spell.IsPBAoE,
+                    entry.Spell.Radius,
+                    entry.Spell.SubSpellID
+                })
+                .Select(group => group
+                    .OrderByDescending(entry => entry.Spell.Level)
+                    .ThenByDescending(entry => entry.Spell.ID)
+                    .First())
+                .OrderBy(entry => entry.Line?.IsBaseLine == true ? 0 : 1)
+                .ThenBy(entry => entry.Line?.ID ?? int.MaxValue)
+                .ThenBy(entry => entry.Spell.Level)
+                .ThenBy(entry => entry.Spell.ID)
+                .ToList();
+
+            Spells = selected.Select(entry => entry.Spell).ToList();
+            foreach ((Spell spell, SpellLine line) in selected)
+            {
+                if (spell != null)
+                    _powerSpellLines[spell.ID] = line;
+            }
+        }
+
+        private bool IsSluaghbinderLineAllowed(SpellLine line)
+        {
+            if (line == null || line.IsBaseLine)
+                return line != null;
+
+            return BotSpec?.SpecLines?.Any(specLine =>
+                string.Equals(specLine.Spec, line.KeyName, StringComparison.OrdinalIgnoreCase)) == true;
         }
 
         private void SetCasterSpells()
@@ -3639,7 +3760,17 @@ namespace DOL.GS
                 // Equipment generators read Level. Temporarily exposing the rolled
                 // gear level keeps the character fully trained at its real level.
                 Level = IsTemporaryGroupHelper ? characterLevel : equipmentLevel;
-                bool mayUseOffhand = BotSpec?.SpecType is eSpecType.DualWield or eSpecType.DualWieldAndShield or eSpecType.LeftAxe || BestShieldLevel > 0;
+                // A Sluaghbinder Bane build, and a Covenant build that rolled
+                // its scythe option, is a two-handed weapon plan.  The class
+                // can use shields, but that does not make a shield part of
+                // this build.  Do not let the generic Shield career grant it
+                // an offhand on creation; doing so made every /spawn result
+                // look like the default mace-and-shield loadout even when the
+                // selected plan was supposed to use a scythe.
+                bool sluaghbinderScythePlan = SluaghbinderUsesScythe;
+                bool mayUseOffhand = !sluaghbinderScythePlan &&
+                    (BotSpec?.SpecType is eSpecType.DualWield or eSpecType.DualWieldAndShield or eSpecType.LeftAxe ||
+                     BestShieldLevel > 0);
                 bool includeOffhand = TemporaryCompanionBalance.EquipOffhand(IsTemporaryGroupHelper, characterLevel, mayUseOffhand, Random.Shared.NextDouble());
                 SetWeapons(includeOffhand);
                 if (includeOffhand)
@@ -3709,6 +3840,21 @@ namespace DOL.GS
 
             switch (BotSpec.SpecType)
             {
+                case eSpecType.SluaghbinderBulwark:
+                case eSpecType.SluaghbinderBane:
+                case eSpecType.SluaghbinderCovenant:
+                    // The selected Sluaghbinder plan is part of the bot's
+                    // identity.  Bane always starts with a usable scythe and
+                    // Covenant may start with the scythe it rolled; they must
+                    // not wait for a future loot drop before their build is
+                    // reflected in the active weapon.  Bulwark (and a
+                    // mace-and-shield Covenant) keeps the class's legal mace.
+                    if (SluaghbinderUsesScythe)
+                        BotEquipment.SetMeleeWeapon(this, eObjectType.Scythe, eHand.twoHand);
+                    else
+                        BotEquipment.SetMeleeWeapon(this, eObjectType.Blunt, eHand.oneHand);
+                    break;
+
                 case eSpecType.DualWield:
                 case eSpecType.DualWieldAndShield:
                     BotEquipment.SetMeleeWeapon(this, BotSpec.WeaponOneType, eHand.oneHand);
@@ -3767,7 +3913,10 @@ namespace DOL.GS
                     break;
             }
 
-            if (PrimaryWeaponUsesTwoHands)
+            if (CharacterClass.ID == (int)eCharacterClass.Savage &&
+                SavageBotWeaponPolicy.TryBestGeneratedStarterSlot(this, out eActiveWeaponSlot savageSlot))
+                SwitchWeapon(savageSlot);
+            else if (PrimaryWeaponUsesTwoHands)
                 SwitchWeapon(eActiveWeaponSlot.TwoHanded);
             else
                 SwitchWeapon(eActiveWeaponSlot.Standard);
@@ -3795,9 +3944,17 @@ namespace DOL.GS
             int level, bool plannedTwoHanded, eObjectType plannedWeapon = 0) =>
             plannedTwoHanded && level >= PlannedTwoHandedUnlockLevel(classId, plannedWeapon);
 
+        private bool SluaghbinderUsesScythe =>
+            CharacterClass?.ID == (int)eCharacterClass.Sluaghbinder &&
+            BotSpec?.WeaponTwoType == eObjectType.Scythe &&
+            BotSpec?.Is2H == true;
+
         private bool PrimaryWeaponUsesTwoHands =>
-            ShouldUsePlannedTwoHandedPrimary((eCharacterClass)(CharacterClass?.ID ?? 0),
-                Level, BotSpec?.Is2H == true, BotSpec?.WeaponTwoType ?? 0) ||
+            (CharacterClass?.ID == (int)eCharacterClass.Sluaghbinder &&
+             BotSpec?.WeaponTwoType == eObjectType.Scythe
+                ? SluaghbinderUsesScythe
+                : ShouldUsePlannedTwoHandedPrimary((eCharacterClass)(CharacterClass?.ID ?? 0),
+                    Level, BotSpec?.Is2H == true, BotSpec?.WeaponTwoType ?? 0)) ||
             CharacterClass?.ClassType == eClassType.ListCaster ||
             CharacterClass?.ID is (int)eCharacterClass.Friar or (int)eCharacterClass.Valewalker;
 
@@ -4026,6 +4183,9 @@ namespace DOL.GS
             if (Inventory == null || CharacterClass == null || BotSpec == null)
                 return false;
 
+            if (CharacterClass.ID == (int)eCharacterClass.Savage)
+                return EnsureSavageWeaponReady();
+
             eInventorySlot target = PrimaryWeaponUsesTwoHands
                 ? eInventorySlot.TwoHandWeapon : eInventorySlot.RightHandWeapon;
             eObjectType preferredType = PreferredPrimaryWeaponType;
@@ -4042,6 +4202,16 @@ namespace DOL.GS
             }
 
             changed |= EnsureConfiguredMeleeOffhand();
+            bool hasSluaghbinderShield = Inventory.AllItems.Any(item =>
+                item != null && (eObjectType)item.Object_Type == eObjectType.Shield);
+            if (CharacterClass.ID == (int)eCharacterClass.Sluaghbinder &&
+                !SluaghbinderUsesScythe && BestShieldLevel > 0 && !hasSluaghbinderShield)
+            {
+                // Bulwark and mace-and-shield Covenant use the class-career
+                // shield.  A scythe plan intentionally has no active offhand.
+                BotEquipment.SetShield(this, BestShieldLevel);
+                changed = true;
+            }
             changed |= StowInvalidInactiveWeaponSlots(target);
 
             bool primaryReady = BotWeaponStats.FitsConfiguredSlot(this, Inventory.GetItem(target), target);
@@ -4073,6 +4243,60 @@ namespace DOL.GS
                 }
             }
 
+            return changed;
+        }
+
+        private bool TryEquipBestSavageWeapon(eInventorySlot target)
+        {
+            DbInventoryItem current = Inventory.GetItem(target);
+            double currentScore = SavageBotWeaponPolicy.CombatScore(this, current, target);
+            DbInventoryItem best = Inventory.AllItems
+                .Where(item => item != null &&
+                    ((eInventorySlot)item.SlotPosition == target ||
+                     IsBackpackSlot((eInventorySlot)item.SlotPosition) ||
+                     target == eInventorySlot.RightHandWeapon &&
+                     (eInventorySlot)item.SlotPosition == eInventorySlot.LeftHandWeapon))
+                .OrderByDescending(item => SavageBotWeaponPolicy.CombatScore(this, item, target))
+                .FirstOrDefault();
+            if (best == null || SavageBotWeaponPolicy.CombatScore(this, best, target) <= currentScore)
+                return false;
+
+            eInventorySlot source = (eInventorySlot)best.SlotPosition;
+            if (!Inventory.MoveItem(source, target, Math.Max(1, best.Count)))
+                return false;
+            RefreshItemBonuses();
+            return true;
+        }
+
+        private bool EnsureSavageWeaponReady()
+        {
+            bool changed = TryEquipBestSavageWeapon(eInventorySlot.RightHandWeapon);
+            bool handToHand = BotSpec.WeaponOneType == eObjectType.HandToHand;
+            changed |= TryEquipBestSavageWeapon(handToHand
+                ? eInventorySlot.LeftHandWeapon : eInventorySlot.TwoHandWeapon);
+
+            if (!SavageBotWeaponPolicy.TryBestActiveSlot(this, out eActiveWeaponSlot activeSlot))
+            {
+                eInventorySlot starterSlot = handToHand
+                    ? eInventorySlot.RightHandWeapon : eInventorySlot.TwoHandWeapon;
+                changed |= TryCreateConfiguredStarterWeapon(starterSlot, BotSpec.WeaponOneType);
+            }
+            if (handToHand && SavageBotWeaponPolicy.CombatScore(this,
+                    Inventory.GetItem(eInventorySlot.LeftHandWeapon), eInventorySlot.LeftHandWeapon) <= 0)
+            {
+                DbInventoryItem offhand = Inventory.GetItem(eInventorySlot.LeftHandWeapon);
+                if (offhand == null || TryMoveEquippedItemToBackpack(eInventorySlot.LeftHandWeapon))
+                    changed |= TryCreateConfiguredStarterWeapon(eInventorySlot.LeftHandWeapon, BotSpec.WeaponOneType);
+            }
+            else if (!handToHand && Inventory.GetItem(eInventorySlot.LeftHandWeapon) != null &&
+                     TryMoveEquippedItemToBackpack(eInventorySlot.LeftHandWeapon))
+                changed = true;
+
+            // Legacy slots may still hold unusable weapons. Preserve the items
+            // in storage when possible, while the active choice stays legal.
+            changed |= StowInvalidInactiveWeaponSlots(eInventorySlot.Invalid);
+            if (SavageBotWeaponPolicy.TryBestActiveSlot(this, out activeSlot))
+                SwitchWeapon(activeSlot);
             return changed;
         }
 
@@ -4227,6 +4451,12 @@ namespace DOL.GS
             }
         }
 
+        public override DbInventoryItem ActiveLeftWeapon =>
+            CharacterClass?.ID == (int)eCharacterClass.Savage &&
+            (BotSpec?.WeaponOneType != eObjectType.HandToHand ||
+             !BotWeaponStats.FitsConfiguredSlot(this, base.ActiveLeftWeapon, eInventorySlot.LeftHandWeapon))
+                ? null : base.ActiveLeftWeapon;
+
         public override void SwitchWeapon(eActiveWeaponSlot slot)
         {
             // GameNPC.SwitchWeapon intentionally stops and restarts an active
@@ -4260,7 +4490,12 @@ namespace DOL.GS
             {
                 eActiveWeaponSlot.Standard =>
                     ReferenceEquals(ActiveWeapon, Inventory.GetItem(eInventorySlot.RightHandWeapon)) &&
-                    ReferenceEquals(ActiveLeftWeapon, Inventory.GetItem(eInventorySlot.LeftHandWeapon)),
+                    ReferenceEquals(ActiveLeftWeapon,
+                        CharacterClass?.ID == (int)eCharacterClass.Savage &&
+                        (BotSpec?.WeaponOneType != eObjectType.HandToHand ||
+                         !BotWeaponStats.FitsConfiguredSlot(this,
+                             Inventory.GetItem(eInventorySlot.LeftHandWeapon), eInventorySlot.LeftHandWeapon))
+                            ? null : Inventory.GetItem(eInventorySlot.LeftHandWeapon)),
                 eActiveWeaponSlot.TwoHanded =>
                     ReferenceEquals(ActiveWeapon, Inventory.GetItem(eInventorySlot.TwoHandWeapon)),
                 eActiveWeaponSlot.Distance =>

@@ -291,6 +291,40 @@ namespace DOL.UnitTests
             Assert.That(caster.FollowRange, Is.EqualTo(1700));
         }
 
+        private Bot OutOfRangeBoltCaster(out Enemy target)
+        {
+            Bot caster = MakeBot(new ClassRunemaster());
+            target = Actor<Enemy>(); target.TestX = 2500;
+            caster.attackComponent = new AttackComponent(caster);
+            caster.castingComponent = (NpcCastingComponent)CastingComponent.Create(caster);
+            ((GameLiving)caster).castingComponent = caster.castingComponent;
+            caster.Spells = new() { new Spell(new DbSpell { Type = "Bolt", Target = "Enemy", CastTime = 2.5, Range = 1800, Damage = 20 }, 1) };
+            caster.Mana = 100;
+            Field(typeof(GameBot), caster, "<IsAutonomousWorldBot>k__BackingField", true);
+            B(caster).SpellResult = false;
+            B(caster).AddToAggroList(target, 10);
+            return caster;
+        }
+
+        [Test] public void RestingCasterWakesToWalkIntoSpellRange()
+        {
+            Bot caster = OutOfRangeBoltCaster(out _);
+            Field(typeof(GameBot), caster, "_recoveryRestLocked", true);
+            Assert.That(caster.IsRecoveryResting, Is.True);
+            B(caster).AttackMostWanted();
+            Assert.That(caster.IsRecoveryResting, Is.False,
+                "a resting bot ignores follow orders, so the approach must wake it");
+            Assert.That(caster.FollowRange, Is.EqualTo(1700));
+        }
+
+        [Test] public void UnconnectedPullMovesTheCasterWellInsideSpellRange()
+        {
+            Bot caster = OutOfRangeBoltCaster(out _);
+            B(caster).RequestCloserSpellApproach(GameLoop.GameLoopTime + 30_000);
+            B(caster).AttackMostWanted();
+            Assert.That(caster.FollowRange, Is.EqualTo(1800 * 6 / 10 - 100));
+        }
+
         [TestCase(true)] [TestCase(false)]
         public void AcceptedCastKeepsItsTargetAndDoesNotReenterMeleeDecisions(bool temporary)
         {

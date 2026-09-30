@@ -937,7 +937,8 @@ namespace DOL.GS.PacketHandler
 			pak.WriteByte((byte)item.Bonus); // % bonus
 			pak.WriteByte((byte)item.BonusLevel); // 1.109
 			pak.WriteShort((ushort)item.Model);
-			pak.WriteByte((byte)item.Extension);
+			// A worn helmet shows the wearer's own face the same way SendLivingEquipmentUpdate shows it to others.
+			pak.WriteByte(HelmetAppearanceCompatibility.VisibleExtension(item.SlotPosition, item.Model, (byte)item.Extension));
 			int flag = 0;
 			int emblem = item.Emblem;
 			int color = item.Color;

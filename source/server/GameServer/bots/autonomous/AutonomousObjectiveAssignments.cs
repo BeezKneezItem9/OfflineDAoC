@@ -573,8 +573,10 @@ public static class AutonomousObjectiveAssignments
     {
         if (bot?.PersistentRecord == null || bot.Group != null)
             return false;
+        // Unload at this task boundary when the bag is nearly full, not only
+        // when completely full: otherwise the next task leaves loot on the ground.
         BetweenTaskPlan plan = RollBetweenTaskPlan(bot.HasSpendableAutonomousTrainingPoints,
-            AutonomousBotEconomy.IsBackpackFull(bot), Random.Shared.NextDouble(), Random.Shared.NextDouble());
+            AutonomousBotEconomy.IsBackpackNearlyFull(bot), Random.Shared.NextDouble(), Random.Shared.NextDouble());
         bool downtime = AutonomousTownDowntime.RollAtTaskBoundary(Random.Shared.NextDouble());
         if (!plan.Train && !plan.Unload && !downtime) return false;
         OfflineWorldBotRecord record = bot.PersistentRecord;

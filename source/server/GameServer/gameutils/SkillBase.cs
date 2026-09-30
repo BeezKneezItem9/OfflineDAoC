@@ -19,6 +19,7 @@ namespace DOL.GS
 		/// Defines a logger for this class.
 		/// </summary>
 		private static readonly Logger log = LoggerManager.Create(MethodBase.GetCurrentMethod().DeclaringType);
+		private static readonly ConcurrentDictionary<string, byte> m_reportedUnknownAbilities = new(StringComparer.OrdinalIgnoreCase);
 
 		/// <summary>
 		/// Flag to Check if SkillBase has been pre-loaded.
@@ -2284,8 +2285,10 @@ namespace DOL.GS
 				return dba;
 			}
 
-			if (log.IsWarnEnabled)
-				log.Warn($"Ability '{keyname}' unknown");
+			// Report each missing ability once; NPC templates request the same
+			// unknown immunity keys thousands of times per session.
+			if (log.IsWarnEnabled && m_reportedUnknownAbilities.TryAdd(keyname, 0))
+				log.Warn($"Ability '{keyname}' unknown (reported once per session)");
 
 			return new Ability(keyname, $"?{keyname}", "", 0, 0, level, 0);
 		}

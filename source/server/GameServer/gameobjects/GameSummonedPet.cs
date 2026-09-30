@@ -13,6 +13,26 @@ namespace DOL.GS
 
         public bool CountsTowardsPetLimit { get; set; }
 
+        // Player Sluaghbinders currently use this standard body, unlike bots.
+        // Share only their role HP factors; do not opt players into the custom
+        // body's separate damage multipliers as a side effect of an HP fix.
+        public override double MaxHealthScalingFactor
+        {
+            get
+            {
+                double factor = SluaghbinderPet.GetRoleHealthScalingFactor(NPCTemplate?.Name);
+                if (factor == 1.0)
+                    return base.MaxHealthScalingFactor;
+
+                return Owner is GamePlayer player &&
+                    (player.CharacterClass?.ID == (int)eCharacterClass.Sluaghbinder ||
+                     player.CharacterClass?.ID == (int)eCharacterClass.Acolyte &&
+                     player.Realm == eRealm.Hibernia && player.Level < 5)
+                        ? factor
+                        : base.MaxHealthScalingFactor;
+            }
+        }
+
         // Used to calculate pet level.
         public double SummonSpellDamage { get; set; } = -88.0;
         public double SummonSpellValue { get; set; } = 44.0;
@@ -70,14 +90,15 @@ namespace DOL.GS
             base.SortSpells();
 
             // Most summoned pets need to have their spell be scaled, since they share the same NPC template, or use different NPC templates but with the same spells.
-            // Currently, it should be the pets of the following classes: Theurgist, Cabalist, Spiritmaster, Bonedancer, Enchanter, Druid.
+            // Currently, it should be the pets of the following classes: Theurgist, Cabalist, Spiritmaster, Bonedancer, Enchanter, Druid, Sluaghbinder.
             // Only Animist pets are excluded (they also store their spells differently).
             // Necromancer and Hunter pets don't possess any spell.
-            ICharacterClass summonerClass = GetActualSummonerClass();
-            if ((eCharacterClass?)summonerClass?.ID is
-                eCharacterClass.Theurgist or eCharacterClass.Cabalist or eCharacterClass.Spiritmaster or
-                eCharacterClass.Bonedancer or eCharacterClass.Enchanter or eCharacterClass.Druid)
-                ScalSpells();
+			ICharacterClass summonerClass = GetActualSummonerClass();
+			if ((eCharacterClass?)summonerClass?.ID is
+				eCharacterClass.Theurgist or eCharacterClass.Cabalist or eCharacterClass.Spiritmaster or
+				eCharacterClass.Bonedancer or eCharacterClass.Enchanter or eCharacterClass.Druid or
+				eCharacterClass.Sluaghbinder)
+				ScalSpells();
         }
 
         private ICharacterClass GetActualSummonerClass()
@@ -88,8 +109,18 @@ namespace DOL.GS
                 // Real players do not implement the bot-only IGamePlayer
                 // interface. Omitting them leaves their pets' template spells
                 // at full strength, including commander-owned sub-pets.
-                if (current is GamePlayer player)
-                    return player.CharacterClass;
+				if (current is GamePlayer player)
+				{
+					// Levels 1-4 of the isolated Sluaghbinder path are stored as
+					// Hibernian Acolyte.  Resolve that temporary identity to the
+					// experimental class so pet scaling remains consistent before
+					// the level-5 trainer promotion.
+					if (player.CharacterClass?.ID == (int)eCharacterClass.Acolyte &&
+						player.Realm == eRealm.Hibernia && player.Level < 5)
+						return ScriptMgr.FindCharacterClass((int)eCharacterClass.Sluaghbinder);
+
+					return player.CharacterClass;
+				}
                 // Check GameBot before following its optional human owner. A
                 // temporary /spawn Enchanter's pet scales from the Enchanter,
                 // not from the class of the human who spawned that companion.

@@ -29,6 +29,8 @@ namespace DOL.GS
 	public class GameNPC : GameLiving, ITranslatableObject, IPooledList<GameNPC>
 	{
 		public static readonly Logger log = LoggerManager.Create(MethodBase.GetCurrentMethod().DeclaringType);
+		private static readonly ConcurrentDictionary<int, byte> s_reportedUnscaledSpells = new();
+		private static readonly ConcurrentDictionary<string, byte> s_reportedNullStyleSources = new();
 		private static ConcurrentDictionary<Type, Func<AbstractQuest>> _abstractQuestConstructorCache = new();
 
 		private const int VISIBLE_TO_PLAYER_SPAN = 60000;
@@ -2730,6 +2732,22 @@ namespace DOL.GS
 			// branch and choose only a class/spec-valid weapon for bots.
 			if (this is GameBot bot)
 			{
+				if (bot.CharacterClass?.ID == (int)eCharacterClass.Savage)
+				{
+					if (!SavageBotWeaponPolicy.TryBestActiveSlot(bot, out eActiveWeaponSlot savageSlot))
+						bot.EnsureBotWeaponReady();
+					if (!SavageBotWeaponPolicy.TryBestActiveSlot(bot, out savageSlot))
+						return;
+					if (savageSlot != ActiveWeaponSlot)
+					{
+						if (attackComponent.AttackState)
+							attackComponent.StopAttack();
+						SwitchWeapon(savageSlot);
+					}
+					StartAttack(target);
+					return;
+				}
+
 				DbInventoryItem rightHand = Inventory?.GetItem(eInventorySlot.RightHandWeapon);
 				DbInventoryItem twoHand = Inventory?.GetItem(eInventorySlot.TwoHandWeapon);
 				// The standard slot attacks with the right hand.  A persisted
@@ -3506,8 +3524,9 @@ namespace DOL.GS
 					return spell;
 				default:
 				{
-					if (log.IsWarnEnabled)
-						log.Warn($"Unhandled spell in {nameof(GetScaledSpell)}: {spell}");
+					// Once per spell ID: every spawn of the same template repeats it.
+					if (log.IsWarnEnabled && s_reportedUnscaledSpells.TryAdd(spell.ID, 0))
+						log.Warn($"Unhandled spell in {nameof(GetScaledSpell)} (reported once per spell): {spell}");
 
 					return spell;
 				}
@@ -3618,9 +3637,11 @@ namespace DOL.GS
 			{
 				if (s == null)
 				{
-					if (log.IsWarnEnabled)
+					// Once per template (or name when untemplated): the same broken
+					// template reports on every respawn otherwise.
+					if (log.IsWarnEnabled && s_reportedNullStyleSources.TryAdd(m_npcTemplate != null ? $"t{m_npcTemplate.TemplateId}" : $"n{Name}", 0))
 					{
-						String sError = $"GameNPC.SortStyles(): NULL style for NPC named {Name}";
+						String sError = $"GameNPC.SortStyles(): NULL style for NPC named {Name} (reported once per template)";
 						if (m_InternalID != null)
 							sError += $", InternalID {this.m_InternalID}";
 						if (m_npcTemplate != null)

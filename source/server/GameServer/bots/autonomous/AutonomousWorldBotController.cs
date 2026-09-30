@@ -58,6 +58,33 @@ namespace DOL.GS
         private long _nextTargetSearchTick;
         private long _nextFailedSoloPullRoutePruneTick;
         private readonly Dictionary<ushort, SavageBotCombatPolicy.FailedSoloPullRoute> _failedSoloPullRoutes = new();
+        private long _nextFailedSavageMeleePullPruneTick;
+        private readonly Dictionary<ushort, long> _failedSavageMeleePullTargets = new();
+        private GameNPC _savageMeleePullTarget;
+        private string _savageMeleePullCampId = string.Empty;
+        private string _savageMeleePullAssignmentId = string.Empty;
+        private Group _savageMeleePullGroup;
+        private Vector3 _savageMeleePullLastPosition;
+        private int _savageMeleePullLastDistance;
+        private int _savageMeleePullTargetHealth;
+        private long _savageMeleePullLastAttackTick;
+        private long _savageMeleePullLastAttackedTick;
+        private long _savageMeleePullStartedTick;
+        private long _savageMeleePullProgressTick;
+        private bool _savageMeleePullRetried;
+        // 3,020 of the first live run's archer pull timeouts stood 299-300 units
+        // from the target: inside the native NPC bow "melee" distance
+        // (melee range + half a second of movement), outside the bot's own.
+        private const int ArcherStallMeleeDistance = 450;
+        private const int ArcherMeleeFallbackMilliseconds = 20_000;
+        private object _pullWatchCastHandler;
+        private long _pullWatchCastSinceTick;
+        private const string PendingSavageMeleePullHandoffKey = "AutonomousSavageMeleePullHandoff";
+        private const string FailedSavageMeleePullHandoffKey = "AutonomousFailedSavageMeleePullHandoff";
+        private readonly record struct PendingSavageMeleePullHandoff(GameNPC Target, Group Group,
+            string AssignmentId, long AttackTick, long AttackedTick, int TargetHealth);
+        private readonly record struct FailedSavageMeleePullHandoff(ushort TargetId, ushort RegionId,
+            Group Group, string AssignmentId, long RetryAfterTick);
         private long _nextMoveOrderTick;
         private long _nextDarknessFallsEvacuationProbeTick;
         private Vector3 _lastDarknessFallsEvacuationPosition;
@@ -122,10 +149,19 @@ namespace DOL.GS
         private string _observedObjectiveAssignmentId = string.Empty;
         private GameNPC _serviceNpc;
         private eWorldServiceKind? _serviceKind;
+        private long _nextServiceSearchTick;
+        private long _nextRvrReleaseCheckTick;
         private Vector3? _verifiedApproachTarget;
         private Vector3? _verifiedApproachPoint;
         private Zone _verifiedApproachZone;
         private int _verifiedApproachRadius;
+        // Negative cache: the same unresolvable approach from the same spot is
+        // not re-searched (dozens of navmesh queries) on every brain turn.
+        private Vector3? _failedApproachTarget;
+        private Vector3 _failedApproachFrom;
+        private Zone _failedApproachZone;
+        private int _failedApproachRadius;
+        private long _failedApproachUntilTick;
 
         private sealed record CampDestination(
             string Id,
@@ -171,8 +207,14 @@ namespace DOL.GS
             try
             {
                 long nowTick = GameLoop.GameLoopTime;
-                if (bot.Group == null && AutonomousRvrEventLayer.TryConsumeRelease($"rvr-{bot.DatabaseID}", nowTick, out string eventReason))
-                    AutonomousObjectiveAssignments.BeginSoloAfterGroupTask(bot, eventReason);
+                // A solo siege force is released at most a couple of seconds
+                // after its event ends; no need to take the event lock each turn.
+                if (bot.Group == null && nowTick >= _nextRvrReleaseCheckTick)
+                {
+                    _nextRvrReleaseCheckTick = nowTick + 2_000;
+                    if (AutonomousRvrEventLayer.TryConsumeRelease($"rvr-{bot.DatabaseID}", nowTick, out string eventReason))
+                        AutonomousObjectiveAssignments.BeginSoloAfterGroupTask(bot, eventReason);
+                }
                 if (_observedGroup != bot.Group || nowTick >= _nextGroupPulseTick)
                 {
                     _observedGroup = bot.Group;
@@ -255,7 +297,19 @@ namespace DOL.GS
                     _regroupRouteCleared = false;
 
                 if (!bot.IsAlive || bot.IsReturningAfterRelease)
+                {
+                    ClearSavageMeleePull();
+                    bot.TempProperties.RemoveProperty(PendingSavageMeleePullHandoffKey);
                     return false;
+                }
+
+                AcceptSavageMeleePullHandoff(brain, bot);
+                ClearStaleCast(bot);
+                // A selected Savage pull can have aggro without a landed blow.
+                // Observe it before the normal combat return so a failed melee
+                // approach cannot preserve the same untouched target forever.
+                if (ObserveSavageMeleePull(brain, bot))
+                    return true;
 
                 if (_rvrSharedEvent && _rvrDestination != null)
                     AutonomousRvrEventLayer.ReportTravel(_rvrDestination.Id,
@@ -421,11 +475,11 @@ namespace DOL.GS
                 {
                     if (bot.CurrentZone?.IsDungeon == true)
                         return LeaveDungeonForGroupMatchmaking(bot);
-                    bot.StopMovingOnPath();
-                    bot.StopMoving();
-                    SetStatus(bot, "Awaiting group PvE matchmaking", "Join a same-realm group-PvE party",
-                        "This bot is assigned group PvE and will not silently substitute a solo grind");
-                    return true;
+                    // While the matchmaker assembles a full roster the bot keeps
+                    // grinding an outdoor camp instead of standing idle for up to
+                    // twenty minutes. It stays in the matchmaking pool (recruited
+                    // between fights) and the group directive replaces this solo
+                    // goal the moment a party forms.
                 }
 
                 if (objectiveKind == eAutonomousObjectiveKind.RvR)
@@ -590,7 +644,9 @@ namespace DOL.GS
                             nearbyGoal.Name, _camp.ZoneName);
                         return true;
                     }
-                    if (nearbyGoal != null && AutonomousDefensivePull.TryBegin(bot, nearbyGoal))
+                    if (nearbyGoal != null &&
+                        !SavageBotCombatPolicy.MustMeleePull((eCharacterClass)bot.CharacterClass.ID) &&
+                        AutonomousDefensivePull.TryBegin(bot, nearbyGoal))
                     {
                         SetStatus(bot, $"Ranged pulling {nearbyGoal.Name}", GoalText(),
                             "Holding outside the spawn pack; drawing the assigned target back to the party",
@@ -807,8 +863,18 @@ namespace DOL.GS
 
             if (_serviceNpc?.ObjectState is not GameObject.eObjectState.Active || _serviceKind != needed)
             {
-                _serviceNpc = FindReachableService(bot, needed.Value);
-                _serviceKind = needed;
+                // A failed search is repeated at most every ten seconds for the
+                // same need; the bot keeps reporting that it is waiting.
+                if (_serviceKind != needed || GameServiceUtils.ShouldTick(_nextServiceSearchTick))
+                {
+                    _serviceNpc = FindReachableService(bot, needed.Value);
+                    _serviceKind = needed;
+                    _nextServiceSearchTick = _serviceNpc == null ? GameLoop.GameLoopTime + 10_000 : 0;
+                }
+                else
+                {
+                    _serviceNpc = null;
+                }
             }
             if (_serviceNpc == null)
             {
@@ -901,27 +967,55 @@ namespace DOL.GS
         private static GameNPC FindReachableService(GameBot bot, eWorldServiceKind kind)
         {
             HashSet<ushort> reachable = ReachableRegions(bot.Realm, bot.CurrentRegionID);
-            IEnumerable<GameNPC> candidates = WorldMgr.GetAllRegions()
-                .Where(region => region != null &&
-                                 !region.IsHousing &&
-                                 AutonomousCapnBryGoalCatalog.IsClassicOrShroudedIslesExpansion(region.Expansion) &&
-                                 reachable.Contains(region.ID))
-                .SelectMany(region => region.Objects.OfType<GameNPC>())
-                .Where(npc => npc.ObjectState is GameObject.eObjectState.Active && npc.CurrentZone != null && IsZoneAccessible(bot.Realm, npc.CurrentZone));
-            if (kind == eWorldServiceKind.RealmExchange)
+            bool exchange = kind == eWorldServiceKind.RealmExchange;
+            GameNPC best = null;
+            double bestMinutes = double.MaxValue;
+            // Same candidates and ordering as before (first candidate wins a tie,
+            // like OrderBy + FirstOrDefault), but merchants come from each
+            // region's live merchant index instead of scanning every monster,
+            // pet and bot object. Brokers only ever qualify in capital cities.
+            foreach (Region region in WorldMgr.GetAllRegions())
             {
-                return candidates.OfType<RealmExchangeBroker>()
-                    .Where(broker => broker.CurrentRegion?.IsCapitalCity == true && (broker.Realm == eRealm.None || broker.Realm == bot.Realm))
-                    .OrderBy(broker => EstimateTravelMinutes(bot, broker.CurrentRegionID, broker.X, broker.Y))
-                    .Cast<GameNPC>()
-                    .FirstOrDefault();
+                if (region == null || region.IsHousing ||
+                    !AutonomousCapnBryGoalCatalog.IsClassicOrShroudedIslesExpansion(region.Expansion) ||
+                    !reachable.Contains(region.ID))
+                    continue;
+
+                if (exchange)
+                {
+                    if (!region.IsCapitalCity)
+                        continue;
+                    foreach (GameNPC npc in region.Objects.OfType<GameNPC>())
+                    {
+                        if (npc is RealmExchangeBroker broker && IsServiceCandidate(bot, broker) &&
+                            broker.CurrentRegion?.IsCapitalCity == true && (broker.Realm == eRealm.None || broker.Realm == bot.Realm))
+                            ConsiderService(broker);
+                    }
+                }
+                else
+                {
+                    foreach (GameMerchant merchant in region.Merchants)
+                    {
+                        if (IsServiceCandidate(bot, merchant) && (merchant.Realm == eRealm.None || merchant.Realm == bot.Realm))
+                            ConsiderService(merchant);
+                    }
+                }
             }
-            return candidates.OfType<GameMerchant>()
-                .Where(merchant => merchant.Realm == eRealm.None || merchant.Realm == bot.Realm)
-                .OrderBy(merchant => EstimateTravelMinutes(bot, merchant.CurrentRegionID, merchant.X, merchant.Y))
-                .Cast<GameNPC>()
-                .FirstOrDefault();
+            return best;
+
+            void ConsiderService(GameNPC npc)
+            {
+                double minutes = EstimateTravelMinutes(bot, npc.CurrentRegionID, npc.X, npc.Y);
+                if (minutes < bestMinutes)
+                {
+                    bestMinutes = minutes;
+                    best = npc;
+                }
+            }
         }
+
+        private static bool IsServiceCandidate(GameBot bot, GameNPC npc) =>
+            npc.ObjectState is GameObject.eObjectState.Active && npc.CurrentZone != null && IsZoneAccessible(bot.Realm, npc.CurrentZone);
 
         private bool HandlePendingTraining(GameBot bot)
         {
@@ -2093,6 +2187,259 @@ namespace DOL.GS
             SetStatus(bot, activity, "Active frontier RvR", detail, target, _rvrDestination?.ZoneName ?? string.Empty, true);
         }
 
+        private void BeginSavageMeleePull(GameBot bot, GameNPC target)
+        {
+            long nowTick = GameLoop.GameLoopTime;
+            _savageMeleePullTarget = target;
+            _savageMeleePullCampId = _camp?.Id ?? string.Empty;
+            _savageMeleePullAssignmentId = bot.PersistentRecord?.ObjectiveAssignmentId ?? string.Empty;
+            _savageMeleePullGroup = bot.Group;
+            _savageMeleePullLastPosition = new(bot.X, bot.Y, bot.Z);
+            _savageMeleePullLastDistance = (int)bot.GetDistanceTo(target);
+            _savageMeleePullTargetHealth = target.Health;
+            _savageMeleePullLastAttackTick = bot.LastAttackTick;
+            _savageMeleePullLastAttackedTick = bot.LastAttackedByEnemyTick;
+            _savageMeleePullStartedTick = nowTick;
+            _savageMeleePullProgressTick = nowTick;
+            _savageMeleePullRetried = false;
+            bot.WakeRecoveryRest();
+        }
+
+        // A cast handler still attached well past its cast time freezes the bot:
+        // the follow tick stops a casting NPC, and the brain waits for the active
+        // cast before choosing anything else. Clear it once it is clearly stale.
+        private void ClearStaleCast(GameBot bot)
+        {
+            object handler = bot.castingComponent?.SpellHandler;
+            long nowTick = GameLoop.GameLoopTime;
+            if (handler == null)
+            {
+                _pullWatchCastHandler = null;
+                return;
+            }
+            if (!ReferenceEquals(handler, _pullWatchCastHandler))
+            {
+                _pullWatchCastHandler = handler;
+                _pullWatchCastSinceTick = nowTick;
+                return;
+            }
+            if (SavageBotCombatPolicy.IsStaleCast(bot.castingComponent.SpellHandler.Spell, _pullWatchCastSinceTick, nowTick))
+            {
+                bot.StopCurrentSpellcast();
+                _pullWatchCastHandler = null;
+            }
+        }
+
+        private void ClearSavageMeleePull()
+        {
+            _savageMeleePullTarget = null;
+            _savageMeleePullCampId = string.Empty;
+            _savageMeleePullAssignmentId = string.Empty;
+            _savageMeleePullGroup = null;
+            _savageMeleePullRetried = false;
+        }
+
+        // A follower can see a corridor blocker before its designated puller.
+        // The follower publishes only a one-shot target; the puller's own Tick
+        // starts and owns the recovery clock. Repeated reports never reset it.
+        internal static void QueueSavageMeleePullHandoff(GameBot puller, GameNPC target)
+        {
+            if (puller?.CharacterClass != null && target != null &&
+                SavageBotCombatPolicy.MustMeleePull((eCharacterClass)puller.CharacterClass.ID))
+                puller.TempProperties.SetProperty(PendingSavageMeleePullHandoffKey,
+                    new PendingSavageMeleePullHandoff(target, puller.Group,
+                        puller.PersistentRecord?.ObjectiveAssignmentId ?? string.Empty,
+                        puller.LastAttackTick, puller.LastAttackedByEnemyTick, target.Health));
+        }
+
+        internal static bool IsSavageMeleePullHandoffCoolingDown(GameBot puller, GameNPC target)
+        {
+            if (puller == null || target == null)
+                return false;
+            var failure = puller.TempProperties.GetProperty<FailedSavageMeleePullHandoff>(
+                FailedSavageMeleePullHandoffKey);
+            return failure.TargetId == target.ObjectID && failure.RegionId == target.CurrentRegionID &&
+                failure.Group == puller.Group &&
+                string.Equals(failure.AssignmentId,
+                    puller.PersistentRecord?.ObjectiveAssignmentId ?? string.Empty, StringComparison.Ordinal) &&
+                GameLoop.GameLoopTime < failure.RetryAfterTick;
+        }
+
+        private void AcceptSavageMeleePullHandoff(BotBrain brain, GameBot bot)
+        {
+            if (!bot.TempProperties.TryRemoveProperty(PendingSavageMeleePullHandoffKey, out object value) ||
+                value is not PendingSavageMeleePullHandoff pending ||
+                pending.Group == null || pending.Group != bot.Group ||
+                !string.Equals(pending.AssignmentId,
+                    bot.PersistentRecord?.ObjectiveAssignmentId ?? string.Empty, StringComparison.Ordinal))
+                return;
+
+            GameNPC target = pending.Target;
+            if (target == null ||
+                !SavageBotCombatPolicy.MustMeleePull((eCharacterClass)bot.CharacterClass.ID) ||
+                _savageMeleePullTarget == target || target.IsAlive != true ||
+                target.CurrentRegion != bot.CurrentRegion || bot.TargetObject != target ||
+                brain.GetBaseAggroAmount(target) <= 0 ||
+                SavageBotCombatPolicy.HasMeleePullContact(pending.AttackTick, bot.LastAttackTick,
+                    pending.AttackedTick, bot.LastAttackedByEnemyTick, pending.TargetHealth,
+                    target.Health))
+                return;
+
+            if (IsSavageMeleePullHandoffCoolingDown(bot, target))
+            {
+                ReleaseSavageMeleePullTarget(brain, bot, target);
+                return;
+            }
+            BeginSavageMeleePull(bot, target);
+        }
+
+        private static bool ReleaseSavageMeleePullTarget(BotBrain brain, GameBot bot, GameNPC target)
+        {
+            brain.RemoveFromAggroList(target);
+            if (bot.TargetObject == target)
+            {
+                bot.StopAttack();
+                bot.TargetObject = null;
+            }
+            if (bot.FollowTarget == target)
+            {
+                bot.StopFollowing();
+                bot.StopMovingOnPath();
+                bot.StopMoving();
+            }
+            if (!brain.HasAggro && brain.FSM.GetCurrentState()?.StateType == eFSMStateType.AGGRO)
+                brain.FSM.SetCurrentState(eFSMStateType.IDLE);
+            return !brain.HasAggro;
+        }
+
+        private bool ObserveSavageMeleePull(BotBrain brain, GameBot bot)
+        {
+            GameNPC target = _savageMeleePullTarget;
+            if (target == null)
+                return false;
+
+            if (_savageMeleePullCampId.Length == 0 && _camp != null)
+                _savageMeleePullCampId = _camp.Id;
+            bool sameGoal = string.Equals(_savageMeleePullAssignmentId,
+                bot.PersistentRecord?.ObjectiveAssignmentId ?? string.Empty, StringComparison.Ordinal) &&
+                _savageMeleePullGroup == bot.Group &&
+                (_savageMeleePullCampId.Length == 0 ||
+                    string.Equals(_savageMeleePullCampId, _camp?.Id ?? string.Empty,
+                        StringComparison.Ordinal));
+            if (!SavageBotCombatPolicy.IsMeleePullTargetValid(
+                    target.IsAlive, target.ObjectState == GameObject.eObjectState.Active,
+                    target.CurrentRegion == bot.CurrentRegion,
+                    sameGoal) ||
+                bot.IsPlayerLedGroup)
+            {
+                ClearSavageMeleePull();
+                return false;
+            }
+            eCharacterClass pullClass = (eCharacterClass)bot.CharacterClass.ID;
+            bool meleePuller = SavageBotCombatPolicy.MustMeleePull(pullClass) ||
+                !BotBrain.PrefersSpellRange(bot.CharacterClass, bot.Group?.MemberCount > 1, true);
+
+            // A real swing (including a miss), incoming hit, or health lost by
+            // the target belongs to ordinary combat. Never cancel that fight.
+            if (SavageBotCombatPolicy.HasMeleePullContact(
+                    _savageMeleePullLastAttackTick, bot.LastAttackTick,
+                    _savageMeleePullLastAttackedTick, bot.LastAttackedByEnemyTick,
+                    _savageMeleePullTargetHealth, target.Health))
+            {
+                ClearSavageMeleePull();
+                return false;
+            }
+
+            // Crowd control prevents a legal approach; the native combat state
+            // resumes once it ends. A long control effect is not a path failure.
+            if (bot.IsCrowdControlled)
+                return false;
+
+            long nowTick = GameLoop.GameLoopTime;
+            Vector3 position = new(bot.X, bot.Y, bot.Z);
+            int distance = (int)bot.GetDistanceTo(target);
+            if (SavageBotCombatPolicy.MadeMeleePullProgress(
+                    _savageMeleePullLastPosition, position, _savageMeleePullLastDistance, distance))
+            {
+                _savageMeleePullLastPosition = position;
+                _savageMeleePullLastDistance = distance;
+                _savageMeleePullProgressTick = nowTick;
+                _savageMeleePullRetried = false;
+            }
+
+            switch (SavageBotCombatPolicy.EvaluatePull(pullClass, nowTick, _savageMeleePullStartedTick,
+                        _savageMeleePullProgressTick, _savageMeleePullRetried))
+            {
+                case SavageBotCombatPolicy.MeleePullDecision.RetryApproach:
+                    _savageMeleePullRetried = true;
+                    bot.WakeRecoveryRest();
+                    if (!meleePuller)
+                    {
+                        // Casters: open with the pet again and walk well inside
+                        // spell range; the brain keeps that closer range for a while.
+                        bot.ControlledBrain?.Attack(target);
+                        brain.RequestCloserSpellApproach(nowTick + SavageBotCombatPolicy.PullGiveUpAfterNoProgressMilliseconds);
+                        bot.ForcePathReplot();
+                    }
+                    else if (BotRangedCombat.UsesAutonomousBowPositioning(bot) && distance <= ArcherStallMeleeDistance)
+                    {
+                        // Archer stalled near its target without releasing a shot:
+                        // fight it in melee for a while (the brain honours this and
+                        // the native melee follow closes the last few steps).
+                        // Ending the stalled draw lets the brain's melee path pick
+                        // the right melee weapon and start the attack next turn.
+                        brain.RequestArcherMeleeFallback(nowTick + ArcherMeleeFallbackMilliseconds);
+                        bot.StopAttack();
+                    }
+                    else if (distance > bot.MeleeAttackRange)
+                    {
+                        bot.StopFollowing();
+                        bot.ForcePathReplot();
+                        bot.Follow(target, bot.StickMinimumRange, BotBrain.MAX_AGGRO_LIST_DISTANCE);
+                    }
+                    else
+                        bot.StartAttack(target);
+                    break;
+
+                case SavageBotCombatPolicy.MeleePullDecision.GiveUp:
+                    long retryAfter = nowTick + SavageBotCombatPolicy.FailedMeleePullRetryMilliseconds;
+                    _failedSavageMeleePullTargets[target.ObjectID] = retryAfter;
+                    bot.TempProperties.SetProperty(FailedSavageMeleePullHandoffKey,
+                        new FailedSavageMeleePullHandoff(target.ObjectID, target.CurrentRegionID,
+                            bot.Group, bot.PersistentRecord?.ObjectiveAssignmentId ?? string.Empty,
+                            retryAfter));
+                    bool noOtherAggro = ReleaseSavageMeleePullTarget(brain, bot, target);
+                    ClearSavageMeleePull();
+                    _nextTargetSearchTick = nowTick + 1_500;
+                    SetStatus(bot, meleePuller ? "Seeking another melee pull" : "Seeking another pull", GoalText(),
+                        "The selected target was never reached or hit; trying another live spawn",
+                        target.Name, _camp?.ZoneName ?? string.Empty);
+                    if (SavageBotCombatPolicy.MustMeleePull(pullClass))
+                        Log.Warn($"SAVAGE_MELEE_PULL_TIMEOUT bot={bot.Name} target={target.Name} region={bot.CurrentRegionID} x={bot.X} y={bot.Y} z={bot.Z}");
+                    else
+                        Log.Warn($"AUTONOMOUS_PULL_TIMEOUT bot={bot.Name} class={pullClass} level={bot.Level} target=\"{target.Name}\" " +
+                            $"targetLevel={target.Level} distance={distance} casting={bot.IsCasting} " +
+                            $"pendingCast={bot.castingComponent?.HasPendingSkillRequests == true} resting={bot.IsRecoveryResting} " +
+                            $"manaPercent={bot.ManaPercent} moving={bot.IsMoving} pet={bot.ControlledBrain?.Body?.Name ?? "none"} " +
+                            $"region={bot.CurrentRegionID} x={bot.X} y={bot.Y} z={bot.Z}");
+                    return noOtherAggro;
+            }
+
+            // The weapon action can drop an invalid target before the next
+            // controller pulse. Keep this one bounded approach alive without
+            // resetting its progress clock or choosing the same spawn anew.
+            if (!brain.HasAggro && !bot.IsAttacking)
+            {
+                bot.WakeRecoveryRest();
+                bot.TargetObject = target;
+                brain.AddToAggroList(target, Math.Max(25, target.EffectiveLevel * 10));
+                brain.CommitDungeonPull(target);
+                if (brain.FSM.GetCurrentState()?.StateType != eFSMStateType.AGGRO)
+                    brain.FSM.SetCurrentState(eFSMStateType.AGGRO);
+            }
+            return false;
+        }
+
         private bool WorkCamp(BotBrain brain, GameBot bot)
         {
             if (HoldBeforeNewGroupPull(brain, bot)) return true;
@@ -2129,7 +2476,8 @@ namespace DOL.GS
                 _patrolDestination = null;
                 bot.StopMovingOnPath();
                 bot.StopMoving();
-                if (AutonomousDefensivePull.TryBegin(bot, target))
+                if (!SavageBotCombatPolicy.MustMeleePull((eCharacterClass)bot.CharacterClass.ID) &&
+                    AutonomousDefensivePull.TryBegin(bot, target))
                 {
                     SetStatus(bot, $"Ranged pulling {target.Name}", GoalText(),
                         "Party holds formation; the ranged puller brings the target back before everyone engages",
@@ -2142,6 +2490,10 @@ namespace DOL.GS
                 brain.AddToAggroList(target, Math.Max(25, target.EffectiveLevel * 10));
                 brain.CommitDungeonPull(target);
                 brain.FSM.SetCurrentState(eFSMStateType.AGGRO);
+                // Every class's pull is watched (Savages keep their own timings):
+                // a pull that never connects is retried once, then abandoned
+                // for another spawn instead of freezing until the stuck watchdog.
+                BeginSavageMeleePull(bot, target);
                 SetStatus(bot, $"Pulling {target.Name}", GoalText(),
                     $"Selected level {target.EffectiveLevel} {target.Name} at the live camp", target.Name, _camp.ZoneName);
                 AutonomousStuckWatchdog.MarkProgress(bot, eAutonomousProgressKind.Objective);
@@ -2403,12 +2755,20 @@ namespace DOL.GS
 
         private GameNPC FindCampTarget(GameBot bot)
         {
+            bool savage = SavageBotCombatPolicy.MustMeleePull((eCharacterClass)bot.CharacterClass.ID);
             bool soloSavage = SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(
                 (eCharacterClass)bot.CharacterClass.ID, _groupDirective?.IsDynamic == true,
                 bot.CurrentZone?.IsDungeon == true || _camp.IsDungeon,
                 AutonomousAuditedCampPolicy.RequiresVerifiedTargetRoute(_camp.RegionId, _camp.MonsterName) ||
                     IsSourceEmptyCamp(_camp.Id));
             long nowTick = GameLoop.GameLoopTime;
+            if (nowTick >= _nextFailedSavageMeleePullPruneTick)
+            {
+                foreach (ushort id in _failedSavageMeleePullTargets
+                    .Where(pair => pair.Value <= nowTick).Select(pair => pair.Key).ToArray())
+                    _failedSavageMeleePullTargets.Remove(id);
+                _nextFailedSavageMeleePullPruneTick = nowTick + 10_000;
+            }
             if (soloSavage && nowTick >= _nextFailedSoloPullRoutePruneTick)
             {
                 foreach (ushort id in _failedSoloPullRoutes
@@ -2430,13 +2790,12 @@ namespace DOL.GS
                 // nor group execution may reject that named monster by level.
                 .Where(npc => AutonomousPveTargetPolicy.IsAssignedTarget(
                     _camp.MonsterName, npc.Name, npc.EffectiveLevel))
+                .Where(npc => !_failedSavageMeleePullTargets.TryGetValue(npc.ObjectID,
+                    out long retryTick) || retryTick <= nowTick)
                 // Ordinary outdoor Savages use the same live-target search as
                 // other melee classes. Only dungeons and audited risky camps
                 // require the extra reversible approach proof below.
                 .Where(npc => GameServer.ServerRules.IsAllowedToAttack(bot, npc, true))
-                .Where(npc => bot.CurrentZone?.IsDungeon != true ||
-                    PathfindingProvider.Instance.HasLineOfSight(bot.CurrentZone, new(bot.X, bot.Y, bot.Z),
-                        new(npc.X, npc.Y, npc.Z), PathfindingProvider.Instance.DefaultFilters))
                 .OrderByDescending(npc => _groupDirective?.IsDynamic == true ? npc.EffectiveLevel : 0)
                 .ThenBy(npc => bot.GetDistanceTo(npc) + Math.Abs((int)ConLevels.GetConColor(bot.GetConLevel(npc))) * 220)
                 // Run native checks only after cheap filters and sorting, and
@@ -2444,6 +2803,14 @@ namespace DOL.GS
                 // separately and must never be suppressed by this pull gate.
                 .FirstOrDefault(npc =>
                 {
+                    // Dungeon line of sight is a pure navmesh raycast; testing
+                    // it here (in sorted order) picks the same first target as
+                    // filtering every candidate before the sort, with fewer casts.
+                    if (bot.CurrentZone?.IsDungeon == true &&
+                        !PathfindingProvider.Instance.HasLineOfSight(bot.CurrentZone, new(bot.X, bot.Y, bot.Z),
+                            new(npc.X, npc.Y, npc.Z), PathfindingProvider.Instance.DefaultFilters))
+                        return false;
+
                     bool verifyRoute = soloSavage || bot.CurrentZone?.IsDungeon == true ||
                         AutonomousAuditedCampPolicy.RequiresVerifiedTargetRoute(
                             npc.CurrentRegionID, npc.Name) ||
@@ -2567,6 +2934,7 @@ namespace DOL.GS
             foreach (CampCatalogCell cell in CampCatalogSnapshot()
                          .Where(cell => !rejectedDungeons.Contains(cell.Id) && reachableRegions.Contains(cell.RegionId) &&
                                         (sharedGroup || !_recentFailedSoloCamps.ContainsKey(cell.Id)) &&
+                                        !AutonomousCampRouteQuarantine.IsQuarantined(cell.Id) &&
                                         IsZoneAccessible(bot.Realm, cell.Zone, bot.CurrentRegionID) &&
                                         AutonomousOrdinaryPveRealmPolicy.CanAssignCamp(bot.Realm, cell.RegionId,
                                             cell.Zone?.ID ?? 0) &&
@@ -2588,6 +2956,19 @@ namespace DOL.GS
                     .ToArray();
                 if (validLevels.Length == 0)
                     continue;
+
+                // Solo bots keep Darkness Falls, but only once they can survive
+                // it: level 25+ and targets that con blue or easier. (Solo
+                // level 15-24 bots died there more than they killed.)
+                if (cell.RegionId == AutonomousDarknessFallsPolicy.RegionId && !sharedGroup)
+                {
+                    if (bot.Level < AutonomousDarknessFallsPolicy.SoloMinimumLevel)
+                        continue;
+                    validLevels = validLevels.Where(level => ConLevels.GetConColor(
+                        ConLevels.GetConLevel(bot.EffectiveLevel, level)) <= AutonomousDarknessFallsPolicy.SoloMaximumCon).ToArray();
+                    if (validLevels.Length == 0)
+                        continue;
+                }
 
                 if (cell.RegionId == AutonomousDarknessFallsPolicy.RegionId)
                 {
@@ -2645,6 +3026,18 @@ namespace DOL.GS
             AutonomousBotDecisionEngine.PveEnvironment environment;
             if (sharedGroup)
             {
+                // A party already inside Darkness Falls chooses its next camp
+                // there when one fits. Walking a whole group back out through
+                // the DF corridors to an outdoor camp failed repeatedly and
+                // split parties (corpses outside, healers inside).
+                GameBot partyLeader = _groupDirective.Leader ?? bot;
+                if (partyLeader.CurrentRegionID == AutonomousDarknessFallsPolicy.RegionId)
+                {
+                    AutonomousBotDecisionEngine.Camp[] inside = legal
+                        .Where(camp => camp.RegionId == AutonomousDarknessFallsPolicy.RegionId).ToArray();
+                    if (inside.Length > 0)
+                        legal = inside;
+                }
                 // Pick dungeon versus outdoor while every valid group level is
                 // still present. Selecting the exact level first could remove
                 // every dungeon candidate before the preference was rolled.
@@ -2669,6 +3062,11 @@ namespace DOL.GS
             else
             {
                 legal = legal.Where(camp => camp.LowestCon >= minimumTargetCon && camp.TypicalCon <= maximumTargetCon);
+                // A bot grinding while it waits for group matchmaking stays
+                // outdoors: recruitment needs it in an overworld region, and a
+                // dungeon camp would only be abandoned when the party forms.
+                if (AutonomousObjectiveAssignments.IsAwaitingGroupMatchmaking(bot))
+                    legal = legal.Where(camp => !camp.IsDungeon);
                 legal = AutonomousDeathRecoveryPolicy.PreferFreshTargets(
                     legal, _recentFailedSoloTargets, GameLoop.GameLoopTime);
                 AutonomousBotDecisionEngine.Camp[] categoryCandidates = legal.ToArray();
@@ -2761,6 +3159,62 @@ namespace DOL.GS
         private static CampCatalogCell[] CampCatalogSnapshot()
         {
             return Volatile.Read(ref _campCatalog);
+        }
+
+        public const int StarterCampMaximumMobLevel = 1;
+        // First live run: 109 level 1-3 bots used 2-spawn camps and most goals
+        // ended "no live wolf nipper remained". Fewer, fuller camps (ordinary
+        // 4,200-unit cell, at least three spawns) hold a small crowd.
+        private const int StarterCampMinimumSpawns = 3;
+        internal const string StarterCampPrefix = "starter-live:";
+
+        /// <summary>
+        /// The authored catalogs (CapnBry, restored 1.65 spawns, audited
+        /// anchors) contain almost no level 0-1 creatures, so a level 1 bot
+        /// found nothing blue and was sent to yellow targets it could not beat.
+        /// Real starter creatures around every home town (wolf nippers,
+        /// green snakes, badger cubs, ...) become small live camps here, only
+        /// where no authored camp already covers that creature nearby. Each
+        /// anchor is an actual live spawn; the projection step then requires a
+        /// walkable navmesh point and a complete corridor from the zone's
+        /// stable master before the camp is published.
+        /// </summary>
+        private static void AddStarterCamps(List<CampCatalogCell> cells, CampMonster[] snapshot)
+        {
+            var covered = cells
+                .GroupBy(cell => (cell.Zone?.ID ?? 0, cell.MonsterName.Trim().ToLowerInvariant()))
+                .ToDictionary(group => group.Key, group => group.ToArray());
+            foreach (var group in snapshot
+                         .Where(npc => npc.EffectiveLevel <= StarterCampMaximumMobLevel &&
+                                       npc.CurrentZone?.IsDungeon != true &&
+                                       npc.CurrentZone?.ZoneRegion?.IsDungeon != true &&
+                                       !IsFrontierZone(npc.CurrentRegionID, npc.CurrentZone.ID))
+                         .GroupBy(npc => (npc.CurrentZone.ID, npc.CurrentRegionID,
+                             CellX: npc.X / CampCellSize, CellY: npc.Y / CampCellSize,
+                             Name: npc.Name.Trim().ToLowerInvariant())))
+            {
+                CampMonster[] members = group.ToArray();
+                if (members.Length < StarterCampMinimumSpawns)
+                    continue;
+                float averageX = (float)members.Average(npc => npc.X);
+                float averageY = (float)members.Average(npc => npc.Y);
+                CampMonster representative = members
+                    .OrderBy(npc => Math.Abs(npc.X - averageX) + Math.Abs(npc.Y - averageY))
+                    .ThenBy(npc => npc.InternalId, StringComparer.Ordinal)
+                    .First();
+                if (covered.TryGetValue((group.Key.ID, group.Key.Name), out CampCatalogCell[] existing) &&
+                    existing.Any(cell => DistanceSquared(cell.X, cell.Y, representative.X, representative.Y) <=
+                        TargetSearchRadius * TargetSearchRadius))
+                    continue;
+                cells.Add(new CampCatalogCell(
+                    $"{StarterCampPrefix}{group.Key.ID}:{group.Key.CurrentRegionID}:{group.Key.CellX}:{group.Key.CellY}:{group.Key.Name}",
+                    representative.Name,
+                    representative.CurrentZone.Description ?? representative.CurrentZone.ZoneRegion?.Description ?? $"region {group.Key.CurrentRegionID}",
+                    group.Key.CurrentRegionID,
+                    representative.X, representative.Y, representative.Z,
+                    members.Select(npc => npc.EffectiveLevel).OrderBy(level => level).ToArray(),
+                    members.Length, representative.CurrentZone, false, false));
+            }
         }
 
         private static CampCatalogCell[] BuildCampCatalogDraft(CampMonster[] snapshot)
@@ -2900,6 +3354,7 @@ namespace DOL.GS
                         IsFrontierZone(representative.CurrentRegionID, representative.CurrentZone.ID)));
                 }
 
+                AddStarterCamps(cells, snapshot);
                 AddVerifiedDungeonCamps(cells, liveByZoneAndName);
                 return cells.ToArray();
         }
@@ -3104,12 +3559,32 @@ namespace DOL.GS
                 return true;
             }
 
+            Vector3 from = new(bot.X, bot.Y, bot.Z);
+            long now = GameLoop.GameLoopTime;
+            if (!_routeInterruptedByCombat && now < _failedApproachUntilTick &&
+                _failedApproachTarget.HasValue && _failedApproachZone == currentZone &&
+                _failedApproachRadius == arrivalRadius &&
+                Vector3.DistanceSquared(_failedApproachTarget.Value, rawTarget) <= 16 * 16 &&
+                Vector3.DistanceSquared(_failedApproachFrom, from) <= 16 * 16)
+            {
+                approach = rawTarget;
+                return false;
+            }
+
             int searchRadius = arrivalRadius == ZonePointArrivalRadius ? arrivalRadius - 16 : arrivalRadius;
             if (!AutonomousZonePointApproach.TryResolve(nav, currentZone,
-                    new(bot.X, bot.Y, bot.Z), rawTarget, searchRadius, out approach) &&
+                    from, rawTarget, searchRadius, out approach) &&
                 !(searchRadius != arrivalRadius && AutonomousZonePointApproach.TryResolve(nav, currentZone,
-                    new(bot.X, bot.Y, bot.Z), rawTarget, arrivalRadius, out approach)))
+                    from, rawTarget, arrivalRadius, out approach)))
+            {
+                _failedApproachTarget = rawTarget;
+                _failedApproachFrom = from;
+                _failedApproachZone = currentZone;
+                _failedApproachRadius = arrivalRadius;
+                _failedApproachUntilTick = now + 3_000;
                 return false;
+            }
+            _failedApproachTarget = null;
 
             _verifiedApproachTarget = rawTarget;
             _verifiedApproachPoint = approach;
@@ -3644,6 +4119,10 @@ namespace DOL.GS
                 }
                 if (TryEscapeTerminalRoutePocket(bot, current))
                     return true;
+                if (_camp != null && AutonomousCampRouteQuarantine.ReportFailure(_camp.Id, bot.DatabaseID))
+                    Log.Warn($"AUTONOMOUS_CAMP_ROUTE_QUARANTINE camp=\"{_camp.Id}\" target=\"{_camp.MonsterName}\" " +
+                             $"zone=\"{_camp.ZoneName}\" bots={AutonomousCampRouteQuarantine.DistinctBotsToQuarantine} " +
+                             $"hours={AutonomousCampRouteQuarantine.QuarantineDuration.TotalHours:0}");
                 AbandonCamp(bot, "The collision-safe route could not recover after three verified side steps");
                 return false;
             }
@@ -3818,9 +4297,11 @@ namespace DOL.GS
                 return;
             long botId = bot.DatabaseID > 0 ? bot.DatabaseID : bot.ObjectID;
             string prefix = $"{botId}:{sourceRegion}:{sourceZone}:{targetRegion}:";
-            foreach (string key in FailedZonePointUntil.Keys)
-                if (key.StartsWith(prefix, StringComparison.Ordinal))
-                    FailedZonePointUntil.TryRemove(key, out _);
+            // Enumerate the dictionary itself: .Keys takes every bucket lock of
+            // this server-wide table on each call; the enumerator is lock-free.
+            foreach (KeyValuePair<string, long> entry in FailedZonePointUntil)
+                if (entry.Key.StartsWith(prefix, StringComparison.Ordinal))
+                    FailedZonePointUntil.TryRemove(entry.Key, out _);
         }
 
         private void ResetRepeatedRouteFailures()
@@ -3914,8 +4395,11 @@ namespace DOL.GS
             ? "Find a reachable level-appropriate XP camp"
             : $"Grind {_camp.MonsterName} in {_camp.ZoneName}";
 
+        // Level 0 creatures are real XP targets (5 XP each; blue to a level 1
+        // character), so they are no longer excluded. Pets, guards, service
+        // NPCs and untargetable/peaceful objects remain excluded below.
         private static bool IsExperienceMonster(GameNPC npc) =>
-            npc?.ObjectState is GameObject.eObjectState.Active && npc.Realm == eRealm.None && npc.Level > 0 && npc.Brain != null &&
+            npc?.ObjectState is GameObject.eObjectState.Active && npc.Realm == eRealm.None && npc.Brain != null &&
             (npc.Flags & (GameNPC.eFlags.PEACE | GameNPC.eFlags.CANTTARGET)) == 0 &&
             npc is not GameMerchant && npc is not GameGuard && npc is not GameTaxi &&
             npc is not GameSummonedPet && npc is not GameKeepGuard && npc is not GameTrainer &&

@@ -12,6 +12,8 @@ public static class AutonomousBotRegistry
 {
     private static readonly ConcurrentDictionary<long, GameBot> Active = new();
     private static int _populationForBrainTick;
+    private static long _nextPopulationSampleTick;
+    private const int PopulationSampleIntervalMs = 1_000;
 
     // A cadence input, not a replacement for the exact live population checks
     // used by spawning, transfer recovery and the launcher. Sample once before
@@ -19,6 +21,20 @@ public static class AutonomousBotRegistry
     public static int PopulationForBrainTick => Volatile.Read(ref _populationForBrainTick);
 
     public static void PrepareBrainTick()
+    {
+        // This walk runs serially on the game-loop thread before the parallel
+        // brain dispatch. Population and per-dungeon counts only steer AI
+        // cadence and dungeon crowding, so sampling them once a second keeps
+        // the same behavior without a 6,000-actor scan on every tick.
+        long now = GameLoop.GameLoopTime;
+        if (now < _nextPopulationSampleTick)
+            return;
+        _nextPopulationSampleTick = now + PopulationSampleIntervalMs;
+        SamplePopulationNow();
+    }
+
+    /// <summary>Recounts live actors immediately, ignoring the once-a-second cadence.</summary>
+    public static void SamplePopulationNow()
     {
         int count = 0;
         var dungeonPopulation = new Dictionary<ushort, int>();

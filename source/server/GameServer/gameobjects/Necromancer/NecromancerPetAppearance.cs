@@ -7,8 +7,8 @@ namespace DOL.GS
     public static class NecromancerPetAppearance
     {
         public const ushort HeroSwordModel = 4808; // Private client asset; never assigned to ordinary items.
-        public const ushort ServantMaceModel = 3466; // Actual Bone Patroller one-handed bone hammer.
-        public const ushort ServantShieldModel = 1128; // Wooden grave shield, not a round buckler.
+        public const ushort ServantMaceModel = 4822; // Private blackened copy of the Bone Patroller hammer (stock 3466).
+        public const ushort ServantShieldModel = 4823; // Private rotten-wood copy of the grave shield (stock 1128).
         private static readonly ICollection<DbInventoryItem> ServantEquipment = Build(false);
         private static readonly ICollection<DbInventoryItem> HeroEquipment = Build(true);
 

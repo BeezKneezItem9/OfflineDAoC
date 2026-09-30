@@ -727,17 +727,67 @@ namespace DOL.Database.Handlers
 
         protected override DbConnection CreateConnection(string connectionsString)
         {
-            return new SQLiteConnection(ConnectionString);
+            string walConnectionString = _walConnectionString;
+            return new SQLiteConnection(walConnectionString ?? ConnectionString);
         }
 
         protected override void OpenConnection(DbConnection connection)
         {
-            // Open applies connection PRAGMAs (including Journal Mode=WAL), so
-            // even a SELECT connection can request a database lock here. Keep
-            // that setup out of concurrent write transactions; the SELECT itself
-            // still runs outside this gate. Writers already hold this reentrant lock.
-            lock (WriteSerializationLock)
+            // Open applies connection PRAGMAs. "Journal Mode=WAL" re-issues
+            // PRAGMA journal_mode on every open, which can report SQLITE_BUSY
+            // while another connection writes, so those opens stay behind the
+            // writer gate. Writers already hold this reentrant lock.
+            //
+            // WAL is persistent in the database file. Once it is confirmed, new
+            // connections use a string without the journal PRAGMA; opening them
+            // needs no database lock, so game-loop SELECTs no longer wait behind
+            // whole bot status/inventory batch writes (hundreds of ms).
+            string walConnectionString = _walConnectionString;
+            if (walConnectionString != null && string.Equals(connection.ConnectionString, walConnectionString, StringComparison.Ordinal))
+            {
                 connection.Open();
+                return;
+            }
+
+            lock (WriteSerializationLock)
+            {
+                connection.Open();
+                if (_walConnectionString == null && IsPooled(ConnectionString) && IsWalJournal(connection))
+                    _walConnectionString = WithoutJournalMode(ConnectionString);
+            }
+        }
+
+        // Only pooled connections skip the gate. Without pooling every query
+        // closes its connection; closing the last one checkpoints and resets
+        // the WAL, and an ungated open racing that reset can see SQLITE_BUSY.
+        // Pooled connections stay open, so that close/reset cycle never runs.
+        private volatile string _walConnectionString;
+
+        private static bool IsPooled(string connectionString)
+        {
+            var builder = new SQLiteConnectionStringBuilder(connectionString);
+            return builder.Pooling;
+        }
+
+        private static string WithoutJournalMode(string connectionString)
+        {
+            var builder = new SQLiteConnectionStringBuilder(connectionString);
+            builder.Remove("Journal Mode");
+            return builder.ConnectionString;
+        }
+
+        private static bool IsWalJournal(DbConnection connection)
+        {
+            try
+            {
+                using var command = connection.CreateCommand();
+                command.CommandText = "PRAGMA journal_mode";
+                return string.Equals(command.ExecuteScalar() as string, "wal", StringComparison.OrdinalIgnoreCase);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         protected override void CloseConnection(DbConnection connection)
@@ -767,6 +817,12 @@ namespace DOL.Database.Handlers
         /// </summary>
         /// <param name="e">SQL Excepiton</param>
         /// <returns>True if handled, False otherwise</returns>
+        // Primary result code (low byte) covers extended variants such as
+        // SQLITE_BUSY_RECOVERY and SQLITE_BUSY_SNAPSHOT.
+        protected override bool IsTransientReadContention(Exception e) =>
+            e is SQLiteException sqlite &&
+            ((int)sqlite.ResultCode & 0xFF) is (int)SQLiteErrorCode.Busy or (int)SQLiteErrorCode.Locked;
+
         protected override bool HandleSQLException(Exception e)
         {
             if (e is SQLiteException sqle)

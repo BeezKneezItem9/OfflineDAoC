@@ -170,6 +170,16 @@ namespace DOL.GS;
         {
             DbInventoryItem equipped = bot.Inventory.GetItem(equipSlot);
             int improvement = EquipmentValue(item) - EquipmentValue(equipped);
+            if (bot.CharacterClass?.ID == (int)eCharacterClass.Savage &&
+                BotWeaponStats.IsMeleeWeapon((eObjectType)item.Object_Type))
+            {
+                double gain = SavageBotWeaponPolicy.UpgradeGain(bot, item, equipSlot);
+                if (gain > 0)
+                    return new PurchaseCandidate(item,
+                        1_000 + (int)Math.Clamp(Math.Ceiling(gain * 100), 1, int.MaxValue - 1_000),
+                        equipSlot, true, isPlayerListing);
+                return null;
+            }
             if (equipped == null)
                 improvement += 250;
             if (improvement > 8)
@@ -222,6 +232,9 @@ namespace DOL.GS;
                 return false;
 
             DbInventoryItem equipped = bot.Inventory.GetItem(equipSlot);
+            if (bot.CharacterClass?.ID == (int)eCharacterClass.Savage &&
+                BotWeaponStats.IsMeleeWeapon((eObjectType)item.Object_Type))
+                return SavageBotWeaponPolicy.IsUpgrade(bot, item, equipSlot);
             int improvement = EquipmentValue(item) - EquipmentValue(equipped);
             return equipped == null || improvement > MinimumEquipmentUpgrade;
         }
@@ -244,6 +257,9 @@ namespace DOL.GS;
                 return false;
 
             bot.RefreshItemBonuses();
+            if (bot.CharacterClass?.ID == (int)eCharacterClass.Savage &&
+                BotWeaponStats.IsMeleeWeapon((eObjectType)item.Object_Type))
+                bot.EnsureBotWeaponReady();
             MarkInventoryChanged(bot);
             bot.MarkAutonomousStateDirty();
             AutonomousBotStatusPersistence.Queue(bot, true);
@@ -349,6 +365,25 @@ namespace DOL.GS;
             return !IsBackpackFull(bot) && FindBestUsefulExchangePurchase(bot) != null
                 ? eWorldServiceKind.RealmExchange
                 : null;
+        }
+
+        public const int NearlyFullFreeSlots = 6;
+
+        /// <summary>
+        /// Used only at a natural task boundary (never mid-grind): with this few
+        /// free slots left the next task would fill the bag and leave loot on
+        /// the ground, so the bot unloads now. Selling still never interrupts a
+        /// grind and is not triggered by ordinary partially filled bags.
+        /// </summary>
+        public static bool IsBackpackNearlyFull(GameBot bot)
+        {
+            if (bot?.Inventory == null)
+                return false;
+            int free = 0;
+            for (eInventorySlot slot = eInventorySlot.FirstBackpack; slot <= eInventorySlot.LastBackpack; slot++)
+                if (bot.Inventory.GetItem(slot) == null && ++free > NearlyFullFreeSlots)
+                    return false;
+            return true;
         }
 
         public static bool IsBackpackFull(GameBot bot) =>
@@ -459,6 +494,10 @@ namespace DOL.GS;
         eInventorySlot requested = (eInventorySlot)item.Item_Type;
         if (BotWeaponStats.IsMeleeWeapon((eObjectType)item.Object_Type))
         {
+            if (bot.CharacterClass?.ID == (int)eCharacterClass.Savage &&
+                bot.BotSpec?.WeaponOneType != eObjectType.HandToHand &&
+                requested == eInventorySlot.LeftHandWeapon)
+                requested = eInventorySlot.RightHandWeapon;
             // A left-axe build may use ordinary one-handed axes in its offhand.
             // Don't buy/equip one as an upgrade to a trained sword/hammer mainhand.
             if (bot.BotSpec?.SpecType == eSpecType.LeftAxe &&
@@ -618,13 +657,22 @@ namespace DOL.GS;
                 bot.Inventory.FindFirstEmptySlot(eInventorySlot.FirstBackpack, eInventorySlot.LastBackpack) == eInventorySlot.Invalid)
                 return false;
 
-            DbItemTemplate template = merchant.TradeItems.GetAllItems().Values
+            DbInventoryItem[] upgrades = merchant.TradeItems.GetAllItems().Values
                 .OfType<DbItemTemplate>()
                 .Select(GameInventoryItem.Create)
                 .Where(item => item != null && TryGetEquipmentUpgrade(bot, item, out _))
                 .OrderByDescending(EquipmentValue)
-                .Select(item => item.Template)
-                .FirstOrDefault();
+                .ToArray();
+            DbInventoryItem selected = upgrades.FirstOrDefault();
+            if (selected != null && bot.CharacterClass?.ID == (int)eCharacterClass.Savage &&
+                BotWeaponStats.IsMeleeWeapon((eObjectType)selected.Object_Type))
+                selected = upgrades
+                    .Where(item => BotWeaponStats.IsMeleeWeapon((eObjectType)item.Object_Type))
+                    .OrderByDescending(item => SavageBotWeaponPolicy.UpgradeGain(bot, item,
+                        ResolveEquipmentSlot(bot, item)))
+                    .ThenByDescending(EquipmentValue)
+                    .First();
+            DbItemTemplate template = selected?.Template;
             if (template == null || template.Price <= 0)
                 return false;
 
@@ -829,6 +877,9 @@ namespace DOL.GS;
             return false;
 
         bot.RefreshItemBonuses();
+        if (bot.CharacterClass?.ID == (int)eCharacterClass.Savage &&
+            BotWeaponStats.IsMeleeWeapon((eObjectType)purchase.Item.Object_Type))
+            bot.EnsureBotWeaponReady();
         MarkInventoryChanged(bot);
         bot.MarkAutonomousStateDirty();
         AutonomousBotStatusPersistence.Queue(bot, true);

@@ -400,10 +400,18 @@ namespace DOL.GS
 			ParthananBrain sbrain = new ParthananBrain();
 			SetOwnBrain(sbrain);
 			LoadedFromScript = false;//load from database
-			SaveIntoDatabase();
+			// Persist the template-loaded row once per session. Every respawn
+			// re-runs AddToWorld on this same object with identical values, and
+			// the synchronous write stalled the respawn timer for hundreds of ms.
+			if (!m_templateRowSaved)
+			{
+				SaveIntoDatabase();
+				m_templateRowSaved = true;
+			}
 			base.AddToWorld();
 			return true;
 		}
+		private bool m_templateRowSaved;
 		public override void Die(GameObject killer)
 		{
             #region Lough Derg

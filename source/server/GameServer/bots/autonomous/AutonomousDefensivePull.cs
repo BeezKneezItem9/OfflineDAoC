@@ -54,7 +54,8 @@ namespace DOL.GS
         private static bool HasUsableDistanceWeapon(GameBot bot) =>
             BotRangedCombat.CanUse(bot, bot.Inventory?.GetItem(eInventorySlot.DistanceWeapon));
 
-        public static bool HasRangedPull(GameBot bot) => bot != null &&
+        public static bool HasRangedPull(GameBot bot) => bot?.CharacterClass != null &&
+            !SavageBotCombatPolicy.MustMeleePull((eCharacterClass)bot.CharacterClass.ID) &&
             (PullSpell(bot) != null || BotRangedCombat.CanUse(bot, bot.Inventory?.GetItem(eInventorySlot.DistanceWeapon)));
 
         public static bool OwnsRangedPosition(GameNPC npc) => npc is GameBot bot && bot.Group != null &&
@@ -96,6 +97,7 @@ namespace DOL.GS
                 .ToArray();
             if (members.Length < 2) return false;
             shooter = members.Where(member => member != designated &&
+                    !SavageBotCombatPolicy.MustMeleePull((eCharacterClass)member.CharacterClass.ID) &&
                     (ReadyPullSpell(member) != null || HasUsableDistanceWeapon(member)))
                 .OrderBy(member => member.GetDistanceTo(target))
                 .FirstOrDefault(member =>
@@ -123,6 +125,9 @@ namespace DOL.GS
             // Suppress only a new scripted pull of this expedition's dragon.
             // Attacked-by-enemy and shared defense paths are unchanged.
             if (AutonomousRealmRaid.IsPendingDragonTarget(shooter,target)) return true;
+            if (shooter?.CharacterClass != null &&
+                SavageBotCombatPolicy.MustMeleePull((eCharacterClass)shooter.CharacterClass.ID))
+                return false;
             if (shooter?.Group == null ||
                 !flyingHandoff && !AutonomousBotGroupCoordinator.IsLevelFiftyPveGroup(shooter.Group)) return false;
             State state = States.GetOrCreateValue(shooter.Group);

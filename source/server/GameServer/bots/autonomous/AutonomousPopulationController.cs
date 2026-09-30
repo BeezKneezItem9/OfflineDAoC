@@ -100,6 +100,7 @@ public static class AutonomousPopulationController
             OfflineWorldBotRecord[] roster = _cachedRoster;
             int desired = AutonomousPopulationRamp.DesiredActiveCount(_cachedEnabled, roster.Length, _cachedRampMinutes, nowUtc - _startedUtc);
             int missing = desired - AutonomousBotRegistry.Count - PendingSpawns.Count;
+            _populationSatisfied = missing <= 0;
             if (missing <= 0)
                 return;
 
@@ -314,28 +315,22 @@ public static class AutonomousPopulationController
         DateTime nowUtc = DateTime.UtcNow;
         if (!force && nowUtc < _nextRosterRefreshUtc)
             return;
-        _nextRosterRefreshUtc = nowUtc.AddSeconds(force ? 10 : 8);
+        // Refresh quickly while actors are still being admitted. Once every
+        // requested actor is live, the full 6,000-row roster read only needs to
+        // notice launcher-side roster edits, so a slower cadence is enough.
+        _nextRosterRefreshUtc = nowUtc.AddSeconds(force ? 10 : _populationSatisfied ? 30 : 8);
 
-        bool lockTaken = false;
-        try
-        {
-            Monitor.TryEnter(AutonomousBotStatusPersistence.DatabaseWriteLock, 0, ref lockTaken);
-            if (!lockTaken)
-                return;
-
-            _cachedEnabled = ReadBool("population_enabled", false);
-            _cachedRampMinutes = ReadInt("startup_ramp_minutes", 15);
-            _cachedRoster = DOLDB<OfflineWorldBotRecord>
-                .SelectObjects(DB.Column("IsRetired").IsEqualTo(false))
-                .OrderBy(record => record.BotId)
-                .ToArray();
-        }
-        finally
-        {
-            if (lockTaken)
-                Monitor.Exit(AutonomousBotStatusPersistence.DatabaseWriteLock);
-        }
+        // Pure reads: SQLite WAL readers never block the writer, so this no
+        // longer holds the shared write lock that game-loop transactions wait on.
+        _cachedEnabled = ReadBool("population_enabled", false);
+        _cachedRampMinutes = ReadInt("startup_ramp_minutes", 15);
+        _cachedRoster = DOLDB<OfflineWorldBotRecord>
+            .SelectObjects(DB.Column("IsRetired").IsEqualTo(false))
+            .OrderBy(record => record.BotId)
+            .ToArray();
     }
+
+    private static volatile bool _populationSatisfied;
 
     private static void QueueOwnerCommands(bool repairOrphans)
     {

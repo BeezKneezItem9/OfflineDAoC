@@ -149,9 +149,13 @@ namespace DOL.GS
             var key = new ProjectionKey(cell.Zone, cell.X, cell.Y, cell.Z, NavigationGeometryRevision.Read(cell.Zone));
             // Reuse only exact anchor/geometry matches. Doors changing state,
             // mesh reloads, new anchors and failed projections get real checks.
+            bool starter = cell.Id.StartsWith(StarterCampPrefix, StringComparison.Ordinal);
+            if (starter && StarterRouteFailures.ContainsKey(key))
+                return;
             if (_previousProjections.TryGetValue(key, out Vector3 point) ||
                 AutonomousRendezvousNavigation.TryChoosePoint(PathfindingProvider.Instance, cell.Zone,
-                    new Vector3(cell.X, cell.Y, cell.Z), out point))
+                    new Vector3(cell.X, cell.Y, cell.Z), out point) &&
+                (!starter || HasStarterRouteFromZoneHub(cell.Zone, point, key)))
             {
                 _buildingProjections.TryAdd(key, point);
                 _campProjected[index] = cell with
@@ -161,8 +165,43 @@ namespace DOL.GS
             }
         }
 
+        // Starter camps are new, unaudited live clusters, so beyond the ordinary
+        // walkable-anchor projection they must also be reachable on the navmesh
+        // from where bots actually arrive in that zone: a complete corridor
+        // from at least one stable master in the same zone. A zone without a
+        // stable master keeps the ordinary projection rule used by every camp.
+        private static readonly ConcurrentDictionary<ProjectionKey, bool> StarterRouteFailures = new();
+        private static readonly ConcurrentDictionary<ushort, Vector3[]> ZoneHubs = new();
+
+        private static bool HasStarterRouteFromZoneHub(Zone zone, Vector3 point, ProjectionKey key)
+        {
+            IPathfindingMgr nav = PathfindingProvider.Instance;
+            Vector3[] hubs = ZoneHubs.GetOrAdd(zone.ID, _ =>
+            {
+                var found = new List<Vector3>();
+                foreach (GameStableMaster master in zone.ZoneRegion?.Objects?.OfType<GameStableMaster>() ??
+                                                     Enumerable.Empty<GameStableMaster>())
+                {
+                    if (master?.CurrentZone != zone) continue;
+                    Vector3? floor = nav.GetClosestPoint(zone, new Vector3(master.X, master.Y, master.Z), 128, 128, 256,
+                        nav.DefaultFilters);
+                    if (floor.HasValue) found.Add(floor.Value);
+                }
+                return found.ToArray();
+            });
+            if (hubs.Length == 0)
+                return true;
+            foreach (Vector3 hub in hubs)
+                if (AutonomousRendezvousNavigation.CanReachFrom(nav, zone, hub, point))
+                    return true;
+            StarterRouteFailures[key] = true;
+            return false;
+        }
+
         public static void StopCampPlanning()
         {
+            StarterRouteFailures.Clear();
+            ZoneHubs.Clear();
             PrepareRvrPlanningTick();
             _campBuilder?.Dispose();
             _campBuilder = null;

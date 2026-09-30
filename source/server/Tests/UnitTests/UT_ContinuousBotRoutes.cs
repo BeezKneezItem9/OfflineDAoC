@@ -126,7 +126,7 @@ namespace DOL.UnitTests
             {
                 AutonomousBotRegistry.Unregister(first);
                 AutonomousBotRegistry.Unregister(second);
-                AutonomousBotRegistry.PrepareBrainTick();
+                AutonomousBotRegistry.SamplePopulationNow();
                 AutonomousWorldBotController.PrepareRvrPlanningTick();
             }
         }

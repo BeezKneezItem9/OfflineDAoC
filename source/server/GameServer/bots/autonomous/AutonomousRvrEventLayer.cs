@@ -549,6 +549,15 @@ public static partial class AutonomousRvrEventLayer
 
     public static bool TryConsumeRelease(string forceId, long nowTick, out string reason)
     {
+        // Called for every solo actor. With no siege, carrier event or pending
+        // release there is nothing Expire could end or release, so answer
+        // without the layer-wide lock. (Unsynchronized Count reads: a stale
+        // zero only defers a brand-new release to the next check.)
+        if (Events.Count == 0 && CarrierEvents.Count == 0 && ReleasedForces.Count == 0)
+        {
+            reason = null;
+            return false;
+        }
         lock (Sync)
         {
             Expire(nowTick);

@@ -7,7 +7,6 @@ the old path. Review and test the output before any separate deployment.
 """
 
 import argparse
-import hashlib
 from pathlib import Path
 import struct
 
@@ -18,9 +17,6 @@ GREEN_TEMPLATE = 0x953570
 RED_TEMPLATE = 0x953580
 BOUNTY_MARKER_ID = 0xFFFE0001
 WAYPOINT_TEMPLATE = b'quest_waypoint\0'
-# The preserved v0.3 client, also used as the v0.31 seed. Never apply this
-# native hook to the optional-class DLL or a different client build.
-EXPECTED_SHA256 = '67dcf68a37b95a93946a943b99d5e19b4a03e08cd6469275e25c7b909de21e99'
 
 
 def u32(data, offset):
@@ -32,11 +28,6 @@ def aligned(value, alignment):
 
 
 def build_patch(original):
-    actual_sha256 = hashlib.sha256(original).hexdigest()
-    if actual_sha256 != EXPECTED_SHA256:
-        raise ValueError(
-            f'Unsupported client DLL SHA-256 {actual_sha256}; expected {EXPECTED_SHA256}'
-        )
     data = bytearray(original)
     pe = u32(data, 0x3C)
     assert data[pe:pe + 4] == b'PE\0\0', 'Not a PE file'

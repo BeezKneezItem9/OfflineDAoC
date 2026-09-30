@@ -187,13 +187,13 @@ namespace DOL.GS.Commands
 					
 					if (target.EquipmentTemplateID != null && target.EquipmentTemplateID.Length > 0)
 						info.Add(" + Equipment Template ID: " + target.EquipmentTemplateID);
-
+						
 					if (target.Inventory != null)
 						info.Add(" + Inventory: " + target.Inventory.AllItems.Count + " items");
 					DbInventoryItem npcHead = target.Inventory?.GetItem(eInventorySlot.HeadArmor);
 					if (npcHead != null)
 						info.Add($" + Equipped head: {npcHead.Name} | model {npcHead.Model} | extension {npcHead.Extension} | template {npcHead.Id_nb}");
-
+						
 					info.Add(" ");
 					info.Add(" + Mob_ID:  " + target.InternalID);
 					info.Add(" + Position:  " + target.X + ", " + target.Y + ", " + target.Z + ", " + target.Heading);

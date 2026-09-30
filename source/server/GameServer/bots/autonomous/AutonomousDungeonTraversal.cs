@@ -187,7 +187,8 @@ namespace DOL.GS
                         new(other.X, other.Y, other.Z), nav.DefaultFilters);
             });
             if (AutonomousDefensivePull.TryBeginFlyingHandoff(bot, blocker, corridorBlocker: true)) return true;
-            if (AutonomousDefensivePull.TryBegin(bot, blocker)) return true;
+            if (!SavageBotCombatPolicy.MustMeleePull((eCharacterClass)bot.CharacterClass.ID) &&
+                AutonomousDefensivePull.TryBegin(bot, blocker)) return true;
             bot.TargetObject = blocker;
             _lastEngagedCon = con;
             _routeInterruptedByCombat = true;
@@ -195,6 +196,8 @@ namespace DOL.GS
             brain.AddToAggroList(blocker, Math.Max(25, blocker.EffectiveLevel * 10));
             brain.CommitDungeonPull(blocker);
             brain.FSM.SetCurrentState(eFSMStateType.AGGRO);
+            if (SavageBotCombatPolicy.MustMeleePull((eCharacterClass)bot.CharacterClass.ID))
+                BeginSavageMeleePull(bot, blocker);
             SetStatus(bot, $"Clearing dungeon route: {blocker.Name}", GoalText(),
                 nearbyAdds > 0
                     ? $"Pulling the first safe corridor threat from a visible pack of {nearbyAdds + 1}; the party will defend any member that draws adds"

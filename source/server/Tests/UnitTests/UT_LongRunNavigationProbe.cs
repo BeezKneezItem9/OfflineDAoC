@@ -107,6 +107,8 @@ namespace DOL.UnitTests
                 {
                     Region region = (Region)RuntimeHelpers.GetUninitializedObject(typeof(Region));
                     var list = new List<Zone>();
+                    typeof(Region).GetField("m_regionData", BindingFlags.Instance | BindingFlags.NonPublic)
+                        .SetValue(region, new RegionData { Id = (ushort)regionId });
                     typeof(Region).GetField("m_zones", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(region, list);
                     regions[regionId] = region;
                     using var command = db.CreateCommand();
@@ -255,6 +257,64 @@ namespace DOL.UnitTests
                 Assert.That(returnTransit, Is.Not.Null, "Cross-capital travel works in both directions");
                 Assert.That(returnTransit.Entry.Id, Is.EqualTo(13));
                 Assert.That(returnTransit.Exit.Id, Is.EqualTo(26));
+                // The three audited DF stalls oscillated at this exact
+                // Lough Derg/Valley seam. A real ticket can instead land on
+                // the Connacht component with a connected portal approach.
+                Vector3 dfPortal = new(325269, 433985, 6297);
+                Vector3 magMellTicket = new(345398, 492987, 5183);
+                Zone dfPortalZone = hibernia.GetZone((int)dfPortal.X, (int)dfPortal.Y);
+                Assert.That(AutonomousCapitalTransit.Choose(hibernia, regions[201],
+                    magMellTicket, dfPortal, 200, 201, gates, nav), Is.Null,
+                    "The real Connacht capital gate does not lead to the DF portal component");
+                Assert.That(AutonomousZoneItinerary.TryNextStep(hibernia, lough, dfPortalZone,
+                    magMellTicket, dfPortal, nav, out var outbound), Is.True);
+                Assert.That(Vector3.Distance(outbound.Outside, new(385088, 483424, 7262)),
+                    Is.LessThan(3), "The installed route selects the audited Valley seam");
+                Zone valley = hibernia.GetZone(385088, 483424);
+                Assert.That(AutonomousZoneItinerary.TryNextStep(hibernia, valley, dfPortalZone,
+                    outbound.Outside, dfPortal, nav, out var reverse), Is.True);
+                Assert.That(hibernia.GetZone((int)reverse.Outside.X, (int)reverse.Outside.Y),
+                    Is.EqualTo(lough), "The next route step reverses across that seam");
+                foreach (Vector3 landing in new[]
+                {
+                    new Vector3(335660, 422602, 5219), // Tir na mBeo ticket
+                    new Vector3(335608, 422672, 5224), // Druim Cain ticket
+                    new Vector3(335704, 422684, 5222), // Connla ticket
+                })
+                {
+                    Assert.That(AutonomousZonePointApproach.TryResolve(nav, dfPortalZone,
+                        landing, dfPortal, 174, out Vector3 approach), Is.True,
+                        $"Ticket landing {landing} must reach portal row 87");
+                    Assert.That(Vector2.Distance(new(approach.X, approach.Y), new(dfPortal.X, dfPortal.Y)),
+                        Is.LessThanOrEqualTo(174));
+                }
+                foreach ((Vector3 startPoint, Vector3 horseOrigin) in new[]
+                {
+                    (new Vector3(326427, 610167, 5515), new Vector3(343430, 526748, 5448)),
+                    (magMellTicket, new Vector3(343430, 526748, 5448)),
+                    (new Vector3(332555, 485333, 5215), new Vector3(343430, 526748, 5448)),
+                    (new Vector3(403458, 441679, 3111), new Vector3(421892, 488015, 1824)),
+                    (new Vector3(385088, 483424, 7262), new Vector3(421892, 488015, 1824)),
+                })
+                {
+                    Zone from = hibernia.GetZone((int)startPoint.X, (int)startPoint.Y);
+                    Zone to = hibernia.GetZone((int)horseOrigin.X, (int)horseOrigin.Y);
+                    Vector3? snapped = nav.GetClosestPoint(to, horseOrigin, 48, 48, 256, nav.DefaultFilters);
+                    Vector3 cursor = startPoint;
+                    Zone cursorZone = from;
+                    int hops = 0;
+                    while (cursorZone != to && hops++ < 16 &&
+                           AutonomousZoneItinerary.TryNextStep(hibernia, cursorZone, to,
+                               cursor, horseOrigin, nav, out var next))
+                    {
+                        cursor = next.Outside;
+                        cursorZone = hibernia.GetZone((int)cursor.X, (int)cursor.Y);
+                    }
+                    Assert.That(cursorZone, Is.EqualTo(to), $"First boarding walk from {startPoint} reaches the horse's zone");
+                    Assert.That(snapped, Is.Not.Null, $"Horse origin {horseOrigin} has walkable terrain");
+                    Assert.That(AutonomousZoneItinerary.HasCompleteCorridor(nav, to, cursor, snapped.Value),
+                        Is.True, $"First boarding walk from {startPoint} reaches horse {horseOrigin}");
+                }
                 Zone blackMountains = regions[1].GetZone(515616, 494274);
                 Assert.That(AutonomousRendezvousNavigation.TryChoosePoint(nav, blackMountains,
                     new(515616, 494274, 3397), out _), Is.True,

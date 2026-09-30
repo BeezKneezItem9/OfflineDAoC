@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading;
+using System.Threading.Tasks;
 using DOL.AI.Brain;
 
 namespace DOL.GS
@@ -25,11 +26,14 @@ namespace DOL.GS
         private IdleDestination _townIdleDestination;
         private DateTime? _townIdleUntilUtc;
         private bool _townIdleFinished;
+        private readonly record struct TownRouteValidation(bool Valid, IdleTown Town, Vector3 Point, double Distance);
+        private Task<TownRouteValidation> _townRouteValidation;
 
         private void ResetTownIdle()
         {
             _townCandidates = null;
             _townCandidateIndex = 0;
+            _townRouteValidation = null;
             _townIdleDestination = null;
             _townIdleUntilUtc = null;
             _townIdleFinished = false;
@@ -104,6 +108,31 @@ namespace DOL.GS
                 _townCandidates ??= IdleTownCatalog().Where(town => town.Realm == bot.Realm &&
                     IsIdleTownLevelAppropriate(bot.Level, town.Capital, town.MinimumLevel, town.MaximumLevel))
                     .OrderBy(_ => Random.Shared.Next()).ToArray();
+                SetStatus(bot, "Choosing a reachable town", "Take an optional 15-30 minute town break",
+                    "Validating a same-realm town route within the original maintenance deadline");
+
+                // A validation walks up to 64 navmesh path queries. It runs on a
+                // worker thread so one bot's route proof never stretches the
+                // whole game-loop tick; the result is applied on a later turn.
+                if (_townRouteValidation != null)
+                {
+                    if (!_townRouteValidation.IsCompleted)
+                        return true;
+                    TownRouteValidation result = _townRouteValidation.IsCompletedSuccessfully
+                        ? _townRouteValidation.Result : default;
+                    _townRouteValidation = null;
+                    remaining = deadline - DateTime.UtcNow;
+                    if (result.Valid &&
+                        TimeSpan.FromSeconds(result.Distance / Math.Max(1, (int)bot.MaxSpeed) * 1.25 + 10) + AutonomousTownDowntime.MinimumDuration <= remaining)
+                    {
+                        _townIdleDestination = new(result.Town, result.Point);
+                        Log.Info($"AUTONOMOUS_TOWN_IDLE_ROUTE bot=\"{bot.Name}\" id={bot.DatabaseID} level={bot.Level} " +
+                            $"town=\"{result.Town.Name}\" region={result.Town.RegionId} destination={result.Point.X},{result.Point.Y},{result.Point.Z} " +
+                            $"validatedWalkUnits={(int)result.Distance}");
+                    }
+                    return true;
+                }
+
                 if (_townCandidateIndex >= Math.Min(12, _townCandidates.Length))
                     return FinishTownIdle(bot, "No fully validated town route fits the remaining budget");
 
@@ -111,19 +140,18 @@ namespace DOL.GS
                 // only for the 15% task-boundary roll. Never a per-tick world scan.
                 long tick = GameLoop.GameLoopTime;
                 long next = Volatile.Read(ref _nextTownRouteValidation);
-                SetStatus(bot, "Choosing a reachable town", "Take an optional 15-30 minute town break",
-                    "Validating a same-realm town route within the original maintenance deadline");
                 if (tick < next || Interlocked.CompareExchange(ref _nextTownRouteValidation, tick + 500, next) != next)
                     return true;
                 IdleTown town = _townCandidates[_townCandidateIndex++];
-                if (TryChooseTownPoint(bot, town, out Vector3 point) &&
-                    TryValidateTownRoute(bot, town.RegionId, point, out double distance) &&
-                    TimeSpan.FromSeconds(distance / Math.Max(1, (int)bot.MaxSpeed) * 1.25 + 10) + AutonomousTownDowntime.MinimumDuration <= remaining)
+                if (TryChooseTownPoint(bot, town, out Vector3 point))
                 {
-                    _townIdleDestination = new(town, point);
-                    Log.Info($"AUTONOMOUS_TOWN_IDLE_ROUTE bot=\"{bot.Name}\" id={bot.DatabaseID} level={bot.Level} " +
-                        $"town=\"{town.Name}\" region={town.RegionId} destination={point.X},{point.Y},{point.Z} " +
-                        $"validatedWalkUnits={(int)distance}");
+                    eRealm realm = bot.Realm;
+                    ushort startRegion = bot.CurrentRegionID;
+                    Vector3 start = new(bot.X, bot.Y, bot.Z);
+                    _townRouteValidation = Task.Run(() =>
+                        TryValidateTownRoute(realm, startRegion, start, town.RegionId, point, out double distance)
+                            ? new TownRouteValidation(true, town, point, distance)
+                            : default);
                 }
                 return true;
             }
@@ -261,11 +289,17 @@ namespace DOL.GS
         // travel can improve it, but is never needed to excuse a missing mesh.
         // Each zone corridor must finish; disconnected islands/partial dead ends
         // are rejected. This never changes the world's route/pathfinding policy.
-        private static bool TryValidateTownRoute(GameBot bot, ushort targetRegion, Vector3 target, out double length)
+        private static bool TryValidateTownRoute(GameBot bot, ushort targetRegion, Vector3 target, out double length) =>
+            TryValidateTownRoute(bot.Realm, bot.CurrentRegionID, new(bot.X, bot.Y, bot.Z), targetRegion, target, out length);
+
+        // Snapshot inputs only: this runs on a worker thread (navmesh queries
+        // are thread-local), so it must not read the live bot.
+        private static bool TryValidateTownRoute(eRealm realm, ushort startRegion, Vector3 start,
+            ushort targetRegion, Vector3 target, out double length)
         {
             length = 0;
-            Vector3 cursor = new(bot.X, bot.Y, bot.Z);
-            ushort regionId = bot.CurrentRegionID;
+            Vector3 cursor = start;
+            ushort regionId = startRegion;
             var visited = new HashSet<ushort>();
             int queryBudget = 64;
             for (int hop = 0; hop < 12; hop++)
@@ -274,7 +308,7 @@ namespace DOL.GS
                 Region region = WorldMgr.GetRegion(regionId);
                 if (regionId == targetRegion)
                     return ValidateTownRegionWalk(region, cursor, target, ref queryBudget, ref length);
-                var crossing = FindNextCrossing(bot.Realm, regionId, targetRegion, (int)target.X, (int)target.Y);
+                var crossing = FindNextCrossing(realm, regionId, targetRegion, (int)target.X, (int)target.Y);
                 if (crossing == null || !ValidateTownRegionWalk(region, cursor,
                     new(crossing.SourceX, crossing.SourceY, crossing.SourceZ), ref queryBudget, ref length)) return false;
                 regionId = crossing.TargetRegion;

@@ -214,6 +214,7 @@ public static class AutonomousStuckWatchdog
             Observations.TryRemove(bot.DatabaseID, out _);
             GoalObservations.TryRemove(bot.DatabaseID, out _);
             LastPositionValidation.TryRemove(bot.DatabaseID, out _);
+            GroupHoldCache.TryRemove(bot.DatabaseID, out _);
         }
     }
 
@@ -231,6 +232,14 @@ public static class AutonomousStuckWatchdog
             CopyPositionSnapshot(observation, current);
             observation.LastMovementUtc = now;
         }
+        // Earned XP, realm points and coin are the same hard liveness evidence
+        // that Observe honours for stationary casters, archers and pet classes.
+        // Observe compares against the snapshot copied just above, so it can no
+        // longer see this change; refresh the liveness clock here instead or a
+        // bot killing steadily from one spot is "rescued" after fifteen minutes.
+        // (Combat alone still does not count: it cannot hide a stuck bot.)
+        else if (kind is eAutonomousProgressKind.Experience or eAutonomousProgressKind.RealmPoints or eAutonomousProgressKind.Money)
+            observation.LastMovementUtc = now;
         if (CountsAsGoalProgress(kind) || kind is eAutonomousProgressKind.Recovery)
         {
             GoalObservation goal = GoalObservations.GetOrAdd(bot.DatabaseID, _ => new GoalObservation());
@@ -341,8 +350,9 @@ public static class AutonomousStuckWatchdog
         // neither the 15-minute movement clock nor the 45-minute outcome clock
         // can race the coordinator and tear down a valid party.  Once a hold
         // ends, both clocks restart from that point instead of inheriting wait time.
-        if (AutonomousObjectiveAssignments.IsAwaitingGroupMatchmaking(bot) ||
-            AutonomousBotGroupCoordinator.ProtectsFromIndividualWatchdog(bot) ||
+        // A bot waiting for matchmaking now grinds solo meanwhile, so it gets
+        // the ordinary watchdog; a genuine freeze during that grind is caught.
+        if (GroupProtectsFromWatchdog(bot, now) ||
             IsGroupFormationHold(bot.PersistentRecord.Activity) ||
             AutonomousObjectiveAssignments.IsIntentionalTownIdle(bot.PersistentRecord, now) &&
             AutonomousWorldBotController.IsAtAssignedIdleTown(bot))
@@ -366,6 +376,27 @@ public static class AutonomousStuckWatchdog
 
         return RelocateToSafeCapital(bot, now, "no movement for fifteen minutes", true,
             "AUTONOMOUS_STUCK_15M_RECOVERY");
+    }
+
+    // The group check takes the coordinator's global lock, which every grouped
+    // actor's Pulse also holds. These clocks are 15 and 45 minutes long, so a
+    // two-second-old answer is equivalent; the session samples its own shared
+    // progress at most every five seconds anyway.
+    private static readonly TimeSpan GroupHoldCacheDuration = TimeSpan.FromSeconds(2);
+    private static readonly ConcurrentDictionary<long, (DateTime ValidUntil, bool Protects)> GroupHoldCache = new();
+
+    private static bool GroupProtectsFromWatchdog(GameBot bot, DateTime now)
+    {
+        if (bot.Group == null)
+        {
+            GroupHoldCache.TryRemove(bot.DatabaseID, out _);
+            return false;
+        }
+        if (GroupHoldCache.TryGetValue(bot.DatabaseID, out var cached) && now < cached.ValidUntil && now >= cached.ValidUntil - GroupHoldCacheDuration)
+            return cached.Protects;
+        bool protects = AutonomousBotGroupCoordinator.ProtectsFromIndividualWatchdog(bot);
+        GroupHoldCache[bot.DatabaseID] = (now + GroupHoldCacheDuration, protects);
+        return protects;
     }
 
     public static bool IsGroupFormationHold(string activity) =>

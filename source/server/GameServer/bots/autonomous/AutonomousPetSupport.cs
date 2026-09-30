@@ -29,6 +29,7 @@ public static class AutonomousPetSupport
     private static readonly ConcurrentDictionary<eCharacterClass, Spell> GeneratedCharmSpells = new();
     private static readonly ConcurrentDictionary<(eCharacterClass Class, int SpellId), Spell> PlayerGeneratedCharmSpells = new();
     private static readonly ConditionalWeakTable<GameBot, BonedancerMinionSpellCache> BonedancerMinionSpells = new();
+    private static readonly ConditionalWeakTable<GameNPC, CovenantPetBuffCadenceState> CovenantPetBuffCadences = new();
     private sealed record PendingCharm(GameNPC Mob, long ExpiresAtTick);
     private sealed class PermanentGeneratedCharmSpell : Spell
     {
@@ -52,6 +53,50 @@ public static class AutonomousPetSupport
         public bool Initialized;
         public int Fingerprint;
         public List<(Spell Spell, SpellLine Line)> Spells = [];
+    }
+
+    /// <summary>
+    /// A successful Covenant cast can proceed to a different pet buff as soon
+    /// as its effect appears. A cast whose effect never appears keeps the old
+    /// retry window, and combat keeps the old spacing between routine buffs.
+    /// </summary>
+    public sealed class CovenantPetBuffCadenceState
+    {
+        private readonly object _sync = new();
+        private eEffect _pendingEffect;
+        private int _pendingSpellId;
+        private long _retryUntil;
+        private long _combatBuffUntil;
+
+        public (eEffect Effect, int SpellId) PendingSpell
+        {
+            get
+            {
+                lock (_sync)
+                    return (_pendingEffect, _pendingSpellId);
+            }
+        }
+
+        public void Record(eEffect effect, int spellId, long retryUntil)
+        {
+            lock (_sync)
+            {
+                _pendingEffect = effect;
+                _pendingSpellId = spellId;
+                _retryUntil = retryUntil;
+                _combatBuffUntil = retryUntil;
+            }
+        }
+
+        public bool IsDeferred(long now, bool combatOwnsTurn, bool pendingEffectPresent)
+        {
+            lock (_sync)
+            {
+                if (combatOwnsTurn && now < _combatBuffUntil)
+                    return true;
+                return _pendingEffect != eEffect.Unknown && !pendingEffectPresent && now < _retryUntil;
+            }
+        }
     }
 
     public readonly record struct GeneratedCharmProfile(
@@ -88,7 +133,8 @@ public static class AutonomousPetSupport
     /// buffs and can starve FOLLOW forever after the army is summoned).
     /// </summary>
     public static bool OwnsPetUpkeep(eCharacterClass characterClass) =>
-        characterClass is eCharacterClass.Bonedancer or eCharacterClass.Necromancer or eCharacterClass.Minstrel ||
+        characterClass is eCharacterClass.Bonedancer or eCharacterClass.Necromancer or eCharacterClass.Minstrel or
+            eCharacterClass.Sluaghbinder ||
         UsesIndependentOwnerPetCombat(characterClass);
 
     /// <summary>
@@ -454,11 +500,23 @@ public static class AutonomousPetSupport
                 }
             }
 
+            GameBot petOwnerBot = owner as GameBot;
+            eSpecType petOwnerSpec = petOwnerBot?.BotSpec?.SpecType ?? eSpecType.None;
+            bool covenantPetBuffCadence = characterClass == eCharacterClass.Sluaghbinder &&
+                petOwnerSpec == eSpecType.SluaghbinderCovenant;
+            bool combatOwnsPetTurn = combatTarget?.IsAlive == true ||
+                owner.InCombat || owner.IsAttacking || pet.InCombat || pet.IsAttacking ||
+                owner is GameBot { Brain: BotBrain cadenceOwnerBrain } && cadenceOwnerBrain.HasAggro;
             int healBelow = combatTarget == null ? 92 : 65;
             if (petActionReady && pet.HealthPercent < healBelow)
             {
+                bool covenantHotRunning = characterClass == eCharacterClass.Sluaghbinder &&
+                    petOwnerSpec == eSpecType.SluaghbinderCovenant && HasActiveCovenantPetHot(pet);
                 (Spell Spell, SpellLine Line) heal = spells
-                    .Where(entry => entry.Spell.IsHealing && entry.Spell.Target == eSpellTarget.PET && CanCast(owner, entry.Spell))
+                    .Where(entry => entry.Spell.IsHealing && entry.Spell.Target == eSpellTarget.PET &&
+                                    CanCast(owner, entry.Spell) &&
+                                    !ShouldSkipActiveCovenantPetHot(
+                                        characterClass, petOwnerSpec, entry.Spell, covenantHotRunning))
                     .OrderByDescending(entry => entry.Spell.Level)
                     .FirstOrDefault();
                 if (heal.Spell != null && owner.IsWithinRadius(pet, heal.Spell.CalculateEffectiveRange(owner)))
@@ -474,6 +532,7 @@ public static class AutonomousPetSupport
 
             (Spell Spell, SpellLine Line) buff = spells
                 .Where(entry => entry.Spell.IsBuff && entry.Spell.Target == eSpellTarget.PET &&
+                                !IsCovenantPetHot(characterClass, petOwnerSpec, entry.Spell) &&
                                 !CompanionFollowPolicy.DeferBuff(owner, entry.Spell) &&
                                 ShouldMaintainRoutinePetBuff(entry.Spell, combatTarget?.IsAlive == true &&
                                     (owner.InCombat || pet.InCombat), owner) &&
@@ -483,7 +542,9 @@ public static class AutonomousPetSupport
                                     : !HasEffect(pet, entry.Spell)))
                 .OrderByDescending(entry => entry.Spell.Level)
                 .FirstOrDefault();
-            if (petActionReady && buff.Spell != null && owner.IsWithinRadius(pet, Math.Max(200, buff.Spell.CalculateEffectiveRange(owner))))
+            if (petActionReady && buff.Spell != null &&
+                (!covenantPetBuffCadence || !IsCovenantPetBuffDeferred(pet, now, combatOwnsPetTurn)) &&
+                owner.IsWithinRadius(pet, Math.Max(200, buff.Spell.CalculateEffectiveRange(owner))))
             {
                 bool combatBlocksServantCast = owner.InCombat || owner.IsAttacking ||
                     pet.InCombat || pet.IsAttacking ||
@@ -512,7 +573,15 @@ public static class AutonomousPetSupport
                     // Enchanters and similar pet casters standing in place.
                     // Keep a bounded retry window while allowing normal AI to
                     // run between upkeep attempts.
-                    nextDeployablePetTick = now + PetBuffRetryCooldown(buff.Spell);
+                    int retryCooldown = PetBuffRetryCooldown(buff.Spell);
+                    bool fastCovenantBuff = IsCovenantRoutinePetBuff(characterClass, petOwnerSpec, buff.Spell);
+                    if (fastCovenantBuff)
+                    {
+                        CovenantPetBuffCadences.GetValue(pet, _ => new CovenantPetBuffCadenceState())
+                            .Record(EffectHelper.GetEffectFromSpell(buff.Spell), buff.Spell.ID, now + retryCooldown);
+                    }
+                    nextDeployablePetTick = now + PetBuffActionCooldown(
+                        characterClass, petOwnerSpec, buff.Spell, combatOwnsPetTurn);
                     activity = $"Buffing pet {pet.Name}";
                     return true;
                 }
@@ -863,7 +932,8 @@ public static class AutonomousPetSupport
         if (!persistentWorldBot || temporaryHelper || playerLed || inCombat ||
             characterClass is not (eCharacterClass.Bonedancer or eCharacterClass.Enchanter or eCharacterClass.Cabalist or
                                     eCharacterClass.Spiritmaster or eCharacterClass.Sorcerer or
-                                    eCharacterClass.Mentalist or eCharacterClass.Minstrel))
+                                    eCharacterClass.Mentalist or eCharacterClass.Minstrel or
+                                    eCharacterClass.Sluaghbinder))
         {
             return false;
         }
@@ -897,7 +967,7 @@ public static class AutonomousPetSupport
             eCharacterClass.Bonedancer or eCharacterClass.Enchanter or eCharacterClass.Cabalist or
             eCharacterClass.Spiritmaster or eCharacterClass.Sorcerer or eCharacterClass.Mentalist or
             eCharacterClass.Necromancer or eCharacterClass.Hunter or eCharacterClass.Druid or
-            eCharacterClass.Minstrel;
+            eCharacterClass.Minstrel or eCharacterClass.Sluaghbinder;
     }
 
     /// <summary>
@@ -1007,7 +1077,7 @@ public static class AutonomousPetSupport
             return false;
 
         int ownedCount = FieldTurrets.TryGetValue(owner, out var owned)
-            ? owned.Keys.Count(turret => turret?.ObjectState is GameObject.eObjectState.Active)
+            ? owned.Count(entry => entry.Key?.ObjectState is GameObject.eObjectState.Active)
             : 0;
         if (Properties.TURRET_PLAYER_CAP_COUNT > 0 && ownedCount >= Properties.TURRET_PLAYER_CAP_COUNT)
             return false;
@@ -1153,7 +1223,8 @@ public static class AutonomousPetSupport
     {
         if (owner == null || !FieldTurrets.TryGetValue(owner, out var turrets))
             return;
-        foreach (TurretPet turret in turrets.Keys)
+        // Lock-free enumeration (.Keys takes every bucket lock each AI turn).
+        foreach (TurretPet turret in turrets.Select(entry => entry.Key))
         {
             bool stale = turret == null || turret.ObjectState is not GameObject.eObjectState.Active ||
                          turret.CurrentRegion != owner.CurrentRegion || !owner.IsWithinRadius(turret, 3200);
@@ -1370,7 +1441,9 @@ public static class AutonomousPetSupport
         if (owner is GameBot bot)
         {
             bool bonedancer = bot.CharacterClass?.ID == (int)eCharacterClass.Bonedancer;
-            foreach (Spell spell in bot.Spells?.Where(spell => spell != null) ?? Enumerable.Empty<Spell>())
+            foreach (Spell spell in bot.Spells?
+                .Where(spell => spell != null && !SluaghbinderBotPolicy.IsPlayerOnlyServiceSpell(spell)) ??
+                Enumerable.Empty<Spell>())
                 yield return (spell, bot.ResolvePowerSpellLine(spell, MobSpellLine));
 
             // SetCasterSpells intentionally retains only the highest rank per
@@ -1795,6 +1868,75 @@ public static class AutonomousPetSupport
             return false;
         return payload.Duration <= 0 || !HasEffect(target, payload);
     }
+
+    /// <summary>
+    /// Only the actual long-lived Sluaghbinder pet-buff ranks use the faster
+    /// between-buff cadence. The instant Cairnheart pet heals and every other
+    /// class/spec retain their existing cast and retry rules.
+    /// </summary>
+    public static bool IsCovenantRoutinePetBuff(eCharacterClass characterClass, eSpecType specType, Spell spell) =>
+        characterClass == eCharacterClass.Sluaghbinder &&
+        specType == eSpecType.SluaghbinderCovenant &&
+        spell != null &&
+        (spell.ID is >= 59006 and <= 59010 or >= 59045 and <= 59064) &&
+        spell.Target == eSpellTarget.PET && spell.IsBuff &&
+        spell.CastTime > 0 && spell.Duration > 30_000 &&
+        EffectHelper.GetEffectFromSpell(spell) is not (eEffect.Unknown or eEffect.Pet);
+
+    public static int PetBuffActionCooldown(
+        eCharacterClass characterClass, eSpecType specType, Spell spell, bool combatOwnsTurn) =>
+        IsCovenantRoutinePetBuff(characterClass, specType, spell) && !combatOwnsTurn
+            ? PetActionCooldown(spell)
+            : PetBuffRetryCooldown(spell);
+
+    private static bool IsCovenantPetBuffDeferred(GameNPC pet, long now, bool combatOwnsTurn)
+    {
+        if (!CovenantPetBuffCadences.TryGetValue(pet, out CovenantPetBuffCadenceState cadence))
+            return false;
+        (eEffect pendingEffect, int pendingSpellId) = cadence.PendingSpell;
+        bool effectPresent = pendingEffect != eEffect.Unknown &&
+            pet.effectListComponent.GetSpellEffects(pendingEffect)
+                .Any(effect => (effect.IsActive || effect.IsDisabled) &&
+                    effect.ExpireTick > now &&
+                    effect.SpellHandler?.Spell?.ID == pendingSpellId);
+        return cadence.IsDeferred(now, combatOwnsTurn, effectPresent);
+    }
+
+    /// <summary>
+    /// The five Cairnheart Covenant ranks are the spec's pet heal-over-time.
+    /// They are true HealOverTime spells (15 s, pulsing every 3 s); older
+    /// databases stored them as one-minute HealthRegenBuff. Either form stays
+    /// in the low-health heal path only; the generic pet-buff path would
+    /// refresh them on a healthy pet and prevent rest. Other classes' buffs
+    /// and heals are untouched.
+    /// </summary>
+    public static bool IsCovenantPetHot(eCharacterClass characterClass, eSpecType specType, Spell spell) =>
+        characterClass == eCharacterClass.Sluaghbinder &&
+        specType == eSpecType.SluaghbinderCovenant &&
+        IsCairnheartPetHotRank(spell);
+
+    private static bool IsCairnheartPetHotRank(Spell spell) =>
+        spell is
+        {
+            ID: >= 59065 and <= 59069,
+            Target: eSpellTarget.PET,
+        } &&
+        (spell.SpellType == eSpellType.HealOverTime ||
+         spell.SpellType == eSpellType.HealthRegenBuff && spell.Duration >= 60_000);
+
+    public static bool ShouldSkipActiveCovenantPetHot(
+        eCharacterClass characterClass,
+        eSpecType specType,
+        Spell spell,
+        bool petHasActiveEffect) =>
+        petHasActiveEffect && IsCovenantPetHot(characterClass, specType, spell);
+
+    private static bool HasActiveCovenantPetHot(GameLiving pet) =>
+        pet.effectListComponent.GetSpellEffects(eEffect.HealOverTime)
+            .Concat(pet.effectListComponent.GetSpellEffects(eEffect.HealthRegenBuff))
+            .Any(effect => (effect.IsActive || effect.IsDisabled) &&
+                effect.ExpireTick > GameLoop.GameLoopTime &&
+                IsCairnheartPetHotRank(effect.SpellHandler?.Spell));
 
     public static bool TryGetNecromancerPetPayload(Spell command, out Spell payload)
     {

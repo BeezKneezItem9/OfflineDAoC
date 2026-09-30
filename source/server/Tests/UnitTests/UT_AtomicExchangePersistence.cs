@@ -135,6 +135,36 @@ namespace DOL.UnitTests
         }
 
         [Test]
+        public void PooledWalReadersAndWriters_CanOpenConnectionsConcurrently()
+        {
+            // The runtime uses pooled connections; reads open without the writer
+            // gate once WAL is confirmed, so hammer mixed reads/writes on the pool.
+            string path = TemporaryPath();
+            try
+            {
+                var database = new SqliteObjectDatabase($"Data Source={path};Version=3;Pooling=True;Journal Mode=WAL;Synchronous=Normal;Foreign Keys=True;Default Timeout=2");
+                database.RegisterDataObject(typeof(DbSinglePermission));
+                Parallel.For(0, 480, index =>
+                {
+                    Assert.That(database.AddObject(new DbSinglePermission
+                    {
+                        PlayerID = $"pooled-{index}", Command = "saved"
+                    }), Is.True);
+                    for (int read = 0; read < 3; read++)
+                        Assert.That(database.SelectAllObjects<DbSinglePermission>(), Is.Not.Empty);
+                });
+                Assert.That(database.SelectAllObjects<DbSinglePermission>().Count, Is.EqualTo(480));
+            }
+            finally
+            {
+                System.Data.SQLite.SQLiteConnection.ClearAllPools();
+                DeleteTemporaryFile(path);
+                DeleteTemporaryFile(path + "-wal");
+                DeleteTemporaryFile(path + "-shm");
+            }
+        }
+
+        [Test]
         public void WalletAndProceedsWithSameNumericIdBothCommit_AndOnlyNewSalesCanBeClaimed()
         {
             string path = TemporaryPath();

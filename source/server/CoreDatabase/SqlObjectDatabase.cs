@@ -682,6 +682,7 @@ namespace DOL.Database
 
             bool repeat;
             var current = 0;
+            int readContentionRetries = 0;
             do
             {
                 repeat = false;
@@ -738,13 +739,18 @@ namespace DOL.Database
                         }
                         catch (Exception e)
                         {
-                            if (!HandleException(e))
+                            // A SELECT has no side effects, so a transient
+                            // lock-contention error is safe to retry briefly.
+                            bool transientRead = IsTransientReadContention(e) && ++readContentionRetries <= MaxReadContentionRetries;
+                            if (!transientRead && !HandleException(e))
                             {
                                 if (log.IsErrorEnabled)
                                     log.ErrorFormat("ExecuteSelectImpl: UnHandled Exception for Select Query \"{0}\"\n{1}", SQLCommand, e);
 
                                 throw;
                             }
+                            if (transientRead)
+                                Thread.Sleep(Math.Min(50, 5 * readContentionRetries));
                             repeat = true;
                         }
                     }
@@ -1081,5 +1087,13 @@ namespace DOL.Database
         }
 
         protected abstract bool HandleSQLException(Exception e);
+
+        private const int MaxReadContentionRetries = 40;
+
+        /// <summary>
+        /// True for a transient engine lock-contention error on a read. Only
+        /// consulted by the SELECT path, which is side-effect free to repeat.
+        /// </summary>
+        protected virtual bool IsTransientReadContention(Exception e) => false;
     }
 }

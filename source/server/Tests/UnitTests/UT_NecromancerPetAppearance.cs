@@ -129,7 +129,7 @@ namespace DOL.UnitTests
             Assert.That(pet.Inventory, Is.Null);
         }
 
-        [TestCase(204, 3466, 0x10)]
+        [TestCase(204, 4822, 0x10)]
         [TestCase(206, 4808, 0x22)]
         public void VisualWeaponsDoNotBecomeCombatEquipment(int template, int model, int slots)
         {
@@ -154,7 +154,7 @@ namespace DOL.UnitTests
             NecromancerPetAppearance.CombatModels(null, pet, 10, ref weapon, ref defense);
             Assert.That(defense, Is.Zero);
             NecromancerPetAppearance.CombatModels(null, pet, 2, ref weapon, ref defense);
-            Assert.That(defense, Is.EqualTo(1128));
+            Assert.That(defense, Is.EqualTo(4823));
             Assert.That(weapon, Is.EqualTo(7));
         }
 

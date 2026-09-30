@@ -2668,7 +2668,9 @@ namespace DOL.AI.Brain
             // pending is what produced the rapid draw animation with no arrow.
             // A close attacker or a group-protection emergency still breaks the
             // guard and follows the existing defensive/melee behavior.
-            if (Body.TargetObject is GameLiving currentBowTarget &&
+            // A stalled close-range draw (see RequestArcherMeleeFallback) no
+            // longer owns the turn, so the melee fallback below can engage.
+            if (!ArcherMeleeFallbackActive && Body.TargetObject is GameLiving currentBowTarget &&
                 BotRangedCombat.BowDrawOwnsDecision(
                     (eCharacterClass)BotBody.CharacterClass.ID,
                     Body.attackComponent?.AttackState == true,
@@ -2838,7 +2840,8 @@ namespace DOL.AI.Brain
                         // when its target closes inside nominal melee distance.
                         // Proximity alone must not restart a valid draw.
                         bool targetForcesMelee = distance <= Body.MeleeAttackRange &&
-                                                 !BotRangedCombat.UsesAutonomousBowPositioning(BotBody);
+                                                 !BotRangedCombat.UsesAutonomousBowPositioning(BotBody) ||
+                                                 ArcherMeleeFallbackActive;
 
                         bool useRanged = BotRangedCombat.ShouldUseRangedWeapon(
                             (eCharacterClass)BotBody.CharacterClass.ID,
@@ -2855,6 +2858,7 @@ namespace DOL.AI.Brain
                                     true, distance, rangedAttackRange))
                             {
                                 int desired = BotRangedCombat.BowApproachDistance(Body.MeleeAttackRange, rangedAttackRange);
+                                BotBody.WakeRecoveryRest();   // a resting bot ignores follow orders
                                 Body.StopAttack();
                                 Body.Follow(livingTarget,
                                     (short)Math.Clamp(desired, 160, short.MaxValue),
@@ -2938,6 +2942,26 @@ namespace DOL.AI.Brain
                 .DefaultIfEmpty(0).Max() ?? 0;
         }
 
+        private long _closerSpellApproachUntilTick;
+
+        /// <summary>
+        /// A watched pull that has not connected asks the caster to stand well
+        /// inside its spell range for a while (a wandering target, awkward
+        /// terrain, or a cast that kept failing at the edge of range).
+        /// </summary>
+        public void RequestCloserSpellApproach(long untilTick) => _closerSpellApproachUntilTick = untilTick;
+
+        private long _archerMeleeFallbackUntilTick;
+
+        /// <summary>
+        /// A watched pull whose archer stalled close to its target (the native NPC
+        /// attack treats ~300 units as melee distance for bows, while the bot keeps
+        /// holding its bow there) fights it in melee for a while instead.
+        /// </summary>
+        public void RequestArcherMeleeFallback(long untilTick) => _archerMeleeFallbackUntilTick = untilTick;
+
+        private bool ArcherMeleeFallbackActive => GameLoop.GameLoopTime < _archerMeleeFallbackUntilTick;
+
         private bool ApproachForOffensiveSpell(GameLiving target)
         {
             if (target?.IsAlive != true || Body.IsCrowdControlled ||
@@ -2945,10 +2969,16 @@ namespace DOL.AI.Brain
                 return false;
 
             int castRange = OffensiveApproachRange(target);
+            if (castRange > 0 && GameLoop.GameLoopTime < _closerSpellApproachUntilTick)
+                castRange = Math.Max(300, castRange * 6 / 10);
             if (castRange <= 0 || Body.IsWithinRadius(target, castRange))
                 return false;
 
             int desired = Math.Max(160, castRange - 100);
+            // Walking into range is an intentional combat action. A resting
+            // bot ignores follow orders, so an out-of-range target would
+            // otherwise leave it standing still indefinitely.
+            BotBody.WakeRecoveryRest();
             Body.StopAttack();
             Body.Follow(target,
                 (short)Math.Clamp(desired, 160, short.MaxValue),
@@ -3019,6 +3049,15 @@ namespace DOL.AI.Brain
 
         private bool SwitchToUsableMeleeWeapon()
         {
+            if (BotBody?.CharacterClass?.ID == (int)eCharacterClass.Savage)
+            {
+                if (!SavageBotWeaponPolicy.TryBestActiveSlot(BotBody, out eActiveWeaponSlot savageSlot))
+                    return false;
+                if (Body.ActiveWeaponSlot != savageSlot)
+                    Body.SwitchWeapon(savageSlot);
+                return true;
+            }
+
             DbInventoryItem rightHand = BotBody?.Inventory?.GetItem(eInventorySlot.RightHandWeapon);
             DbInventoryItem leftHand = BotBody?.Inventory?.GetItem(eInventorySlot.LeftHandWeapon);
             DbInventoryItem twoHand = BotBody?.Inventory?.GetItem(eInventorySlot.TwoHandWeapon);
@@ -3396,6 +3435,14 @@ namespace DOL.AI.Brain
                     {
                         foreach (Spell spell in BotBody.CrowdControlSpells)
                         {
+                            // Never mesmerize the monster this bot is trying to kill:
+                            // the next hit breaks it, so the cast only delays the fight
+                            // (solo level 1 Healers spent turns mezzing their own
+                            // target). PvP control and Bard add-mez use separate paths;
+                            // stuns stay allowed since they give free hits.
+                            if (Body.TargetObject is GameNPC and not GameBot &&
+                                spell.SpellType is eSpellType.Mesmerize or eSpellType.Mez)
+                                continue;
                             if (CanCastOffensiveSpell(spell) && !LivingHasEffect((GameLiving)Body.TargetObject, spell))
                                 spellsToCast.Add(spell);
                         }
@@ -3620,7 +3667,13 @@ namespace DOL.AI.Brain
                 case eSpellType.SavageEvadeBuff:
                     int activeSavageBuffs = Body.effectListComponent.GetEffects(eEffect.SavageBuff)
                         .Count(effect => effect?.SpellHandler?.Spell != null);
-                    if (SavageBotCombatPolicy.ShouldUseBuff(spell.SpellType, Body.HealthPercent, activeSavageBuffs) &&
+                    // Health-cost buffs only once the Savage is actually at its
+                    // target, never while still walking up (a level 1 Savage
+                    // arrived half dead), and just one of them below level 10.
+                    bool atTarget = Body.TargetObject is GameLiving buffTarget && buffTarget.IsAlive &&
+                        Body.IsWithinRadius(buffTarget, Body.MeleeAttackRange + 150);
+                    if (atTarget &&
+                        SavageBotCombatPolicy.ShouldUseBuff(spell.SpellType, Body.HealthPercent, activeSavageBuffs, Body.Level) &&
                         !LivingHasEffect(Body, spell))
                         castSpell = true;
                     break;

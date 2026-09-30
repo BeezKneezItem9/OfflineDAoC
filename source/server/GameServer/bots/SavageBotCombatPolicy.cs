@@ -1,4 +1,5 @@
 using DOL.GS.Styles;
+using System;
 using System.Numerics;
 
 namespace DOL.GS;
@@ -11,6 +12,80 @@ namespace DOL.GS;
 public static class SavageBotCombatPolicy
 {
     public const int FailedSoloPullRouteRetryMilliseconds = 6_000;
+    public const int FailedMeleePullRetryMilliseconds = 90_000;
+    public const int MeleePullProgressDistance = 64;
+    public const int MeleePullRetryAfterNoProgressMilliseconds = 8_000;
+    public const int MeleePullGiveUpAfterNoProgressMilliseconds = 20_000;
+    // The dungeon brain permits a committed approach for 30 seconds. A moving
+    // Savage gets longer than that, but an untouched pull must still end.
+    public const int MeleePullMaximumMilliseconds = 60_000;
+
+    public enum MeleePullDecision { Continue, RetryApproach, GiveUp }
+
+    // Every other class uses the same untouched-pull watch with a little more
+    // time: casters and pet classes open from range and pets must walk in.
+    // Without it a caster that could neither cast nor close range (resting,
+    // a cast that never finished, out of power while nothing attacks it)
+    // stood on its target until the fifteen-minute stuck watchdog.
+    public const int PullRetryAfterNoProgressMilliseconds = 12_000;
+    public const int PullGiveUpAfterNoProgressMilliseconds = 30_000;
+    public const int PullMaximumMilliseconds = 75_000;
+
+    public static bool MustMeleePull(eCharacterClass characterClass) =>
+        characterClass == eCharacterClass.Savage;
+
+    public static MeleePullDecision EvaluatePull(eCharacterClass characterClass, long nowTick, long startedTick,
+        long lastProgressTick, bool retriedApproach)
+    {
+        if (MustMeleePull(characterClass))
+            return EvaluateMeleePull(nowTick, startedTick, lastProgressTick, retriedApproach);
+        if (nowTick < startedTick || nowTick < lastProgressTick ||
+            nowTick - startedTick >= PullMaximumMilliseconds ||
+            nowTick - lastProgressTick >= PullGiveUpAfterNoProgressMilliseconds)
+            return MeleePullDecision.GiveUp;
+        if (!retriedApproach && nowTick - lastProgressTick >= PullRetryAfterNoProgressMilliseconds)
+            return MeleePullDecision.RetryApproach;
+        return MeleePullDecision.Continue;
+    }
+
+    /// <summary>
+    /// A spell handler that is still attached long after its cast should have
+    /// ended blocks both movement (the follow tick stops a casting NPC) and new
+    /// spell decisions (the bot waits for the active cast). Focus, pulse and
+    /// concentration spells legitimately stay attached and are never stale.
+    /// </summary>
+    public static bool IsStaleCast(Spell spell, long attachedSinceTick, long nowTick) =>
+        spell != null && !spell.IsFocus && !spell.IsPulsing && !spell.IsConcentration &&
+        nowTick - attachedSinceTick >= Math.Max(8_000, spell.CastTime + 4_000L);   // CastTime is milliseconds
+
+    public static bool IsMeleePullTargetValid(bool alive, bool active, bool sameRegion,
+        bool sameCamp) => alive && active && sameRegion && sameCamp;
+
+    public static bool HasMeleePullContact(long initialAttackTick, long attackTick,
+        long initialAttackedTick, long attackedTick, int initialTargetHealth,
+        int targetHealth) =>
+        attackTick > initialAttackTick || attackedTick > initialAttackedTick ||
+        targetHealth < initialTargetHealth;
+
+    public static bool MadeMeleePullProgress(Vector3 previousPosition, Vector3 currentPosition,
+        int previousDistance, int currentDistance) =>
+        Vector3.DistanceSquared(previousPosition, currentPosition) >=
+            MeleePullProgressDistance * MeleePullProgressDistance ||
+        previousDistance - currentDistance >= MeleePullProgressDistance;
+
+    public static MeleePullDecision EvaluateMeleePull(long nowTick, long startedTick,
+        long lastProgressTick, bool retriedApproach)
+    {
+        if (nowTick < startedTick || nowTick < lastProgressTick ||
+            nowTick - startedTick >= MeleePullMaximumMilliseconds ||
+            nowTick - lastProgressTick >= MeleePullGiveUpAfterNoProgressMilliseconds)
+            return MeleePullDecision.GiveUp;
+        if (!retriedApproach &&
+            nowTick - lastProgressTick >= MeleePullRetryAfterNoProgressMilliseconds)
+            return MeleePullDecision.RetryApproach;
+        return MeleePullDecision.Continue;
+    }
+
     // A normal short patrol step must not force the same failed native path
     // probe on the next brain tick. A materially new approach still retries.
     private const int FailedSoloPullOriginMovement = 512;
@@ -101,6 +176,15 @@ public static class SavageBotCombatPolicy
 
         return BuffPriority(type) < limit;
     }
+
+    public const int LowLevelSavageBuffLevel = 10;
+
+    // Below level 10 a Savage's health pool is too small to pay for several
+    // buffs: allow only the strongest one (the DPS buff) at a time.
+    public static bool ShouldUseBuff(eSpellType type, int healthPercent, int activeBuffs, int level) =>
+        level < LowLevelSavageBuffLevel
+            ? type == eSpellType.SavageDPSBuff && activeBuffs == 0 && healthPercent >= 70
+            : ShouldUseBuff(type, healthPercent, activeBuffs);
 
     public static bool SameBuffFamily(Spell requested, Spell active) =>
         requested != null && active != null && requested.SpellType == active.SpellType;

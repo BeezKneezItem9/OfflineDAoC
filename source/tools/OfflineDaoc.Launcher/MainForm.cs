@@ -8,9 +8,7 @@ namespace OfflineDaoc.Launcher;
 
 internal sealed partial class MainForm : Form
 {
-    // Public Darkness Falls beta label. The author's private installation
-    // keeps its separate 0.4 label and is never changed by this repository.
-    internal const string DisplayVersion = "0.32";
+    internal const string DisplayVersion = "0.33";
     internal const int AutoRefreshMilliseconds = 5 * 60 * 1000;
     internal const int RvrSnapshotRefreshMilliseconds = 30 * 1000;
     internal const int LiveBotSnapshotMaxAgeMilliseconds = 20_000;
@@ -220,10 +218,6 @@ internal sealed partial class MainForm : Form
         _serverReadinessPoll.Tick += async (_, _) => await RefreshWhenServerReadyAsync();
         Shown += async (_, _) =>
         {
-            // v0.31/v0.31b migration: move only the two Hibernian exchange
-            // guards beside Eilwen.  The operation is idempotent and is
-            // deliberately isolated from all other world rows.
-            EnsureRealmExchangeGuardPositions();
             await RefreshDashboardAsync();
             await RefreshRealmExchangeAsync();
             _displayClock.Start();
@@ -2016,6 +2010,16 @@ internal sealed partial class MainForm : Form
         }
     }
 
+    // Mirrors the server's classes/enable_sluaghbinder property; a missing row means enabled (0.33b default).
+    private static bool SluaghbinderEnabled(SQLiteConnection connection, SQLiteTransaction transaction)
+    {
+        using var command = connection.CreateCommand();
+        command.Transaction = transaction;
+        command.CommandText = "SELECT Value FROM ServerProperty WHERE `Key`='enable_sluaghbinder' LIMIT 1";
+        object? value = command.ExecuteScalar();
+        return value is not string text || !text.Trim().Equals("false", StringComparison.OrdinalIgnoreCase);
+    }
+
     private IReadOnlyList<BotCharacterGenerator.Identity> GenerateBotCharacters(int realm, int count, int level = 1)
     {
         if (!File.Exists(_database))
@@ -2042,10 +2046,11 @@ internal sealed partial class MainForm : Form
             while (reader.Read()) reserved.Add(reader.GetString(0));
         }
 
+        bool allowSluaghbinder = SluaghbinderEnabled(connection, transaction);
         var identities = new List<BotCharacterGenerator.Identity>(count);
         for (int index = 0; index < count; index++)
         {
-            BotCharacterGenerator.Identity identity = BotCharacterGenerator.Generate(realm, reserved);
+            BotCharacterGenerator.Identity identity = BotCharacterGenerator.Generate(realm, reserved, allowSluaghbinder);
             BotStartingLocation start = level == 50
                 ? CapitalBotStartingLocation(identity.Realm)
                 : ChooseBotStartingLocation(connection, transaction, identity.Realm, identity.RaceId, identity.ClassId);
@@ -2506,11 +2511,6 @@ internal sealed partial class MainForm : Form
             return;
         }
 
-        // Run once more immediately before CoreServer starts.  This covers a
-        // launcher that was left open while its database was being prepared,
-        // without ever allowing a failed cosmetic migration to block startup.
-        EnsureRealmExchangeGuardPositions();
-
         var availableGb = AvailableMemoryBytes() / 1024d / 1024d / 1024d;
         if (availableGb < 4 && MessageBox.Show(this,
                 $"Only {availableGb:F1} GB of memory is currently available. Close some programs before running a large bot population. Start anyway?",
@@ -2566,71 +2566,6 @@ internal sealed partial class MainForm : Form
         finally
         {
             _ = RefreshDashboardAsync();
-        }
-    }
-
-    private void EnsureRealmExchangeGuardPositions()
-    {
-        // Never write a world row while any CoreServer owns a database.  If a
-        // launcher is opened beside a running server, the next stopped launch
-        // will retry the same idempotent migration safely.
-        if (_serverProcess is { HasExited: false } || FindExactServerProcess() is not null)
-            return;
-        EnsureRealmExchangeGuardPositions(_database);
-    }
-
-    private static void EnsureRealmExchangeGuardPositions(string databasePath)
-    {
-        if (!File.Exists(databasePath)) return;
-
-        try
-        {
-            using var connection = new SQLiteConnection($"Data Source={databasePath};Version=3;Pooling=False;Default Timeout=5");
-            connection.Open();
-            if (!TableExists(connection, "Mob") ||
-                !ColumnExists(connection, "Mob", "Mob_ID") ||
-                !ColumnExists(connection, "Mob", "PackageID") ||
-                !ColumnExists(connection, "Mob", "Region") ||
-                !ColumnExists(connection, "Mob", "X") ||
-                !ColumnExists(connection, "Mob", "Y"))
-                return;
-
-            using var transaction = connection.BeginTransaction();
-            using var command = connection.CreateCommand();
-            command.Transaction = transaction;
-            command.CommandText = """
-                UPDATE Mob
-                   SET X = @x, Y = @y
-                 WHERE Mob_ID = @id
-                   AND Region = 201
-                   AND PackageID = 'offline_realm_exchange'
-                """;
-            command.Parameters.Add("@x", System.Data.DbType.Int32);
-            command.Parameters.Add("@y", System.Data.DbType.Int32);
-            command.Parameters.Add("@id", System.Data.DbType.String);
-
-            foreach (var guard in new[]
-            {
-                (Id: "offline-realm-exchange-hibernia-guard-left", X: 33197, Y: 31240),
-                (Id: "offline-realm-exchange-hibernia-guard-right", X: 33197, Y: 31440),
-            })
-            {
-                command.Parameters["@x"].Value = guard.X;
-                command.Parameters["@y"].Value = guard.Y;
-                command.Parameters["@id"].Value = guard.Id;
-                command.ExecuteNonQuery();
-            }
-            transaction.Commit();
-        }
-        catch (SQLiteException exception) when (exception.ResultCode is SQLiteErrorCode.Busy or SQLiteErrorCode.Locked)
-        {
-            // A server/world-load lock is transient.  The second call before
-            // startup (and the next launcher start) retries safely.
-        }
-        catch
-        {
-            // A missing/older optional table must never make the launcher
-            // close or prevent the server from starting.
         }
     }
 
@@ -2757,6 +2692,8 @@ internal sealed partial class MainForm : Form
 
     private (string Account, string Password) ReadCredentials()
     {
+        // Each installation gets its own local account on first use; the server
+        // creates it on the first Enter Realm (AutoAccountCreation).
         return PortableCredentials.ReadOrCreate(_root);
     }
 
@@ -2792,8 +2729,8 @@ internal sealed partial class MainForm : Form
 
     private void EnsureBorderlessFullscreen()
     {
-        // Use this distribution's client profile, not another installed copy's preferences.
-        string profile = "OfflineDAoCGitHub03";
+        // Use this installation's own client profile (paths.dat settings=), never another copy's preferences.
+        string profile = "OfflineDAoC033";
         string pathsFile = Path.Combine(_clientDirectory, "paths.dat");
         if (File.Exists(pathsFile))
         {

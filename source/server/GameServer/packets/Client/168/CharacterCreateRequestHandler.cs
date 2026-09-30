@@ -415,6 +415,26 @@ namespace DOL.GS.PacketHandler.Client.v168
             ch.Realm = pdata.Realm;
             ch.Class = pdata.Class;
 
+            // The classic client has a fixed Hibernian class slot that is
+            // reserved for MaulerHib.  The isolated Sluaghbinder test build
+            // uses that disabled slot for the new player-only class.  Store
+            // the novice as Hibernian Acolyte (levels 1-4), like Albion's
+            // Disciple -> Necromancer path; the trainer promotes it to the
+            // real Sluaghbinder class at level 5.  The overview packet still
+            // uses the relabeled client slot, so this does not remove the
+            // Sluaghbinder choice from character select.
+            // The 0.33 "no custom class" edition turns this off; the slot is then the
+            // disabled native MaulerHib class again, exactly like the normal v0.32 edition.
+            if (Properties.ENABLE_SLUAGHBINDER && (eRealm)ch.Realm == eRealm.Hibernia &&
+                (ch.Class == (int)eCharacterClass.MaulerHib ||
+                 ch.Class == (int)eCharacterClass.Sluaghbinder))
+            {
+                if (log.IsDebugEnabled)
+                    log.Debug($"Mapping Hibernian client class slot {eCharacterClass.MaulerHib} to experimental Acolyte (Sluaghbinder novice path)");
+
+                ch.Class = (int)eCharacterClass.Acolyte;
+            }
+
             // Set Account Slot, Gender
             ch.AccountSlot = accountSlot + ch.Realm * 100;
             ch.Gender = pdata.Gender;
@@ -445,6 +465,17 @@ namespace DOL.GS.PacketHandler.Client.v168
 
             if (log.IsDebugEnabled)
                 log.Debug($"Creation {client.Version} character, class:{ch.Class}, realm:{ch.Realm}");
+
+            // A client asking for the custom class directly is refused when it is switched off.
+            if (!Properties.ENABLE_SLUAGHBINDER && (eRealm)ch.Realm == eRealm.Hibernia &&
+                (ch.Class == (int)eCharacterClass.Sluaghbinder || ch.Class == (int)eCharacterClass.Acolyte) &&
+                (ePrivLevel)client.Account.PrivLevel == ePrivLevel.Player)
+            {
+                if (log.IsDebugEnabled)
+                    log.Debug($"Client {client.Account.Name} tried to create the disabled custom Sluaghbinder class");
+
+                return true;
+            }
 
             // Is class disabled ?
             List<string> disabledClasses = Util.SplitCSV(Properties.DISABLED_CLASSES);
@@ -947,6 +978,15 @@ namespace DOL.GS.PacketHandler.Client.v168
                 }
 
                 ICharacterClass charClass = ScriptMgr.FindCharacterClass(ch.Class);
+
+                // Hibernia has no ordinary Acolyte career.  This isolated
+                // novice path uses the Sluaghbinder race rules until the
+                // level-5 promotion, rather than the Albion-only base list.
+                if ((eRealm)ch.Realm == eRealm.Hibernia &&
+                    ch.Class == (int)eCharacterClass.Acolyte)
+                {
+                    charClass = ScriptMgr.FindCharacterClass((int)eCharacterClass.Sluaghbinder);
+                }
 
                 if(!charClass.EligibleRaces.Exists(s => (int)s.ID == ch.Race))
                 {

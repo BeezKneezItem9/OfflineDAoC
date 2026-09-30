@@ -80,7 +80,8 @@ namespace DOL.GS
                 (string.IsNullOrWhiteSpace(item.AllowedClasses) ||
                  Util.SplitCSV(item.AllowedClasses, true).Contains(((int)characterClass).ToString())) &&
                 (slot == eInventorySlot.RightHandWeapon
-                    ? (item.Item_Type is Slot.RIGHTHAND or Slot.LEFTHAND) && item.Hand != 1
+                    ? (item.Item_Type is Slot.RIGHTHAND or Slot.LEFTHAND) && item.Hand != 1 &&
+                      (characterClass != eCharacterClass.Savage || item.Hand != 2)
                     : item.Item_Type == (int)slot) &&
                 (damage == 0 || item.Type_Damage == (int)damage) &&
                 (shieldSize == 0 || item.Type_Damage == shieldSize)).ToList();

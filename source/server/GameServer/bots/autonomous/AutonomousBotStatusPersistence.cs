@@ -14,7 +14,12 @@ namespace DOL.GS;
 /// </summary>
 public static class AutonomousBotStatusPersistence
 {
-    private const int WriteBatchSize = 32;
+    // Same sustained throughput as the original 32 records every two seconds,
+    // but each batch holds DatabaseWriteLock half as long. Game-loop exchange
+    // and inventory transactions wait on that lock, so shorter holds mean
+    // shorter worst-case AI turns.
+    private const int WriteBatchSize = 16;
+    private const int FlushIntervalMs = 1_000;
     private static readonly Logger Log = LoggerManager.Create(typeof(AutonomousBotStatusPersistence));
     private static readonly object PendingGate = new();
     private static readonly Dictionary<long, GameBot> Pending = new();
@@ -23,7 +28,7 @@ public static class AutonomousBotStatusPersistence
     private static readonly Queue<long> PendingPriorityOrder = new();
     private static readonly HashSet<long> PendingInventory = new();
     private static readonly Queue<long> PendingInventoryOrder = new();
-    private static readonly Timer FlushTimer = new(_ => Flush(), null, 2_000, 2_000);
+    private static readonly Timer FlushTimer = new(_ => Flush(), null, FlushIntervalMs, FlushIntervalMs);
     private static int _flushing;
 
     public static object DatabaseWriteLock { get; } = new();

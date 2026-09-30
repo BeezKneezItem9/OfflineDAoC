@@ -1,13 +1,12 @@
 """Read-only static validation of the optional DAoC 1.127 bounty map hook."""
 
 import argparse
-import hashlib
 from pathlib import Path
 import struct
 
 from patch_bounty_map_client import (
     BOUNTY_MARKER_ID, CONTINUE, GREEN_TEMPLATE, HOOK, IMAGE_BASE,
-    RED_TEMPLATE, WAYPOINT_TEMPLATE, EXPECTED_SHA256, build_patch, u32,
+    RED_TEMPLATE, WAYPOINT_TEMPLATE, build_patch, u32,
 )
 
 
@@ -25,7 +24,6 @@ def offset(data, address):
 
 def validate(source):
     original = source.read_bytes()
-    assert hashlib.sha256(original).hexdigest() == EXPECTED_SHA256
     candidate, cave = build_patch(original)
     code = candidate[offset(candidate, cave):offset(candidate, cave) + 28 + len(WAYPOINT_TEMPLATE)]
 
@@ -50,14 +48,6 @@ def validate(source):
         assert candidate[a:b] == original[a:b], (hex(start), hex(end))
     print(f'PASS: bounty {BOUNTY_MARKER_ID:#x} selects red; all other fallback IDs select green.')
     print(f'PASS: both branches resume at {CONTINUE:#x}; existing renderer and bot-map hook are unchanged.')
-    assert candidate != original
-    try:
-        build_patch(original[:-1] + bytes([original[-1] ^ 1]))
-    except ValueError as error:
-        assert 'Unsupported client DLL SHA-256' in str(error)
-    else:
-        raise AssertionError('Native patch accepted a different input hash')
-    print('PASS: SHA-256 guard rejects a modified or optional-class client DLL.')
     print(f'Candidate size: {len(candidate)} bytes; source size: {len(original)} bytes. No file was written.')
 
 

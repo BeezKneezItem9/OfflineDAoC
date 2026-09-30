@@ -16,10 +16,17 @@ namespace DOL.GS
 			BlackthornBrain sbrain = new BlackthornBrain();
 			SetOwnBrain(sbrain);
 			LoadedFromScript = false;//load from database
-			SaveIntoDatabase();
+			// Persist the template-loaded row once per session; respawns reuse
+			// this object with identical values (see Parthanan.AddToWorld).
+			if (!m_templateRowSaved)
+			{
+				SaveIntoDatabase();
+				m_templateRowSaved = true;
+			}
 			base.AddToWorld();
 			return true;
 		}
+		private bool m_templateRowSaved;
 	}
 }
 namespace DOL.AI.Brain

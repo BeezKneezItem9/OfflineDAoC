@@ -2124,6 +2124,14 @@ namespace DOL.GS.ServerProperties
 		public static string DISABLED_CLASSES;
 
 		/// <summary>
+		/// Offline DAoC 0.33 editions: the custom Hibernian Sluaghbinder class (0.33b keeps it on,
+		/// 0.33 "no custom class" turns it off). Off means no player creation through the Mauler slot,
+		/// no Sluaghbinder autonomous bots and no Sluaghbinder temporary helpers.
+		/// </summary>
+		[ServerProperty("classes", "enable_sluaghbinder", "Allow the custom Hibernian Sluaghbinder class (player creation, autonomous bots and helpers). False leaves only the Classic + SI classes.", true)]
+		public static bool ENABLE_SLUAGHBINDER = true;
+
+		/// <summary>
 		/// Disable some races from being created
 		/// </summary>
 		[ServerProperty("classes", "disabled_races", "Serialized list of disabled races, separated by semi-colon or a range with a dash (ie 1-5;7;9)", "")]

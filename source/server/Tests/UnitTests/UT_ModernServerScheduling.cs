@@ -95,7 +95,7 @@ namespace DOL.GS.Tests
                 oldAllocation = GC.GetAllocatedBytesForCurrentThread() - oldAllocation;
                 long newAllocation = GC.GetAllocatedBytesForCurrentThread();
                 watch.Restart();
-                AutonomousBotRegistry.PrepareBrainTick();
+                AutonomousBotRegistry.SamplePopulationNow();
                 long newSum = 0;
                 for (int i = 0; i < 4500; i++) newSum += AutonomousBotRegistry.PopulationForBrainTick;
                 double newMs = watch.Elapsed.TotalMilliseconds;
@@ -104,14 +104,14 @@ namespace DOL.GS.Tests
                 TestContext.WriteLine($"4500 population reads: old {oldMs:F2} ms/{oldAllocation:N0} bytes; sampled {newMs:F2} ms/{newAllocation:N0} bytes");
                 active[0].ObjectState = GameObject.eObjectState.Inactive;
                 Assert.That(AutonomousBotRegistry.Count, Is.EqualTo(4499), "Population admission must remain exact between ticks");
-                AutonomousBotRegistry.PrepareBrainTick();
+                AutonomousBotRegistry.SamplePopulationNow();
                 Assert.That(AutonomousBotRegistry.PopulationForBrainTick, Is.EqualTo(4499));
             }
             finally
             {
                 active.Clear();
                 foreach (var entry in previous) active[entry.Key] = entry.Value;
-                AutonomousBotRegistry.PrepareBrainTick();
+                AutonomousBotRegistry.SamplePopulationNow();
             }
         }
 

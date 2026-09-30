@@ -40,7 +40,9 @@ namespace DOL.UnitTests
             Assert.That(AutonomousPveTargetPolicy.IsAssignedTarget("forest hunter", "Forest Hunter", 21), Is.True);
             Assert.That(AutonomousPveTargetPolicy.IsAssignedTarget("forest hunter", "forest hunter", 23), Is.True);
             Assert.That(AutonomousPveTargetPolicy.IsAssignedTarget("", "forest hunter", 21), Is.False);
-            Assert.That(AutonomousPveTargetPolicy.IsAssignedTarget("forest hunter", "forest hunter", 0), Is.False);
+            Assert.That(AutonomousPveTargetPolicy.IsAssignedTarget("wolf nipper", "wolf nipper", 0), Is.True,
+                "level 0 starter-camp creatures are real XP targets for a level 1 bot");
+            Assert.That(AutonomousPveTargetPolicy.IsAssignedTarget("wolf nipper", "forest hunter", 0), Is.False);
         }
 
         [Test] public void MissingPreferredTargetsFallBackDownwardNotToUnkillableMobs()

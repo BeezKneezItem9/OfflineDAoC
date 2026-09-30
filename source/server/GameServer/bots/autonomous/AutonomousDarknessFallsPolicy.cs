@@ -13,6 +13,11 @@ public static class AutonomousDarknessFallsPolicy
 {
     public const ushort RegionId = 249;
 
+    // Solo bots may still grind Darkness Falls, but only from level 25 and only
+    // against targets that con blue or easier. Groups keep their own rules.
+    public const int SoloMinimumLevel = 25;
+    public const ConColor SoloMaximumCon = ConColor.BLUE;
+
     public static ushort HomeRegion(eRealm realm) => realm switch
     {
         eRealm.Albion => 1,
