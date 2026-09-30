@@ -8,7 +8,7 @@ The newest version is first. For the full detail of every earlier update, see
 The full notes are in [docs/RELEASE-0.33.md](docs/RELEASE-0.33.md). In short:
 
 **Download and setup**
-- One complete download, about 6 GB in checked parts, with two editions:
+- One complete download, about 5 GB in checked parts, with two editions:
   - **0.33b** includes the Sluaghbinder.
   - **0.33** has the classic class list only.
 - Every install gets its own account on the first ENTER REALM, an empty world for its own bots,

@@ -8,9 +8,9 @@ if not exist "%~dp0Get-OfflineDAoC.ps1" (
 )
 echo Offline DAoC 0.33b "Claude Takeover" - with the custom Sluaghbinder class
 echo.
-echo This downloads the complete game (about 6 GB, in checked parts) into a NEW
+echo This downloads the complete game (about 5 GB, in checked parts) into a NEW
 echo folder called playable-v0.33b. It never overwrites an existing game and
-echo never starts anything by itself. Allow about 30 GB of free disk space.
+echo never starts anything by itself. Allow about 20 GB of free disk space.
 echo.
 echo Before playing, turn on the Windows feature ".NET Framework 3.5" - see
 echo READ ME FIRST.txt in the new folder.

@@ -26,13 +26,13 @@ There are two editions. They are the same game, and only the custom class differ
 1. **Requirements:**
    - A 64-bit Windows PC with a CPU that supports AVX2.
    - 16 GB RAM recommended.
-   - About 30 GB of free disk space.
+   - About 20 GB of free disk space.
    - The Windows **.NET Framework 3.5** feature turned on. [How to turn it on](docs/PLAY.md#before-you-start).
 2. **Download the helper:** from the release page of the edition you want, download two files into
    the same new, empty folder:
    - `DOWNLOAD-AND-PLAY-v0.33b.cmd` (or `-v0.33.cmd`)
    - `Get-OfflineDAoC.ps1`
-3. **Run the helper:** double-click the `.cmd` file. It downloads the game (about 6 GB in parts),
+3. **Run the helper:** double-click the `.cmd` file. It downloads the game (about 5 GB in parts),
    checks every part, and unpacks it into a new folder. It never overwrites an existing game.
 4. **Start playing:** open the new folder and double-click **START OFFLINE DAOC.cmd**.
    1. Click **START SERVER** and wait until it says **RUNNING**.

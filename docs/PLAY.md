@@ -7,7 +7,7 @@ You don't need Git, programming knowledge or an AI tool to play.
 **What you need:**
 - A 64-bit Windows 10 or 11 PC whose CPU supports **AVX2**. Most CPUs from 2014 onward do.
 - 16 GB RAM is recommended; 8 GB may work but is untested.
-- About **30 GB of free disk space**: 6 GB of downloads, 12 GB for the game, and room for saves.
+- About **20 GB of free disk space**: 5 GB of downloads, 5 GB while they are unpacked, 8 GB for the game, and room for saves. The downloads can be deleted afterwards (the `.downloads` folder next to the helper).
 
 **Turn on the Windows .NET Framework 3.5 feature.** The old game's connector needs it, even
 though the game bundles its own modern .NET.
@@ -39,7 +39,7 @@ Hibernian choice, and you don't have to play it.
 3. Double-click the `.cmd` file. If Windows asks whether to run it, choose **Run anyway**.
 
 The helper:
-1. downloads the game in parts, about 6 GB in total
+1. downloads the game in parts, about 5 GB in total
 2. checks each part against its published fingerprint (SHA-256)
 3. unpacks the game into a new folder next to the helper (`playable-v0.33b` or `playable-v0.33`)
 

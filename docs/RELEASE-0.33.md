@@ -12,7 +12,7 @@ differs:
 ## Downloading and starting
 
 - **One full download.** 0.33 no longer rebuilds on top of v0.3 and v0.31 downloads. The helper
-  fetches about 6 GB in parts, checks every part and unpacks one ready-to-play folder.
+  fetches about 5 GB in parts, checks every part and unpacks one ready-to-play folder.
 - **Your own account.** No account is included. The launcher makes a private login for each
   install, and the server creates the account the first time you click ENTER REALM.
 - **Your own world.** No characters, bots, houses or auction history are included. Bots are
