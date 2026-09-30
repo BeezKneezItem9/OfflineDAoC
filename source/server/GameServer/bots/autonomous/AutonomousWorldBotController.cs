@@ -2594,6 +2594,7 @@ namespace DOL.GS
                     .Where(npc => npc.IsAlive && IsExperienceMonster(npc) && npc.CurrentRegionID == _camp.RegionId &&
                         npc.CurrentZone == bot.CurrentZone && GameServer.ServerRules.IsAllowedToAttack(bot, npc, true) &&
                         string.Equals(npc.Name, _camp.MonsterName, StringComparison.OrdinalIgnoreCase) &&
+                        !AutonomousAuditedCampPolicy.IsBotExcludedSpawn(npc.InternalID) &&
                         Vector3.DistanceSquared(currentAnchor, new(npc.X, npc.Y, npc.Z)) >= 300 * 300)
                     .OrderBy(npc => bot.GetDistanceTo(npc)).Take(16))
                 {
@@ -2780,7 +2781,8 @@ namespace DOL.GS
                 _nextFailedSoloPullRoutePruneTick = nowTick + 10_000;
             }
             GameNPC FindWithin(ushort radius) => bot.GetNPCsInRadius(radius)
-                .Where(npc => IsExperienceMonster(npc) && npc.IsAlive && npc.CurrentRegionID == _camp.RegionId)
+                .Where(npc => IsExperienceMonster(npc) && npc.IsAlive && npc.CurrentRegionID == _camp.RegionId &&
+                    !AutonomousAuditedCampPolicy.IsBotExcludedSpawn(npc.InternalID))
                 .Where(npc => _camp.RegionId != AutonomousDarknessFallsPolicy.RegionId ||
                     AutonomousDarknessFallsNavigation.TryGetProof(npc.InternalID, out _))
                 .Where(npc => _camp.RegionId != AutonomousDarknessFallsPolicy.RegionId ||

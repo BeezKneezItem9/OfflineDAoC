@@ -15,3 +15,4 @@ Close the launcher, the game and the server before running any of them.
 | `coif_head_mode.py`, `si_portal_visuals.py` | Earlier client catalog experiments (helmet head mode, SI portal visuals) |
 | `*forest_poacher_camp*.py`, `*.sql` | One-time camp fixes, already included in the 0.33 world |
 | `fix_moher_phaeghoul_tree.py` | Moves the Cliffs of Moher phaeghoul that spawns inside a dead tree to open ground nearby. Dry run by default; `--apply` changes only that spawn's position, after a backup. Not yet in a download |
+| `fix_cothrom_seeds_and_leptus.py` | Makes Leptus (Domnann) always level 6 instead of randomly level 6 or 51, and removes the 13 level 6-7 venomous spore seeds from the level 42-55 Cothrom Gorge spore field (archived with a reason; the level 48-55 venomous spores stay). Bots saved on a seed camp pick a new one. Dry run by default; `--apply` writes after a backup. Not yet in a download |

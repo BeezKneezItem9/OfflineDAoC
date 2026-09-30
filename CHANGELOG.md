@@ -17,10 +17,23 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 - Ranged companions (Enchanter, Wizard and the other casters) walk up to a distant target that you
   or your pet are fighting instead of standing still, and their own pets join the fight.
 
+**Gamebots**
+- Nine hungry shriller (Caillte Garran) and Cliffs of Moher spawns that sit next to aggressive
+  monsters 15 or more levels higher are no longer used as bot camps or pull targets. The
+  monsters are still there for players, and every other spawn of the same monster is still a
+  normal bot goal.
+
 **World**
 - The Cliffs of Moher phaeghoul that spawned inside a dead tree now spawns in open ground nearby.
   To apply this to an existing 0.33 install now, run
   `tools/claude-version/fix_moher_phaeghoul_tree.py --apply` with the game closed.
+- Leptus in Domnann is always level 6. Its template randomly rolled level 6 or level 51, which put
+  a roaming level 51 monster among the starter creatures.
+- The level 6-7 venomous spore seeds in Cothrom Gorge are removed. They sat inside the level
+  42-55 venomous spore field and drew low-level bots across the Shrouded Isles to die there. The
+  level 48-55 venomous spores are unchanged. To apply the Leptus and spore seed changes to an
+  existing 0.33 install now, run `tools/claude-version/fix_cothrom_seeds_and_leptus.py --apply`
+  with the game closed.
 
 ## 0.33 / 0.33b "Claude Takeover" — 2026-09-30
 
