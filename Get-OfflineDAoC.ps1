@@ -334,7 +334,7 @@ if ($manifest.Mode -eq 'edition') {
     if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) { throw 'The 0.33 game download failed.' }
     $editionRoot = Join-Path $target (Join-Path 'editions' $manifest.EditionFolder)
     foreach ($file in $manifest.EditionFiles) {
-        if ($file.Path -notmatch '^runtime\[A-Za-z0-9_\. -]+$' -or $file.Path.Contains('..') -or $file.SHA256 -notmatch '^[a-f0-9]{64}$') {
+        if ($file.Path -notmatch '^runtime\\[A-Za-z0-9_\\. -]+$' -or $file.Path.Contains('..') -or $file.SHA256 -notmatch '^[a-f0-9]{64}$') {
             throw 'Invalid edition file entry.'
         }
         $source = Join-Path $editionRoot $file.Path
