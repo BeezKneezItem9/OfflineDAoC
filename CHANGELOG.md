@@ -3,9 +3,11 @@
 The newest version is first. For the full detail of every earlier update, see
 [docs/history/CHANGELOG-0.3-to-0.32b.md](docs/history/CHANGELOG-0.3-to-0.32b.md).
 
-## Unreleased (after 0.33) — 2026-09-30
+## Coming in 0.34 / 0.34b (not released yet)
 
-These are in the source code on GitHub now and will be in the next download.
+**These fixes are not in the 0.33 or 0.33b download.** They are finished and in the source code
+here on GitHub, and they will ship in the next full download, **0.34 / 0.34b**. More changes will
+be added to this list before then. The 0.33 and 0.33b downloads stay exactly as they are.
 
 **Companion bots**
 - Pets keep one target when the party fights several enemies. They finish their spells, heals
