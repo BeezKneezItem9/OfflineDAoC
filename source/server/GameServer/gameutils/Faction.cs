@@ -132,6 +132,49 @@ namespace DOL.GS
             player.Out.SendMessage(message, eChatType.CT_System, eChatLoc.CL_SystemWindow);
         }
 
+        public int BaseAggroLevel => _baseAggroLevel;
+
+        /// <summary>The player's hostility to this faction, -100 (most trusted) to 100.</summary>
+        public int GetAggroLevel(GamePlayer player)
+        {
+            return _aggroLevels.TryGetValue(player.ObjectId, out AggroLevel playerAggro) ? playerAggro.Aggro : _baseAggroLevel;
+        }
+
+        /// <summary>
+        /// Changes the player's hostility by an exact amount, unlike kill credit
+        /// which moves it by one on a 20% roll. Negative amounts improve standing.
+        /// Returns the new hostility.
+        /// </summary>
+        public int AdjustAggroLevel(GamePlayer player, int amount)
+        {
+            lock (_saveLoadLock)
+            {
+                AggroLevel playerAggro = _aggroLevels.GetOrAdd(player.ObjectId, (key) => new(player, _baseAggroLevel));
+                int newAggro = ClampAggro(playerAggro.Aggro + amount);
+
+                if (newAggro != playerAggro.Aggro)
+                {
+                    playerAggro.Aggro = newAggro;
+                    playerAggro.Dirty = true;
+                }
+
+                return newAggro;
+            }
+        }
+
+        public static int ClampAggro(int aggro)
+        {
+            if (aggro < MIN_AGGRO_VALUE)
+                return MIN_AGGRO_VALUE;
+
+            return aggro > MAX_AGGRO_VALUE ? MAX_AGGRO_VALUE : aggro;
+        }
+
+        public static Standing StandingForAggro(int aggro)
+        {
+            return GetStanding(aggro);
+        }
+
         public Standing GetStandingToFaction(GamePlayer player)
         {
             int aggro = _aggroLevels.TryGetValue(player.ObjectId, out AggroLevel playerAggro) ? playerAggro.Aggro : _baseAggroLevel;

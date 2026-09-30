@@ -23,6 +23,21 @@ namespace DOL.GS
 		}
 
 		/// <summary>
+		/// A faction stable master that refuses a player over reputation also
+		/// says how to earn it: speak to that faction's emissary.
+		/// </summary>
+		public override bool Interact(GamePlayer player)
+		{
+			if (base.Interact(player))
+				return true;
+
+			if (FactionEmissaryRuntime.TryGetStableRefusal(this, player, out string refusal))
+				player.Out.SendMessage(refusal, eChatType.CT_Important, eChatLoc.CL_SystemWindow);
+
+			return false;
+		}
+
+		/// <summary>
 		/// Called when a player buys an item
 		/// </summary>
 		/// <param name="player">The player making the purchase</param>

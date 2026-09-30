@@ -27,6 +27,29 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   high-level monsters. Bots now have five bantam spectres and four Moher sentinels to grind. To
   add them to an existing 0.33 install now, run
   `tools/claude-version/add_moher_spectre_sentinel_spawns.py --apply` with the game closed.
+- The Shrouded Isles neutral towns are always open to bots. Mantid (Krrzck), lammia (Cryptos
+  Mythicos) and iarn dwarf (The Remnants) town residents near their faction's stable masters never
+  attack bots, and bots never attack them, so bots can ride the wyvern, dragonfly and gryphon
+  routes. Players still need reputation.
+
+**Shrouded Isles reputation**
+- New repeatable reputation quest in each realm, from a faction emissary:
+  - Hibernia: **Kzzirrak** `<Krrzck Emissary>`, a mantid beside Zrrazk inside Necht.
+  - Albion: **Ysslith** `<Cryptos Mythicos Emissary>`, a lammia beside Vilmalin at Caer Diogel.
+  - Midgard: **Hrodvar Deepvow** `<The Remnants Emissary>`, an iarn dwarf beside Korlis in Hagall.
+- Kill 10 of a common enemy of that faction, chosen near your level without going over and never
+  above level 45. A red dot marks the hunting ground on that zone's map, and the journal tracks
+  your kills.
+- Each turn-in gives +10 reputation with the faction. As with bounties, you can reroll for a
+  different target, and that hunt then gives +5. The hunted monsters' own faction likes you 10
+  less, but only if it already attacked on sight; friendly factions are never touched.
+- Reputation runs from -100 to +100, and everyone starts at -100. The faction's stable masters
+  serve you from -50, and its town guards stop attacking on sight above -75.
+- The emissaries say which stable masters check reputation: Zrrazk, Dalniver and Calvine in
+  Hibernia; Nimea and Callisa in Albion; Minerva in Midgard. Korlis and Vilmalin serve everyone
+  of their realm.
+- A faction stable master that turns you away now tells you your reputation, the -50 you need,
+  and which emissary to see.
 
 **World**
 - The Cliffs of Moher phaeghoul that spawned inside a dead tree now spawns in open ground nearby.

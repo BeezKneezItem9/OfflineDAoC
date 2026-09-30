@@ -4405,7 +4405,8 @@ namespace DOL.GS
             (npc.Flags & (GameNPC.eFlags.PEACE | GameNPC.eFlags.CANTTARGET)) == 0 &&
             npc is not GameMerchant && npc is not GameGuard && npc is not GameTaxi &&
             npc is not GameSummonedPet && npc is not GameKeepGuard && npc is not GameTrainer &&
-            npc is not GameTeleporter && npc is not GameHealer && npc is not CraftNPC;
+            npc is not GameTeleporter && npc is not GameHealer && npc is not CraftNPC &&
+            !AutonomousNeutralTownPolicy.IsTownResident(npc);
 
         private static bool IsZoneAccessible(eRealm realm, Zone zone)
         {
