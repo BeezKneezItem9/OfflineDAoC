@@ -19,6 +19,17 @@ On the launcher, click + Lv.1 or + Lv.50 under a faction:
 /tc
   Teleports you to your realm's Realm Exchange NPC.
 
+/stables
+  Lists every stablemaster horse route in your realm, one page at a time,
+  including the neutral dragonfly, gryphon and wyvern routes.
+  /stables X shows page X.
+
+/stables classic
+  Jumps to your realm's Classic stable routes.
+
+/stables si
+  Jumps to your realm's Shrouded Isles stable routes.
+
 /grind
   Starts automated grinding with a companion bot group, including for AFK use.
 

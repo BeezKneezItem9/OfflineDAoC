@@ -18,6 +18,9 @@ modifier, create one bot. Start small and increase population for your PC's capa
 | `/mobs X` | List mob names at a level; replace X with the level number. |
 | `/tele mob X` | Teleport to a mob spawn; use the mob's exact name for X. Dungeon targets use the configured entrance approach where applicable. |
 | `/tc` | Teleport to your realm's Realm Exchange NPC. |
+| `/stables` | List every stablemaster horse route in your realm, one page at a time, including the neutral dragonfly, gryphon and wyvern routes. `/stables X` shows page X. |
+| `/stables classic` | Jump to your realm's Classic stable routes. |
+| `/stables si` | Jump to your realm's Shrouded Isles stable routes. |
 
 ## Companion groups, grinding, and raids
 
