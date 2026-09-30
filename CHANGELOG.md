@@ -3,6 +3,23 @@
 The newest version is first. For the full detail of every earlier update, see
 [docs/history/CHANGELOG-0.3-to-0.32b.md](docs/history/CHANGELOG-0.3-to-0.32b.md).
 
+## Unreleased (after 0.33) — 2026-09-30
+
+These are in the source code on GitHub now and will be in the next download.
+
+**Companion bots**
+- Pets keep one target when the party fights several enemies. They finish their spells, heals
+  included, instead of restarting them, and they still step in when an enemy attacks their owner.
+- Pet heals go to the most injured ally, companion bots in the group included, instead of the
+  first injured ally found.
+- Ranged companions (Enchanter, Wizard and the other casters) walk up to a distant target that you
+  or your pet are fighting instead of standing still, and their own pets join the fight.
+
+**World**
+- The Cliffs of Moher phaeghoul that spawned inside a dead tree now spawns in open ground nearby.
+  To apply this to an existing 0.33 install now, run
+  `tools/claude-version/fix_moher_phaeghoul_tree.py --apply` with the game closed.
+
 ## 0.33 / 0.33b "Claude Takeover" — 2026-09-30
 
 The full notes are in [docs/RELEASE-0.33.md](docs/RELEASE-0.33.md). In short:

@@ -245,12 +245,33 @@ namespace DOL.AI.Brain
 			m_orderAttackTarget = target as GameLiving;
 			FSM.SetCurrentState(eFSMStateType.AGGRO);
 
-			if (target != Body.TargetObject && Body.IsCasting)
+			// A human's own attack command still interrupts the pet's cast. A
+			// GameBot owner's orders are automatic and can change several times
+			// while a party fights more than one enemy; cancelling on each of
+			// them left bot pets restarting casts (heals included) and never
+			// finishing one. Their accepted cast completes, then the new order
+			// takes over.
+			if (target != Body.TargetObject && Body.IsCasting && !IsAutomaticallyCommanded)
 				Body.StopCurrentSpellcast();
 
 			AttackMostWanted();
 			if (Owner is GamePlayer player && Body == player.ControlledBrain?.Body)
 				PlayerLedPullCoordinator.LeaderEngaged(player, target as GameLiving);
+		}
+
+		/// <summary>
+		/// True for a pet (or a commander's sub-pet) whose orders come from a
+		/// GameBot's AI rather than from a human player.
+		/// </summary>
+		protected bool IsAutomaticallyCommanded
+		{
+			get
+			{
+				GameLiving owner = Owner;
+				for (int depth = 0; depth < 4 && owner is GameNPC npc && owner is not GameBot; depth++)
+					owner = (npc.Brain as IControlledBrain)?.Owner;
+				return owner is GameBot;
+			}
 		}
 
 		public virtual void CheckAggressionStateOnPlayerOrder()
@@ -707,79 +728,15 @@ namespace DOL.AI.Brain
                         break;
                     }
 
-                    // Heal seriously injured targets first.
-                    int emergencyThreshold = healThreshold / 2;
-                    int ownerPercent = Owner.HealthPercent;
-
-                    // Heal owner.
-                    if (ownerPercent < emergencyThreshold && !LivingHasEffect(Owner, spell) && Body.IsWithinRadius(Owner, spell.CalculateEffectiveRange(Body)))
-                    {
-                        target = Owner;
-                        break;
-                    }
-
-                    // Heal self.
-                    if (bodyPercent < emergencyThreshold && !underhillAllyHeal && !LivingHasEffect(Body, spell))
-                    {
-                        target = Body;
-                        break;
-                    }
-
-                    ICollection<GamePlayer> playerGroup = null;
-                    GamePlayer playerOwner = GetPlayerOwner();
-
-                    // Heal group members.
-                    if (playerOwner?.Group != null && (spell.Target is eSpellTarget.REALM or eSpellTarget.GROUP))
-                    {
-                        playerGroup = playerOwner.Group.GetPlayersInTheGroup();
-
-                        foreach (GamePlayer member in playerGroup)
-                        {
-                            if (member.HealthPercent < emergencyThreshold && !LivingHasEffect(member, spell) && Body.IsWithinRadius(member, spell.CalculateEffectiveRange(Body)))
-                            {
-                                target = member;
-                                break;
-                            }
-                        }
-                    }
-
-                    // Now check for targets which aren't seriously injured.
-
-                    if (spell.Target == eSpellTarget.SELF)
-                    {
-                        // If we have a self heal and health is less than 75% then heal, otherwise return false to try another spell or do nothing.
-                        if (bodyPercent < healThreshold && !LivingHasEffect(Body, spell))
-                            target = Body;
-
-                        break;
-                    }
-
-                    // Heal owner
-                    if (ownerPercent < healThreshold && !LivingHasEffect(Owner, spell) && Body.IsWithinRadius(Owner, spell.CalculateEffectiveRange(Body)))
-                    {
-                        target = Owner;
-                        break;
-                    }
-
-                    // Heal self.
-                    if (bodyPercent < healThreshold && !underhillAllyHeal && !LivingHasEffect(Body, spell))
-                    {
-                        target = Body;
-                        break;
-                    }
-
-                    // Heal group members.
-                    if (playerGroup != null)
-                    {
-                        foreach (GamePlayer member in playerGroup)
-                        {
-                            if (member.HealthPercent < healThreshold && !LivingHasEffect(member, spell) && Body.IsWithinRadius(member, spell.CalculateEffectiveRange(Body)))
-                            {
-                                target = member;
-                                break;
-                            }
-                        }
-                    }
+                    // Heal the most injured eligible ally. Each candidate is checked
+                    // once, so an emergency found in the group can no longer be
+                    // replaced by a less-injured owner or pet further down.
+                    // Companion GameBots in the group are eligible like players.
+                    target = HealCandidates(spell, underhillAllyHeal)
+                        .Where(living => living.HealthPercent < healThreshold && !LivingHasEffect(living, spell))
+                        .OrderBy(living => living.HealthPercent)
+                        .ThenBy(living => living == Owner ? 0 : living == Body ? 1 : 2)
+                        .FirstOrDefault();
 
                     break;
                 }
@@ -788,6 +745,41 @@ namespace DOL.AI.Brain
             }
 
             return target;
+        }
+
+        /// <summary>
+        /// Living allies this pet may heal with the spell, each once: the owner
+        /// and the pet itself, plus (for realm/group heals) every member of the
+        /// owner's group, companion bots included. All must be alive and in range.
+        /// </summary>
+        private IEnumerable<GameLiving> HealCandidates(Spell spell, bool excludeSelf)
+        {
+            int range = spell.CalculateEffectiveRange(Body);
+            HashSet<GameLiving> seen = [];
+
+            if (Owner != null && seen.Add(Owner) && IsHealable(Owner) && Body.IsWithinRadius(Owner, range))
+                yield return Owner;
+
+            if (!excludeSelf && seen.Add(Body))
+                yield return Body;
+
+            if (spell.Target is not (eSpellTarget.REALM or eSpellTarget.GROUP))
+                yield break;
+
+            Group group = Owner?.Group ?? GetPlayerOwner()?.Group;
+
+            if (group == null)
+                yield break;
+
+            foreach (GameLiving member in group.GetMembersInTheGroup())
+            {
+                if (member != null && seen.Add(member) && IsHealable(member) &&
+                    member.CurrentRegion == Body.CurrentRegion && Body.IsWithinRadius(member, range))
+                    yield return member;
+            }
+
+            static bool IsHealable(GameLiving living) =>
+                living.IsAlive && living.ObjectState == GameObject.eObjectState.Active;
         }
 
 		public override bool CanAggroTarget(GameLiving target)

@@ -803,11 +803,79 @@ namespace DOL.AI.Brain
             if (range <= 0 || Body.IsWithinRadius(target, range))
                 return false;
 
+            // Walking into range is an intentional combat action; a resting bot
+            // ignores follow orders.
+            BotBody.WakeRecoveryRest();
             Body.StopAttack();
-            Body.ControlledBrain?.Follow(Body);
-            Body.Follow(target, (short)Math.Clamp(range - 100, 160, short.MaxValue),
-                (short)Math.Clamp(range + 75, 200, short.MaxValue));
+            if (!UsesDefensiveOnlyPet && LeaderIsFighting(target))
+                CommandPetAttack(target);
+            else
+                Body.ControlledBrain?.Follow(Body);
+            (int minDistance, int maxDistance) = PlayerLedApproachFollowDistances(range);
+            Body.Follow(target, minDistance, maxDistance);
             return true;
+        }
+
+        /// <summary>
+        /// Follow distances for walking a caster into range of a player-led
+        /// target. The stop distance is just inside spell range. The maximum is
+        /// how far away the target may be while we still chase it. It must not
+        /// be the spell range: native follow gives up at once when the target
+        /// is beyond the maximum, which left casters standing still whenever
+        /// the target was more than a few units out of range.
+        /// </summary>
+        public static (int MinDistance, int MaxDistance) PlayerLedApproachFollowDistances(int engagementRange) =>
+            (Math.Clamp(engagementRange - 100, 160, short.MaxValue), MAX_AGGRO_LIST_DISTANCE);
+
+        /// <summary>True when the human leader, or the leader's own pet, is already fighting this target.</summary>
+        private bool LeaderIsFighting(GameLiving target) =>
+            target != null && PlayerLedPullCoordinator.FindLeaderTarget(AssistedPlayer) == target;
+
+        /// <summary>
+        /// The one combat target this bot's pet should have for this decision.
+        /// Several owner systems (pull orders, protection, the last attacker,
+        /// threat) can name different enemies in the same turn, and each changed
+        /// order used to cancel the pet's current cast. The pet therefore keeps
+        /// its current, still-valid target, and switches only when:
+        /// - the owner has an explicit ordered pull target (a leader/pull
+        ///   command), or
+        /// - the current target has died, left, become illegal, or been mezzed, or
+        /// - the candidate is attacking the owner while the current target is
+        ///   attacking neither the owner nor the pet (the pet peels for its owner).
+        /// None of these can alternate between two enemies.
+        /// </summary>
+        public GameLiving ResolvePetCombatTarget(GameLiving candidate)
+        {
+            if (candidate == null || Body.ControlledBrain is not ControlledMobBrain petBrain)
+                return candidate;
+
+            GameLiving current = petBrain.OrderedAttackTarget;
+            if (current == null || current == candidate || candidate == ActiveOrderedPullTarget)
+                return candidate;
+
+            if (!IsValidPetCombatTarget(petBrain.Body, current))
+                return candidate;
+
+            bool candidateAttacksOwner = candidate.TargetObject == Body;
+            bool currentAttacksOwnerOrPet = current.TargetObject == Body || current.TargetObject == petBrain.Body;
+            return candidateAttacksOwner && !currentAttacksOwnerOrPet ? candidate : current;
+        }
+
+        public static bool IsValidPetCombatTarget(GameNPC pet, GameLiving target) =>
+            pet != null && target?.IsAlive == true &&
+            target.ObjectState == GameObject.eObjectState.Active &&
+            target.CurrentRegion == pet.CurrentRegion &&
+            !target.IsMezzed &&
+            pet.IsWithinRadius(target, MAX_AGGRO_LIST_DISTANCE) &&
+            CompanionEngagementMode.Allows(pet, target) &&
+            GameServer.ServerRules.IsAllowedToAttack(pet, target, true);
+
+        /// <summary>Orders the pet onto the resolved target; repeated identical orders are ignored by the pet brain.</summary>
+        private void CommandPetAttack(GameLiving candidate)
+        {
+            GameLiving target = ResolvePetCombatTarget(candidate);
+            if (target != null)
+                Body.ControlledBrain?.Attack(target);
         }
 
         private void ResetLeaderActivity(GamePlayer leader)
@@ -1336,12 +1404,16 @@ namespace DOL.AI.Brain
             }
 
             GameLiving orderedPullTarget = ActiveOrderedPullTarget;
+            // While a caster walks into spell range its pet waits with it,
+            // unless the human leader (or the leader's pet) is already fighting
+            // that target: then the pet joins the fight immediately.
             bool closingOnPullTarget = orderedPullTarget != null &&
                                        PlayerLedCasterEngagementRange(orderedPullTarget) is int range && range > 0 &&
-                                       !Body.IsWithinRadius(orderedPullTarget, range);
+                                       !Body.IsWithinRadius(orderedPullTarget, range) &&
+                                       !LeaderIsFighting(orderedPullTarget);
             GameLiving petCombatTarget = UsesDefensiveOnlyPet || closingOnPullTarget
                 ? null
-                : orderedPullTarget ?? Body?.TargetObject as GameLiving ?? ownedPetTarget;
+                : ResolvePetCombatTarget(orderedPullTarget ?? Body?.TargetObject as GameLiving ?? ownedPetTarget);
             bool archerCombatOwnsPetUpkeep = BotBody?.CharacterClass != null &&
                 BotRangedCombat.CombatOwnsArcherPetUpkeep(
                     (eCharacterClass)BotBody.CharacterClass.ID,
@@ -2757,9 +2829,9 @@ namespace DOL.AI.Brain
                         AutonomousPetSupport.SynchronizeIndependentPet(
                             Body,
                             Body.ControlledBrain,
-                            Body.TargetObject as GameLiving);
+                            ResolvePetCombatTarget(Body.TargetObject as GameLiving));
                     else
-                        Body.ControlledBrain?.Attack(Body.TargetObject);
+                        CommandPetAttack(Body.TargetObject as GameLiving);
                 }
 
                 if (protectionTarget != null && TryPriorityTaunt(protectionTarget))
@@ -2816,7 +2888,7 @@ namespace DOL.AI.Brain
                     CheckOffensiveAbilities();
 
                     if (Body.ControlledBrain != null && !UsesDefensiveOnlyPet)
-                        Body.ControlledBrain.Attack(Body.TargetObject);
+                        CommandPetAttack(Body.TargetObject as GameLiving);
 
                     if (BotBody.CharacterClass.ClassType == eClassType.ListCaster && BotBody.CharacterClass.ID != (int)eCharacterClass.Valewalker)
                     {
@@ -3015,7 +3087,7 @@ namespace DOL.AI.Brain
 
             CheckOffensiveAbilities();
             TryUseInstantOffenseWhileMeleeing(target);
-            Body.ControlledBrain?.Attack(target);
+            CommandPetAttack(target);
 
             QueueUsableMeleeStyle();
 
