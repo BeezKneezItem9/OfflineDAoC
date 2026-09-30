@@ -22,6 +22,11 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   monsters 15 or more levels higher are no longer used as bot camps or pull targets. The
   monsters are still there for players, and every other spawn of the same monster is still a
   normal bot goal.
+- To make up for that, Cliffs of Moher gets four more bantam spectres and two more koalinth
+  sentinels next to the safe ones, spread out on open ground away from trees, rocks and
+  high-level monsters. Bots now have five bantam spectres and four Moher sentinels to grind. To
+  add them to an existing 0.33 install now, run
+  `tools/claude-version/add_moher_spectre_sentinel_spawns.py --apply` with the game closed.
 
 **World**
 - The Cliffs of Moher phaeghoul that spawned inside a dead tree now spawns in open ground nearby.
