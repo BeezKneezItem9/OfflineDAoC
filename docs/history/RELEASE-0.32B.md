@@ -113,7 +113,7 @@ The normal v0.32 source belongs to its separate
 [`release/v0.32-darkness-falls`](https://github.com/shadowofze/OfflineDAoC/tree/release/v0.32-darkness-falls)
 branch. The source ZIP and GitHub's **Code > Download ZIP** are not complete
 playable downloads. Use the matching source and runtime version when making
-LLM changes. [Player instructions](PLAY.md) and [LLM instructions](LLM-QUICKSTART.md)
+LLM changes. [Player instructions](../PLAY.md) and [LLM instructions](../LLM-QUICKSTART.md)
 give the full setup steps.
 
 ## Verification

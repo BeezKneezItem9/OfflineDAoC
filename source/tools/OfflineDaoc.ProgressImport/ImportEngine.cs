@@ -1,15 +1,35 @@
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 
 namespace OfflineDaoc.ProgressImport;
 
 public sealed record Policy(string[] ProgressTables, string[] ClearTables);
-public sealed record ImportSummary(long Accounts, long Characters, long Bots, long InventoryItems);
 
+/// <summary>What an old folder contains, shown before anything is changed.</summary>
+public sealed record ImportSummary(long Accounts, long Characters, long Bots, long InventoryItems)
+{
+    public string Version { get; init; } = "unknown";
+    public bool SluaghbinderClient { get; init; }
+    public long SluaghbinderCharacters { get; init; }
+    public long SluaghbinderBots { get; init; }
+    public bool HasCredentials { get; init; }
+}
+
+/// <summary>
+/// Moves saved progress (account, characters, items, money, houses, guild state, bots) from any
+/// earlier Offline DAoC folder — v0.3, v0.31, v0.31b, v0.32, v0.32b, the "new class test" builds —
+/// into a NEW 0.33 folder. The old folder is only read. The new folder keeps its own world, rules,
+/// edition and launcher settings; only the saved-progress tables are replaced, after a backup.
+/// </summary>
 public static class ImportEngine
 {
     public static readonly Policy Rules = JsonSerializer.Deserialize<Policy>(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"progress-policy.json")))!;
+    const int SluaghbinderClass = 63, AcolyteClass = 16, Hibernia = 3;
+    const string SluaghbinderClientSha256 = "01b1848e79b31d2822811effb3d3b098e07015db2d3db1178df5ba31ed805e96";
+
     public static string LocateRuntime(string folder)
     {
         folder = Path.GetFullPath(folder);
@@ -70,31 +90,124 @@ public static class ImportEngine
         using var q=c.CreateCommand();q.CommandText="PRAGMA quick_check";
         if(!string.Equals(Convert.ToString(q.ExecuteScalar()),"ok",StringComparison.Ordinal))throw new InvalidDataException("Database integrity check failed.");
     }
+
+    /// <summary>The launcher's "VERSION x" label, plus "b" style edition detection from the client.</summary>
+    public static string DetectVersion(string runtime, out bool sluaghbinderClient)
+    {
+        string game=Path.Combine(runtime,"client-opendaoc","app","game.dll");
+        sluaghbinderClient=File.Exists(game) && Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(game))).Equals(SluaghbinderClientSha256,StringComparison.OrdinalIgnoreCase);
+        string launcher=Path.Combine(runtime,"OfflineDAoC.dll");
+        if(!File.Exists(launcher))return "unknown";
+        byte[] data=File.ReadAllBytes(launcher);byte[] marker=Encoding.Unicode.GetBytes("VERSION ");
+        int at=data.AsSpan().IndexOf(marker);
+        if(at<0)return "unknown";
+        var text=new StringBuilder();
+        for(int i=at+marker.Length;i+1<data.Length && text.Length<8;i+=2)
+        {
+            char ch=(char)(data[i]|data[i+1]<<8);
+            if(!(char.IsDigit(ch)||ch=='.'||char.IsLetter(ch)))break;
+            text.Append(ch);
+        }
+        return text.Length>0?text.ToString():"unknown";
+    }
+
+    static (string? Account,string? Password) ReadCredentials(string runtime)
+    {
+        string path=Path.Combine(runtime,"account.txt");
+        if(!File.Exists(path))return (null,null);
+        var values=File.ReadLines(path).Select(l=>l.Split(':',2)).Where(p=>p.Length==2)
+            .ToDictionary(p=>p[0].Trim(),p=>p[1].Trim(),StringComparer.OrdinalIgnoreCase);
+        values.TryGetValue("Account",out var account);values.TryGetValue("Password",out var password);
+        return string.IsNullOrWhiteSpace(account)||string.IsNullOrEmpty(password)?(null,null):(account,password);
+    }
+
+    /// <summary>The server's stored form of a password (DOL "##" + MD5 of the UTF-16BE characters).</summary>
+    public static string HashPassword(string password)
+    {
+        var bytes=new byte[password.Length*2];
+        for(int i=0;i<password.Length;i++){bytes[i*2]=(byte)(password[i]>>8);bytes[i*2+1]=(byte)password[i];}
+        return "##"+string.Concat(MD5.HashData(bytes).Select(v=>v.ToString("X",System.Globalization.CultureInfo.InvariantCulture)));
+    }
+
+    static bool SluaghbinderEnabled(SQLiteConnection c,string schema="main")
+    {
+        if(!Tables(c,schema).Contains("ServerProperty"))return true;
+        using var q=c.CreateCommand();q.CommandText=$"SELECT Value FROM {schema}.ServerProperty WHERE `Key`='enable_sluaghbinder' LIMIT 1";
+        return q.ExecuteScalar() is not string text || !text.Trim().Equals("false",StringComparison.OrdinalIgnoreCase);
+    }
+
+    public static bool DestinationAllowsSluaghbinder(string newFolder)
+    {
+        using var c=Open(Path.Combine(LocateRuntime(newFolder),"data","opendaoc.sqlite3.db"),true);
+        return SluaghbinderEnabled(c);
+    }
+
     public static ImportSummary Inspect(string folder)
     {
-        using var c=Open(Path.Combine(LocateRuntime(folder),"data","opendaoc.sqlite3.db"),true);
+        string runtime=LocateRuntime(folder);
+        using var c=Open(Path.Combine(runtime,"data","opendaoc.sqlite3.db"),true);
         var tables=Tables(c);
         foreach(var t in new[]{"Account","DOLCharacters","offline_world_bots","Inventory","ItemUnique","ItemTemplate"})
             if(!tables.Contains(t))throw new InvalidDataException($"This old version is missing {t}. Import has not changed anything; it needs a compatible Offline DAoC database.");
+        string version=DetectVersion(runtime,out bool client);
         return new(Scalar(c,"SELECT count(*) FROM Account"),Scalar(c,"SELECT count(*) FROM DOLCharacters"),
-            Scalar(c,"SELECT count(*) FROM offline_world_bots"),Scalar(c,"SELECT count(*) FROM Inventory"));
+            Scalar(c,"SELECT count(*) FROM offline_world_bots"),Scalar(c,"SELECT count(*) FROM Inventory"))
+        {
+            Version=version,SluaghbinderClient=client,
+            SluaghbinderCharacters=Scalar(c,$"SELECT count(*) FROM DOLCharacters WHERE Class={SluaghbinderClass} OR (Class={AcolyteClass} AND Realm={Hibernia})"),
+            SluaghbinderBots=Scalar(c,$"SELECT count(*) FROM offline_world_bots WHERE ClassId={SluaghbinderClass}"),
+            HasCredentials=ReadCredentials(runtime).Account!=null,
+        };
     }
-    public static string Import(string oldFolder,string newFolder,Action<string> progress)
+
+    /// <param name="leaveSluaghbinderBotsBehind">Only for a 0.33 "no custom class" destination:
+    /// autonomous Sluaghbinder bots (and the items they carry) are not transferred.</param>
+    public static string Import(string oldFolder,string newFolder,Action<string> progress,bool leaveSluaghbinderBotsBehind=false)
     {
         string old=LocateRuntime(oldFolder),current=LocateRuntime(newFolder);
         if(string.Equals(old,current,StringComparison.OrdinalIgnoreCase))throw new InvalidOperationException("Old and new folders must be different.");
         CheckClosed(old,current);
         string oldDb=Path.Combine(old,"data","opendaoc.sqlite3.db"),newDb=Path.Combine(current,"data","opendaoc.sqlite3.db");
-        string credentials=Path.Combine(old,"account.txt");
-        if(!File.Exists(credentials))throw new InvalidDataException("The old runtime/account.txt is missing. Restore it first so the imported account can log in automatically.");
-        var values=File.ReadLines(credentials).Select(l=>l.Split(':',2)).Where(p=>p.Length==2)
-            .ToDictionary(p=>p[0].Trim(),p=>p[1].Trim(),StringComparer.OrdinalIgnoreCase);
-        if(!values.TryGetValue("Account",out var account)||!values.TryGetValue("Password",out var password)||string.IsNullOrWhiteSpace(account)||string.IsNullOrEmpty(password))
-            throw new InvalidDataException("The old account.txt does not contain valid Account and Password entries.");
-        Inspect(old);
+        var summary=Inspect(old);
+        var notes=new List<string>{$"Source: {old} (launcher version {summary.Version}{(summary.SluaghbinderClient?", Sluaghbinder client":"")})."};
+
+        bool customClass;
+        using(var destination=Open(newDb,true))customClass=SluaghbinderEnabled(destination);
+        if(!customClass && summary.SluaghbinderCharacters>0)
+            throw new InvalidDataException($"The old save has {summary.SluaghbinderCharacters} Sluaghbinder character(s). This is the 0.33 edition without the custom class. " +
+                "Install 0.33b (with the Sluaghbinder) and import there instead. Nothing has been changed.");
+        bool dropBots=!customClass && summary.SluaghbinderBots>0;
+        if(dropBots && !leaveSluaghbinderBotsBehind)
+            throw new InvalidDataException($"The old save has {summary.SluaghbinderBots} autonomous Sluaghbinder bot(s), but this is the 0.33 edition without the custom class. " +
+                "Import into 0.33b to keep them, or confirm that they (and the items they carry) stay behind. Nothing has been changed.");
+
+        // Account: keep the old login when account.txt is present; otherwise keep the old account
+        // with a fresh password; a save with no account at all moves bots and world progress only.
+        var (account,password)=ReadCredentials(old);
+        bool keepNewCredentials=false;
         using(var source=Open(oldDb,true))
-        { using var q=source.CreateCommand();q.CommandText="SELECT count(*) FROM Account WHERE Name=@name";q.Parameters.AddWithValue("@name",account);
-          if(Convert.ToInt64(q.ExecuteScalar())!=1)throw new InvalidDataException("The old credentials do not name an account in the old database."); }
+        {
+            long accounts=Scalar(source,"SELECT count(*) FROM Account");
+            if(account!=null)
+            {
+                using var q=source.CreateCommand();q.CommandText="SELECT count(*) FROM Account WHERE Name=@name";q.Parameters.AddWithValue("@name",account);
+                if(Convert.ToInt64(q.ExecuteScalar())!=1)
+                {
+                    if(accounts!=1)throw new InvalidDataException("The old account.txt does not name an account in the old database, and the old save has several accounts. Restore the matching account.txt first.");
+                    account=null;
+                }
+            }
+            if(account==null && accounts==1)
+            {
+                using var q=source.CreateCommand();q.CommandText="SELECT Name FROM Account LIMIT 1";
+                account=Convert.ToString(q.ExecuteScalar());
+                password=Convert.ToHexString(RandomNumberGenerator.GetBytes(10));
+                notes.Add($"The old account.txt was missing or did not match; account '{account}' was kept with a new password (see account.txt).");
+            }
+            else if(account==null && accounts==0){keepNewCredentials=true;notes.Add("The old save had no player account; this folder keeps its own new account.");}
+            else if(account==null)throw new InvalidDataException("The old runtime/account.txt is missing and the old save has several accounts. Restore account.txt first.");
+        }
+
         using var exclusive=new FileStream(Path.Combine(current,"data","progress-import.lock"),FileMode.OpenOrCreate,FileAccess.ReadWrite,FileShare.None);
         string backup=Path.Combine(current,"progress-backups",DateTime.Now.ToString("yyyyMMdd-HHmmss")+"-"+Guid.NewGuid().ToString("N")[..6]);
         Directory.CreateDirectory(backup);
@@ -114,7 +227,7 @@ public static class ImportEngine
                 var sourceTables=Tables(c,"old");var targetTables=Tables(c);
                 foreach(string unknown in sourceTables.Except(targetTables,StringComparer.OrdinalIgnoreCase).Where(t=>!t.StartsWith("sqlite_",StringComparison.OrdinalIgnoreCase)))
                     if(Scalar(c,$"SELECT count(*) FROM old.{Q(unknown)}")>0)
-                        throw new InvalidDataException($"The old save contains an unsupported extra table ({unknown}). Import stopped rather than silently omitting it.");
+                        notes.Add($"Not transferred: old table {unknown} is not used by 0.33 ({Scalar(c,$"SELECT count(*) FROM old.{Q(unknown)}")} rows).");
                 Exec(c,"BEGIN IMMEDIATE");
                 foreach(string table in Rules.ProgressTables)
                 {
@@ -122,9 +235,10 @@ public static class ImportEngine
                     Exec(c,$"DELETE FROM main.{Q(table)}");
                     if(!sourceTables.Contains(table))continue;
                     var oldColumns=Columns(c,table,"old");var newColumns=Columns(c,table);
-                    if(oldColumns.Except(newColumns,StringComparer.OrdinalIgnoreCase).Any())
-                        throw new InvalidDataException($"The old {table} schema is newer or incompatible. No progress has been installed.");
-                    string fields=string.Join(",",oldColumns.Select(Q));
+                    var shared=oldColumns.Where(column=>newColumns.Contains(column,StringComparer.OrdinalIgnoreCase)).ToList();
+                    var dropped=oldColumns.Except(shared,StringComparer.OrdinalIgnoreCase).ToList();
+                    if(dropped.Count>0)notes.Add($"{table}: old-only column(s) {string.Join(", ",dropped)} are not used by 0.33 and were left behind.");
+                    string fields=string.Join(",",shared.Select(Q));
                     progress($"Transferring {table}…");
                     Exec(c,$"INSERT INTO main.{Q(table)} ({fields}) SELECT {fields} FROM old.{Q(table)}");
                     if(Scalar(c,$"SELECT count(*) FROM main.{Q(table)}")!=Scalar(c,$"SELECT count(*) FROM old.{Q(table)}"))
@@ -132,10 +246,22 @@ public static class ImportEngine
                     if(Scalar(c,$"SELECT count(*) FROM (SELECT {fields} FROM old.{Q(table)} EXCEPT SELECT {fields} FROM main.{Q(table)})")!=0)
                         throw new InvalidDataException($"Content verification failed for {table}.");
                 }
+                if(dropBots)
+                {
+                    // Only autonomous bots of the disabled class; their carried items go with them.
+                    progress("Leaving the Sluaghbinder bots behind (0.33 edition without the custom class)…");
+                    string owners=$"SELECT 'offlinebot:'||BotId FROM main.offline_world_bots WHERE ClassId={SluaghbinderClass}";
+                    long items=Scalar(c,$"SELECT count(*) FROM main.Inventory WHERE OwnerID IN ({owners})");
+                    Exec(c,$"CREATE TEMP TABLE dropped_unique AS SELECT DISTINCT UTemplate_Id AS Id FROM main.Inventory WHERE OwnerID IN ({owners}) AND COALESCE(UTemplate_Id,'')<>''");
+                    Exec(c,$"DELETE FROM main.Inventory WHERE OwnerID IN ({owners})");
+                    Exec(c,"DELETE FROM main.ItemUnique WHERE Id_nb IN (SELECT Id FROM dropped_unique) AND Id_nb NOT IN (SELECT UTemplate_Id FROM main.Inventory WHERE COALESCE(UTemplate_Id,'')<>'')");
+                    long bots=Scalar(c,$"SELECT count(*) FROM main.offline_world_bots WHERE ClassId={SluaghbinderClass}");
+                    Exec(c,$"DELETE FROM main.offline_world_bots WHERE ClassId={SluaghbinderClass}; DROP TABLE dropped_unique;");
+                    notes.Add($"Left behind by choice: {bots} autonomous Sluaghbinder bot(s) and the {items} item(s) they carried (0.33 has no custom class).");
+                }
                 // Keep updated definitions on ID collisions; preserve old custom
                 // templates that are absent from the new world for real owned items.
-                var templateColumns=Columns(c,"ItemTemplate","old");
-                if(templateColumns.Except(Columns(c,"ItemTemplate"),StringComparer.OrdinalIgnoreCase).Any())throw new InvalidDataException("Unsupported ItemTemplate schema.");
+                var templateColumns=Columns(c,"ItemTemplate","old").Where(column=>Columns(c,"ItemTemplate").Contains(column,StringComparer.OrdinalIgnoreCase)).ToList();
                 string templateFields=string.Join(",",templateColumns.Select(Q));
                 Exec(c,$"INSERT OR IGNORE INTO main.ItemTemplate ({templateFields}) SELECT {templateFields} FROM old.ItemTemplate");
                 if(sourceTables.Contains("DBHouse"))
@@ -147,6 +273,12 @@ public static class ImportEngine
                         " WHERE HouseNumber IN (SELECT HouseNumber FROM old.DBHouse WHERE COALESCE(OwnerID,'')<>'')");
                 }
                 foreach(string table in Rules.ClearTables)if(targetTables.Contains(table))Exec(c,$"DELETE FROM {Q(table)}");
+                if(!keepNewCredentials && password!=null && ReadCredentials(old).Account==null)
+                {
+                    using var set=c.CreateCommand();set.CommandText="UPDATE Account SET Password=@hash WHERE Name=@name";
+                    set.Parameters.AddWithValue("@hash",HashPassword(password));set.Parameters.AddWithValue("@name",account);
+                    if(set.ExecuteNonQuery()!=1)throw new InvalidDataException("Could not set the kept account's new password.");
+                }
                 Exec(c,"UPDATE Account SET PrivLevel=1; INSERT OR REPLACE INTO offline_local_options(Key,Value) VALUES('MakeMeGM','false'); UPDATE ServerProperty SET Value='1' WHERE lower(Key) IN ('xp_rate','bot_xp_rate'); UPDATE offline_world_bots SET IsOnline=0;");
                 Exec(c,"UPDATE offline_population_settings SET Value=CAST((SELECT count(*) FROM offline_world_bots WHERE IsRetired=0) AS TEXT) WHERE Key='ActiveTarget'; UPDATE offline_population_settings SET Value='true' WHERE Key='PopulationEnabled';");
                 string Missing(string schema) => $"SELECT i.Inventory_ID FROM {schema}.Inventory i WHERE (COALESCE(i.UTemplate_Id,'')<>'' AND NOT EXISTS(SELECT 1 FROM {schema}.ItemUnique u WHERE u.Id_nb=i.UTemplate_Id)) OR (COALESCE(i.UTemplate_Id,'')='' AND COALESCE(i.ITemplate_Id,'')<>'' AND NOT EXISTS(SELECT 1 FROM {schema}.ItemTemplate t WHERE t.Id_nb=i.ITemplate_Id))";
@@ -156,16 +288,20 @@ public static class ImportEngine
                 if(existingMissing>0)progress($"Note: preserving {existingMissing} already-unresolved inventory references from the old save; no items are deleted or invented.");
                 Exec(c,"COMMIT; DETACH DATABASE old;");Integrity(c);
             }
-            File.WriteAllText(credentialStage,$"Account: {account}\r\nPassword: {password}\r\n");
+            if(!keepNewCredentials)File.WriteAllText(credentialStage,$"Account: {account}\r\nPassword: {password}\r\n");
             CheckClosed(old,current);
             progress("Installing verified progress. Please do not close this window…");
             using(var c=Open(newDb,false))Exec(c,"PRAGMA wal_checkpoint(TRUNCATE); PRAGMA journal_mode=DELETE;");
             File.Replace(staged,newDb,null);swapped=true;
             string targetCredentials=Path.Combine(current,"account.txt");
-            if(File.Exists(targetCredentials))File.Replace(credentialStage,targetCredentials,null);else File.Move(credentialStage,targetCredentials);
+            if(!keepNewCredentials)
+            {
+                if(File.Exists(targetCredentials))File.Replace(credentialStage,targetCredentials,null);else File.Move(credentialStage,targetCredentials);
+            }
             using(var verified=Open(newDb,true))Integrity(verified);
             File.Delete(snapshot);
             File.WriteAllText(Path.Combine(backup,"IMPORT RESULT.txt"),"Import completed. Previous destination database and account.txt are rollback copies. Original old folder was not changed. XP=1x; GM off.\r\n"+
+                string.Join("\r\n",notes)+"\r\n"+
                 (existingMissing>0?$"Source-save warning: {existingMissing} inventory references already lacked item definitions in the old database. They were preserved unchanged; this import did not create those missing definitions.\r\n":""));
             return backup;
         }

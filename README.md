@@ -1,187 +1,116 @@
-# Offline DAoC — single-player DAoC with bots
+# Offline DAoC — single-player Dark Age of Camelot with bots
 
-**AI-developed customizations, directed and tested by a human player. Open-source server and customization code.**
+Offline DAoC is a local, single-player Dark Age of Camelot (Classic + Shrouded Isles, 1.65 rules)
+that runs entirely on your own PC. The world is filled with autonomous gamebots that level,
+group, trade and fight on their own, and you can recruit companion bots to adventure with you.
 
-Offline DAoC is a local, single-player Dark Age of Camelot setup with autonomous
-gamebots, recruitable companion bots, raids, realm events, navigation, a launcher,
-and development tools. It builds on Dawn of Light/OpenDAoC and other existing
-projects; this is not a claim that AI created the original game or all upstream code.
-It is a community project, not an official DAoC product or a product for sale.
+It is a community project built on the open-source [OpenDAoC](https://github.com/OpenDAoC/OpenDAoC-Core)
+server. The customizations were developed with AI tools (Codex, then Claude) and directed and
+play-tested by the project owner. It is not an official DAoC product and is not for sale.
 
-## Fork it and make it yours
+## Current release: 0.33 "Claude Takeover"
 
-You do **not** need to ask permission to fork this public repository. Click **Fork**
-to make a copy under your own GitHub account, then give your preferred LLM the
-checkout and `AGENTS.md`. Changes in your fork do not change this repository or
-the author's local installation. Pull requests are proposals, not automatic updates.
-Follow the included component licenses when modifying or redistributing code.
+0.33 carries on from 0.32b with smarter bots, reworked Sluaghbinder pets and spell effects, new
+pet weapons, bug fixes, a cleaner download, and a progress transfer tool.
+Read [what's new in 0.33](docs/RELEASE-0.33.md).
 
-## Play / download
+There are two editions. They are the same game, and only the custom class differs:
 
-- **Players:** [Download and play instructions](docs/PLAY.md).
-- **Everyday commands:** [Quick commands and bot-generation shortcuts](docs/QUICK-COMMANDS.md).
-- **Developers and LLM users:** [Fork and customize instructions](docs/LLM-QUICKSTART.md).
-- **Changelog:** [Full version history and Darkness Falls Beta notes](CHANGELOG.md).
-- **Current release notes:** [v0.32 normal](docs/RELEASE-0.32.md) and
-  [v0.32b with Sluaghbinder](docs/RELEASE-0.32B.md).
+| Edition | What it is | Download |
+|---|---|---|
+| **0.33b** (recommended) | Includes the custom Hibernian class, the **Sluaghbinder** (a pet-summoning undead binder), for players and bots. | [v0.33b release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.33b) |
+| **0.33** | The classic Classic + SI class list only. There are no Sluaghbinder players or bots. | [v0.33 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.33) |
 
-## Video demos
+## Download and play (no Git or AI needed)
 
-These are linked previews, not large files stored in the repository. Click a
-thumbnail to watch on YouTube:
+1. **Requirements:**
+   - A 64-bit Windows PC with a CPU that supports AVX2.
+   - 16 GB RAM recommended.
+   - About 30 GB of free disk space.
+   - The Windows **.NET Framework 3.5** feature turned on. [How to turn it on](docs/PLAY.md#before-you-start).
+2. **Download the helper:** from the release page of the edition you want, download two files into
+   the same new, empty folder:
+   - `DOWNLOAD-AND-PLAY-v0.33b.cmd` (or `-v0.33.cmd`)
+   - `Get-OfflineDAoC.ps1`
+3. **Run the helper:** double-click the `.cmd` file. It downloads the game (about 6 GB in parts),
+   checks every part, and unpacks it into a new folder. It never overwrites an existing game.
+4. **Start playing:** open the new folder and double-click **START OFFLINE DAOC.cmd**.
+   1. Click **START SERVER** and wait until it says **RUNNING**.
+   2. Click **ENTER REALM**.
+   3. Your own local account is created automatically the first time.
+5. **Create your bots:** use the bot buttons in the launcher. Every new install starts with an
+   empty world and default settings.
 
-[![Offline DAoC V3.1b — Optional Hibernian Sluaghbinder Class Expansion](https://i.ytimg.com/vi/EowrCcjigBY/hqdefault.jpg)](https://www.youtube.com/watch?v=EowrCcjigBY)
+The full walkthrough, with troubleshooting, is in [docs/PLAY.md](docs/PLAY.md).
 
-**[Offline DAoC V3.1b — Optional Hibernian Sluaghbinder Class Expansion](https://www.youtube.com/watch?v=EowrCcjigBY)**
-Short introduction to the optional class.
+> **Code > Download ZIP** on this page gives you the *source code*, not the playable game. Use the
+> release helper above to get the game.
 
-[![Offline DAoC v0.3 — Introduction to Raids & Realm Events](https://i.ytimg.com/vi/zmh7YkajRx0/hqdefault.jpg)](https://www.youtube.com/watch?v=zmh7YkajRx0)
+## Already playing an older version?
 
-**[Offline DAoC v0.3 — Introduction to Raids & Realm Events](https://www.youtube.com/watch?v=zmh7YkajRx0)**
-Dragon raid demonstration for the normal v0.3 feature set.
+Your characters, account, items, money, houses **and bots** can come with you. The new version
+includes **IMPORT PROGRESS FROM OLD OFFLINE DAOC.cmd**:
+1. Close both games.
+2. Run the import tool from the new folder.
+3. Pick your old folder.
 
-The current downloads are [v0.32 Darkness Falls Beta](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32)
-for normal play and [v0.32b Darkness Falls Beta](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b)
-for the optional Sluaghbinder class. They contain all shared fixes through v0.31,
-including Bounty Masters, Bard and companion song repairs, and bot route fixes.
-The September 28 update also improves Savage outdoor pulls, Cursed Tomb and
-Koalinth goals, group meetups and recovery, Hibernia Darkness Falls exterior
-travel, backpack selling, and ordinary PvE frontier boundaries. It corrects
-model-840 scale-coif display, adds helmet details to `/gminfo`, improves
-moving-companion group-speed casting, and restores the three collision-free
-classic-side Shrouded Isles portal visuals. These shared fixes are in both
-editions and still need a long live bot check. The earlier v0.32 beta
-maintenance update also permits eligible Bounty Master hunts
-in certified Darkness Falls camps and fixes Oro's restart level check and
-solo Bard add-mez gating. The latest maintenance also keeps low-level bots in
-their own entrance wing, lets them continue to a nearby reachable monster or
-wait for a cleared spawn, and repairs Midgard's entrance choice and party-wipe
-regrouping. Bounties avoid repeating the last completed monster; small orb
-and sneezer camps have more spawns. Live Darkness Falls bot behavior still
-needs testing.
-**Beta** means the owner has not yet completed a long live bot test in Darkness
-Falls. Darkness Falls raid AI is not implemented; Legion, the hardest
-level-70+ encounters, and unreachable flying targets are excluded from
-ordinary bot goals. [Read the implementation and limits](docs/RELEASE-0.32.md).
+The tool never changes your old folder, and it backs up the new one first. It works with v0.3,
+v0.31, v0.31b, v0.32, v0.32b and the "new class test" builds. See
+[docs/TRANSFER-PROGRESS.md](docs/TRANSFER-PROGRESS.md).
 
-Use the release's download helper and `Get-OfflineDAoC.ps1` for the complete
-playable game. **Code > Download ZIP** contains editable source, not the full game.
-The [v0.3](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3),
-[v0.31](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31), and
-[v0.31b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b)
-releases stay available as legacy versions.
+## Older versions
 
-The intended supported target is a compatible **64-bit Windows PC**. The launcher
-uses Windows Forms and the legacy game client has Windows/graphics prerequisites;
-“any PC” does not mean native macOS/Linux or every CPU/driver combination.
+Every earlier release is still available and unchanged:
+- [v0.32](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32) and
+  [v0.32b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b): Darkness Falls beta.
+- [v0.31](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31) and
+  [v0.31b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b).
+- [v0.3](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3).
 
-System requirements: CPUs without AVX2 support will not work. 16 GB RAM is the
-recommended minimum; 8 GB may work but is untested.
+Their download helpers are in [older-versions/](older-versions/), and their notes are in
+[docs/history/](docs/history/).
 
-The copy-first download keeps rollback folders and verified download parts.
-Budget roughly **40 GB free for v0.32** or **55 GB for v0.32b**, with extra
-headroom for your saves and future updates. Existing installations are not
-deleted automatically.
+## For developers and AI assistants
 
-The current complete download includes clean world data, navigation meshes, the
-runnable components, source, and offline development dependencies. Accounts, characters,
-inventories, saved bot profiles and personal settings from the author's game are
-not included. Each installation creates its own local account and saves.
+- **Where to start:** [AGENTS.md](AGENTS.md) (also read by Claude as [CLAUDE.md](CLAUDE.md)) has
+  the project rules.
+- **Guides:** [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) covers building and testing, and
+  [docs/LLM-QUICKSTART.md](docs/LLM-QUICKSTART.md) covers customizing with your own AI.
+- **Where the code is:**
+  - `source/server`: the game server and all bot AI.
+  - `source/tools`: the launcher and the progress importer.
+  - `tools/pet-art`: the art pipeline used for the custom pets, weapons and spell effects.
+- **Forking:** you don't need permission to fork this repository and make it your own. Keep the
+  existing licenses and credits ([THIRD_PARTY.md](THIRD_PARTY.md)).
 
-### Pick the play path that fits you
+## Good to know
 
-You do **not** need an LLM, Git, or programming knowledge to play. Use one of
-these two clearly separate paths:
+- **What the download includes:**
+  - the full game client
+  - clean world data and navigation meshes
+  - the launcher and server
+  - the progress import tool
+  - the bundled .NET runtime
+  - the source code
 
-| What you want | What to download | What happens |
-| --- | --- | --- |
-| Normal Classic + Shrouded Isles with Darkness Falls | The **v0.32 Darkness Falls Beta** release's `DOWNLOAD-AND-PLAY-v0.32.cmd` and `Get-OfflineDAoC.ps1` | Builds a fresh normal v0.32 game from the preserved v0.31 base. No Sluaghbinder class is installed. |
-| The same game **plus** optional Hibernian Sluaghbinder | The **v0.32b Darkness Falls Beta** release's `DOWNLOAD-AND-PLAY-v0.32b.cmd` and `Get-OfflineDAoC.ps1` | Builds a fresh v0.32 base, then applies the optional class patch into a separate v0.32b copy. |
+  It does **not** include anyone's account, characters, bots or settings. Every install makes its
+  own.
+- **Darkness Falls is still beta.** All three realms can enter, and bots grind its ordinary
+  camps. Raid AI isn't implemented. Legion, the hardest level 70+ encounters, unreachable flying
+  targets and unverified routes are left out of bot goals.
+- **AI-written code can have bugs.** Keep a backup of your save before installing a new build or
+  mod. There's no guarantee against regressions.
+- **Licensing:** the original game client is a binary dependency. This repository has the server,
+  tools and customization source, not the client's source code. The server's license doesn't
+  relicense third-party client assets or dependencies. See [THIRD_PARTY.md](THIRD_PARTY.md).
+- **Local only:** the default setup is for one PC. Running a public multiplayer server would need
+  its own security work.
 
-Download both files from the same release into one new folder, then double-click
-the helper. The download verifies its parts and refuses to overwrite an existing
-installation. Keep the earlier version's folder as a rollback path. See the
-[step-by-step play guide](docs/PLAY.md) before transferring an existing save.
+## Videos
 
-For either path, open the new playable folder, read `READ ME FIRST.txt`, start the
-launcher, click **START SERVER**, wait for **RUNNING**, then click **ENTER
-REALM**. The launcher creates a local offline account automatically; no online
-account or LLM is required. Choose v0.32b only when you want a Hibernian
-Acolyte and the Sluaghbinder trainer and quests in-game.
+[![Optional Hibernian Sluaghbinder class](https://i.ytimg.com/vi/EowrCcjigBY/hqdefault.jpg)](https://www.youtube.com/watch?v=EowrCcjigBY)
+[![Raids and realm events](https://i.ytimg.com/vi/zmh7YkajRx0/hqdefault.jpg)](https://www.youtube.com/watch?v=zmh7YkajRx0)
 
-Both new versions retain repeatable Bounty Masters in Cotswold,
-Mularn, and Mag Mell. Take one hunt, follow its journal kill count, and return
-for a reward. The red target marker appears on the local map after you enter
-the assigned zone or dungeon.
+## Changes
 
-## Darkness Falls Beta in v0.32 and v0.32b
-
-Characters and autonomous bots from Albion, Midgard, and Hibernia can enter
-Darkness Falls in this offline setup. Bots have staged, floor-aware routes for
-ordinary dungeon grinding, their own realm exits, and opposing-realm fights
-near the shared center. Players can use the existing seal vendors. The routes
-account for one-way drops and ledges; a bot should not try to walk back up a
-drop. These are staged intended behaviors, not a claim of live bot success.
-Darkness Falls raid AI is not implemented. Legion, the hardest level-70+
-encounters, unreachable flying targets, and unverified routes are excluded
-from ordinary bot goals. Other Classic/SI raid features shown in the v0.3
-demo are separate.
-
-## Optional Sluaghbinder expansion (v0.32b)
-
-Sluaghbinder is an optional Hibernian player class. Normal v0.32 does not include
-its class, quests, or client assets. For the current optional version, use the
-[v0.32b release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b)
-and its `DOWNLOAD-AND-PLAY-v0.32b.cmd` helper. The optional installer verifies
-the v0.32 base and patch, makes a new sibling copy, and places a rollback
-command in that copy. Older [v0.31b instructions](docs/RELEASE-0.31B.md) remain
-available for legacy installations.
-
-The expansion includes the Sluaghbinder character path (Acolyte through level
-5 promotion), its three core lines and three trainable paths, dedicated player,
-companion, and autonomous gamebot behavior, Muirenn in Tir na Nog, and the
-five chained epic quests that unlock the Epic Spells service summons. It does
-not export or import the author's accounts, characters, bot roster, settings,
-or saves. If you do not want the class, use normal v0.32.
-
-## Customize with your own LLM
-
-- `source/server`: current server, bot AI, combat, spells, groups, sieges, economy,
-  routes, world-goal resources, tests, and historical engineering scripts.
-- `source/tools`: current launcher, progress importer, archive utilities and tests.
-- `source/development-tools`: navigation builder and matching native pathing source.
-- `source/server/tools`: native raid UI / bot-map patch builders and tests, in
-  addition to server diagnostics and migration utilities.
-- `tools/asset-tool`: texture-tool source, profiles and tests.
-- [Normal v0.32 source](https://github.com/shadowofze/OfflineDAoC/tree/release/v0.32-darkness-falls) contains Darkness Falls without Sluaghbinder. [Optional v0.32b source](https://github.com/shadowofze/OfflineDAoC/tree/release/v0.32b-sluaghbinder-darkness-falls) contains both.
-- [LLM guide to the optional Sluaghbinder pet textures](https://github.com/shadowofze/OfflineDAoC/blob/release/v0.32b-sluaghbinder-darkness-falls/docs/LLM-SLUAGHBINDER-PET-TEXTURES.md): private NIF/DDS registrations, legacy MPK rules, visual testing, and rollback. The older v0.31b source remains on its [legacy branch](https://github.com/shadowofze/OfflineDAoC/tree/release/v0.31b-sluaghbinder).
-- `source/reference`: additional launcher/portal source snapshots. These are
-  reference material, not substitutes for the current launcher.
-- `docs/DEVELOPMENT.md`: build, safety, portability, and dependency notes.
-
-No gameplay features have intentionally been removed for sharing. However, the
-original game executable is a binary dependency: the material found here includes
-customization/patch source, not a complete source tree for the original DAoC client.
-The server's license does not relicense third-party client assets or dependencies.
-Their existing rights and notices remain applicable; see `THIRD_PARTY.md`.
-
-## Privacy and defaults
-
-The public baseline uses fresh saves, normal-player access, 1x XP, no pre-created
-bot roster, and default keep/relic ownership. Settings can be changed locally.
-Keep your own save database, credentials and logs out of commits. `.gitignore`
-is a safety net, not a substitute for reviewing `git diff --cached` before pushing.
-
-This repository is a clean baseline, not the author's old Git history or backups.
-The customizations in this repository were produced by AI coding agents under
-the author's direction, then reviewed and tested on the author's offline setup.
-That statement does not relicense upstream OpenDAoC or third-party client assets.
-AI-generated code can contain bugs: review changes, test a disposable copy, and
-back up saves before installing a build. No zero-regression guarantee is implied.
-
-## Current version scope
-
-v0.32 is the normal Darkness Falls Beta and contains no Sluaghbinder class,
-quests, or patch. v0.32b adds that optional class to the same current feature
-set. Their source and playable downloads are versioned together. The v0.3,
-v0.31, and v0.31b tags and releases remain separate legacy downloads.
+See the [changelog](CHANGELOG.md).

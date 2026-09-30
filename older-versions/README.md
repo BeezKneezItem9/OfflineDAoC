@@ -1,0 +1,21 @@
+# Older versions
+
+Every earlier Offline DAoC release is still available and unchanged. The easiest way to get one is
+from its release page. Download that release's own `.cmd` helper and `Get-OfflineDAoC.ps1` into a
+new folder and run the helper:
+
+| Version | Release page | Helper |
+|---|---|---|
+| 0.32 Darkness Falls beta | [v0.32](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32) | `DOWNLOAD-AND-PLAY-v0.32.cmd` |
+| 0.32b with Sluaghbinder | [v0.32b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b) | `DOWNLOAD-AND-PLAY-v0.32b.cmd` |
+| 0.31 / 0.31b | [v0.31](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31), [v0.31b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b) | `DOWNLOAD AND PLAY.cmd`, `DOWNLOAD AND PLAY v0.31b.cmd` |
+| 0.3 | [v0.3](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3) | `DOWNLOAD AND PLAY v0.3.cmd` |
+
+The helpers in this folder do the same thing when run from a clone of this repository. They use
+the shared `Get-OfflineDAoC.ps1` in the folder above, which still supports every version.
+
+Their source is on the release branches (`release/v0.31-maintenance`, `release/v0.31b-sluaghbinder`,
+`release/v0.32-darkness-falls`, `release/v0.32b-sluaghbinder-darkness-falls`) and tags, and their
+notes are in [docs/history](../docs/history/).
+
+To move a save from any of them into 0.33, see [TRANSFER-PROGRESS.md](../docs/TRANSFER-PROGRESS.md).

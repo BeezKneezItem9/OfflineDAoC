@@ -1,38 +1,38 @@
-OFFLINE DAOC v0.32 - DARKNESS FALLS BETA (NORMAL VERSION)
+OFFLINE DAOC 0.33 "CLAUDE TAKEOVER"
 
-This is the normal Classic + Shrouded Isles build with Darkness Falls. It does
-not include Sluaghbinder. The optional class is a separate v0.32b patch.
+This folder is the complete game: client, server, clean world, launcher,
+tools and source code. It contains no one else's account, characters or bots.
 
-BEFORE LAUNCHING
-Enable the Windows .NET Framework 3.5 feature. See docs/PLAY.md for the exact
-steps, Windows requirements, and account/progress transfer instructions.
+BEFORE THE FIRST START
+Turn on the Windows feature ".NET Framework 3.5 (includes .NET 2.0 and 3.0)":
+  1. Start menu, type "Turn Windows features on or off", and open it.
+  2. Tick .NET Framework 3.5, click OK, and let Windows install it.
+  3. Restart the PC if Windows asks.
+The game connector needs it. Everything else (the modern .NET runtime) is
+already included in tools\dotnet.
 
-START PLAYING
-1. Keep this entire playable folder together. Do not run files inside a ZIP.
-2. Double-click START OFFLINE DAOC.cmd, then click START SERVER.
-3. Wait until the launcher reports RUNNING, then click ENTER REALM.
-4. Create your character. The game creates a local offline account for you.
-5. Use the launcher buttons to create gamebots. No LLM or Git account is needed.
+PLAY
+1. Keep this whole folder together. Don't run files from inside a ZIP.
+2. Double-click START OFFLINE DAOC.cmd.
+3. Click START SERVER and wait until the launcher shows RUNNING.
+4. Click ENTER REALM. Your own local account is created the first time.
+5. Create bots with the buttons on each realm's card in the launcher.
+6. To finish: quit the game, click STOP SERVER, and wait for it to save.
+Only one Offline DAoC server can run at a time.
 
-DARKNESS FALLS BETA LIMITS
-All three realms can enter. Autonomous bots have staged routes and ordinary
-grind goals, but a long live bot run has not yet been completed. Darkness Falls
-raids are NOT implemented. Legion, the hardest level-70+ encounters, unreachable
-flying monsters, and unverified routes are excluded from ordinary bot goals.
-Some entrance ledges are one-way; leave through your own realm's exit portal.
+EDITION
+0.33b includes the custom Hibernian Sluaghbinder class.
+0.33 has only the original Classic + Shrouded Isles classes.
+The download helper you used chose the edition.
 
-ROLLBACK AND SAVES
-The downloader leaves the prior v0.31 game in a separate sibling folder.
-Stop the server and client before changing versions. Launch that untouched
-folder to roll back. Do not copy an old database over this new world database.
-Use the included IMPORT PROGRESS FROM OLD OFFLINE DAOC.cmd if you want to
-transfer existing characters after reading docs/PLAY.md. Your local account,
-characters, and bots are not included in this public download.
+COMING FROM AN OLDER VERSION?
+Run IMPORT PROGRESS FROM OLD OFFLINE DAOC.cmd and pick your old folder. It
+brings over your account, characters, items, money, houses and bots. Your
+old folder is not changed, and this folder is backed up first.
+See docs\TRANSFER-PROGRESS.md.
 
-FOR DEVELOPERS AND LLMS
-Start with AGENTS.md and docs/LLM-QUICKSTART.md. This playable copy includes
-editable source under source/; the matching public Git tag is v0.32. The normal
-v0.32 source and world contain no optional Sluaghbinder class implementation.
-
-Only one local server can use the game port at a time. Shut it down normally
-and wait for saves before moving, importing, or modifying files.
+MORE HELP
+docs\PLAY.md               full guide and troubleshooting
+docs\RELEASE-0.33.md       what's new
+QUICK COMMANDS.txt         handy in-game commands
+AGENTS.md, docs\DEVELOPMENT.md    for developers and AI assistants

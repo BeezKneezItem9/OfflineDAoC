@@ -8,8 +8,9 @@ internal static class Program
         ApplicationConfiguration.Initialize();
         if(args.Length>=4 && args[0]=="--import" && args[3]=="--replace-progress")
         {
-            string report=args.Length>4?args[4]:Path.Combine(args[2],"import-test-result.txt");
-            try { var lines=new List<string>();string backup=ImportEngine.Import(args[1],args[2],lines.Add);lines.Add("SUCCESS "+backup);File.WriteAllLines(report,lines);return 0; }
+            bool leaveBots=args.Contains("--leave-sluaghbinder-bots");
+            string report=args.Skip(4).FirstOrDefault(a=>!a.StartsWith("--"))??Path.Combine(args[2],"import-test-result.txt");
+            try { var lines=new List<string>();string backup=ImportEngine.Import(args[1],args[2],lines.Add,leaveBots);lines.Add("SUCCESS "+backup);File.WriteAllLines(report,lines);return 0; }
             catch(Exception e){File.WriteAllText(report,e.ToString());return 1;}
         }
         string root=Path.GetFullPath(Path.Combine(AppContext.BaseDirectory,"..",".."));
@@ -31,9 +32,10 @@ public sealed class ImportForm : Form
     readonly Label status=new(){AutoSize=true,Text="Nothing has been changed."};
     readonly ProgressBar bar=new(){Dock=DockStyle.Fill,Style=ProgressBarStyle.Continuous};
     readonly string destination;
+    ImportSummary? inspected;
     public ImportForm(string root)
     {
-        destination=root;Text="Offline DAoC 0.3 — Transfer saved progress";ClientSize=new(820,510);MinimumSize=new(820,550);
+        destination=root;Text="Offline DAoC 0.33 — Transfer saved progress";ClientSize=new(820,510);MinimumSize=new(820,550);
         StartPosition=FormStartPosition.CenterScreen;BackColor=Color.FromArgb(31,29,24);ForeColor=Color.Wheat;
         Font=new Font("Segoe UI",10);AutoScaleMode=AutoScaleMode.Dpi;
         var layout=new TableLayoutPanel{Dock=DockStyle.Fill,Padding=new Padding(22),ColumnCount=1,RowCount=9};
@@ -51,17 +53,38 @@ public sealed class ImportForm : Form
         {
             using var dialog=new FolderBrowserDialog{Description="Select the OLD Offline DAoC folder",UseDescriptionForTitle=true,ShowNewFolderButton=false};
             if(dialog.ShowDialog(this)!=DialogResult.OK)return;
-            try { var data=ImportEngine.Inspect(dialog.SelectedPath);source.Text=dialog.SelectedPath;summary.Text=$"Found {data.Accounts:N0} account(s), {data.Characters:N0} character(s), {data.Bots:N0} bots\nand {data.InventoryItems:N0} real inventory/equipment entries.";transfer.Enabled=true;status.Text="Ready. Your old folder will not be changed."; }
+            try
+            {
+                var data=ImportEngine.Inspect(dialog.SelectedPath);source.Text=dialog.SelectedPath;inspected=data;
+                bool customClass=ImportEngine.DestinationAllowsSluaghbinder(destination);
+                string edition=data.SluaghbinderClient?" (Sluaghbinder edition)":"";
+                summary.Text=$"Found version {data.Version}{edition}: {data.Accounts:N0} account(s), {data.Characters:N0} character(s),\n{data.Bots:N0} bots and {data.InventoryItems:N0} real inventory/equipment entries.";
+                if(!customClass && data.SluaghbinderCharacters>0)
+                {
+                    transfer.Enabled=false;
+                    status.Text=$"This save has {data.SluaghbinderCharacters} Sluaghbinder character(s). Install 0.33b and import there.";
+                    return;
+                }
+                if(!customClass && data.SluaghbinderBots>0)
+                    summary.Text+=$"\n{data.SluaghbinderBots:N0} Sluaghbinder bots can't come into this edition; 0.33b keeps them.";
+                transfer.Enabled=true;status.Text="Ready. Your old folder will not be changed.";
+            }
             catch(Exception e){transfer.Enabled=false;MessageBox.Show(this,e.Message,"Cannot use this folder",MessageBoxButtons.OK,MessageBoxIcon.Warning);}
         };
         transfer.Click+=async(_,_)=>
         {
             if(MessageBox.Show(this,"Replace progress in THIS NEW copy with progress from:\n"+source.Text+"\n\nA rollback backup is created first. The old folder is not changed. Continue?","Confirm progress transfer",MessageBoxButtons.YesNo,MessageBoxIcon.Warning)!=DialogResult.Yes)return;
+            bool leaveBots=false;
+            if(inspected is {SluaghbinderBots:>0} && !ImportEngine.DestinationAllowsSluaghbinder(destination))
+            {
+                if(MessageBox.Show(this,$"This is the 0.33 edition without the custom class.\n\n{inspected.SluaghbinderBots:N0} autonomous Sluaghbinder bots (and the items they carry) will stay behind in the old folder. Every other bot comes across.\n\nChoose No and install 0.33b instead if you want to keep them.\n\nLeave them behind and continue?","Sluaghbinder bots",MessageBoxButtons.YesNo,MessageBoxIcon.Question)!=DialogResult.Yes)return;
+                leaveBots=true;
+            }
             browse.Enabled=transfer.Enabled=false;bar.Style=ProgressBarStyle.Marquee;ControlBox=false;
             string oldFolder=source.Text;
             try
             {
-                string backup=await Task.Run(()=>ImportEngine.Import(oldFolder,destination,message=>BeginInvoke(()=>status.Text=message)));
+                string backup=await Task.Run(()=>ImportEngine.Import(oldFolder,destination,message=>BeginInvoke(()=>status.Text=message),leaveBots));
                 status.Text="Import complete. Close this window, then use START OFFLINE DAOC.cmd.";
                 MessageBox.Show(this,"Progress imported successfully.\n\nYou can now launch this new copy normally.\nXP is 1× and GM is off.\n\nRollback backup and verification notes:\n"+backup,"Transfer complete",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }

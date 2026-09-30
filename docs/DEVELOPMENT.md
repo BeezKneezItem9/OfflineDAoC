@@ -1,92 +1,86 @@
-# Development and reproducibility
+# Developing Offline DAoC
 
-## Baseline and layout
+This guide is for people (and AI assistants) who change the code. Players only need
+[PLAY.md](PLAY.md).
 
-The current normal source branch is `release/v0.32-darkness-falls`; its matching
-v0.32 Darkness Falls Beta download includes the shared maintenance fixes and
-no Sluaghbinder class, quests, or optional client assets. The matching optional
-branch, `release/v0.32b-sluaghbinder-darkness-falls`, adds Sluaghbinder on top
-of v0.32. The v0.3, v0.31, and v0.31b tags and releases stay available as
-legacy versions. Portable account bootstrap and default settings are
-release-specific differences.
+## Layout
 
-The complete release's runtime/server contains the installed binaries and
-navigation meshes. Runtime/data contains a cleaned world database. Runtime/client-opendaoc/app
-contains the compatible game installation. Never use the author's old absolute paths.
+| Where | What |
+|---|---|
+| `source/server` | OpenDAoC-based server (`Dawn of Light.sln`): game logic, companion bots, autonomous gamebots, tests |
+| `source/tools/OfflineDaoc.Launcher` | Windows launcher (server control, bot creation, dashboards) with tests in `OfflineDaoc.Launcher.Tests` |
+| `source/tools/OfflineDaoc.ProgressImport` | Progress transfer tool |
+| `source/tools/build_release_033.py`, `smoke_release_033.py` | Build and smoke-test the public package |
+| `source/development-tools` | Navigation mesh builder and pathing source |
+| `tools/pet-art`, `tools/asset-tool` | Client art pipeline and the MPK and texture helpers |
+| `tools/claude-version` | Small database and client helpers used during 0.33 |
 
-The optional v0.32b Sluaghbinder expansion is a copy-first overlay on a
-verified v0.32 baseline. Its class source is in the optional `source/server`
-tree, its client
-build-identifying helpers are under `source/server/tools`, and its static data
-overlay builder/installer sources are under `tools/sluaghbinder` and
-`source/tools/OfflineDaoc.SluaghbinderPatch`. The public launcher labels are
-0.32 and 0.32b; a private local label must not be copied into a fork.
+A playable folder has:
+- `runtime/server`: server binaries plus `navmesh/`
+- `runtime/data/opendaoc.sqlite3.db`: world plus saves
+- `runtime/client-opendaoc/app`: the game client
+- `runtime/OfflineDAoC.exe`: the launcher
 
-Darkness Falls uses region 249. Entrance access, one-way ledges, realm exits,
-shared-center PvP, and autonomous bot routes have separate authority checks.
-The bot catalog must exclude Legion, the hardest level-70+ encounters,
-unreachable flying targets, and unverified targets. Darkness Falls raid AI
-is not implemented. Read `docs/RELEASE-0.32.md` and
-`docs/VERIFICATION-0.32.md` before changing those boundaries; do not treat
-policy tests as a long live gameplay test.
+## Build and test
 
-The runnable release also bundles tools/dotnet and tools/nuget-feed for offline C#
-development, the navigation builder/native dependencies, and the texture tool's
-Python runtime. A GitHub source ZIP alone is not the complete runtime download.
+You need the **.NET 10 SDK** on Windows. The playable download bundles only the runtime.
 
-## Build (does not deploy or start the server)
-
-Use a .NET 10 SDK on Windows, or the SDK in the complete release. From the root:
-
-```powershell
-dotnet restore 'source/server/Dawn of Light.sln' -p:Configuration=Release
-dotnet build 'source/server/Dawn of Light.sln' -c Release --no-restore
-dotnet test source/server/Tests/Tests.csproj -c Release --no-build --no-restore
-dotnet restore source/tools/OfflineDaoc.Launcher.Tests/OfflineDaoc.Launcher.Tests.csproj
-dotnet test source/tools/OfflineDaoc.Launcher.Tests/OfflineDaoc.Launcher.Tests.csproj -c Release --no-restore
+```bash
+cp source/server/CoreServer/config/serverconfig.example.xml source/server/CoreServer/config/serverconfig.xml
+dotnet build "source/server/Dawn of Light.sln" -c Release
+dotnet test source/server/Tests/Tests.csproj -c Release
+dotnet test source/tools/OfflineDaoc.Launcher.Tests/OfflineDaoc.Launcher.Tests.csproj -c Release
 ```
 
-For offline restore, use the release's NuGet.Config and set NUGET_PACKAGES to a
-local developer-state directory. Some launcher tests require that no DAoC server
-is listening locally; a running server can correctly trigger the save lock.
+- `serverconfig.xml` is local and ignored by git. The build only needs it to exist.
+- Some launcher tests expect that no local DAoC server is running.
+- At 0.33: 2,226 server tests and 103 launcher tests pass.
 
-If the complete download is in `<playable-folder>`, its SDK is
-`<playable-folder>/tools/dotnet/dotnet.exe` and its offline configuration is
-`<playable-folder>/NuGet.Config`. These are explicit alternatives to a globally installed SDK.
-The release's BUILD AND TEST SOURCE.cmd is the ready-made offline build entrypoint
-for the source bundled inside that complete download. It never deploys a build.
+## Deploy a build into a playable folder
 
-## Native client modifications
+1. **Stop everything:** the launcher, the game and the server.
+2. **Back up the files you'll replace.**
+3. **Copy the server build:** `source/server/Release/lib/GameServer.dll` (and its `.pdb`) goes to
+   `runtime/server`, `runtime/server/lib` and `runtime/server/win-x64`.
+4. **Copy the launcher build** if you changed it: the `OfflineDAoC.*` files from
+   `source/tools/OfflineDaoc.Launcher/bin/Release/net10.0-windows` go to `runtime/`.
+5. **Test in game.** Automated tests are not a substitute for an in-game check.
 
-The native raid and bot-map builders are in source/server/tools, with validation
-tests alongside them. They patch a specific verified x86 binary; they are not the
-original client's C++ source. Their baseline hashes and dependencies matter.
-Historical scripts may refer to backup input paths on the author's PC: these must
-be parameterized and the required baseline supplied before rerunning. Do not
-substitute an arbitrary game.dll or remove a failed hash guard. The supported
-`tools/build-client-raid.py` wrapper resolves inputs from `--distribution`, includes
-the exact baseline, and stages into a fresh `--output` directory. The older
-v0.31 release verification recorded a byte-for-byte rebuild of its installed
-game.dll; this is not a v0.32 verification claim.
+## Editions and the custom class
 
-Test texture-tool source with `python tools/test-assets.py --distribution playable`
-(or the actual complete-download path). The wrapper resolves the read-only fixtures
-for the source-checkout layout; modifications happen only in temporary test copies.
+- **The switch:** the server setting `classes / enable_sluaghbinder`
+  (`ServerProperties.Properties.ENABLE_SLUAGHBINDER`) is on by default.
+- **When it's off:**
+  - `AutonomousBotIdentityGenerator` never rolls or lists the Sluaghbinder.
+  - The launcher's bot batches skip class 63.
+  - Character creation treats the Hibernian Mauler slot as the disabled native class again.
+- **The 0.33 database** sets the switch off and removes the Sluaghbinder trainer, the wisp and the
+  class's skill rows. The 0.33 client uses the normal v0.32 `game.dll`
+  (SHA-256 `67dcf68a…`).
+- **0.33b** uses the Sluaghbinder client `game.dll` (`01b1848e…`), which relabels the Mauler slot.
 
-## World data, navigation, and customization
+## Building the public package
 
-Keep the clean world definitions and all current navmeshes available to the LLM.
-Source route resources alone are not a replacement for the generated native mesh
-files or world spawn data. Preserve the current validated meshes until a focused
-rebuild is requested. The texture tool converts atlases while preserving carrier
-models and bindings; it does not create a usable 3D mesh from a PNG.
+`source/tools/build_release_033.py` takes a 1:1 snapshot of a development install and produces a
+clean package.
 
-## Safe sharing
+What it copies and changes:
+- It copies the runtime without logs, backups, accounts or run-state files.
+- It empties every saved-progress table and resets keeps, relics, houses and guild earnings.
+- It sets the public defaults: zero bots, GM off, 1× XP and automatic account creation.
+- It installs the release server and launcher builds.
+- It bundles the .NET runtime.
+- It writes the 0.33 edition files.
 
-Never commit a database after playing. It will contain accounts, characters, bot
-profiles, inventories and economy history. Generate a fresh sanitized seed in a
-separate copy, check every progress table, clear free pages with VACUUM, and verify
-integrity before sharing it. Exclude credentials, logs, diagnostics and old backups.
+Checks:
+- Everything it copies is recorded with a hash.
+- `smoke_release_033.py` then starts the server with only the bundled .NET and logs in through
+  `connect.exe`, confirming that a fresh account is created.
 
-Default setup is local-only. Running a public multiplayer server is a separate
-security/deployment project; do not expose this local configuration to the internet.
+## Sharing safely
+
+- **Never commit a played database.** It contains accounts, characters, bot rosters, inventories
+  and economy history. Also keep `account.txt`, logs, dumps and backups out of commits.
+- **Review before pushing.** Run `git diff --cached` before every push; `.gitignore` is a safety
+  net only.
+- **Local only:** the default setup is for one PC. Don't expose it to the internet as-is.

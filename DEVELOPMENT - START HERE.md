@@ -1,12 +1,13 @@
-# Offline DAoC v0.32 developer start
+# Developer start
 
-This is the normal Darkness Falls Beta source. It has no Sluaghbinder class.
-For a clean, optional-class source tree, use the separate `v0.32b` Git tag.
+Offline DAoC **0.33 "Claude Takeover"**. One source tree builds both editions.
+The custom Sluaghbinder class is controlled by the server setting
+`classes / enable_sluaghbinder`: on in 0.33b (and by default), off in 0.33.
 
-Read [AGENTS.md](AGENTS.md) and [the LLM quickstart](docs/LLM-QUICKSTART.md)
-before editing. [Development notes](docs/DEVELOPMENT.md) explain build inputs,
-portable paths, world migrations, tests, and the source/playable split.
+Read these first:
+- [AGENTS.md](AGENTS.md): project rules and layout.
+- [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md): how to build, test, deploy and package.
+- [docs/LLM-QUICKSTART.md](docs/LLM-QUICKSTART.md): how to customize with your own AI assistant.
 
-Darkness Falls ordinary bot goals are staged; its raids and hardest encounters
-are not implemented for autonomous bots yet. Do not treat unit tests as proof
-of a long live run. Work in a copy and keep player saves out of commits.
+Work in a copy of your playable folder, keep saves out of commits, and report
+automated tests separately from in-game checks.

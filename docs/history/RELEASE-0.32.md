@@ -22,7 +22,7 @@ stored extension 2 or 3 uses the working extension-0 display without changing
 the item. Moving companions with learned native group speed can pause to
 cast it and catch up. Classic-side Shrouded Isles portals are visible at
 Cotswold, Mularn, and Mag Mell, but remain collision-free visuals without
-player travel or bot-route changes. See the [changelog](../CHANGELOG.md) for
+player travel or bot-route changes. See the [changelog](../../CHANGELOG.md) for
 the plain-language detail. Monster difficulty and Darkness Falls raid limits
 are unchanged; the new build still needs a live bot run.
 
@@ -63,7 +63,7 @@ avoid repeating the last completed monster species across relogs and zones.
 Temporary gamebot-created charm pets are cleaned up after an interrupted
 charm or vanished owner, rather than lingering and respawning as world mobs;
 this also covers eligible `/spawn` companions. Player-created charm behavior
-remains separate. The [changelog](../CHANGELOG.md) has the simple breakdown.
+remains separate. The [changelog](../../CHANGELOG.md) has the simple breakdown.
 These follow-up changes still need a longer live run and direct in-client
 checks, so the **Beta** label remains.
 
@@ -101,7 +101,7 @@ repeatable Bounty Masters and their map markers, `/stables` route listings,
 solo Bard PvE combat and group mez restraint, Bard/Skald/Minstrel companion
 buff and travel song priorities, Shannon Estuary beach rats, and the Savage,
 PvE party, dungeon corridor, death-recovery, and stable-route repairs. See the
-[full changelog](../CHANGELOG.md) and preserved
+[full changelog](../../CHANGELOG.md) and preserved
 [v0.31 notes](RELEASE-0.31.md) for their detail. Those changes are included
 in this download; they are not claimed as new Darkness Falls mechanics.
 
@@ -113,7 +113,7 @@ folder and double-click the helper. It obtains and verifies the preserved
 v0.31 base and `OfflineDAoC-v0.32-darkness-falls-beta-20260928-update.zip`, then builds
 a **new** v0.32 playable folder. It keeps the v0.31 sibling available. Read
 `READ ME FIRST.txt` in the new game folder and use `START OFFLINE DAOC.cmd`.
-No Git or LLM is needed. [Detailed player instructions](PLAY.md) cover the
+No Git or LLM is needed. [Detailed player instructions](../PLAY.md) cover the
 Windows requirements, first launch, and optional save import.
 
 Keep an older installation intact until you have checked the new one. Stop

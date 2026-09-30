@@ -1,0 +1,16 @@
+# Database and client helpers from the 0.33 development copy
+
+These are small, focused scripts that were used while building 0.33. They expect to sit at
+`<playable>/tools/claude-version/` and work on that folder's `runtime`. Read a script before
+running it: several are one-time migrations, and every script that writes makes a backup first.
+Close the launcher, the game and the server before running any of them.
+
+| Script | What it does |
+|---|---|
+| `helmet_face_check.py <model>` | Read-only. Lists every helmet model that shares a mesh, and which extensions real items use. See [HELMET-FACE-FIX.md](../../docs/HELMET-FACE-FIX.md) |
+| `pet_spell_changes.py` | Sluaghbinder pet spell values (priest heals, Cairnheart heals over time and so on). Checks the value at each stage, so it's safe to re-run |
+| `seed_sluaghbinder.py`, `Add-SluaghbinderEpicSpells.py` | Class, trainer and epic-spell seeding used by the Sluaghbinder builds |
+| `clean_slate.py <db>` | Clears characters, bots and auctions from a copy of a database |
+| `cleanup_orphan_unique_items.py` | Removes loot definitions that no inventory references (writes a backup) |
+| `coif_head_mode.py`, `si_portal_visuals.py` | Earlier client catalog experiments (helmet head mode, SI portal visuals) |
+| `*forest_poacher_camp*.py`, `*.sql` | One-time camp fixes, already included in the 0.33 world |
