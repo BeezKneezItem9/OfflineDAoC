@@ -1324,6 +1324,7 @@ public static class AutonomousPetSupport
                         .And(DB.Column("Realm").IsEqualTo(0))))
                     .Where(mob => mob != null && mob.ClassType == DbMob.DEFAULT_NPC_CLASSTYPE &&
                         IsGeneratedCharmTemplateRegion(key.Class, mob.Region) &&
+                        !CharmCreatureRoles.IsImmobile(mob) &&
                         !string.IsNullOrWhiteSpace(mob.Name) &&
                         (Properties.SPELL_CHARM_NAMED_CHECK == 0 || char.IsLower(mob.Name[0])) &&
                         (mob.Region == DarknessFallsCharmPolicy.RegionId
@@ -1346,6 +1347,8 @@ public static class AutonomousPetSupport
                     .And(DB.Column("Realm").IsEqualTo(0)))
                 .Where(mob => mob != null && mob.ClassType == DbMob.DEFAULT_NPC_CLASSTYPE &&
                               IsGeneratedCharmTemplateRegion(key.Class, mob.Region) &&
+                              // Speed-0 creatures (clinging soul, lookouts) could never follow.
+                              !CharmCreatureRoles.IsImmobile(mob) &&
                               !string.IsNullOrWhiteSpace(mob.Name) &&
                               (Properties.SPELL_CHARM_NAMED_CHECK == 0 || char.IsLower(mob.Name[0])) &&
                               (mob.Region == DarknessFallsCharmPolicy.RegionId

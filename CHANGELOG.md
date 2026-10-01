@@ -39,6 +39,16 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   hours without being saved. Routine saves now always get part of every batch, at the same total
   write rate, so every bot stays within a few minutes of its saved state.
 
+**Charm pets**
+- The charm creature menu (Sorcerer, Minstrel, Mentalist and Hunter) tags every choice with how it
+  fights: **Caster** (casts an attack spell from range), **Archer** (shoots a bow) or **Melee**.
+  The few creatures whose spells or gear are rolled at random show both, for example "Archer or
+  Melee".
+- Creatures that cannot move are no longer offered as charm pets, to players or to gamebots: the
+  Darkness Falls clinging soul, the gurite and siabra lookouts, and the target and training dummies.
+  They used to sit where they were summoned and never follow or chase. They are unchanged in the
+  world.
+
 **Shrouded Isles reputation**
 - New repeatable reputation quest in each realm, from a faction emissary:
   - Hibernia: **Kzzirrak** `<Krrzck Emissary>`, a mantid beside Zrrazk inside Necht.

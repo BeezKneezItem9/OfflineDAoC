@@ -306,6 +306,23 @@ namespace DOL.GS
 		private static readonly Lock _missingNpcEquipmentCacheLock = new();
 		private const long MissingTemplateCacheMilliseconds = 5 * 60_000L;
 
+		/// <summary>
+		/// Whether a loaded npcequipment template puts an item in this slot, without
+		/// building an inventory. Unknown templates have no items.
+		/// </summary>
+		public static bool HasEquipmentInSlot(string templateId, eInventorySlot slot)
+		{
+			if (string.IsNullOrEmpty(templateId) || m_npcEquipmentCache == null ||
+				!m_npcEquipmentCache.TryGetValue(templateId, out List<DbNpcEquipment> items))
+				return false;
+
+			foreach (DbNpcEquipment item in items)
+				if (item.Slot == (int) slot)
+					return true;
+
+			return false;
+		}
+
 		public override bool LoadFromDatabase(string templateId)
 		{
 			if (string.IsNullOrEmpty(templateId))

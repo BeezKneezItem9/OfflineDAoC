@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using DOL.Database;
@@ -153,6 +155,26 @@ namespace DOL.GS
 					arr.Add(template);
 					m_mobTemplates[template.TemplateId] = arr;
 				}
+			}
+		}
+
+		/// <summary>
+		/// Every template stored under this ID (several rows may share one ID, and
+		/// <see cref="GetTemplate"/> picks one at random). Empty when there is none.
+		/// </summary>
+		public static IReadOnlyList<NpcTemplate> GetTemplateVariants(int templateId)
+		{
+			if (templateId == -1 || templateId == 0)
+				return Array.Empty<NpcTemplate>();
+
+			lock (_lock)
+			{
+				return m_mobTemplates[templateId] switch
+				{
+					ArrayList array => array.OfType<NpcTemplate>().ToArray(),
+					NpcTemplate single => new[] { single },
+					_ => Array.Empty<NpcTemplate>()
+				};
 			}
 		}
 

@@ -97,13 +97,17 @@ namespace DOL.GS.Spells
         public static string ChoiceLabel(int index, string name) =>
             $"{index + 1}: {name.Replace('[', '(').Replace(']', ')').Replace('\n', ' ').Replace('\r', ' ')}";
 
+        /// <summary>The menu line: name plus how it fights, e.g. "3: drakoran mage (Caster)".</summary>
+        public static string ChoiceLabel(int index, DbMob mob) =>
+            $"{ChoiceLabel(index, mob.Name)} ({CharmCreatureRoles.Label(CharmCreatureRoles.Classify(mob))})";
+
         public static string BuildPage(DbMob[] choices, int page, int petLevel)
         {
             int pages = Math.Max(1, (choices.Length + PageSize - 1) / PageSize);
             page = Math.Clamp(page, 0, pages - 1);
             var text = new StringBuilder($"Choose your level {petLevel} pet. Nothing is summoned until you select it.\nPage {page + 1}/{pages}\n\n");
             for (int i = page * PageSize; i < Math.Min(choices.Length, (page + 1) * PageSize); i++)
-                text.Append('[').Append(ChoiceLabel(i, choices[i].Name)).Append("]\n");
+                text.Append('[').Append(ChoiceLabel(i, choices[i])).Append("]\n");
             if (page > 0) text.Append("[Previous]  ");
             if (page + 1 < pages) text.Append("[Next]  ");
             text.Append("[Cancel]\nMenu expires after 10 minutes, or when you leave this location.");
@@ -131,7 +135,7 @@ namespace DOL.GS.Spells
             }
             int index = -1;
             for (int i = _page * PageSize; i < Math.Min(_choices.Length, (_page + 1) * PageSize); i++)
-                if (string.Equals(text, ChoiceLabel(i, _choices[i].Name), StringComparison.OrdinalIgnoreCase)) { index = i; break; }
+                if (string.Equals(text, ChoiceLabel(i, _choices[i]), StringComparison.OrdinalIgnoreCase)) { index = i; break; }
             if (index < 0) return false;
             // Recheck spell ownership after any training/respec while this menu was open.
             bool learned = _owner.GetAllUsableSkills().Any(entry => entry.Item1 is Spell known && known.ID == _spell.ID) ||

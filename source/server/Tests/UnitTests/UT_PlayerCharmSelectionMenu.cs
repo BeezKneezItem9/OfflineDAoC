@@ -40,7 +40,7 @@ namespace DOL.UnitTests
             string first = PlayerCharmSelectionMenu.BuildPage(pool, 0, 30);
             string second = PlayerCharmSelectionMenu.BuildPage(pool, 1, 30);
             foreach (int index in Enumerable.Range(0, 24))
-                Assert.That(index < 12 ? first : second, Does.Contain("[" + PlayerCharmSelectionMenu.ChoiceLabel(index, pool[index].Name) + "]"));
+                Assert.That(index < 12 ? first : second, Does.Contain("[" + PlayerCharmSelectionMenu.ChoiceLabel(index, pool[index]) + "]"));
             Assert.That(first, Does.Contain("[Next]").And.Not.Contain("[Previous]"));
             Assert.That(second, Does.Contain("[Previous]").And.Not.Contain("[Next]"));
             Assert.That(first, Does.Contain("level 30"));
@@ -53,7 +53,7 @@ namespace DOL.UnitTests
             var choices = new[] { new DbMob { Name = "strange [Next]\nname", Level = 30 } };
             string page = PlayerCharmSelectionMenu.BuildPage(choices, 0, 30);
             Assert.That(Regex.Matches(page, @"\[([^\]]+)\]"), Has.Count.EqualTo(2));
-            Assert.That(page, Does.Contain("[1: strange (Next) name]"));
+            Assert.That(page, Does.Contain("[1: strange (Next) name (Melee)]"));
         }
 
         [TestCase(954, 30, 1, false, true)]
