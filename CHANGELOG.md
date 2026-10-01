@@ -60,6 +60,20 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 - [PLAY.md](docs/PLAY.md) now recommends bot populations (500, 1000, 1500 or 2000 per realm)
   and explains the name-generation ceiling of about 18,800 bots.
 
+**Gamebots and companions: parry, block and evade**
+- Gamebots and companion bots now parry, block and evade like players. The combat code treated
+  them as ordinary monsters, which use a fixed chance from their template (normally none), so
+  their class abilities, Parry and Shields training, dexterity, quickness and shields did nothing.
+- They now use the same formulas and rules as players:
+  - **Parry** needs the Parry specialization (or a parry buff) and a melee weapon, never a bow.
+  - **Evade** needs the class's Evade ability, which comes with level like a player's, or an evade
+    buff. It works from the front, or from every side with Advanced or Enhanced Evade.
+  - **Block** needs the Shield ability, a real shield and a one-handed weapon. It is scaled by the
+    shield's quality and condition, and the shield's size limits how many attackers it can block.
+- The player-versus-player caps (50% parry, 50% evade) apply whenever both sides are players or
+  bots.
+- Bots, tanks and evade classes especially, are noticeably harder to kill.
+
 **Sluaghbinder (0.34b only)**
 - The Cairn armor buffs say "You are surrounded by an unholy aura." instead of a holy aura, and
   the Cairn strength buffs say "You are filled with the power of the cairn!" instead of the
