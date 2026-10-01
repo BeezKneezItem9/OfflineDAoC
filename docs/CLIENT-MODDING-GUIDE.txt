@@ -36,8 +36,10 @@ reasonable but untested.
 7.  Shell scripting: never chain "check && step" through a pipe such as
     "check | tail -1 && install". The pipe's exit code is tail's, so a FAILED
     safety check still runs the install (this happened once: the launcher was
-    open, the check refused, and the rollback/build/deploy still ran). Run the
-    check on its own or use "set -o pipefail".
+    open, the check refused, and the rollback/build/deploy still ran). Separate
+    lines run even after an earlier line fails, too (a failed cleanup step was
+    followed by a git commit and push). Start multi-step scripts with
+    "set -e -o pipefail" or run each risky step on its own.
 8.  Change one thing at a time when something is invisible or broken, and
     build a side-by-side test (see section 9) instead of guessing.
 
