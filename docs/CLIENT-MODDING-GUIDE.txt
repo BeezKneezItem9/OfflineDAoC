@@ -1,0 +1,409 @@
+OFFLINE DAOC - CLIENT MODDING GUIDE
+Custom models, meshes, textures, spell visuals, custom spells, icons and sounds
+====================================================================================
+
+Written 2026-10-01 for people and LLM assistants working on Offline DAoC. It
+records everything learned while building the Sluaghbinder's private pets,
+spell visuals and icons, including every mistake and how it was fixed.
+Read the GOLDEN RULES and the LINE RULES before touching any client file.
+
+Paths below are given for a playable folder (runtime\...). In this GitHub repo
+the art tools live in tools/pet-art/ and the database tools in
+tools/claude-version/ (in the owner's local CLAUDE VERSION they are tools\pet-art\
+and tools\). Facts marked [CONFIRMED] were verified in game; [UNCONFIRMED] are
+reasonable but untested.
+
+
+------------------------------------------------------------------------------
+1. GOLDEN RULES
+------------------------------------------------------------------------------
+1.  Close the launcher (OfflineDAoC.exe), the game client and the server before
+    writing gamedata.mpk, skin archives, NIFs or the database. The pet-art
+    installers check this (install_blood_shield.stopped()).
+2.  Never edit a stock row or a stock file. Add PRIVATE rows (new IDs) and
+    PRIVATE files (byte copies with new names). Stock monsters, Thanes,
+    Bonedancers etc. must keep their look.
+3.  Every installer: preview by default, back up first (gamedata.mpk, the skin
+    archive, the database), record hashes in a manifest, verify after writing,
+    and offer a one-command rollback that refuses to overwrite later changes.
+4.  Database changes go in ONE transaction (all or nothing) after a backup.
+5.  Rebuild the server only with the server stopped; deploy GameServer.dll and
+    CoreDatabase.dll to runtime/server, runtime/server/lib and
+    runtime/server/win-x64 with a backup of what you replace.
+6.  Restart the game CLIENT after any gamedata.mpk change (it reads the
+    catalogs at start). Re-summon pets after a model change (a live pet keeps
+    its old model). Restart the SERVER after database changes.
+7.  Shell scripting: never chain "check && step" through a pipe such as
+    "check | tail -1 && install". The pipe's exit code is tail's, so a FAILED
+    safety check still runs the install (this happened once: the launcher was
+    open, the check refused, and the rollback/build/deploy still ran). Run the
+    check on its own or use "set -o pipefail".
+8.  Change one thing at a time when something is invisible or broken, and
+    build a side-by-side test (see section 9) instead of guessing.
+
+
+------------------------------------------------------------------------------
+2. HOW THE CLIENT DATA IS ORGANISED
+------------------------------------------------------------------------------
+runtime\client-opendaoc\app\
+  gamedata.mpk          MPAK archive holding the catalog CSVs (below)
+  figures\*.nif         monster/character meshes (loose files)
+  figures\skins\skinNNN.mpk   skin texture archives (DDS); NNN = skins.csv archive no.
+  items\*.nif           weapon/shield/armor meshes; items\pskins\pskinNNN.mpk emblem bases
+  effects\*.nif *.tga *.dds   spell effect meshes and textures
+  anims\*.kfa           animation clips
+  icons\spl_N00.bmp, icons\classic\SPL_N00.bmp   spell icon sheets
+  sounds\*.wav + sounds\cc_*.csv   sound files and sound tables (loose, NOT in mpk)
+
+Reading/writing gamedata.mpk: tools/pet-art/daoc_catalog.py (archive.read,
+archive.write, archive.verify_memory_image). Keep every entry's name, order,
+timestamp and flags; replace only the CSV you changed and check every other
+entry is byte-identical afterwards. CSVs are latin-1 text with CRLF lines.
+
+Catalog tables you will touch (column numbers are 0-based):
+
+monsters.csv  - one row per MODEL ID (what NpcTemplate.Model / Mob.Model sends)
+  col 0 ID, 1 name, 2 monnifs NIF id, 3 Body skin id (skins.csv),
+  4-11 other part skins, 12 Scale, 13 Tall, 15 SOUND SET (sounds\cc_creatures.csv),
+  22 Fem. Two header lines.
+monnifs.csv   - one row per model NIF
+  col 0 ID, 1 text name, 2 NIF file stem (figures\<stem>.nif), 3 ANIM SET
+  (anims.csv/canims.csv), 4-7 strides, 9 EXPANSION ONLY.
+  Ends with the terminator row "1000, MAX MONNIFS".
+skins.csv     - one row per skin texture
+  col 0 ID, 1 text name, 2 DDS file name, 4 archive number (skinNNN.mpk),
+  5 EXPANSION ONLY.
+anims.csv     - one row per ANIM SET: Walk, Run, Idle, Death, Cast Start/Mid/End,
+  "1H Circ Start/Mid/End" (cast slots 32-34 used by most buff spells),
+  Upraised..., emotes. Values are animnifs.csv IDs.
+canims.csv    - melee/combat clips for the same anim set id (attacks, combat idle,
+  flinch, parry, styles). A set needs a row here too or the model freezes in melee.
+animnifs.csv  - clip id -> .kfa file in anims\.
+spells.csv    - CLIENT SPELL VISUALS. Its row ID is what the server sends as
+  Spell.ClientEffect (and Spell.Icon refers to a row here too, through its Icon
+  column). Columns: 0 ID, 1 Name, 2 Icon (icons.csv), 3-5 Anim1-3 (cast anim
+  slots), 6 Effect1A / 7 Effect1B (left/right hand glows), 8 Effect2, 9 Effect3,
+  10 Projectile, 11 Target effect, 12 Buildup, 13 Pulse, 14 Sound Set,
+  15 Radius, 16 Resist, 17 Projectile lag, 18 Play anims, 19 Focus CasterFX,
+  20 Remove effect on cast. Ends with a sentinel row 14999: insert BEFORE it
+  (install_blood_shield.add_row does this).
+speffects.csv - effect id -> spnifs NIF id, attach node ("rootnode",
+  "Bip01 L Held", "Bip01 R Held"), duration, rate.
+spnifs.csv    - NIF id -> effects\<stem>.nif. Header says "1500 limit".
+icons.csv     - icon id -> sheet cell + rank border (-1 none, 0 green, 1 blue).
+objects.csv / items.csv - equipment and weapon models. NPC equipment
+  (NPCEquipment.Model) uses objects.csv IDs, NOT items.csv IDs or NIF ids.
+pskins.csv    - base textures for emblem shields (items\pskins\pskinNNN.mpk).
+
+Sound tables (loose files in sounds\):
+  cc_creatures.csv  sound SET id -> attack vocal, light/medium/heavy pain vocal,
+                    death vocal, evade, splat, movement... (columns by name)
+  cc_sounds.csv     sound id/name -> wav file, rate range, volume range, offset
+  cc_groups.csv     random groups of sounds ("g_..."), cc_queues.csv queues ("q_...")
+  cc_spells.csv, cc_weapons.csv, cc_doors.csv, cc_interface.csv, cc_music.csv ...
+
+
+------------------------------------------------------------------------------
+3. THE LINE RULES (how the client reads catalog lines)
+------------------------------------------------------------------------------
+[CONFIRMED] NO BLANK LINES inside a catalog. The client stops reading at the
+  first empty line: every row after it is silently ignored. A buggy insert put
+  an empty line before each new monsters.csv row; every model from that point
+  on became invisible and untargetable (the new ones AND existing pets
+  2494-2499), and only models listed before the blank line showed.
+  Cause: install_pet_art.append_rows(b"", rows) returns text that STARTS with
+  a newline; stripping only the end left it. Strip both ends, and after every
+  catalog edit assert there is no blank line between the first and last data row.
+[CONFIRMED] Rows after a TERMINATOR are ignored. monnifs.csv stops at
+  "1000, MAX MONNIFS"; insert private NIF rows before it
+  (install_pet_art.insert_before_terminator). spells.csv has a 14999 sentinel.
+[CONFIRMED] Keep IDs ascending. Insert a row at its ID position
+  (install_ghastly_healer_art.insert_in_order) or append after the current
+  last ID; check with install_pet_art.check_catalog_order.
+[CONFIRMED] Clear EXPANSION ONLY (monnifs col 9, skins col 5) on private rows
+  cloned from Shrouded Isles stock rows. Every working private pet has 0.
+Never re-serialise the whole CSV; insert/replace single lines and verify that
+every original line is unchanged.
+
+
+------------------------------------------------------------------------------
+4. CLIENT LIMITS
+------------------------------------------------------------------------------
+CONFIRMED
+- Catalog reading stops at a blank line (section 3).
+- monnifs.csv: 1000 terminator, so private NIF ids are < 1000 (989-993 used).
+- spells.csv: insert before the 14999 sentinel.
+- Spell tooltip identity (TooltipId) is read as a SIGNED 16-bit value: 590xx
+  server IDs arrive negative and the hover is blank. Use a unique id in a safe
+  unused range (seed_sluaghbinder.py uses 29000 + (spellId - 59000), max 32767).
+  Reusing a template's icon as the delve identity makes ranks resolve to each
+  other. The server substitutes the spell's own identity only for
+  PacketLib1110.UsesOwnTooltipIdentity (59000-59111); extend that range when
+  adding new custom spell IDs (a test covers it).
+- ClientEffect must be an existing spells.csv row. A server SpellID (590xx) as
+  ClientEffect makes the classic client reject the effect and can crash on cast.
+- Icon sheets: 320x320, 24-bit, 100 cells of 32x32 per sheet, two copies
+  (icons\spl_N00.bmp and icons\classic\SPL_N00.bmp). Cell c lives in sheet
+  c//100 at x=(c%10)*32, y=((c%100)//10)*32. Only paint a cell no icons.csv row
+  references (cell 499 is "Siege Ward"; 498 was free and is now Barrow Deflection).
+- Effect textures: if both name.dds and name.tga exist the client uses the .dds.
+  A private texture can be a plain .tga.
+- Monster skin DDS: DXT1 with a full mip chain works (install_pet_art.encode_dds).
+  Same size as the original is safest (the badh skin is 256x512).
+- The client caches delve (tooltip) info locally (PacketLib1110 notes).
+UNCONFIRMED
+- Monster model IDs >= 2500. The stock table ends at 2493; private pets use
+  2494-2499; the ghastly healer uses gap 2072. 2500 was invisible once, but
+  that test was spoiled by the Expansion Only flag and other changes, so the
+  limit is NOT proven. Prefer unused gaps below 2500 (2067-2071 were free;
+  check no Mob or NpcTemplate uses the ID) until someone tests 2500+ cleanly.
+- spnifs "1500 limit" (header text; private ids 1402-1409 used, never exceeded).
+- Adding brand-new sound files (section 8).
+
+
+------------------------------------------------------------------------------
+5. HOW THE SERVER POINTS AT CLIENT ART
+------------------------------------------------------------------------------
+- NpcTemplate.Model / Mob.Model -> monsters.csv ID. Template Model may be a
+  list ("a;b") for random choice.
+- NpcTemplate.EquipmentTemplateID -> NPCEquipment rows (TemplateID, Slot,
+  Model = objects.csv id, Color, Effect, Extension). Slots: 10 right hand,
+  11 left hand, 12 two-hand, 13 ranged, 21 helm, 22 gloves, 23 boots,
+  25 torso, 26 cloak, 27 legs, 28 arms. Removing a slot row removes the item
+  (e.g. the badh's staff is its slot-12 item, not part of its mesh).
+- Spell.ClientEffect -> spells.csv row (animation + glows + target effect).
+- Spell.Icon -> spells.csv row whose Icon column -> icons.csv -> sheet cell.
+- Spell.TooltipId -> client delve identity (section 4).
+- Spell.Message1-4 -> chat lines (self, others, fade self, fade others).
+- Stacking: SpellHandler.HasConflictingEffectWith compares EffectGroup (if
+  either is non-zero) else SpellType. Give a DoT its own EffectGroup to stack.
+- Recast sharing: SharedTimerGroup (players share the recast across every
+  spell in the group).
+- Helmets that hide the face: a SERVER-side display remap
+  (HelmetAppearanceCompatibility.VisibleExtension), see HELMET-FACE-FIX.md.
+
+
+------------------------------------------------------------------------------
+6. RECIPES - SPELLS
+------------------------------------------------------------------------------
+6.1 Re-use another spell's animation (cosmetic only)
+    Pick an existing client spells.csv row (find it from a monster or class
+    spell that looks right) and set only Spell.ClientEffect. Examples:
+    Sluaghbinder life drains -> 10079 (naburite drinker's drain); Abhartach's
+    Bane DoTs -> 3425 (Plague Spores cloud). Monster-only effects are rare; most
+    monster spells borrow player effects. Tool: install_bane_drain_update.py.
+
+6.2 Recolour a borrowed effect (example: green Cairn strength buffs)
+    a. Trace the chain: spells.csv row (cols 6-13) -> speffects.csv -> spnifs.csv
+       -> effects\<nif> -> texture names inside the NIF (nif_strings.py).
+    b. Make PRIVATE byte copies of each NIF with SAME-LENGTH texture renames
+       (e.g. blustrkcyl.tga -> slgstrkcyl.tga). Verify that undoing the renames
+       restores the original bytes exactly.
+    c. Recolour: TGA textures in place (keep header/footer/alpha, change only
+       colour bytes); DDS sources decoded and written as new 32-bit TGAs.
+       Blue materials (NiMaterialProperty ambient/diffuse/emissive) and particle
+       colour keys (NiColorData: count, keyType 1, then time+RGBA floats) are
+       recoloured in place too. Swapping the green and blue channels turned
+       blue into green while keeping every shape, brightness and timing.
+    d. Add private spnifs, speffects and spells.csv rows cloned from the stock
+       ones with the effect columns pointing at the new rows.
+    e. Point only Spell.ClientEffect at the new spells.csv row.
+    Tools: install_cairn_green_buff.py (and install_blood_shield.py, the first
+    private effect: purple shield -> blood red).
+
+6.3 A brand-new custom spell with its own icon (example: Barrow Deflection,
+    the Dullahan's Bulwark parry buff)
+    a. Server: clone a spell row (new SpellID, Name, Description, Type, Value,
+       Duration, Power, groups, Message1-4, TooltipId), add LineXSpell rows.
+       If the effect type is not handled for your case, add server code (the
+       generic ParryBuff needed an eEffect value, EffectHelper mapping, the
+       parry check in GameLiving.TryParry and the bot branch of
+       ParryChanceCalculator, plus tests).
+    b. Icon: paint 32x32 art (tools/pet-art/work/barrow-deflection/draw_icon.py),
+       write it into an unused cell of BOTH sheet copies, add one icons.csv row
+       per rank border (-1/0/1), add spells.csv rows (copying a visual template
+       row) whose Icon column is the new icons.csv id, and set Spell.Icon and
+       ClientEffect to those spells.csv ids.
+    c. Extend PacketLib1110.UsesOwnTooltipIdentity if the new SpellIDs pass 59111.
+    Tool: install_bulwark_update.py.
+
+6.4 Chat text: change Spell.Message1-4 (e.g. "holy aura" -> "unholy aura").
+
+
+------------------------------------------------------------------------------
+7. RECIPES - MODELS, SKINS AND MESHES
+------------------------------------------------------------------------------
+7.1 A private copy of a monster model (all Sluaghbinder pets)
+    a. Resolve the stock model: monsters.csv row -> monnifs row (NIF + anim set)
+       -> skins row (DDS + archive). Tool: resolve_models.py.
+    b. Byte-copy the NIF to figures\<PrivateName>.NIF.
+    c. Clone the three rows with new IDs: monnifs (NIF stem = private name,
+       Expansion Only 0, inserted before 1000), skins (DDS name, archive 99,
+       Expansion Only 0), monsters (NIF id, Body skin id; optionally a new sound
+       set), inserted in ID order with no blank lines.
+    d. Encode the skin as DXT1 + mips (install_pet_art.encode_dds) and add it
+       to the private archive figures\skins\skin099.mpk, entries sorted by name.
+    e. Set NpcTemplate.Model to the private model id.
+    Tools: install_pet_art.py, install_walkingdead.py, install_ghastly_healer_art.py.
+
+7.2 Repainting a skin
+    - Extract the stock DDS from its skinNNN.mpk (extract_skins.py).
+    - Keep the stock shading: colour each region as target colour x the
+      texel's own luminance (never a flat fill). A first pass that compressed
+      the luminance range flattened every fold and hair strand.
+    - Find regions by colour and by UV box (zoom the atlas first); mirrored UVs
+      mean one half of the face is painted once for both sides.
+    - Model-space painting (patterns as a function of the 3D point a texel
+      covers, texelmap.bake) avoids seams and keeps symmetry: armorpaint.py,
+      paint_priest.py, refine_dullahan.py.
+    - Edge padding (update_skins.py): fill the atlas background around each UV
+      island with the island colour, or mipmaps pull a pale seam line in.
+    - Preview before installing (section 9).
+
+7.3 Modifying a mesh
+    - Old NetImmerse NIFs: pyffi (nifmesh.py) reads some of them; it FAILS on
+      4.2.2.0 files such as the badh (bainsheesi.nif). nif4_geom.py is a raw
+      reader that finds each NiTriShapeData/NiTriStripsData and decodes
+      vertices, UVs and faces.
+    - Edit vertex POSITIONS ONLY, in place, in a byte copy: same vertex count,
+      faces, UVs, normals and skin weights. Skinned meshes keep animating
+      because vertices move in bind space. Recompute the bounding radius
+      (after the normals block: centre 3f + radius f) if it grew.
+    - Verify that only the vertex array (and radius) bytes changed.
+    - Skinned monster NIFs may contain untextured bone helper boxes (the badh
+      has 45 tiny shapes plus the real 1,389-vertex body); edit the textured shape.
+    - Examples: zombie magician shoulder spikes folded (64 vertices,
+      install_vnext.py); ghastly healer longer ragged ghost tail, gaunter waist,
+      longer hair, broken low circlet, longer claw fingers (build_ghastly_healer.py).
+
+7.4 Animations
+    - monnifs col 3 picks the anim set. A private anim set row can mix clips
+      from a set built for the SAME skeleton (zombie magician: undead set 46
+      with the caster cast slots from set 48, anims.csv 434 - install_void_sun.py).
+    - Give a private set a canims.csv row too, or the model has no melee swing
+      and freezes in combat (add_magician_combat_anims.py fixed this).
+    - The badh's set 295 casts with its own SPA/SPB/SPC clips in every cast slot.
+      Watch out: monsters.csv col 15 is the SOUND set, not the anim set.
+
+7.5 Weapons and shields for pets
+    - Byte-copy item NIFs into items\ with same-length texture renames; add
+      private objects.csv and items.csv rows; NPC equipment uses objects.csv ids.
+    - Emblem shields (cloak pattern/symbol layers) need a pskins.csv base
+      texture or they draw PINK; give private ones private pskins rows in a
+      private archive (items\pskins\pskin099.mpk).
+    Tools: install_pet_weapons.py, install_pet_shield_skins.py,
+    paint_pet_weapons.py, weapon_preview.py, blender_weapons.py.
+
+
+------------------------------------------------------------------------------
+8. SOUNDS
+------------------------------------------------------------------------------
+[CONFIRMED] Swap an NPC's voice: give its PRIVATE monsters.csv row a different
+  sound set (col 15). The badh used set 23 = "dwarf female" (player voice
+  grunts); the ghastly healer uses 59 = "spectre" (spchit/spchit2/spchit3.wav
+  hurt, spcdie.wav death), the set the client also uses for ghost, wraith,
+  lich and spirit monsters. Never change a stock row's sound set.
+  Look up sets in sounds\cc_creatures.csv (name, pain/death columns) and
+  their files in cc_sounds.csv.
+[UNCONFIRMED] Brand-new sounds: add the .wav to sounds\, a cc_sounds.csv row
+  (new id, name, file, rate, volume), group/queue rows if needed, and a new
+  cc_creatures.csv set that references them, then point a private monster at
+  that set. Not tested yet; the same blank-line/ordering cautions apply.
+[UNCONFIRMED] Spell sounds: spells.csv col 14 "Sound Set" and cc_spells.csv.
+
+
+------------------------------------------------------------------------------
+9. PREVIEWING AND TESTING
+------------------------------------------------------------------------------
+- Blender 5.2.2 (C:\Users\thedo\AppData\Local\Programs\Blender Foundation\
+  Blender 5.2.2\blender.exe) renders OBJ exports in the background:
+  blender_views.py (front, 3/4, side, back rows, auto-framed),
+  blender_render.py, blender_weapons.py. Export OBJs with export_obj.py
+  (pyffi) or the nif4_geom-based writer inside build_ghastly_healer.py.
+- texelmap.render_views renders a pyffi-readable NIF with any texture.
+- Contact sheets: install scripts write before/after texture sheets.
+- In game, when something is invisible: build a temporary PLAYER command that
+  spawns stationary, peaceful, labelled NPCs in a row, each a test model that
+  changes ONE thing from a working stock model (stock control, new skin only,
+  copied NIF, expansion flag on/off, reshaped NIF, new sound set only, full
+  result). One look shows which change breaks it. This found the blank-line
+  bug after four wrong guesses. Remove the command and test rows afterwards
+  (the 2026-10-01 version was "/herocheck"; it is not kept).
+- Sandbox installs first when possible (test_blood_shield_sandbox.py runs an
+  installer against a disposable fake installation).
+
+
+------------------------------------------------------------------------------
+10. MISTAKES MADE AND HOW THEY WERE FIXED
+------------------------------------------------------------------------------
+- Blank line before inserted monsters.csv rows -> everything after it invisible
+  and untargetable. Fix: strip both ends of the inserted line; assert no blank
+  lines (section 3).
+- Copied "Expansion Only" = 1 from the Shrouded Isles badh rows onto private
+  rows. Set to 0 like every working private pet.
+- Blamed monster ID 2500 for invisibility without proof; the real cause was
+  the blank line. Lesson: diff against a working private row and test one
+  change at a time.
+- NIF rows appended after the monnifs "1000, MAX MONNIFS" terminator -> model
+  invisible (walking dead history). Fix: insert before the terminator.
+- 590xx server SpellIDs used as TooltipId -> blank hovers (signed 16-bit);
+  as ClientEffect -> rejected effect / crash risk. Fix: client-safe ids.
+- Reusing a template icon as the delve identity made custom ranks show each
+  other's tooltips. Fix: unique TooltipId per spell + UsesOwnTooltipIdentity.
+- New custom spells 59110/59111 were outside UsesOwnTooltipIdentity (<= 59109).
+  Fix: extend the range and its test.
+- Icon cell 499 was already used ("Siege Ward"); a rough sheet outline was
+  misleading. Fix: check icons.csv references before painting a cell (498).
+- Private anim set had no canims row -> the magician froze in melee. Fix:
+  copy the combat row.
+- Emblem shields drew pink with no pskins base. Fix: private pskins rows.
+- Old NPC equipment values were items.csv/NIF ids (they showed gloves, boots,
+  a tent). Fix: NPCEquipment.Model is an objects.csv id.
+- A recolour that compressed luminance flattened all detail; colour = target x
+  luminance keeps it.
+- The generic ParryBuff had no effect mapping and bots took the NPC parry path,
+  so the custom parry buff did nothing for bots. Fix: eEffect.ParryBuff, the
+  TryParry gate and the bot branch of ParryChanceCalculator.
+- Editing tools changed whole files' line endings (mixed CRLF/LF files became
+  uniform, bloating diffs). Fix: restore the original ending on unchanged lines.
+- A pipe hid a failed safety check (rule 7).
+- Two installers fought over the same field (an old art installer would have
+  put the zombie-priest model back); give each installer an expected baseline
+  and make it refuse when the value is not what it expects.
+
+
+------------------------------------------------------------------------------
+11. TOOL INDEX (tools/pet-art unless noted)
+------------------------------------------------------------------------------
+daoc_catalog.py            MPAK read/write/verify for gamedata.mpk and skin archives
+install_blood_shield.py    shared guarded helpers (catalogs, add_row, stopped,
+                           atomic_write, db_session, spell_snapshot) + blood shield
+install_pet_art.py         private monster/NIF/skin rows, encode_dds, append_rows,
+                           insert_before_terminator, check_catalog_order
+install_walkingdead.py     private model for the walking dead
+install_ghastly_healer_art.py  private badh-based model 2072 (insert_in_order)
+build_ghastly_healer.py    mesh edits + skin paint + Blender renders for it
+install_vnext.py / update_skins.py   replace private skins (edge padding) and NIFs
+install_void_sun.py        private effect NIFs/textures + private anim set 434
+add_magician_combat_anims.py   canims row for a private anim set
+install_sluagh_visuals2.py private summon visuals (green hand glow) and cast times
+install_cairn_green_buff.py    green recolour of borrowed buff effects
+install_bulwark_update.py  custom parry buff spells + icon cell + catalog rows
+install_pet_weapons.py / install_pet_shield_skins.py   private weapons, shields, pskins
+nif4_geom.py               raw geometry reader for old 4.x NIFs (read-only)
+nifmesh.py / export_obj.py pyffi geometry reader and OBJ export
+nif_strings.py             list texture/node names in a NIF
+texelmap.py / regions.py / armorpaint.py / paint_*.py / refine_dullahan.py
+                           model-space painting and texel maps
+resolve_models.py          model id -> NIF, skin, archives, other users
+extract_skins.py           pet skins -> PNG previews
+blender_views.py / blender_render.py / blender_weapons.py / weapon_preview.py
+                           Blender previews
+test_blood_shield_sandbox.py   sandboxed installer test
+work/barrow-deflection/draw_icon.py   32x32 icon art
+tools/claude-version (GitHub) = tools\ (local):
+install_bane_drain_update.py   drain/DoT animations, shared recast, effect group
+install_ghastly_healer.py      zombie priest -> ghastly healer (name, model, robes, spells)
+seed_sluaghbinder.py           fresh-world Sluaghbinder data (keeps stock visuals
+                               unless a private model id is listed)
+helmet_face_check.py           helmet mesh family + extension counts

@@ -74,6 +74,10 @@ In a playable folder:
 - **Item model chain:** `objects.csv` model ID → `items.csv` row → `items/<nif>`.
   - Shields that carry an emblem take their base texture from a `pskins.csv` override.
   - `tools/pet-art/nif4_geom.py` reads the old 4.x item NIFs that pyffi can't.
+- **Client art, spells and sounds:** read [docs/CLIENT-MODDING-GUIDE.txt](docs/CLIENT-MODDING-GUIDE.txt)
+  before changing models, meshes, skins, spell effects, icons or NPC sounds. It lists the client's
+  catalog rules (no blank lines, terminators, Expansion Only, ID order), confirmed and unconfirmed
+  limits, every tool, and past mistakes.
 - **Helmets with no face:** see [docs/HELMET-FACE-FIX.md](docs/HELMET-FACE-FIX.md) and
   `tools/claude-version/helmet_face_check.py`.
 - **Server settings:** Offline-specific settings are in the database tables
