@@ -78,6 +78,12 @@ SCYTHE_STYLE_NAMES = {
 # client-safe, unused range and keep them unique per custom spell.  The icon
 # remains independent, so the original rot icon can be retained.
 CLIENT_TOOLTIP_START = 29000
+UNHOLY_AURA = {
+    "Message1": "You are surrounded by an unholy aura.",
+    "Message2": "{0} is surrounded by an unholy aura.",
+    "Message3": "Your unholy aura wears off.",
+    "Message4": "{0}'s unholy aura wears off.",
+}
 CLIENT_TOOLTIP_LIMIT = 32767
 
 # The pet templates live in the isolated database because they are world data,
@@ -606,11 +612,10 @@ def main() -> None:
                 conn, template, spell_id, f"Sluaghbinder_{spell_id}", name,
                 "Hardens the Sluaghbinder with a cairn-bound ward.",
                 CORE_CAIRN, level, CastTime=3.0, Value=float(value),
-                PackageID="Sluaghbinder_Cairn",
+                PackageID="Sluaghbinder_Cairn", **UNHOLY_AURA,
             )
 
         for spell_id, level, value, template, name in [
-            (59026, 20, 37, 1706, "Cairn Ward"),
             (59027, 30, 51, 3535, "Cairn Vigor"),
             (59028, 40, 63, 3536, "Cairn Fortitude"),
             (59029, 48, 75, 3537, "Cairn Oath"),
@@ -620,23 +625,47 @@ def main() -> None:
                 "Hardens the Sluaghbinder with a lasting cairn-bound ward.",
                 TREE_A, level, CastTime=3.0, Value=float(value),
                 PackageID="Sluaghbinder_Bulwark",
+                Message1="You are filled with the power of the cairn!",
+                Message2="{0} is filled with the power of the cairn!",
             )
 
-        # Tank-tree taunts use the server's native Taunt handler and a short,
-        # real recast rather than an unhandled custom ability.  Their values
-        # follow the existing Paladin taunt progression.
+        # Barrow Deflection replaced Cairn Ward (an armor buff the core Cairn
+        # line already outclassed): a modest self parry buff that lets the
+        # Sluaghbinder parry without the Parry specialization.  A fresh seed
+        # uses the stock Shield of Zeal icon; tools/pet-art/
+        # install_bulwark_update.py installs the custom icon on a world.
         for spell_id, level, value, name in [
-            (59040, 5, 5.2, "Dullahan's Challenge"),
-            (59041, 15, 17.1, "Dullahan's Rebuke"),
-            (59042, 25, 38.7, "Dullahan's Provocation"),
-            (59043, 35, 55.6, "Dullahan's Fury"),
-            (59044, 45, 72.0, "Dullahan's Command"),
+            (59026, 20, 4.0, "Barrow Deflection"),
+            (59110, 32, 6.0, "Barrow Riposte"),
+            (59111, 44, 8.0, "Barrow Wardblade"),
+        ]:
+            clone_spell(
+                conn, 1706, spell_id, f"Sluaghbinder_{spell_id}", name,
+                f"Barrow-cold reflexes guide the Sluaghbinder's weapon, increasing its chance to parry by {value:g}% for 20 minutes.",
+                TREE_A, level, CastTime=3.0, Value=value, Type="ParryBuff",
+                SpellGroup=59026, EffectGroup=59026, PackageID="Sluaghbinder_Bulwark",
+                TooltipId=29000 + (spell_id - 59000),
+                Message1="Barrow-cold reflexes guide your weapon.",
+                Message2="{0} moves with barrow-cold reflexes.",
+                Message3="Your barrow-cold reflexes fade.",
+                Message4="{0}'s barrow-cold reflexes fade.",
+            )
+
+        # Tank-tree taunts use the server's native Taunt handler.  Their hate
+        # values follow the Paladin taunt progression; they cost only power and
+        # share one 15 s recast across every rank (Paladin: 30 s, free).
+        for spell_id, level, value, power, name in [
+            (59040, 5, 5.2, 2, "Dullahan's Challenge"),
+            (59041, 15, 17.1, 6, "Dullahan's Rebuke"),
+            (59042, 25, 38.7, 10, "Dullahan's Provocation"),
+            (59043, 35, 55.6, 14, "Dullahan's Fury"),
+            (59044, 45, 72.0, 18, "Dullahan's Command"),
         ]:
             clone_spell(
                 conn, 1070, spell_id, f"Sluaghbinder_{spell_id}", name,
                 "Taunts an enemy to focus its attention on the Sluaghbinder.",
-                TREE_A, level, CastTime=0.0, Value=float(value),
-                RecastDelay=4, PackageID="Sluaghbinder_Bulwark",
+                TREE_A, level, CastTime=0.0, Value=float(value), Power=power,
+                RecastDelay=15, SharedTimerGroup=59040, PackageID="Sluaghbinder_Bulwark",
             )
         
 

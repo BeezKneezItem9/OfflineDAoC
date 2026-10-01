@@ -53,6 +53,8 @@ namespace DOL.GS
                     return eEffect.AblativeArmor;
                 case eSpellType.MeleeDamageBuff:
                     return eEffect.MeleeDamageBuff;
+                case eSpellType.ParryBuff:
+                    return eEffect.ParryBuff;
                 case eSpellType.CombatSpeedBuff:
                     return eEffect.MeleeHasteBuff;
                 //case eSpellType.Celerity: // Possibly the same as CombatSpeedBuff?

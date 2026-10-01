@@ -52,6 +52,15 @@ namespace DOL.GS.PropertyCalc
             {
                 chance += npc.ParryChance * 10;
 
+                // Bots take the NPC path; their parry buffs (none existed
+                // before Barrow Deflection) still have to count.
+                if (living is GameBot bot)
+                {
+                    chance += bot.BaseBuffBonusCategory[property] * 10;
+                    chance += bot.SpecBuffBonusCategory[property] * 10;
+                    chance -= bot.DebuffCategory[property] * 10;
+                }
+
                 if (living is NecromancerPet pet && pet.Brain is IControlledBrain)
                 {
                     chance += pet.BaseBuffBonusCategory[property] * 10;

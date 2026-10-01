@@ -38,6 +38,23 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   every save slot, so bots whose bags rarely changed (healers, full backpacks) could go about two
   hours without being saved. Routine saves now always get part of every batch, at the same total
   write rate, so every bot stays within a few minutes of its saved state.
+- Tank bots, gamebots and companions alike, now use instant taunts (the Paladin, Friar and
+  Sluaghbinder taunts). The bots only looked for taunts with a cast time, so these were never
+  used. A tank bot taunts a monster that attacks someone in its group.
+
+**Sluaghbinder (0.34b only)**
+- The Cairn armor buffs say "You are surrounded by an unholy aura." instead of a holy aura, and
+  the Cairn strength buffs say "You are filled with the power of the cairn!" instead of the
+  strength of Thor and the gods.
+- Dullahan's Bulwark taunts cost power (2, 6, 10, 14 and 18 by rank) and share one 15-second
+  recast across every rank. They used to be free with a 4-second recast per rank.
+- Cairn Ward (Dullahan's Bulwark 20), an armor buff the core Cairn Oath line already outclassed,
+  is replaced by a parry buff with its own icon: Barrow Deflection (+4% parry at 20), Barrow
+  Riposte (+6% at 32) and Barrow Wardblade (+8% at 44). It lets the Sluaghbinder parry without
+  the Parry specialization, and it works for Sluaghbinder bots too.
+- To add these to an existing 0.33b install now, run
+  `tools/pet-art/install_bulwark_update.py install` with the game, launcher and server closed. It
+  previews the changes if run without `install`, and it can be rolled back.
 
 **Animist bots (gamebots and companions)**
 - Animists use their shrooms by what they do, the way the class was played, instead of picking

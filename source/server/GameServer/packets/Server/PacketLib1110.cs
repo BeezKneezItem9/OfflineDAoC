@@ -55,12 +55,13 @@ namespace DOL.GS.PacketHandler
 		}
 
 		/// <summary>
-		/// Every Sluaghbinder spell (59000-59109, including the Dullahan's
-		/// Graveplate and the Cairn Aegis-Stronghold ranks) has its own tooltip.
+		/// Every Sluaghbinder spell (59000-59111, including the Dullahan's
+		/// Graveplate, the Cairn Aegis-Stronghold ranks and the Barrow
+		/// Riposte/Wardblade parry ranks) has its own tooltip.
 		/// </summary>
 		public static bool UsesOwnTooltipIdentity(int spellId)
 		{
-			return spellId is >= 59000 and <= 59109;
+			return spellId is >= 59000 and <= 59111;
 		}
 
         /// <summary>

@@ -1043,7 +1043,9 @@ namespace DOL.GS
 			if (ad.IsMeleeAttack)
 			{
 				BladeBarrierEffect BladeBarrier = null;
-				ECSGameEffect parryBuff = EffectListService.GetEffectOnTarget(this, eEffect.SavageBuff, eSpellType.SavageParryBuff);
+				// A parry buff lets its owner parry without the Parry specialization.
+				ECSGameEffect parryBuff = EffectListService.GetEffectOnTarget(this, eEffect.SavageBuff, eSpellType.SavageParryBuff) ??
+					EffectListService.GetEffectOnTarget(this, eEffect.ParryBuff);
 
 				if (player != null)
 				{

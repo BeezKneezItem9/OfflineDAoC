@@ -3316,7 +3316,10 @@ namespace DOL.AI.Brain
 
             if (GameLoop.GameLoopTime >= _nextPriorityTauntTick)
             {
-                Spell taunt = Body.HarmfulSpells?
+                // Instant taunts (no cast time, like the Sluaghbinder's) are
+                // sorted into InstantHarmfulSpells, so look in both lists.
+                Spell taunt = (Body.HarmfulSpells ?? Enumerable.Empty<Spell>())
+                    .Concat(Body.InstantHarmfulSpells ?? Enumerable.Empty<Spell>())
                     .Where(spell => spell.SpellType == eSpellType.Taunt &&
                                     Body.GetSkillDisabledDuration(spell) <= 0 &&
                                     Body.Mana >= BotBody.PowerCost(spell) &&
