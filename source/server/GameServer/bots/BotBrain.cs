@@ -778,6 +778,13 @@ namespace DOL.AI.Brain
         private bool PrefersCurrentSpellRange() =>
             PrefersSpellRange(BotBody?.CharacterClass, BotBody?.Group?.MemberCount > 1, BotBody?.IsAutonomousWorldBot == true);
 
+        // True when the body already runs the same melee follow NpcStartAttack would
+        // issue (its own target, melee weapon, stick distance).
+        private bool IsMeleeChasing(GameObject target) =>
+            target != null && Body.FollowTarget == target &&
+            Body.ActiveWeaponSlot != eActiveWeaponSlot.Distance &&
+            Body.movementComponent.MinFollowDistance <= Body.StickMinimumRange;
+
         private bool UsesMinstrelHybridCombat => BotBody?.IsAutonomousWorldBot == true &&
             BotBody.CharacterClass?.ID == (int)eCharacterClass.Minstrel;
 
@@ -2806,9 +2813,13 @@ namespace DOL.AI.Brain
                     ApproachPlayerLedPullTarget(pullTarget))
                     return;
 
-                Body.StopFollowing();
-
                 bool rangedCaster = PrefersCurrentSpellRange();
+
+                // A melee bot already chasing its own target at stick range keeps
+                // that order. Clearing it every think made NpcStartAttack stop the
+                // running bot and re-follow, which clients saw as rubberbanding.
+                if (rangedCaster || !IsMeleeChasing(Body.TargetObject))
+                    Body.StopFollowing();
                 if (!rangedCaster && Body.TargetObject is GameLiving meleeTarget && TryEngageUnderMeleePressure(meleeTarget))
                     return;
 
@@ -4205,6 +4216,13 @@ namespace DOL.AI.Brain
             return target;
         }
 
+        // Mirrors SpellHandler.HasConflictingEffectWith.
+        public static bool DotsConflict(Spell spell, Spell existing) =>
+            spell.ID == existing.ID ||
+            (spell.EffectGroup != 0 || existing.EffectGroup != 0
+                ? spell.EffectGroup == existing.EffectGroup
+                : spell.SpellType == existing.SpellType);
+
         public bool LivingHasEffect(GameLiving target, Spell spell)
         {
             if (target == null)
@@ -4250,6 +4268,12 @@ namespace DOL.AI.Brain
 
             if (pulseEffect != null)
                 return true;
+
+            // DoTs from different effect groups stack (Sluaghbinder Rot + Bane), so
+            // only a DoT the server would treat as conflicting blocks a new one.
+            if (spellEffect == eEffect.DamageOverTime)
+                return target.effectListComponent.GetSpellEffects(spellEffect)
+                    .Any(effect => effect?.SpellHandler?.Spell is Spell existing && DotsConflict(spell, existing));
 
             return EffectListService.GetEffectOnTarget(target, spellEffect) != null || HasImmunityEffect(EffectHelper.GetImmunityEffectFromSpell(spell)) || HasImmunityEffect(EffectHelper.GetNpcImmunityEffectFromSpell(spell));
 

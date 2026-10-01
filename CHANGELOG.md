@@ -16,6 +16,11 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   first injured ally found.
 - Ranged companions (Enchanter, Wizard and the other casters) walk up to a distant target that you
   or your pet are fighting instead of standing still, and their own pets join the fight.
+- Melee companions and melee gamebots no longer rubberband while running at their target. Every
+  AI tick they dropped their chase order, so the attack code stopped them and started them again
+  about twice a second.
+- Bots and pets with more than one damage-over-time spell use all of them when they stack. They
+  used to skip a second one whenever the target already had any damage over time on it.
 
 **Gamebots**
 - Nine hungry shriller (Caillte Garran) and Cliffs of Moher spawns that sit next to aggressive
@@ -55,6 +60,17 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 - To add these to an existing 0.33b install now, run
   `tools/pet-art/install_bulwark_update.py install` with the game, launcher and server closed. It
   previews the changes if run without `install`, and it can be rolled back.
+- Sluaghbinder spells cost power only. They also took 5 endurance each; styles still cost
+  endurance. This applies to players, gamebots and companions.
+- Every Sluaghbinder life drain (the five Abhartach's Bane Vitality drains, Guardian Lifesteal
+  and Dullahan's Blood Tithe) plays the naburite drinker's drain animation.
+- The five Abhartach's Bane Vitality drains share one 4-second recast. Each rank used to have
+  its own, so all five could be fired back to back.
+- Bane-specced Sluaghbinder bots use both their Abhartach's Rot and Abhartach's Bane damage over
+  time, which stack, and the Dullahan pet's Grave Rot stacks with both.
+- To add the drain and Grave Rot changes to an existing 0.33b install now, run
+  `tools/claude-version/install_bane_drain_update.py install` with the game, launcher and server
+  closed. It previews the changes if run without `install`, and it can be rolled back.
 
 **Animist bots (gamebots and companions)**
 - Animists use their shrooms by what they do, the way the class was played, instead of picking
@@ -106,6 +122,9 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   of their realm.
 - A faction stable master that turns you away now tells you your reputation, the -50 you need,
   and which emissary to see.
+- Bounty quests never send you after monsters whose death would cost reputation with one of these
+  three factions or their allies. For example, Hibernian bounties no longer pick mantids or ashen
+  treants.
 
 **World**
 - The Cliffs of Moher phaeghoul that spawned inside a dead tree now spawns in open ground nearby.
@@ -118,6 +137,8 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   level 48-55 venomous spores are unchanged. To apply the Leptus and spore seed changes to an
   existing 0.33 install now, run `tools/claude-version/fix_cothrom_seeds_and_leptus.py --apply`
   with the game closed.
+- The Celtic scale helm and the five other helmets on the same mesh (for example Animalbound
+  Osnadur Tha Coif) are visible again with extension 2. They used to hide the whole head.
 
 ## 0.33 / 0.33b "Claude Takeover" — 2026-09-30
 

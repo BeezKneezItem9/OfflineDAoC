@@ -28,6 +28,12 @@ drops and saved inventories keep their real extension.
 
 Extensions 0, 1, 5 and 7 are left alone.
 
+Also fixed: the "Hib Helm 1" mesh (`items.csv` 409 `H_helm1`, Head # 2, alternates 400/406), for
+example the Celtic scale helm 838 (Animalbound Osnadur Tha Coif). Only extension 2 shows as 0, on
+all 6 models that use it:
+
+438, 835, 838, 1201, 1205, 1209
+
 ## Fixing a new one
 
 1. **Find the helmet's family.** Run `python tools/claude-version/helmet_face_check.py <model>`.

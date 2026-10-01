@@ -18,10 +18,20 @@ namespace DOL.GS.PacketHandler
             2769, 2775, 2781, 2787, 2831, 2837, 2843, 2849
         ];
 
+        // The Hibernian "Hib Helm 1" mesh (items.csv 409, H_helm1, Head # 2, alternates 400/406):
+        // the Celtic scale helm 838 (e.g. Animalbound Osnadur Tha Coif) and its variants. Extension 2
+        // renders invisible; extension 0 is the same helm without the hidden head.
+        private static readonly HashSet<int> HibHelm1Models = [438, 835, 838, 1201, 1205, 1209];
+
         public static byte VisibleExtension(int slot, int model, byte extension)
         {
-            if (slot == (int)eInventorySlot.HeadArmor && HibHelm3Models.Contains(model) &&
-                (extension == 2 || extension == 3))
+            if (slot != (int)eInventorySlot.HeadArmor)
+                return extension;
+
+            if (HibHelm3Models.Contains(model) && (extension == 2 || extension == 3))
+                return 0;
+
+            if (HibHelm1Models.Contains(model) && extension == 2)
                 return 0;
 
             return extension;

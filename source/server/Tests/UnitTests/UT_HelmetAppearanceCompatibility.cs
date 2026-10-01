@@ -21,7 +21,10 @@ namespace DOL.UnitTests
         [TestCase(440, 3, 0)]
         [TestCase(2849, 3, 0)]
         [TestCase(839, 3, 3)]
-        [TestCase(838, 2, 2)]
+        [TestCase(838, 2, 0)]
+        [TestCase(838, 1, 1)]
+        [TestCase(1209, 2, 0)]
+        [TestCase(835, 3, 3)]
         public void OnlyConfirmedBrokenCoifExtensionsAreRemapped(int model, byte itemExtension, byte visibleExtension)
         {
             Assert.That(HelmetAppearanceCompatibility.VisibleExtension(

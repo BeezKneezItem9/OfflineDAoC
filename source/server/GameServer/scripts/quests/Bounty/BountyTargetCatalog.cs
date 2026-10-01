@@ -221,6 +221,9 @@ namespace DOL.GS
                 if (zone == null)
                     continue;
 
+                if (HurtsStableReputation(MobFaction(mob, templates)))
+                    continue;
+
                 foreach (byte effectiveLevel in EffectiveLevels(mob, templates))
                 {
                     if (effectiveLevel is >= 1 and <= 49)
@@ -236,6 +239,28 @@ namespace DOL.GS
                         group.Count(), false);
                 })
                 .ToArray();
+        }
+
+        // A template that replaces mob values owns the faction, as in FactionReputationTargets.
+        private static int MobFaction(DbMob mob, Dictionary<int, DbNpcTemplate[]> templates) =>
+            templates.TryGetValue(mob.NPCTemplateID, out DbNpcTemplate[] matches) &&
+            matches.FirstOrDefault(template => template.ReplaceMobValues) is DbNpcTemplate owner
+                ? owner.FactionID
+                : mob.FactionID;
+
+        /// <summary>
+        /// True when killing a member of this faction lowers standing with one of the
+        /// Shrouded Isles stable factions (the emissary reputation factions). A kill
+        /// worsens standing with every friend of the victim's faction, itself included.
+        /// </summary>
+        internal static bool HurtsStableReputation(int factionId)
+        {
+            if (factionId <= 0)
+                return false;
+
+            Faction faction = FactionMgr.GetFactionByID(factionId);
+            return faction != null && faction.FriendFactions.Any(friend =>
+                friend != null && FactionEmissaryRuntime.GetDefinitionForFaction(friend.Id) != null);
         }
 
         /// <summary>The source list must be the exact, currently valid DF

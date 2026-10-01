@@ -26,6 +26,8 @@ CORE_ROT = "Abhartach's Rot"
 CORE_CAIRN = "Cairn Oath"
 TREE_A = "Dullahan's Bulwark"
 TREE_B = "Abhartach's Bane"
+# Life drains play the naburite drinker's drain animation (stock effect 10079).
+DRAIN_EFFECT = 10079
 TREE_C = "Sluagh Covenant"
 # TREE_B remains the stable internal key and display name for the trainable
 # scythe/disease path.  CORE_ROT is the separate automatic baseline line and
@@ -493,7 +495,7 @@ def main() -> None:
             (59034, 651, "Guardian Lifesteal", "Drains life from the guardian's target.", {
                 "Target": "Enemy", "Range": 1500, "Damage": 42.0, "DamageType": 10,
                 "Type": "Lifedrain", "RecastDelay": 4, "Value": -30.0, "LifeDrainReturn": 30,
-                "SpellGroup": 59034, "SharedTimerGroup": 30,
+                "SpellGroup": 59034, "SharedTimerGroup": 30, "ClientEffect": DRAIN_EFFECT,
             }),
             (59036, 10308, "Grave Renewal", "Renews the Sluaghbinder group's health beneath a unique cairn ward.", {
                 # Group targeting lets the controlled priest apply the same
@@ -524,7 +526,7 @@ def main() -> None:
             (59070, 60008, "Dullahan's Grave Rot", "An instant rot that lingers on the target.", {
                 "Target": "Enemy", "Range": 1500, "Power": 8, "CastTime": 0.0,
                 "Damage": 45.0, "DamageType": 14, "Type": "DamageOverTime", "Duration": 24,
-                "Frequency": 40, "RecastDelay": 10, "SpellGroup": 59070,
+                "Frequency": 40, "RecastDelay": 10, "SpellGroup": 59070, "EffectGroup": 59070,
             }),
             (59071, 961, "Dullahan's Withering Mark", "Weakens an enemy's strength and constitution.", {
                 "Target": "Enemy", "Range": 1500, "Power": 8, "CastTime": 0.0,
@@ -534,7 +536,7 @@ def main() -> None:
             (59072, 651, "Dullahan's Blood Tithe", "Instantly drains life from the target.", {
                 "Target": "Enemy", "Range": 1500, "Power": 10, "CastTime": 0.0,
                 "Damage": 50.0, "DamageType": 10, "Type": "Lifedrain", "Value": -35.0,
-                "LifeDrainReturn": 35, "RecastDelay": 10, "SpellGroup": 59072,
+                "LifeDrainReturn": 35, "RecastDelay": 10, "SpellGroup": 59072, "ClientEffect": DRAIN_EFFECT,
                 "SharedTimerGroup": 30,
             }),
             (59073, 621, "Dullahan's Fading Step", "Slows an enemy's dexterity and quickness.", {
@@ -599,6 +601,7 @@ def main() -> None:
                 "Instantly damages the target and returns part of the damage as health.",
                 TREE_B, level, CastTime=0.0, Damage=float(damage),
                 Power=power, LifeDrainReturn=drain, Icon=icon, RecastDelay=4,
+                ClientEffect=DRAIN_EFFECT, SharedTimerGroup=59019,
                 PackageID="Sluaghbinder_Rot",
             )
 

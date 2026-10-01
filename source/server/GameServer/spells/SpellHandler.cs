@@ -1240,8 +1240,16 @@ namespace DOL.GS.Spells
 
 		public virtual int CalculateEnduranceCost()
 		{
+			// Sluaghbinder spells cost power only; their styles carry the endurance cost.
+			if (IsSluaghbinder(m_caster))
+				return 0;
+
 			return 5;
 		}
+
+		private static bool IsSluaghbinder(GameLiving caster) =>
+			caster is GamePlayer { CharacterClass.ID: (int)eCharacterClass.Sluaghbinder } ||
+			caster is GameBot { CharacterClass.ID: (int)eCharacterClass.Sluaghbinder };
 
 		/// <summary>
 		/// Called whenever the casters casting sequence is to interrupt immediately

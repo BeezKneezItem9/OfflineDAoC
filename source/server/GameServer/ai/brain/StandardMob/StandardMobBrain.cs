@@ -1476,6 +1476,13 @@ namespace DOL.AI.Brain
                 return false;
             }
 
+            // Pets: a DoT from a different effect group stacks (e.g. the Sluaghbinder
+            // Dullahan's Grave Rot beside its owner's Rot and Bane), so only a
+            // conflicting DoT blocks it. Wild mobs keep the stock category check.
+            if (spellEffect == eEffect.DamageOverTime && this is IControlledBrain)
+                return target.effectListComponent.GetSpellEffects(spellEffect)
+                    .Any(effect => effect?.SpellHandler?.Spell is Spell existing && BotBrain.DotsConflict(spell, existing));
+
             // True if the target has the effect, or the immunity effect for this effect.
             // Treat NPC immunity effects as full immunity effects.
             return EffectListService.GetEffectOnTarget(target, spellEffect) != null ||
