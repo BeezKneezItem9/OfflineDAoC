@@ -315,8 +315,8 @@ UNCONFIRMED
 ------------------------------------------------------------------------------
 9. PREVIEWING AND TESTING
 ------------------------------------------------------------------------------
-- Blender 5.2.2 (C:\Users\thedo\AppData\Local\Programs\Blender Foundation\
-  Blender 5.2.2\blender.exe) renders OBJ exports in the background:
+- Blender (5.x; set the blender.exe path in build_ghastly_healer.py / weapon_preview.py)
+  renders OBJ exports in the background:
   blender_views.py (front, 3/4, side, back rows, auto-framed),
   blender_render.py, blender_weapons.py. Export OBJs with export_obj.py
   (pyffi) or the nif4_geom-based writer inside build_ghastly_healer.py.
