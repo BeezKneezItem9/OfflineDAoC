@@ -90,7 +90,7 @@ namespace DOL.GS.Spells
 
             (m_pet.Brain as TurretBrain).IsMainPet = false;
             Caster.UpdatePetCount(m_pet, true);
-            AutonomousPetSupport.RegisterFieldTurret(Caster, m_pet as TurretPet);
+            AutonomousPetSupport.RegisterFieldTurret(Caster, m_pet as TurretPet, Spell.Duration);
         }
 
         protected override void SetBrainToOwner(IControlledBrain brain) { }

@@ -39,6 +39,28 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   hours without being saved. Routine saves now always get part of every batch, at the same total
   write rate, so every bot stays within a few minutes of its saved state.
 
+**Animist bots (gamebots and companions)**
+- Animists use their shrooms by what they do, the way the class was played, instead of picking
+  the highest-level shroom spell at random:
+  - The permanent shroom and one damage shroom open the fight.
+  - Each resist Vent is kept up once (both in a group, one solo). Vents never count against
+    damage shrooms, and no duplicate Vents are planted.
+  - Then the highest-rank damage shroom is added for as long as the monsters still need it, so
+    a weak monster gets one or two and a tough one or a pack gets many more.
+  - The old limit of three temporary shrooms and the extra 6.5-second wait are gone. The bot
+    keeps 20% power in reserve, and the server's normal shroom limits still apply.
+- Every spec plays to its strengths:
+  - Verdant uses its taunting permanent shroom with Briar bursts and Ligneous ablatives.
+  - Creeping adds a Spore in group fights where someone is being hit in melee.
+  - Every spec heals its permanent shroom.
+  - Between fights, a permanent shroom of the wrong kind or an outgrown rank is replaced.
+- Animists stand inside shroom range (850) instead of nuke range (1,500) and plant every
+  shroom, the permanent one included, beside themselves instead of next to the enemy. If the
+  monster moves out of reach they walk up first instead of planting.
+- Damage shrooms stop at two in crowded camps, and bursts and Spores wait until no other
+  monster would be hit, so shrooms pull fewer extra monsters.
+- Companion Animists keep planting while you move around during a fight.
+
 **Charm pets**
 - The charm creature menu (Sorcerer, Minstrel, Mentalist and Hunter) tags every choice with how it
   fights: **Caster** (casts an attack spell from range), **Archer** (shoots a bow) or **Melee**.

@@ -3002,6 +3002,16 @@ namespace DOL.AI.Brain
 
         private int OffensiveApproachRange(GameLiving target)
         {
+            int range = SpellApproachRange();
+            // An Animist fights through its shrooms: stand where they reach the
+            // target (1,000), not at nuke range (1,500), so every shroom can be
+            // planted beside the Animist instead of out by the enemy.
+            int shroomRange = BotAnimistPolicy.ShroomStandoffRange(BotBody);
+            return shroomRange > 0 && range > 0 ? Math.Min(range, shroomRange) : range;
+        }
+
+        private int SpellApproachRange()
+        {
             // SortSpells stores bolts and instant nukes outside HarmfulSpells.
             // Read the small learned list so those classes use their real range.
             return Body.Spells?.Where(spell => spell != null && spell.IsHarmful &&

@@ -172,10 +172,12 @@ public class UT_AutonomousSummonPolicy
     public void DeploymentRangeUsesNativeRangeWithBounds(int range, int expected) =>
         Assert.That(BotAnimistPolicy.UsefulRadius(range), Is.EqualTo(expected));
 
-    [TestCase(34,0,6500,false)] [TestCase(35,0,6500,true)]
-    [TestCase(100,2,6500,true)] [TestCase(100,3,6500,false)] [TestCase(100,0,6499,false)]
-    public void FieldManaCadenceAndLocalCap(int mana, int count, long now, bool expected) =>
-        Assert.That(BotAnimistPolicy.FieldReady(now,6500,mana,100,count), Is.EqualTo(expected));
+    // The old 35% power / 6.5 s / three-shroom field cap is replaced by
+    // AnimistShroomPlanner (see UT_AnimistShroomPlanner): a 20% reserve and
+    // the server's own turret caps.
+    [TestCase(100,100,10,true)] [TestCase(30,100,10,true)] [TestCase(29,100,10,false)] [TestCase(100,0,10,false)]
+    public void FieldPowerKeepsReserve(int mana, int maxMana, int cost, bool expected) =>
+        Assert.That(AnimistShroomPlanner.KeepsReserve(mana,maxMana,cost), Is.EqualTo(expected));
 
     [Test] public void AllLearnedAnimistSummonKindsBypassOnlyTheOldBotFilter()
     {
@@ -247,7 +249,7 @@ public class UT_AutonomousSummonPolicy
         bot.TestPet=brain; // Simulate delayed removal so the cooldown must protect it.
         BotAnimistPolicy.Maintain(bot,enemy,ref next,out _);
         Assert.That(brain.Releases,Is.EqualTo(1));
-        typeof(GameLoop).GetProperty(nameof(GameLoop.GameLoopTime)).SetValue(null,GameLoop.GameLoopTime+3001);
+        typeof(GameLoop).GetProperty(nameof(GameLoop.GameLoopTime)).SetValue(null,GameLoop.GameLoopTime+BotAnimistPolicy.RelocationCooldownMilliseconds+1);
         main.TestX=0;
         BotAnimistPolicy.Maintain(bot,enemy,ref next,out _);
         Assert.That(brain.Releases,Is.EqualTo(1),"Useful local main remains deployed");

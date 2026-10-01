@@ -25,7 +25,8 @@ public static class AutonomousPetSupport
     private static readonly ConcurrentDictionary<(int Level, ushort CharmType, eCharacterClass Class), DbMob[]> PlayerCharmTemplates = new();
     private static readonly ConcurrentDictionary<GameLiving, PendingCharm> PendingCharms = new();
     private static readonly ConcurrentDictionary<GameLiving, ActiveSyntheticCharm> ActiveSyntheticCharms = new();
-    private static readonly ConcurrentDictionary<GameLiving, ConcurrentDictionary<TurretPet, byte>> FieldTurrets = new();
+    // Value: the game-loop tick at which the field turret's summon expires.
+    private static readonly ConcurrentDictionary<GameLiving, ConcurrentDictionary<TurretPet, long>> FieldTurrets = new();
     private static readonly ConcurrentDictionary<eCharacterClass, Spell> GeneratedCharmSpells = new();
     private static readonly ConcurrentDictionary<(eCharacterClass Class, int SpellId), Spell> PlayerGeneratedCharmSpells = new();
     private static readonly ConditionalWeakTable<GameBot, BonedancerMinionSpellCache> BonedancerMinionSpells = new();
@@ -1071,7 +1072,14 @@ public static class AutonomousPetSupport
         return 1;
     }
 
-    internal static bool CanDeployFieldTurret(GameLiving owner, GameLiving combatTarget)
+    internal static bool CanDeployFieldTurret(GameLiving owner, GameLiving combatTarget) =>
+        owner != null && CanDeployFieldTurretAt(owner, new Point3D(
+            combatTarget?.X ?? owner.X,
+            combatTarget?.Y ?? owner.Y,
+            combatTarget?.Z ?? owner.Z));
+
+    /// <summary>The server's own turret caps (per owner, and per area around the ground target).</summary>
+    internal static bool CanDeployFieldTurretAt(GameLiving owner, Point3D center)
     {
         if (owner == null)
             return false;
@@ -1085,10 +1093,6 @@ public static class AutonomousPetSupport
         if (Properties.TURRET_AREA_CAP_COUNT <= 0 || owner.CurrentRegion == null)
             return true;
 
-        Point3D center = new(
-            combatTarget?.X ?? owner.X,
-            combatTarget?.Y ?? owner.Y,
-            combatTarget?.Z ?? owner.Z);
         int nearby = owner.CurrentRegion.GetNPCsInRadius(center, (ushort)Properties.TURRET_AREA_CAP_RADIUS)
             .Count(npc => npc?.Brain is TurretFNFBrain);
         return nearby < Properties.TURRET_AREA_CAP_COUNT;
@@ -1192,11 +1196,22 @@ public static class AutonomousPetSupport
         return false;
     }
 
-    public static void RegisterFieldTurret(GameLiving owner, TurretPet turret)
+    public static void RegisterFieldTurret(GameLiving owner, TurretPet turret, int lifetimeMilliseconds = 120_000)
     {
         if (owner == null || turret == null)
             return;
-        FieldTurrets.GetOrAdd(owner, _ => new ConcurrentDictionary<TurretPet, byte>())[turret] = 0;
+        FieldTurrets.GetOrAdd(owner, _ => new ConcurrentDictionary<TurretPet, long>())[turret] =
+            GameLoop.GameLoopTime + Math.Max(1_000, lifetimeMilliseconds);
+    }
+
+    /// <summary>This owner's live field turrets and when each one expires.</summary>
+    public static IEnumerable<(TurretPet Turret, long ExpiresAt)> OwnedFieldTurrets(GameLiving owner)
+    {
+        if (owner == null || !FieldTurrets.TryGetValue(owner, out var turrets))
+            yield break;
+        foreach (KeyValuePair<TurretPet, long> entry in turrets)
+            if (entry.Key?.IsAlive == true && entry.Key.ObjectState is GameObject.eObjectState.Active)
+                yield return (entry.Key, entry.Value);
     }
 
     public static void UnregisterFieldTurret(GameLiving owner, TurretPet turret)
@@ -1851,6 +1866,13 @@ public static class AutonomousPetSupport
                 owner.Z);
         }
 
+        SetAnimistGroundTarget(owner, desired);
+    }
+
+    /// <summary>Ground-targets a shroom spot, slid along the navmesh from the caster so it lands on walkable ground.</summary>
+    internal static void SetAnimistGroundTarget(GameLiving owner, Vector3 desired)
+    {
+        Vector3 ownerPosition = new(owner.X, owner.Y, owner.Z);
         Vector3 snapped = PathfindingProvider.Instance.GetMoveAlongSurface(
             owner.CurrentZone,
             ownerPosition,
