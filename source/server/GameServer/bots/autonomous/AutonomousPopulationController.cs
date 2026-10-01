@@ -223,7 +223,7 @@ public static class AutonomousPopulationController
             record.CurrentGoal = "Find a reachable level-appropriate XP camp";
             record.ObjectiveProgress = "Entered world through staggered login queue";
             bot.MarkAutonomousStateDirty();
-            AutonomousBotStatusPersistence.Queue(bot);
+            AutonomousBotStatusPersistence.QueueLogin(bot);
             Log.Info($"Autonomous character {record.Name} entered the live world from the staggered queue.");
         }
         catch (Exception exception)

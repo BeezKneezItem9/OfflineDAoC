@@ -72,11 +72,53 @@ public static class AutonomousBotStatusPersistence
         get { lock (PendingGate) return Pending.Count; }
     }
 
+    /// <summary>
+    /// A bot that just logged in must not wait behind routine updates: the
+    /// launcher only teleports to bots whose saved row says they are online.
+    /// </summary>
+    public static void QueueLogin(GameBot bot) => QueueGroupMetadata(bot);
+
+    /// <summary>
+    /// Inventory and group changes are durable first, but they may fill at most
+    /// this much of a batch. With thousands of bots looting, they used to take
+    /// every slot every second, so bots whose inventory rarely changed (healers,
+    /// full backpacks) went an hour or more without a saved status.
+    /// </summary>
+    public const int MaximumNonRoutinePerBatch = WriteBatchSize - 4;
+
+    private const long DiagnosticIntervalTicks = 300_000;
+    private static long _nextDiagnosticTick;
+    private static int _savedSinceDiagnostic;
+
     public static int Flush()
     {
         if (Interlocked.Exchange(ref _flushing, 1) != 0)
             return 0;
 
+        try
+        {
+            // One bounded batch per second. A second "catch-up" batch was tried
+            // and doubled database lock time; with 6,000 bots the game loop
+            // stalled for over a second at a time, so throughput stays as it was.
+            int saved = SaveBatch();
+
+            Interlocked.Add(ref _savedSinceDiagnostic, saved);
+            LogBacklogPeriodically();
+            return saved;
+        }
+        finally
+        {
+            Volatile.Write(ref _flushing, 0);
+        }
+    }
+
+    /// <summary>
+    /// Picks one batch. A normal batch takes inventory changes, then group or
+    /// login changes, up to <see cref="MaximumNonRoutinePerBatch"/>, then the
+    /// oldest routine updates, then fills any space left from the first two.
+    /// </summary>
+    private static int SaveBatch()
+    {
         var drained = new Dictionary<long, GameBot>(WriteBatchSize);
         var inventoryIds = new HashSet<long>();
         var priorityIds = new HashSet<long>();
@@ -84,32 +126,8 @@ public static class AutonomousBotStatusPersistence
         {
             lock (PendingGate)
             {
-                // Inventory/equipment changes are durable first. Stale ids are
-                // harmless: they remain in the order queue only until dequeued.
-                while (drained.Count < WriteBatchSize && PendingInventoryOrder.Count > 0)
-                {
-                    long botId = PendingInventoryOrder.Dequeue();
-                    PendingInventory.Remove(botId);
-                    if (Pending.Remove(botId, out GameBot bot))
-                    {
-                        drained[botId] = bot;
-                        inventoryIds.Add(botId);
-                    }
-                }
-
-
-                while (drained.Count < WriteBatchSize && PendingPriorityOrder.Count > 0)
-                {
-                    long botId = PendingPriorityOrder.Dequeue();
-                    PendingPriority.Remove(botId);
-                    if (Pending.Remove(botId, out GameBot bot))
-                    {
-                        drained[botId] = bot;
-                        priorityIds.Add(botId);
-                        if (PendingInventory.Remove(botId))
-                            inventoryIds.Add(botId);
-                    }
-                }
+                DrainInventory(drained, inventoryIds, MaximumNonRoutinePerBatch);
+                DrainPriority(drained, inventoryIds, priorityIds, MaximumNonRoutinePerBatch);
 
                 while (drained.Count < WriteBatchSize && PendingOrder.Count > 0)
                 {
@@ -121,6 +139,9 @@ public static class AutonomousBotStatusPersistence
                     if (PendingInventory.Remove(botId))
                         inventoryIds.Add(botId);
                 }
+
+                DrainInventory(drained, inventoryIds, WriteBatchSize);
+                DrainPriority(drained, inventoryIds, priorityIds, WriteBatchSize);
             }
 
             GameBot[] bots = drained.Values.ToArray();
@@ -179,9 +200,69 @@ public static class AutonomousBotStatusPersistence
             Log.Error("Autonomous status batch persistence failed", exception);
             return 0;
         }
-        finally
+    }
+
+    // Callers hold PendingGate. Stale ids are harmless: they remain in an
+    // order queue only until dequeued.
+    private static void DrainInventory(Dictionary<long, GameBot> drained, HashSet<long> inventoryIds, int limit)
+    {
+        while (drained.Count < limit && PendingInventoryOrder.Count > 0)
         {
-            Volatile.Write(ref _flushing, 0);
+            long botId = PendingInventoryOrder.Dequeue();
+            PendingInventory.Remove(botId);
+            if (Pending.Remove(botId, out GameBot bot))
+            {
+                drained[botId] = bot;
+                inventoryIds.Add(botId);
+            }
+        }
+    }
+
+    private static void DrainPriority(Dictionary<long, GameBot> drained, HashSet<long> inventoryIds,
+        HashSet<long> priorityIds, int limit)
+    {
+        while (drained.Count < limit && PendingPriorityOrder.Count > 0)
+        {
+            long botId = PendingPriorityOrder.Dequeue();
+            PendingPriority.Remove(botId);
+            if (Pending.Remove(botId, out GameBot bot))
+            {
+                drained[botId] = bot;
+                priorityIds.Add(botId);
+                if (PendingInventory.Remove(botId))
+                    inventoryIds.Add(botId);
+            }
+        }
+    }
+
+    /// <summary>Every five minutes: how many bots are waiting and how many were saved.</summary>
+    private static void LogBacklogPeriodically()
+    {
+        long now = GameLoop.GameLoopTime;
+        if (now < _nextDiagnosticTick)
+            return;
+
+        _nextDiagnosticTick = now + DiagnosticIntervalTicks;
+        int pending, inventory, priority;
+        lock (PendingGate)
+        {
+            pending = Pending.Count;
+            inventory = PendingInventory.Count;
+            priority = PendingPriority.Count;
+        }
+
+        int saved = Interlocked.Exchange(ref _savedSinceDiagnostic, 0);
+        if (saved == 0 && pending == 0)
+            return;
+
+        // This runs on the flush timer thread, where an exception would end
+        // the process; a diagnostic line must never be able to do that.
+        try
+        {
+            Log.Info($"AUTONOMOUS_STATUS_PERSISTENCE pending={pending} inventory={inventory} priority={priority} saved_last_5m={saved}");
+        }
+        catch
+        {
         }
     }
 

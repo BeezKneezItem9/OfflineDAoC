@@ -1819,9 +1819,25 @@ namespace DOL.GS.Spells
 								}
 							}
 						}
-						else if (m_caster is GameNPC && (m_caster as GameNPC).Brain is ControlledMobBrain casterBrain)
+						else if (m_caster is GameNPC && (m_caster as GameNPC).Brain is ControlledMobBrain casterBrain &&
+							((IControlledBrain) casterBrain).Owner is GameBot botOwner)
 						{
-							GamePlayer player = casterBrain.GetPlayerOwner();
+							// A gamebot's pet buffs the bot and the bot's party, just as a
+							// player's pet buffs its player. Without this the group spell
+							// reached only the pet, and the pet brain, still seeing the bot
+							// unbuffed, recast it forever and never followed.
+							if (botOwner.Group == null)
+							{
+								if (m_caster.IsWithinRadius(botOwner, spellRange))
+									list.Add(botOwner);
+								list.Add(m_caster);
+							}
+							else
+								group = botOwner.Group;
+						}
+						else if (m_caster is GameNPC && (m_caster as GameNPC).Brain is ControlledMobBrain casterBrain2)
+						{
+							GamePlayer player = casterBrain2.GetPlayerOwner();
 
 							if (player != null)
 							{

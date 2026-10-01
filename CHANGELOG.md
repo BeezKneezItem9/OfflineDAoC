@@ -31,6 +31,13 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   Mythicos) and iarn dwarf (The Remnants) town residents near their faction's stable masters never
   attack bots, and bots never attack them, so bots can ride the wyvern, dragonfly and gryphon
   routes. Players still need reputation.
+- A gamebot's pet now casts its group buffs on the bot and the bot's party. The Sluaghbinder's
+  zombie priest used to recast its 20-minute Grave Renewal on itself forever and never follow its
+  bot, because the buff only ever reached the pet.
+- Bot progress is saved more evenly. With thousands of bots, saves for loot and gear changes took
+  every save slot, so bots whose bags rarely changed (healers, full backpacks) could go about two
+  hours without being saved. Routine saves now always get part of every batch, at the same total
+  write rate, so every bot stays within a few minutes of its saved state.
 
 **Shrouded Isles reputation**
 - New repeatable reputation quest in each realm, from a faction emissary:
