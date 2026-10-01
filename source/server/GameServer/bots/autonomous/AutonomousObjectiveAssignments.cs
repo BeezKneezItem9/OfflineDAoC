@@ -95,6 +95,7 @@ public static class AutonomousObjectiveAssignments
         // Diagnostic count only; cannot finish or shorten a task.
         record.ObjectivePveKills++;
         bot.MarkAutonomousStateDirty();
+        AutonomousCampDangerBench.RecordKill(record.CurrentCampId);
     }
 
     public static bool HasActiveRvrTenure(OfflineWorldBotRecord record, DateTime utcNow)

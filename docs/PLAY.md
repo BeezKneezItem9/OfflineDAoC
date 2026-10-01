@@ -66,6 +66,34 @@ A new install starts with an empty world:
 The launcher's bot goals settings choose how much bots solo, group or go to RvR at each level
 range. You can recruit companion bots in game.
 
+#### How many bots?
+
+Counts are gamebots per realm (Albion / Midgard / Hibernia):
+
+| Bots per realm | Experience |
+|---|---|
+| **500 / 500 / 500** or fewer | Low population. |
+| **1000 / 1000 / 1000** | Regular populated server. Enough level 50 bots to complete all content, and a living world. Going above this may cause server lag or database locks more often. |
+| **1500 / 1500 / 1500** | High population. |
+| **2000 / 2000 / 2000** | Full server. |
+| More than 2000 per realm | Likely impractical. |
+
+With a lot of load, bots may also move more slowly.
+
+There is a hard ceiling from bot name generation. Each realm has its own male and female name
+pools, 20,414 unique names in total:
+- Albion has 7,496.
+- Midgard has 6,494.
+- Hibernia has 6,424.
+
+The launcher picks each bot's gender at random. A realm's batch fails once that realm's smaller
+pool is used up, so creation stops at about:
+- **6,900 Albion**, **5,700 Midgard** and **6,200 Hibernia** bots;
+- **about 18,800 in total**.
+
+That means 6000 / 6000 / 6000 isn't reachable, because Midgard runs out first. It wouldn't be
+practical anyway.
+
 Handy in-game commands are listed in [QUICK-COMMANDS.md](QUICK-COMMANDS.md). The complete list is
 in `ALL SERVER COMMANDS.txt`.
 

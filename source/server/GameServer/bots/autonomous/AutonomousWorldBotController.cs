@@ -2293,6 +2293,38 @@ namespace DOL.GS
             BeginSavageMeleePull(bot, target);
         }
 
+        // Consecutive pulls at the current camp that never reached or hit their
+        // target. Failed targets are only skipped for 90 s, so a camp whose spawns
+        // are all unreachable (bear cubs across water, corpse flickers on a ledge)
+        // used to hold a solo bot standing still for over an hour.
+        internal const int UnreachablePullsBeforeCampAbandon = 3;
+        private int _campPullFailures;
+        private string _campPullFailureCampId = string.Empty;
+
+        private bool AbandonCampAfterUnreachablePulls(GameBot bot)
+        {
+            if (_camp == null || bot.Group != null)
+                return false;
+            if (!string.Equals(_campPullFailureCampId, _camp.Id, StringComparison.Ordinal))
+            {
+                _campPullFailureCampId = _camp.Id;
+                _campPullFailures = 0;
+            }
+            if (++_campPullFailures < UnreachablePullsBeforeCampAbandon)
+                return false;
+
+            _campPullFailures = 0;
+            if (AutonomousCampRouteQuarantine.ReportFailure(_camp.Id, bot.DatabaseID))
+                Log.Warn($"AUTONOMOUS_CAMP_ROUTE_QUARANTINE camp=\"{_camp.Id}\" target=\"{_camp.MonsterName}\" " +
+                         $"zone=\"{_camp.ZoneName}\" bots={AutonomousCampRouteQuarantine.DistinctBotsToQuarantine} " +
+                         $"hours={AutonomousCampRouteQuarantine.QuarantineDuration.TotalHours:0} reason=unreachable-pulls");
+            Log.Warn($"AUTONOMOUS_CAMP_UNREACHABLE_PULLS bot={bot.Name} id={bot.DatabaseID} level={bot.Level} " +
+                     $"class=\"{bot.ClassName}\" camp=\"{_camp.Id}\" target=\"{_camp.MonsterName}\" " +
+                     $"region={bot.CurrentRegionID} x={bot.X} y={bot.Y} z={bot.Z}");
+            AbandonCamp(bot, $"{UnreachablePullsBeforeCampAbandon} pulls in a row never reached a {_camp.MonsterName}");
+            return true;
+        }
+
         private static bool ReleaseSavageMeleePullTarget(BotBrain brain, GameBot bot, GameNPC target)
         {
             brain.RemoveFromAggroList(target);
@@ -2346,6 +2378,7 @@ namespace DOL.GS
                     _savageMeleePullLastAttackedTick, bot.LastAttackedByEnemyTick,
                     _savageMeleePullTargetHealth, target.Health))
             {
+                _campPullFailures = 0;
                 ClearSavageMeleePull();
                 return false;
             }
@@ -2422,6 +2455,8 @@ namespace DOL.GS
                             $"pendingCast={bot.castingComponent?.HasPendingSkillRequests == true} resting={bot.IsRecoveryResting} " +
                             $"manaPercent={bot.ManaPercent} moving={bot.IsMoving} pet={bot.ControlledBrain?.Body?.Name ?? "none"} " +
                             $"region={bot.CurrentRegionID} x={bot.X} y={bot.Y} z={bot.Z}");
+                    if (AbandonCampAfterUnreachablePulls(bot))
+                        return true;
                     return noOtherAggro;
             }
 
@@ -2460,6 +2495,18 @@ namespace DOL.GS
             _nextTargetSearchTick = GameLoop.GameLoopTime + 900 + bot.ObjectID % 500;
 
             GameNPC target = FindCampTarget(bot);
+            // A level-up can turn a whole low-level camp grey. Those kills give no
+            // experience, so a solo bot fought on in place until the stuck watchdog
+            // rescued it fifteen minutes later. Targets are sorted by con, so a grey
+            // pick means nothing better is near: plan a camp for the new level.
+            if (target != null && bot.Group == null && !_camp.IsDungeon &&
+                ConLevels.GetConColor(bot.GetConLevel(target)) == ConColor.GREY)
+            {
+                Log.Info($"AUTONOMOUS_CAMP_OUTLEVELED bot={bot.Name} id={bot.DatabaseID} level={bot.Level} " +
+                         $"class=\"{bot.ClassName}\" camp=\"{_camp.Id}\" target=\"{target.Name}\" targetLevel={target.Level}");
+                AbandonCamp(bot, $"Outleveled {_camp.MonsterName}; the camp no longer gives experience");
+                return true;
+            }
             if (target != null)
             {
                 if (AutonomousDefensivePull.TryBeginFlyingHandoff(bot, target))
@@ -2937,6 +2984,7 @@ namespace DOL.GS
                          .Where(cell => !rejectedDungeons.Contains(cell.Id) && reachableRegions.Contains(cell.RegionId) &&
                                         (sharedGroup || !_recentFailedSoloCamps.ContainsKey(cell.Id)) &&
                                         !AutonomousCampRouteQuarantine.IsQuarantined(cell.Id) &&
+                                        (sharedGroup || !AutonomousCampDangerBench.IsBenched(cell.Id)) &&
                                         IsZoneAccessible(bot.Realm, cell.Zone, bot.CurrentRegionID) &&
                                         AutonomousOrdinaryPveRealmPolicy.CanAssignCamp(bot.Realm, cell.RegionId,
                                             cell.Zone?.ID ?? 0) &&
@@ -3019,8 +3067,8 @@ namespace DOL.GS
                     cell.IsDungeon ? AutonomousDungeonPopulationPolicy.Capacity(cell.RegionId, cell.LiveMobCount) : 0));
             }
 
-            // Once realm/accessibility/level/con filters have been applied, all
-            // distinct CapnBry-authoritative locations have equal probability.
+            // Once realm/accessibility/level/con filters have been applied, each
+            // distinct location is drawn in proportion to its live spawns (capped).
             // Distance, local density, and monster-name scoring may not pull a
             // population into one nearby camp.
             IEnumerable<AutonomousBotDecisionEngine.Camp> legal = camps.Where(camp =>
@@ -3094,8 +3142,8 @@ namespace DOL.GS
                     .Concat(df).ToArray();
             }
             // This is the deployed selection point. Each distinct verified
-            // location has one entry, and the selector draws uniformly with no
-            // distance, density, or name preference.
+            // location has one entry; outdoor draws are weighted by live spawns
+            // (capped) with no distance or name preference.
             AutonomousBotDecisionEngine.Camp chosen = AutonomousBotDecisionEngine.SelectWithinEnvironment(
                 legalCells, environment, Random.Shared);
             bool usedDeathFallback = false;
@@ -3388,7 +3436,9 @@ namespace DOL.GS
                 AutonomousBotGroupCoordinator.RejectUnreachableCamp(bot, _camp.Id, reason);
             }
             AutonomousGoalDiagnostics.End(bot,
-                reason.StartsWith("No live ", StringComparison.Ordinal) ? GoalAttemptEnd.EmptyCamp : GoalAttemptEnd.RouteFailure,
+                reason.StartsWith("No live ", StringComparison.Ordinal) ? GoalAttemptEnd.EmptyCamp :
+                reason.StartsWith("Outleveled ", StringComparison.Ordinal) ? GoalAttemptEnd.Expired :
+                GoalAttemptEnd.RouteFailure,
                 reason);
             string oldTarget = _camp?.MonsterName ?? string.Empty;
             _camp = null;
@@ -3465,6 +3515,9 @@ namespace DOL.GS
             _lastFailedTargetName = failedTarget;
             if (!string.IsNullOrWhiteSpace(_lastFailedCampId))
                 _recentFailedSoloCamps[_lastFailedCampId] = nowTick + AutonomousDeathRecoveryPolicy.FailureMemoryMilliseconds;
+            if (AutonomousCampDangerBench.RecordDeath(_lastFailedCampId, bot.DatabaseID) is TimeSpan bench)
+                Log.Warn($"AUTONOMOUS_CAMP_DANGER_BENCH camp=\"{_lastFailedCampId}\" target=\"{failedTarget}\" " +
+                         $"bots={AutonomousCampDangerBench.DistinctBotsToBench} hours={bench.TotalHours:0}");
             if (_recentSoloDeathsWithoutExperience >= 2 && _camp != null &&
                 !string.IsNullOrWhiteSpace(_camp.MonsterName))
                 _recentFailedSoloTargets[_camp.MonsterName] = nowTick + AutonomousDeathRecoveryPolicy.FailureMemoryMilliseconds;

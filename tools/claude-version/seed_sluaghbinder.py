@@ -114,7 +114,12 @@ PET_TEMPLATE_PROFILES = {
 PET_MODEL_PROFILES = {
     60170005: "2494",  # private 1:1 Corpse / Decaying Marshman copy
     60170007: "2495",  # private 1:1 Headless Corpse copy
+    60170006: "2072",  # private haunting badh copy (ghastly healer, install_ghastly_healer_art.py); stock badh is 1885
 }
+
+# The ghastly healer wears the world badh's robe pieces (slot, object, colour).
+# Its right hand keeps the Celtic Dirk; it never gets the badh's staff.
+GHASTLY_HEALER_ROBES = ((22, 2950, 66), (23, 2952, 66), (25, 2922, 0), (27, 2949, 66), (28, 2948, 66))
 
 # Sizes are client-visible bytes. Both pets were 50: the requested Defender
 # increase rounds 66.5 to 67, while Dullahan's 50% increase is exactly 75.
@@ -353,7 +358,7 @@ def main() -> None:
             (59002, 7, 45, 9403, 60170003, "Raise Sturdy Zombie"),
             (59003, 12, 45, 9404, 60170004, "Raise Zombie Magician"),
             (59004, 20, 45, 9405, 60170005, "Raise Zombie Guardian"),
-            (59005, 32, 45, 9406, 60170006, "Raise Zombie Priest"),
+            (59005, 32, 45, 9406, 60170006, "Raise Ghastly Healer"),
             (59030, 45, 45, 9407, 60170007, "Raise Dullahan"),
         ]
         for spell_id, level, cap, template, npc_template, name in pet_ranks:
@@ -514,7 +519,7 @@ def main() -> None:
                 "Type": "HealOverTime", "Duration": 15, "Frequency": 30, "Value": 35.0,
                 "SpellGroup": 59037,
             }),
-            (59038, 715, "Priest's Mending", "A direct restorative prayer for the Sluaghbinder group.", {
+            (59038, 715, "Ghastly Mending", "A mournful keen that mends one ally.", {
                 "Target": "Group", "Range": 1500, "Power": 20, "CastTime": 3.0,
                 "Type": "Heal", "Value": 95.0, "SpellGroup": 59038,
             }),
@@ -796,6 +801,15 @@ def main() -> None:
             "DELETE FROM NPCEquipment WHERE TemplateID=? AND Slot=11",
             ("sluagh_zombie_priest_mace_buckler",),
         )
+        for slot, model, color in GHASTLY_HEALER_ROBES:
+            conn.execute("DELETE FROM NPCEquipment WHERE TemplateID=? AND Slot=?",
+                         ("sluagh_zombie_priest_mace_buckler", slot))
+            conn.execute(
+                "INSERT INTO NPCEquipment (TemplateID, Slot, Model, Color, Effect, Extension, Emblem, "
+                "LastTimeRowUpdated, NPCEquipment_ID) VALUES (?, ?, ?, ?, 0, 0, 0, ?, ?)",
+                ("sluagh_zombie_priest_mace_buckler", slot, model, color, "2000-01-01 00:00:00",
+                 f"sluagh_zombie_priest_mace_buckler:{slot}"),
+            )
 
         # Dullahan carries only its glowing main-hand flail. Remove the actual
         # offhand item, not merely its appearance. This engine cannot block
@@ -832,7 +846,7 @@ def main() -> None:
             60170003: "sturdy zombie",
             60170004: "zombie magician",
             60170005: "zombie guardian",
-            60170006: "zombie priest",
+            60170006: "ghastly healer",
             60170007: "dullahan",
         }.items():
             conn.execute("UPDATE NpcTemplate SET Name=? WHERE TemplateId=?", (pet_name, template_id))

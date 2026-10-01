@@ -46,6 +46,19 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 - Tank bots, gamebots and companions alike, now use instant taunts (the Paladin, Friar and
   Sluaghbinder taunts). The bots only looked for taunts with a cast time, so these were never
   used. A tank bot taunts a monster that attacks someone in its group.
+- A gamebot leaves a camp after three pulls in a row never reach their target. Bots used to stand
+  still for over an hour retrying monsters they could not reach (bear cubs across water, corpse
+  flickers on a ledge). Such a camp is also benched for other bots for a while.
+- A solo gamebot whose camp turned grey after a level-up picks a camp for its new level. It used
+  to keep killing grey monsters for no experience until the 15-minute stuck rescue moved it.
+- Outdoor camps are chosen in proportion to how many monsters they have (up to six), instead of
+  every spot being equally likely. Midgard bots had spent most of their time at one- or two-spawn
+  spots, where kills are about a quarter slower.
+- Camps where several solo bots keep dying for few kills are skipped by solo bots for a few
+  hours (3 hours, doubling to 24 on repeats). Deaths on the way to a camp count against it, so
+  bots stop being sent along the deadliest routes. This adds no work while bots move.
+- [PLAY.md](docs/PLAY.md) now recommends bot populations (500, 1000, 1500 or 2000 per realm)
+  and explains the name-generation ceiling of about 18,800 bots.
 
 **Sluaghbinder (0.34b only)**
 - The Cairn armor buffs say "You are surrounded by an unholy aura." instead of a holy aura, and
@@ -79,6 +92,22 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   look blue. Cosmetic only. To add this to an existing 0.33b install now, run
   `tools/pet-art/install_cairn_green_buff.py install` with the game, launcher and server closed.
   It previews the changes if run without `install`, and it can be rolled back.
+- The zombie priest is now the **ghastly healer**: a floating ghost on the badh's skeleton, with
+  its own casting animation and a dagger instead of a staff. It has its own reshaped mesh (a
+  longer ragged ghost tail, gaunter waist, longer hair, a broken circlet and claw-like fingers),
+  a corpse-pale grave-shroud skin and a ghostly wailing voice instead of a dwarf-female one. World
+  badh monsters are unchanged.
+  - Its summon spell is now "Raise Ghastly Healer", and its "Priest's Mending" is now "Ghastly
+    Mending".
+  - Its stats, spells and healing AI are unchanged.
+  - It needs a server built from this source, because the 0.33b server only knows the
+    healer as "zombie priest" (the installer checks this). With such a server, close the
+    game, launcher and server, then run:
+    - `tools/claude-version/install_ghastly_healer.py install` (name, spells, robes);
+    - `tools/pet-art/build_ghastly_healer.py`;
+    - `tools/pet-art/install_ghastly_healer_art.py install` (the private model).
+
+    Each previews without `install` and can be rolled back.
 
 **Animist bots (gamebots and companions)**
 - Animists use their shrooms by what they do, the way the class was played, instead of picking
