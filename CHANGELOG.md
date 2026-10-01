@@ -68,9 +68,17 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   its own, so all five could be fired back to back.
 - Bane-specced Sluaghbinder bots use both their Abhartach's Rot and Abhartach's Bane damage over
   time, which stack, and the Dullahan pet's Grave Rot stacks with both.
-- To add the drain and Grave Rot changes to an existing 0.33b install now, run
+- The Abhartach's Bane damage over time (Withering through Final Rot) plays a plague spore cloud,
+  so it looks different from the baseline Abhartach's Rot. Cosmetic only.
+- To add the drain, Grave Rot and Bane cloud changes to an existing 0.33b install now, run
   `tools/claude-version/install_bane_drain_update.py install` with the game, launcher and server
   closed. It previews the changes if run without `install`, and it can be rolled back.
+- The Cairn strength buffs, the Sluaghbinder's own (Cairn Vigor, Fortitude and Oath) and the
+  ones it casts on its pets, show a green hand glow and a green rune emblem on the ground instead
+  of the blue Midgard Thane and Bonedancer animations they borrowed. Thanes and Bonedancers still
+  look blue. Cosmetic only. To add this to an existing 0.33b install now, run
+  `tools/pet-art/install_cairn_green_buff.py install` with the game, launcher and server closed.
+  It previews the changes if run without `install`, and it can be rolled back.
 
 **Animist bots (gamebots and companions)**
 - Animists use their shrooms by what they do, the way the class was played, instead of picking

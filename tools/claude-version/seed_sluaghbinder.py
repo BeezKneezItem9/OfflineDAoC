@@ -28,6 +28,9 @@ TREE_A = "Dullahan's Bulwark"
 TREE_B = "Abhartach's Bane"
 # Life drains play the naburite drinker's drain animation (stock effect 10079).
 DRAIN_EFFECT = 10079
+# Abhartach's Bane DoTs play the hrimthursa seer's Plague Spores cloud (stock effect 3425),
+# so they look different from the baseline Abhartach's Rot DoT (511).
+BANE_DOT_EFFECT = 3425
 TREE_C = "Sluagh Covenant"
 # TREE_B remains the stable internal key and display name for the trainable
 # scythe/disease path.  CORE_ROT is the separate automatic baseline line and
@@ -584,7 +587,7 @@ def main() -> None:
                 conn, 511, spell_id, f"Sluaghbinder_{spell_id}", name,
                 "Inflicts a wasting rot that damages the target over time.",
                 TREE_B, level, CastTime=0.0, Damage=float(damage),
-                Power=power, Icon=511, RecastDelay=4,
+                Power=power, Icon=511, RecastDelay=4, ClientEffect=BANE_DOT_EFFECT,
                 PackageID="Sluaghbinder_Rot",
             )
 

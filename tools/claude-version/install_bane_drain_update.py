@@ -5,6 +5,7 @@
 * The five Abhartach's Bane drains share one recast timer, so casting any rank
   puts every rank on its 4 second recast.
 * Dullahan's Grave Rot (the Dullahan pet's DoT) gets its own effect group.
+* The Abhartach's Bane DoTs play the Plague Spores cloud (3425), cosmetic only.
 
 Usage (server stopped):
     python -B install_bane_drain_update.py              preview
@@ -29,6 +30,10 @@ BANE_TIMER_GROUP = 59019
 # The Dullahan pet's Grave Rot gets its own effect group so it always stacks
 # beside its owner's Rot and Bane damage over time.
 GRAVE_ROT, GRAVE_ROT_GROUP = 59070, 59070
+# The five Abhartach's Bane DoTs play the Plague Spores cloud instead of the
+# baseline Abhartach's Rot animation.
+OLD_DOT_EFFECT, BANE_DOT_EFFECT = 511, 3425
+BANE_DOTS = (59014, 59015, 59016, 59017, 59018)
 
 
 def fail(message):
@@ -45,7 +50,7 @@ def server_stopped():
 
 def plan(con):
     con.row_factory = sqlite3.Row
-    ids = DRAINS + (GRAVE_ROT,)
+    ids = DRAINS + (GRAVE_ROT,) + BANE_DOTS
     rows = {r["SpellID"]: r for r in con.execute(
         "SELECT SpellID, Name, ClientEffect, SharedTimerGroup, EffectGroup FROM Spell "
         f"WHERE SpellID IN ({','.join('?' * len(ids))})", ids)}
@@ -72,6 +77,10 @@ def plan(con):
             change["SharedTimerGroup"] = BANE_TIMER_GROUP
         if ident == GRAVE_ROT and row["EffectGroup"] != GRAVE_ROT_GROUP:
             change["EffectGroup"] = GRAVE_ROT_GROUP
+        if ident in BANE_DOTS and row["ClientEffect"] != BANE_DOT_EFFECT:
+            if row["ClientEffect"] != OLD_DOT_EFFECT:
+                fail(f"{ident} {row['Name']} has animation {row['ClientEffect']}, expected {OLD_DOT_EFFECT}; re-review")
+            change["ClientEffect"] = BANE_DOT_EFFECT
         if change:
             updates[ident] = (row["Name"], {c: row[c] for c in change}, change)
     return updates
