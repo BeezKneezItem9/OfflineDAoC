@@ -21,6 +21,12 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   about twice a second.
 - Bots and pets with more than one damage-over-time spell use all of them when they stack. They
   used to skip a second one whenever the target already had any damage over time on it.
+- Companion bots and gamebots no longer wear gear built on another realm's model. 256 items in
+  the database are marked for one realm but use another realm's model: 77 Albion, 130 Midgard and
+  49 Hibernia. For example, the Midgard "woven pointed steeple" wizard hats use the Hibernia hat,
+  which has no Valkyn or Troll shape, so it didn't fit a Valkyn's head. Bots now skip those items
+  when choosing gear. The items are still there for players. A companion that is already summoned
+  keeps its gear until you summon it again.
 
 **Gamebots**
 - Nine hungry shriller (Caillte Garran) and Cliffs of Moher spawns that sit next to aggressive

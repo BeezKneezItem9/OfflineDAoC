@@ -8,6 +8,7 @@ Close the launcher, the game and the server before running any of them.
 | Script | What it does |
 |---|---|
 | `helmet_face_check.py <model>` | Read-only. Lists every helmet model that shares a mesh, and which extensions real items use. See [HELMET-FACE-FIX.md](../../docs/HELMET-FACE-FIX.md) |
+| `cross_realm_gear_audit.py [--write]` | Read-only report of item templates whose realm doesn't match their model's realm (for example a Midgard hat on a Hibernia-only mesh). `--write` regenerates the bot skip list `source/server/GameServer/bots/BotCrossRealmGear.cs`. Run it from an installed game folder |
 | `pet_spell_changes.py` | Sluaghbinder pet spell values (priest heals, Cairnheart heals over time and so on). Checks the value at each stage, so it's safe to re-run |
 | `seed_sluaghbinder.py`, `Add-SluaghbinderEpicSpells.py` | Class, trainer and epic-spell seeding used by the Sluaghbinder builds |
 | `clean_slate.py <db>` | Clears characters, bots and auctions from a copy of a database |
