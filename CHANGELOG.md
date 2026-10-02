@@ -74,6 +74,38 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   bots.
 - Bots, tanks and evade classes especially, are noticeably harder to kill.
 
+**Bounty Masters: normal, hard and very hard bounties**
+- The Bounty Master now offers three kinds of leveling bounty:
+  - a **normal bounty**, with monsters at your level as before;
+  - a **hard bounty**, with monsters about 4 levels above you;
+  - a **very hard bounty**, with monsters about 8 levels above you.
+- Every difficulty needs the same number of kills: 5 below level 20, 10 in your 20s, 15 in your
+  30s and 20 in your 40s. It used to climb from 5 to 50.
+- Rewards by difficulty:
+
+  | Difficulty | XP | Class items (1-3) |
+  |---|---|---|
+  | Normal | 2 bulbs | 1 level above you |
+  | Hard | 4 bulbs | 3 levels above you |
+  | Very Hard | 8 bulbs | 5 levels above you |
+
+  A bulb is a tenth of a level at the level you took the bounty. Gear never goes above level 51.
+- Rerolling still halves the XP. On a hard or very hard bounty, a reroll keeps that difficulty or
+  picks an easier one, and pays half of the one you end up with. For example, a very hard bounty
+  rerolled to normal pays 1 bulb.
+- How hard and very hard targets are picked:
+  - Only monsters with at least two spawns are used.
+  - A level with fewer than eight different monsters also uses monsters one, then two levels
+    lower, but never drops below 2 levels above you for hard, or 6 for very hard.
+  - Monsters go up to level 57. The great foes stay level-50 bounties only.
+- On hard and very hard, a same-named monster elsewhere in your realm only counts if it is at most
+  one level below the marked one.
+- Level-50 great-foe bounties are unchanged.
+- **Bounties carried over from 0.33:** an unfinished 0.33 bounty brought over with the progress
+  import becomes a normal bounty with the new kill count when you log in. Your kills so far are
+  kept, so it may be ready to turn in right away. The Bounty Master also offers **[update bounty]**
+  once, free, to swap it for a new bounty at any difficulty.
+
 **Sluaghbinder (0.34b only)**
 - The Cairn armor buffs say "You are surrounded by an unholy aura." instead of a holy aura, and
   the Cairn strength buffs say "You are filled with the power of the cairn!" instead of the

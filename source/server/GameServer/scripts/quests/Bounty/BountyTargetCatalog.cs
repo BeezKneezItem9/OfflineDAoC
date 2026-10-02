@@ -93,7 +93,7 @@ namespace DOL.GS
         private static readonly Dictionary<eRealm, IReadOnlyList<BountyTargetCandidate>> CachedSpawns = new();
 
         public static IReadOnlyList<BountyTargetCandidate> GetEligible(eRealm realm, byte level,
-            string excludedMonsterName = null)
+            string excludedMonsterName = null, BountyDifficulty difficulty = BountyDifficulty.Normal)
         {
             if (level is < 1 or > 49)
                 return Array.Empty<BountyTargetCandidate>();
@@ -110,6 +110,11 @@ namespace DOL.GS
                 excludedMonsterName);
             if (candidates.Length == 0)
                 return candidates;
+            if (difficulty != BountyDifficulty.Normal)
+                return PreferLiveCamps(realm, candidates, SelectChallengePool(candidates, level, difficulty));
+
+            // Normal hunts keep their original pool: monsters of level 49 or lower.
+            candidates = candidates.Where(target => target.Level <= 49).ToArray();
             int preferredSpawns = level >= 40 ? 5 : 3;
             var exact = candidates.Where(target => target.Level == level).ToArray();
             var pool = exact.Where(target => target.SpawnCount >= preferredSpawns).ToArray();
@@ -121,6 +126,42 @@ namespace DOL.GS
             if (pool.Length == 0)
                 pool = candidates.Where(target =>
                     ConLevels.GetConLevel(level, target.Level) == (int)ConColor.YELLOW).ToArray();
+
+            return PreferLiveCamps(realm, candidates, pool);
+        }
+
+        /// <summary>
+        /// Hard and Very Hard: monsters with two or more spawns at the player's level
+        /// +4 or +8. A thin level (fewer than eight different monsters) also takes
+        /// monsters one, then two levels lower, never below +2 or +6.
+        /// </summary>
+        public static BountyTargetCandidate[] SelectChallengePool(
+            IReadOnlyList<BountyTargetCandidate> candidates, byte playerLevel, BountyDifficulty difficulty)
+        {
+            IReadOnlyList<byte> levels = BountyDifficultyRules.TargetLevels(playerLevel, difficulty);
+            if (candidates == null || levels.Count == 0)
+                return Array.Empty<BountyTargetCandidate>();
+
+            var pool = new List<BountyTargetCandidate>();
+            foreach (byte level in levels)
+            {
+                pool.AddRange(candidates.Where(target => target.Level == level && target.SpawnCount >= 2));
+                int species = pool.Select(target => target.Name?.Trim().ToLowerInvariant()).Distinct().Count();
+                if (species >= BountyDifficultyRules.MinimumSpeciesPerPool)
+                    break;
+            }
+
+            // Only when no camp with two or more spawns exists in the whole window.
+            if (pool.Count == 0)
+                pool.AddRange(candidates.Where(target => levels.Contains(target.Level)));
+            return pool.ToArray();
+        }
+
+        private static IReadOnlyList<BountyTargetCandidate> PreferLiveCamps(eRealm realm,
+            BountyTargetCandidate[] candidates, BountyTargetCandidate[] pool)
+        {
+            if (pool.Length == 0)
+                return pool;
 
             // Prefer camps with a real, currently alive example at the requested
             // level. The database pool remains available when every matching camp
@@ -224,9 +265,13 @@ namespace DOL.GS
                 if (HurtsStableReputation(MobFaction(mob, templates)))
                     continue;
 
+                // Hard and Very Hard reach level 57; the great foes stay level-50 only.
+                if (EpicTargets.Any(epic => string.Equals(epic.Name, mob.Name, StringComparison.OrdinalIgnoreCase)))
+                    continue;
+
                 foreach (byte effectiveLevel in EffectiveLevels(mob, templates))
                 {
-                    if (effectiveLevel is >= 1 and <= 49)
+                    if (effectiveLevel >= 1 && effectiveLevel <= BountyDifficultyRules.HighestTargetLevel)
                         spawns.Add((mob, zone, effectiveLevel));
                 }
             }
