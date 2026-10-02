@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 
 namespace DOL.GS;
@@ -45,6 +46,31 @@ public static class AutonomousRvrStaging
                 (float)(Math.Sin(angle) * radius), 0);
         }
         yield return keep.Position;
+    }
+
+    /// <summary>
+    /// RvR leader candidates, closest to their realm's border keep first. A
+    /// randomly drawn leader was often a roamer deep in an enemy frontier and
+    /// missed the 20-minute staging window (244 of 2,099 warbands in one run).
+    /// Realms take turns so one realm's nearby bots never crowd out another's
+    /// formation; equal estimates keep the incoming (shuffled) order.
+    /// </summary>
+    public static List<T> ClosestToStagingFirst<T>(IEnumerable<T> candidates, Func<T, eRealm> realm,
+        Func<T, double> minutesToStaging)
+    {
+        List<T>[] queues = candidates
+            .Select((candidate, index) => (candidate, index, minutes: minutesToStaging(candidate)))
+            .GroupBy(entry => realm(entry.candidate))
+            .OrderBy(group => group.Key)
+            .Select(group => group.OrderBy(entry => entry.minutes).ThenBy(entry => entry.index)
+                .Select(entry => entry.candidate).ToList())
+            .ToArray();
+        var ordered = new List<T>();
+        for (int rank = 0; queues.Any(queue => rank < queue.Count); rank++)
+            foreach (List<T> queue in queues)
+                if (rank < queue.Count)
+                    ordered.Add(queue[rank]);
+        return ordered;
     }
 
     /// <summary>Every formed warband member may acquire a local RvR target;

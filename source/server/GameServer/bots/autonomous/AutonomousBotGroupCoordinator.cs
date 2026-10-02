@@ -1317,15 +1317,29 @@ public static partial class AutonomousBotGroupCoordinator
             .ToArray();
         var claimed = new HashSet<GameBot>();
         int rendezvousChecks = 0;
+        // RvR stages at the realm's fixed border keep, so the leader is the
+        // bot closest to it. PvE meets around its leader and keeps the
+        // shuffled draw below.
+        IEnumerable<GameBot> leaders = available;
+        if (objectiveKind == eAutonomousObjectiveKind.RvR)
+        {
+            var crossings = new Dictionary<(eRealm Realm, ushort Region), DbZonePoint>();
+            leaders = AutonomousRvrStaging.ClosestToStagingFirst(available, bot => bot.Realm, bot =>
+                AutonomousRvrStaging.TryGetBorderKeep(bot.Realm, out AutonomousRvrStaging.BorderKeep keep)
+                    ? AutonomousWorldBotController.EstimateTravelMinutes(bot, keep.RegionId,
+                        (int)keep.Position.X, (int)keep.Position.Y, crossings)
+                    : double.MaxValue);
+        }
 
-        foreach (GameBot leader in available)
+        foreach (GameBot leader in leaders)
         {
             // Bad geometry must not turn one formation pass into thousands of
             // native queries. Continue with more candidates on the next pass.
             // (Raised from 4 checks / 35% leader draw: only 248 groups formed in
             // an eight-hour run while 3,640 bots timed out waiting.)
             if (rendezvousChecks >= 6) break;
-            if (claimed.Contains(leader) || Random.Shared.NextDouble() >= 0.6)
+            if (claimed.Contains(leader) ||
+                objectiveKind != eAutonomousObjectiveKind.RvR && Random.Shared.NextDouble() >= 0.6)
                 continue;
             // RvR reserves are realm-local: Albion grouping cannot consume the
             // independent Midgard/Hibernia roamer reserve, and vice versa.

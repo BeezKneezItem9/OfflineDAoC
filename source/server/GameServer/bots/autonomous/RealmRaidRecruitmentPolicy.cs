@@ -16,6 +16,12 @@ public static class RealmRaidRecruitmentPolicy
     public const double NewEventChance = .20;
     public const double JoinExistingChance = .95;
 
+    // An automatic rally that has waited most of its window with a nearly full
+    // roster goes in rather than failing outright. Caer Sidi failed twice in one
+    // run with 196 and 186 of the 200 required bots at its entrance.
+    public const long AutonomousLateStartMilliseconds = 75 * 60_000L;
+    public const int AutonomousLateStartMinimumPresent = 180;
+
     public static bool Eligible(int level, bool autonomous, bool temporary, bool playerLed) =>
         level == 50 && autonomous && !temporary && !playerLed;
 
@@ -24,7 +30,9 @@ public static class RealmRaidRecruitmentPolicy
 
     public static bool Ready(bool forced, long elapsed, int present, bool landed) =>
         elapsed >= (forced ? ForcedStagingMilliseconds : AutonomousMinimumStagingMilliseconds) &&
-        present >= AutonomousMinimumPresent && landed;
+        (present >= AutonomousMinimumPresent ||
+         !forced && elapsed >= AutonomousLateStartMilliseconds && present >= AutonomousLateStartMinimumPresent) &&
+        landed;
 
     public static bool DepartHub(bool alreadyDeparted, int presentBots) =>
         alreadyDeparted || presentBots >= AutonomousMinimumPresent;

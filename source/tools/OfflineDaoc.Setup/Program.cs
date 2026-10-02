@@ -393,11 +393,11 @@ internal static class Program
     {
         var brokers = new[]
         {
-            new { Id = "offline-realm-exchange-albion", Realm = 1, Region = 10, X = 36200, Y = 30300, Z = 8000, Heading = 0, MaleModel = 79, FemaleModel = 45, Equipment = "AlbMerchantArmorStudded",
-                GuardModel = 28, GuardEquipment = "be3e91b7-35a0-4a51-b8a0-6e9f7832f1e3", GuardName = "Royal Exchange Guard", Guard1X = 36110, Guard1Y = 30300, Guard2X = 36290, Guard2Y = 30300,
+            new { Id = "offline-realm-exchange-albion", Realm = 1, Region = 10, X = 36621, Y = 30701, Z = 8002, Heading = 2066, MaleModel = 79, FemaleModel = 45, Equipment = "AlbMerchantArmorStudded",
+                GuardModel = 28, GuardEquipment = "be3e91b7-35a0-4a51-b8a0-6e9f7832f1e3", GuardName = "Royal Exchange Guard", Guard1X = 36711, Guard1Y = 30703, Guard2X = 36531, Guard2Y = 30699,
                 Male = new[] { "Aldric", "Cedric", "Godfrey", "Leofric", "Oswin", "Renwald" }, Female = new[] { "Adalyn", "Elowen", "Isabel", "Roswen", "Ysanne" } },
-            new { Id = "offline-realm-exchange-midgard", Realm = 2, Region = 101, X = 32250, Y = 28294, Z = 8819, Heading = 2048, MaleModel = 159, FemaleModel = 161, Equipment = "MidChainDarkCloak",
-                GuardModel = 217, GuardEquipment = "MidTownGuard2", GuardName = "Valkyrie Exchange Guard", Guard1X = 32150, Guard1Y = 28294, Guard2X = 32350, Guard2Y = 28294,
+            new { Id = "offline-realm-exchange-midgard", Realm = 2, Region = 101, X = 31741, Y = 28040, Z = 8798, Heading = 4094, MaleModel = 159, FemaleModel = 161, Equipment = "MidChainDarkCloak",
+                GuardModel = 217, GuardEquipment = "MidTownGuard2", GuardName = "Valkyrie Exchange Guard", Guard1X = 31641, Guard1Y = 28040, Guard2X = 31841, Guard2Y = 28040,
                 Male = new[] { "Arnvald", "Dagmund", "Eirik", "Haldgrim", "Sigsten", "Torulf" }, Female = new[] { "Astrid", "Brynhild", "Gudrun", "Ingrid", "Sigrid" } },
             new { Id = "offline-realm-exchange-hibernia", Realm = 3, Region = 201, X = 33197, Y = 31340, Z = 8000, Heading = 512, MaleModel = 384, FemaleModel = 312, Equipment = "HibClothAlt2",
                 GuardModel = 387, GuardEquipment = "f845eb8e-1da2-4c34-86e5-a1b87108e9c1", GuardName = "Sentinel Exchange Guard", Guard1X = 33097, Guard1Y = 31340, Guard2X = 33297, Guard2Y = 31340,

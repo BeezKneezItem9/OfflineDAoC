@@ -683,10 +683,38 @@ namespace DOL.GS
                     raid.HubDeparted && !raid.Started && !bot.IsOnStableMasterRoute &&
                     bot.CurrentRegionID == (raid.Definition.IsDungeon ? raid.DungeonRoute.Entrance.SourceRegion : raid.Definition.Region) &&
                     AtStaging(raid,bot)) return true;
+            // A started dungeon expedition fights wherever its route leads (a boss
+            // room can be far from the next route point). Real combat inside the
+            // expedition's own dungeon is never a 15-minute "no movement" stall.
+            lock (Sync)
+                if (bot.InCombat && bot.Group != null && Membership.TryGetValue(bot.Group, out var raid) &&
+                    raid.Started && raid.DungeonRoute != null && bot.CurrentRegionID == raid.Definition.Region)
+                    return true;
             View view = GetTravelView(bot);
             return view != null && bot.CurrentRegionID == view.Camp.RegionId &&
                 (view.Hold && bot.IsWithinRadius(new Point3D(view.Camp.X, view.Camp.Y, view.Camp.Z), 600) ||
                  bot.InCombat && bot.IsWithinRadius(new Point3D(view.Camp.X, view.Camp.Y, view.Camp.Z), 4000));
+        }
+
+        /// <summary>
+        /// The expedition's current front inside its dungeon: a navmesh floor point the
+        /// route planner has already proven connects to the next encounter. A member
+        /// stranded on a disconnected floor island regroups here instead of retrying
+        /// an impossible corridor for hours or being sent back to its capital.
+        /// </summary>
+        public static bool TryDungeonRegroupPoint(GameBot bot, out ushort region, out Vector3 point)
+        {
+            region = 0; point = default;
+            if (bot?.Group == null) return false;
+            lock (Sync)
+            {
+                if (!Membership.TryGetValue(bot.Group, out var raid) || raid.DungeonRoute == null || !raid.Started ||
+                    bot.CurrentRegionID != raid.Definition.Region)
+                    return false;
+                region = raid.Definition.Region;
+                point = raid.DungeonRoute.Front;
+                return true;
+            }
         }
 
         public static IEnumerable<GameLiving> SupportPets(GameBot bot, int range)

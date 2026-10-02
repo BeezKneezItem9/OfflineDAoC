@@ -36,6 +36,12 @@ public static class AutonomousRouteRecoveryPolicy
         (emptyLiveCamp ? 2_500 : ImmediateRouteFailureCooldownMilliseconds) +
         System.Math.Abs(actorKey % 1_500);
 
+    /// <summary>Forward progress only clears the pocket count once the bot is out of the pocket.</summary>
+    public static bool HasLeftFailurePocket(ushort pocketRegion, ushort currentRegion, Vector3 pocket, Vector3 current) =>
+        pocketRegion == 0 || pocketRegion != currentRegion ||
+        Vector2.DistanceSquared(new(pocket.X, pocket.Y), new(current.X, current.Y)) >
+        RepeatedFailureRadius * RepeatedFailureRadius;
+
     public static bool IsSameRepeatedFailurePocket(ushort previousRegion, ushort currentRegion,
         Vector3 previous, Vector3 current, long elapsedMilliseconds) =>
         previousRegion == currentRegion && elapsedMilliseconds >= 0 &&

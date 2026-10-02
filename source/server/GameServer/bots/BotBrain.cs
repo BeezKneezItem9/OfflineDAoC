@@ -4691,6 +4691,28 @@ namespace DOL.AI.Brain
             return TryResurrectGroupMember();
         }
 
+        private long _nextResurrectionBlockReportTick;
+
+        // Diagnostic for failed group resurrections (an in-range resurrector stood idle
+        // for the whole corpse wait in hundreds of cases). At most one line per bot per
+        // minute, and only while a dead group member is actually within spell range.
+        private void ReportResurrectionBlock(Spell resurrection, string reason, GameLiving corpse = null)
+        {
+            if (Body.Group == null || !BotBody.IsAutonomousWorldBot || GameLoop.GameLoopTime < _nextResurrectionBlockReportTick)
+                return;
+            int range = BotBody.castingComponent.CalculateSpellRange(resurrection);
+            corpse ??= Body.Group.GetMembersInTheGroup().FirstOrDefault(member => member != Body && !member.IsAlive &&
+                member.ObjectState == GameObject.eObjectState.Active && member.CurrentRegionID == Body.CurrentRegionID &&
+                Body.IsWithinRadius(member, range));
+            if (corpse == null)
+                return;
+            _nextResurrectionBlockReportTick = GameLoop.GameLoopTime + 60_000;
+            reason ??= BotGroupSupport.DescribeResurrectionBlock(BotBody, resurrection, corpse);
+            log.Info($"AUTONOMOUS_RESURRECTION_BLOCKED bot=\"{BotBody.Name}\" class=\"{BotBody.ClassName}\" corpse=\"{corpse.Name}\" " +
+                     $"distance={Body.GetDistanceTo(corpse)} spell=\"{resurrection.Name}\" mana={BotBody.Mana}/{BotBody.MaxMana} " +
+                     $"inCombat={Body.InCombat} reason=\"{reason}\"");
+        }
+
         private bool TryResurrectGroupMember()
         {
             Spell resurrection = BotBody.ResurrectionSpell;
@@ -4698,7 +4720,14 @@ namespace DOL.AI.Brain
             {
                 if (Body.IsCasting && Body.castingComponent.SpellHandler?.Spell?.SpellType == eSpellType.Resurrect)
                     return BotGroupSupport.ContinueResurrection(BotBody);
-                if (resurrection == null || Body.IsCasting || !CheckHealSpell(resurrection)) return false;
+                if (resurrection == null) return false;
+                if (Body.IsCasting || !CheckHealSpell(resurrection))
+                {
+                    ReportResurrectionBlock(resurrection, Body.IsCasting ? "casting another spell" :
+                        BotBody.Mana < BotBody.PowerCost(resurrection) ? $"not enough power to cast ({BotBody.Mana}/{BotBody.PowerCost(resurrection)})" :
+                        BotBody.IsBeingInterruptedByOther ? "being interrupted" : "resurrection on recast");
+                    return false;
+                }
                 GameLiving corpse = BotGroupSupport.ReserveResurrection(BotBody, resurrection);
                 if (corpse != null)
                 {
@@ -4710,8 +4739,10 @@ namespace DOL.AI.Brain
                     if (BotBody.CastSpell(resurrection, m_mobSpellLine, false)) return true;
                     BotBody.TargetObject = previous;
                     BotGroupSupport.CancelResurrection(BotBody);
+                    ReportResurrectionBlock(resurrection, "the resurrection cast was refused", corpse);
                     return false;
                 }
+                ReportResurrectionBlock(resurrection, null);
             }
             if (resurrection == null || Body.Group == null || Body.InCombat || Body.Group.GetMembersInTheGroup().Any(m => m.IsAlive && m.InCombat) || Body.IsCasting || !CheckHealSpell(resurrection))
                 return false;

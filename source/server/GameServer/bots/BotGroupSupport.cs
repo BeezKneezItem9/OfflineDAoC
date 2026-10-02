@@ -83,6 +83,22 @@ namespace DOL.GS
             return null;
         }
 
+        /// <summary>
+        /// Diagnostic only: the first check that stops this bot reserving a resurrection of
+        /// <paramref name="corpse"/>. Mirrors ReserveResurrection without reserving anything.
+        /// </summary>
+        public static string DescribeResurrectionBlock(GameBot bot, Spell spell, GameLiving corpse)
+        {
+            if (bot.IsCasting) return "casting another spell";
+            if (bot.IsCrowdControlled || bot.IsSilenced) return "crowd controlled or silenced";
+            if (UnderAttack(bot)) return "under attack";
+            if (!HasCorpseLineOfSight(bot, corpse)) return "no line of sight to the corpse";
+            if (corpse.TempProperties.GetProperty<GameLiving>("RESURRECT_CASTER") != null) return "another resurrection is already pending on the corpse";
+            int cost = (int)(bot.MaxMana * Math.Max(.1f, .5f + (corpse.Level - bot.Level) / (float)Math.Max(1, (int)bot.Level)));
+            if (bot.Mana < cost) return $"not enough power for the reservation ({bot.Mana}/{cost} of {bot.MaxMana})";
+            return "the shared reservation refused (another resurrector holds it, or healers are needed for combat)";
+        }
+
         public static void CancelHeal(GameBot bot)
         {
             if (bot.Group != null && States.TryGetValue(AutonomousRealmRaid.SupportScope(bot), out State state))

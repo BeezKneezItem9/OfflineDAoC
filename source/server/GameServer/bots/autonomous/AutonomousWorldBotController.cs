@@ -926,7 +926,12 @@ namespace DOL.GS
                     // Use the same connected interaction-point resolver already
                     // used by trainers and real zone gates. Falling back to the
                     // authored point preserves legacy behavior without a mesh.
-                    TryResolveConnectedApproach(bot, rawPoint, Math.Max(16, interactionRadius - 16), out point);
+                    // The Realm Exchange prefers a point with a clear view of the
+                    // broker so bots never trade through a pillar or hallway wall.
+                    TryResolveConnectedApproach(bot, rawPoint, Math.Max(16, interactionRadius - 16), out point,
+                        needed == eWorldServiceKind.RealmExchange
+                            ? AutonomousZonePointApproach.ClearSightOf(PathfindingProvider.Instance, _serviceNpc.CurrentZone, rawPoint)
+                            : null);
                 }
                 if (TryBeginFasterStableRoute(bot, point, _serviceNpc.Name))
                     return true;
@@ -2829,7 +2834,8 @@ namespace DOL.GS
             }
             GameNPC FindWithin(ushort radius) => bot.GetNPCsInRadius(radius)
                 .Where(npc => IsExperienceMonster(npc) && npc.IsAlive && npc.CurrentRegionID == _camp.RegionId &&
-                    !AutonomousAuditedCampPolicy.IsBotExcludedSpawn(npc.InternalID))
+                    !AutonomousAuditedCampPolicy.IsBotExcludedSpawn(npc.InternalID) &&
+                    !AutonomousPveTargetPolicy.IsUnreachableFlyer(npc.Flags, npc.Z, bot.Z))
                 .Where(npc => _camp.RegionId != AutonomousDarknessFallsPolicy.RegionId ||
                     AutonomousDarknessFallsNavigation.TryGetProof(npc.InternalID, out _))
                 .Where(npc => _camp.RegionId != AutonomousDarknessFallsPolicy.RegionId ||
@@ -3425,6 +3431,7 @@ namespace DOL.GS
                 _expeditionRouteRetry = GameLoop.GameLoopTime + 30_000;
                 Log.Warn($"REALM_EXPEDITION_ROUTE_RETRY bot={bot.Name} id={bot.DatabaseID} region={bot.CurrentRegionID} position={bot.X},{bot.Y},{bot.Z} reason={reason}");
                 SetStatus(bot, "Expedition route retry", _camp?.MonsterName ?? "Rejoin expedition", reason);
+                TryRegroupStrandedExpeditionMember(bot);
                 return;
             }
             if (_camp != null)
@@ -3583,7 +3590,8 @@ namespace DOL.GS
             GameBot bot,
             Vector3 rawTarget,
             int arrivalRadius,
-            out Vector3 approach)
+            out Vector3 approach,
+            Func<Vector3, bool> preferredCandidate = null)
         {
             approach = rawTarget;
             Region region = bot.CurrentRegion;
@@ -3627,10 +3635,14 @@ namespace DOL.GS
             }
 
             int searchRadius = arrivalRadius == ZonePointArrivalRadius ? arrivalRadius - 16 : arrivalRadius;
-            if (!AutonomousZonePointApproach.TryResolve(nav, currentZone,
-                    from, rawTarget, searchRadius, out approach) &&
-                !(searchRadius != arrivalRadius && AutonomousZonePointApproach.TryResolve(nav, currentZone,
-                    from, rawTarget, arrivalRadius, out approach)))
+            // A preferred-candidate rule is tried first; without a match the
+            // unfiltered search runs exactly as before.
+            bool Resolve(Func<Vector3, bool> filter, out Vector3 point) =>
+                AutonomousZonePointApproach.TryResolve(nav, currentZone, from, rawTarget, searchRadius, out point, filter) ||
+                searchRadius != arrivalRadius && AutonomousZonePointApproach.TryResolve(nav, currentZone,
+                    from, rawTarget, arrivalRadius, out point, filter);
+            if (!(preferredCandidate != null && Resolve(preferredCandidate, out approach)) &&
+                !Resolve(null, out approach))
             {
                 _failedApproachTarget = rawTarget;
                 _failedApproachFrom = from;
@@ -4009,7 +4021,14 @@ namespace DOL.GS
                     {
                         _routeStallReplans = 0;
                         _routeRecoveryBaselineDistance = -1f;
-                        ResetRepeatedRouteFailures();
+                        // A bot that edges forward and sticks again inside the same
+                        // small pocket has not escaped it. Keep the repeated-failure
+                        // count until it actually leaves, or the safe relocation never
+                        // triggers (10 bots at Druim Ligen looped ~60 times each).
+                        if (AutonomousRouteRecoveryPolicy.HasLeftFailurePocket(
+                                _lastTerminalRouteFailureRegion, bot.CurrentRegionID,
+                                _lastTerminalRouteFailurePosition, current))
+                            ResetRepeatedRouteFailures();
                     }
                 }
             }
@@ -4882,6 +4901,28 @@ namespace DOL.GS
                 return Distance(bot.X, bot.Y, x, y) / Math.Max(1d, bot.MaxSpeed) / 60d;
 
             DbZonePoint crossing = FindNextCrossing(bot, regionId, x, y);
+            if (crossing == null)
+                return 9999;
+            double firstLeg = Distance(bot.X, bot.Y, crossing.SourceX, crossing.SourceY) / Math.Max(1d, bot.MaxSpeed) / 60d;
+            double finalBias = crossing.TargetRegion == regionId
+                ? Distance(crossing.TargetX, crossing.TargetY, x, y) / Math.Max(1d, bot.MaxSpeed) / 60d
+                : 6;
+            return firstLeg + finalBias + 1;
+        }
+
+        /// <summary>
+        /// EstimateTravelMinutes for many bots toward one point: the next
+        /// region crossing depends only on realm and region, so it is resolved
+        /// once per pair (without per-bot quarantine) and reused.
+        /// </summary>
+        public static double EstimateTravelMinutes(GameBot bot, ushort regionId, int x, int y,
+            Dictionary<(eRealm Realm, ushort Region), DbZonePoint> crossings)
+        {
+            if (bot.CurrentRegionID == regionId)
+                return Distance(bot.X, bot.Y, x, y) / Math.Max(1d, bot.MaxSpeed) / 60d;
+            var key = (bot.Realm, bot.CurrentRegionID);
+            if (!crossings.TryGetValue(key, out DbZonePoint crossing))
+                crossings[key] = crossing = FindNextCrossing(bot.Realm, bot.CurrentRegionID, regionId, x, y);
             if (crossing == null)
                 return 9999;
             double firstLeg = Distance(bot.X, bot.Y, crossing.SourceX, crossing.SourceY) / Math.Max(1d, bot.MaxSpeed) / 60d;

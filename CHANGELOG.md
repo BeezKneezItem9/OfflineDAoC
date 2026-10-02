@@ -66,6 +66,29 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 - Camps where several solo bots keep dying for few kills are skipped by solo bots for a few
   hours (3 hours, doubling to 24 on repeats). Deaths on the way to a camp count against it, so
   bots stop being sent along the deadliest routes. This adds no work while bots move.
+- RvR groups now pick as leader the bot closest to its realm's border keep (Castle Sauvage,
+  Svasud Faste or Druim Ligen) instead of a random one. Random leaders were often solo roamers deep
+  in an enemy realm's frontier who could not get back to the keep within the 20-minute gathering
+  window, so about one RvR group in nine fell apart. The three realms take turns forming groups.
+  PvE groups are unchanged.
+- Epic dungeon raids (Galladoria, Tuscaran and the others):
+  - A raid bot stuck on a ledge or a separate piece of floor inside the dungeon rejoins the raid
+    at its current position after three failed tries from the same spot. It used to retry every
+    30 seconds for the whole four-hour raid.
+  - Bots fighting anywhere inside their raid's dungeon are no longer pulled out to town by the
+    15-minute stuck rescue. Long boss fights where bots stand still looked like being stuck.
+- A bot stuck in a small trapped spot (for example by the Druim Ligen stable master) no longer
+  resets its stuck count by inching forward a little. Some bots looped there 80 times; now the
+  existing safe move-out happens after three failures.
+- Bots no longer try to pull flying monsters hovering far over their heads, such as the griffon
+  gliders over Gripklosa, which they could never reach. Flyers close to the ground still count, and
+  a high flyer that attacks a bot is still fought.
+- An automatic level-50 raid that has waited 75 minutes with at least 180 of its 200 bots now goes
+  in, instead of failing at 90 minutes for being a few short (Caer Sidi missed by 4 and 14). Raids
+  started by a player are unchanged.
+- When a nearby healer bot does not revive a dead group member, the server log now says why
+  (out of power, casting, under attack, no line of sight or the cast refused), at most once a
+  minute per bot. This only adds a log line; it does not change what the healers do.
 - [PLAY.md](docs/PLAY.md) now recommends bot populations (500, 1000, 1500 or 2000 per realm)
   and explains the name-generation ceiling of about 18,800 bots.
 
@@ -244,6 +267,19 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
     `tools/claude-version/vine_monsters_strangler_effect.py --apply` with the game, launcher and
     server closed. It previews the change if run without `--apply`, and `--undo` puts the
     monsters back.
+- The Realm Exchange NPCs in Jordheim and Camelot have moved:
+  - Jordheim's (for example Brynhild; each install picks the names) is back on the small ledge by
+    the Name Registrar. It had ended up in the narrow hallway by the vault keeper, where bots
+    traded with it through a wall.
+  - Camelot's (for example Adalyn) now stands in the open courtyard in front of the benches,
+    instead of on the crowded vault-keeper platform.
+  - Each has a guard on either side, as before. The Tir na Nog exchange is unchanged.
+- Bots pick a trading spot with a clear line to the Realm Exchange NPC, so they no longer trade
+  through a pillar or wall. If there is no such spot, they choose one the old way. Both new spots
+  were checked on the real city maps from every gate, and the nearby merchants stay reachable.
+- New installs get the new spots automatically. To move them in an existing 0.33 install now,
+  run `tools/claude-version/move_realm_exchange_npcs.py --apply` with the game, launcher and
+  server closed. It previews the change if run without `--apply`, and `--undo` puts them back.
 
 ## 0.33 / 0.33b "Claude Takeover" — 2026-09-30
 
