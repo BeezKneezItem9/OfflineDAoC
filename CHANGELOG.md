@@ -32,6 +32,9 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   high-level monsters. Bots now have five bantam spectres and four Moher sentinels to grind. To
   add them to an existing 0.33 install now, run
   `tools/claude-version/add_moher_spectre_sentinel_spawns.py --apply` with the game closed.
+- Gamebots no longer hunt the 13 wiggle worms in Bog of Cullen. The worms are level 0, but most
+  monsters in that zone are level 40 or higher, so level 1 bots walked across Hibernia into it
+  for almost no experience and often died on the way. The worms are still there for players.
 - The Shrouded Isles neutral towns are always open to bots. Mantid (Krrzck), lammia (Cryptos
   Mythicos) and iarn dwarf (The Remnants) town residents near their faction's stable masters never
   attack bots, and bots never attack them, so bots can ride the wyvern, dragonfly and gryphon
