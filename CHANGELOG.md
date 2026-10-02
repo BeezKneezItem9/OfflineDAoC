@@ -66,6 +66,11 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 - Camps where several solo bots keep dying for few kills are skipped by solo bots for a few
   hours (3 hours, doubling to 24 on repeats). Deaths on the way to a camp count against it, so
   bots stop being sent along the deadliest routes. This adds no work while bots move.
+- A pet summoned at the very edge of the map now appears on top of its owner. The game places a
+  new pet a few steps in front of its owner, and when that spot was off the map the summon
+  crashed and the server removed the caster from the world. One Necromancer gamebot standing at
+  the edge of Avalon Isle was logged back in and thrown out again about every 20 seconds, so the
+  launcher showed one bot short (5,999 of 6,000). Players summoning there are covered too.
 - RvR groups now pick as leader the bot closest to its realm's border keep (Castle Sauvage,
   Svasud Faste or Druim Ligen) instead of a random one. Random leaders were often solo roamers deep
   in an enemy realm's frontier who could not get back to the keep within the 20-minute gathering
