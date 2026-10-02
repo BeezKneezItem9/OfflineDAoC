@@ -233,6 +233,17 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   Osnadur Tha Coif) are visible again with extension 2. They used to hide the whole head.
 - The Norse leather cap (for example the rawhide starklaedar cap) and the ten other helmets on the
   same mesh are visible with extension 2. The cap was invisible on a Shaman companion.
+- The tendrils in Aegir's Landing, and the chokers, shacklers and the Throttler in Dales of Devwy,
+  are no longer invisible.
+  - They use the game's invisible model, so they used to show only a floating name.
+  - Like the stranglers next to them, they now show a Tangling Vines effect. Their stats, levels
+    and loot are unchanged.
+  - Also like the stranglers, they are no longer offered as bounty, reputation-hunt or charm
+    targets.
+  - To add this to an existing 0.33 install now, run
+    `tools/claude-version/vine_monsters_strangler_effect.py --apply` with the game, launcher and
+    server closed. It previews the change if run without `--apply`, and `--undo` puts the
+    monsters back.
 
 ## 0.33 / 0.33b "Claude Takeover" — 2026-09-30
 
