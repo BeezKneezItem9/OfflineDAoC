@@ -285,6 +285,11 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 - New installs get the new spots automatically. To move them in an existing 0.33 install now,
   run `tools/claude-version/move_realm_exchange_npcs.py --apply` with the game, launcher and
   server closed. It previews the change if run without `--apply`, and `--undo` puts them back.
+- The fire trap in Amminus Pilus's hall in the Catacombs of Cardova (Pilus'Fury, the smoke that
+  burns anyone standing on the hot spots) no longer breaks when it burns a gamebot Necromancer's
+  pet. It expected every Necromancer pet to belong to a player, crashed on a bot's pet, and the
+  server removed the trap until Amminus Pilus respawned, so the hall often had no trap at all. It
+  burns the same spots for the same damage as before.
 
 ## 0.33 / 0.33b "Claude Takeover" — 2026-09-30
 
