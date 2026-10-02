@@ -1,5 +1,6 @@
 OFFLINE DAOC - CLIENT MODDING GUIDE
-Custom models, meshes, textures, spell visuals, custom spells, icons and sounds
+Custom models, meshes, textures, spell visuals, custom spells, icons and sounds,
+plus moving and spawning server NPCs (section 12)
 ====================================================================================
 
 Written 2026-10-01 for people and LLM assistants working on Offline DAoC. It
@@ -409,3 +410,183 @@ install_ghastly_healer.py      zombie priest -> ghastly healer (name, model, rob
 seed_sluaghbinder.py           fresh-world Sluaghbinder data (keeps stock visuals
                                unless a private model id is listed)
 helmet_face_check.py           helmet mesh family + extension counts
+move_realm_exchange_npcs.py    move NPC rows by Mob_ID (Realm Exchange example, section 12.3)
+add_moher_spectre_sentinel_spawns.py   spawn copies of existing monsters (section 12.5)
+
+
+------------------------------------------------------------------------------
+12. SERVER NPCS - MOVING AND SPAWNING
+------------------------------------------------------------------------------
+Added 2026-10-02 after the Realm Exchange move (Brynhild in Jordheim, Adalyn in
+Camelot) and the Cliffs of Moher spawns. Nothing in this section touches client
+files; it is all server database rows (and, for scripted NPCs, server code).
+
+12.1 Where NPCs live
+- Ordinary NPCs and monsters are rows in the Mob table of
+  runtime/data/opendaoc.sqlite3.db. Useful columns: Mob_ID (fixed text key),
+  Name, Guild (the <title> under the name), ClassType (DOL.GS.GameNPC for a
+  monster, DOL.GS.GameMerchant, DOL.GS.GameGuard, DOL.GS.RealmExchangeBroker,
+  trainers...), Region, X, Y, Z, Heading, Model, Size, Level, Realm (0 monster,
+  1 Albion, 2 Midgard, 3 Hibernia), NPCTemplateID, EquipmentTemplateID (gear,
+  section 5), ItemsListTemplateID (a merchant's wares), Flags, AggroLevel,
+  AggroRange, RoamingRange, RespawnInterval, PackageID.
+- Flags bits: 1 ghost, 2 stealth, 4 no name shown, 8 cannot be targeted,
+  16 peace, 32 flying, 64 torch, 128 statue, 256 swimming.
+- The server reads Mob once at start. Write rows only with the server,
+  launcher and client closed (GOLDEN RULE 1), then start the server again.
+  Read-only queries are safe while it runs (open the file with ?mode=ro).
+- Find rows by Mob_ID, never by Name. Some names are rolled per install: the
+  setup tool gives each install's exchange brokers a random name from a list,
+  so another player's Camelot broker may not be called Adalyn.
+- Some rows are REWRITTEN by the setup tool on a new install:
+  source/tools/OfflineDaoc.Setup/Program.cs EnsureRealmExchangeBrokers writes
+  the Realm Exchange brokers and their guards (Mob_ID offline-realm-exchange-*).
+  When you move those, change the coordinates there too, or a fresh install
+  puts them back.
+- Some NPCs are not rows at all but are created by code. Example: the
+  Pilus'Fury fire trap is spawned at fixed coordinates by Amminus Pilus's
+  script (GameServer/scripts/mobs/AlbionMobs/AmminusPilus.cs). Moving those
+  means editing the script and rebuilding the server (GOLDEN RULE 5).
+
+12.2 Getting coordinates and a heading
+- Stand where the NPC should stand and face the way it should face.
+- /gloc (server command) prints region X, Y, Z, the server Heading (0-4095)
+  and the region. Those numbers go straight into the row.
+- The client's own /loc prints ZONE coordinates and a direction in degrees:
+  - region X = zone X + Zones.OffsetX * 8192, region Y = zone Y + OffsetY * 8192
+    (Camelot, Jordheim and Tir na Nog all have offset 1, so add 8192).
+  - Heading = ((dir + 180) mod 360) * 4096 / 360. Example: dir 179 -> about
+    4085; dir 1 -> about 2059. That is within one degree.
+  - The client's dir and the server Heading are therefore half a turn apart.
+    Converting with the formula avoids NPCs facing backwards.
+- Exact alternative: log out, then read your character's saved spot from
+  DOLCharacters (Region, Xpos, Ypos, Zpos, and Direction & 4095 = Heading).
+  The Realm Exchange spots were taken this way and matched /loc exactly.
+- Which way a heading faces: heading h faces the direction (-sin a, cos a) with
+  a = h * 2 * pi / 4096. So 0 faces +Y, 1024 faces -X, 2048 faces -Y and
+  3072 faces +X.
+- The NPC's sides lie along (cos a, sin a). To put guards beside an NPC, use
+  NPC position -/+ spacing * (cos a, sin a), with the same Z and heading. The
+  exchange guards use 100 (Jordheim) and 90 (Camelot) units.
+
+12.3 Recipe - moving an NPC (example: tools/claude-version/move_realm_exchange_npcs.py)
+1. List the rows to move by Mob_ID with their OLD (X, Y, Z, Heading) and the
+   NEW values. Change only X, Y, Z and Heading (plus Region if it changes
+   region). Names, models, gear, merchant lists, listings and money stay.
+2. Default run = dry run. Copy the database into memory, apply the change
+   there, then apply it again and require the second run to change nothing
+   (a safe rerun).
+3. Refuse when a row is neither at its old spot nor already at its new one.
+   That means someone moved it since the script was written.
+4. --apply checks that the server, launcher and game are closed, copies the
+   database to runtime/server/deployment-backups/<name>-<date>, writes in one
+   transaction and runs PRAGMA quick_check before committing.
+5. --undo moves everything back to the old values the same way.
+6. If the setup tool writes these rows (12.1), change its coordinates as well.
+7. Start the server and look in game; ask the owner to confirm the look.
+
+12.4 Making sure bots still use a moved NPC
+- Bots find services (merchants, trainers, the Realm Exchange, stable
+  masters) from the live NPC's position, so no bot data has to change.
+- They walk to a point inside the interaction range (WORLD_PICKUP_DISTANCE,
+  256) that the navmesh resolver (AutonomousZonePointApproach) proves is
+  connected to where they come from. For the Realm Exchange it now prefers a
+  point with a clear navmesh line to the broker
+  (AutonomousZonePointApproach.ClearSightOf), and only then any connected point.
+- Prove a new spot on the installed navmesh BEFORE applying. The explicit test
+  source/server/Tests/UnitTests/UT_RealmExchangeRelocation.cs does it; copy it
+  and change its Spots list. It checks:
+  - floor under the NPC and each guard, within 32 units of the stored Z;
+  - from every zone-point entrance into the region, a trading point in range,
+    with walking paths there and back;
+  - a clear straight line from that point to the NPC and a short walk to it
+    (not around a wall);
+  - the nearest ordinary merchants reachable from that point and back (the
+    "exchange, then vendor" loop).
+  Run it with the server stopped, from source/server:
+    OFFLINE_DAOC_NAV_ROOT=<playable>/runtime/server
+    OFFLINE_DAOC_TEST_DETOUR=<playable>/runtime/server/lib/Detour.dll
+    dotnet test Tests/Tests.csproj -c Release --filter "FullyQualifiedName~UT_RealmExchangeRelocation"
+- The first run of that proof caught a point only 263 walking units from
+  Brynhild that sat behind the big pillar; a short walk alone does not prove
+  the bot can see the NPC.
+- Jordheim keeps a short list of collision traps around services
+  (AutonomousRouteHotspotRepair.JordheimServicePockets) with special
+  approaches. If you move a service into or out of one of those spots, update
+  the list and its tests.
+
+12.5 Recipe - spawning a new NPC or monster
+- Safest: copy an existing row (example:
+  tools/claude-version/add_moher_spectre_sentinel_spawns.py):
+  1. Read the source row by Mob_ID, and refuse if it changed since the script
+     was written (wrong Name or Region).
+  2. Copy every column, then set a NEW Mob_ID (a fresh GUID), X, Y, Z, Heading
+     and LastTimeRowUpdated. Template, level, loot, respawn time and roaming
+     stay identical to the source.
+  3. Skip it when the new Mob_ID already exists with the same values. Refuse
+     when that Mob_ID exists with different values.
+  4. Dry run, backup, one transaction and quick_check, as in 12.3.
+- From scratch: copy a similar row anyway and change ClassType, NPCTemplateID
+  (stats, model, spells and loot come from the template), Model if there is no
+  template, EquipmentTemplateID, ItemsListTemplateID for a merchant, Realm,
+  Level, Flags, RoamingRange and RespawnInterval. Put your own text in
+  PackageID so the rows are easy to find and remove later.
+- Choosing a spot (what the Moher spawns had to pass):
+  - on the navmesh, with open walkable ground all round the roaming radius;
+  - at least 200 units from client fixtures (trees, rocks, buildings; the
+    zone's fixtures.csv), more for large ones;
+  - no aggressive monster 15 or more levels higher within 1,200 units;
+  - at least 150 units from other monsters and 350 from another spawn of the
+    same monster;
+  - walking paths both ways to the existing camp.
+- An NPC that needs behaviour (a trap, a boss with phases) is a script class
+  under GameServer/scripts that sets its own position in AddToWorld (see
+  PilusFury / AmminusPilus). That needs a server rebuild. Script code must work
+  when the "player" is a gamebot: owners and attackers can be GameBot, never
+  assume GamePlayer (the Pilus'Fury crash, section 12.7).
+- Never create GamePlayer objects for bots; bots are always NPCs (GameBot).
+
+12.6 Will bots hunt a new monster spawn?
+- About every 40 seconds, bots rebuild their camp list from live monsters. A
+  monster counts only if:
+  - its name is all lower case;
+  - it gives experience;
+  - it is in a Classic or Shrouded Isles region;
+  - it is not on the bot exclusion list (AutonomousAuditedCampPolicy, by
+    Mob_ID).
+- Outdoors, a counted monster joins a bot camp only when one of these is true:
+  - it matches an entry with the same name in the CapnBry bestiary catalog,
+    within 5,000 units of that entry's point;
+  - it is in the restored Classic 1.65 spawn list;
+  - its zone is one of the "source-empty" zones (for example the Hibernia
+    Shrouded Isles maps), where live spawns are grouped directly.
+- In dungeons, live spawns are grouped by room.
+- So a copy of an existing monster placed next to its own spawns (the Moher
+  recipe) becomes a bot goal on its own. A brand-new monster name in an
+  outdoor zone the catalog covers stays a players-only monster unless code is
+  added.
+- To keep bots away from a spawn, add its Mob_ID to the exclusion list and
+  rebuild (the Bog of Cullen worms and the risky hungry shrillers were done
+  this way). The monster stays for players.
+
+12.7 Mistakes made and how they were fixed
+- The Jordheim broker had ended up in the narrow vault-keeper hallway, and
+  bots traded with her through the wall. Fix: owner-chosen open spots, plus
+  the clear-line rule for exchange approach points (12.4).
+- The first navmesh proof for the new ledge spot failed on line of sight: the
+  point bots would have used was behind a pillar. Fix: the clear-line
+  preference, then the proof passed from every entrance.
+- The client /loc is zone coordinates and its dir is half a turn from the
+  server heading. Always convert (12.2) or use /gloc.
+- Exchange broker names are random per install. Fix: tools find rows by
+  Mob_ID; the changelog says "for example Brynhild".
+- A move done only in the database would be undone by the setup tool on a new
+  install. Fix: change the setup coordinates too.
+- Pilus'Fury (a code-spawned trap) cast a pet's owner to GamePlayer. A gamebot
+  Necromancer's pet made that null, the trap crashed and was removed from the
+  world until its boss respawned. Fix: never assume a player owner.
+- A pet summoned 64 units in front of an owner standing at a zone's outer edge
+  landed off the map and crashed. The server then removed the gamebot owner,
+  and reloading it at the same spot repeated the crash about every 20
+  seconds. Fix: a pet whose spot is off the map appears on its owner. Any
+  "point in front of" code must handle a missing zone.
