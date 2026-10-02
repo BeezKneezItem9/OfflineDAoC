@@ -25,6 +25,12 @@ namespace DOL.UnitTests
         [TestCase(838, 1, 1)]
         [TestCase(1209, 2, 0)]
         [TestCase(835, 3, 3)]
+        [TestCase(337, 2, 0)]   // rawhide starklaedar cap, Norse Helm 3 mesh
+        [TestCase(337, 0, 0)]
+        [TestCase(337, 3, 3)]
+        [TestCase(834, 2, 0)]
+        [TestCase(834, 1, 1)]
+        [TestCase(2880, 2, 0)]
         public void OnlyConfirmedBrokenCoifExtensionsAreRemapped(int model, byte itemExtension, byte visibleExtension)
         {
             Assert.That(HelmetAppearanceCompatibility.VisibleExtension(

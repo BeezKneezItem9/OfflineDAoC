@@ -34,6 +34,12 @@ all 6 models that use it:
 
 438, 835, 838, 1201, 1205, 1209
 
+Also fixed: the Norse "NHelm3" mesh (`items.csv` 389, Head # 4, alternates 395/392), for example
+the leather cap 337 (rawhide starklaedar cap), which was invisible on a Shaman companion. Only
+extension 2 shows as 0, on all 11 models that use it:
+
+337, 831, 834, 1216, 1219, 1223, 1227, 2862, 2868, 2874, 2880
+
 ## Fixing a new one
 
 1. **Find the helmet's family.** Run `python tools/claude-version/helmet_face_check.py <model>`.

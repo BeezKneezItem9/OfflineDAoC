@@ -23,6 +23,11 @@ namespace DOL.GS.PacketHandler
         // renders invisible; extension 0 is the same helm without the hidden head.
         private static readonly HashSet<int> HibHelm1Models = [438, 835, 838, 1201, 1205, 1209];
 
+        // The Norse "NHelm3" mesh (items.csv 389, Head # 4, alternates 395/392): the leather cap 337
+        // (e.g. rawhide starklaedar cap) and its variants. Extension 2 renders invisible on the wearer.
+        private static readonly HashSet<int> NorseHelm3Models =
+            [337, 831, 834, 1216, 1219, 1223, 1227, 2862, 2868, 2874, 2880];
+
         public static byte VisibleExtension(int slot, int model, byte extension)
         {
             if (slot != (int)eInventorySlot.HeadArmor)
@@ -32,6 +37,9 @@ namespace DOL.GS.PacketHandler
                 return 0;
 
             if (HibHelm1Models.Contains(model) && extension == 2)
+                return 0;
+
+            if (NorseHelm3Models.Contains(model) && extension == 2)
                 return 0;
 
             return extension;

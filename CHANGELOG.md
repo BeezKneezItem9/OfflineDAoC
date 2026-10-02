@@ -231,6 +231,8 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   with the game closed.
 - The Celtic scale helm and the five other helmets on the same mesh (for example Animalbound
   Osnadur Tha Coif) are visible again with extension 2. They used to hide the whole head.
+- The Norse leather cap (for example the rawhide starklaedar cap) and the ten other helmets on the
+  same mesh are visible with extension 2. The cap was invisible on a Shaman companion.
 
 ## 0.33 / 0.33b "Claude Takeover" — 2026-09-30
 
