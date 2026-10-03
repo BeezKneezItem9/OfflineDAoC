@@ -55,10 +55,10 @@ public sealed class UT_BountyDifficulty
     {
         Assert.Multiple(() =>
         {
-            Assert.That(BountyDifficultyRules.TargetLevels(10, BountyDifficulty.Hard), Is.EqualTo(new byte[] { 14, 13, 12 }));
-            Assert.That(BountyDifficultyRules.TargetLevels(10, BountyDifficulty.VeryHard), Is.EqualTo(new byte[] { 18, 17, 16 }));
-            Assert.That(BountyDifficultyRules.TargetLevels(49, BountyDifficulty.Hard), Is.EqualTo(new byte[] { 53, 52, 51 }));
-            Assert.That(BountyDifficultyRules.TargetLevels(49, BountyDifficulty.VeryHard), Is.EqualTo(new byte[] { 57, 56, 55 }));
+            Assert.That(BountyDifficultyRules.TargetLevels(10, BountyDifficulty.Hard), Is.EqualTo(new byte[] { 16, 15, 14 }));
+            Assert.That(BountyDifficultyRules.TargetLevels(10, BountyDifficulty.VeryHard), Is.EqualTo(new byte[] { 22, 21, 20 }));
+            Assert.That(BountyDifficultyRules.TargetLevels(49, BountyDifficulty.Hard), Is.EqualTo(new byte[] { 55, 54, 53 }));
+            Assert.That(BountyDifficultyRules.TargetLevels(49, BountyDifficulty.VeryHard), Is.EqualTo(new byte[] { 61, 60, 59 }));
             Assert.That(BountyDifficultyRules.TargetLevels(49, BountyDifficulty.Normal), Is.Empty);
             Assert.That(BountyDifficultyRules.TargetLevels(50, BountyDifficulty.VeryHard), Is.Empty);
         });
@@ -70,14 +70,14 @@ public sealed class UT_BountyDifficulty
     [Test]
     public void ChallengePoolUsesTheExactLevelWhenItHasEnoughVariety()
     {
-        var candidates = Enumerable.Range(0, 8).Select(i => Camp($"monster {i}", 53))
-            .Append(Camp("lower monster", 52))
+        var candidates = Enumerable.Range(0, 8).Select(i => Camp($"monster {i}", 55))
+            .Append(Camp("lower monster", 54))
             .Append(Camp("normal monster", 49))
             .ToArray();
 
         BountyTargetCandidate[] pool = BountyTargetCatalog.SelectChallengePool(candidates, 49, BountyDifficulty.Hard);
 
-        Assert.That(pool.Select(c => c.Level).Distinct(), Is.EqualTo(new byte[] { 53 }));
+        Assert.That(pool.Select(c => c.Level).Distinct(), Is.EqualTo(new byte[] { 55 }));
         Assert.That(pool, Has.Length.EqualTo(8));
     }
 
@@ -86,11 +86,11 @@ public sealed class UT_BountyDifficulty
     {
         var candidates = new List<BountyTargetCandidate>
         {
-            Camp("a", 57), Camp("b", 57),           // only two species at +8
-            Camp("c", 56), Camp("d", 56),
-            Camp("e", 55),
-            Camp("too easy", 54), Camp("normal", 49),
-            Camp("single spawn", 57, spawns: 1)
+            Camp("a", 61), Camp("b", 61),           // only two species at +12
+            Camp("c", 60), Camp("d", 60),
+            Camp("e", 59),
+            Camp("too easy", 58), Camp("normal", 49),
+            Camp("single spawn", 61, spawns: 1)
         };
 
         BountyTargetCandidate[] pool = BountyTargetCatalog.SelectChallengePool(candidates, 49, BountyDifficulty.VeryHard);
@@ -98,7 +98,7 @@ public sealed class UT_BountyDifficulty
         Assert.Multiple(() =>
         {
             Assert.That(pool.Select(c => c.Name), Is.EquivalentTo(new[] { "a", "b", "c", "d", "e" }));
-            Assert.That(pool.All(c => c.Level >= 55), Is.True, "Very Hard never rounds below +6.");
+            Assert.That(pool.All(c => c.Level >= 59), Is.True, "Very Hard never rounds below +10.");
         });
     }
 
@@ -114,7 +114,7 @@ public sealed class UT_BountyDifficulty
     [TestCase(BountyDifficulty.Hard, 53, 53, true)]
     [TestCase(BountyDifficulty.Hard, 53, 52, true)]
     [TestCase(BountyDifficulty.Hard, 53, 51, false)]
-    [TestCase(BountyDifficulty.VeryHard, 57, 40, false)]
+    [TestCase(BountyDifficulty.VeryHard, 61, 40, false)]
     public void HardKillsMustBeNearTheMarkedLevel(BountyDifficulty difficulty, int target, int killed, bool counts) =>
         Assert.That(BountyDifficultyRules.KillCounts(difficulty, target, killed), Is.EqualTo(counts));
 

@@ -207,7 +207,7 @@ namespace DOL.GS
                         ? "The roads have grown hungry for blood. I keep a ledger of those who threaten our folk. " +
                           "Take [a bounty] when you are ready, or ask [how bounties work]."
                         : "The roads have grown hungry for blood. Take a [normal bounty] at your level, a [hard bounty] " +
-                          "about 4 levels higher, or a [very hard bounty] about 8 higher. Or ask [how bounties work].");
+                          "about 6 levels higher, or a [very hard bounty] about 12 higher. Or ask [how bounties work].");
                 }
                 else if (active.IsReady)
                 {
@@ -249,8 +249,10 @@ namespace DOL.GS
                     return;
 
                 case "how bounties work":
-                    master.SayTo(player, "A normal hunt is at your level, a hard hunt about 4 levels higher and a very hard hunt " +
-                        "about 8 higher. They pay 2, 4 or 8 XP bulbs at your level and 1-3 class items 1, 3 or 5 levels above you. " +
+                    master.SayTo(player, "A normal hunt is at your level, a hard hunt about 6 levels higher and a very hard hunt " +
+                        "about 12 higher. Where too few kinds of monster live at that exact level, the mark may be one or two levels lower " +
+                        "(never below 4 higher on hard or 10 higher on very hard). " +
+                        "They pay 2, 4 or 8 XP bulbs at your level and 1-3 class items 1, 3 or 5 levels above you. " +
                         "Kills needed: 5 below level 20, 10 in your 20s, 15 in your 30s and 20 in your 40s.");
                     master.SayTo(player, "The journal counts kills. Enter the target's zone or dungeon, then press BOUNTY MAP " +
                         "to open its local map and see the red dot; it cannot show another zone. " +
@@ -341,8 +343,8 @@ namespace DOL.GS
             int kills = BountyQuest.RequiredKillsForLevel(player.Level);
             string where = difficulty switch
             {
-                BountyDifficulty.Hard => "about 4 levels above you",
-                BountyDifficulty.VeryHard => "about 8 levels above you",
+                BountyDifficulty.Hard => "about 6 levels above you",
+                BountyDifficulty.VeryHard => "about 12 levels above you",
                 _ => "at your level"
             };
             string offer = player.Level >= 50

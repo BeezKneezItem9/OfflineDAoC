@@ -68,7 +68,8 @@ namespace DOL.GS
         // Templates marked for this realm but built on another realm's model (a
         // Midgard hat on the Hibernia mesh has no Valkyn or Troll fit). Bots skip them.
         private static IList<DbItemTemplate> WithoutCrossRealmLooks(IList<DbItemTemplate> items) =>
-            items.Where(item => !BotCrossRealmGear.IsExcluded(item)).ToList();
+            items.Where(item => !BotCrossRealmGear.IsExcluded(item) &&
+                                !DOL.GS.Quests.Hibernia.SluaghbinderEpicArmor.IsSetItem(item)).ToList();
 
         public static DbItemTemplate SelectCompanionWeapon(IEnumerable<DbItemTemplate> candidates, byte level,
             eRealm realm, eCharacterClass characterClass, eObjectType type, eInventorySlot slot,
@@ -76,7 +77,8 @@ namespace DOL.GS
         {
             // Select exact level first, then -1, then -2. A failed database lookup
             // generates a temporary item, never an empty hand or an overlevel item.
-            var eligible = candidates.Where(item => item != null && !BotCrossRealmGear.IsExcluded(item) && item.MaxCount == 1 &&
+            var eligible = candidates.Where(item => item != null && !BotCrossRealmGear.IsExcluded(item) &&
+                !DOL.GS.Quests.Hibernia.SluaghbinderEpicArmor.IsSetItem(item) && item.MaxCount == 1 &&
                 BotWeaponStats.IsNormalCompanionWeapon(item) &&
                 item.Level >= Math.Max(1, level - 2) && item.Level <= level &&
                 item.Realm == (int)realm && item.Object_Type == (int)type && item.IsPickable &&

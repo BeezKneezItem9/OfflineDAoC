@@ -19,7 +19,7 @@ namespace DOL.GS
     public static class BountyDifficultyRules
     {
         /// <summary>Hard and Very Hard never need monsters above this level (49 + 8).</summary>
-        public const byte HighestTargetLevel = 57;
+        public const byte HighestTargetLevel = 61;
 
         /// <summary>
         /// A Hard or Very Hard pool with fewer distinct monsters than this at the
@@ -29,16 +29,16 @@ namespace DOL.GS
 
         public static int MonsterLevelOffset(BountyDifficulty difficulty) => difficulty switch
         {
-            BountyDifficulty.Hard => 4,
-            BountyDifficulty.VeryHard => 8,
+            BountyDifficulty.Hard => 6,
+            BountyDifficulty.VeryHard => 12,
             _ => 0
         };
 
         /// <summary>Rounding down stops here, so a hard pool always stays harder than normal.</summary>
         public static int LowestMonsterLevelOffset(BountyDifficulty difficulty) => difficulty switch
         {
-            BountyDifficulty.Hard => 2,
-            BountyDifficulty.VeryHard => 6,
+            BountyDifficulty.Hard => 4,
+            BountyDifficulty.VeryHard => 10,
             _ => 0
         };
 

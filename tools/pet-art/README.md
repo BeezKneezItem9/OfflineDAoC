@@ -29,6 +29,9 @@ and prints a one-command rollback.
 | `install_void_sun.py`, `add_magician_combat_anims.py` | Zombie magician void blast effect and animation sets |
 | `install_blood_shield.py`, `install_sluagh_visuals2.py` | Blood Shield effect for Cairn armor buffs; summon hand glows and cast times |
 | `install_pet_weapons.py`, `install_pet_shield_skins.py` | Private Necroservant and Zombie Guardian weapons (objects/items rows, pskins for emblem shields) |
+| `install_sluagh_armor.py` | The Dubh Sluagh set (Sluaghbinder level 50 reward): pskins, mskins and Mskins archive, objects/items/speffects rows, weapon NIFs. `plan`, `install`, `rollback` |
+| `nif4_append.py` | Append a second shape to a NetImmerse 4.2 item NIF (the 3D skull on the Cairnfire Aegis); every parse is checked byte for byte |
+| `work/sluagh-armor/` | The set's art: `extract_meshes.py` (copies the stock meshes it needs into `nif/`), `paint_set.py` (armor, helm, cloak), `shield_build.py`, `mace_build.py`, `weapons_build.py` (scythe), `views_game.py` (flat-lit previews like the game), `cloak_debug_grid.py` (labelled grid to learn a texture mapping) |
 
 ## Lessons learned
 
@@ -44,5 +47,8 @@ and prints a one-command rollback.
   Undoing the rename must give back the original byte-for-byte.
 - **Textures:** DDS files are DXT1 with a full mip chain (`install_pet_art.encode_dds`). Pad UV
   islands so mipmaps don't bleed pale seams.
+- **Player armor:** see section 13 of `docs/CLIENT-MODDING-GUIDE.txt`. Catacombs armor skins load
+  through `mskins.csv` (pskins col 6), every body variant shares one texture layout, and cloaks
+  use UV set 1.
 - **Rollback:** each `install` writes `install-backups/<name>-<time>/` with a `manifest.json`.
   Roll back newest-first.

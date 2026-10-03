@@ -56,7 +56,7 @@ def _texture_name(shape):
     return ""
 
 
-def load(path) -> tuple[list[Shape], NifFormat.Data]:
+def load(path, uv_set=0) -> tuple[list[Shape], NifFormat.Data]:
     path = Path(path)
     if not path.is_absolute():
         path = FIGURES / path
@@ -92,7 +92,9 @@ def load(path) -> tuple[list[Shape], NifFormat.Data]:
         verts = np.array([(v.x, v.y, v.z) for v in geom.vertices], dtype=np.float64)
         norms = (np.array([(n.x, n.y, n.z) for n in geom.normals], dtype=np.float64)
                  if geom.has_normals else np.zeros_like(verts))
-        uvs = (np.array([(uv.u, uv.v) for uv in geom.uv_sets[0]], dtype=np.float64)
+        # Catacombs cloaks carry 3 UV sets; the client maps the cata cloak skin with set 1
+        k = min(uv_set, max(0, len(geom.uv_sets) - 1))
+        uvs = (np.array([(uv.u, uv.v) for uv in geom.uv_sets[k]], dtype=np.float64)
                if geom.num_uv_sets or getattr(geom, "has_uv", False) else np.zeros((len(verts), 2)))
         faces = np.array(geom.get_triangles(), dtype=np.int32).reshape(-1, 3)
         skinned = block.skin_instance is not None

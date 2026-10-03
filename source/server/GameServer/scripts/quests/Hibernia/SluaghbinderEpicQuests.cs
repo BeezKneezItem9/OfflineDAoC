@@ -105,6 +105,8 @@ public abstract class SluaghbinderEpicQuest : BaseQuest
 
         base.FinishQuest();
         SluaghbinderEpicQuestState.NotifyReward(m_questPlayer, Definition.RewardSpellId);
+        if (this is SluaghbinderEpic50)
+            SluaghbinderEpicArmor.Grant(m_questPlayer, SluaghbinderEpicQuestRuntime.QuestGiver, reclaim: false);
         SluaghbinderEpicQuestRuntime.UpdateTrainerIndicator(m_questPlayer);
     }
 }
@@ -548,6 +550,10 @@ public static class SluaghbinderEpicQuestRuntime
     [ScriptLoadedEvent]
     public static void ScriptLoaded(DOLEvent e, object sender, EventArgs args)
     {
+        // The Dubh Sluagh set's templates are defined in code and refreshed every start,
+        // even with quests disabled, so worn pieces always resolve to a template.
+        SluaghbinderEpicArmor.EnsureTemplates();
+
         if (!ServerProperties.Properties.LOAD_QUESTS)
             return;
 
@@ -571,6 +577,8 @@ public static class SluaghbinderEpicQuestRuntime
     }
 
     private static GameNPC Muirenn;
+
+    public static GameNPC QuestGiver => Muirenn;
 
     [ScriptUnloadedEvent]
     public static void ScriptUnloaded(DOLEvent e, object sender, EventArgs args)
@@ -607,6 +615,10 @@ public static class SluaghbinderEpicQuestRuntime
                 SluaghbinderEpicQuestDefinition definition = Definitions[questType];
                 Muirenn.SayTo(player, $"The next thread is ready: {definition.Title}. The dead must be faced before the service can be [begun].");
             }
+            else if (player.HasFinishedQuest(typeof(SluaghbinderEpic50)) > 0)
+            {
+                Muirenn.SayTo(player, "The host has claimed you. If any piece of your Dubh Sluagh panoply is lost, I can [reclaim the set] for you.");
+            }
             else
             {
                 Muirenn.SayTo(player, "The six paths are quiet. Return when the next threshold has opened, or when your current hunt is complete.");
@@ -618,6 +630,10 @@ public static class SluaghbinderEpicQuestRuntime
             if (active != null && active.Step == 2 && (text == "reward" || text == "claim reward"))
             {
                 active.FinishQuest();
+            }
+            else if ((text == "reclaim the set" || text == "reclaim") && player.HasFinishedQuest(typeof(SluaghbinderEpic50)) > 0)
+            {
+                SluaghbinderEpicArmor.Grant(player, Muirenn, reclaim: true);
             }
             else if (active == null && questType != null && (text == "begun" || text == "begin" || text == "start"))
             {

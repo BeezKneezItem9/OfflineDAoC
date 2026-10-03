@@ -38,7 +38,7 @@ class _Reader:
         return self.take("I" if width == 4 else "B")[0] != 0
 
 
-def _geometry(data, pos, strips, bool_width, has_uv_flag):
+def _geometry(data, pos, strips, bool_width, has_uv_flag, uv_set=0):
     r = _Reader(data, pos)
     count = r.take("H")[0]
     if not 0 < count < 20000:
@@ -59,7 +59,7 @@ def _geometry(data, pos, strips, bool_width, has_uv_flag):
     uvs = np.zeros((count, 2))
     for index in range(uv_sets):
         values = np.array(r.take(f"{2 * count}f")).reshape(count, 2)
-        if index == 0:
+        if index == min(uv_set, uv_sets - 1):
             uvs = values
     triangles = r.take("H")[0]
     if strips:
@@ -83,7 +83,7 @@ def _geometry(data, pos, strips, bool_width, has_uv_flag):
     return verts, uvs, faces
 
 
-def load(path) -> list[Geom]:
+def load(path, uv_set=0) -> list[Geom]:
     data = Path(path).read_bytes()
     result = []
     for match in re.finditer(rb"NiTri(Shape|Strips)Data", data):
@@ -94,7 +94,7 @@ def load(path) -> list[Geom]:
         strips = match.group(1) == b"Strips"
         for bool_width, uv_flag in ((1, False), (4, False), (1, True), (4, True)):
             try:
-                verts, uvs, faces = _geometry(data, pos, strips, bool_width, uv_flag)
+                verts, uvs, faces = _geometry(data, pos, strips, bool_width, uv_flag, uv_set)
             except (ValueError, struct.error):
                 continue
             result.append(Geom(pos, "strips" if strips else "shape", verts, uvs, faces))

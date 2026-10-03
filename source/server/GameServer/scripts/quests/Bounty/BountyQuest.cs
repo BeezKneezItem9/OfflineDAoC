@@ -48,7 +48,7 @@ namespace DOL.GS.Quests
             "and bring proof of the kill back to your realm's Bounty Master.";
 
         public override string Summary =>
-            "A random monster at your level (4 or 8 levels higher on hard or very hard), or a great named foe at level 50. " +
+            "A random monster at your level (6 or 12 levels higher on hard or very hard), or a great named foe at level 50. " +
             "Complete the hunt and return for equipment and experience.";
 
         public override string Conclusion => "The road is safer for your work. Another contract waits whenever you are ready.";

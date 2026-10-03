@@ -132,8 +132,8 @@ namespace DOL.GS
 
         /// <summary>
         /// Hard and Very Hard: monsters with two or more spawns at the player's level
-        /// +4 or +8. A thin level (fewer than eight different monsters) also takes
-        /// monsters one, then two levels lower, never below +2 or +6.
+        /// +6 or +12. A thin level (fewer than eight different monsters) also takes
+        /// monsters one, then two levels lower, never below +4 or +10.
         /// </summary>
         public static BountyTargetCandidate[] SelectChallengePool(
             IReadOnlyList<BountyTargetCandidate> candidates, byte playerLevel, BountyDifficulty difficulty)
@@ -265,7 +265,7 @@ namespace DOL.GS
                 if (HurtsStableReputation(MobFaction(mob, templates)))
                     continue;
 
-                // Hard and Very Hard reach level 57; the great foes stay level-50 only.
+                // Hard and Very Hard reach level 61; the great foes stay level-50 only.
                 if (EpicTargets.Any(epic => string.Equals(epic.Name, mob.Name, StringComparison.OrdinalIgnoreCase)))
                     continue;
 

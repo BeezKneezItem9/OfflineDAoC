@@ -142,8 +142,8 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 **Bounty Masters: normal, hard and very hard bounties**
 - The Bounty Master now offers three kinds of leveling bounty:
   - a **normal bounty**, with monsters at your level as before;
-  - a **hard bounty**, with monsters about 4 levels above you;
-  - a **very hard bounty**, with monsters about 8 levels above you.
+  - a **hard bounty**, with monsters about 6 levels above you;
+  - a **very hard bounty**, with monsters about 12 levels above you.
 - Every difficulty needs the same number of kills: 5 below level 20, 10 in your 20s, 15 in your
   30s and 20 in your 40s. It used to climb from 5 to 50.
 - Rewards by difficulty:
@@ -161,8 +161,9 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 - How hard and very hard targets are picked:
   - Only monsters with at least two spawns are used.
   - A level with fewer than eight different monsters also uses monsters one, then two levels
-    lower, but never drops below 2 levels above you for hard, or 6 for very hard.
-  - Monsters go up to level 57. The great foes stay level-50 bounties only.
+    lower, but never drops below 4 levels above you for hard, or 10 for very hard. The Bounty
+    Master explains this when offering the bounty.
+  - Monsters go up to level 61. The great foes stay level-50 bounties only.
 - On hard and very hard, a same-named monster elsewhere in your realm only counts if it is at most
   one level below the marked one.
 - Level-50 great-foe bounties are unchanged.
@@ -219,6 +220,28 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
     - `tools/pet-art/install_ghastly_healer_art.py install` (the private model).
 
     Each previews without `install` and can be rolled back.
+
+- New level 50 reward: the **Dubh Sluagh** set, a black gothic Celtic set with grave-green
+  accents. Muirenn gives it when you finish the level 50 Sluaghbinder epic quest.
+  - Seven armor pieces: Cairnwarden's Helm (a full helm with glowing green eyes), Hauberk of the
+    Dubh Sluagh, Vambraces of the Restless Host, Gauntlets of the Grave-Grip, Greaves of the
+    Barrow Road, Sabatons of the Silent March, and the Mantle of the Sluagh Host (a midnight-black
+    weathered leather cloak with a U-shaped Celtic border and fur trim).
+  - Three weapons: **Cairnbreaker** (mace, 16.5 DPS, 3.7 speed, blackened iron with a ghost-green
+    crystal), **Cairnfire Aegis** (large shield with a 3D bone skull over grave-green ghost fire)
+    and **Reaper of the Host** (two-handed scythe, 16.5 DPS, 5.5 speed).
+  - Level 51, quality 100. Each piece matches the stats of the best item for its slot.
+    Sluaghbinder only.
+  - The hauberk and vambraces send a ghostly shoulder-smoke effect.
+  - The set cannot be traded or dyed (trying to dye it tells you why), sells for 1 copper, is in
+    no loot table, and bots never wear it.
+  - Lost a piece? Ask Muirenn to **[reclaim the set]** any time after the quest. She replaces
+    every piece you no longer have.
+  - It needs a server built from this source and the private client art. To add the art, close
+    the game, launcher and server, then run in `tools/pet-art/work/sluagh-armor`:
+    `extract_meshes.py`, `paint_set.py`, `shield_build.py`, `mace_build.py`,
+    `weapons_build.py scythe`. Then run `tools/pet-art/install_sluagh_armor.py install`. It
+    previews the changes with `plan` and can be rolled back.
 
 **Animist bots (gamebots and companions)**
 - Animists use their shrooms by what they do, the way the class was played, instead of picking

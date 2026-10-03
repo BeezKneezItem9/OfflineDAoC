@@ -36,8 +36,8 @@ def combined(shapes):
             np.concatenate(faces), np.concatenate(owner))
 
 
-def bake(nif, size=512, pad=3):
-    shapes, _ = load(nif)
+def bake(nif, size=512, pad=3, uv_set=0):
+    shapes, _ = load(nif, uv_set)
     v, n, uv, f, owner = combined(shapes)
     pos = np.zeros((size, size, 3)); nrm = np.zeros((size, size, 3))
     pos2 = np.zeros((size, size, 3))
@@ -53,6 +53,8 @@ def bake(nif, size=512, pad=3):
         x1 = min(size - 1, int(math.ceil(max(a[0], b[0], c[0]))) + 1)
         y0 = max(0, int(math.floor(min(a[1], b[1], c[1]))) - 1)
         y1 = min(size - 1, int(math.ceil(max(a[1], b[1], c[1]))) + 1)
+        if x1 < x0 or y1 < y0:            # triangle entirely outside the texture
+            continue
         gy, gx = np.mgrid[y0:y1 + 1, x0:x1 + 1]
         qx, qy = gx.astype(float), gy.astype(float)
         w0 = ((b[1] - c[1]) * (qx - c[0]) + (c[0] - b[0]) * (qy - c[1])) / den
