@@ -773,7 +773,9 @@ namespace DOL.AI.Brain
             characterClass?.ID == (int)eCharacterClass.Minstrel && !grouped && !autonomous ||
             characterClass?.ClassType == eClassType.ListCaster &&
             characterClass.ID != (int)eCharacterClass.Valewalker &&
-            characterClass.ID != (int)eCharacterClass.Vampiir;
+            characterClass.ID != (int)eCharacterClass.Vampiir &&
+            // Shamans melee between their nukes (ShamanBotCombatPolicy).
+            characterClass.ID != (int)eCharacterClass.Shaman;
 
         private bool PrefersCurrentSpellRange() =>
             PrefersSpellRange(BotBody?.CharacterClass, BotBody?.Group?.MemberCount > 1, BotBody?.IsAutonomousWorldBot == true);
@@ -3469,6 +3471,7 @@ namespace DOL.AI.Brain
             {
                 if (TryPvpCrowdControl()) return true;
                 if (TryBardPveAddMez()) return true;
+                if (TryShamanPveAddRoot()) return true;
                 if (BotBody.CharacterClass.ID == (int)eCharacterClass.Cleric)
                 {
                     if (!Util.Chance(Math.Max(5, Body.ManaPercent - 50)))
@@ -3583,12 +3586,25 @@ namespace DOL.AI.Brain
                         spellsToCast.RemoveAll(spell => spell.Range <= Body.MeleeAttackRange);
                     if (PrefersCurrentSpellRange() && spellsToCast.Exists(BotCasterPriority.IsDamage))
                         spellsToCast.RemoveAll(spell => !BotCasterPriority.IsDamage(spell));
-                    Spell spellToCast = BotBody.IsEndgameCompanion
+                    bool shamanHybrid = ShamanBotCombatPolicy.IsHybrid((eCharacterClass)BotBody.CharacterClass.ID);
+                    Spell spellToCast = shamanHybrid
+                        ? spellsToCast.OrderBy(ShamanBotCombatPolicy.RotationPriority)
+                            .ThenByDescending(spell => spell.Level).First()
+                        : BotBody.IsEndgameCompanion
                         ? TemporaryCompanionBalance.HighestSpell(spellsToCast)
                         : spellsToCast[Util.Random(spellsToCast.Count - 1)];
 
                     if (spellToCast.Uninterruptible || !Body.IsBeingInterrupted)
                         casted = CheckOffensiveSpells(spellToCast);
+                    else if (shamanHybrid && ShamanBotCombatPolicy.HoldMeleeForCast(true,
+                                 Body.IsBeingInterruptedByOther, Body.IsBeingSelfInterrupted))
+                    {
+                        // A ready nuke or an expired damage over time ends the
+                        // melee: stop swinging so the Shaman's own swing timer
+                        // runs out and the cast starts on a following turn.
+                        Body.StopAttack();
+                        return true;
+                    }
                     // Bots never use Quickcast. Instants remain available above;
                     // an interrupted ordinary cast waits for its legal window.
                 }
@@ -3684,6 +3700,7 @@ namespace DOL.AI.Brain
         {
             if (spell == null || spell.Level > Body.Level || Body.TargetObject is not GameLiving target || !target.IsAlive ||
                 !BardBotCrowdControlPolicy.AllowsOrdinaryOffense((eCharacterClass)BotBody.CharacterClass.ID, spell.SpellType) ||
+                !ShamanBotCombatPolicy.AllowsOrdinaryOffense((eCharacterClass)BotBody.CharacterClass.ID, spell) ||
                 BotSpellPower.BlocksAttackerRotation(BotBody, spell) ||
                 !NeedsOffensiveSpellApplication(target, spell) ||
                 Body.GetSkillDisabledDuration(spell) > 0 || Body.Mana < BotBody.PowerCost(spell))

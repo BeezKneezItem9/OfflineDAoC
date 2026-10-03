@@ -114,6 +114,14 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   resurrection, so their resurrection spell is no longer refused for another spell already queued.
 - Summoner's Hall is no longer handed to bots as a dungeon goal. It can only be reached through
   other dungeons, and only 1 of 268 attempts ever got there. The monsters stay for players.
+- Shaman bots, gamebots and companions alike, now fight as hybrids instead of standing at spell
+  range. They cast their bolt and nuke when the 20-second recasts are ready, keep their damage
+  over time and disease on the target, and fight in melee in between. A ready nuke or an expired
+  damage over time stops the melee for the cast, and they still stop to heal. A Shaman being hit
+  stays in melee, since the cast would be interrupted.
+- Shamans no longer root the monster being killed, since the first hit breaks the root. Solo
+  Shamans never root in PvE; in a group, a Shaman roots an add that is still running at the party
+  while the group fights something else. Roots in PvP are unchanged.
 - [PLAY.md](docs/PLAY.md) now recommends bot populations (500, 1000, 1500 or 2000 per realm)
   and explains the name-generation ceiling of about 18,800 bots.
 
