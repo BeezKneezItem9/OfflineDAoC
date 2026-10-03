@@ -232,7 +232,6 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
     and **Reaper of the Host** (two-handed scythe, 16.5 DPS, 5.5 speed).
   - Level 51, quality 100. Each piece matches the stats of the best item for its slot.
     Sluaghbinder only.
-  - The hauberk and vambraces send a ghostly shoulder-smoke effect.
   - The set cannot be traded or dyed (trying to dye it tells you why), sells for 1 copper, is in
     no loot table, and bots never wear it.
   - Lost a piece? Ask Muirenn to **[reclaim the set]** any time after the quest. She replaces
