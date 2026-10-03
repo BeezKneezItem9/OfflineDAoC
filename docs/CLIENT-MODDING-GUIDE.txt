@@ -1,6 +1,7 @@
 OFFLINE DAOC - CLIENT MODDING GUIDE
 Custom models, meshes, textures, spell visuals, custom spells, icons and sounds,
-plus moving and spawning server NPCs (section 12)
+plus moving and spawning server NPCs (section 12) and player armor sets,
+weapons and shields (section 13)
 ====================================================================================
 
 Written 2026-10-01 for people and LLM assistants working on Offline DAoC. It
@@ -590,3 +591,138 @@ files; it is all server database rows (and, for scripted NPCs, server code).
   and reloading it at the same spot repeated the crash about every 20
   seconds. Fix: a pet whose spot is off the map appears on its owner. Any
   "point in front of" code must handle a missing zone.
+
+
+------------------------------------------------------------------------------
+13. PLAYER ARMOR SETS, WEAPONS AND SHIELDS
+------------------------------------------------------------------------------
+Section 13 was written 2026-10-03 during the Dubh Sluagh set (Sluaghbinder level 50
+reward). [CONFIRMED] = seen in game, [FOUND] = read from the client files, fix not
+yet seen in game, [UNCONFIRMED] = a guess.
+
+
+13.1 What a wearable item is made of
+- Server: an ItemTemplate row. Its Model = the objects.csv ID the client draws.
+  Item_Type = equipment slot, Object_Type = armor/weapon type.
+- Client, objects.csv row (one per piece): which mesh, which skin textures, which
+  icon, effects. Texture columns hold pskins.csv IDs.
+- Client, pskins.csv row: texture file name + the pskinNNN.mpk archive number
+  (column 4). Expansion Only (column 5) must be 0 on private rows.
+- Client, pskinNNN.mpk: the textures (DDS). A new private archive number
+  (e.g. pskin098.mpk) keeps stock archives untouched. [CONFIRMED: helm in 098 shows]
+- Weapons/shields also use items.csv (the NIF name) and a NIF file in items\.
+
+13.2 objects.csv columns that matter for armor (0-based)
+  2 NIF (items.csv ID; 1 = body-part armor)   3 Icon
+  CLASSIC skins: 4 Body, 5 Fem Body, 6 Arms, 7 Gloves, 8 Lbody, 9 Legs, 10 Boots,
+                 11 Cloak, 12 Helm
+  CLASSIC mesh picks: 13 Head#, 14 Body#, 15 Lbody#, 16 Cloak#, 32-35 Arms#/
+                 Gloves#/Legs#/Boots#, 37-42 Fem variants
+  22 Apply Texture (shields/weapons: pskin that replaces the NIF's surface texture)
+  25 Use Emblem    55 Object Effect (speffects.csv ID)
+  CATACOMBS: 65 Cata Status, 66 Body skin, 67 Fbody skin, 68 Arms, 69 Gloves,
+                 70 Legs, 71 Boots, 72 Cloak skin, 73-78 Cata Body#/Gloves#/
+                 Boots#/Arms#/Legs#/Cloak#
+
+13.3 THE BIG ONE: Catacombs columns win on player bodies
+- Players use the Catacombs (fig3) body models. When an objects row has Cata
+  Status (col 65) = 1, the client draws the CATA skin columns (66-72) and IGNORES
+  the classic skin columns (4-12). [CONFIRMED: the hauberk was cloned from a stock
+  row with 65=1; in game it showed the stock gold scale skin, not ours.]
+- Every working stock body/arms/legs/gloves/boots row has Cata Status 1. The only
+  stock rows with classic columns alone are broken (#REF!) cloth rows. So do not
+  rely on classic columns for body armor. [FOUND]
+- Cloaks: all 95 stock cloaks fill cata column 72 (and never set 65). Clearing 72
+  made our cloak render WHITE even though classic column 11 pointed at our texture.
+  Always set column 72 on a cloak. [CONFIRMED white; fix FOUND]
+- Helms: no cata columns; classic column 12 + Head# work. [CONFIRMED]
+- Cata body skin = ONE texture covering body + lower body (stock 256x512, top
+  half body, bottom half lower body). The classic system instead splits them into
+  Body (col 4) and Lbody (col 8). Paint one composite and use it whole for 66/67.
+- Cata Body# (col 73, values 1-21 in stock) is NOT a mesh number: fig3 has only
+  Body01-Body08 per race. Its meaning is still unknown. [FOUND]
+- When cloning a stock row, list EVERY non-empty column of the stock row and
+  decide each one. Inherited cata columns were the cause of this bug.
+
+13.4 Which mesh a body piece uses (fig3)
+- fig3map.csv: race/sex row, part 1 = Body, entries 1-8 -> fig3parts.csv IDs ->
+  file names (Celt male: 995-1002 = Body01_BC_m ... Body08_BC_m, in
+  figures\fig3\fig002.mpk / fig003.mpk). Firbolg = _Fir_, female = _f.
+- Body variants differ (Body05 has pauldrons, etc.). Paint on the exact mesh the
+  row will use, for every race/sex you care about (we used BC_m/BC_f/Fir_m/Fir_f).
+- Gloves/boots variants: Gloves04_*, Boots04_* chosen by Gloves#/Boots#.
+- Full helms: Head# (col 13, 0-based) indexes the race "Full Helm" list;
+  Dragonsworn heavy helm = 0, and "Full Helm Head Swap" = 1 hides the head so the
+  face does not poke through. [CONFIRMED]
+
+13.5 Textures
+- DXT1 DDS with a full mip chain (install_pet_art.encode_dds). The encoder needs a
+  DXT1 reference DDS: pskin008.mpk has some, pskin004.mpk has none ("unexpected
+  codec" error).
+- Sizes 256, 512 and 1024 all exist in stock rows (cata cloak 512x1024). [FOUND]
+- Paint in 3D, not in UV space: texelmap.bake maps each texel to a 3D position and
+  normal on the mesh; patterns are painted in model space. Mirrored UVs (left and
+  right share texels) mean any noise must be mirrored too (use |x|), and eye
+  glows etc. must be painted only where BOTH mirror positions are inside the shape.
+- Dark armor: test the darkness on a preview with Blender's "Standard" view
+  transform and specular highlights off; the default "Filmic/AgX" washes dark
+  colors grey and made us think the cloak was lighter than it was.
+
+13.6 Weapons and shields
+- Copy a stock NIF to a private name in items\, reshape vertices in the raw
+  bytes (find the float32 vertex block; for Gamebryo 10.x files patch local space
+  through the inverse node transform and patch normals too).
+- Rename the texture inside the NIF to a private name of the SAME LENGTH
+  (weaponcomp.tga -> slucairnbr.tga) and put the DDS loose in items\ (the client
+  finds slucairnbr.dds for slucairnbr.tga). [CONFIRMED: the mace texture shows]
+- MULTI-LAYER SHIELDS: sh_rounda (and similar emblem shields) has 3 UV sets and
+  3 textures in its NiTexturingProperty: base = cloakpattern01 (UV set 0, emblem
+  pattern), dark = symbol_001 (UV set 1, emblem symbol), detail = sh_metal01
+  (UV set 2, the surface). objects.csv Apply Texture (col 22) + items.csv Strip
+  Textures = 1 replace the SURFACE layer, so paint on UV set 2. We painted set 0
+  first: in game the shield was pale with black blotches. [CONFIRMED bug; fix FOUND]
+  Read the NiTexturingProperty to see which UV set each slot uses
+  (nif4_geom.load(path, uv_set=N) reads a chosen set).
+- UV set 2 of sh_rounda goes outside 0..1 (the rim strip tiles); bake with
+  wrapping (weapons_build.bake(..., wrap=True)). Front and back faces share
+  texels there, so the back shows part of the front art.
+- Weapons: check NiTexturingProperty too; the Celtic mace and the Valewalker
+  scythe use a single texture on UV set 0.
+- Paint weapon colors as dark as the armor; the first mace (bone haft, cold
+  steel) looked almost white in game.
+
+13.7 Ghost / smoke effects on armor
+- objects.csv Object Effect (col 55) points at a speffects.csv row; clone a stock
+  "item decay" row (e.g. 469) and change the node (Bip01 L/R Clavicle for
+  shoulders). [UNCONFIRMED on body armor; fallback = a server-side aura spell]
+
+13.8 Server side (example: scripts/quests/Hibernia/SluaghbinderEpicArmor.cs)
+- Define the set in code and create/refresh the templates at server start
+  (EnsureTemplates) so code and database never drift. Call it BEFORE any
+  "quests disabled" early return in the quest's start-up code.
+- Stats: match the best item in each slot by utility (stat 1, resist % 2,
+  skill 5, hit points 0.25, power % 2). Level 51, Quality 100, Bonus 35.
+- Class lock: AllowedClasses = class ID. Realm = the realm.
+- 1 copper resale: merchant price = Price * ITEM_SELL_RATIO / 100 (ratio 50 ->
+  Price 2 = 1c). IsTradable false, CanDropAsLoot false, not in any loot table.
+- Undyeable: refuse in GamePlayerInventory.DyeItem with a message that says why.
+- Bots: exclude the set from BotEquipment candidates so bots never wear it.
+- Reward + reclaim: give missing pieces at quest finish; a trainer dialogue
+  option re-issues any piece the player no longer holds (check equipped, bags
+  and vault). Tell the player when bags are full.
+
+13.9 Testing
+- Test character: copy an existing DOLCharacters row (new id/name/slot), set
+  level/exp/specs/location, and add Inventory rows (ITemplate_Id = template id,
+  SlotPosition: 21 head, 22 hands, 23 feet, 25 torso, 26 cloak, 27 legs, 28 arms,
+  10 right hand, 11 left hand, 12 two-hand). Back up the database first.
+- Screenshot every piece in game, front and back, male and female.
+
+13.10 Mistakes made and how they were fixed
+- Cloned a cata-status row and changed only classic columns -> stock skin
+  showed. Fix: point the cata columns at the private skins.
+- Cleared cloak column 72 -> white cloak. Fix: set 72 to the private cloak skin.
+- Painted the shield on UV set 0 -> pale shield with blotches. Fix: UV set 2.
+- Encoded with a non-DXT1 reference DDS -> "unexpected codec". Fix: pskin008.
+- Dark previews in Filmic/AgX looked grey -> Standard view transform.
+- Preview head poked through the helm -> preview with helm head swap (no head).
