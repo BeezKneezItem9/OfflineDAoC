@@ -87,6 +87,10 @@ namespace DOL.GS
         /// Diagnostic only: the first check that stops this bot reserving a resurrection of
         /// <paramref name="corpse"/>. Mirrors ReserveResurrection without reserving anything.
         /// </summary>
+        /// <summary>A resurrector with power and a waiting corpse in range pauses chant and song upkeep.</summary>
+        public static bool ResurrectionOutranksUpkeep(bool hasResurrection, bool grouped, bool enoughPower, bool corpseWaitingInRange) =>
+            hasResurrection && grouped && enoughPower && corpseWaitingInRange;
+
         public static string DescribeResurrectionBlock(GameBot bot, Spell spell, GameLiving corpse)
         {
             if (bot.IsCasting) return "casting another spell";

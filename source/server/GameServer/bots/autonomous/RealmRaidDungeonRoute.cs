@@ -18,6 +18,21 @@ namespace DOL.GS
         private readonly Dictionary<string, GameNPC> _finals = new();
         private GameNPC _target;
         private int _probeCursor;
+        private static readonly Logging.Logger log = Logging.LoggerManager.Create(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private long _targetProgressTick, _holdSince, _nextHoldLog;
+        private int _targetLowestHealth;
+
+        public const long TargetNoProgressMilliseconds = 5 * 60_000;
+        public const long BlockedTargetRetryMilliseconds = 15 * 60_000;
+        public const long HoldReportMilliseconds = 10 * 60_000;
+
+        /// <summary>
+        /// A route target nobody has damaged for five minutes is set aside so the
+        /// expedition moves on (Caer Sidi and Tuscaran held at their opening area
+        /// for 3.5 hours on 2026-10-02). Final bosses are never set aside.
+        /// </summary>
+        public static bool ShouldSkipTarget(bool finalBoss, long sinceProgressMilliseconds) =>
+            !finalBoss && sinceProgressMilliseconds >= TargetNoProgressMilliseconds;
         public DbZonePoint Entrance { get; }
         public Vector3 Front { get; private set; }
         public Vector3 Destination { get; private set; }
@@ -70,6 +85,18 @@ namespace DOL.GS
 
         public void Advance(GameLiving[] participants, long now)
         {
+            AdvanceCore(participants, now);
+            if (!Hold || Complete) { _holdSince = 0; return; }
+            if (_holdSince == 0) { _holdSince = now; return; }
+            if (now - _holdSince < HoldReportMilliseconds || now < _nextHoldLog) return;
+            _nextHoldLog = now + HoldReportMilliseconds;
+            int inside = participants.Count(p => p.IsAlive && p.CurrentRegionID == _region);
+            log.Warn($"REALM_EXPEDITION_HOLD region={_region} minutes={(now - _holdSince) / 60_000} status=\"{Status}\" " +
+                     $"front={(int)Front.X},{(int)Front.Y},{(int)Front.Z} target=\"{TargetName}\" inside={inside}");
+        }
+
+        private void AdvanceCore(GameLiving[] participants, long now)
+        {
             if (Complete) return;
             GameNPC[] live = WorldMgr.GetRegion(_region)?.Objects.OfType<GameNPC>().ToArray() ?? [];
             foreach (GameNPC stale in _routeRetry.Keys.Where(n => !n.IsAlive || n.ObjectState != GameObject.eObjectState.Active).ToArray())
@@ -81,8 +108,14 @@ namespace DOL.GS
             if (finalDeaths) { Complete = true; Status = "Final encounter defeated"; return; }
             if (_target?.IsAlive == true && _target.ObjectState == GameObject.eObjectState.Active)
             {
-                // Never switch a live grind objective because another party has not arrived.
-                Hold = false; Status = "Clearing " + _target.Name; return;
+                if (_target.HealthPercent < _targetLowestHealth) { _targetLowestHealth = _target.HealthPercent; _targetProgressTick = now; }
+                // Never switch a live grind objective because another party has not
+                // arrived, but never hold the whole expedition on a target nobody damages.
+                if (!ShouldSkipTarget(_finalTypes.Contains(_target.GetType().Name), now - _targetProgressTick))
+                { Hold = false; Status = "Clearing " + _target.Name; return; }
+                log.Warn($"REALM_EXPEDITION_TARGET_SKIPPED region={_region} target=\"{_target.Name}\" at={_target.X},{_target.Y},{_target.Z} " +
+                         $"health={_target.HealthPercent} front={(int)Front.X},{(int)Front.Y},{(int)Front.Z} reason=\"no damage for five minutes\"");
+                _routeRetry[_target] = now + BlockedTargetRetryMilliseconds;
             }
             _target = null;
             GameLiving[] inside = participants.Where(p => p.IsAlive && p.CurrentRegionID == _region).ToArray();
@@ -111,7 +144,11 @@ namespace DOL.GS
                 Vector3 raw = AutonomousDungeonGoalCatalog.TryGet(npc, out var point) ? point.Position : new(npc.X, npc.Y, npc.Z);
                 if (!AutonomousZonePointApproach.TryResolve(nav, zone, Front, raw, 220, out Vector3 approach))
                 { _routeRetry[npc] = now + 60_000; continue; }
+                // A flyer hovering far above its floor approach cannot be meleed.
+                if (AutonomousPveTargetPolicy.IsUnreachableFlyer(npc.Flags, npc.Z, (int)approach.Z))
+                { _routeRetry[npc] = now + BlockedTargetRetryMilliseconds; continue; }
                 _target = npc; Front = Destination = approach; TargetName = npc.Name; TargetLevel = npc.Level;
+                _targetProgressTick = now; _targetLowestHealth = npc.HealthPercent;
                 _probeCursor = 0;
                 Hold = false; Status = "Clearing " + npc.Name; return;
             }

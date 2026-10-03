@@ -72,7 +72,14 @@ namespace DOL.GS
             // Installed entrance-to-husk corridors cross aggressive level
             // 36-43 packs. Level 10-11 husks cannot be safe XP goals for the
             // low-level bots that qualify for them. Do not alter any monsters.
-            !(region == 125 && string.Equals(name, "husk", StringComparison.OrdinalIgnoreCase));
+            !(region == 125 && string.Equals(name, "husk", StringComparison.OrdinalIgnoreCase)) &&
+            // Summoner's Hall is reachable only through Dodens Gruva, Hall of the
+            // Corrupt or Marfach Caverns. Groups spent their whole task fighting
+            // through those first: 1 of 268 attempts arrived in one evening run.
+            // Its monsters and routes stay for players; bots never target it.
+            region != SummonersHallRegion;
+
+        public const ushort SummonersHallRegion = 248;
 
         // A monster may be geometrically close to the route through a wall or
         // from a disconnected room polygon.  Visibility alone is insufficient:

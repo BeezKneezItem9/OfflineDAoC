@@ -4296,7 +4296,10 @@ namespace DOL.GS
                 _lastTerminalRouteFailurePosition, current, now - _lastTerminalRouteFailureTick);
             _terminalRouteFailuresInPocket = repeated ? _terminalRouteFailuresInPocket + 1 : 1;
             _lastTerminalRouteFailureRegion = bot.CurrentRegionID;
-            _lastTerminalRouteFailurePosition = current;
+            // Anchor the pocket at its first failure; moving it with every
+            // failure let a bot alternating between two spots reset the count.
+            if (!repeated)
+                _lastTerminalRouteFailurePosition = current;
             _lastTerminalRouteFailureTick = now;
 
             Vector3 escape;

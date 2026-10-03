@@ -1984,7 +1984,7 @@ namespace DOL.AI.Brain
         private bool TryMaintainClassicSongTwist()
         {
             GameBot bot = BotBody;
-            if (!IsClassicSongClass(bot) || !bot.IsAlive)
+            if (!IsClassicSongClass(bot) || !bot.IsAlive || HasResurrectionDuty())
                 return false;
 
             bool temporaryCompanion = IsTemporaryCompanionPerformer(bot);
@@ -2136,7 +2136,7 @@ namespace DOL.AI.Brain
             GameBot bot = BotBody;
             if (bot?.CharacterClass == null ||
                 (eCharacterClass)bot.CharacterClass.ID is not (eCharacterClass.Paladin or eCharacterClass.Warden) ||
-                !bot.IsAlive || bot.IsOnStableMasterRoute || bot.IsCasting ||
+                !bot.IsAlive || bot.IsOnStableMasterRoute || bot.IsCasting || HasResurrectionDuty() ||
                 bot.castingComponent.HasPendingSkillRequests || bot.IsCrowdControlled || bot.IsSilenced ||
                 GameLoop.GameLoopTime < _nextSongTwistTick)
                 return;
@@ -4693,6 +4693,24 @@ namespace DOL.AI.Brain
 
         private long _nextResurrectionBlockReportTick;
 
+        // Resurrection outranks chant and song upkeep. A Paladin's chant (or a
+        // bard's song) was queued early in the think; the resurrection later in
+        // the same think was then refused because a cast was already pending
+        // (31 Paladin "cast refused" reports in one evening run, Albion holding
+        // 570 of 950 resurrection timeouts). Upkeep resumes once nobody waits.
+        private bool HasResurrectionDuty()
+        {
+            GameBot bot = BotBody;
+            Spell resurrection = bot?.ResurrectionSpell;
+            if (resurrection == null || bot.Group == null || !bot.IsAlive)
+                return false;
+            int range = bot.castingComponent.CalculateSpellRange(resurrection);
+            bool corpseWaiting = bot.Group.GetMembersInTheGroup().Any(member => member != bot && !member.IsAlive &&
+                member.ObjectState == GameObject.eObjectState.Active && member.CurrentRegionID == bot.CurrentRegionID &&
+                bot.IsWithinRadius(member, range) && member.TempProperties.GetProperty<GameLiving>("RESURRECT_CASTER") == null);
+            return BotGroupSupport.ResurrectionOutranksUpkeep(true, true, bot.Mana >= bot.PowerCost(resurrection), corpseWaiting);
+        }
+
         // Diagnostic for failed group resurrections (an in-range resurrector stood idle
         // for the whole corpse wait in hundreds of cases). At most one line per bot per
         // minute, and only while a dead group member is actually within spell range.
@@ -4739,7 +4757,8 @@ namespace DOL.AI.Brain
                     if (BotBody.CastSpell(resurrection, m_mobSpellLine, false)) return true;
                     BotBody.TargetObject = previous;
                     BotGroupSupport.CancelResurrection(BotBody);
-                    ReportResurrectionBlock(resurrection, "the resurrection cast was refused", corpse);
+                    ReportResurrectionBlock(resurrection, BotBody.castingComponent.HasPendingSkillRequests
+                        ? "another cast was already queued" : "the resurrection cast was refused", corpse);
                     return false;
                 }
                 ReportResurrectionBlock(resurrection, null);

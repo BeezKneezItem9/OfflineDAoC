@@ -259,9 +259,13 @@ namespace DOL.GS
             }
         }
 
+        // A grounded dragon that is fighting counts as landed wherever the fight
+        // dragged it. Requiring the 2,000-unit lair circle parked most of a raid
+        // on "Waiting for dragon landing" while a few bots fought on (Cuuldurach
+        // took 2 h 20 min on 2026-10-02).
         private static bool DragonLanded(Raid raid) => raid.Definition.IsDungeon ||
-            (raid.Boss.Flags & GameNPC.eFlags.FLYING) == 0 &&
-            raid.Boss.IsWithinRadius(DragonLairPlacement.Home(raid.Definition.Realm), 2000);
+            RealmRaidStaging.DragonCountsAsLanded((raid.Boss.Flags & GameNPC.eFlags.FLYING) != 0,
+                raid.Boss.IsWithinRadius(DragonLairPlacement.Home(raid.Definition.Realm), 2000), raid.Boss.InCombat);
 
         private static int PresentAtHub(Raid raid, Party party) => party.Members.Count(b => IsAtHub(raid, party, b));
 
@@ -498,8 +502,7 @@ namespace DOL.GS
                         raid.Started ? route.TargetLevel : 50), !raid.Started || route.Hold || queued);
                 return;
             }
-            bool landed = (raid.Boss.Flags & GameNPC.eFlags.FLYING) == 0 &&
-                raid.Boss.IsWithinRadius(DragonLairPlacement.Home(raid.Definition.Realm), 2000);
+            bool landed = DragonLanded(raid);
             bool hold = !raid.Started || !landed;
             Vector3 point = hold ? party.Staging : new(raid.Boss.X, raid.Boss.Y, raid.Boss.Z);
             if (!hold && !TryBattlePost(raid, party, point, raid.Definition.Region, out point))

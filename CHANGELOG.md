@@ -94,6 +94,26 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 - When a nearby healer bot does not revive a dead group member, the server log now says why
   (out of power, casting, under attack, no line of sight or the cast refused), at most once a
   minute per bot. This only adds a log line; it does not change what the healers do.
+- Siege bots no longer freeze on the way to an enemy keep. Bots walked toward the keep in one
+  very long leg and some stood still for 15 minutes, so no siege engine was ever placed (77
+  Hibernian siege bots froze in one evening). They now walk long routes in shorter checked legs,
+  plan again from where they stand if they stop moving for a minute, and set that siege job aside
+  for a couple of minutes after three freezes at the same spot.
+- Bots bouncing between two spots in a keep courtyard (Nottmoor) are now recognised as trapped
+  and moved out by the existing safe move-out.
+- Dragon raids (Golestandt, Gjalpinulva and Cuuldurach):
+  - A dragon fighting on the ground counts as landed wherever it is, so the whole raid joins in.
+    Most of the raid used to wait for a landing when the fight drifted away from the lair.
+  - A dragon whose flight stalls flies home and lands, and a landing that gets stuck is finished,
+    so a dragon can no longer stay in the air for the rest of the raid. Throws and teleports stay
+    off, as before.
+- Epic dungeon raids set aside a target nobody has damaged for five minutes and try it again
+  later, and skip monsters flying out of reach, instead of holding in place. Final bosses are never
+  set aside. The server log now says why a raid is holding.
+- Paladins and Bards stop their chant and song upkeep while a groupmate in range waits for their
+  resurrection, so their resurrection spell is no longer refused for another spell already queued.
+- Summoner's Hall is no longer handed to bots as a dungeon goal. It can only be reached through
+  other dungeons, and only 1 of 268 attempts ever got there. The monsters stay for players.
 - [PLAY.md](docs/PLAY.md) now recommends bot populations (500, 1000, 1500 or 2000 per realm)
   and explains the name-generation ceiling of about 18,800 bots.
 

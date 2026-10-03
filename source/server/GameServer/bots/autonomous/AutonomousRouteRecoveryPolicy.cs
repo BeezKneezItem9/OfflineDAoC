@@ -13,7 +13,9 @@ public static class AutonomousRouteRecoveryPolicy
     public const int MaximumLocalAttempts = 3;
     public const float ForwardProgressRequired = 240f;
     public const long RepeatedFailureWindowMilliseconds = 10 * 60_000L;
-    public const float RepeatedFailureRadius = 384f;
+    // A keep courtyard is up to ~1,000 units across: bots trapped inside Nottmoor
+    // Faste bounced between two spots ~460 apart and never counted as repeating.
+    public const float RepeatedFailureRadius = 1024f;
     public const int FailuresBeforeSafeRelocation = 3;
     public const long ImmediateRouteFailureCooldownMilliseconds = 30_000;
 
