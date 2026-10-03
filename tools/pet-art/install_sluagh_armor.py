@@ -10,7 +10,6 @@ Private data only; no stock row, archive or file is changed:
   pskins.csv   5771-5776, 5778-5787      NEW rows (archive 98)
   items.csv    2903-2905                NEW rows (mace, scythe, shield models)
   objects.csv  4826-4835                NEW rows (7 armor pieces, shield, mace, scythe)
-  speffects.csv 639-640                 NEW rows: ghostly smoke on the left / right shoulder
   mskins.csv   2697-2702               NEW rows -> figures\Mskins\mskin070.mpk (cata armour skins)
 Run with launcher, client and server CLOSED.
 """
@@ -135,10 +134,10 @@ OBJECT_ROWS = [
     # Hauberk: Cata Status must stay ON (with it off the client draws the default tunic). Cata Body#
     # (col 73) is an armour style: 18 = scale (the stock row we cloned); 12 = plate gave no pauldrons
     # on a Celt. HAUBERK_STYLE is the owner's pick from the /sluaghstyle preview.
-    (4826, "708", "Hauberk of the Dubh Sluagh", {4: "5781", 5: "5782", 8: "5783", 14: "5", 15: "1", 37: "5", 38: "1", 55: "639",
+    (4826, "708", "Hauberk of the Dubh Sluagh", {4: "5781", 5: "5782", 8: "5783", 14: "5", 15: "1", 37: "5", 38: "1",
                                                  66: "5778", 67: "5779", 73: HAUBERK_STYLE}),
     (4827, "709", "Greaves of the Barrow Road", {9: "5785", 70: "5772"}),
-    (4828, "710", "Vambraces of the Restless Host", {6: "5784", 55: "640", 68: "5771"}),
+    (4828, "710", "Vambraces of the Restless Host", {6: "5784", 68: "5771"}),
     (4829, "711", "Gauntlets of the Grave-Grip", {7: "5786", 33: "4", 40: "4", 69: "5773", 74: "4"}),
     (4830, "712", "Sabatons of the Silent March", {10: "5787", 35: "4", 42: "4", 71: "5774", 75: "4"}),
     (4831, "3867", "Cairnwarden's Helm", {12: "5775"}),
@@ -150,9 +149,6 @@ OBJECT_ROWS = [
 if STYLE_TEST:   # hauberk copies with Cata Body# 1-21 (TEMPORARY, reinstall without SLUAGH_STYLE_TEST)
     _h = dict(OBJECT_ROWS[0][3])
     OBJECT_ROWS += [(4835 + n, "708", f"Sluagh style test {n}", {**_h, 73: str(n)}) for n in range(1, 22)]
-
-SPEFFECTS = [(639, "Sluagh shoulder ghost L", "Bip01 L Clavicle"), (640, "Sluagh shoulder ghost R", "Bip01 R Clavicle")]
-
 
 def server_stopped():
     bs.stopped()
@@ -204,8 +200,8 @@ def encode_dxt3(image, reference):
 
 def catalog():
     name, entries, files, _ = bs.catalogs()
-    names = ("pskins.csv", "items.csv", "objects.csv", "speffects.csv", "mskins.csv")
-    pskins, items, objects, speffects, mskins = (table(files, n) for n in names)
+    names = ("pskins.csv", "items.csv", "objects.csv", "mskins.csv")
+    pskins, items, objects, mskins = (table(files, n) for n in names)
     upd = {k: files[k] for k in names}
     base_tex = {pid: str(mid) for mid, pid, _, _ in MSKINS}
     for mid, _, tex, _ in MSKINS:
@@ -232,10 +228,6 @@ def catalog():
         for col, value in changes.items():
             row[col] = value
         upd["objects.csv"] = bs.add_row(upd["objects.csv"], row)
-    for sid, label, node in SPEFFECTS:
-        row = list(speffects["469"])
-        row[0], row[1], row[3] = str(sid), label, node
-        upd["speffects.csv"] = bs.add_row(upd["speffects.csv"], row)
     blob = archive.write(name, [archive.Entry(e.name, upd.get(e.name.lower(), e.data), e.timestamp, e.flags) for e in entries])
     archive.verify_memory_image(blob)
     _, decoded = archive.read(blob)

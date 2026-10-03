@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System.Linq;
+using DOL.Database;
 using DOL.GS;
 using DOL.GS.Quests.Hibernia;
 using NUnit.Framework;
@@ -63,16 +63,13 @@ namespace DOL.UnitTests
         }
 
         [Test]
-        public void ShoulderGhostEffectsRideOnHauberkAndVambraces()
+        public void SetPiecesCarryNoItemEffect()
         {
-            var withEffect = SluaghbinderEpicArmor.Set.Where(p => p.Effect != 0).ToDictionary(p => p.Key, p => p.Effect);
-            Assert.That(withEffect, Is.EqualTo(new Dictionary<string, int>
+            foreach (var piece in SluaghbinderEpicArmor.Set)
             {
-                ["hauberk"] = SluaghbinderEpicArmor.ShoulderGhostLeft,
-                ["vambraces"] = SluaghbinderEpicArmor.ShoulderGhostRight,
-            }));
-            var hauberk = SluaghbinderEpicArmor.BuildTemplate(SluaghbinderEpicArmor.Set.Single(p => p.Key == "hauberk"));
-            Assert.That(hauberk.Effect, Is.EqualTo(SluaghbinderEpicArmor.ShoulderGhostLeft));
+                var stale = new DbItemTemplate { Effect = 639 };
+                Assert.That(SluaghbinderEpicArmor.BuildTemplate(piece, stale).Effect, Is.Zero, piece.Key);
+            }
         }
 
         [Test]

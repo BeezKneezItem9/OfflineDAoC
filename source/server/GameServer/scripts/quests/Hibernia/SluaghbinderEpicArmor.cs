@@ -21,7 +21,7 @@ public static class SluaghbinderEpicArmor
 
     public sealed record Piece(string Key, string Name, int Model, eObjectType ObjectType, eInventorySlot Slot,
         int DpsAf, int SpdAbs, int Weight, (eProperty Property, int Value)[] Bonuses,
-        int TypeDamage = 0, int Hand = 0, int Effect = 0);
+        int TypeDamage = 0, int Hand = 0);
 
     // Utility (1 per stat, 2 per resist %, 5 per skill level, 1 per 4 hits, 2 per power %) is
     // matched to the best item in each slot: helm 82, hauberk 96, vambraces 83, gauntlets 86,
@@ -33,12 +33,10 @@ public static class SluaghbinderEpicArmor
                     (eProperty.Resist_Spirit, 8), (eProperty.Resist_Energy, 6), (eProperty.PowerPool, 3) }),
         new("hauberk", "Hauberk of the Dubh Sluagh", 4826, eObjectType.Scale, eInventorySlot.TorsoArmor, 102, 27, 48,
             new[] { (eProperty.Strength, 18), (eProperty.Constitution, 18), (eProperty.MaxHealth, 48),
-                    (eProperty.Resist_Crush, 8), (eProperty.Resist_Slash, 8), (eProperty.Resist_Thrust, 8) },
-            Effect: ShoulderGhostLeft),
+                    (eProperty.Resist_Crush, 8), (eProperty.Resist_Slash, 8), (eProperty.Resist_Thrust, 8) }),
         new("vambraces", "Vambraces of the Restless Host", 4828, eObjectType.Scale, eInventorySlot.ArmsArmor, 102, 27, 24,
             new[] { (eProperty.Strength, 18), (eProperty.Dexterity, 15), (eProperty.Resist_Body, 8),
-                    (eProperty.Resist_Heat, 8), (eProperty.Resist_Cold, 6), (eProperty.MaxHealth, 24) },
-            Effect: ShoulderGhostRight),
+                    (eProperty.Resist_Heat, 8), (eProperty.Resist_Cold, 6), (eProperty.MaxHealth, 24) }),
         new("gauntlets", "Gauntlets of the Grave-Grip", 4829, eObjectType.Scale, eInventorySlot.HandsArmor, 102, 27, 16,
             new[] { (eProperty.Dexterity, 15), (eProperty.Quickness, 15), (eProperty.Skill_Shields, 4),
                     (eProperty.Resist_Matter, 8), (eProperty.Resist_Energy, 8), (eProperty.PowerPool, 2) }),
@@ -64,12 +62,6 @@ public static class SluaghbinderEpicArmor
                     (eProperty.Resist_Body, 8), (eProperty.Resist_Spirit, 8), (eProperty.MaxHealth, 40) },
             TypeDamage: (int)eDamageType.Slash, Hand: 1),
     };
-
-    // Client speffects rows (install_sluagh_armor.py): ghostly smoke rising from each shoulder. The item
-    // Effect is sent with the equipment of every visible slot, so the hauberk carries the left shoulder
-    // and the vambraces the right.
-    public const int ShoulderGhostLeft = 639;
-    public const int ShoulderGhostRight = 640;
 
     public static string IdOf(Piece piece) => Prefix + piece.Key;
 
@@ -108,7 +100,7 @@ public static class SluaghbinderEpicArmor
         template.SPD_ABS = piece.SpdAbs;
         template.Type_Damage = piece.TypeDamage;
         template.Hand = piece.Hand;
-        template.Effect = piece.Effect;
+        template.Effect = 0;             // clears the old shoulder-smoke value on existing templates
         template.Weight = piece.Weight;
         template.Realm = (int)eRealm.Hibernia;
         template.AllowedClasses = ((int)eCharacterClass.Sluaghbinder).ToString();
