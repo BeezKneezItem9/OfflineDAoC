@@ -1,6 +1,6 @@
-"""Build the Offline DAoC 0.33 "Claude Takeover" playable package (0.33b + 0.33 edition files).
+"""Build the Offline DAoC 0.34 "Claude Takeover II" playable package (0.34b + 0.34 edition files).
 
-    python build_release_033.py --snapshot <1:1 copy of the CLAUDE VERSION folder>
+    python build_release_034.py --snapshot <1:1 copy of the CLAUDE VERSION folder>
                                 --repo <this repository> --stock-game-dll <normal v0.32 game.dll>
                                 --out <new staging folder>
 
@@ -13,7 +13,7 @@ Builds that differ from the snapshot on purpose: GameServer.dll (edition switch)
 launcher (portable account, per-install client profile). Everything else is copied byte for
 byte and hash-verified. The snapshot is only read, never changed.
 
-The 0.33 "no custom class" edition is two swap-in files under editions/: a database with
+The 0.34 "no custom class" edition is two swap-in files under editions/: a database with
 classes/enable_sluaghbinder = False (plus no Sluaghbinder trainer, wisp or class skill rows)
 and the normal v0.32 game.dll, so the Hibernian Mauler slot is disabled as in v0.32.
 """
@@ -31,7 +31,7 @@ from pathlib import Path
 STOCK_GAME_DLL_SHA256 = "67dcf68a37b95a93946a943b99d5e19b4a03e08cd6469275e25c7b909de21e99"
 SLUAGH_GAME_DLL_SHA256 = "01b1848e79b31d2822811effb3d3b098e07015db2d3db1178df5ba31ed805e96"
 DOTNET_VERSION = "10.0.11"
-CLIENT_PROFILE = "OfflineDAoC033"
+CLIENT_PROFILE = "OfflineDAoC034"
 SLUAGH_MOBS = ("sluaghbinder_trainer_tir_na_nog", "sluaghbinder_bound_wisp_tir_na_nog")
 
 # Personal or run-state files that are never part of a public world.
@@ -238,12 +238,10 @@ def main():
         if (dotnet / name).exists():
             shutil.copy2(dotnet / name, bundled / name)
 
-    importer = repo / "source/tools/OfflineDaoc.ProgressImport/bin/Release/net10.0-windows"
-    if importer.exists():
-        copy_tree(importer, out / "tools/ProgressImporter")
+    # The progress importer is added by assemble_release_034.py, with the docs and source.
 
-    print("Building the 0.33 no-custom-class edition files...", flush=True)
-    edition = out / "editions/0.33-no-custom-class"
+    print("Building the 0.34 no-custom-class edition files...", flush=True)
+    edition = out / "editions/0.34-no-custom-class"
     no_class = no_custom_class_database(database, edition / "runtime/data/opendaoc.sqlite3.db")
     (edition / "runtime/client-opendaoc/app").mkdir(parents=True, exist_ok=True)
     shutil.copy2(args.stock_game_dll, edition / "runtime/client-opendaoc/app/game.dll")

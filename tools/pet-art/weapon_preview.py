@@ -17,7 +17,7 @@ sys.path.insert(0, str(HERE))
 import nif4_geom  # noqa: E402
 
 ITEMS = HERE.parents[1] / "runtime" / "client-opendaoc" / "app" / "items"
-BLENDER = Path(os.environ.get("OFFLINE_DAOC_BLENDER", r"C:\Program Files\Blender Foundation\Blender 5.2lender.exe"))
+BLENDER = Path(os.environ.get("OFFLINE_DAOC_BLENDER", r"C:\Program Files\Blender Foundation\Blender 5.2\blender.exe"))
 
 
 def export_obj(nif: Path, png: Path, out: Path) -> Path:

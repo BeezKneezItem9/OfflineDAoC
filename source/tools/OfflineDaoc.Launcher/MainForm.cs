@@ -8,7 +8,7 @@ namespace OfflineDaoc.Launcher;
 
 internal sealed partial class MainForm : Form
 {
-    internal const string DisplayVersion = "0.33";
+    internal const string DisplayVersion = "0.34";
     internal const int AutoRefreshMilliseconds = 5 * 60 * 1000;
     internal const int RvrSnapshotRefreshMilliseconds = 30 * 1000;
     internal const int LiveBotSnapshotMaxAgeMilliseconds = 20_000;
@@ -348,7 +348,7 @@ internal sealed partial class MainForm : Form
         titlePanel.Controls.Add(new Label
         {
             AutoSize = true,
-            Text = $"VERSION {DisplayVersion}",
+            Text = VersionLabel(InstalledEditionHasCustomClass(_database)),
             Font = new Font("Georgia", 12f, FontStyle.Bold),
             ForeColor = DaocTheme.GoldLight,
             Location = new Point(55, 79),
@@ -2010,7 +2010,29 @@ internal sealed partial class MainForm : Form
         }
     }
 
-    // Mirrors the server's classes/enable_sluaghbinder property; a missing row means enabled (0.33b default).
+    // "VERSION 0.34b" with the custom Sluaghbinder class (the default), "VERSION 0.34" in the
+    // edition without it, so the label always names the edition that is installed.
+    internal static string VersionLabel(bool customClass) =>
+        customClass ? $"VERSION {DisplayVersion}b" : $"VERSION {DisplayVersion}";
+
+    private static bool InstalledEditionHasCustomClass(string database)
+    {
+        if (!File.Exists(database))
+            return true;
+        try
+        {
+            using var connection = new SQLiteConnection($"Data Source={database};Version=3;Read Only=True;Pooling=False;Default Timeout=5");
+            connection.Open();
+            using var transaction = connection.BeginTransaction();
+            return SluaghbinderEnabled(connection, transaction);
+        }
+        catch (SQLiteException)
+        {
+            return true;
+        }
+    }
+
+    // Mirrors the server's classes/enable_sluaghbinder property; a missing row means enabled (the "b" edition default).
     private static bool SluaghbinderEnabled(SQLiteConnection connection, SQLiteTransaction transaction)
     {
         using var command = connection.CreateCommand();
@@ -2730,7 +2752,7 @@ internal sealed partial class MainForm : Form
     private void EnsureBorderlessFullscreen()
     {
         // Use this installation's own client profile (paths.dat settings=), never another copy's preferences.
-        string profile = "OfflineDAoC033";
+        string profile = "OfflineDAoC034";
         string pathsFile = Path.Combine(_clientDirectory, "paths.dat");
         if (File.Exists(pathsFile))
         {

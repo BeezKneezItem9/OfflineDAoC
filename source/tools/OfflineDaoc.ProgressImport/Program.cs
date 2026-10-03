@@ -35,7 +35,7 @@ public sealed class ImportForm : Form
     ImportSummary? inspected;
     public ImportForm(string root)
     {
-        destination=root;Text="Offline DAoC 0.33 — Transfer saved progress";ClientSize=new(820,510);MinimumSize=new(820,550);
+        destination=root;Text=$"Offline DAoC {ImportEngine.Release} — Transfer saved progress";ClientSize=new(820,510);MinimumSize=new(820,550);
         StartPosition=FormStartPosition.CenterScreen;BackColor=Color.FromArgb(31,29,24);ForeColor=Color.Wheat;
         Font=new Font("Segoe UI",10);AutoScaleMode=AutoScaleMode.Dpi;
         var layout=new TableLayoutPanel{Dock=DockStyle.Fill,Padding=new Padding(22),ColumnCount=1,RowCount=9};
@@ -62,11 +62,11 @@ public sealed class ImportForm : Form
                 if(!customClass && data.SluaghbinderCharacters>0)
                 {
                     transfer.Enabled=false;
-                    status.Text=$"This save has {data.SluaghbinderCharacters} Sluaghbinder character(s). Install 0.33b and import there.";
+                    status.Text=$"This save has {data.SluaghbinderCharacters} Sluaghbinder character(s). Install {ImportEngine.Release}b and import there.";
                     return;
                 }
                 if(!customClass && data.SluaghbinderBots>0)
-                    summary.Text+=$"\n{data.SluaghbinderBots:N0} Sluaghbinder bots can't come into this edition; 0.33b keeps them.";
+                    summary.Text+=$"\n{data.SluaghbinderBots:N0} Sluaghbinder bots can't come into this edition; {ImportEngine.Release}b keeps them.";
                 transfer.Enabled=true;status.Text="Ready. Your old folder will not be changed.";
             }
             catch(Exception e){transfer.Enabled=false;MessageBox.Show(this,e.Message,"Cannot use this folder",MessageBoxButtons.OK,MessageBoxIcon.Warning);}
@@ -77,7 +77,7 @@ public sealed class ImportForm : Form
             bool leaveBots=false;
             if(inspected is {SluaghbinderBots:>0} && !ImportEngine.DestinationAllowsSluaghbinder(destination))
             {
-                if(MessageBox.Show(this,$"This is the 0.33 edition without the custom class.\n\n{inspected.SluaghbinderBots:N0} autonomous Sluaghbinder bots (and the items they carry) will stay behind in the old folder. Every other bot comes across.\n\nChoose No and install 0.33b instead if you want to keep them.\n\nLeave them behind and continue?","Sluaghbinder bots",MessageBoxButtons.YesNo,MessageBoxIcon.Question)!=DialogResult.Yes)return;
+                if(MessageBox.Show(this,$"This is the {ImportEngine.Release} edition without the custom class.\n\n{inspected.SluaghbinderBots:N0} autonomous Sluaghbinder bots (and the items they carry) will stay behind in the old folder. Every other bot comes across.\n\nChoose No and install {ImportEngine.Release}b instead if you want to keep them.\n\nLeave them behind and continue?","Sluaghbinder bots",MessageBoxButtons.YesNo,MessageBoxIcon.Question)!=DialogResult.Yes)return;
                 leaveBots=true;
             }
             browse.Enabled=transfer.Enabled=false;bar.Style=ProgressBarStyle.Marquee;ControlBox=false;

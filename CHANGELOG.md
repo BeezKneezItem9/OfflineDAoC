@@ -3,11 +3,24 @@
 The newest version is first. For the full detail of every earlier update, see
 [docs/history/CHANGELOG-0.3-to-0.32b.md](docs/history/CHANGELOG-0.3-to-0.32b.md).
 
-## Coming in 0.34 / 0.34b (not released yet)
+## 0.34 / 0.34b "Claude Takeover II" — 2026-10-03
 
-**These fixes are not in the 0.33 or 0.33b download.** They are finished and in the source code
-here on GitHub, and they will ship in the next full download, **0.34 / 0.34b**. More changes will
-be added to this list before then. The 0.33 and 0.33b downloads stay exactly as they are.
+Everything added since 0.33, in one complete download. The overview is in
+[docs/RELEASE-0.34.md](docs/RELEASE-0.34.md); every change is listed below.
+
+**Download and setup**
+- One complete download, about 5 GB in checked parts, with two editions, as in 0.33:
+  - **0.34b** includes the Sluaghbinder.
+  - **0.34** has the classic class list only.
+- The launcher shows which edition is installed: **VERSION 0.34b** or **VERSION 0.34**.
+- Every install still gets its own account on the first ENTER REALM, an empty world for its own
+  bots and default launcher settings. Its client settings profile is new for 0.34, so a 0.34
+  install never reuses a 0.33 copy's client settings.
+- The progress transfer tool now also imports **0.33 and 0.33b** saves, as well as every earlier
+  version. The 0.33 world database has the same layout as 0.34, so every saved table comes across
+  as it is. See [docs/TRANSFER-PROGRESS.md](docs/TRANSFER-PROGRESS.md).
+- Every database and client change listed below is already in the download. The scripts that
+  made them are kept for modders; see "For modders" at the end of this entry.
 
 **Companion bots**
 - Pets keep one target when the party fights several enemies. They finish their spells, heals
@@ -35,9 +48,7 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   normal bot goal.
 - To make up for that, Cliffs of Moher gets four more bantam spectres and two more koalinth
   sentinels next to the safe ones, spread out on open ground away from trees, rocks and
-  high-level monsters. Bots now have five bantam spectres and four Moher sentinels to grind. To
-  add them to an existing 0.33 install now, run
-  `tools/claude-version/add_moher_spectre_sentinel_spawns.py --apply` with the game closed.
+  high-level monsters. Bots now have five bantam spectres and four Moher sentinels to grind.
 - Gamebots no longer hunt the 13 wiggle worms in Bog of Cullen. The worms are level 0, but most
   monsters in that zone are level 40 or higher, so level 1 bots walked across Hibernia into it
   for almost no experience and often died on the way. The worms are still there for players.
@@ -182,9 +193,6 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   is replaced by a parry buff with its own icon: Barrow Deflection (+4% parry at 20), Barrow
   Riposte (+6% at 32) and Barrow Wardblade (+8% at 44). It lets the Sluaghbinder parry without
   the Parry specialization, and it works for Sluaghbinder bots too.
-- To add these to an existing 0.33b install now, run
-  `tools/pet-art/install_bulwark_update.py install` with the game, launcher and server closed. It
-  previews the changes if run without `install`, and it can be rolled back.
 - Sluaghbinder spells cost power only. They also took 5 endurance each; styles still cost
   endurance. This applies to players, gamebots and companions.
 - Every Sluaghbinder life drain (the five Abhartach's Bane Vitality drains, Guardian Lifesteal
@@ -195,15 +203,10 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   time, which stack, and the Dullahan pet's Grave Rot stacks with both.
 - The Abhartach's Bane damage over time (Withering through Final Rot) plays a plague spore cloud,
   so it looks different from the baseline Abhartach's Rot. Cosmetic only.
-- To add the drain, Grave Rot and Bane cloud changes to an existing 0.33b install now, run
-  `tools/claude-version/install_bane_drain_update.py install` with the game, launcher and server
-  closed. It previews the changes if run without `install`, and it can be rolled back.
 - The Cairn strength buffs, the Sluaghbinder's own (Cairn Vigor, Fortitude and Oath) and the
   ones it casts on its pets, show a green hand glow and a green rune emblem on the ground instead
   of the blue Midgard Thane and Bonedancer animations they borrowed. Thanes and Bonedancers still
-  look blue. Cosmetic only. To add this to an existing 0.33b install now, run
-  `tools/pet-art/install_cairn_green_buff.py install` with the game, launcher and server closed.
-  It previews the changes if run without `install`, and it can be rolled back.
+  look blue. Cosmetic only.
 - The zombie priest is now the **ghastly healer**: a floating ghost on the badh's skeleton, with
   its own casting animation and a dagger instead of a staff. It has its own reshaped mesh (a
   longer ragged ghost tail, gaunter waist, longer hair, a broken circlet and claw-like fingers),
@@ -212,14 +215,6 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   - Its summon spell is now "Raise Ghastly Healer", and its "Priest's Mending" is now "Ghastly
     Mending".
   - Its stats, spells and healing AI are unchanged.
-  - It needs a server built from this source, because the 0.33b server only knows the
-    healer as "zombie priest" (the installer checks this). With such a server, close the
-    game, launcher and server, then run:
-    - `tools/claude-version/install_ghastly_healer.py install` (name, spells, robes);
-    - `tools/pet-art/build_ghastly_healer.py`;
-    - `tools/pet-art/install_ghastly_healer_art.py install` (the private model).
-
-    Each previews without `install` and can be rolled back.
 
 - New level 50 reward: the **Dubh Sluagh** set, a black gothic Celtic set with grave-green
   accents. Muirenn gives it when you finish the level 50 Sluaghbinder epic quest.
@@ -236,11 +231,6 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
     no loot table, and bots never wear it.
   - Lost a piece? Ask Muirenn to **[reclaim the set]** any time after the quest. She replaces
     every piece you no longer have.
-  - It needs a server built from this source and the private client art. To add the art, close
-    the game, launcher and server, then run in `tools/pet-art/work/sluagh-armor`:
-    `extract_meshes.py`, `paint_set.py`, `shield_build.py`, `mace_build.py`,
-    `weapons_build.py scythe`. Then run `tools/pet-art/install_sluagh_armor.py install`. It
-    previews the changes with `plan` and can be rolled back.
 
 **Animist bots (gamebots and companions)**
 - Animists use their shrooms by what they do, the way the class was played, instead of picking
@@ -307,15 +297,11 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 
 **World**
 - The Cliffs of Moher phaeghoul that spawned inside a dead tree now spawns in open ground nearby.
-  To apply this to an existing 0.33 install now, run
-  `tools/claude-version/fix_moher_phaeghoul_tree.py --apply` with the game closed.
 - Leptus in Domnann is always level 6. Its template randomly rolled level 6 or level 51, which put
   a roaming level 51 monster among the starter creatures.
 - The level 6-7 venomous spore seeds in Cothrom Gorge are removed. They sat inside the level
   42-55 venomous spore field and drew low-level bots across the Shrouded Isles to die there. The
-  level 48-55 venomous spores are unchanged. To apply the Leptus and spore seed changes to an
-  existing 0.33 install now, run `tools/claude-version/fix_cothrom_seeds_and_leptus.py --apply`
-  with the game closed.
+  level 48-55 venomous spores are unchanged.
 - The Celtic scale helm and the five other helmets on the same mesh (for example Animalbound
   Osnadur Tha Coif) are visible again with extension 2. They used to hide the whole head.
 - The Norse leather cap (for example the rawhide starklaedar cap) and the ten other helmets on the
@@ -327,10 +313,6 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
     and loot are unchanged.
   - Also like the stranglers, they are no longer offered as bounty, reputation-hunt or charm
     targets.
-  - To add this to an existing 0.33 install now, run
-    `tools/claude-version/vine_monsters_strangler_effect.py --apply` with the game, launcher and
-    server closed. It previews the change if run without `--apply`, and `--undo` puts the
-    monsters back.
 - The Realm Exchange NPCs in Jordheim and Camelot have moved:
   - Jordheim's (for example Brynhild; each install picks the names) is back on the small ledge by
     the Name Registrar. It had ended up in the narrow hallway by the vault keeper, where bots
@@ -341,18 +323,38 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
 - Bots pick a trading spot with a clear line to the Realm Exchange NPC, so they no longer trade
   through a pillar or wall. If there is no such spot, they choose one the old way. Both new spots
   were checked on the real city maps from every gate, and the nearby merchants stay reachable.
-- New installs get the new spots automatically. To move them in an existing 0.33 install now,
-  run `tools/claude-version/move_realm_exchange_npcs.py --apply` with the game, launcher and
-  server closed. It previews the change if run without `--apply`, and `--undo` puts them back.
 - The fire trap in Amminus Pilus's hall in the Catacombs of Cardova (Pilus'Fury, the smoke that
   burns anyone standing on the hot spots) no longer breaks when it burns a gamebot Necromancer's
   pet. It expected every Necromancer pet to belong to a player, crashed on a bot's pet, and the
   server removed the trap until Amminus Pilus respawned, so the hall often had no trap at all. It
   burns the same spots for the same damage as before.
 
+**For modders: the database and client scripts**
+
+All of the above is in the 0.34 / 0.34b download, so players don't need these. They are the
+scripts that made the database and client changes, kept so modders can see how each change was
+made or apply it to their own copy. Each one previews its change first and can be undone. Close the
+game, launcher and server before running one.
+
+| Script | What it changes |
+|---|---|
+| `tools/claude-version/add_moher_spectre_sentinel_spawns.py --apply` | The extra Cliffs of Moher bantam spectres and koalinth sentinels |
+| `tools/claude-version/fix_moher_phaeghoul_tree.py --apply` | Moves the Cliffs of Moher phaeghoul out of the dead tree |
+| `tools/claude-version/fix_cothrom_seeds_and_leptus.py --apply` | Leptus always level 6; removes the Cothrom Gorge spore seeds |
+| `tools/claude-version/vine_monsters_strangler_effect.py --apply` | Makes the vine monsters visible (`--undo` reverts) |
+| `tools/claude-version/move_realm_exchange_npcs.py --apply` | The new Jordheim and Camelot Realm Exchange spots (`--undo` reverts) |
+| `tools/pet-art/install_bulwark_update.py install` | Sluaghbinder Bulwark taunts and the Barrow Deflection parry buff |
+| `tools/claude-version/install_bane_drain_update.py install` | Sluaghbinder drain animation, shared Bane recast, Grave Rot and the Bane cloud |
+| `tools/pet-art/install_cairn_green_buff.py install` | The green Cairn strength-buff visuals |
+| `tools/claude-version/install_ghastly_healer.py install`, then `tools/pet-art/build_ghastly_healer.py` and `tools/pet-art/install_ghastly_healer_art.py install` | The ghastly healer's name, spells and private model |
+| `extract_meshes.py`, `paint_set.py`, `shield_build.py`, `mace_build.py` and `weapons_build.py scythe` in `tools/pet-art/work/sluagh-armor`, then `tools/pet-art/install_sluagh_armor.py install` | The Dubh Sluagh set's art (`plan` previews it) |
+
+The ghastly healer and Dubh Sluagh scripts need the 0.34 server, because the 0.33 server doesn't
+know these changes.
+
 ## 0.33 / 0.33b "Claude Takeover" — 2026-09-30
 
-The full notes are in [docs/RELEASE-0.33.md](docs/RELEASE-0.33.md). In short:
+The full notes are in [docs/history/RELEASE-0.33.md](docs/history/RELEASE-0.33.md). In short:
 
 **Download and setup**
 - One complete download, about 5 GB in checked parts, with two editions:

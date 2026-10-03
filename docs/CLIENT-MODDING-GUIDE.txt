@@ -319,7 +319,7 @@ UNCONFIRMED
 ------------------------------------------------------------------------------
 9. PREVIEWING AND TESTING
 ------------------------------------------------------------------------------
-- Blender (5.x; set the blender.exe path in build_ghastly_healer.py / weapon_preview.py)
+- Blender (5.x; point the OFFLINE_DAOC_BLENDER environment variable at blender.exe)
   renders OBJ exports in the background:
   blender_views.py (front, 3/4, side, back rows, auto-framed),
   blender_render.py, blender_weapons.py. Export OBJs with export_obj.py

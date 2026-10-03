@@ -1,7 +1,7 @@
 param(
     [string]$Destination = (Join-Path $PSScriptRoot 'playable'),
     [ValidatePattern('^\d+\.\d+(b)?$')]
-    [string]$ReleaseVersion = '0.33b',
+    [string]$ReleaseVersion = '0.34b',
     # Testing only: read release assets from <folder><version>\ instead of GitHub.
     [string]$LocalAssets = ''
 )
@@ -322,16 +322,17 @@ if ($manifest.Mode -eq 'delta') {
     exit 0
 }
 
-# 0.33 "no custom class" is the same complete 0.33b game plus two verified swap-in files
-# (world database with the Sluaghbinder switched off, and the normal v0.32 game.dll). One
-# download serves both editions; the edition files ship inside the 0.33b package.
+# 0.33 and 0.34 "no custom class" are the same complete 0.33b / 0.34b game plus two verified
+# swap-in files (world database with the Sluaghbinder switched off, and the normal v0.32
+# game.dll). One download serves both editions; the edition files ship inside the "b" package.
 if ($manifest.Mode -eq 'edition') {
-    if ($ReleaseVersion -ne '0.33' -or $manifest.BaseVersion -ne '0.33b' -or !$manifest.EditionFolder -or !$manifest.EditionFiles) {
-        throw 'Unexpected v0.33 edition manifest.'
+    if ($ReleaseVersion -notin @('0.33','0.34') -or $manifest.BaseVersion -ne ($ReleaseVersion + 'b') -or
+        $manifest.EditionFolder -ne ($ReleaseVersion + '-no-custom-class') -or !$manifest.EditionFiles) {
+        throw "Unexpected v$ReleaseVersion edition manifest."
     }
-    Write-Host 'Downloading the complete 0.33 game (shared with 0.33b)...'
+    Write-Host "Downloading the complete $ReleaseVersion game (shared with $($manifest.BaseVersion))..."
     & $PSCommandPath -ReleaseVersion $manifest.BaseVersion -Destination $target -LocalAssets $LocalAssets
-    if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) { throw 'The 0.33 game download failed.' }
+    if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) { throw "The $ReleaseVersion game download failed." }
     $editionRoot = Join-Path $target (Join-Path 'editions' $manifest.EditionFolder)
     foreach ($file in $manifest.EditionFiles) {
         if ($file.Path -notmatch '^runtime\\[A-Za-z0-9_\\. -]+$' -or $file.Path.Contains('..') -or $file.SHA256 -notmatch '^[a-f0-9]{64}$') {
@@ -342,8 +343,8 @@ if ($manifest.Mode -eq 'edition') {
         Copy-Item -LiteralPath $source -Destination (Join-Path $target $file.Path) -Force
         if ((Get-FileHash -LiteralPath (Join-Path $target $file.Path) -Algorithm SHA256).Hash -ne $file.SHA256) { throw "Edition file copy failed: $($file.Path)" }
     }
-    Set-Content -LiteralPath (Join-Path $target 'EDITION.txt') -Value "Offline DAoC 0.33 - no custom class (Classic + Shrouded Isles classes only)." -Encoding UTF8
-    Write-Host "Verified the 0.33 edition without the custom class in $target"
+    Set-Content -LiteralPath (Join-Path $target 'EDITION.txt') -Value "Offline DAoC $ReleaseVersion - no custom class (Classic + Shrouded Isles classes only)." -Encoding UTF8
+    Write-Host "Verified the $ReleaseVersion edition without the custom class in $target"
     Write-Host 'Read READ ME FIRST.txt, then open START OFFLINE DAOC.cmd. Nothing has been started automatically.'
     exit 0
 }

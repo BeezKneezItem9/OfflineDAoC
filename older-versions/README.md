@@ -6,6 +6,8 @@ new folder and run the helper:
 
 | Version | Release page | Helper |
 |---|---|---|
+| 0.33 "Claude Takeover" | [v0.33](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.33) | `DOWNLOAD-AND-PLAY-v0.33.cmd` |
+| 0.33b with Sluaghbinder | [v0.33b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.33b) | `DOWNLOAD-AND-PLAY-v0.33b.cmd` |
 | 0.32 Darkness Falls beta | [v0.32](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32) | `DOWNLOAD-AND-PLAY-v0.32.cmd` |
 | 0.32b with Sluaghbinder | [v0.32b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b) | `DOWNLOAD-AND-PLAY-v0.32b.cmd` |
 | 0.31 / 0.31b | [v0.31](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31), [v0.31b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b) | `DOWNLOAD AND PLAY.cmd`, `DOWNLOAD AND PLAY v0.31b.cmd` |
@@ -15,7 +17,8 @@ The helpers in this folder do the same thing when run from a clone of this repos
 the shared `Get-OfflineDAoC.ps1` in the folder above, which still supports every version.
 
 Their source is on the release branches (`release/v0.31-maintenance`, `release/v0.31b-sluaghbinder`,
-`release/v0.32-darkness-falls`, `release/v0.32b-sluaghbinder-darkness-falls`) and tags, and their
+`release/v0.32-darkness-falls`, `release/v0.32b-sluaghbinder-darkness-falls`,
+`release/v0.33-claude-takeover`) and tags, and their
 notes are in [docs/history](../docs/history/).
 
-To move a save from any of them into 0.33, see [TRANSFER-PROGRESS.md](../docs/TRANSFER-PROGRESS.md).
+To move a save from any of them into 0.34, see [TRANSFER-PROGRESS.md](../docs/TRANSFER-PROGRESS.md).

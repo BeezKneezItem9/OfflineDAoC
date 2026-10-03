@@ -1,6 +1,6 @@
-"""Add the player files, docs, source and tools to a package built by build_release_033.py.
+"""Add the player files, docs, source and tools to a package built by build_release_034.py.
 
-    python assemble_release_033.py --repo <this repository> --package <staging package folder>
+    python assemble_release_034.py --repo <this repository> --package <staging package folder>
 
 Copies from the repository (never from anyone's playable folder):
   * package-files/ (START OFFLINE DAOC.cmd, IMPORT PROGRESS FROM OLD OFFLINE DAOC.cmd, READ ME FIRST.txt)
@@ -61,8 +61,8 @@ def main():
     importer = repo / "source/tools/OfflineDaoc.ProgressImport/bin/Release/net10.0-windows"
     counts["tools/ProgressImporter"] = copy_tree(importer, package / "tools/ProgressImporter")
     (package / "editions/README.txt").write_text(
-        "The 0.33 edition without the custom Sluaghbinder class is this 0.33b game plus the files in\r\n"
-        "0.33-no-custom-class. DOWNLOAD-AND-PLAY-v0.33.cmd copies them into place automatically:\r\n"
+        "The 0.34 edition without the custom Sluaghbinder class is this 0.34b game plus the files in\r\n"
+        "0.34-no-custom-class. DOWNLOAD-AND-PLAY-v0.34.cmd copies them into place automatically:\r\n"
         "  runtime\\data\\opendaoc.sqlite3.db             clean world, classes/enable_sluaghbinder = False\r\n"
         "  runtime\\client-opendaoc\\app\\game.dll         the normal v0.32 client (no Sluaghbinder label)\r\n"
         "Use them only on a NEW install: the database is a clean world with no saves.\r\n", encoding="utf-8")

@@ -10,10 +10,10 @@ This guide is for people (and AI assistants) who change the code. Players only n
 | `source/server` | OpenDAoC-based server (`Dawn of Light.sln`): game logic, companion bots, autonomous gamebots, tests |
 | `source/tools/OfflineDaoc.Launcher` | Windows launcher (server control, bot creation, dashboards) with tests in `OfflineDaoc.Launcher.Tests` |
 | `source/tools/OfflineDaoc.ProgressImport` | Progress transfer tool |
-| `source/tools/build_release_033.py`, `smoke_release_033.py` | Build and smoke-test the public package |
+| `source/tools/build_release_034.py`, `assemble_release_034.py`, `seal_release_034.py`, `smoke_release_034.py` | Build, assemble, seal and smoke-test the public package |
 | `source/development-tools` | Navigation mesh builder and pathing source |
 | `tools/pet-art`, `tools/asset-tool` | Client art pipeline and the MPK and texture helpers |
-| `tools/claude-version` | Small database and client helpers used during 0.33 |
+| `tools/claude-version` | Small database and client helpers used since 0.33 |
 
 A playable folder has:
 - `runtime/server`: server binaries plus `navmesh/`
@@ -34,7 +34,7 @@ dotnet test source/tools/OfflineDaoc.Launcher.Tests/OfflineDaoc.Launcher.Tests.c
 
 - `serverconfig.xml` is local and ignored by git. The build only needs it to exist.
 - Some launcher tests expect that no local DAoC server is running.
-- At 0.33: 2,226 server tests and 103 launcher tests pass.
+- At 0.34: 2,454 server tests and 105 launcher tests pass.
 
 ## Deploy a build into a playable folder
 
@@ -54,14 +54,15 @@ dotnet test source/tools/OfflineDaoc.Launcher.Tests/OfflineDaoc.Launcher.Tests.c
   - `AutonomousBotIdentityGenerator` never rolls or lists the Sluaghbinder.
   - The launcher's bot batches skip class 63.
   - Character creation treats the Hibernian Mauler slot as the disabled native class again.
-- **The 0.33 database** sets the switch off and removes the Sluaghbinder trainer, the wisp and the
-  class's skill rows. The 0.33 client uses the normal v0.32 `game.dll`
+- **The 0.34 database** sets the switch off and removes the Sluaghbinder trainer, the wisp and the
+  class's skill rows. The 0.34 client uses the normal v0.32 `game.dll`
   (SHA-256 `67dcf68a…`).
-- **0.33b** uses the Sluaghbinder client `game.dll` (`01b1848e…`), which relabels the Mauler slot.
+- **0.34b** uses the Sluaghbinder client `game.dll` (`01b1848e…`), which relabels the Mauler slot.
+- **The launcher** reads the same switch and shows VERSION 0.34b or VERSION 0.34.
 
 ## Building the public package
 
-`source/tools/build_release_033.py` takes a 1:1 snapshot of a development install and produces a
+`source/tools/build_release_034.py` takes a 1:1 snapshot of a development install and produces a
 clean package.
 
 What it copies and changes:
@@ -70,11 +71,14 @@ What it copies and changes:
 - It sets the public defaults: zero bots, GM off, 1× XP and automatic account creation.
 - It installs the release server and launcher builds.
 - It bundles the .NET runtime.
-- It writes the 0.33 edition files.
+- It writes the 0.34 edition files.
 
 Checks:
 - Everything it copies is recorded with a hash.
-- `smoke_release_033.py` then starts the server with only the bundled .NET and logs in through
+- `assemble_release_034.py` adds the player files, docs, source and tools, and
+  `seal_release_034.py` hashes every file, zips the package, re-checks every zip entry and splits
+  it into release parts with their download manifests.
+- `smoke_release_034.py` then starts the server with only the bundled .NET and logs in through
   `connect.exe`, confirming that a fresh account is created.
 
 ## Sharing safely

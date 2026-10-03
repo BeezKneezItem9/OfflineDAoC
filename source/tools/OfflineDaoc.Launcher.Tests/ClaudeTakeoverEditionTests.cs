@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace OfflineDaoc.Launcher.Tests;
 
 /// <summary>
-/// 0.33 "Claude Takeover": every install makes its own local account, and the
+/// Since 0.33 "Claude Takeover": every install makes its own local account, and the
 /// "no custom class" edition (classes/enable_sluaghbinder = False) never rolls class 63.
 /// </summary>
 public sealed class ClaudeTakeoverEditionTests
@@ -48,7 +48,15 @@ public sealed class ClaudeTakeoverEditionTests
         var disabled = Enumerable.Range(0, 1500).Select(_ => Roll(false)).ToList();
         Assert.That(disabled, Does.Not.Contain(63));
         var enabled = Enumerable.Range(0, 1500).Select(_ => Roll(true)).ToList();
-        Assert.That(enabled, Does.Contain(63), "the default (0.33b) keeps the Sluaghbinder in the Hibernian pool");
+        Assert.That(enabled, Does.Contain(63), "the default (the b edition) keeps the Sluaghbinder in the Hibernian pool");
+    }
+
+    [TestCase(true, "VERSION 0.34b")]
+    [TestCase(false, "VERSION 0.34")]
+    public void VersionLabelNamesTheInstalledEdition(bool customClass, string expected)
+    {
+        MethodInfo label = Launcher.GetType("OfflineDaoc.Launcher.MainForm")!.GetMethod("VersionLabel", HiddenStatic)!;
+        Assert.That(label.Invoke(null, [customClass]), Is.EqualTo(expected));
     }
 
     [TestCase(null, true)]

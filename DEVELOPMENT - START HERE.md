@@ -1,8 +1,8 @@
 # Developer start
 
-Offline DAoC **0.33 "Claude Takeover"**. One source tree builds both editions.
+Offline DAoC **0.34 "Claude Takeover II"**. One source tree builds both editions.
 The custom Sluaghbinder class is controlled by the server setting
-`classes / enable_sluaghbinder`: on in 0.33b (and by default), off in 0.33.
+`classes / enable_sluaghbinder`: on in 0.34b (and by default), off in 0.34.
 
 Read these first:
 - [AGENTS.md](AGENTS.md): project rules and layout.

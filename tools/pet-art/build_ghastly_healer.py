@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import io
 import math
+import os
 import struct
 import subprocess
 import sys
@@ -40,7 +41,7 @@ CLIENT = ROOT / "runtime" / "client-opendaoc" / "app"
 SOURCE_NIF = CLIENT / "figures" / "bainsheesi.nif"
 SOURCE_SKIN = (CLIENT / "figures" / "skins" / "skin135.mpk", "bainshee_classic_f.dds")
 OUT = HERE / "work" / "ghastly-healer"
-BLENDER = Path(r"C:\Users\thedo\AppData\Local\Programs\Blender Foundation\Blender 5.2.2\blender.exe")
+BLENDER = Path(os.environ.get("OFFLINE_DAOC_BLENDER", r"C:\Program Files\Blender Foundation\Blender 5.2\blender.exe"))
 RNG = np.random.default_rng(6017006)
 
 

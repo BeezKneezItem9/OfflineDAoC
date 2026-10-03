@@ -20,12 +20,15 @@ public sealed record ImportSummary(long Accounts, long Characters, long Bots, lo
 
 /// <summary>
 /// Moves saved progress (account, characters, items, money, houses, guild state, bots) from any
-/// earlier Offline DAoC folder — v0.3, v0.31, v0.31b, v0.32, v0.32b, the "new class test" builds —
-/// into a NEW 0.33 folder. The old folder is only read. The new folder keeps its own world, rules,
-/// edition and launcher settings; only the saved-progress tables are replaced, after a backup.
+/// earlier Offline DAoC folder — v0.3, v0.31, v0.31b, v0.32, v0.32b, v0.33, v0.33b, the "new class
+/// test" builds — into a NEW 0.34 folder. The old folder is only read. The new folder keeps its own
+/// world, rules, edition and launcher settings; only the saved-progress tables are replaced, after a
+/// backup.
 /// </summary>
 public static class ImportEngine
 {
+    /// <summary>This release; the "b" edition has the custom class, the plain one does not.</summary>
+    public const string Release = "0.34";
     public static readonly Policy Rules = JsonSerializer.Deserialize<Policy>(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"progress-policy.json")))!;
     const int SluaghbinderClass = 63, AcolyteClass = 16, Hibernia = 3;
     const string SluaghbinderClientSha256 = "01b1848e79b31d2822811effb3d3b098e07015db2d3db1178df5ba31ed805e96";
@@ -99,16 +102,25 @@ public static class ImportEngine
         string launcher=Path.Combine(runtime,"OfflineDAoC.dll");
         if(!File.Exists(launcher))return "unknown";
         byte[] data=File.ReadAllBytes(launcher);byte[] marker=Encoding.Unicode.GetBytes("VERSION ");
-        int at=data.AsSpan().IndexOf(marker);
-        if(at<0)return "unknown";
-        var text=new StringBuilder();
-        for(int i=at+marker.Length;i+1<data.Length && text.Length<8;i+=2)
+        var labels=new List<string>();
+        for(int at=data.AsSpan().IndexOf(marker);at>=0;)
         {
-            char ch=(char)(data[i]|data[i+1]<<8);
-            if(!(char.IsDigit(ch)||ch=='.'||char.IsLetter(ch)))break;
-            text.Append(ch);
+            var text=new StringBuilder();
+            for(int i=at+marker.Length;i+1<data.Length && text.Length<8;i+=2)
+            {
+                char ch=(char)(data[i]|data[i+1]<<8);
+                if(!(char.IsDigit(ch)||ch=='.'||char.IsLetter(ch)))break;
+                text.Append(ch);
+            }
+            if(text.Length>0 && !labels.Contains(text.ToString()))labels.Add(text.ToString());
+            int next=data.AsSpan(at+marker.Length).IndexOf(marker);
+            at=next<0?-1:at+marker.Length+next;
         }
-        return text.Length>0?text.ToString():"unknown";
+        if(labels.Count==0)return "unknown";
+        // Since 0.34 one launcher carries both labels ("0.34b" and "0.34"); the client decides.
+        string plain=labels.FirstOrDefault(l=>labels.Contains(l+"b"))??"";
+        if(plain.Length>0)return sluaghbinderClient?plain+"b":plain;
+        return labels[0];
     }
 
     static (string? Account,string? Password) ReadCredentials(string runtime)
@@ -160,7 +172,7 @@ public static class ImportEngine
         };
     }
 
-    /// <param name="leaveSluaghbinderBotsBehind">Only for a 0.33 "no custom class" destination:
+    /// <param name="leaveSluaghbinderBotsBehind">Only for a "no custom class" destination:
     /// autonomous Sluaghbinder bots (and the items they carry) are not transferred.</param>
     public static string Import(string oldFolder,string newFolder,Action<string> progress,bool leaveSluaghbinderBotsBehind=false)
     {
@@ -174,12 +186,12 @@ public static class ImportEngine
         bool customClass;
         using(var destination=Open(newDb,true))customClass=SluaghbinderEnabled(destination);
         if(!customClass && summary.SluaghbinderCharacters>0)
-            throw new InvalidDataException($"The old save has {summary.SluaghbinderCharacters} Sluaghbinder character(s). This is the 0.33 edition without the custom class. " +
-                "Install 0.33b (with the Sluaghbinder) and import there instead. Nothing has been changed.");
+            throw new InvalidDataException($"The old save has {summary.SluaghbinderCharacters} Sluaghbinder character(s). This is the {Release} edition without the custom class. " +
+                $"Install {Release}b (with the Sluaghbinder) and import there instead. Nothing has been changed.");
         bool dropBots=!customClass && summary.SluaghbinderBots>0;
         if(dropBots && !leaveSluaghbinderBotsBehind)
-            throw new InvalidDataException($"The old save has {summary.SluaghbinderBots} autonomous Sluaghbinder bot(s), but this is the 0.33 edition without the custom class. " +
-                "Import into 0.33b to keep them, or confirm that they (and the items they carry) stay behind. Nothing has been changed.");
+            throw new InvalidDataException($"The old save has {summary.SluaghbinderBots} autonomous Sluaghbinder bot(s), but this is the {Release} edition without the custom class. " +
+                $"Import into {Release}b to keep them, or confirm that they (and the items they carry) stay behind. Nothing has been changed.");
 
         // Account: keep the old login when account.txt is present; otherwise keep the old account
         // with a fresh password; a save with no account at all moves bots and world progress only.
@@ -227,7 +239,7 @@ public static class ImportEngine
                 var sourceTables=Tables(c,"old");var targetTables=Tables(c);
                 foreach(string unknown in sourceTables.Except(targetTables,StringComparer.OrdinalIgnoreCase).Where(t=>!t.StartsWith("sqlite_",StringComparison.OrdinalIgnoreCase)))
                     if(Scalar(c,$"SELECT count(*) FROM old.{Q(unknown)}")>0)
-                        notes.Add($"Not transferred: old table {unknown} is not used by 0.33 ({Scalar(c,$"SELECT count(*) FROM old.{Q(unknown)}")} rows).");
+                        notes.Add($"Not transferred: old table {unknown} is not used by {Release} ({Scalar(c,$"SELECT count(*) FROM old.{Q(unknown)}")} rows).");
                 Exec(c,"BEGIN IMMEDIATE");
                 foreach(string table in Rules.ProgressTables)
                 {
@@ -237,7 +249,7 @@ public static class ImportEngine
                     var oldColumns=Columns(c,table,"old");var newColumns=Columns(c,table);
                     var shared=oldColumns.Where(column=>newColumns.Contains(column,StringComparer.OrdinalIgnoreCase)).ToList();
                     var dropped=oldColumns.Except(shared,StringComparer.OrdinalIgnoreCase).ToList();
-                    if(dropped.Count>0)notes.Add($"{table}: old-only column(s) {string.Join(", ",dropped)} are not used by 0.33 and were left behind.");
+                    if(dropped.Count>0)notes.Add($"{table}: old-only column(s) {string.Join(", ",dropped)} are not used by {Release} and were left behind.");
                     string fields=string.Join(",",shared.Select(Q));
                     progress($"Transferring {table}…");
                     Exec(c,$"INSERT INTO main.{Q(table)} ({fields}) SELECT {fields} FROM old.{Q(table)}");
@@ -249,7 +261,7 @@ public static class ImportEngine
                 if(dropBots)
                 {
                     // Only autonomous bots of the disabled class; their carried items go with them.
-                    progress("Leaving the Sluaghbinder bots behind (0.33 edition without the custom class)…");
+                    progress($"Leaving the Sluaghbinder bots behind ({Release} edition without the custom class)…");
                     string owners=$"SELECT 'offlinebot:'||BotId FROM main.offline_world_bots WHERE ClassId={SluaghbinderClass}";
                     long items=Scalar(c,$"SELECT count(*) FROM main.Inventory WHERE OwnerID IN ({owners})");
                     Exec(c,$"CREATE TEMP TABLE dropped_unique AS SELECT DISTINCT UTemplate_Id AS Id FROM main.Inventory WHERE OwnerID IN ({owners}) AND COALESCE(UTemplate_Id,'')<>''");
@@ -257,7 +269,7 @@ public static class ImportEngine
                     Exec(c,"DELETE FROM main.ItemUnique WHERE Id_nb IN (SELECT Id FROM dropped_unique) AND Id_nb NOT IN (SELECT UTemplate_Id FROM main.Inventory WHERE COALESCE(UTemplate_Id,'')<>'')");
                     long bots=Scalar(c,$"SELECT count(*) FROM main.offline_world_bots WHERE ClassId={SluaghbinderClass}");
                     Exec(c,$"DELETE FROM main.offline_world_bots WHERE ClassId={SluaghbinderClass}; DROP TABLE dropped_unique;");
-                    notes.Add($"Left behind by choice: {bots} autonomous Sluaghbinder bot(s) and the {items} item(s) they carried (0.33 has no custom class).");
+                    notes.Add($"Left behind by choice: {bots} autonomous Sluaghbinder bot(s) and the {items} item(s) they carried ({Release} has no custom class).");
                 }
                 // Keep updated definitions on ID collisions; preserve old custom
                 // templates that are absent from the new world for real owned items.
