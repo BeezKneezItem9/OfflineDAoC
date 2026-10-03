@@ -462,7 +462,9 @@ namespace DOL.GS
             if (owner is GameNPC npc)
                 damage *= npc.DamageFactor;
 
-            if (weapon?.SlotPosition is Slot.TWOHAND or Slot.RANGED)
+            // The Bonedancer debuffer's two-handed bone mace is a look: slower,
+            // harder hits with the same damage per second as its old one-hander.
+            if (weapon?.SlotPosition is Slot.TWOHAND or Slot.RANGED && owner is not BdDebufferSubPet)
                 damage *= CalculateTwoHandedDamageModifier(weapon);
 
             return damage;

@@ -274,6 +274,15 @@ be added to this list before then. The 0.33 and 0.33b downloads stay exactly as 
   three factions or their allies. For example, Hibernian bounties no longer pick mantids or ashen
   treants.
 
+**Bonedancer pets**
+- The commander's shield now shows. The game was using a model that is a campfire in the client,
+  so one-handed commanders looked empty-handed on that side. They now carry the skull shield the
+  Necromancer's reanimated servant uses. Two-handed commanders still have an empty off hand.
+- Every bone debuffer rank (Bonebreaker to Bonehexer, Darkness line) now wields the commander's
+  two-handed bone mace instead of a one-handed mace. It swings slower and hits harder, with the
+  same damage per second as before. A debuffer already out keeps its old weapon until it is
+  summoned again.
+
 **World**
 - The Cliffs of Moher phaeghoul that spawned inside a dead tree now spawns in open ground nearby.
   To apply this to an existing 0.33 install now, run
