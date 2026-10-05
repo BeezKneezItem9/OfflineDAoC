@@ -55,9 +55,9 @@ downloads yet.
   minute the ready members take the porter and the rest follow. Siege operators keep the engine kit
   they carry instead of going back to buy a different one, only a melee attacker next to the operator
   interrupts the job (wall archers no longer stop every ram), and attackers no longer buy ballistas.
-- Smooth group travel: group members aim for their spot beside where the leader is about to be, keep
-  walking with the leader instead of stopping and starting, and match the leader's pace, running a bit
-  faster when they fall behind. The leader's stops to let the group catch up are shorter, and a member
+- Smooth group travel: group members aim for their spot beside where the leader is about to be and
+  keep walking with the leader instead of stopping and starting. They always move at their own full
+  speed (only the game slows a bot down) and run a bit faster when they fall behind. The leader's stops to let the group catch up are shorter, and a member
   that stays stuck for 45 seconds no longer holds the whole group in place. (Group motion ported from
   the stefanrows/OfflineDAoC fork.)
 - After a fight, group members gather in formation around the leader before they rest, instead of
@@ -122,7 +122,7 @@ downloads yet.
 
 **Credits**
 - Thanks to the [stefanrows/OfflineDAoC](https://github.com/stefanrows/OfflineDAoC) fork (Stefan Rows
-  and Aaron Zielke) for the smooth group travel code and the Minstrel, Valewalker and Warden fixes,
+  and Aaron Zielke) for the smooth group travel code (without its pace matching) and the Minstrel, Valewalker and Warden fixes,
   and for the shield-swap fix that inspired the Savage one.
 
 ## 0.34 / 0.34b "Claude Takeover II" — 2026-10-03
