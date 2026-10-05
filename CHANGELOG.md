@@ -29,9 +29,9 @@ downloads yet.
 - Healers walk into range of a group member who needs healing, and buffers walk into range of a
   group member who is missing a buff. They give up on someone they can't get closer to instead of
   trying forever, and they ignore members who are far away or in another zone.
-- Skald bots can now be built with a two-handed weapon as well as one-hander and shield. Until they
-  have a usable two-hander they fight with their one-hander. New gamebots and newly summoned /spawn
-  companions only; existing gamebots keep their build.
+- Skald and Warrior bots can now be built with a two-handed weapon as well as one-hander and shield.
+  Until they have a usable two-hander they fight with their one-hander. New gamebots and newly summoned
+  /spawn companions only; existing gamebots keep their build.
 - Healing classes (Shaman, Druid, Healer, Cleric, Friar, Warden, Paladin) never root the monster they
   are killing. In a group they root an add that runs at the party. Heals always come first.
 - Savage bots use their health-cost buffs only from 70% health (damage and attack speed; evasion too
@@ -50,9 +50,9 @@ downloads yet.
   minute the ready members take the porter and the rest follow. Siege operators keep the engine kit
   they carry instead of going back to buy a different one, only a melee attacker next to the operator
   interrupts the job (wall archers no longer stop every ram), and attackers no longer buy ballistas.
-- Bots never slow themselves down, and bot groups travel as one unit: members who fall behind their
-  spot in the formation run a little faster until they catch up, instead of the leader stopping for
-  them. The leader only stops for a member who has fallen far behind (and before a zone crossing), and
+- Bots never slow themselves down, and bot groups travel as one unit: members follow the leader's
+  moving formation continuously and run a little faster when they fall behind, instead of the leader
+  stopping for them. After a fight they gather around the leader before resting. The leader only stops for a member who has fallen far behind (and before a zone crossing), and
   a member that stays stuck for 45 seconds no longer holds the whole group in place.
 - Level 50 bots grinding alone pick spots with enough monsters worth their time (top-of-green and up)
   and no longer stand around waiting for a rare green among grey monsters. Companions no longer wander around slowly while
