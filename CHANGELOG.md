@@ -29,8 +29,9 @@ downloads yet.
 - Healers walk into range of a group member who needs healing, and buffers walk into range of a
   group member who is missing a buff. They give up on someone they can't get closer to instead of
   trying forever, and they ignore members who are far away or in another zone.
-- Skald bots can now be built with a two-handed weapon as well as one-hander and shield. New gamebots
-  and newly summoned /spawn companions only; existing gamebots keep their build.
+- Skald bots can now be built with a two-handed weapon as well as one-hander and shield. Until they
+  have a usable two-hander they fight with their one-hander. New gamebots and newly summoned /spawn
+  companions only; existing gamebots keep their build.
 - Healing classes (Shaman, Druid, Healer, Cleric, Friar, Warden, Paladin) never root the monster they
   are killing. In a group they root an add that runs at the party. Heals always come first.
 - Savage bots use their health-cost buffs only from 70% health (damage and attack speed; evasion too
