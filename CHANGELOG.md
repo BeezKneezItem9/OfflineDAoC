@@ -23,6 +23,9 @@ downloads yet.
   classes included (Eldritch, Bonedancer, Spiritmaster, Enchanter, Cabalist, Theurgist, Animist and
   the rest), walks in and melees alongside its pet, then casts again as soon as it has the power. A
   Necromancer's shade has no melee.
+- Bots always use their best damage spells. They no longer fall back to a low rank, or to the top
+  spell of a line they barely trained, to save power (a level 50 Bonedancer was hitting for 1 damage
+  with a level 4 lifedrain). If they can't afford their real spells, they fight in melee instead.
 - Healing classes (Shaman, Druid, Healer, Cleric, Friar, Warden, Paladin) never root the monster they
   are killing. In a group they root an add that runs at the party. Heals always come first.
 - Savage bots use their health-cost buffs only from 70% health (damage and attack speed; evasion too
