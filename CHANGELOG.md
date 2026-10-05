@@ -3,6 +3,96 @@
 The newest version is first. For the full detail of every earlier update, see
 [docs/history/CHANGELOG-0.3-to-0.32b.md](docs/history/CHANGELOG-0.3-to-0.32b.md).
 
+## Coming in 0.35 / 0.35b (not released yet)
+
+These changes are being collected for the next download. They are **not** in the 0.34 / 0.34b
+downloads yet.
+
+**Companion bots and gamebots**
+- Spiritmaster bots fight with their spells. They used to cast their pet's damage shield, which is a
+  channelled focus spell, and then stand still with full power while the pet fought. Like Cabalist and
+  Enchanter bots, they no longer cast damage shields; every spec uses its damage spells.
+- Pet classes buff their pet much faster. Out of combat the next pet buff follows right after the
+  last one finishes casting instead of 15 seconds later (the Sluaghbinder already worked this way). A
+  buff that did not take hold is retried after the old wait, and in combat the old spacing stays.
+- Self "absorb the next hit" shields (Spiritmaster Protecting Spirit, Cabalist Barrier of Warding,
+  Enchanter Barrier of Negation, Bonedancer Armor of Bone, Animist Shield of Wood and the rest) go back
+  up as soon as nothing is fighting the bot, before it sits down to rest, instead of long after the
+  fight.
+- Healing classes (Shaman, Druid, Healer, Cleric, Friar, Warden, Paladin) never root the monster they
+  are killing. In a group they root an add that runs at the party. Heals always come first.
+- Savage bots use their health-cost buffs only from 70% health (damage and attack speed; evasion too
+  above 90%), never their resist buffs, and never on a nearly dead target. They used to keep up to four
+  buffs at 5% health each.
+- Solo Paladins hold one chant (damage in a fight, combat heal below 70% health, endurance otherwise)
+  instead of rotating chants and briefly targeting themselves mid-fight.
+- /pull starts the pull at once: resting companions stand up instead of refusing. /grind is still
+  careful, but Paladins, Wardens, Bards, Minstrels and Skalds only need 75% power and endurance, and
+  their own chants no longer hold the pull, so chanting groups pull again.
+- A bot's pet that gets stuck in rock and makes no progress toward its owner for 10 seconds is put
+  back on walkable ground beside its owner. Player pets are unchanged.
+
+**Gamebots**
+- Keep sieges: RvR warbands no longer wait at the frontier teleporter for all eight members; after a
+  minute the ready members take the porter and the rest follow. Siege operators keep the engine kit
+  they carry instead of going back to buy a different one, only a melee attacker next to the operator
+  interrupts the job (wall archers no longer stop every ram), and attackers no longer buy ballistas.
+- Groups travel together: the leader slows down for members falling behind instead of stopping and
+  starting, and still waits for anyone far behind and before a zone crossing.
+- A camp that one group can't reach is benched for other groups too after three groups report it.
+- Avalon City is a bot goal: over 1,000 spawns there were checked for a two-way walking route from a
+  real entrance.
+- Bots take Korlis's gryphon from Hagall to the Iarn Dwarf Camp instead of swimming to Modernagrav.
+- Bot group names in the launcher and the logs name their realm ("albion-...").
+
+**Realm events and raids**
+- Forced raids from the launcher start as soon as 200 bots are staged (and a dragon has landed), with
+  no 45-minute muster and no time limit. They run until the encounter is defeated, you press the new
+  STOP EVENT button (no cooldown after a stop), or the server stops. The 300 recruits are the level-50
+  bots closest to the rally point.
+- Forced rallies fill much faster: parties form from whichever reserved bots are free, closest first,
+  bots on a horse included, so one busy bot no longer holds seven others back. A member with no route
+  to the rally point leaves its party instead of blocking it.
+- Forced epic dungeon rallies no longer announce in faction chat that a dragon must land.
+- Epic dungeon raids check their next target from every party, not only from the front. A raid with no
+  reachable encounter for 20 minutes ends as "Route blocked" instead of holding 300 bots for hours.
+- Tuscaran Glacier: the raid could get stuck for hours on a small walkable patch hidden under the ice
+  floor. Those hidden patches are removed from the Tuscaran Glacier and Galladoria navigation maps, so
+  nothing can be routed onto them; every real room is still reachable.
+
+**World**
+- Two more Midgard helmets show the face: the fine alloy heavy starkakedja helm (model 834) and the
+  fine alloy superior war circlet (model 1291) and its variants, extension 3.
+- Three doors that always said "too far away" work: the Mag Mell hall door, a Pennine Mountains door
+  and Midgard Mile Gate 2 in Cathal Valley. Each had a stray copy in another zone that replaced it.
+- The Trollheim animated weapons are visible: a floating Norse axe, sword, hammer, spear and round
+  shield. Their damage and attack speed are unchanged.
+- The Heretical Hermit in Campacorentin Forest is always the level 20 Hermit. He shared a template
+  number with the gray wolf pup, so he sometimes appeared as a level 1 pup, and the starter-area pups
+  could appear as a level 20 Hermit.
+
+**Sluaghbinder (0.35b)**
+- The Epic Spells page shows only the raise ranks whose quest you have finished.
+- Muirenn's quests get a red map marker like bounties: on the target while hunting and on Muirenn
+  after the kill.
+- Epic quests: the level 30 Fomor Gravewarden clue points to Caillte Garran, where it spawns; the
+  level 20 Mirebound Ossuary no longer stands on top of Frang; the level 40 Mirewood Death-Scribe no
+  longer stands inside a tree.
+
+**Launcher**
+- The launcher scales with Windows display scaling and with "Make text bigger", so it is no longer
+  tiny on a 4K monitor. It always fits the screen. For a 4K monitor left at 100% scaling, put a number
+  such as 150 in a file named launcher-ui-scale.txt next to the launcher.
+- New realm emblem in the header, based on the classic Camelot knot.
+- BOT AI DELAY shows the server's real average bot and monster AI time per tick over the last minute.
+- Realm Records: new DELETE ALL RECORDS button (clears only the launcher's event history, no game
+  data), and "Stopped by player" and "Route blocked" outcomes.
+
+**Server**
+- The server log notes every minute with a stall of a second or more (slowest stage, garbage
+  collection pause, the slowest AI turns and a likely cause), and the very noisy short AI-turn lines
+  are only written for turns of 100 ms or more.
+
 ## 0.34 / 0.34b "Claude Takeover II" — 2026-10-03
 
 Everything added since 0.33, in one complete download. The overview is in
