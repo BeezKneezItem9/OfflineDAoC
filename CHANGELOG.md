@@ -19,6 +19,10 @@ downloads yet.
   Enchanter Barrier of Negation, Bonedancer Armor of Bone, Animist Shield of Wood and the rest) go back
   up as soon as nothing is fighting the bot, before it sits down to rest, instead of long after the
   fight.
+- Casters that run out of power fight with their staff instead of standing still. Every caster, pet
+  classes included (Eldritch, Bonedancer, Spiritmaster, Enchanter, Cabalist, Theurgist, Animist and
+  the rest), walks in and melees alongside its pet, then casts again as soon as it has the power. A
+  Necromancer's shade has no melee.
 - Healing classes (Shaman, Druid, Healer, Cleric, Friar, Warden, Paladin) never root the monster they
   are killing. In a group they root an add that runs at the party. Heals always come first.
 - Savage bots use their health-cost buffs only from 70% health (damage and attack speed; evasion too
