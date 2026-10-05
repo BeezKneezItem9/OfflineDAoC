@@ -44,18 +44,27 @@ downloads yet.
   their own chants no longer hold the pull, so chanting groups pull again.
 - A bot's pet that gets stuck in rock and makes no progress toward its owner for 10 seconds is put
   back on walkable ground beside its owner. Player pets are unchanged.
+- Minstrel bots no longer freeze retrying a flute mesmerize that can't land; they pick their next
+  action instead. Valewalker bots stop recasting a weaker rank of a weapon proc they already have. A
+  Warden skips its travel speed chant when a groupmate has a faster speed song and keeps bladeturn up
+  instead. (Ported from the stefanrows/OfflineDAoC fork.)
+- Savage bots no longer swap between a shield and their hand-to-hand offhand weapon every few seconds.
 
 **Gamebots**
 - Keep sieges: RvR warbands no longer wait at the frontier teleporter for all eight members; after a
   minute the ready members take the porter and the rest follow. Siege operators keep the engine kit
   they carry instead of going back to buy a different one, only a melee attacker next to the operator
   interrupts the job (wall archers no longer stop every ram), and attackers no longer buy ballistas.
-- Bots never slow themselves down. Group members run a little faster when they fall behind their spot
-  in formation, the leader's stops to let the group catch up are shorter, and a member that stays stuck
-  for 45 seconds no longer holds the whole group in place.
+- Smooth group travel: group members aim for their spot beside where the leader is about to be, keep
+  walking with the leader instead of stopping and starting, and match the leader's pace, running a bit
+  faster when they fall behind. The leader's stops to let the group catch up are shorter, and a member
+  that stays stuck for 45 seconds no longer holds the whole group in place. (Group motion ported from
+  the stefanrows/OfflineDAoC fork.)
+- After a fight, group members gather in formation around the leader before they rest, instead of
+  resting wherever the fight left them.
 - Level 50 bots grinding alone pick spots with enough monsters worth their time (top-of-green and up)
   and no longer stand around waiting for a rare green among grey monsters. Companions no longer wander around slowly while
-  you stand still; they stay in formation. Bots move slower only when the game slows them.
+  you stand still; they stay in formation.
 - A camp that one group can't reach is benched for other groups too after three groups report it.
 - Avalon City is a bot goal: over 1,000 spawns there were checked for a two-way walking route from a
   real entrance.
@@ -110,6 +119,11 @@ downloads yet.
 - The server log notes every minute with a stall of a second or more (slowest stage, garbage
   collection pause, the slowest AI turns and a likely cause), and the very noisy short AI-turn lines
   are only written for turns of 100 ms or more.
+
+**Credits**
+- Thanks to the [stefanrows/OfflineDAoC](https://github.com/stefanrows/OfflineDAoC) fork (Stefan Rows
+  and Aaron Zielke) for the smooth group travel code and the Minstrel, Valewalker and Warden fixes,
+  and for the shield-swap fix that inspired the Savage one.
 
 ## 0.34 / 0.34b "Claude Takeover II" — 2026-10-03
 
