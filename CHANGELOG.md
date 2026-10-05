@@ -26,6 +26,9 @@ downloads yet.
 - Bots always use their best damage spells. They no longer fall back to a low rank, or to the top
   spell of a line they barely trained, to save power (a level 50 Bonedancer was hitting for 1 damage
   with a level 4 lifedrain). If they can't afford their real spells, they fight in melee instead.
+- Healers walk into range of a group member who needs healing, and buffers walk into range of a
+  group member who is missing a buff. They give up on someone they can't get closer to instead of
+  trying forever, and they ignore members who are far away or in another zone.
 - Healing classes (Shaman, Druid, Healer, Cleric, Friar, Warden, Paladin) never root the monster they
   are killing. In a group they root an add that runs at the party. Heals always come first.
 - Savage bots use their health-cost buffs only from 70% health (damage and attack speed; evasion too
@@ -45,7 +48,8 @@ downloads yet.
   they carry instead of going back to buy a different one, only a melee attacker next to the operator
   interrupts the job (wall archers no longer stop every ram), and attackers no longer buy ballistas.
 - Bots never slow themselves down. Group leaders move at full speed and only stop for a member who
-  has fallen far behind (and before a zone crossing). Companions no longer wander around slowly while
+  has fallen far behind (and before a zone crossing), and a member that stays stuck for 45 seconds no
+  longer holds the whole group in place. Companions no longer wander around slowly while
   you stand still; they stay in formation. Bots move slower only when the game slows them.
 - A camp that one group can't reach is benched for other groups too after three groups report it.
 - Avalon City is a bot goal: over 1,000 spawns there were checked for a two-way walking route from a
