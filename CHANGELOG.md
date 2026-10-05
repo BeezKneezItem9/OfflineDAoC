@@ -21,8 +21,8 @@ downloads yet.
   fight.
 - Casters that run out of power fight with their staff instead of standing still. Every caster, pet
   classes included (Eldritch, Bonedancer, Spiritmaster, Enchanter, Cabalist, Theurgist, Animist and
-  the rest), walks in and melees alongside its pet, then casts again as soon as it has the power. A
-  Necromancer's shade has no melee.
+  the rest), walks in and melees alongside its pet, then casts again as soon as it has the power, and
+  it follows its target if the target runs off. A Necromancer's shade has no melee.
 - Bots always use their best damage spells. They no longer fall back to a low rank, or to the top
   spell of a line they barely trained, to save power (a level 50 Bonedancer was hitting for 1 damage
   with a level 4 lifedrain). If they can't afford their real spells, they fight in melee instead.
@@ -50,9 +50,12 @@ downloads yet.
   minute the ready members take the porter and the rest follow. Siege operators keep the engine kit
   they carry instead of going back to buy a different one, only a melee attacker next to the operator
   interrupts the job (wall archers no longer stop every ram), and attackers no longer buy ballistas.
-- Bots never slow themselves down. Group leaders move at full speed and only stop for a member who
-  has fallen far behind (and before a zone crossing), and a member that stays stuck for 45 seconds no
-  longer holds the whole group in place. Companions no longer wander around slowly while
+- Bots never slow themselves down, and bot groups travel as one unit: members who fall behind their
+  spot in the formation run a little faster until they catch up, instead of the leader stopping for
+  them. The leader only stops for a member who has fallen far behind (and before a zone crossing), and
+  a member that stays stuck for 45 seconds no longer holds the whole group in place.
+- Level 50 bots grinding alone pick spots with enough monsters worth their time (top-of-green and up)
+  and no longer stand around waiting for a rare green among grey monsters. Companions no longer wander around slowly while
   you stand still; they stay in formation. Bots move slower only when the game slows them.
 - A camp that one group can't reach is benched for other groups too after three groups report it.
 - Avalon City is a bot goal: over 1,000 spawns there were checked for a two-way walking route from a
@@ -68,6 +71,7 @@ downloads yet.
 - Forced rallies fill much faster: parties form from whichever reserved bots are free, closest first,
   bots on a horse included, so one busy bot no longer holds seven others back. A member with no route
   to the rally point leaves its party instead of blocking it.
+- A realm never runs the same automatic dragon or epic dungeon event twice in a row.
 - Forced epic dungeon rallies no longer announce in faction chat that a dragon must land.
 - Epic dungeon raids check their next target from every party, not only from the front. A raid with no
   reachable encounter for 20 minutes ends as "Route blocked" instead of holding 300 bots for hours.
