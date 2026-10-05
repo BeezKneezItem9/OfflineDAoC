@@ -50,10 +50,9 @@ downloads yet.
   minute the ready members take the porter and the rest follow. Siege operators keep the engine kit
   they carry instead of going back to buy a different one, only a melee attacker next to the operator
   interrupts the job (wall archers no longer stop every ram), and attackers no longer buy ballistas.
-- Bots never slow themselves down, and bot groups travel as one unit: members follow the leader's
-  moving formation continuously and run a little faster when they fall behind, instead of the leader
-  stopping for them. After a fight they gather around the leader before resting. The leader only stops for a member who has fallen far behind (and before a zone crossing), and
-  a member that stays stuck for 45 seconds no longer holds the whole group in place.
+- Bots never slow themselves down. Group members run a little faster when they fall behind their spot
+  in formation, the leader's stops to let the group catch up are shorter, and a member that stays stuck
+  for 45 seconds no longer holds the whole group in place.
 - Level 50 bots grinding alone pick spots with enough monsters worth their time (top-of-green and up)
   and no longer stand around waiting for a rare green among grey monsters. Companions no longer wander around slowly while
   you stand still; they stay in formation. Bots move slower only when the game slows them.
