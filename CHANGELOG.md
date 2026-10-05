@@ -44,8 +44,9 @@ downloads yet.
   minute the ready members take the porter and the rest follow. Siege operators keep the engine kit
   they carry instead of going back to buy a different one, only a melee attacker next to the operator
   interrupts the job (wall archers no longer stop every ram), and attackers no longer buy ballistas.
-- Groups travel together: the leader slows down for members falling behind instead of stopping and
-  starting, and still waits for anyone far behind and before a zone crossing.
+- Bots never slow themselves down. Group leaders move at full speed and only stop for a member who
+  has fallen far behind (and before a zone crossing). Companions no longer wander around slowly while
+  you stand still; they stay in formation. Bots move slower only when the game slows them.
 - A camp that one group can't reach is benched for other groups too after three groups report it.
 - Avalon City is a bot goal: over 1,000 spawns there were checked for a two-way walking route from a
   real entrance.
