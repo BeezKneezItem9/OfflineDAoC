@@ -76,6 +76,8 @@ downloads yet.
 - Bot group names in the launcher and the logs name their realm ("albion-...").
 
 **Realm events and raids**
+- Galladoria: bots can now beat Xaga. Tine and Beatha fly low enough to be hit and stop circling the
+  room while they are being fought, and Beatha's attacks no longer heal Xaga.
 - Forced raids from the launcher start as soon as 200 bots are staged (and a dragon has landed), with
   no 45-minute muster and no time limit. They run until the encounter is defeated, you press the new
   STOP EVENT button (no cooldown after a stop), or the server stops. The 300 recruits are the level-50
