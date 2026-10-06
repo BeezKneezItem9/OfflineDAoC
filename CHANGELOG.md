@@ -9,6 +9,9 @@ These changes are being collected for the next download. They are **not** in the
 downloads yet.
 
 **Companion bots and gamebots**
+- The /raid 40 and /raid 80 window keeps your raid when you change zones. Zoning (for example into
+  Galladoria) used to show every spot in the raid window as empty although the whole raid was still
+  with you; the window now refills itself once the new zone has loaded.
 - Spiritmaster bots fight with their spells. They used to cast their pet's damage shield, which is a
   channelled focus spell, and then stand still with full power while the pet fought. Like Cabalist and
   Enchanter bots, they no longer cast damage shields; every spec uses its damage spells.
@@ -66,6 +69,10 @@ downloads yet.
   stop walking onto mountain shelves that only connect along the border (Lough Derg and the Valley of
   Bri Leith, Vindsaul Faste) and find the crossing from Salisbury Plains into Black Mountains South.
   A gamebot saved in a walled-off spot it can never walk out of is moved out when it logs in.
+- Gamebots no longer give up a camp because of grey monsters on the way, and they fight green and blue
+  packs on their route instead of turning back (stronger monsters and big packs are still avoided).
+- A gamebot spends a few realm points at its next training visit; only three or more unspent points
+  send it to the trainer on their own.
 - Keep sieges: RvR warbands no longer wait at the frontier teleporter for all eight members; after a
   minute the ready members take the porter and the rest follow. Siege operators keep the engine kit
   they carry instead of going back to buy a different one, only a melee attacker next to the operator
@@ -104,6 +111,8 @@ downloads yet.
   Dodens Gruva or Marfach Caverns). Summoner's Hall: the three summoners, then Grand Summoner Govannon.
   Darkness Falls: the High Lords, the Princes and Princess Nahemah, then Legion. Bots of different
   realms fight each other on sight in Darkness Falls, Summoner's Hall and the dungeons leading to it.
+- Forced raids form every party they reserved. A raid could stop forming parties partway through the
+  muster (Darkness Falls stuck below 200) and never start.
 - Raid members who died or arrived late rejoin a running Darkness Falls raid even after the raid has
   moved deeper in, and members whose way to the dungeon keeps failing switch to ordinary travel instead
   of waiting at a stable for good.
