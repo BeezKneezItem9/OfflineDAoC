@@ -60,6 +60,11 @@ downloads yet.
   speed (only the game slows a bot down) and run a bit faster when they fall behind. The leader's stops to let the group catch up are shorter, and a member
   that stays stuck for 45 seconds no longer holds the whole group in place. (Group motion ported from
   the stefanrows/OfflineDAoC fork.)
+- Gamebots look ahead on their way to a camp instead of walking into aggressive monsters. A monster
+  they can handle is pulled on their own terms (casters open from range instead of being jumped), a
+  stronger one or a pack is walked around, and only when there is no way around and no chance do they
+  pick a different camp. Groups do the same, led by their leader. Dungeons keep their own corridor
+  clearing.
 - A group no longer freezes in place when one member is fighting somewhere else. Members walk over to
   help a groupmate who is fighting out of reach; a fight far from the leader, or one where nothing has
   been hit for a minute (a monster the bot can't reach), no longer holds the whole group.
