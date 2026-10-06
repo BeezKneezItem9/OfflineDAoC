@@ -60,8 +60,6 @@ downloads yet.
   speed (only the game slows a bot down) and run a bit faster when they fall behind. The leader's stops to let the group catch up are shorter, and a member
   that stays stuck for 45 seconds no longer holds the whole group in place. (Group motion ported from
   the stefanrows/OfflineDAoC fork.)
-- After a fight, group members gather in formation around the leader before they rest, instead of
-  resting wherever the fight left them.
 - Level 50 bots grinding alone pick spots with enough monsters worth their time (top-of-green and up)
   and no longer stand around waiting for a rare green among grey monsters. Companions no longer wander around slowly while
   you stand still; they stay in formation.
