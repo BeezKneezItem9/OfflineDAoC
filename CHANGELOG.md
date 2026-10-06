@@ -119,9 +119,6 @@ downloads yet.
 - Bots can now hurt scripted named monsters. Many bosses only took damage from players and their pets,
   so bots hit them for nothing: Grand Summoner Govannon and the summoners, Legion, and named monsters in
   Hall of the Corrupt, Marfach Caverns, Tur Suil and the classic zones. Bots now count like players.
-- During a Summoner's Hall or Darkness Falls raid, its bosses and epic monsters fight at level 60 at most,
-  so a level-50 raid can hit them (server setting neutral_raid_encounter_level). Their health, resists
-  and abilities are unchanged.
 - Galladoria: bots can now beat Xaga. Tine and Beatha fly low enough to be hit and stop circling the
   room while they are being fought, and Beatha's attacks no longer heal Xaga.
 - Forced raids from the launcher start as soon as 200 bots are staged (and a dragon has landed), with
