@@ -569,6 +569,10 @@ namespace DOL.GS
                             Distance(bot.X, bot.Y, next.SourceX, next.SourceY) <= AutonomousDungeonPolicy.DungeonEntranceStagingRadius;
                         bool crossingStarted = next != null && bot.Group.GetMembersInTheGroup()
                             .Any(member => member.IsAlive && member.CurrentRegionID == next.TargetRegion);
+                        bool farFromCrossing = next == null || Distance(bot.X, bot.Y, next.SourceX, next.SourceY) > AutonomousGroupPace.TrailRadius;
+                        if (!enteringStagingArea && !crossingStarted && farFromCrossing &&
+                            KeepGroupMovingAtPace(bot))
+                            return TravelAcrossRegions(bot);
                         if (!enteringStagingArea && !crossingStarted)
                         {
                             bot.StopMovingOnPath();
@@ -670,7 +674,8 @@ namespace DOL.GS
                     _patrolDestination = null;
                     if (_groupDirective?.IsDynamic == true && _groupDirective.Leader != bot)
                         return FollowDynamicGroupLeader(bot, _groupDirective);
-                    if (_groupDirective?.IsDynamic == true && !AutonomousBotGroupCoordinator.IsCohesive(_groupDirective))
+                    if (_groupDirective?.IsDynamic == true && !AutonomousBotGroupCoordinator.IsCohesive(_groupDirective) &&
+                        !KeepGroupMovingAtPace(bot))
                     {
                         bot.StopMovingOnPath();
                         bot.StopMoving();
@@ -708,6 +713,18 @@ namespace DOL.GS
                 return true;
             }
         }
+
+        /// <summary>
+        /// Where a bot walks to use a zone connection: the platform of a Shrouded Isles portal
+        /// (it climbs onto it and crosses there), otherwise the zone point's source spot.
+        /// </summary>
+        private static Vector3 CrossingApproachPoint(DbZonePoint crossing) =>
+            ShroudedIslesPortals.TryGetPad(crossing.Id, out Vector3 pad)
+                ? pad
+                : new(crossing.SourceX, crossing.SourceY, crossing.SourceZ);
+
+        private static int CrossingApproachRadius(DbZonePoint crossing) =>
+            ShroudedIslesPortals.TryGetPad(crossing.Id, out _) ? ShroudedIslesPortals.PadRadius : ZonePointArrivalRadius;
 
         private bool TravelAcrossRegions(GameBot bot)
         {
@@ -798,12 +815,12 @@ namespace DOL.GS
             }
 
             DbZonePoint firstRejectedCrossing = crossing;
-            Vector3 rawWaypoint = new(crossing.SourceX, crossing.SourceY, crossing.SourceZ);
+            Vector3 rawWaypoint = CrossingApproachPoint(crossing);
             Vector3 waypoint = default;
             bool hasConnectedApproach = false;
             for (int attempt = 0; attempt < 6; attempt++)
             {
-                if (TryResolveConnectedApproach(bot, rawWaypoint, ZonePointArrivalRadius, out waypoint))
+                if (TryResolveConnectedApproach(bot, rawWaypoint, CrossingApproachRadius(crossing), out waypoint))
                 {
                     hasConnectedApproach = true;
                     break;
@@ -814,7 +831,7 @@ namespace DOL.GS
                 if (alternate == null || alternate.Id == crossing.Id)
                     break;
                 crossing = alternate;
-                rawWaypoint = new(crossing.SourceX, crossing.SourceY, crossing.SourceZ);
+                rawWaypoint = CrossingApproachPoint(crossing);
             }
             if (!hasConnectedApproach)
             {
@@ -1127,8 +1144,8 @@ namespace DOL.GS
                 return true;
             }
 
-            Vector3 rawWaypoint = new(crossing.SourceX, crossing.SourceY, crossing.SourceZ);
-            if (!TryResolveConnectedApproach(bot, rawWaypoint, ZonePointArrivalRadius, out Vector3 waypoint))
+            Vector3 rawWaypoint = CrossingApproachPoint(crossing);
+            if (!TryResolveConnectedApproach(bot, rawWaypoint, CrossingApproachRadius(crossing), out Vector3 waypoint))
             {
                 RejectTrainerAnchor(bot, trainer,
                     $"Zone connection {crossing.Id} has no connected approach from the current surface");
@@ -1286,19 +1303,36 @@ namespace DOL.GS
         private bool HandleGroupCombatAndRecovery(BotBrain brain, GameBot bot,
             AutonomousBotGroupCoordinator.Directive directive)
         {
-            bot.StopMovingOnPath();
-            bot.StopMoving();
             if (directive.GroupCombatActive)
             {
+                // A member fighting beyond assist range used to leave everyone else
+                // standing here until its fight ended; walk over and help instead.
+                GameBot fightingMember = !brain.HasAggro && !bot.IsAttacking
+                    ? AutonomousGroupCombat.MemberToHelp(bot, GameLoop.GameLoopTime)
+                    : null;
+                if (fightingMember == null)
+                {
+                    bot.StopMovingOnPath();
+                    bot.StopMoving();
+                }
                 bot.WakeRecoveryRest();
                 if (brain.TryAssistAutonomousPveCombat())
                     return false;
                 if (brain.CheckHeals()) return true;
+                if (fightingMember != null)
+                {
+                    IssuePath(bot, new(fightingMember.X, fightingMember.Y, fightingMember.Z), retargetWhileMoving: true);
+                    SetStatus(bot, $"Moving to help {fightingMember.Name}", directive.SharedGoal,
+                        $"{fightingMember.Name} is fighting beyond assist range; the party goes to help");
+                    return true;
+                }
                 SetStatus(bot, "Defending traveling group", directive.SharedGoal,
                     "The formation route is paused until the threat attacking the party is cleared");
                 return true;
             }
 
+            bot.StopMovingOnPath();
+            bot.StopMoving();
             if (brain.CheckHeals()) return true;
             bool full = AutonomousRestPolicy.IsFullyRecovered(bot.HealthPercent, bot.ManaPercent,
                 bot.EndurancePercent, bot.MaxMana > 0);
@@ -1433,8 +1467,8 @@ namespace DOL.GS
                 return true;
             }
 
-            Vector3 rawWaypoint = new(crossing.SourceX, crossing.SourceY, crossing.SourceZ);
-            if (!TryResolveConnectedApproach(bot, rawWaypoint, ZonePointArrivalRadius, out Vector3 waypoint))
+            Vector3 rawWaypoint = CrossingApproachPoint(crossing);
+            if (!TryResolveConnectedApproach(bot, rawWaypoint, CrossingApproachRadius(crossing), out Vector3 waypoint))
             {
                 AutonomousBotGroupCoordinator.ReportUnreachableRendezvous(bot, directive.GroupId,
                     $"Zone connection {crossing.Id} has no connected approach from the current surface");
@@ -1512,7 +1546,14 @@ namespace DOL.GS
                 return true;
 
             bool tight = leader.CurrentRegion?.IsDungeon == true || leader.CurrentZone?.IsDungeon == true;
-            Vector3 formation = AutonomousBotGroupCoordinator.FormationPoint(bot, new(leader.X, leader.Y, leader.Z), tight);
+            // Aim around where the leader is about to be, not where it was
+            // (smooth group travel from the stefanrows/OfflineDAoC fork).
+            Vector3 formation = AutonomousBotGroupCoordinator.FormationPoint(bot,
+                leader.IsMoving && !tight ? AutonomousGroupMotion.PredictLeader(leader) : new(leader.X, leader.Y, leader.Z), tight);
+            // Close the gap on the move so the party travels as one unit instead of the
+            // leader stopping for formation (the follower runs up to 25% faster while behind).
+            if (bot.CurrentRegionID == leader.CurrentRegionID)
+                AutonomousGroupPace.CatchUp(bot, Vector3.Distance(new(bot.X, bot.Y, bot.Z), formation), GameLoop.GameLoopTime);
             if (bot.CurrentRegionID != leader.CurrentRegionID)
             {
                 // Never teleport a persistent group member to catch its leader.
@@ -1529,9 +1570,15 @@ namespace DOL.GS
                     bot.StopMoving();
                 }
             }
+            else if (leader.IsMoving && !tight &&
+                     Vector3.DistanceSquared(new(bot.X, bot.Y, bot.Z), formation) < 2_500 * 2_500)
+            {
+                // Walk with the leader: steer smoothly, match its pace, never stop mid-march.
+                AutonomousGroupMotion.FollowMovingLeader(bot, leader, formation);
+            }
             else if (Vector3.DistanceSquared(new(bot.X, bot.Y, bot.Z), formation) > 95 * 95)
             {
-                IssuePath(bot, formation);
+                IssuePath(bot, formation, retargetWhileMoving: true);
             }
             else
             {
@@ -2845,6 +2892,10 @@ namespace DOL.GS
                 // nor group execution may reject that named monster by level.
                 .Where(npc => AutonomousPveTargetPolicy.IsAssignedTarget(
                     _camp.MonsterName, npc.Name, npc.EffectiveLevel))
+                // Level 50 solo bots never pull below the solo camp floor (no waiting on a
+                // rare green among greys: with none left the empty-camp timeout moves on).
+                .Where(npc => _groupDirective?.IsDynamic == true ||
+                    AutonomousSoloCampFloor.Allows(bot.Level, npc.EffectiveLevel))
                 .Where(npc => !_failedSavageMeleePullTargets.TryGetValue(npc.ObjectID,
                     out long retryTick) || retryTick <= nowTick)
                 // Ordinary outdoor Savages use the same live-target search as
@@ -3007,10 +3058,12 @@ namespace DOL.GS
                         // catalog. The requested death ceiling is applied below,
                         // allowing a safe fallback when that ceiling has no
                         // XP-bearing creature at this level.
-                        return con >= ConColor.GREEN && con <= naturalMaximumTargetCon;
+                        return con >= ConColor.GREEN && con <= naturalMaximumTargetCon &&
+                            AutonomousSoloCampFloor.Allows(bot.Level, level);
                     })
                     .ToArray();
-                if (validLevels.Length == 0)
+                if (validLevels.Length == 0 ||
+                    !sharedGroup && !AutonomousSoloCampFloor.CampQualifies(bot.Level, validLevels.Length, cell.Levels.Length))
                     continue;
 
                 // Solo bots keep Darkness Falls, but only once they can survive
@@ -3902,8 +3955,24 @@ namespace DOL.GS
             return true;
         }
 
+        private bool _groupPaceWaiting;
+
+        /// <summary>
+        /// The group leader keeps moving at full speed unless a member is far behind; then it
+        /// stops until that member is close again (see AutonomousGroupPace).
+        /// </summary>
+        private bool KeepGroupMovingAtPace(GameBot bot)
+        {
+            if (_groupDirective?.IsDynamic != true || _groupDirective.Leader != bot) return false;
+            bool move = AutonomousGroupPace.Decide(
+                AutonomousBotGroupCoordinator.FarthestMemberDistance(_groupDirective), _groupPaceWaiting) ==
+                AutonomousGroupPace.Decision.FullSpeed;
+            _groupPaceWaiting = !move;
+            return move;
+        }
+
         private bool IssuePath(GameBot bot, Vector3 destination, Vector3? validatedContinuation = null,
-            bool preciseArrival = false)
+            bool preciseArrival = false, bool retargetWhileMoving = false)
         {
             TryRepairNavigationFloor(bot);
             if (AutonomousRvrTravel.TraverseFriendlyDoor(bot, destination))
@@ -4048,7 +4117,11 @@ namespace DOL.GS
 
             // A live path is continuous inside NpcMovementComponent. The AI is
             // not a metronome for walking and must not replace the same order.
-            if (AutonomousRouteRecoveryPolicy.ShouldRetainMovementOrder(bot.IsMoving, now, _nextMoveOrderTick))
+            // A follower chasing a moving formation spot is the exception: its
+            // destination moved, so it heads for the new spot right away instead of
+            // finishing the walk to the old one and stopping there first.
+            if (!(retargetWhileMoving && destinationChanged) &&
+                AutonomousRouteRecoveryPolicy.ShouldRetainMovementOrder(bot.IsMoving, now, _nextMoveOrderTick))
                 return true;
             _nextMoveOrderTick = now + 1_500;
 

@@ -70,8 +70,15 @@ namespace DOL.GS
                     brain.Think();
                     long stopTick = MonotonicTime.NowMs;
 
-                    if (stopTick - startTick > Diagnostics.LongTickThreshold)
-                        log.Warn($"Long {Instance.ServiceName}.{nameof(Tick)} for {npc.Name}({npc.ObjectID}) Interval: {brain.ThinkInterval} BrainType: {brain.GetType()} Time: {stopTick - startTick}ms");
+                    long elapsed = stopTick - startTick;
+                    if (elapsed > Diagnostics.LongTickThreshold)
+                    {
+                        // Every slow turn feeds the once-a-minute SERVER_STALL summary;
+                        // only big ones still get their own warning line.
+                        AiTurnStallMonitor.Record(npc.Name, brain.GetType().Name, elapsed);
+                        if (AiTurnStallMonitor.ShouldLogIndividually(elapsed))
+                            log.Warn($"Long {Instance.ServiceName}.{nameof(Tick)} for {npc.Name}({npc.ObjectID}) Interval: {brain.ThinkInterval} BrainType: {brain.GetType()} Time: {elapsed}ms");
+                    }
 
                     brain.NextThinkTick = GameLoop.GameLoopTime + brain.ThinkInterval;
                 }

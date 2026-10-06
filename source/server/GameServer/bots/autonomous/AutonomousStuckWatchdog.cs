@@ -446,6 +446,8 @@ public static class AutonomousStuckWatchdog
             bot.StopFollowing();
             bot.StopMovingOnPath();
             bot.StopMoving();
+            // A stuck cast must not survive the recovery move (stefanrows fork, Minstrel mez).
+            bot.StopCurrentSpellcast();
             if (bot.Brain is BotBrain brain)
             {
                 brain.ClearAggroList();

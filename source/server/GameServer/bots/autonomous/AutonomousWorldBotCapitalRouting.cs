@@ -53,8 +53,8 @@ namespace DOL.GS
             int distance = Distance(bot.X, bot.Y, leg.SourceX, leg.SourceY);
             if (!AtRegionCrossing(bot, leg, distance))
             {
-                Vector3 raw = new(leg.SourceX, leg.SourceY, leg.SourceZ);
-                if (!TryResolveConnectedApproach(bot, raw, ZonePointArrivalRadius, out Vector3 approach))
+                Vector3 raw = CrossingApproachPoint(leg);
+                if (!TryResolveConnectedApproach(bot, raw, CrossingApproachRadius(leg), out Vector3 approach))
                 {
                     QuarantineZonePoint(bot, leg);
                     AbandonCamp(bot, $"Capital gate {leg.Id} has no connected approach from the current surface");

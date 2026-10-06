@@ -3719,9 +3719,14 @@ namespace DOL.GS
 
         private bool AreSpellsEqual(Spell spellOne, Spell spellTwo)
         {
+            // Ranks of one proc line may differ in proc chance (Valewalker
+            // Witherstrike 20 vs 15); they still replace one another
+            // (stefanrows/OfflineDAoC fork, 0.185.0).
+            bool sameProcLine = spellOne.SpellType is eSpellType.OffensiveProc or eSpellType.DefensiveProc &&
+                                spellOne.Group != 0;
             return spellOne.DamageType == spellTwo.DamageType &&
                    spellOne.SpellType == spellTwo.SpellType &&
-                   spellOne.Frequency == spellTwo.Frequency &&
+                   (sameProcLine || spellOne.Frequency == spellTwo.Frequency) &&
                    spellOne.CastTime == spellTwo.CastTime &&
                    spellOne.Target == spellTwo.Target &&
                    spellOne.Group == spellTwo.Group &&

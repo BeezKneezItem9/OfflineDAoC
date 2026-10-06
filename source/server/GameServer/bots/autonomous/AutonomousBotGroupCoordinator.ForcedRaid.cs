@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace DOL.GS;
 
@@ -26,21 +27,36 @@ public static partial class AutonomousBotGroupCoordinator
 
     // Pure roster planning: no objective, group or position is changed here.
     // Never break a player-led or mixed-level party to obtain a level-50 member.
-    public static GameBot[][] PlanForcedRaid(eRealm realm)
+    // Forced raids recruit the level-50 bots closest to the rally hub first (same region,
+    // straight-line distance), then bots in other regions, so the 300 arrive sooner and more
+    // consistently than a random pick from the whole realm.
+    public const int ForcedRecruitWindow = 64;
+
+    public static double ForcedRecruitDistance(ushort botRegion, float x, float y, ushort hubRegion, Vector3 hub) =>
+        botRegion == hubRegion ? Math.Sqrt((x - hub.X) * (double)(x - hub.X) + (y - hub.Y) * (double)(y - hub.Y)) : double.MaxValue;
+
+    public static GameBot[][] PlanForcedRaid(eRealm realm, ushort hubRegion, Vector3 hubCenter)
     {
         var candidates = AutonomousBotRegistry.Snapshot().Where(b => AutonomousRealmRaid.IsEligible(b) &&
             b.Realm == realm && b.PersistentRecord != null && b.CurrentRegion != null &&
             !AutonomousRealmRaid.IsReserved(b) && AutonomousRealmRaid.GetView(b.Group) == null &&
             !AutonomousRvrEventLayer.IsForceCommitted(RvrForceId(b), GameLoop.GameLoopTime) &&
             (b.Group == null || b.Group.GetMembersInTheGroup().All(m => m is GameBot other && AutonomousRealmRaid.IsEligible(other))))
-            .OrderBy(b => b.Group == null ? 0 : 1).ThenBy(_ => Random.Shared.Next()).ToList();
+            .OrderBy(b => ForcedRecruitDistance(b.CurrentRegionID, b.X, b.Y, hubRegion, hubCenter))
+            .ThenBy(b => b.Group == null ? 0 : 1).ThenBy(_ => Random.Shared.Next()).ToList();
         var parties = new List<GameBot[]>();
         while (candidates.Count >= 8 && parties.Sum(p => p.Length) + 8 <= RealmRaidRecruitmentPolicy.MaximumBots)
         {
             GameBot[] chosen = null;
-            foreach (GameBot leader in candidates.Take(8))
-                if (TryBuildPveRoster(leader, candidates.Where(b => b != leader).ToArray(), out var others, out _))
-                { chosen = new[] { leader }.Concat(others).ToArray(); break; }
+            // The roster builder shuffles its pool, so offer it the closest bots first
+            // and the whole realm only if they cannot fill the eight roles.
+            foreach (GameBot[] pool in new[] { candidates.Take(ForcedRecruitWindow).ToArray(), candidates.ToArray() })
+            {
+                foreach (GameBot leader in pool.Take(8))
+                    if (TryBuildPveRoster(leader, pool.Where(b => b != leader).ToArray(), out var others, out _))
+                    { chosen = new[] { leader }.Concat(others).ToArray(); break; }
+                if (chosen != null) break;
+            }
             if (chosen == null) break;
             parties.Add(chosen);
             foreach (var bot in chosen) candidates.Remove(bot);
@@ -49,6 +65,26 @@ public static partial class AutonomousBotGroupCoordinator
         if (remaining == 4 && candidates.Count >= 4) parties.Add(candidates.Take(4).ToArray());
         return parties.ToArray();
     }
+
+    /// <summary>
+    /// The next forced-raid party from the free reserved bots (already in closest-first order):
+    /// a full eight with the usual roles, or the final four when only four reserved bots remain.
+    /// </summary>
+    public static GameBot[] ComposeForcedParty(GameBot[] free, int reservedRemaining)
+    {
+        if (free == null || free.Length == 0) return null;
+        if (free.Length >= 8)
+        {
+            GameBot[] window = free.Take(ForcedRecruitWindow).ToArray();
+            foreach (GameBot[] pool in new[] { window, free })
+                foreach (GameBot leader in pool.Take(8))
+                    if (TryBuildPveRoster(leader, pool.Where(b => b != leader).ToArray(), out var others, out _))
+                        return new[] { leader }.Concat(others).ToArray();
+        }
+        return ForcedPartyCanUseFinalFour(free.Length, reservedRemaining) ? free.Take(4).ToArray() : null;
+    }
+
+    public static bool ForcedPartyCanUseFinalFour(int free, int reservedRemaining) => reservedRemaining == 4 && free == 4;
 
     private static bool TryAssignExpeditionRoles(GameBot[] members, GameBot leader, out Dictionary<long, BotPveGroupRole> roles)
     {
@@ -65,7 +101,7 @@ public static partial class AutonomousBotGroupCoordinator
     public static bool FormForcedRaidParty(string eventId, GameBot[] members)
     {
         if (members.Length is not (4 or 8) || members.Any(b => !AutonomousRealmRaid.IsEligible(b) || !b.IsAlive ||
-            !AutonomousRealmRaid.IsReservedFor(b, eventId) || b.InCombat || b.IsOnStableMasterRoute) ||
+            !AutonomousRealmRaid.IsReservedFor(b, eventId) || b.InCombat) ||
             !TryAssignExpeditionRoles(members, members[0], out _)) return false;
         // Validate the raid post before cancelling anybody's work.
         if (!AutonomousRealmRaid.TryGetForcedStaging(eventId, out SharedCamp staging)) return false;

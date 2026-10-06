@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using DOL.GS;
 
 namespace OfflineDaoc.Launcher;
 
@@ -160,7 +161,8 @@ internal sealed partial class MainForm : Form
         BackColor = DaocTheme.Void;
         ForeColor = DaocTheme.Text;
         Font = new Font("Georgia", 8.5f);
-        AutoScaleMode = AutoScaleMode.Dpi;
+        // Built in 96-DPI pixels and scaled once by UiScale (display scaling and text size).
+        AutoScaleMode = AutoScaleMode.None;
 
         var stoneFrame = new StoneSurface { Dock = DockStyle.Fill };
         Controls.Add(stoneFrame);
@@ -230,6 +232,7 @@ internal sealed partial class MainForm : Form
             _serverReadinessPoll.Stop();
             _serverLog?.Dispose();
         };
+        UiScale.Apply(this);
     }
 
     protected override void Dispose(bool disposing)
@@ -326,8 +329,8 @@ internal sealed partial class MainForm : Form
         var titlePanel = new Panel { Dock = DockStyle.Fill, BackColor = Color.Transparent };
         titlePanel.Controls.Add(new RealmShieldPicture
         {
-            Size = new Size(43, 58),
-            Location = new Point(3, 7),
+            Size = new Size(88, 88),
+            Location = new Point(0, 6),
         });
         titlePanel.Controls.Add(new Label
         {
@@ -335,7 +338,7 @@ internal sealed partial class MainForm : Form
             Text = "OFFLINE DAoC",
             Font = new Font("Georgia", 28f, FontStyle.Bold),
             ForeColor = DaocTheme.GoldLight,
-            Location = new Point(52, 5),
+            Location = new Point(94, 5),
         });
         titlePanel.Controls.Add(new Label
         {
@@ -343,7 +346,7 @@ internal sealed partial class MainForm : Form
             Text = "CLASSIC + SHROUDED ISLES  •  PLAY ALONE OR ADVENTURE WITH LIVING PLAYER BOTS",
             Font = new Font("Georgia", 9f),
             ForeColor = Color.FromArgb(196, 145, 70),
-            Location = new Point(55, 57),
+            Location = new Point(97, 57),
         });
         titlePanel.Controls.Add(new Label
         {
@@ -351,7 +354,7 @@ internal sealed partial class MainForm : Form
             Text = VersionLabel(InstalledEditionHasCustomClass(_database)),
             Font = new Font("Georgia", 12f, FontStyle.Bold),
             ForeColor = DaocTheme.GoldLight,
-            Location = new Point(55, 79),
+            Location = new Point(97, 79),
         });
         header.Controls.Add(titlePanel, 0, 0);
 
@@ -384,11 +387,13 @@ internal sealed partial class MainForm : Form
         cards.Controls.Add(Card("MIDGARD", _midgardValue, DaocTheme.Midgard, RealmGenerateButton(2, "MIDGARD", DaocTheme.Midgard)), 3, 0);
         cards.Controls.Add(Card("HIBERNIA", _hiberniaValue, DaocTheme.Hibernia, RealmGenerateButton(3, "HIBERNIA", DaocTheme.Hibernia)), 4, 0);
         Panel performanceCard = Card("BOT AI DELAY", _performanceValue, DaocTheme.Gold);
-        const string performanceHelp = "How long bot AI updates take. 95 out of 100 updates finish within this time. Lower is better. ms means milliseconds; 1,000 ms equals one second.";
+        const string performanceHelp = PerformanceHelp;
         SetToolTip(performanceCard, performanceHelp);
         cards.Controls.Add(performanceCard, 5, 0);
         return cards;
     }
+
+    private const string PerformanceHelp = "Average time the server spends on bot and monster AI each game tick, over the last minute. Lower is better. ms means milliseconds; 1,000 ms equals one second.";
 
     private void SetToolTip(Control root, string text)
     {
@@ -783,7 +788,7 @@ internal sealed partial class MainForm : Form
         _groupsPanel.Controls.Clear();
         if (_groups.Count == 0)
         {
-            _groupsPanel.Controls.Add(new Label
+            var empty = new Label
             {
                 AutoSize = false,
                 Width = Math.Max(400, _groupsPanel.ClientSize.Width - 28),
@@ -794,13 +799,19 @@ internal sealed partial class MainForm : Form
                 BackColor = DaocTheme.StoneDark,
                 Font = new Font("Georgia", 9f, FontStyle.Italic),
                 BorderStyle = BorderStyle.Fixed3D,
-            });
+            };
+            _groupsPanel.Controls.Add(empty);
+            UiScale.ApplyToNewControl(empty);
         }
         else
         {
             int number = 1;
             foreach (GroupRow group in _groups.OrderBy(row => row.Realm).ThenBy(row => row.GroupId, StringComparer.OrdinalIgnoreCase))
-                _groupsPanel.Controls.Add(BuildGroupCard(group, number++));
+            {
+                Control card = BuildGroupCard(group, number++);
+                _groupsPanel.Controls.Add(card);
+                UiScale.ApplyToNewControl(card);
+            }
         }
         ResizeGroupCards();
         _groupsPanel.ResumeLayout();
@@ -938,7 +949,7 @@ internal sealed partial class MainForm : Form
 
     private void ResizeGroupCards()
     {
-        int width = Math.Max(560, _groupsPanel.ClientSize.Width - 28);
+        int width = Math.Max(UiScale.Px(_groupsPanel, 560), _groupsPanel.ClientSize.Width - UiScale.Px(_groupsPanel, 28));
         foreach (Control control in _groupsPanel.Controls)
             control.Width = width;
     }
@@ -1255,7 +1266,10 @@ internal sealed partial class MainForm : Form
             _albionValue.Text = RealmRosterValue(snapshot.Bots, "Albion");
             _midgardValue.Text = RealmRosterValue(snapshot.Bots, "Midgard");
             _hiberniaValue.Text = RealmRosterValue(snapshot.Bots, "Hibernia");
-            _performanceValue.Text = $"{snapshot.TickP95Ms:0.0} ms";
+            _performanceValue.Text = snapshot.BotAiDelay is { } aiDelay ? $"{aiDelay.AverageMs:0.0} ms" : "—";
+            _helpTip.SetToolTip(_performanceValue, snapshot.BotAiDelay is { } aiPeak
+                ? $"{PerformanceHelp}{Environment.NewLine}Last minute: average {aiPeak.AverageMs:0.0} ms, slowest {aiPeak.PeakMs:N0} ms over {aiPeak.Samples:N0} ticks."
+                : $"{PerformanceHelp}{Environment.NewLine}Shown about a minute after the server starts.");
             _startButton.Enabled = !_resettingKeepsRelics && !_savingXpRates && !_stoppingServer && snapshot.ServerState == "Stopped" && File.Exists(_serverExecutable);
             _resetKeepsRelics.Enabled = !_resettingKeepsRelics && !_savingXpRates && snapshot.ServerState == "Stopped" && BotGoalsServerStopped();
             _stopButton.Enabled = !_stoppingServer && snapshot.ServerState is "Running" or "Starting";
@@ -1643,7 +1657,7 @@ internal sealed partial class MainForm : Form
 
     private DashboardSnapshot ReadSnapshot()
     {
-        if (!File.Exists(_database)) return new DashboardSnapshot("Not configured", [], [], 0, 0, 0, 1, 1);
+        if (!File.Exists(_database)) return new DashboardSnapshot("Not configured", [], [], 0, 0, null, 1, 1);
         var bots = new List<BotRow>();
         var running = IsServerRunning();
         using var serverProcess = FindExactServerProcess();
@@ -1655,20 +1669,14 @@ internal sealed partial class MainForm : Form
             : [];
         var active = 0;
         var memoryMb = serverProcessPresent ? serverProcess!.WorkingSet64 / 1024d / 1024d : 0d;
-        var tickP95Ms = 0d;
+        BotAiDelayReport? botAiDelay = running
+            ? BotAiDelayReport.Read(Path.Combine(_serverDirectory, BotAiDelayReport.FileName), DateTime.UtcNow)
+            : null;
 
         using var connection = new SQLiteConnection($"Data Source={_database};Version=3;Read Only=True;Pooling=False;Default Timeout=5");
         connection.Open();
         double playerXpRate = ReadServerRate(connection, "xp_rate", 1);
         double botXpRate = ReadServerRate(connection, "bot_xp_rate", 1);
-        using (var command = connection.CreateCommand())
-        {
-            command.CommandText = "SELECT TickP95Ms FROM offline_runtime_status WHERE Id=1";
-            using var reader = command.ExecuteReader();
-            if (reader.Read())
-                tickP95Ms = reader.GetDouble(0);
-        }
-
         using (var command = connection.CreateCommand())
         {
             bool hasObjectiveColumns = ColumnExists(connection, "offline_world_bots", "ObjectiveKind") &&
@@ -1769,7 +1777,7 @@ internal sealed partial class MainForm : Form
             gm.CommandText = "SELECT Value FROM offline_local_options WHERE Key='MakeMeGM'";
             makeMeGm = string.Equals(gm.ExecuteScalar()?.ToString(), "true", StringComparison.OrdinalIgnoreCase);
         }
-        return new DashboardSnapshot(serverState, bots, groups, active, memoryMb, tickP95Ms, playerXpRate, botXpRate, makeMeGm, ReadRvrWorld());
+        return new DashboardSnapshot(serverState, bots, groups, active, memoryMb, botAiDelay, playerXpRate, botXpRate, makeMeGm, ReadRvrWorld());
     }
 
     private static double ReadServerRate(SQLiteConnection connection, string key, double fallback)
@@ -3108,7 +3116,7 @@ internal sealed partial class MainForm : Form
         public string MemberRole { get; set; } = string.Empty;
     }
     private sealed record DashboardSnapshot(string ServerState, List<BotRow> Bots, List<GroupRow> Groups,
-        int Active, double ServerMemoryMb, double TickP95Ms, double PlayerXpRate, double BotXpRate, bool MakeMeGm = false, RvrWorldSnapshot? RvrWorld = null);
+        int Active, double ServerMemoryMb, BotAiDelayReport? BotAiDelay, double PlayerXpRate, double BotXpRate, bool MakeMeGm = false, RvrWorldSnapshot? RvrWorld = null);
 
     private sealed record LiveBotStatus(long BotId, int Level, string ZoneName, string Activity,
         string CurrentGoal, string TargetName, string TravelDestination, string ObjectiveProgress,

@@ -542,12 +542,31 @@ public static class AutonomousStableRoutePlanner
         float move = Math.Min(44f, Math.Max(0f, separation - (interactionRadius - BoardingArrivalRadius - 1)));
         Vector3 desired = separation > 0 ? routeOrigin + delta / separation * move : routeOrigin;
         Vector3? candidate = snap(desired);
-        if (!candidate.HasValue || !float.IsFinite(candidate.Value.X) ||
-            !float.IsFinite(candidate.Value.Y) || !float.IsFinite(candidate.Value.Z) ||
-            Vector3.Distance(candidate.Value, routeOrigin) > BoardingArrivalRadius ||
-            Vector3.Distance(candidate.Value, interaction) > interactionRadius - BoardingArrivalRadius)
+        if (candidate.HasValue && float.IsFinite(candidate.Value.X) &&
+            float.IsFinite(candidate.Value.Y) && float.IsFinite(candidate.Value.Z) &&
+            Vector3.Distance(candidate.Value, routeOrigin) <= BoardingArrivalRadius &&
+            Vector3.Distance(candidate.Value, interaction) <= interactionRadius - BoardingArrivalRadius)
+        {
+            approach = candidate.Value;
+            return true;
+        }
+
+        // Some horse/gryphon paths start further from their master than any spot that is
+        // both at the path start and in the master's range (Korlis's Hagall -> Iarn Dwarf
+        // Camp gryphon starts 229 units away; range is 192), so that leg was never offered
+        // and bots swam to the next gryphon instead. The bot's mount spawns at the path
+        // start and carries the rider there, as it does for a player, so wait in the
+        // master's range at the point nearest the path start instead.
+        if (separation <= 0 || separation > MaximumBoardingDistance)
             return false;
-        approach = candidate.Value;
+        float reach = interactionRadius - BoardingArrivalRadius - 1;
+        Vector3 inRange = interaction + delta / separation * -Math.Min(reach, separation);
+        Vector3? fallback = snap(inRange);
+        if (!fallback.HasValue || !float.IsFinite(fallback.Value.X) ||
+            !float.IsFinite(fallback.Value.Y) || !float.IsFinite(fallback.Value.Z) ||
+            Vector3.Distance(fallback.Value, interaction) > interactionRadius - BoardingArrivalRadius)
+            return false;
+        approach = fallback.Value;
         return true;
     }
 

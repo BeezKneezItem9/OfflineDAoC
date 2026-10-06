@@ -9971,7 +9971,7 @@ namespace DOL.GS
                 Specialization source = SkillBase.GetSpecialization("Epic Spells", false);
                 if (source != null)
                 {
-                    Specialization epicSpells = new CareerSpecialization(
+                    Specialization epicSpells = new DOL.GS.Quests.Hibernia.SluaghbinderEpicSpellsSpecialization(
                         source.KeyName, source.Name, source.Icon, source.ID)
                     {
                         LevelRequired = -3,

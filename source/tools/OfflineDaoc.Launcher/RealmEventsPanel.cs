@@ -13,6 +13,7 @@ internal sealed partial class MainForm
     private readonly Label _eventCommandStatus = new() { Dock = DockStyle.Fill, ForeColor = DaocTheme.GoldLight, AutoEllipsis = true };
     private Button? _eventStart;
     private Button? _eventReset;
+    private Button? _eventStop;
     private bool _eventRequestPending;
     private string _eventSort = "", _eventMemberSort = "";
     private bool _eventAscending = true, _eventMemberAscending = true;
@@ -68,7 +69,9 @@ internal sealed partial class MainForm
             {
                 long elapsed = _rvrServerRunning && _rvrWorld?.Running == true
                     ? (long)Math.Max(0, (DateTime.UtcNow - _rvrWorld.UpdatedUtc.ToUniversalTime()).TotalMilliseconds) : 0;
-                e.Value = FormatEventTimer(timed.Phase, Math.Max(0, timed.PhaseRemainingMilliseconds - elapsed));
+                // Forced expeditions publish -1: they have no clock and run until stopped.
+                e.Value = timed.PhaseRemainingMilliseconds < 0 ? $"{timed.Phase} (no time limit)"
+                    : FormatEventTimer(timed.Phase, Math.Max(0, timed.PhaseRemainingMilliseconds - elapsed));
                 e.FormattingApplied = true;
             }
             if (e.ColumnIndex >= 0 && _rvrObjectivesGrid.Columns[e.ColumnIndex].DataPropertyName == "CooldownMilliseconds" && e.Value is long milliseconds)
@@ -95,11 +98,14 @@ internal sealed partial class MainForm
         _eventCommandStatus.MinimumSize = new Size(0, Font.Height + 6);
         _eventStart = ActionButton("START EVENT", DaocTheme.Gold);
         _eventReset = ActionButton("RESET COOLDOWN…", DaocTheme.Gold);
+        _eventStop = ActionButton("STOP EVENT…", DaocTheme.Danger);
         _eventStart.Width = 145;
         _eventReset.Width = 175;
-        actions.Controls.AddRange([new Label { Text = "Acting realm:", AutoSize = true, ForeColor = DaocTheme.GoldLight, Padding = new Padding(0, 6, 0, 0) }, _eventActingRealm, _eventStart, _eventReset]);
+        _eventStop.Width = 145;
+        actions.Controls.AddRange([new Label { Text = "Acting realm:", AutoSize = true, ForeColor = DaocTheme.GoldLight, Padding = new Padding(0, 6, 0, 0) }, _eventActingRealm, _eventStart, _eventReset, _eventStop]);
         _eventStart.Click += async (_, _) => await SendEventCommandAsync("start");
         _eventReset.Click += async (_, _) => await SendEventCommandAsync("reset-cooldown");
+        _eventStop.Click += async (_, _) => await SendEventCommandAsync("stop");
         controls.Controls.Add(actions, 0, 0);
         controls.Controls.Add(_eventCommandStatus, 0, 1);
         panel.Controls.Add(controls, 0, 3);
@@ -186,6 +192,8 @@ internal sealed partial class MainForm
         bool enabled = !_eventRequestPending && _rvrServerRunning && selected?.IsCatalogOnly == false && selected.Kind != "Relic" && !string.IsNullOrEmpty(selected.Id);
         if (_eventStart != null) _eventStart.Enabled = enabled;
         if (_eventReset != null) _eventReset.Enabled = enabled;
+        // Stop event: dragon and epic dungeon expeditions that are running (forced or automatic).
+        if (_eventStop != null) _eventStop.Enabled = enabled && selected!.IsActiveEvent && selected.Kind is "Dragon" or "Epic dungeon";
     }
 
     private sealed record EventCommandResult(string Id, bool Success, string Message, DateTime UpdatedUtc);
@@ -211,9 +219,12 @@ internal sealed partial class MainForm
         if (_eventRequestPending || !_rvrServerRunning || _rvrObjectivesGrid.CurrentRow?.DataBoundItem is not RvrObjective target || target.IsCatalogOnly || string.IsNullOrEmpty(target.Id)) return;
         if (action == "start" && target.Kind is "Dragon" or "Epic dungeon" && MessageBox.Show(this,
             "Force this expedition? This requires 300 available level-50 autonomous bots and reassigns their ordinary tasks. Bots already assigned or reserved for another expedition or siege are protected. Departure requires 200 individually present bots; late arrivals join directly.\n\n" +
-            "Everyone travels to a safe service hub together, then formed parties advance to the encounter. Preparation lasts at least 45 minutes. At least 200 must arrive, and a dragon must land, before attacking. It fails safely after 90 minutes if those requirements cannot be met.\n\n" +
+            "The closest available bots are chosen first. Everyone travels to a safe service hub together, then formed parties advance to the encounter. The attack starts as soon as 200 have arrived (and a dragon has landed). A forced expedition has no time limit: it runs until the encounter is defeated or you press STOP EVENT.\n\n" +
             "A forced expedition may run alongside another event in this realm, but cannot duplicate the same encounter. This explicit order can override the Bot Goals Setting percentages for its participants. Players, companions and mixed-level parties are excluded.",
             "Force level-50 realm expedition", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+        if (action == "stop" && MessageBox.Show(this,
+                $"Stop the {target.Name} expedition now? The bots stop and return to their own goals. No cooldown is set, so it can be started again.",
+                "Stop event", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
         if (action == "reset-cooldown" && MessageBox.Show(this,
                 "Reset this event's cooldown? Monsters might not have respawned yet. This does not respawn monsters or reset an active battle.",
                 "Reset event cooldown", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
@@ -225,7 +236,7 @@ internal sealed partial class MainForm
         {
             string requestPath = Path.Combine(_serverDirectory, "realm-events.request.json");
             string json = JsonSerializer.Serialize(new { Id = id, Action = action, TargetId = target.Id,
-                Realm = _eventActingRealm.SelectedIndex + 1, CreatedUtc = DateTime.UtcNow, Confirmed = action == "reset-cooldown" });
+                Realm = _eventActingRealm.SelectedIndex + 1, CreatedUtc = DateTime.UtcNow, Confirmed = action is "reset-cooldown" or "stop" });
             await File.WriteAllTextAsync(requestPath + ".tmp", json);
             File.Move(requestPath + ".tmp", requestPath, true);
             for (int attempt = 0; attempt < 40; attempt++)

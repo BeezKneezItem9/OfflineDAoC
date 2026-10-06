@@ -40,8 +40,9 @@ namespace DOL.GS
                 .FirstOrDefault(k => _rvrDestination.Id == $"rvr-keep-{k.KeepID}" && AutonomousRvrKeepPolicy.IsSiegeObjective(k));
             if (keep == null) return false;
             if (_siegeJobKeep != null && _siegeJobKeep != _rvrDestination.Id) ReleaseSiegeJob(bot);
-            if (!AutonomousSiegeJobs.TryAcquire(bot, _rvrDestination.Id, 64, keep.Realm != bot.Realm, true,
-                out var kind, out var slot, _rvrDestination.RegionId))
+            bool attackingKeep = keep.Realm != bot.Realm;
+            if (!AutonomousSiegeJobs.TryAcquire(bot, _rvrDestination.Id, 64, attackingKeep, !attackingKeep,
+                out var kind, out var slot, _rvrDestination.RegionId, CarriedSiegeKind(bot)))
             { _siegeNextAttempt = now + 10_000; return false; }
             _siegeJobKeep = _siegePreSupplyKeep = _rvrDestination.Id;
             _siegeKind = kind; _siegeSlot = slot;
@@ -99,7 +100,8 @@ namespace DOL.GS
             bool enemyEngines = engines.Any(w => BotSiegeRuntime.LegalEnemy(bot, w));
             int present = nearby.OfType<GameBot>().Count(b => b.IsAlive && b.Realm == bot.Realm) +
                 bot.GetPlayersInRadius(6000).Count(p => p.IsAlive && p.Realm == bot.Realm);
-            if (!AutonomousSiegeJobs.TryAcquire(bot, _siegeJobKeep, present, attacking && door!=null, enemyEngines, out _siegeKind, out _siegeSlot))
+            if (!AutonomousSiegeJobs.TryAcquire(bot, _siegeJobKeep, present, attacking && door!=null, enemyEngines, out _siegeKind, out _siegeSlot,
+                    carried: CarriedSiegeKind(bot)))
             { _siegeNextAttempt = now + 10_000; return false; }
             if (now>=_siegeNextTopup)
             {
@@ -136,8 +138,8 @@ namespace DOL.GS
             _siegeNoTargetSince=0;
 
             // Prioritize immediate personal defense without chasing distant enemies away from an engine.
-            if (bot.GetNPCsInRadius(450).Any(n => n.IsAlive && n.TargetObject == bot && n.IsAttacking) ||
-                bot.GetPlayersInRadius(450).Any(p => p.IsAttacking && p.TargetObject == bot)) return false;
+            if (bot.GetNPCsInRadius(450).Any(n => n.IsAlive && n.TargetObject == bot && n.IsAttacking && SiegeOperatorThreat(bot, n)) ||
+                bot.GetPlayersInRadius(450).Any(p => p.IsAttacking && p.TargetObject == bot && SiegeOperatorThreat(bot, p))) return false;
 
             GameSiegeWeapon owned = AutonomousSiegeOwnership.All(bot).FirstOrDefault();
             if (owned != null && (owned.CurrentRegion != bot.CurrentRegion || BotSiegeRuntime.Kind(owned) != _siegeKind)) { owned.ReleaseControl(); owned = null; }
@@ -255,6 +257,20 @@ namespace DOL.GS
             SiegeStatus(bot, $"Siege {owned.CurrentState}: {owned.ShotsFired} shots / {owned.ConfirmedHits} confirmed hits", target);
             return true;
         }
+
+        private static BotSiegeKind? CarriedSiegeKind(GameBot bot)
+        {
+            foreach (BotSiegeKind kind in new[] { BotSiegeKind.Ram, BotSiegeKind.Trebuchet, BotSiegeKind.Catapult, BotSiegeKind.Ballista })
+                if (BotSiegeRuntime.Item(bot, BotSiegeRuntime.Kit(bot.Realm, kind)) != null) return kind;
+            return null;
+        }
+
+        /// <summary>An attacker standing beside the operator at its own height (melee reach), not a wall archer.</summary>
+        public static bool IsSiegeOperatorThreat(float horizontalDistance, float heightDifference) =>
+            horizontalDistance <= 300 && Math.Abs(heightDifference) <= 160;
+
+        private static bool SiegeOperatorThreat(GameBot bot, GameLiving attacker) =>
+            IsSiegeOperatorThreat(Vector2.Distance(new(bot.X, bot.Y), new(attacker.X, attacker.Y)), attacker.Z - bot.Z);
 
         private static bool ValidSiegeSpell(BotSiegeKind kind, eSpellType type) => (kind, type) is
             (BotSiegeKind.Ram, eSpellType.SummonSiegeRam) or (BotSiegeKind.Catapult, eSpellType.SummonSiegeCatapult) or

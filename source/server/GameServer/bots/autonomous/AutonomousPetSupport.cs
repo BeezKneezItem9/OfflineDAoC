@@ -503,8 +503,6 @@ public static class AutonomousPetSupport
 
             GameBot petOwnerBot = owner as GameBot;
             eSpecType petOwnerSpec = petOwnerBot?.BotSpec?.SpecType ?? eSpecType.None;
-            bool covenantPetBuffCadence = characterClass == eCharacterClass.Sluaghbinder &&
-                petOwnerSpec == eSpecType.SluaghbinderCovenant;
             bool combatOwnsPetTurn = combatTarget?.IsAlive == true ||
                 owner.InCombat || owner.IsAttacking || pet.InCombat || pet.IsAttacking ||
                 owner is GameBot { Brain: BotBrain cadenceOwnerBrain } && cadenceOwnerBrain.HasAggro;
@@ -544,7 +542,7 @@ public static class AutonomousPetSupport
                 .OrderByDescending(entry => entry.Spell.Level)
                 .FirstOrDefault();
             if (petActionReady && buff.Spell != null &&
-                (!covenantPetBuffCadence || !IsCovenantPetBuffDeferred(pet, now, combatOwnsPetTurn)) &&
+                !IsCovenantPetBuffDeferred(pet, now, combatOwnsPetTurn) &&
                 owner.IsWithinRadius(pet, Math.Max(200, buff.Spell.CalculateEffectiveRange(owner))))
             {
                 bool combatBlocksServantCast = owner.InCombat || owner.IsAttacking ||
@@ -575,7 +573,7 @@ public static class AutonomousPetSupport
                     // Keep a bounded retry window while allowing normal AI to
                     // run between upkeep attempts.
                     int retryCooldown = PetBuffRetryCooldown(buff.Spell);
-                    bool fastCovenantBuff = IsCovenantRoutinePetBuff(characterClass, petOwnerSpec, buff.Spell);
+                    bool fastCovenantBuff = IsFastRoutinePetBuff(characterClass, petOwnerSpec, buff.Spell);
                     if (fastCovenantBuff)
                     {
                         CovenantPetBuffCadences.GetValue(pet, _ => new CovenantPetBuffCadenceState())
@@ -912,7 +910,8 @@ public static class AutonomousPetSupport
 
     public static bool IsDisabledBotDamageShield(GameLiving owner, Spell spell) =>
         spell?.SpellType == eSpellType.DamageShield && owner is GameBot bot &&
-        (eCharacterClass?)bot.CharacterClass?.ID is eCharacterClass.Cabalist or eCharacterClass.Enchanter;
+        (eCharacterClass?)bot.CharacterClass?.ID is eCharacterClass.Cabalist or eCharacterClass.Enchanter or
+            eCharacterClass.Spiritmaster;
 
     /// <summary>
     /// The three primary caster-pet classes must be allowed to acquire and
@@ -1908,9 +1907,24 @@ public static class AutonomousPetSupport
         spell.CastTime > 0 && spell.Duration > 30_000 &&
         EffectHelper.GetEffectFromSpell(spell) is not (eEffect.Unknown or eEffect.Pet);
 
+    /// <summary>
+    /// Long pet buffs of every pet class use the quick between-buff cadence the
+    /// Sluaghbinder Covenant had first: the next pet action follows the cast by
+    /// half a second, a cast whose effect has not shown up stays deferred for the
+    /// old bounded retry window, and combat keeps the old 15-second spacing.
+    /// Necromancer servant commands, pet heals and short tactical effects keep
+    /// their own rules.
+    /// </summary>
+    public static bool IsFastRoutinePetBuff(eCharacterClass characterClass, eSpecType specType, Spell spell) =>
+        IsCovenantRoutinePetBuff(characterClass, specType, spell) ||
+        spell != null && spell.Target == eSpellTarget.PET && spell.IsBuff && !spell.IsHealing &&
+        spell.SpellType != eSpellType.PetSpell && spell.Duration > 30_000 &&
+        !IsCovenantPetHot(characterClass, specType, spell) &&
+        EffectHelper.GetEffectFromSpell(spell) is not (eEffect.Unknown or eEffect.Pet);
+
     public static int PetBuffActionCooldown(
         eCharacterClass characterClass, eSpecType specType, Spell spell, bool combatOwnsTurn) =>
-        IsCovenantRoutinePetBuff(characterClass, specType, spell) && !combatOwnsTurn
+        IsFastRoutinePetBuff(characterClass, specType, spell) && !combatOwnsTurn
             ? PetActionCooldown(spell)
             : PetBuffRetryCooldown(spell);
 
