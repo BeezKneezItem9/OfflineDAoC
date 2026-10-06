@@ -42,6 +42,10 @@ downloads yet.
 - /pull starts the pull at once: resting companions stand up instead of refusing. /grind is still
   careful, but Paladins, Wardens, Bards, Minstrels and Skalds only need 75% power and endurance, and
   their own chants no longer hold the pull, so chanting groups pull again.
+- Bring A Friend now counts your companion bots. Your /spawn and /raid helpers (and their pets) count
+  as group members the way other players would, so monsters bring friends when your companions pull
+  or fight with you, and a /raid 40 or /raid 80 can pull a lot more of a camp. Gamebots are unchanged.
+  Server setting: baf_companion_bots_count (on by default).
 - A bot's pet that gets stuck in rock and makes no progress toward its owner for 10 seconds is put
   back on walkable ground beside its owner. Player pets are unchanged.
 - Minstrel bots no longer freeze retrying a flute mesmerize that can't land; they pick their next
@@ -51,6 +55,17 @@ downloads yet.
 - Savage bots no longer swap between a shield and their hand-to-hand offhand weapon every few seconds.
 
 **Gamebots**
+- Gamebots earn realm points for PvP kills, the same share a player would get, whether they kill an
+  enemy gamebot or a player, and their realm rank now goes up with their realm points.
+- Gamebots spend their realm points on realm abilities at their class trainer, like a player. Each
+  follows a build for its kind of class (melee, caster, healer or archer) with the real costs, levels
+  and prerequisites: augmented stats, Toughness, the masteries, Avoidance of Magic, Determination and
+  so on. In a fight they use Purge against stuns and mezzes, Ignore Pain when nearly dead, Second Wind
+  when out of endurance, and First Aid after a fight.
+- Gamebots pick zone-border crossings whose ground actually continues to where they are going, so they
+  stop walking onto mountain shelves that only connect along the border (Lough Derg and the Valley of
+  Bri Leith, Vindsaul Faste) and find the crossing from Salisbury Plains into Black Mountains South.
+  A gamebot saved in a walled-off spot it can never walk out of is moved out when it logs in.
 - Keep sieges: RvR warbands no longer wait at the frontier teleporter for all eight members; after a
   minute the ready members take the porter and the rest follow. Siege operators keep the engine kit
   they carry instead of going back to buy a different one, only a melee attacker next to the operator
@@ -82,6 +97,22 @@ downloads yet.
 - Bot group names in the launcher and the logs name their realm ("albion-...").
 
 **Realm events and raids**
+- New neutral raid events: Summoner's Hall and Darkness Falls. Every realm can run its own 300-bot
+  expedition there, forced from the launcher (new "Neutral raid" events) or started automatically like
+  the dragons and epic dungeons, so two (rarely three) realms can be inside at the same time. Each realm
+  musters in its own territory and uses its own way in (Summoner's Hall through Hall of the Corrupt,
+  Dodens Gruva or Marfach Caverns). Summoner's Hall: the three summoners, then Grand Summoner Govannon.
+  Darkness Falls: the High Lords, the Princes and Princess Nahemah, then Legion. Bots of different
+  realms fight each other on sight in Darkness Falls, Summoner's Hall and the dungeons leading to it.
+- Raid members who died or arrived late rejoin a running Darkness Falls raid even after the raid has
+  moved deeper in, and members whose way to the dungeon keeps failing switch to ordinary travel instead
+  of waiting at a stable for good.
+- Bots can now hurt scripted named monsters. Many bosses only took damage from players and their pets,
+  so bots hit them for nothing: Grand Summoner Govannon and the summoners, Legion, and named monsters in
+  Hall of the Corrupt, Marfach Caverns, Tur Suil and the classic zones. Bots now count like players.
+- During a Summoner's Hall or Darkness Falls raid, its bosses and epic monsters fight at level 60 at most,
+  so a level-50 raid can hit them (server setting neutral_raid_encounter_level). Their health, resists
+  and abilities are unchanged.
 - Galladoria: bots can now beat Xaga. Tine and Beatha fly low enough to be hit and stop circling the
   room while they are being fought, and Beatha's attacks no longer heal Xaga.
 - Forced raids from the launcher start as soon as 200 bots are staged (and a dragon has landed), with
@@ -91,6 +122,9 @@ downloads yet.
 - Forced rallies fill much faster: parties form from whichever reserved bots are free, closest first,
   bots on a horse included, so one busy bot no longer holds seven others back. A member with no route
   to the rally point leaves its party instead of blocking it.
+- A raid party that loses a member (one with no route to the rally point) takes a replacement: the
+  closest free level-50 bot of the realm, preferring one that can fill the same role. The newcomer
+  walks to the raid like a late arrival, so a 300-bot raid no longer stays short at 296.
 - A realm never runs the same automatic dragon or epic dungeon event twice in a row.
 - Forced epic dungeon rallies no longer announce in faction chat that a dragon must land.
 - Epic dungeon raids check their next target from every party, not only from the front. A raid with no
@@ -100,6 +134,26 @@ downloads yet.
   nothing can be routed onto them; every real room is still reachable.
 
 **World**
+- Bots cross from zone to zone only where real ground meets, so long trips (for example from Hibernia's
+  home zones into the frontier) no longer end on a walled-off mountain shelf. Bots riding a stable-master
+  horse now land on the ground at Castle Sauvage, Svasud Faste and other stops where the route used to end
+  in the air or under the ground.
+- Bots walk where players walk. The bot navigation maps for 63 outdoor zones were rebuilt from the
+  game client:
+  - Every invisible wall in the game now stops bots. The old maps were missing about half of them, so
+    bots crossed zone edges, climbed mountains players can't climb and walked off the edge of the map.
+  - Towns use the classic town layouts of this client. The old maps were built from the later "New
+    Towns" layouts, so bots walked through houses and fences in towns such as Mularn.
+  - Svasud Faste (the Uppland border keep) was missing from the map; bots walked through its walls.
+  - Hibernian Celtic huts can be entered again: their doorways were sealed on the old maps, so bots
+    couldn't reach the merchants and trainers inside.
+  - House door panels no longer block bots. Keep gates still do while they are closed.
+  - Zone borders on slopes line up, so bots cross them like players (for example from Cornwall into
+    Dartmoor, which bots could only reach over the hills before).
+  The capital cities and dungeons keep their current maps for now.
+- NPC placement fixes: Borra and Truda in Gripklosa no longer stand inside their house floor, Baldhere
+  in Knarr no longer stands on the furniture, and a broken copy of Hibernia's stable master Truichon
+  that had been placed in Albion is removed.
 - The Shrouded Isles portals in Cotswold, Mularn and Mag Mell are solid like their Shrouded Isles
   counterparts: you walk up the steps onto the platform, and stepping onto it takes you to the
   Shrouded Isles (not while fighting or carrying a relic). Bots climb onto the platform and use the
