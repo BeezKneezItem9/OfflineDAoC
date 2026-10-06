@@ -686,6 +686,9 @@ namespace DOL.GS
                     if ((_groupDirective?.IsDynamic != true || _groupDirective.Leader == bot) &&
                         TryBeginFasterStableRoute(bot, new Vector3(_camp.X, _camp.Y, _camp.Z), _camp.ZoneName))
                         return true;
+                    // Look ahead for aggressive monsters on the way (pull, go around, or give up).
+                    if (GuardOpenWorldTravel(bot, new Vector3(_camp.X, _camp.Y, _camp.Z)))
+                        return true;
                     if (!IssuePath(bot, new Vector3(_camp.X, _camp.Y, _camp.Z)))
                         return true;
                     SetStatus(bot, $"Traveling to {_camp.MonsterName}", GoalText(),
@@ -861,6 +864,8 @@ namespace DOL.GS
                 AbandonCamp(bot, "No connected real ticket past the audited Hibernia DF exterior seam");
                 return true;
             }
+            if (GuardOpenWorldTravel(bot, waypoint))
+                return true;
             if (!IssuePath(bot, waypoint, preciseArrival: true))
                 return true;
             SetStatus(bot, $"Traveling to {camp.MonsterName}", GoalText(),

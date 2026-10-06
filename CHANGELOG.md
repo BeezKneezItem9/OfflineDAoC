@@ -64,7 +64,8 @@ downloads yet.
   they can handle is pulled on their own terms (casters open from range instead of being jumped), a
   stronger one or a pack is walked around, and only when there is no way around and no chance do they
   pick a different camp. Groups do the same, led by their leader. Dungeons keep their own corridor
-  clearing.
+  clearing. Still being tested: the extra look-ahead may add some server strain with very large bot
+  counts. It can be switched off with the server property `bot_route_threat_awareness`.
 - A group no longer freezes in place when one member is fighting somewhere else. Members walk over to
   help a groupmate who is fighting out of reach; a fight far from the leader, or one where nothing has
   been hit for a minute (a monster the bot can't reach), no longer holds the whole group.
