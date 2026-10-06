@@ -67,6 +67,9 @@ downloads yet.
   and no longer stand around waiting for a rare green among grey monsters. Companions no longer wander around slowly while
   you stand still; they stay in formation.
 - A camp that one group can't reach is benched for other groups too after three groups report it.
+- Bots no longer get stuck on the slope by the paralyzers in Iarnwood. Routes there passed through a
+  point where several pieces of the walking map meet, and bots stalled on it; route points and sight
+  checks at spots like this are handled properly now, everywhere in the world.
 - Avalon City is a bot goal: over 1,000 spawns there were checked for a two-way walking route from a
   real entrance.
 - Bots take Korlis's gryphon from Hagall to the Iarn Dwarf Camp instead of swimming to Modernagrav.
