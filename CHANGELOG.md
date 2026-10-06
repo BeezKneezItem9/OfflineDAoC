@@ -135,6 +135,8 @@ downloads yet.
   data), and "Stopped by player" and "Route blocked" outcomes.
 
 **Server**
+- The server no longer keeps one CPU core at 100% when the launcher is closed or crashes while the
+  server is still running (thanks to lometur, pull request #3).
 - The server log notes every minute with a stall of a second or more (slowest stage, garbage
   collection pause, the slowest AI turns and a likely cause), and the very noisy short AI-turn lines
   are only written for turns of 100 ms or more.
