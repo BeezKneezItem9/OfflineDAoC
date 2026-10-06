@@ -94,6 +94,8 @@ downloads yet.
   nothing can be routed onto them; every real room is still reachable.
 
 **World**
+- The Shrouded Isles portals in Cotswold, Mularn and Mag Mell now take you to the Shrouded Isles when
+  you walk into them (not while fighting or carrying a relic). Bots already travelled through them.
 - Two more Midgard helmets show the face: the fine alloy heavy starkakedja helm (model 834) and the
   fine alloy superior war circlet (model 1291) and its variants, extension 3.
 - Three doors that always said "too far away" work: the Mag Mell hall door, a Pennine Mountains door
