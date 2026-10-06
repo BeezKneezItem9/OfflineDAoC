@@ -98,6 +98,10 @@ downloads yet.
   counterparts: you walk up the steps onto the platform, and stepping onto it takes you to the
   Shrouded Isles (not while fighting or carrying a relic). Bots climb onto the platform and use the
   portal the same way instead of walking through it. Needs the updated client files.
+  Note: the portals at Cotswold, Mularn and Mag Mell are from patch 1.74 and are not accurate to
+  1.65. The original 1.65 portals near Adribard's Retreat (Avalon Marsh), Nalliten (Gotar) and Connla
+  (Shannon Estuary) are still there and still work, and the way back from the Shrouded Isles still
+  leads to those original locations.
 - Two more Midgard helmets show the face: the fine alloy heavy starkakedja helm (model 834) and the
   fine alloy superior war circlet (model 1291) and its variants, extension 3.
 - Three doors that always said "too far away" work: the Mag Mell hall door, a Pennine Mountains door
