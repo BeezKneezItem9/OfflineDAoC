@@ -110,6 +110,13 @@ downloads yet.
   waiting party instead of the tank walking into the pack. While the target is still out of range the
   party keeps walking toward it. Groups kill noticeably faster (level 50 groups about 60% more kills an
   hour, low-level groups about 50% more experience an hour).
+- Gamebots can use the town teleporters (Master Visur, Stor Gothi Annark and Channeler Glasny, by the
+  bind stones and in the capitals) like players do, but only to their own realm's destinations. A bot
+  takes one only when it is clearly quicker than walking or a stable-master horse; groups, warbands and
+  raid parties gather at the teleporter and go together, and RvR bots use them to reach their border
+  keep. They land on the ground, even where a destination sits in the air (Mularn). Bots reached their
+  camps about 40% faster in testing and raids filled their rally points much sooner. Still being tested,
+  so it is off unless the server property `bot_town_teleporters` is switched on.
 
 **Realm events and raids**
 - New neutral raid events: Summoner's Hall and Darkness Falls. Every realm can run its own 300-bot
@@ -148,9 +155,14 @@ downloads yet.
   Hall has now been cleared by bots on their own: an automatic Midgard raid killed all three summoners
   and Grand Summoner Govannon.
 - Keep and relic sieges: the attacking realm gathers its army at its own guarded portal outpost inside
-  the enemy frontier, then marches on the keep together once 64 have gathered (or after 20 minutes),
-  instead of warbands arriving one at a time and being picked off. Bots that left their RvR task no
-  longer keep holding a place in the siege.
+  the enemy frontier, then marches on the keep together once it is strong enough to start the siege
+  (or after 20 minutes), instead of warbands arriving one at a time and being picked off. Attackers
+  fighting at the keep now count as present, and bots that left their RvR task no longer keep holding a
+  place in the siege.
+- A short line at the top of the screen (no sound, nothing in the chat box) tells every player, of any
+  realm, when a keep or relic siege begins. Your own realm's raids get the same kind of line when they
+  start forming, automatic or started from the launcher (dragons, epic dungeons, Summoner's Hall,
+  Darkness Falls), so you can join the bots at the rally point.
 - Tuscaran Glacier: the raid could get stuck for hours on a small walkable patch hidden under the ice
   floor. Those hidden patches are removed from the Tuscaran Glacier and Galladoria navigation maps, so
   nothing can be routed onto them; every real room is still reachable.
