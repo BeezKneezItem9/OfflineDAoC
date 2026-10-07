@@ -121,6 +121,16 @@ downloads yet.
   later live versions of DAoC. Most freeshards have them, and Atlas, a classic 1.65 freeshard that has
   since closed, had them too.
 
+- Gamebots can take part in the battlegrounds. A fourth goal, Battlegrounds %, sends bots to the
+  battleground of their level by a realm teleporter: Abermenai (15-19), Thidranki (20-24), Murdaigean
+  (25-29) or Caledonia (30-35). There they fight the other realms, attack the central keep when another
+  realm (or its neutral guards) holds it, and defend it when their realm does. Bots outside those levels
+  do solo or group PvE with that share instead. The goal is off (0%) unless you turn it on.
+- Bots no longer stand for minutes "fighting" an enemy player or bot they can't reach or hurt: after 90
+  seconds without landing any damage they move on and ignore that target for five minutes.
+- A bot that hit a route problem while travelling to its camp could stop thinking for that turn with an
+  error; it now just picks a new camp.
+
 **Realm events and raids**
 - New neutral raid events: Summoner's Hall and Darkness Falls. Every realm can run its own 300-bot
   expedition there, forced from the launcher (new "Neutral raid" events) or started automatically like
@@ -170,6 +180,10 @@ downloads yet.
   floor. Those hidden patches are removed from the Tuscaran Glacier and Galladoria navigation maps, so
   nothing can be routed onto them; every real room is still reachable.
 
+- A siege army that is still mostly on the road when its gathering time runs out waits ten more minutes
+  for the rest, instead of marching with too few to start the battle. Bots waiting at a siege rally are
+  no longer moved back to town by the "stuck" check.
+
 **World**
 - Bots cross from zone to zone only where real ground meets, so long trips (for example from Hibernia's
   home zones into the frontier) no longer end on a walled-off mountain shelf. Bots riding a stable-master
@@ -209,6 +223,13 @@ downloads yet.
   number with the gray wolf pup, so he sometimes appeared as a level 1 pup, and the starter-area pups
   could appear as a level 20 Hermit.
 
+- The battlegrounds are open from every realm teleporter (Master Visur, Stor Gothi Annark, Channeler
+  Glasny and their apprentices): say [Battlegrounds] to see the brackets and go to yours. The frontier
+  medallion teleporter uses the same brackets, now with all four battlegrounds. Entry is by level only:
+  there is no realm point cap on this server.
+- Midgard characters leaving a battleground are sent to Svasud Faste again. The exit looked for a
+  location that doesn't exist and left them where they were.
+
 **Sluaghbinder (0.35b)**
 - The Epic Spells page shows only the raise ranks whose quest you have finished.
 - Muirenn's quests get a red map marker like bounties: on the target while hunting and on Muirenn
@@ -225,6 +246,10 @@ downloads yet.
 - BOT AI DELAY shows the server's real average bot and monster AI time per tick over the last minute.
 - Realm Records: new DELETE ALL RECORDS button (clears only the launcher's event history, no game
   data), and "Stopped by player" and "Route blocked" outcomes.
+
+- Bot Goals Setting has a Battlegrounds % column next to Solo PvE, Group PvE and RvR (not for level 50).
+- A new Battlegrounds tab shows each battleground's level bracket, who holds its central keep, and how
+  many bots of each realm are inside or on their way.
 
 **Server**
 - With many bots online the server creates about a third less short-lived memory per second (bot
