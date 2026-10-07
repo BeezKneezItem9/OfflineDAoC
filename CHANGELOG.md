@@ -165,6 +165,8 @@ downloads yet.
   among them) can't be hurt once they are drawn away from their lair. Bots now stop attacking such a
   boss and the one it chases runs back toward its lair so it follows, the way players do it; the raid no
   longer skips a boss for this (Summoner Roesia was skipped at 28%).
+- Caer Sidi: Skeletal Sacristan walks his loop slowly enough for a raid to follow him (he used to walk
+  faster than bots run), and spells hurt him a little more.
 - When a raid boss takes no damage for three minutes because the whole raid is busy with its guards
   and adds, some of the fighters switch to the boss (Princess Nahemah in Darkness Falls was skipped at
   full health with 65 raiders next to her).
@@ -231,6 +233,11 @@ downloads yet.
 - If you take the keep, the realm that lost it comes back once to take it back. It gathers its army at its
   outpost (80% of it, or ten minutes), marches, and strikes the moment it arrives, sized like the defense you
   beat (up to 240 against a /raid 80), and it fights for up to 30 minutes. You'll need to hold the keep.
+- Bot armies bring more siege equipment: an army sets up two rams and a trebuchet on the gate (trebuchets
+  hit doors hardest), plus a catapult and ballistas, and every bot standing at a ram helps it hit harder.
+  Defenders set up catapults and ballistas inside the keep. A smaller force still brings a ram.
+- A siege ends as defended once the attacking army has been driven off and stays gone for ten minutes,
+  so the defenders go back to the world instead of waiting out a four-hour timer.
 - Siege weapons can no longer hurt a keep lord, and bots and their pets can't hurt him either while the gate or the
   keep door is still standing (their spells and arrows used to reach him through the walls). You have to break in
   and fight your way to him. Rams also go for the keep door after the gate, not the small side postern, and
