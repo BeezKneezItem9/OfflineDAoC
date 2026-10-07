@@ -233,7 +233,8 @@ downloads yet.
   beat (up to 240 against a /raid 80), and it fights for up to 30 minutes. You'll need to hold the keep.
 - Siege weapons can no longer hurt a keep lord, and bots and their pets can't hurt him either while the gate or the
   keep door is still standing (their spells and arrows used to reach him through the walls). You have to break in
-  and fight your way to him. Rams also go for the keep door after the gate, not the small side postern.
+  and fight your way to him. Rams also go for the keep door after the gate, not the small side postern, and
+  bots now set up rams at the keep door once the gate is broken (they couldn't find a way through it before).
 - Your /raid 40 and /raid 80 fight keep sieges on their own. When you attack an enemy keep, the raid splits into
   squads of eight. One squad stays with you as a bodyguard. The others set up rams, catapults, trebuchets and
   ballistas, shoot the archers off the walls, hold the gate, and storm the keep lord once the doors are down.
