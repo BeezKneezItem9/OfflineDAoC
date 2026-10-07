@@ -130,6 +130,19 @@ downloads yet.
   seconds without landing any damage they move on and ignore that target for five minutes.
 - A bot that hit a route problem while travelling to its camp could stop thinking for that turn with an
   error; it now just picks a new camp.
+- Enemy-realm gamebots are shown the way enemy players were in the period game: by their race (for
+  example "Saracen"), with their realm rank title where a guild name would be, never by their own name.
+  This holds for their nameplate and for combat, spell, resist and death messages. Gamebots of your own
+  realm, pets, companion bots and game masters keep their real names.
+- RvR bots stay on the frontier they picked for 20 to 25 minutes. They used to re-plan every minute
+  across all three frontiers and kept porting home and out again through the portal keeps (one bot
+  ported 11 times in half an hour). A relic on the move, a siege or a defense call still pulls them
+  wherever they are needed.
+- Battleground monsters are camps for solo and group PvE bots whose level fits that battleground.
+- Bots crossing between zones prefer crossings that lead onto the zone's main ground instead of onto a
+  ledge or plateau with no way down (the East Svealand plateau caught over a hundred bots in one run).
+- A defending army that has gathered fewer than half its defenders waits up to four more minutes for
+  the rest before it marches, so defenders arrive together instead of a handful at a time.
 
 **Realm events and raids**
 - New neutral raid events: Summoner's Hall and Darkness Falls. Every realm can run its own 300-bot
@@ -229,6 +242,13 @@ downloads yet.
   there is no realm point cap on this server.
 - Midgard characters leaving a battleground are sent to Svasud Faste again. The exit looked for a
   location that doesn't exist and left them where they were.
+- All four battlegrounds have their monsters, never above the battleground's level: Abermenai (15-19),
+  Thidranki (20-24), Murdaigean (25-29) and Caledonia (30-35), from period sources. Dun Murdaigean and
+  Dun Abermenai have their central keeps with Renegade guards and a Renegade Chieftain; the launcher's
+  reset-all-keeps button resets them with the rest.
+- Howth and Connla in Hibernia have their low-level monsters back: feccans, skeletal pawns, villainous
+  youths, water beetles, spraggons and the rest of the level 1-15 populations, placed where period
+  radar logs saw them. There used to be no monsters at all near Howth.
 
 **Sluaghbinder (0.35b)**
 - The Epic Spells page shows only the raise ranks whose quest you have finished.
