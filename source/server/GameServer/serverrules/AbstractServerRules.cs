@@ -1706,7 +1706,7 @@ namespace DOL.GS.ServerRules
                     inventoryItem = GameInventoryItem.Create(itemTemplate);
 
                 inventoryItem.IsCrafted = false;
-                inventoryItem.Creator = killedNpc.Name;
+                inventoryItem.Creator = AutonomousBotRealmPointRewards.IsEligibleVictim(killedNpc) ? "Realm adventurer" : killedNpc.Name;
 
                 // This may seem like an odd place for this code, but loot-generating code further up the line
                 // is dealing strictly with ItemTemplate objects, while you need the InventoryItem in order
@@ -1746,7 +1746,7 @@ namespace DOL.GS.ServerRules
             static void NotifyNearbyPlayers(GameNPC killedNpc, GameStaticItemTimed item, List<GamePlayer> nearbyPlayers)
             {
                 foreach (GamePlayer player in nearbyPlayers)
-                    player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameNPC.DropLoot.Drops", killedNpc.GetName(0, true, player.Client.Account.Language, killedNpc), item.GetName(1, false))), eChatType.CT_Loot, eChatLoc.CL_SystemWindow);
+                    player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameNPC.DropLoot.Drops", BeezEnemyIdentity.IsEnemy(player, killedNpc) ? BeezEnemyIdentity.Name(player, killedNpc) : killedNpc.GetName(0, true, player.Client.Account.Language, killedNpc), item.GetName(1, false))), eChatType.CT_Loot, eChatLoc.CL_SystemWindow);
             }
         }
 
@@ -2095,27 +2095,13 @@ namespace DOL.GS.ServerRules
 
             void RewardRealmPoints(out int realmPointsEarned)
             {
-                int realmPoints = (int) (baseRpReward * damagePercent);
                 DbBattleground battleground = GameServer.KeepManager.GetBattleground(playerToAward.CurrentRegionID);
-
-                // Only award RPs if the player is under the battleground's cap.
-                if (battleground == null || (playerToAward.RealmLevel < battleground.MaxRealmLevel))
-                    realmPoints = (int) (realmPoints * (1.0 + 2.0 * (killedPlayer.RealmLevel - playerToAward.RealmLevel) / 900.0));
-
-                realmPoints += CalculateGroupBonus();
-
-                if (realmPoints > 0)
-                    playerToAward.GainRealmPoints(realmPoints, true);
-
-                realmPointsEarned = realmPoints;
-
-                int CalculateGroupBonus()
-                {
-                    if (playerToAward.Group == null || !groupCountAndDamage.TryGetValue(playerToAward.Group, out EntityCountTotalDamagePair value))
-                        return 0;
-
-                    return (int) (realmPoints * (value.Count - 1) * 0.125);
-                }
+                int groupMembers = playerToAward.Group != null && groupCountAndDamage.TryGetValue(playerToAward.Group, out var group) ? group.Count : 1;
+                realmPointsEarned = BeezRealmRewards.Calculate(killedPlayer.RealmPointsValue, killedPlayer.RealmLevel,
+                    playerToAward.RealmPointsValue, playerToAward.RealmLevel, entityCountTotalDamagePair.Count,
+                    groupMembers, damagePercent, battleground == null || playerToAward.RealmLevel < battleground.MaxRealmLevel);
+                if (realmPointsEarned > 0)
+                    playerToAward.GainRealmPoints(realmPointsEarned, true);
             }
 
             void RewardBountyPoints()

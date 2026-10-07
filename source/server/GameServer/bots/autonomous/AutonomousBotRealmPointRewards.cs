@@ -16,8 +16,6 @@ namespace DOL.GS;
 /// </summary>
 public static class AutonomousBotRealmPointRewards
 {
-    internal const string LastRealmPointDeathTickProperty = "autonomous.rvr.last.realm.point.death.tick";
-
     public static bool IsEligibleVictim(GameNPC npc) =>
         npc is GameBot { IsAutonomousWorldBot: true, IsTemporaryGroupHelper: false };
 
@@ -32,26 +30,8 @@ public static class AutonomousBotRealmPointRewards
         int awarderRealmPointValue, int awarderRealmLevel, int participantCount,
         int groupContributorCount, double damagePercent, bool applyRealmRankAdjustment)
     {
-        if (victimRealmPointValue <= 0 || awarderRealmPointValue <= 0 ||
-            participantCount <= 0 || damagePercent <= 0)
-        {
-            return 0;
-        }
-
-        int baseRealmPoints = victimRealmPointValue / participantCount;
-        baseRealmPoints = Math.Min(baseRealmPoints, awarderRealmPointValue * 2);
-        int realmPoints = (int)(baseRealmPoints * Math.Min(1.0, damagePercent));
-
-        if (applyRealmRankAdjustment)
-        {
-            realmPoints = (int)(realmPoints *
-                (1.0 + 2.0 * (victimRealmLevel - awarderRealmLevel) / 900.0));
-        }
-
-        if (groupContributorCount > 1)
-            realmPoints += (int)(realmPoints * (groupContributorCount - 1) * 0.125);
-
-        return Math.Max(0, realmPoints);
+        return BeezRealmRewards.Calculate(victimRealmPointValue, victimRealmLevel, awarderRealmPointValue,
+            awarderRealmLevel, participantCount, groupContributorCount, damagePercent, applyRealmRankAdjustment);
     }
 
     public static void Award(GameBot killedBot, GameObject killer)
@@ -59,15 +39,11 @@ public static class AutonomousBotRealmPointRewards
         if (!IsEligibleVictim(killedBot))
             return;
 
-        long now = GameLoop.GameLoopTime;
-        long previousDeath = killedBot.TempProperties.GetProperty<long>(
-            LastRealmPointDeathTickProperty, -1);
+        if (killedBot.Realm == eRealm.None ||
+            (killedBot.CurrentZone?.IsRvR != true && killedBot.CurrentRegion?.IsRvR != true))
+            return;
+        long elapsed = killedBot.TempProperties.GetProperty<long>("beez.rp.recovery.elapsed", long.MaxValue);
         long worthInterval = Math.Max(0, Properties.RP_WORTH_SECONDS) * 1000L;
-        bool isWorthRealmPoints = previousDeath < 0 || now - previousDeath >= worthInterval;
-
-        // Every death resets the same repeat-kill window used for a real player,
-        // including a death caused by an NPC or by somebody who receives no RP.
-        killedBot.TempProperties.SetProperty(LastRealmPointDeathTickProperty, now);
 
         KeyValuePair<GameLiving, double>[] rawContributors;
         lock (killedBot.XpGainersLock)
@@ -97,6 +73,11 @@ public static class AutonomousBotRealmPointRewards
             // Persistent gamebots remain part of the damage denominator, just
             // like another real participant, but this path only pays connected
             // players. Temporary companions have already resolved to the owner.
+            if (pair.Key is GameBot autonomous && autonomous.Group != null &&
+                autonomous.ObjectState == GameObject.eObjectState.Active &&
+                autonomous.IsWithinRadius(killedBot, WorldMgr.MAX_EXPFORKILL_DISTANCE))
+                AddContribution(autonomous, pair.Value, autonomous.Group, groupContributions);
+
             if (pair.Key is not GamePlayer player ||
                 player.ObjectState is not GameObject.eObjectState.Active ||
                 !player.IsWithinRadius(killedBot, WorldMgr.MAX_EXPFORKILL_DISTANCE))
@@ -129,7 +110,7 @@ public static class AutonomousBotRealmPointRewards
                 int groupContributorCount = player.Group == null ? 1 : contributorCount;
                 int realmPointsEarned = 0;
 
-                if (isWorthRealmPoints)
+                if (totalDamage > 0)
                 {
                     DbBattleground battleground = GameServer.KeepManager.GetBattleground(player.CurrentRegionID);
                     bool applyRankAdjustment = battleground == null || player.RealmLevel < battleground.MaxRealmLevel;
@@ -137,13 +118,9 @@ public static class AutonomousBotRealmPointRewards
                         player.RealmPointsValue, player.RealmLevel, contributorCount,
                         groupContributorCount, damagePercent, applyRankAdjustment);
 
+                    realmPointsEarned = BeezRealmRewards.Recover(realmPointsEarned, elapsed, worthInterval);
                     if (realmPointsEarned > 0)
                         player.GainRealmPoints(realmPointsEarned, true);
-                }
-                else
-                {
-                    player.Out.SendMessage($"{killedBot.Name} has been killed recently and is worth no realm points!",
-                        eChatType.CT_Important, eChatLoc.CL_SystemWindow);
                 }
 
                 bool deathBlow = ReferenceEquals(player, creditedKiller);

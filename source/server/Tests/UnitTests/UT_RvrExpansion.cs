@@ -292,6 +292,9 @@ public sealed class UT_RvrExpansion
         var bot = (Carrier)RuntimeHelpers.GetUninitializedObject(typeof(Carrier));
         bot.Realm = eRealm.Midgard;
         bot.Name = "EnemyBot";
+        typeof(GameNPC).GetField("m_brains", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(bot, new ArrayList());
+        viewer.Connection = (GameClient)RuntimeHelpers.GetUninitializedObject(typeof(GameClient));
+        viewer.Connection.Account = new DbAccount { Language = "EN", PrivLevel = 1 };
         typeof(GameBot).GetField("<IsAutonomousWorldBot>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic)!
             .SetValue(bot, true);
 

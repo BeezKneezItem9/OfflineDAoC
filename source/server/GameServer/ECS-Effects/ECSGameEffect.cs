@@ -299,7 +299,7 @@ namespace DOL.GS
                     toExclude = SpellHandler.Caster;
 
                 // "{0} looks more agile!"
-                Message.SystemToArea(Owner, Util.MakeSentence(thirdPersonMessage, Owner.GetName(0, thirdPersonMessage.StartsWith("{0}"))), eChatType.CT_Spell, Owner, toExclude);
+                BeezEnemyIdentity.SystemToArea(Owner, Util.MakeSentence(thirdPersonMessage, Owner.GetName(0, thirdPersonMessage.StartsWith("{0}"))), eChatType.CT_Spell, [Owner, SpellHandler.Caster], Owner, toExclude);
             }
         }
 

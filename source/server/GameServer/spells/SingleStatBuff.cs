@@ -20,6 +20,8 @@ namespace DOL.GS.Spells
 
         protected override double CalculateBuffDebuffEffectiveness()
         {
+            if (BeezApplication != null)
+                return BeezBuffs.Effectiveness(Spell);
             double effectiveness;
             GamePlayer playerCaster = Caster as GamePlayer;
 

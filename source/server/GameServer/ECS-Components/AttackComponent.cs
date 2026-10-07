@@ -645,7 +645,7 @@ namespace DOL.GS
                     else
                     {
                         if (_startAttackTarget is GameNPC npcTarget)
-                            player.Out.SendMessage(LanguageMgr.GetTranslation(player.Client.Account.Language, "GamePlayer.StartAttack.CombatTarget", _startAttackTarget.GetName(0, false, player.Client.Account.Language, npcTarget)), eChatType.CT_YouHit, eChatLoc.CL_SystemWindow);
+                            player.Out.SendMessage(LanguageMgr.GetTranslation(player.Client.Account.Language, "GamePlayer.StartAttack.CombatTarget", BeezEnemyIdentity.IsEnemy(player, _startAttackTarget) ? BeezEnemyIdentity.Name(player, _startAttackTarget) : _startAttackTarget.GetName(0, false, player.Client.Account.Language, npcTarget)), eChatType.CT_YouHit, eChatLoc.CL_SystemWindow);
                         else
                             player.Out.SendMessage(LanguageMgr.GetTranslation(player.Client.Account.Language, "GamePlayer.StartAttack.CombatTarget", _startAttackTarget.GetName(0, false)), eChatType.CT_YouHit, eChatLoc.CL_SystemWindow);
 
@@ -1963,10 +1963,10 @@ namespace DOL.GS
                 if (ad.MissChance > 0)
                     message += $" ({ad.MissChance:0.##}%)";
 
-                player.Out.SendMessage(message, eChatType.CT_YouHit, eChatLoc.CL_SystemWindow);
+                player.Out.SendMessage(BeezEnemyIdentity.Message(player, message, ad.Attacker, ad.Target, ad.OriginalTarget), eChatType.CT_YouHit, eChatLoc.CL_SystemWindow);
             }
 
-            static void SendHitMessages(GamePlayer player, WeaponAction action, AttackData ad)
+            void SendHitMessages(GamePlayer player, WeaponAction action, AttackData ad)
             {
                 if (ad.AttackResult is eAttackResult.HitStyle)
                 {
@@ -2013,7 +2013,7 @@ namespace DOL.GS
                 {
                     string baseMessage = LanguageMgr.GetTranslation(player.Client.Account.Language, "GamePlayer.Attack.Critical", ad.Target.GetName(0, false, player.Client.Account.Language, ad.Target as GameNPC), ad.CriticalDamage);
                     string criticalMessage = $"{baseMessage} ({ad.CriticalChance}%)";
-                    player.Out.SendMessage(criticalMessage, eChatType.CT_YouHit, eChatLoc.CL_SystemWindow);
+                    player.Out.SendMessage(BeezEnemyIdentity.Message(player, criticalMessage, ad.Target), eChatType.CT_YouHit, eChatLoc.CL_SystemWindow);
                 }
 
                 static string GetWeaponNameForMessage(GamePlayer player, DbInventoryItem weapon)
@@ -2033,10 +2033,10 @@ namespace DOL.GS
                 }
             }
 
-            static void SendLocalizedMessage(GamePlayer player, string key, params ReadOnlySpan<object> args)
+            void SendLocalizedMessage(GamePlayer player, string key, params ReadOnlySpan<object> args)
             {
                 string message = LanguageMgr.GetTranslation(player.Client.Account.Language, key, args);
-                player.Out.SendMessage(message, eChatType.CT_YouHit, eChatLoc.CL_SystemWindow);
+                player.Out.SendMessage(BeezEnemyIdentity.Message(player, message, ad.Attacker, ad.Target, ad.OriginalTarget), eChatType.CT_YouHit, eChatLoc.CL_SystemWindow);
             }
         }
 
@@ -2085,14 +2085,14 @@ namespace DOL.GS
                 // Note: Most of the missing logic here is currently handled by `GameLiving.OnAttackedByEnemy`.
             }
 
-            static void SendLocalizedMessage(GamePlayer player, string key, double chance, params ReadOnlySpan<object> args)
+            void SendLocalizedMessage(GamePlayer player, string key, double chance, params ReadOnlySpan<object> args)
             {
                 string message = LanguageMgr.GetTranslation(player.Client.Account.Language, key, args);
 
                 if (chance > 0)
                     message += $" ({chance:0.0}%)";
 
-                player.Out.SendMessage(message, eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
+                player.Out.SendMessage(BeezEnemyIdentity.Message(player, message, ad.Attacker, ad.Target, ad.OriginalTarget), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
             }
         }
 
@@ -2115,7 +2115,7 @@ namespace DOL.GS
             };
 
             if (!string.IsNullOrEmpty(message))
-                Message.SystemToArea(ad.Attacker, message, eChatType.CT_OthersCombat, _broadcastExcludes);
+                BeezEnemyIdentity.SystemToArea(ad.Attacker, message, eChatType.CT_OthersCombat, [ad.Attacker, ad.Target, ad.OriginalTarget], _broadcastExcludes);
 
             ad.BroadcastMessage = message;
 

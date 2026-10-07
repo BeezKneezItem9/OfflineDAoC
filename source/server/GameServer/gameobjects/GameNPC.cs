@@ -2934,10 +2934,10 @@ namespace DOL.GS
 
 			if (killer != null)
 			{
-				Message.SystemToArea(this, $"{GetName(0, true)} dies!", eChatType.CT_PlayerDied, killer);
+				BeezEnemyIdentity.SystemToArea(this, $"{GetName(0, true)} dies!", eChatType.CT_PlayerDied, [this], killer);
 
 				if (killer is GamePlayer player)
-					player.Out.SendMessage($"{GetName(0, true)} dies!", eChatType.CT_PlayerDied, eChatLoc.CL_SystemWindow);
+					player.Out.SendMessage(BeezEnemyIdentity.Message(player, $"{GetName(0, true)} dies!", this), eChatType.CT_PlayerDied, eChatLoc.CL_SystemWindow);
 
 				// Deal out experience, realm points, loot... Based on server rules.
 				GameServer.ServerRules.OnNpcKilled(this, killer);

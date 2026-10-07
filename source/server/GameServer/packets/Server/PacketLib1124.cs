@@ -247,7 +247,8 @@ namespace DOL.GS.PacketHandler
 							guildName = ((DbLanguageGameNpc)translation).GuildName;
 					}
 
-					ReadOnlySpan<char> nameSpan = name;
+					BeezEnemyIdentity.Resolve(m_gameClient.Player, npc, ref name, ref guildName);
+				ReadOnlySpan<char> nameSpan = name;
 					int maxNameLength = 47 - add.Length - 2;
 
 					if (nameSpan.Length > maxNameLength)

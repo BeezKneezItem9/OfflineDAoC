@@ -111,12 +111,11 @@ namespace DOL.GS
 
         public override IList GetExamineMessages(GamePlayer player)
         {
-            if (IsAutonomousWorldBot && player != null && Realm != eRealm.None && player.Realm != eRealm.None &&
-                Realm != player.Realm)
+            if (BeezEnemyIdentity.IsEnemy(player, this))
             {
                 return new ArrayList(1)
                 {
-                    $"You examine {GetName(0, false)}. {GetPronoun(0, true)} is a member of an enemy faction."
+                    $"You examine {BeezEnemyIdentity.Name(player, this)}. {GetPronoun(0, true)} is a member of an enemy faction."
                 };
             }
             return base.GetExamineMessages(player);
@@ -910,6 +909,14 @@ namespace DOL.GS
 
         public override void ProcessDeath(GameObject killer)
         {
+            if (IsAutonomousWorldBot)
+            {
+                long interval = Math.Max(0, DOL.GS.ServerProperties.Properties.RP_WORTH_SECONDS) * 1000L;
+                long elapsed = PersistentRecord?.BotId > 0
+                    ? BeezRealmRewards.RecordDeath(PersistentRecord.BotId, GameLoop.GameLoopTime, interval)
+                    : long.MaxValue;
+                TempProperties.SetProperty("beez.rp.recovery.elapsed", elapsed);
+            }
             AutonomousPetSupport.CancelPendingCharm(this);
             _deathTick = GameLoop.GameLoopTime;
             _deathRegionId = CurrentRegionID;

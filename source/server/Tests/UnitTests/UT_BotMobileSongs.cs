@@ -28,6 +28,16 @@ namespace DOL.UnitTests
         private long _time;
         private PetTestLanguageScope _language;
         private readonly List<GameLiving> _actors = new();
+        private readonly Dictionary<string, List<Spell>> _previousNativeLists = new();
+        private static Dictionary<string, List<Spell>> NativeLists => (Dictionary<string, List<Spell>>)typeof(SkillBase)
+            .GetField("m_lineSpells", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+        private void NativeSongs(Bot bot)
+        {
+            string key = BeezSongs.Lines((eCharacterClass)bot.CharacterClass.ID).First();
+            if (!_previousNativeLists.ContainsKey(key))
+                _previousNativeLists[key] = NativeLists.GetValueOrDefault(key);
+            NativeLists[key] = (bot.MiscSpells ?? []).Concat(bot.InstantMiscSpells ?? []).ToList();
+        }
         private sealed class Server : GameServer
         {
             protected override IObjectDatabase DataBaseImpl => Empty;
@@ -152,6 +162,10 @@ namespace DOL.UnitTests
             }
             _actors.Clear();
             _language.Dispose();
+            foreach (var pair in _previousNativeLists)
+                if (pair.Value == null) NativeLists.Remove(pair.Key);
+                else NativeLists[pair.Key] = pair.Value;
+            _previousNativeLists.Clear();
             typeof(GameLoop).GetProperty(nameof(GameLoop.GameLoopTime)).SetValue(null, _time);
             GameServer.LoadTestDouble(_previous);
         }
@@ -168,6 +182,7 @@ namespace DOL.UnitTests
             Field(typeof(GameLiving), actor, "m_effects", new GameEffectList(actor));
             Field(typeof(GameLiving), actor, "m_abilities", new Dictionary<string, Ability>());
             Field(typeof(GameLiving), actor, "<ActivePulseSpells>k__BackingField", new ConcurrentDictionary<eSpellType, Spell>());
+            Field(typeof(GameLiving), actor, "<BeezPulseSources>k__BackingField", new ConcurrentDictionary<ECSPulseEffect, byte>());
             if (actor is GameNPC)
             {
                 Field(typeof(GameNPC), actor, "m_brains", new ArrayList());
@@ -521,6 +536,7 @@ namespace DOL.UnitTests
                 Range = 1500, Duration = 600, Value = 10, CastTime = 3 }, 1);
             Spell song = Song(id: 99981);
             bot.MiscSpells = new List<Spell> { song, buff };
+            NativeSongs(bot);
             MethodInfo maintain = typeof(BotBrain).GetMethod("TryMaintainTravelAndClassBuffs", Hidden);
             MethodInfo twist = typeof(BotBrain).GetMethod("TryMaintainClassicSongTwist", Hidden);
             Assert.That(maintain.Invoke(bot.Brain, null), Is.EqualTo(true));
@@ -555,6 +571,7 @@ namespace DOL.UnitTests
             Spell secondary = Song(type == typeof(ClassBard) ? "EnduranceRegenBuff" : "HealthRegenBuff", id: 99984);
             Spell power = Song("PowerRegenBuff", id: 99985);
             bot.MiscSpells = new List<Spell> { power, secondary, speed };
+            NativeSongs(bot);
             bot.LastRequested = null;
             player.Moving = true;
             typeof(BotBrain).GetMethod("TryMaintainClassicSongTwist", Hidden).Invoke(bot.Brain, null);
@@ -997,7 +1014,7 @@ namespace DOL.UnitTests
         }
 
         [Test]
-        public void WardensDoNotAlternateAnActiveBladeturnAndPaladinsDoNotToggleActiveChant()
+        public void WardenAddsDamageWhilePreservingItsActiveBladeturn()
         {
             // A solo Paladin now holds the damage chant in a fight (see SoloPaladinSwitchesOnceToTheDamageChant).
             foreach (Type type in new[] { typeof(ClassWarden) })
@@ -1005,22 +1022,26 @@ namespace DOL.UnitTests
                 Bot bot = NewBot(type); bot.CaptureCasts = true; bot.Attacking = true;
                 Spell anchor = Song(type == typeof(ClassWarden) ? "Bladeturn" : "EnduranceRegenBuff");
                 bot.InstantMiscSpells = new List<Spell> { anchor, Song("DamageAdd", id: 99972) };
+                NativeSongs(bot);
                 var source = new ECSPulseEffect(new(bot, 0, 1, new SpellHandler(bot, anchor, Line)), anchor.Frequency);
                 source.Start();
                 bot.effectListComponent.BeginTick();
                 typeof(BotBrain).GetMethod("TryMaintainTankChant", Hidden).Invoke(bot.Brain, null);
-                Assert.That(bot.LastRequested, Is.Null, "No secondary without a safe native child window; never toggle anchor");
+                Assert.That(bot.LastRequested?.ID, Is.EqualTo(99972), "Add the other family without stopping the active native source");
                 Assert.That(source.IsEnding, Is.False);
+                typeof(BotBrain).GetMethod("StopTwistedSong", Hidden).Invoke(bot.Brain, null);
+                Assert.That(source.IsActive, Is.True, "Ordinary bot maintenance must preserve eligible song sources");
             }
         }
 
         [Test]
-        public void SoloPaladinSwitchesOnceToTheDamageChantAndThenHoldsIt()
+        public void SoloPaladinAddsDamageWithoutStoppingEndurance()
         {
             Bot bot = NewBot(typeof(ClassPaladin)); bot.CaptureCasts = true; bot.Attacking = true;
             Spell endurance = Song("EnduranceRegenBuff");
             Spell damage = Song("DamageAdd", id: 99972);
             bot.InstantMiscSpells = new List<Spell> { endurance, damage };
+            NativeSongs(bot);
             var source = new ECSPulseEffect(new(bot, 0, 1, new SpellHandler(bot, endurance, Line)), endurance.Frequency);
             source.Start();
             bot.effectListComponent.BeginTick();
@@ -1062,13 +1083,14 @@ namespace DOL.UnitTests
             Bot bot = NewBot(type); bot.CaptureCasts = true; bot.Attacking = true; bot.Health = 50;
             Spell chant = Song(spellType);
             bot.InstantMiscSpells = new List<Spell> { chant };
+            NativeSongs(bot);
             MethodInfo maintain = typeof(BotBrain).GetMethod("TryMaintainTankChant", Hidden);
             maintain.Invoke(bot.Brain, null);
             Assert.That(bot.LastRequested, Is.SameAs(chant));
             Assert.That(bot.Attacking, Is.True);
             Assert.That(bot.Stops, Is.Zero);
             bot.LastRequested = null; bot.Cooldown = 8000;
-            Field(typeof(BotBrain), bot.Brain, "_nextSongTwistTick", 0L);
+            bot.TempProperties.SetProperty("beez.songs.next", 0L);
             maintain.Invoke(bot.Brain, null);
             Assert.That(bot.LastRequested, Is.Null);
         }

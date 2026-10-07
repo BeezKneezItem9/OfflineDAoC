@@ -12,6 +12,8 @@ namespace DOL.GS
     public class ECSGameSpellEffect : ECSGameEffect, IConcentrationEffect, IPooledList<ECSGameSpellEffect>
     {
         public new ISpellHandler SpellHandler;
+        public BeezBuffs.Application BeezApplication { get; }
+        public bool IsBeezBuff => BeezApplication != null;
         string IConcentrationEffect.Name => Name;
         ushort IConcentrationEffect.Icon => Icon;
         byte IConcentrationEffect.Concentration => SpellHandler.Spell.Concentration;
@@ -24,6 +26,16 @@ namespace DOL.GS
         {
             SpellHandler = initParams.SpellHandler;
             Spell spell = SpellHandler.Spell;
+            EffectType = EffectHelper.GetEffectFromSpell(spell);
+            BeezApplication = (SpellHandler as SpellHandler)?.BeezApplication;
+            if (IsBeezBuff)
+            {
+                Duration = 0;
+                ExpireTick = 0;
+                PulseFreq = 0;
+                NextTick = 0;
+                return;
+            }
             EffectType = EffectHelper.GetEffectFromSpell(SpellHandler.Spell);
             PulseFreq = spell.Frequency;
 
@@ -46,17 +58,17 @@ namespace DOL.GS
 
         public override bool IsConcentrationEffect()
         {
-            return SpellHandler.Spell.IsConcentration;
+            return !IsBeezBuff && SpellHandler.Spell.IsConcentration;
         }
 
         public override bool ShouldBeAddedToConcentrationList()
         {
-            return SpellHandler.Spell.IsConcentration || EffectType == eEffect.Pulse;
+            return !IsBeezBuff && !BeezSongs.IsEligible(SpellHandler) && (SpellHandler.Spell.IsConcentration || EffectType == eEffect.Pulse);
         }
 
         public override bool ShouldBeRemovedFromConcentrationList()
         {
-            return SpellHandler.Spell.IsConcentration || EffectType == eEffect.Pulse;
+            return !IsBeezBuff && !BeezSongs.IsEligible(SpellHandler) && (SpellHandler.Spell.IsConcentration || EffectType == eEffect.Pulse);
         }
 
         public override void TryApplyImmunity()
@@ -77,7 +89,7 @@ namespace DOL.GS
 
         public override DbPlayerXEffect GetSavedEffect()
         {
-            if (SpellHandler?.Spell == null)
+            if (IsBeezBuff || SpellHandler?.Spell == null)
                 return null;
 
             DbPlayerXEffect eff = new()

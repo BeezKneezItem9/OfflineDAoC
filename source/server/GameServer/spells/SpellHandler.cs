@@ -38,6 +38,7 @@ namespace DOL.GS.Spells
 		protected string TargetPronoun => Spell.Target is eSpellTarget.SELF ? "your" : "the target's";
 		protected string TargetPronounCapitalized => Spell.Target is eSpellTarget.SELF ? "Your" : "The target's";
 
+		public BeezBuffs.Application BeezApplication { get; internal set; }
 		public GameLiving Target { get; set; }
 		public eCastState CastState { get; private set; }
 		public bool HasLos { get; set; } // Modified by CastingComponent during LoS checks.
@@ -214,7 +215,7 @@ namespace DOL.GS.Spells
 			if (Caster.IsCrowdControlled)
 				return;
 
-			if (m_spell.InstrumentRequirement != 0 && !CheckInstrument())
+			if (m_spell.InstrumentRequirement != 0 && !BeezSongs.IsEligible(this) && !CheckInstrument())
 			{
 				MessageToCaster("You stop playing your song.", eChatType.CT_Spell);
 				effect.Cancel(false);
@@ -357,12 +358,12 @@ namespace DOL.GS.Spells
 
 			if (Caster is GameSummonedPet petCaster && petCaster.Owner is GamePlayer casterOwner)
 			{
-				casterOwner.LastInterruptMessage = $"Your {Caster.Name} was attacked by {attacker.Name} and their spell was interrupted!";
+				casterOwner.LastInterruptMessage = BeezEnemyIdentity.Message(casterOwner, $"Your {Caster.Name} was attacked by {attacker.Name} and their spell was interrupted!", attacker, Caster);
 				MessageToLiving(casterOwner, casterOwner.LastInterruptMessage, eChatType.CT_SpellResisted);
 			}
 			else if (Caster is GamePlayer playerCaster)
 			{
-				playerCaster.LastInterruptMessage = $"{attacker.GetName(0, true)} attacks you and your spell is interrupted!";
+				playerCaster.LastInterruptMessage = BeezEnemyIdentity.Message(playerCaster, $"{attacker.GetName(0, true)} attacks you and your spell is interrupted!", attacker);
 				MessageToLiving(playerCaster, playerCaster.LastInterruptMessage, eChatType.CT_SpellResisted);
 			}
 
@@ -528,7 +529,7 @@ namespace DOL.GS.Spells
 					if (EffectOwner==Target)
 					{
 						if (playerCaster != null && !quiet)
-							playerCaster.Out.SendMessage(string.Format("{0} is invisible to you!", Target.GetName(0, true)), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
+							playerCaster.Out.SendMessage(string.Format("{0} is invisible to you!", BeezEnemyIdentity.Name(playerCaster, Target)), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
 
 						return false;
 					}
@@ -804,7 +805,7 @@ namespace DOL.GS.Spells
 
 		public bool CheckConcentrationCost(bool quiet)
 		{
-			if (m_spell.Concentration == 0 || Caster is not (GamePlayer or GameBot))
+			if (BeezApplication != null || BeezSongs.IsEligible(this) || m_spell.Concentration == 0 || Caster is not (GamePlayer or GameBot))
 				return true;
 
 			if (m_caster.Concentration < m_spell.Concentration)
@@ -1387,7 +1388,7 @@ namespace DOL.GS.Spells
 					{
 						if (player != toExclude)
 							// Message: {0} casts a spell!
-							player.MessageFromArea(m_caster, LanguageMgr.GetTranslation(player.Client, "SpellHandler.CastSpell.Msg.LivingCastsSpell", Caster.GetName(0, true)), eChatType.CT_Spell, eChatLoc.CL_SystemWindow);
+							player.MessageFromArea(m_caster, LanguageMgr.GetTranslation(player.Client, "SpellHandler.CastSpell.Msg.LivingCastsSpell", BeezEnemyIdentity.IsEnemy(player, Caster) ? BeezEnemyIdentity.Name(player, Caster) : Caster.GetName(0, true)), eChatType.CT_Spell, eChatLoc.CL_SystemWindow);
 					}
 				}
 			}
@@ -2160,6 +2161,8 @@ namespace DOL.GS.Spells
 
 		protected virtual double CalculateBuffDebuffEffectiveness()
 		{
+            if (BeezApplication != null)
+                return BeezBuffs.Effectiveness(Spell);
 			double effectiveness;
 
 			if (SpellLine.KeyName is GlobalSpellsLines.Potions_Effects or GlobalSpellsLines.Item_Effects or GlobalSpellsLines.Combat_Styles_Effect or GlobalSpellsLines.Realm_Spells || Spell.Level <= 0)
@@ -2242,6 +2245,8 @@ namespace DOL.GS.Spells
 
 		public virtual void ApplyEffectOnTarget(GameLiving target)
 		{
+            if (BeezApplication != null && (!BeezApplication.IsValid || target != BeezApplication.Owner))
+                return;
 			// Potion and item effects aren't character abilities and so shouldn't be affected by effectiveness.
 			if (m_spellLine.KeyName is GlobalSpellsLines.Potions_Effects or GlobalSpellsLines.Item_Effects)
 				CasterEffectiveness = 1.0;
@@ -2605,12 +2610,13 @@ namespace DOL.GS.Spells
             if (!Spell.IsHarmful)
                 CabalistRestDiagnostics.Message(Caster, Spell, message);
 			if (Caster is GamePlayer playerCaster)
-				playerCaster.MessageToSelf(message, type);
+				playerCaster.MessageToSelf(BeezEnemyIdentity.Message(playerCaster, message, Caster, Target), type);
 			else if (Caster is GameNPC npcCaster && npcCaster.Brain is IControlledBrain npcCasterBrain
 					 && (type is eChatType.CT_YouHit or eChatType.CT_SpellResisted or eChatType.CT_Spell))
 			{
 				GamePlayer playerOwner = npcCasterBrain.GetPlayerOwner();
-				playerOwner?.MessageToSelf(message, type);
+				if (playerOwner != null)
+                    playerOwner.MessageToSelf(BeezEnemyIdentity.Message(playerOwner, message, Caster, Target), type);
 			}
 		}
 
@@ -2621,7 +2627,7 @@ namespace DOL.GS.Spells
 		{
 			if (message != null && message.Length > 0)
 			{
-				living.MessageToSelf(message, type);
+				living.MessageToSelf(living is GamePlayer viewer ? BeezEnemyIdentity.Message(viewer, message, Caster, Target) : message, type);
 			}
 		}
 

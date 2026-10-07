@@ -27,12 +27,25 @@ namespace DOL.GS
         public override void OnStartEffect()
         {
             Spell spell = SpellHandler.Spell;
+            if (BeezSongs.IsEligible(SpellHandler))
+                Owner.BeezPulseSources.TryAdd(this, 0);
             Owner.ActivePulseSpells.AddOrUpdate(spell.SpellType, spell, (x, y) => spell);
         }
 
         public override void OnStopEffect()
         {
-            Owner.ActivePulseSpells.TryRemove(SpellHandler.Spell.SpellType, out _);
+            var key = SpellHandler.Spell.SpellType;
+            if (BeezSongs.IsEligible(SpellHandler))
+            {
+                Owner.BeezPulseSources.TryRemove(this, out _);
+                ((ICollection<KeyValuePair<eSpellType, Spell>>)Owner.ActivePulseSpells)
+                    .Remove(new KeyValuePair<eSpellType, Spell>(key, SpellHandler.Spell));
+                foreach (ECSPulseEffect remaining in Owner.BeezPulseSources.Keys)
+                    if (remaining.SpellHandler.Spell.SpellType == key && !remaining.IsEnded && !remaining.IsEnding)
+                        Owner.ActivePulseSpells.TryAdd(key, remaining.SpellHandler.Spell);
+            }
+            else
+                Owner.ActivePulseSpells.TryRemove(key, out _);
 
             if (SpellHandler.Spell.IsFocus)
             {

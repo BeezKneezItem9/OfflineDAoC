@@ -540,6 +540,7 @@ namespace DOL.GS.PacketHandler.Client.v168
             // Fire the character creation event
             // This is Where Most Creation Script should take over to update any data they would like !
             GameEventMgr.Notify(DatabaseEvent.CharacterCreated, null, new CharacterEventArgs(ch, client));
+            BeezDeveloperItems.GrantCreated(new CharacterEventArgs(ch, client));
 
             // write changes
             GameServer.Database.SaveObject(ch);

@@ -31,13 +31,13 @@ namespace DOL.GS.Spells
                 GamePlayer owner = brain.GetPlayerOwner();
 
                 if (owner != null)
-                    MessageToLiving(owner, string.Format(LanguageMgr.GetTranslation(owner.Client, "DamageAddAndShield.EventHandlerDA.YourHitFor"), ad.Attacker.Name, target.GetName(0, false), ad.Damage), eChatType.CT_Spell);
+                    MessageToLiving(owner, string.Format(LanguageMgr.GetTranslation(owner.Client, "DamageAddAndShield.EventHandlerDA.YourHitFor"), BeezEnemyIdentity.Name(owner, ad.Attacker), BeezEnemyIdentity.Name(owner, target), ad.Damage), eChatType.CT_Spell);
             }
             else if (attacker is GamePlayer attackerPlayer)
-                MessageToLiving(attacker, string.Format(LanguageMgr.GetTranslation(attackerPlayer.Client, "DamageAddAndShield.EventHandlerDA.YouHitExtra"), target.GetName(0, false), ad.Damage), eChatType.CT_Spell);
+                MessageToLiving(attacker, string.Format(LanguageMgr.GetTranslation(attackerPlayer.Client, "DamageAddAndShield.EventHandlerDA.YouHitExtra"), BeezEnemyIdentity.Name(attackerPlayer, target), ad.Damage), eChatType.CT_Spell);
 
             if (target is GamePlayer targetPlayer)
-                MessageToLiving(target, string.Format(LanguageMgr.GetTranslation(targetPlayer.Client, "DamageAddAndShield.EventHandlerDA.DamageToYou"), attacker.GetName(0, false), ad.Damage), eChatType.CT_Spell);
+                MessageToLiving(target, string.Format(LanguageMgr.GetTranslation(targetPlayer.Client, "DamageAddAndShield.EventHandlerDA.DamageToYou"), BeezEnemyIdentity.Name(targetPlayer, attacker), ad.Damage), eChatType.CT_Spell);
 
             target.OnAttackedByEnemy(ad);
             attacker.DealDamage(ad);
@@ -71,13 +71,13 @@ namespace DOL.GS.Spells
             AttackData ad = CreateAttackData(damage, attacker, target);
 
             if (attacker is GamePlayer playerAttacker)
-                MessageToLiving(attacker, string.Format(LanguageMgr.GetTranslation(playerAttacker.Client, "DamageAddAndShield.EventHandlerDS.YouHitFor"), target.GetName(0, false), ad.Damage), eChatType.CT_Spell);
+                MessageToLiving(attacker, string.Format(LanguageMgr.GetTranslation(playerAttacker.Client, "DamageAddAndShield.EventHandlerDS.YouHitFor"), BeezEnemyIdentity.Name(playerAttacker, target), ad.Damage), eChatType.CT_Spell);
             else if (attacker is GameNPC attackerNpc && attackerNpc.Brain is IControlledBrain brain)
             {
                 GamePlayer owner = brain.GetPlayerOwner();
 
                 if (owner != null)
-                    MessageToLiving(owner, string.Format(LanguageMgr.GetTranslation(owner.Client, "DamageAddAndShield.EventHandlerDS.YourHitFor"), ad.Attacker.Name, target.GetName(0, false), ad.Damage ), eChatType.CT_Spell);
+                    MessageToLiving(owner, string.Format(LanguageMgr.GetTranslation(owner.Client, "DamageAddAndShield.EventHandlerDS.YourHitFor"), BeezEnemyIdentity.Name(owner, ad.Attacker), BeezEnemyIdentity.Name(owner, target), ad.Damage ), eChatType.CT_Spell);
             }
 
             target.OnAttackedByEnemy(ad);

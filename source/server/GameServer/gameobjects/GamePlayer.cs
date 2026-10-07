@@ -912,6 +912,8 @@ namespace DOL.GS
         /// </summary>
         protected virtual void CleanupOnDisconnect()
         {
+            BeezBindPortals.Clear(this);
+            BeezBuffs.Clear(this);
             if (movementComponent.UseSafePosition)
             {
                 if (movementComponent.TryGetSafePosition(out Vector3 safePosition))
@@ -1269,6 +1271,7 @@ namespace DOL.GS
             string description = string.Format("in {0}", this.GetBindSpotDescription());
             Out.SendMessage(LanguageMgr.GetTranslation(Client.Account.Language, "GamePlayer.Bind.LastBindPoint", description), eChatType.CT_System, eChatLoc.CL_SystemWindow);
 
+            BeezBindPortals.Endpoint oldBind = BeezBindPortals.BindPoint(this);
             bool bound = false;
 
             var bindarea = CurrentAreas.OfType<Area.BindArea>().FirstOrDefault(ar => GameServer.ServerRules.IsAllowedToBind(this, ar.BindPoint));
@@ -1355,6 +1358,8 @@ namespace DOL.GS
             {
                 Out.SendMessage(LanguageMgr.GetTranslation(Client.Account.Language, "GamePlayer.Bind.CantHere"), eChatType.CT_System, eChatLoc.CL_SystemWindow);
             }
+            if (BeezBindPortals.BindPoint(this) != oldBind)
+                BeezBindPortals.Clear(this);
         }
         #endregion
 
@@ -5020,7 +5025,7 @@ namespace DOL.GS
 
             foreach (Spell spell in ActivePulseSpells.Values)
             {
-                if (spell.InstrumentRequirement != 0)
+                if (spell.InstrumentRequirement != 0 && !BeezSongs.IsEligible(this, spell))
                 {
                     ECSPulseEffect effect = EffectListService.GetPulseEffectOnTarget(this, spell);
 
@@ -5787,6 +5792,8 @@ namespace DOL.GS
         /// <param name="killer">the killer</param>
         public override void ProcessDeath(GameObject killer)
         {
+            BeezBindPortals.Clear(this);
+            BeezBuffs.Clear(this);
             // Ambient trigger upon killing player
             if (killer is GameNPC)
                 (killer as GameNPC).FireAmbientSentence(GameNPC.eAmbientTrigger.killing, killer as GameLiving);
@@ -6615,6 +6622,9 @@ namespace DOL.GS
 
                     return;
                 }
+
+                if (BeezBindPortals.TryUse(this, useItem, type))
+                    return;
 
                 if (useItem is IGameInventoryItem inventoryItem)
                 {
@@ -8956,6 +8966,8 @@ namespace DOL.GS
             if (item.IsMagical)
                 Out.SendMessage(string.Format(LanguageMgr.GetTranslation(Client.Account.Language, "GamePlayer.OnItemEquipped.Magic", item.GetName(0, false))), eChatType.CT_Skill, eChatLoc.CL_SystemWindow);
 
+            BeezDeveloperItems.ApplyRingBonuses(this, item, 1);
+
             if (item.Bonus1 != 0)
             {
                 ItemBonus[(eProperty) item.Bonus1Type] += item.Bonus1;
@@ -9114,6 +9126,8 @@ namespace DOL.GS
             // Cancel any self buffs that are unequipped.
             if (item.SpellID > 0 && SelfBuffChargeIDs.Contains(item.SpellID) && Inventory.EquippedItems.Where(x => x.SpellID == item.SpellID).Count() <= 1)
                 CancelChargeBuff(item.SpellID);
+
+            BeezDeveloperItems.ApplyRingBonuses(this, item, -1);
 
             if (item.Bonus1 != 0)
             {
@@ -9333,6 +9347,8 @@ namespace DOL.GS
                 {
                     (item as IGameInventoryItem).CheckValid(this);
                 }
+
+                BeezDeveloperItems.ApplyRingBonuses(this, item, 1);
 
                 if (item.IsMagical)
                 {

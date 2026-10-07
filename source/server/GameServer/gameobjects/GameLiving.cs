@@ -31,6 +31,7 @@ namespace DOL.GS
 		public static int IN_COMBAT_DURATION = 10000;
 
 		public ConcurrentDictionary<eSpellType, Spell> ActivePulseSpells { get; } = new();
+        public ConcurrentDictionary<ECSPulseEffect, byte> BeezPulseSources { get; } = new();
 
 		#region Combat
 
@@ -1606,10 +1607,10 @@ namespace DOL.GS
 						else if (ad.Modifier < 0)
 							modMessage = $" ({ad.Modifier})";
 
-						player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.HitsForDamage"), ad.Attacker.GetName(0, true), ad.Target.Name, ad.Damage, modMessage), eChatType.CT_Damaged, eChatLoc.CL_SystemWindow);
+						player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.HitsForDamage"), BeezEnemyIdentity.Name(player, ad.Attacker), BeezEnemyIdentity.Name(player, ad.Target), ad.Damage, modMessage), eChatType.CT_Damaged, eChatLoc.CL_SystemWindow);
 
 						if (ad.CriticalDamage > 0)
-							player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.CriticallyHitsForDamage"), ad.Attacker.GetName(0, true), ad.Target.Name, ad.CriticalDamage), eChatType.CT_Damaged, eChatLoc.CL_SystemWindow);
+							player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.CriticallyHitsForDamage"), BeezEnemyIdentity.Name(player, ad.Attacker), BeezEnemyIdentity.Name(player, ad.Target), ad.CriticalDamage), eChatType.CT_Damaged, eChatLoc.CL_SystemWindow);
 					}
 				}
 			}
@@ -1650,13 +1651,13 @@ namespace DOL.GS
 								}
 
 								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.YourHits"),
-									ad.Attacker.Name, attackTypeMsg, ad.Target.GetName(0, false), ad.Damage, modMessage),
+									BeezEnemyIdentity.Name(player, ad.Attacker), attackTypeMsg, BeezEnemyIdentity.Name(player, ad.Target), ad.Damage, modMessage),
 									eChatType.CT_YouHit, eChatLoc.CL_SystemWindow);
 
 								if (ad.CriticalDamage > 0)
 								{
 									player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.YourCriticallyHits"),
-										ad.Attacker.Name, ad.Target.GetName(0, false), ad.CriticalDamage) + $" ({ad.CriticalChance}%)",
+										BeezEnemyIdentity.Name(player, ad.Attacker), BeezEnemyIdentity.Name(player, ad.Target), ad.CriticalDamage) + $" ({ad.CriticalChance}%)",
 										eChatType.CT_YouHit,eChatLoc.CL_SystemWindow);
 								}
 
@@ -1690,22 +1691,22 @@ namespace DOL.GS
 						{
 							case eAttackResult.Blocked:
 							{
-								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.Blocked"), ad.Attacker.GetName(0, true), ad.Target.Name), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
+								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.Blocked"), BeezEnemyIdentity.Name(player, ad.Attacker), BeezEnemyIdentity.Name(player, ad.Target)), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
 								break;
 							}
 							case eAttackResult.Parried:
 							{
-								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.Parried"), ad.Attacker.GetName(0, true), ad.Target.Name), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
+								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.Parried"), BeezEnemyIdentity.Name(player, ad.Attacker), BeezEnemyIdentity.Name(player, ad.Target)), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
 								break;
 							}
 							case eAttackResult.Evaded:
 							{
-								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.Evaded"), ad.Attacker.GetName(0, true), ad.Target.Name), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
+								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.Evaded"), BeezEnemyIdentity.Name(player, ad.Attacker), BeezEnemyIdentity.Name(player, ad.Target)), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
 								break;
 							}
 							case eAttackResult.Fumbled:
 							{
-								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.Fumbled"), ad.Attacker.GetName(0, true)), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
+								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.Fumbled"), BeezEnemyIdentity.Name(player, ad.Attacker)), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
 								break;
 							}
 							case eAttackResult.Missed:
@@ -1713,7 +1714,7 @@ namespace DOL.GS
 								if (ad.AttackType is eAttackType.Spell)
 									break;
 
-								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.Misses"), ad.Attacker.GetName(0, true), ad.Target.Name), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
+								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.Misses"), BeezEnemyIdentity.Name(player, ad.Attacker), BeezEnemyIdentity.Name(player, ad.Target)), eChatType.CT_Missed, eChatLoc.CL_SystemWindow);
 								break;
 							}
 							case eAttackResult.HitStyle:
@@ -1728,10 +1729,10 @@ namespace DOL.GS
 								else
 									modMessage = string.Empty;
 
-								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.HitsForDamage"), ad.Attacker.GetName(0, true), ad.Target.Name, ad.Damage, modMessage), eChatType.CT_Damaged, eChatLoc.CL_SystemWindow);
+								player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.HitsForDamage"), BeezEnemyIdentity.Name(player, ad.Attacker), BeezEnemyIdentity.Name(player, ad.Target), ad.Damage, modMessage), eChatType.CT_Damaged, eChatLoc.CL_SystemWindow);
 
 								if (ad.CriticalDamage > 0)
-									player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.CriticallyHitsForDamage"), ad.Attacker.GetName(0, true), ad.Target.Name, ad.CriticalDamage), eChatType.CT_Damaged, eChatLoc.CL_SystemWindow);
+									player.Out.SendMessage(string.Format(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameLiving.AttackData.CriticallyHitsForDamage"), BeezEnemyIdentity.Name(player, ad.Attacker), BeezEnemyIdentity.Name(player, ad.Target), ad.CriticalDamage), eChatType.CT_Damaged, eChatLoc.CL_SystemWindow);
 
 								break;
 							}

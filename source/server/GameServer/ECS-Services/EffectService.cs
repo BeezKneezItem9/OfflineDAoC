@@ -101,7 +101,7 @@ namespace DOL.GS
                 return;
             }
 
-            if (GameServiceUtils.ShouldTick(spellEffect.ExpireTick))
+            if (!spellEffect.IsBeezBuff && GameServiceUtils.ShouldTick(spellEffect.ExpireTick))
             {
                 // A pulse effect cancels its own child effects to prevent them from being cancelled and immediately reapplied.
                 // So only cancel them if their source is no longer active.
@@ -154,7 +154,7 @@ namespace DOL.GS
             if (spellEffect is ECSPulseEffect pulseEffect)
             {
                 // This should be unreachable.
-                if (!caster.ActivePulseSpells.ContainsKey(spell.SpellType))
+                if (!BeezSongs.IsRegistered(caster, pulseEffect))
                 {
                     pulseEffect.End();
                     return;
@@ -165,7 +165,7 @@ namespace DOL.GS
                 // Accurate 1.65 behavior.
                 if (!caster.IsCrowdControlled)
                 {
-                    if (spell.PulsePower > 0)
+                    if (!BeezSongs.IsEligible(spellHandler) && spell.PulsePower > 0)
                     {
                         int pulsePower = BotSpellPower.PulseCost(caster, spell);
                         if (caster.Mana >= pulsePower)

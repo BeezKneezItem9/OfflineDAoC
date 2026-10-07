@@ -48,6 +48,7 @@
         <TranslationFiles Include="..\GameServer\language\**\*.txt" />
     </ItemGroup>
     <ItemGroup>
+      <EmbeddedResource Include="Fixtures/BeezBuffSpells.json" />
       <Folder Include="IntegrationTests\" />
     </ItemGroup>
     <Target Name="CopyFiles" AfterTargets="AfterBuild">

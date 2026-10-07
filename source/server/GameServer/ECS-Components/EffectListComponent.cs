@@ -366,7 +366,9 @@ namespace DOL.GS
                 IEnumerable<ECSPulseEffect> otherPulseEffects = GetPulseEffects().Where(x => !PulseSpellGroupsIgnoringOtherPulseSpells.Contains(x.SpellHandler.Spell.Group));
 
                 foreach (ECSPulseEffect otherPulseEffect in otherPulseEffects)
-                    otherPulseEffect.End();
+                    if (!BeezSongs.IsEligible(spellHandler) || !BeezSongs.IsEligible(otherPulseEffect.SpellHandler) ||
+                        otherPulseEffect.SpellHandler.Spell.SpellType == spellHandler.Spell.SpellType)
+                        otherPulseEffect.End();
             }
         }
 
@@ -574,6 +576,10 @@ namespace DOL.GS
             {
                 List<ECSGameEffect> existingEffects;
 
+                if (effect is ECSGameSpellEffect { IsBeezBuff: true } stoneEffect &&
+                    (!stoneEffect.BeezApplication.IsValid || stoneEffect.Owner != stoneEffect.BeezApplication.Owner))
+                    return AddEffectResult.Failed;
+
                 // Special handling for ability effects. They don't have a spell handler, and there's not much to validate.
                 if (effect is ECSGameAbilityEffect abilityEffect)
                 {
@@ -628,6 +634,20 @@ namespace DOL.GS
                 ISpellHandler newSpellHandler = effect.SpellHandler;
                 Spell newSpell = newSpellHandler.Spell;
                 AddEffectResult result = AddEffectResult.None;
+
+                // Stone-only guard BEFORE the same-ID refresh shortcut, under the effect-list lock.
+                if (effect is ECSGameSpellEffect { IsBeezBuff: true })
+                {
+                    foreach (ECSGameEffect existing in existingEffects)
+                    {
+                        if (existing.SpellHandler == null || existing.IsEnding || existing.IsEnded)
+                            continue;
+                        bool conflicts = existing.SpellHandler.Spell.ID == newSpell.ID ||
+                            existing.SpellHandler.HasConflictingEffectWith(newSpellHandler);
+                        if (conflicts && (!effect.IsBetterThan(existing) || existing.IsBetterThan(effect)))
+                            return AddEffectResult.Failed;
+                    }
+                }
 
                 // Handles effects with the same spell ID as an already present effect.
                 for (int i = 0; i < existingEffects.Count; i++)

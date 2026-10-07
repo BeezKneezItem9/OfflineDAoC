@@ -20,8 +20,8 @@ namespace DOL.GS
             spell.IsHarmful && spell.Damage <= 0;
 
         // A native channeled spell pays on each real pulse, not every AI tick.
-        // Preserve the spell's native upkeep cost for bots and players alike.
-        public static int PulseCost(GameLiving caster, Spell spell) => spell.PulsePower;
+        // Eligible Beez songs waive upkeep; other native pulses retain their cost.
+        public static int PulseCost(GameLiving caster, Spell spell) => BeezSongs.PulseCost(caster, spell);
 
         public static int Cost(GameBot bot, Spell spell, SpellLine line)
         {
