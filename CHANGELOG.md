@@ -225,8 +225,14 @@ downloads yet.
   or a /raid 80, up to 24, 48, 128 or 240 defenders answer. Your own realm and the third realm send up to 8,
   16, 48 or 96 each. A horn sounds and the announcement matches the size: a small defense force, a defense
   force, a large defensive force or a massive defense force has been rallied. The defenders gather briefly at
-  a nearby keep and come in as one wave, while your realm's and the third realm's warbands arrive as they can.
-  Joining a siege the bots planned themselves raises no alarm.
+  a nearby keep and march in as one big wave once 80% of them have gathered (or after ten minutes), while your
+  realm's warbands and the third realm's arrive however they can. Joining a siege the bots planned themselves
+  raises no alarm.
+- If you take the keep, the realm that lost it comes back once to take it back. It gathers its army at its
+  outpost (80% of it, or ten minutes), marches, and strikes the moment it arrives, sized like the defense you
+  beat (up to 240 against a /raid 80), and it fights for up to 30 minutes. You'll need to hold the keep.
+- Siege weapons can no longer kill a keep lord, and bots won't attack him while any door of the keep is still
+  closed. You have to break in and fight your way to him.
 - Your /raid 40 and /raid 80 fight keep sieges on their own. When you attack an enemy keep, the raid splits into
   squads of eight. One squad stays with you as a bodyguard. The others set up rams, catapults, trebuchets and
   ballistas, shoot the archers off the walls, hold the gate, and storm the keep lord once the doors are down.
