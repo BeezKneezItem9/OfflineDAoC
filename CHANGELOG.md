@@ -9,6 +9,10 @@ These changes are being collected for the next download. They are **not** in the
 downloads yet.
 
 **Companion bots and gamebots**
+- Your /spawn and /raid companions keep their pets when you travel. Their pets used to die on every teleport
+  and horse ride (the old frontier teleporters and stable routes included), and the pet classes kept
+  re-summoning. A companion's pet now comes along within a region and rejoins it at the end of a horse ride,
+  as your own pet does.
 - The /raid 40 and /raid 80 window keeps your raid when you change zones. Zoning (for example into
   Galladoria) used to show every spot in the raid window as empty although the whole raid was still
   with you; the window now refills itself once the new zone has loaded.
@@ -60,6 +64,8 @@ downloads yet.
 **Gamebots**
 - Gamebots no longer work the border keep door levers, which kept you from using them. They walk through
   the doors and leave the levers to you.
+- An enemy gamebot's real name no longer shows when it dies ("... dies!") or in the "worth no realm points"
+  message; you see its race there too, as everywhere else.
 - Stealthed enemy gamebots are invisible unless you are within detection range, like stealthed players.
   They used to show as a ghostly outline.
 - Keep guards, archers and lords, gamebots and pets no longer drop items. Gamebots stand in for players, and
