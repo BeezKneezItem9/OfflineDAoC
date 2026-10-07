@@ -240,7 +240,9 @@ downloads yet.
   their posts until the fight is over, helping you only when you're nearby, then regroup on you. If you pick
   up a relic they escort you, and a relic you leave lying for 20 seconds is picked up by one of them. In the
   frontier your raid also engages enemy gamebots on its own, within 2,000 under /aggressive or 1,000 under
-  /defensive, and it is called back if it chases too far.
+  /defensive, and it is called back if it chases too far. Archers up on the walls are left to the raid's
+  ranged bots and healers: a melee bot drops a target it can't walk to instead of standing under the wall,
+  and bots in the frontier are never moved up onto a keep wall while the gate still stands.
 - Every realm is told when a raid kills the final boss of an epic dungeon, Summoner's Hall or Darkness
   Falls ("Albion's forces have defeated Legion in Darkness Falls!"), enemy realms' victories included,
   the same way keeps and relics taken are announced.
