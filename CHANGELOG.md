@@ -143,8 +143,19 @@ downloads yet.
   ledge or plateau with no way down (the East Svealand plateau caught over a hundred bots in one run).
 - A defending army that has gathered fewer than half its defenders waits up to four more minutes for
   the rest before it marches, so defenders arrive together instead of a handful at a time.
+- Siege armies march as one column. After the muster, the army follows a march leader to the siege
+  camp, members keep close to the leader, the leader waits briefly when most of the column has fallen
+  behind, and anyone in the column helps a member under attack. Armies used to walk the whole way one by
+  one and lost half their strength to roaming enemies before reaching the keep.
 
 **Realm events and raids**
+- Raids lead bosses back home. Many raid bosses (every epic dungeon and Summoner's Hall final boss
+  among them) can't be hurt once they are drawn away from their lair. Bots now stop attacking such a
+  boss and the one it chases runs back toward its lair so it follows, the way players do it; the raid no
+  longer skips a boss for this (Summoner Roesia was skipped at 28%).
+- When a raid boss takes no damage for three minutes because the whole raid is busy with its guards
+  and adds, some of the fighters switch to the boss (Princess Nahemah in Darkness Falls was skipped at
+  full health with 65 raiders next to her).
 - New neutral raid events: Summoner's Hall and Darkness Falls. Every realm can run its own 300-bot
   expedition there, forced from the launcher (new "Neutral raid" events) or started automatically like
   the dragons and epic dungeons, so two (rarely three) realms can be inside at the same time. Each realm
@@ -246,6 +257,9 @@ downloads yet.
   Thidranki (20-24), Murdaigean (25-29) and Caledonia (30-35), from period sources. Dun Murdaigean and
   Dun Abermenai have their central keeps with Renegade guards and a Renegade Chieftain; the launcher's
   reset-all-keeps button resets them with the rest.
+- The Coruscating Mine has fewer monsters. Many of its camps had been entered twice a few steps apart,
+  so groups pulled double camps; the duplicates are gone, and the monsters that period bestiaries show as
+  rare there (unseelie viewers, casoliths, vein golems, lode protectors and the like) are rarer again.
 - Howth and Connla in Hibernia have their low-level monsters back: feccans, skeletal pawns, villainous
   youths, water beetles, spraggons and the rest of the level 1-15 populations, placed where period
   radar logs saw them. There used to be no monsters at all near Howth.
