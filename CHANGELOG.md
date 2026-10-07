@@ -200,6 +200,12 @@ downloads yet.
   realm, when a keep or relic siege begins. Your own realm's raids get the same kind of line when they
   start forming, automatic or started from the launcher (dragons, epic dungeons, Summoner's Hall,
   Darkness Falls), so you can join the bots at the rally point.
+- Every realm is told when a raid kills the final boss of an epic dungeon, Summoner's Hall or Darkness
+  Falls ("Albion's forces have defeated Legion in Darkness Falls!"), enemy realms' victories included,
+  the same way keeps and relics taken are announced.
+- Battleground keep sieges are announced too: when a realm starts attacking a battleground's central
+  keep, and when the keep is taken.
+- Grand Summoner Govannon has 200,000 health (was 300,000); raids wore out against him at half health.
 - Tuscaran Glacier: the raid could get stuck for hours on a small walkable patch hidden under the ice
   floor. Those hidden patches are removed from the Tuscaran Glacier and Galladoria navigation maps, so
   nothing can be routed onto them; every real room is still reachable.
@@ -281,6 +287,9 @@ downloads yet.
 - Realm Records: new DELETE ALL RECORDS button (clears only the launcher's event history, no game
   data), and "Stopped by player" and "Route blocked" outcomes.
 
+- The XP Settings tab is now called Options. It has two new switches, both on by default and changeable
+  while the server is stopped: RvR and battleground announcements (keeps and relics taken, sieges
+  started), and PvE realm event announcements (raids forming, final bosses defeated).
 - Bot Goals Setting has a Battlegrounds % column next to Solo PvE, Group PvE and RvR (not for level 50).
 - A new Battlegrounds tab shows each battleground's level bracket, who holds its central keep, and how
   many bots of each realm are inside or on their way.
