@@ -110,13 +110,16 @@ downloads yet.
   waiting party instead of the tank walking into the pack. While the target is still out of range the
   party keeps walking toward it. Groups kill noticeably faster (level 50 groups about 60% more kills an
   hour, low-level groups about 50% more experience an hour).
-- Gamebots can use the town teleporters (Master Visur, Stor Gothi Annark and Channeler Glasny, by the
-  bind stones and in the capitals) like players do, but only to their own realm's destinations. A bot
-  takes one only when it is clearly quicker than walking or a stable-master horse; groups, warbands and
-  raid parties gather at the teleporter and go together, and RvR bots use them to reach their border
-  keep. They land on the ground, even where a destination sits in the air (Mularn). Bots reached their
-  camps about 40% faster in testing and raids filled their rally points much sooner. Still being tested,
-  so it is off unless the server property `bot_town_teleporters` is switched on.
+- Gamebots use the town teleporters (Master Visur, Stor Gothi Annark and Channeler Glasny, by the bind
+  stones and in the capitals) like players do, but only to their own realm's destinations. A bot takes
+  one only when it is clearly quicker than walking or a stable-master horse, and still rides horses
+  (including the Shrouded Isles flights) where those are quicker. Groups, warbands and raid parties
+  gather at the teleporter and go together, and RvR bots use them to reach their border keep. They land
+  on the ground, even where a destination sits in the air (Mularn). In testing, bots reached their camps
+  about 40% faster and raids filled their rally points much sooner. On by default; the server property
+  `bot_use_town_teleporters` turns it off. These teleporters are not authentic to 1.65; they come from
+  later live versions of DAoC. Most freeshards have them, and Atlas, a classic 1.65 freeshard that has
+  since closed, had them too.
 
 **Realm events and raids**
 - New neutral raid events: Summoner's Hall and Darkness Falls. Every realm can run its own 300-bot
