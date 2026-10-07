@@ -58,6 +58,12 @@ downloads yet.
 - Savage bots no longer swap between a shield and their hand-to-hand offhand weapon every few seconds.
 
 **Gamebots**
+- Gamebots no longer work the border keep door levers, which kept you from using them. They walk through
+  the doors and leave the levers to you.
+- Stealthed enemy gamebots are invisible unless you are within detection range, like stealthed players.
+  They used to show as a ghostly outline.
+- Keep guards, archers and lords, gamebots and pets no longer drop items. Gamebots stand in for players, and
+  killing a player never dropped loot. A raid's siege used to fill your bags with random gear.
 - Gamebots earn realm points for PvP kills, the same share a player would get, whether they kill an
   enemy gamebot or a player, and their realm rank now goes up with their realm points.
 - Gamebots spend their realm points on realm abilities at their class trainer, like a player. Each
@@ -200,6 +206,29 @@ downloads yet.
   realm, when a keep or relic siege begins. Your own realm's raids get the same kind of line when they
   start forming, automatic or started from the launcher (dragons, epic dungeons, Summoner's Hall,
   Darkness Falls), so you can join the bots at the rally point.
+- Bots now set up and use siege weapons the way players did. They had never managed to place one. Rams go
+  right in front of the outer gate, then a new ram at the inner keep door, and the bots standing at a ram crew
+  it like riders. Trebuchets pound the doors from range, catapults lob shots onto defenders and wall archers,
+  and ballistas take on enemy siege engines. Defenders set up inside their walls. Siege crews get their engine
+  on the spot instead of leaving to shop for one, and they take over any idle engine of their kind, a ram you
+  drop included. Bot archers and casters shoot back at archers on the walls, and melee bots stop chasing a
+  target up on a wall they can't reach.
+- A siege army that has marched on a keep attacks as soon as it gets there, instead of waiting at its posts
+  and being whittled down.
+- Attacking an enemy keep yourself now raises a defense sized to your force. Alone, in a group, with a /raid 40
+  or a /raid 80, up to 24, 48, 128 or 240 defenders answer. Your own realm and the third realm send up to 8,
+  16, 48 or 96 each. A horn sounds and the announcement matches the size: a small defense force, a defense
+  force, a large defensive force or a massive defense force has been rallied. The defenders gather briefly at
+  a nearby keep and come in as one wave, while your realm's and the third realm's warbands arrive as they can.
+  Joining a siege the bots planned themselves raises no alarm.
+- Your /raid 40 and /raid 80 fight keep sieges on their own. When you attack an enemy keep, the raid splits into
+  squads of eight. One squad stays with you as a bodyguard. The others set up rams, catapults, trebuchets and
+  ballistas, shoot the archers off the walls, hold the gate, and storm the keep lord once the doors are down.
+  When you defend a friendly keep, they hold the doors with siege engines in the courtyard. They stay at
+  their posts until the fight is over, helping you only when you're nearby, then regroup on you. If you pick
+  up a relic they escort you, and a relic you leave lying for 20 seconds is picked up by one of them. In the
+  frontier your raid also engages enemy gamebots on its own, within 2,000 under /aggressive or 1,000 under
+  /defensive, and it is called back if it chases too far.
 - Every realm is told when a raid kills the final boss of an epic dungeon, Summoner's Hall or Darkness
   Falls ("Albion's forces have defeated Legion in Darkness Falls!"), enemy realms' victories included,
   the same way keeps and relics taken are announced.
