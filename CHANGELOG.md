@@ -102,6 +102,14 @@ downloads yet.
   real entrance.
 - Bots take Korlis's gryphon from Hagall to the Iarn Dwarf Camp instead of swimming to Modernagrav.
 - Bot group names in the launcher and the logs name their realm ("albion-...").
+- Bots that stop to pull a monster in their way now actually attack it. The pull could run out before
+  the bot's next decision, so it stood still and pulled the same monster again every few seconds, often
+  for many minutes (about 600 times an hour across the server). A monster that still won't come after
+  three pulls is walked past.
+- Every group of three or more now pulls from range: a ranged member pulls the monster back to the
+  waiting party instead of the tank walking into the pack. While the target is still out of range the
+  party keeps walking toward it. Groups kill noticeably faster (level 50 groups about 60% more kills an
+  hour, low-level groups about 50% more experience an hour).
 
 **Realm events and raids**
 - New neutral raid events: Summoner's Hall and Darkness Falls. Every realm can run its own 300-bot
@@ -135,6 +143,14 @@ downloads yet.
 - Forced epic dungeon rallies no longer announce in faction chat that a dragon must land.
 - Epic dungeon raids check their next target from every party, not only from the front. A raid with no
   reachable encounter for 20 minutes ends as "Route blocked" instead of holding 300 bots for hours.
+- Raid members now attack a boss when the raid calls them to it. The call used to run out before the
+  bots acted on it, so bosses such as Summoner Cunovinda were skipped at nearly full health. Summoner's
+  Hall has now been cleared by bots on their own: an automatic Midgard raid killed all three summoners
+  and Grand Summoner Govannon.
+- Keep and relic sieges: the attacking realm gathers its army at its own guarded portal outpost inside
+  the enemy frontier, then marches on the keep together once 64 have gathered (or after 20 minutes),
+  instead of warbands arriving one at a time and being picked off. Bots that left their RvR task no
+  longer keep holding a place in the siege.
 - Tuscaran Glacier: the raid could get stuck for hours on a small walkable patch hidden under the ice
   floor. Those hidden patches are removed from the Tuscaran Glacier and Galladoria navigation maps, so
   nothing can be routed onto them; every real room is still reachable.
@@ -196,6 +212,8 @@ downloads yet.
   data), and "Stopped by player" and "Route blocked" outcomes.
 
 **Server**
+- With many bots online the server creates about a third less short-lived memory per second (bot
+  registry, pet upkeep, frontier enemy checks and more), so it pauses less often to clean up.
 - The server no longer keeps one CPU core at 100% when the launcher is closed or crashes while the
   server is still running (thanks to lometur, pull request #3).
 - The server log notes every minute with a stall of a second or more (slowest stage, garbage
