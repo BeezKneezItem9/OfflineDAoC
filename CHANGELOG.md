@@ -266,6 +266,15 @@ downloads yet.
 - A siege army that is still mostly on the road when its gathering time runs out waits ten more minutes
   for the rest, instead of marching with too few to start the battle. Bots waiting at a siege rally are
   no longer moved back to town by the "stuck" check.
+- Bigger, quicker sieges. A keep siege now draws up to 128 attackers, 64 defenders and 64 from the third realm;
+  a relic siege 240, 120 and 120. The third realm joins in half of all sieges. Armies gather for 12 minutes
+  (one 5-minute extension if most are still on the road) instead of 20 plus 10.
+- The launcher's RvR tab shows a siege rally's gathering time ("marching in 6m", then "Marching to the
+  keep") and the attack window separately. The old "Preparation" countdown was the whole attack window and
+  kept running after the army had marched, so relic rallies looked like an hour of preparation.
+- Bots staged at their realm's second border keep (Druim Cain, Snowdonia Fortress, Vindsaul Faste) walk into
+  the frontier through that keep's gate. Frontier medallions are only sold at the first border keep, and
+  Hibernian siege recruits at Druim Cain used to stand still for a quarter of an hour trying to reach one.
 
 **World**
 - Bots cross from zone to zone only where real ground meets, so long trips (for example from Hibernia's
@@ -322,6 +331,20 @@ downloads yet.
 - Howth and Connla in Hibernia have their low-level monsters back: feccans, skeletal pawns, villainous
   youths, water beetles, spraggons and the rest of the level 1-15 populations, placed where period
   radar logs saw them. There used to be no monsters at all near Howth.
+- Monster populations restored from period bestiaries across the classic and Shrouded Isles zones: 223
+  species that period radar logs, Illia's Camelot Bestiary and Uthgard agree were missing are back, and
+  camps the server never populated have their monsters again (5,677 spawns, placed where 1.65 radar logs
+  saw them, never inside towns). Seven species no source lists in their zones are gone, and monsters whose
+  levels were 5+ off have their period levels. Bots grind the new camps, and the new monsters count for
+  bounties and for the charm lists. The epic dungeons and Darkness Falls are unchanged. A lynx cub, a
+  bodachan sabhaill and a mudman that stood inside Howth's walls are gone.
+- Classic quests (1.65 and classic Shrouded Isles) for players: 425 quests, from the original class epic
+  lines to the trainer and optional quests, with their recorded dialogue, rewards and experience, and the
+  quest NPCs and monsters the server lacked. Steps that need more than a conversation or a kill work too:
+  using an item at a place, reaching a place, trading a monster's drop to an NPC (kill tasks, repeatable),
+  choosing your reward by whispering its name, and more. Items an NPC hands you are re-issued if you lose
+  them, and quest items can be dropped. Each quest in your journal shows its next step with its own red
+  marker on the map.
 
 **Sluaghbinder (0.35b)**
 - The Epic Spells page shows only the raise ranks whose quest you have finished.
@@ -348,6 +371,9 @@ downloads yet.
   many bots of each realm are inside or on their way.
 
 **Server**
+- Monster spells of the "no variance" damage type (Scorcher DD, Scorcher DD AE and others) now scale with the
+  caster's level like other monster spells, instead of always hitting for their base damage.
+- Server log labels name Albion "Albion" instead of "_FirstPlayerRealm" (bot and group entries).
 - With many bots online the server creates about a third less short-lived memory per second (bot
   registry, pet upkeep, frontier enemy checks and more), so it pauses less often to clean up.
 - The server no longer keeps one CPU core at 100% when the launcher is closed or crashes while the
