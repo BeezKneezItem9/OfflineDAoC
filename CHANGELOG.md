@@ -62,6 +62,8 @@ downloads yet.
 - Savage bots no longer swap between a shield and their hand-to-hand offhand weapon every few seconds.
 
 **Gamebots**
+- Gamebots stop a short way out from a teleporter NPC (town teleporters and the battleground teleporters),
+  spread around it, instead of walking onto the NPC itself, so players can click the teleporter again.
 - Gamebots no longer work the border keep door levers, which kept you from using them. They walk through
   the doors and leave the levers to you.
 - An enemy gamebot's real name no longer shows when it dies ("... dies!") or in the "worth no realm points"
