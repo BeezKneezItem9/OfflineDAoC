@@ -360,7 +360,7 @@ downloads yet.
   (period copies for 418 of 442 quests; the rest from today's page with later-patch notes removed). Quests
   made for this server show their own journal text. /questguide <quest name> opens any classic quest's
   guide. /task on a guard, merchant or crafter asks it for a task, as in the original game.
-- 86 more classic quests are in (1,282 quest rows). Their missing quest NPCs and monsters are placed from
+- 45 more classic quests are in (442 quests, 1,282 quest rows with the per-class versions). Their missing quest NPCs and monsters are placed from
   the walkthroughs, Warcry spoilers and period bestiaries. Kill-task monsters and the creatures a quest
   collects from live in camps of six to eight that bots grind too. "Speak the words" steps work: type the
   words in /say at the place, at night where the walkthrough says so. Reward items that no period page
