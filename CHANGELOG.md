@@ -357,7 +357,8 @@ downloads yet.
   lacked (placed from the period walkthroughs, Warcry spoilers and period bestiaries). Steps that need more than a
   conversation or a kill work too: using an item at a place, reaching a place, trading a monster's drop to an NPC
   (kill tasks, repeatable), choosing your reward by whispering its name, typing the words of power in /say at the
-  right place (at night where the walkthrough says so), and more. Items an NPC hands you are re-issued if you lose
+  right place (at night where the walkthrough says so), an NPC that another one calls up for you (the Enchantress
+  summons Lucan in Morven's Return), a quest NPC who turns on you (Ciar in Enchanting Willow), and more. Items an NPC hands you are re-issued if you lose
   them, and quest items can be dropped. Kill-task monsters and the creatures a quest collects from live in camps of
   six to eight that bots grind too. **Quest rewards are still in progress:** many reward items are not in yet and
   are added as their period item pages are collected.
