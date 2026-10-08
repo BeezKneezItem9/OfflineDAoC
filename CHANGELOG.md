@@ -3,10 +3,25 @@
 The newest version is first. For the full detail of every earlier update, see
 [docs/history/CHANGELOG-0.3-to-0.32b.md](docs/history/CHANGELOG-0.3-to-0.32b.md).
 
-## Coming in 0.4 / 0.4b (not released yet)
+## 0.35 / 0.35b "Claude Takeover III" — 2026-10-08
 
-These changes are being collected for the next download. They are **not** in the 0.34 / 0.34b
-downloads yet.
+Everything added since 0.34, in one complete download. The overview is in
+[docs/RELEASE-0.35.md](docs/RELEASE-0.35.md); every change is listed below.
+
+**Download and setup**
+- One complete download in checked parts, with two editions, as in 0.34:
+  - **0.35b** includes the Sluaghbinder.
+  - **0.35** has the classic class list only.
+- The 0.35 game client now has every client improvement of 0.35b (the classic frontier war map, red map
+  markers for every quest and the working QUEST GUIDE button); only the Sluaghbinder class is left out.
+- The launcher shows which edition is installed: **VERSION 0.35b** or **VERSION 0.35**.
+- Every install still gets its own account on the first ENTER REALM, an empty world for its own bots and
+  default launcher settings, and a client settings profile that is new for 0.35.
+- The progress transfer tool now also imports **0.34 and 0.34b** saves, as well as every earlier version.
+  See [docs/TRANSFER-PROGRESS.md](docs/TRANSFER-PROGRESS.md).
+- Every database and client change listed below is already in the download.
+- Quest Guide walkthroughs are the Allakhazam (camelot.allakhazam.com) quest pages as archived in 2001-2004,
+  written by Allakhazam's contributors; each guide names its source.
 
 **Companion bots and gamebots**
 - Your /spawn and /raid companions keep their pets when you travel. Their pets used to die on every teleport
@@ -376,7 +391,7 @@ downloads yet.
   golem); it now looks like a townsperson nearby. The West Wind's journal says where Bairfhionn stands (outside the
   Alainn Cuir in Tir na Nog), and its "ask in Howth" step now has you ask a townsperson instead of an ambient pixie.
 
-**Sluaghbinder (0.4b)**
+**Sluaghbinder (0.35b)**
 - The Epic Spells page shows only the raise ranks whose quest you have finished.
 - Muirenn's quests get a red map marker like bounties: on the target while hunting and on Muirenn
   after the kill.
@@ -413,10 +428,6 @@ downloads yet.
   are only written for turns of 100 ms or more.
 
 **For modders**
-- `research/period-data/`: the period (2001-2004) research behind the classic quests and the restored monster
-  populations: every script, the quest specs and ledgers, spawn and bestiary plans, radar sighting coordinates
-  and the Wayback capture indexes. Raw copies of other websites' pages stay out of the repository; the fetch
-  scripts rebuild them locally (see its README).
 - The navmesh builder (`source/development-tools/OpenDAoC-BuildNav`) builds every point of each zone wall (bots
   used to cross zone edges and climb mountains through gaps), keeps doors and the far-LOD stand-ins from sealing
   doorways, and matches zone-edge terrain to the neighbouring zone, so the rebuilt meshes follow the paths players
