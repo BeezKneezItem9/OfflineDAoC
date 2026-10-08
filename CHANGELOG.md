@@ -286,6 +286,10 @@ downloads yet.
   the event and send everyone home).
 
 **World**
+- The realm war map (KEEPS) shows the classic frontier. Its zone tiles are the classic frontier zone maps, and every
+  keep, border keep and relic keep icon sits where that keep really stands, on all three realm pages; the game
+  client used to draw New Frontiers terrain with the keep icons at New Frontiers spots. Your own position shows on
+  the war map while you are in the frontier, and the milegate icons the classic frontier never had are gone.
 - Bots cross from zone to zone only where real ground meets, so long trips (for example from Hibernia's
   home zones into the frontier) no longer end on a walled-off mountain shelf. Bots riding a stable-master
   horse now land on the ground at Castle Sauvage, Svasud Faste and other stops where the route used to end
@@ -360,9 +364,10 @@ downloads yet.
 - Red map markers for every quest. Each quest in your journal shows its next step with its own red marker on the
   map, including the spot where a quest monster will appear. The game client used to draw only bounty markers
   red; reputation quests, the Sluaghbinder epic and the classic quests showed green dots that looked like bots.
-- Quest Guide: /questguide (or /task with no guard, merchant or crafter targeted) shows the Allakhazam walkthrough
-  of your active quests as it read in 2001-2004 (period copies for 424 of 448 quests; the rest from today's page
-  with later-patch notes removed), a page at a time. Quests made for this server show their own journal text.
+- Quest Guide: the Quest Journal's QUEST GUIDE button (it used to say BOUNTY MAP and did nothing), /questguide, or
+  /task with no guard, merchant or crafter targeted shows the Allakhazam walkthrough of your active quests as it read
+  in 2001-2004 (period copies for 424 of 448 quests; the rest from today's page with later-patch notes removed), a
+  page at a time; click the button again for the next page. Quests made for this server show their own journal text.
   /questguide <quest name> [page] opens any classic quest's guide. /task on a guard, merchant or crafter asks it
   for a task, as in the original game; /task status shows your current task.
 
