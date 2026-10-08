@@ -352,6 +352,19 @@ downloads yet.
   choosing your reward by whispering its name, and more. Items an NPC hands you are re-issued if you lose
   them, and quest items can be dropped. Each quest in your journal shows its next step with its own red
   marker on the map.
+- Red map markers really are red now for every quest. The game client only drew bounty markers red;
+  reputation quests, the Sluaghbinder epic and the classic quests were drawn as green dots that looked like
+  bots. Every step with a place shows a red dot, including the spot where a quest monster will appear.
+- The Quest Journal's useless BOUNTY MAP button is now QUEST GUIDE. Each click shows the next page of your
+  active quests' walkthroughs, then your next quest: the Allakhazam quest guides as they read in 2001-2004
+  (period copies for 418 of 442 quests; the rest from today's page with later-patch notes removed). Quests
+  made for this server show their own journal text. /questguide <quest name> opens any classic quest's
+  guide. /task on a guard, merchant or crafter asks it for a task, as in the original game.
+- 86 more classic quests are in (1,282 quest rows). Their missing quest NPCs and monsters are placed from
+  the walkthroughs, Warcry spoilers and period bestiaries. Kill-task monsters and the creatures a quest
+  collects from live in camps of six to eight that bots grind too. "Speak the words" steps work: type the
+  words in /say at the place, at night where the walkthrough says so. Reward items that no period page
+  records yet will follow.
 
 **Sluaghbinder (0.35b)**
 - The Epic Spells page shows only the raise ranks whose quest you have finished.
