@@ -96,6 +96,10 @@ public static partial class AutonomousBotGroupCoordinator
         public required Vector3 Rendezvous { get; set; }
         public required AutonomousGroupTaskClock TaskClock { get; init; }
         public string Phase { get; set; } = "Leader staging";
+        // Meetup overhaul (2026-10-06): the leader plans the camp while the party forms; the party
+        // meets at the safe town nearest that camp, every member travelling at once.
+        public bool MeetupPlanned { get; set; }
+        public SharedCamp PlannedCamp { get; set; }
         public string RendezvousName { get; set; } = string.Empty;
         public bool LeaderReadyForAssembly { get; set; }
         public bool CombatObserved { get; set; }
@@ -131,6 +135,8 @@ public static partial class AutonomousBotGroupCoordinator
         public bool ProcessingAttendanceRemovals { get; set; }
         public int PreferredLevelBonus { get; set; }
         public Dictionary<long, BotPveGroupRole> PveRoles { get; } = new();
+        /// <summary>Roles of raid members released from this party, filled first by replacements.</summary>
+        public List<BotPveGroupRole> ReleasedRaidRoles { get; } = new();
         public GameBot Puller { get; set; }
         public bool Ending { get; set; }
         public long SharedWatchdogProgressTick { get; set; }
@@ -167,7 +173,15 @@ public static partial class AutonomousBotGroupCoordinator
             {
                 if (_lastMaintenanceTick == now) return;
                 Interlocked.Exchange(ref _lastMaintenanceTick, now);
-                RemoveBrokenSessions();
+                // The population-wide sweep ran every game-loop tick (~30/s) and rebuilt every
+                // party's member array each time: the largest allocator on the server (117 MB in
+                // 40 s, run 8 trace). Each party still checks itself on its own pulse.
+                if (now >= _nextBrokenSessionSweep)
+                {
+                    _nextBrokenSessionSweep = now + BrokenSessionSweepMilliseconds;
+                    RemoveBrokenSessions();
+                }
+                FormSiegeParties();
                 TryFormGroups();
             }
         }
@@ -294,16 +308,112 @@ public static partial class AutonomousBotGroupCoordinator
             GameBot leader = ChooseLeader(session, members);
             if (leader != bot)
                 return;
-            session.Camp = camp;
-            session.DungeonArrivalRegion = 0;
-            session.DungeonInteriorStagingPoint = default;
-            session.DungeonArrivalHoldUntilTick = 0;
-            session.DungeonArrivalCompletedCampId = string.Empty;
-            session.NoCampSinceTick = null;
-            session.Phase = "Traveling";
-            StartTaskClock(session, members);
+            AssignCamp(session, camp, members);
             WriteSessionMetadata(session, members);
         }
+    }
+
+    private static void AssignCamp(Session session, SharedCamp camp, GameBot[] members)
+    {
+        session.Camp = camp;
+        session.DungeonArrivalRegion = 0;
+        session.DungeonInteriorStagingPoint = default;
+        session.DungeonArrivalHoldUntilTick = 0;
+        session.DungeonArrivalCompletedCampId = string.Empty;
+        session.NoCampSinceTick = null;
+        session.Phase = "Traveling";
+        StartTaskClock(session, members);
+    }
+
+    /// <summary>
+    /// Called once by the leader of a forming PvE party with the camp it would choose (null when none).
+    /// The rendezvous moves to the safe town nearest that camp when one is closer than the original
+    /// town and valid for every member, and every member travels at once (no leader-first staging).
+    /// Run 8: followers waited in place for the leader, then the assembled party travelled a median
+    /// 102k units to its first camp, two thirds of them in another region.
+    /// </summary>
+    public static bool PlanMeetupNearCamp(GameBot leader, SharedCamp camp)
+    {
+        if (leader?.Group == null) return false;
+        lock (Sync)
+        {
+            if (!TryGetSession(leader.Group, out Session session) || session.MeetupPlanned ||
+                session.ObjectiveKind != eAutonomousObjectiveKind.GroupPve || session.Phase != "Leader staging" ||
+                AutonomousRealmRaid.GetView(session.Group) != null)
+                return false;
+            GameBot[] members = BotMembers(leader.Group);
+            if (members.Length < 2 || ChooseLeader(session, members) != leader) return false;
+            session.MeetupPlanned = true;
+            session.PlannedCamp = camp;
+            string where = session.RendezvousName;
+            if (camp != null && WorldMgr.GetRegion(camp.RegionId) is Region campRegion)
+            {
+                Vector3 campPoint = new(camp.X, camp.Y, camp.Z);
+                float current = session.RendezvousRegion == camp.RegionId ? Vector3.Distance(session.Rendezvous, campPoint) : float.MaxValue;
+                if (TryChooseTownNear(leader, members, campRegion, campPoint, out Vector3 point, out string name) &&
+                    Vector3.Distance(point, campPoint) + 5_000 < current)
+                {
+                    Vector3 previous = session.Rendezvous;
+                    string previousName = session.RendezvousName;
+                    ushort previousRegion = session.RendezvousRegion;
+                    session.Rendezvous = point;
+                    session.RendezvousName = name;
+                    session.RendezvousRegion = camp.RegionId;
+                    if (TryBuildRendezvousSlots(session, members))
+                        where = name;
+                    else
+                    {
+                        session.Rendezvous = previous;
+                        session.RendezvousName = previousName;
+                        session.RendezvousRegion = previousRegion;
+                        TryBuildRendezvousSlots(session, members);
+                    }
+                }
+            }
+            session.Phase = "Meeting up";
+            session.LeaderReadyForAssembly = true;
+            RebaseAttendance(session, members);
+            Log.Info($"AUTONOMOUS_GROUP_MEETUP_PLANNED group={session.Id} town=\"{where}\" region={session.RendezvousRegion} " +
+                     $"camp=\"{camp?.MonsterName ?? "none"}\" campRegion={camp?.RegionId ?? 0} " +
+                     $"campDistance={(camp != null && camp.RegionId == session.RendezvousRegion ? (int)Vector3.Distance(session.Rendezvous, new(camp.X, camp.Y, camp.Z)) : -1)}");
+            WriteSessionMetadata(session, members);
+            return true;
+        }
+    }
+
+    private static bool TryChooseTownNear(GameBot leader, GameBot[] members, Region region, Vector3 camp,
+        out Vector3 point, out string name)
+    {
+        point = default;
+        name = string.Empty;
+        GameNPC[] towns = region.Objects.OfType<GameNPC>()
+            .Where(npc => npc.ObjectState == GameObject.eObjectState.Active &&
+                          npc is GameMerchant or GameTrainer or GameStableMaster &&
+                          (npc.Realm == leader.Realm || npc.Realm == eRealm.None) && IsTownArea(npc) &&
+                          Vector3.DistanceSquared(camp, new(npc.X, npc.Y, npc.Z)) <= 80_000L * 80_000L)
+            .OrderBy(npc => Vector3.DistanceSquared(camp, new(npc.X, npc.Y, npc.Z)))
+            .Take(6).ToArray();
+        var nav = PathfindingProvider.Instance;
+        foreach (GameNPC npc in towns)
+        {
+            Zone zone = region.GetZone(npc.X, npc.Y);
+            if (!AutonomousRendezvousNavigation.TryChoosePoint(nav, zone, new(npc.X, npc.Y, npc.Z), out Vector3 chosen)) continue;
+            bool tight = zone?.IsDungeon == true;
+            bool valid = true;
+            foreach (GameBot member in members)
+            {
+                Vector3 desired = DesiredFormationPoint(member, chosen, tight);
+                if (!AutonomousRendezvousNavigation.TryResolveFormationSlot(nav, zone, chosen, desired, out Vector3 slot) ||
+                    member.CurrentRegion == region && !AutonomousRendezvousNavigation.CanReachFormationSlot(nav, region,
+                        member.CurrentZone, zone, new(member.X, member.Y, member.Z), slot))
+                { valid = false; break; }
+            }
+            if (!valid) continue;
+            point = chosen;
+            name = TownName(npc);
+            return true;
+        }
+        return false;
     }
 
     public static void ReportNoAvailableCamp(GameBot bot)
@@ -1141,6 +1251,8 @@ public static partial class AutonomousBotGroupCoordinator
                     session.ExpeditionRouteFailures.Remove(memberKey);
                     session.ExpeditionRouteRetry.Remove(memberKey);
                     session.HeldUnreachableMembers.Remove(memberKey);
+                    if (session.PveRoles.Remove(memberKey, out BotPveGroupRole lostRole))
+                        session.ReleasedRaidRoles.Add(lostRole);
                     AutonomousRealmRaid.ReleasePartyMember(group, bot);
                     session.ProcessingAttendanceRemovals = true;
                     try
@@ -1366,6 +1478,9 @@ public static partial class AutonomousBotGroupCoordinator
         GameBot[] available = activeRoster
             .Where(bot => bot.IsAlive && !bot.IsTemporaryGroupHelper && !bot.IsPlayerLedGroup && bot.Group == null && bot.CurrentRegion != null &&
                           !AutonomousRealmRaid.IsReserved(bot) &&
+                          // siege recruits are merged into full parties by FormSiegeParties, not random warbands
+                          !(objectiveKind == eAutonomousObjectiveKind.RvR &&
+                            AutonomousRvrEventLayer.IsForceCommitted($"rvr-{bot.DatabaseID}", GameLoop.GameLoopTime)) &&
                           (objectiveKind != eAutonomousObjectiveKind.GroupPve ||
                            CanRecruitPveMember(bot.IsOnStableMasterRoute, bot.IsReturningAfterRelease,
                                bot.InCombat, bot.IsAttacking, (bot.Brain as BotBrain)?.HasAggro == true, 0)) &&
@@ -1382,7 +1497,7 @@ public static partial class AutonomousBotGroupCoordinator
         {
             var crossings = new Dictionary<(eRealm Realm, ushort Region), DbZonePoint>();
             leaders = AutonomousRvrStaging.ClosestToStagingFirst(available, bot => bot.Realm, bot =>
-                AutonomousRvrStaging.TryGetBorderKeep(bot.Realm, out AutonomousRvrStaging.BorderKeep keep)
+                AutonomousRvrStaging.TryGetNearestBorderKeep(bot, out AutonomousRvrStaging.BorderKeep keep, crossings)
                     ? AutonomousWorldBotController.EstimateTravelMinutes(bot, keep.RegionId,
                         (int)keep.Position.X, (int)keep.Position.Y, crossings)
                     : double.MaxValue);
@@ -1494,7 +1609,7 @@ public static partial class AutonomousBotGroupCoordinator
             Sessions[group] = session;
             GameBot[] formedMembers = BotMembers(group);
             WriteSessionMetadata(session, formedMembers);
-            Log.Info($"AUTONOMOUS_GROUP_FORMED group={session.Id} realm={leader.Realm} " +
+            Log.Info($"AUTONOMOUS_GROUP_FORMED group={session.Id} realm={GlobalConstants.RealmToName(leader.Realm)} " +
                      $"size={formedMembers.Length} lockedSize={session.LockedSize} objective={objectiveKind} " +
                      $"members=\"{string.Join(",", formedMembers.Select(member => member.Name))}\" " +
                      $"rendezvous={session.RendezvousRegion}:{(int)session.Rendezvous.X},{(int)session.Rendezvous.Y},{(int)session.Rendezvous.Z}");
@@ -1681,7 +1796,7 @@ public static partial class AutonomousBotGroupCoordinator
             Log.Warn("AUTONOMOUS_GROUP_LEADER_STAGING_TIMEOUT " + JsonSerializer.Serialize(new
             {
                 group = session.Id, leader = leader.Name, id = leader.DatabaseID,
-                level = leader.Level, className = leader.ClassName, realm = leader.Realm.ToString(),
+                level = leader.Level, className = leader.ClassName, realm = GlobalConstants.RealmToName(leader.Realm),
                 ordinaryWindowSeconds = LeaderStagingTimeoutMilliseconds / 1000,
                 shortenedAfterRepeatedRouteFailure = session.UnreachableRetried.Contains(MemberKey(leader)),
                 region = leader.CurrentRegionID, x = leader.X, y = leader.Y, z = leader.Z,
@@ -1880,6 +1995,12 @@ public static partial class AutonomousBotGroupCoordinator
         if (session.Phase == "Meeting up" && members.All(member => AtRendezvous(session, member)))
         {
             session.Phase = "Choosing group target";
+            // The camp planned at formation: the party met at the town nearest it and goes straight there.
+            if (session.ObjectiveKind == eAutonomousObjectiveKind.GroupPve && session.PlannedCamp is { } planned)
+            {
+                session.PlannedCamp = null;
+                AssignCamp(session, planned, members);
+            }
             // PvE starts when the leader publishes the actual outbound camp.
             // RvR heads out through its director as soon as assembly completes.
             if (session.ObjectiveKind == eAutonomousObjectiveKind.RvR)
@@ -2276,7 +2397,7 @@ public static partial class AutonomousBotGroupCoordinator
         }
 
         if (objectiveKind == eAutonomousObjectiveKind.RvR &&
-            AutonomousRvrStaging.TryGetBorderKeep(leader.Realm, out AutonomousRvrStaging.BorderKeep borderKeep))
+            AutonomousRvrStaging.TryGetNearestBorderKeep(leader, out AutonomousRvrStaging.BorderKeep borderKeep))
         {
             Region borderRegion = WorldMgr.GetRegion(borderKeep.RegionId);
             foreach (Vector3 anchor in AutonomousRvrStaging.CandidateAnchors(borderKeep, leader.DatabaseID))
@@ -2695,7 +2816,7 @@ public static partial class AutonomousBotGroupCoordinator
         return slot >= 0 ? tanks[slot] : null;
     }
 
-    public static bool IsLevelFiftyPveGroup(Group group)
+    public static bool UsesDefensivePullGroup(Group group)
     {
         lock (Sync)
             return TryGetSession(group, out Session session) &&
@@ -2709,7 +2830,7 @@ public static partial class AutonomousBotGroupCoordinator
         Log.Warn("AUTONOMOUS_GROUP_NO_SHOW " + JsonSerializer.Serialize(new
         {
             group = session.Id, bot = member.Name, id = member.DatabaseID, level = member.Level,
-            className = member.ClassName, realm = member.Realm.ToString(),
+            className = member.ClassName, realm = GlobalConstants.RealmToName(member.Realm),
             assignedRole = session.PveRoles.TryGetValue(MemberKey(member), out BotPveGroupRole role)
                 ? BotPartyRoles.GroupRoleLabel(role) : string.Empty,
             waitedSeconds = session.Attendance.WaitedMilliseconds(member.DatabaseID, now) / 1000,
@@ -2858,6 +2979,9 @@ public static partial class AutonomousBotGroupCoordinator
             BotPartyRoles.For((eCharacterClass)member.CharacterClass.ID)).ToArray(), leaderIndex);
         return pullerIndex >= 0 ? ordered[pullerIndex] : leader;
     }
+
+    private static long _nextBrokenSessionSweep;
+    public const int BrokenSessionSweepMilliseconds = 500;
 
     private static void RemoveBrokenSessions()
     {

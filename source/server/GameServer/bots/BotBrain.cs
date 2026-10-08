@@ -194,6 +194,9 @@ namespace DOL.AI.Brain
         public void ForceAddToAggroList(GameLiving living, long aggroAmount)
         {
             if (!CompanionEngagementMode.Allows(Body, living)) return;
+            if (_autonomousWorldController?.IgnoresTarget(living) == true) return;
+            if (CompanionRaidSiege.Ignores(Body as GameBot, living)) return;
+            if (living is DOL.GS.Keeps.GuardLord { ShieldedFromBots: true }) return;
             if (aggroAmount > 0)
             {
                 foreach (ProtectECSGameEffect protect in living.effectListComponent.GetAbilityEffects().Where(e => e.EffectType is eEffect.Protect))
@@ -1113,8 +1116,10 @@ namespace DOL.AI.Brain
             {
                 // Stable, distinct slots for all 39 companions. Surface projection
                 // and PathTo keep nearby slots from becoming walks through walls.
-                var raidPoint = TemporaryGroupStableTravel.FormationPoint(leader, Math.Max(0, Body.GroupIndex - 1));
-                raidPoint = CompanionFollowPolicy.FormationDestination(BotBody, raidPoint);
+                // During a player keep siege a squad holds its own post instead (CompanionRaidSiege).
+                var post = CompanionRaidSiege.FormationOverride(BotBody);
+                var raidPoint = post ?? TemporaryGroupStableTravel.FormationPoint(leader, Math.Max(0, Body.GroupIndex - 1));
+                if (post == null) raidPoint = CompanionFollowPolicy.FormationDestination(BotBody, raidPoint);
                 _ambientWanderMovement = false;
                 var point = new Point3D((int)raidPoint.X, (int)raidPoint.Y, (int)raidPoint.Z);
                 if (Body.GetDistanceTo(point) > 35)
@@ -1221,6 +1226,8 @@ namespace DOL.AI.Brain
             if (AutonomousStuckWatchdog.Observe(BotBody))
                 return;
 
+            AutonomousBotRealmAbilities.UseActives(BotBody);
+
             // Once a stable ticket has boarded, its waypoint chain exclusively
             // owns movement until the final point. No ordinary bot subsystem is
             // allowed to issue a competing follow, cast, pet, or combat order.
@@ -1235,6 +1242,9 @@ namespace DOL.AI.Brain
             }
 
             CompanionPvpEngagement.Observe(BotBody);
+            // Goal 11: a /raid 40 or /raid 80 on a keep siege works its squad job (rams, engines) on its own.
+            if (CompanionRaidSiege.Think(this))
+                return;
 
             // Frontier enemies take priority over rally/follow/rest and optional
             // buffs, even on a PvE task. Horse travel above stays authoritative.
@@ -1470,7 +1480,17 @@ namespace DOL.AI.Brain
             {
                 _autonomousWorldController ??= new AutonomousWorldBotController();
                 if (_autonomousWorldController.Tick(this))
+                {
+                    // A decision that just started a fight (a route or camp pull) thinks again at the
+                    // combat cadence. The travel/planning interval chosen above (up to ~10 s for a
+                    // standing bot far from players) outlasted the aggro state's 6 s first-contact
+                    // window, so the pull expired unthrown and was re-issued forever: 1,479 such
+                    // loops (186 bot-hours) in run 9, 2026-10-06.
+                    if (mode != eAutonomousThinkMode.Combat && HasAggro)
+                        ThinkInterval = AutonomousFidelityPolicy.IntervalMilliseconds(eAutonomousThinkMode.Combat,
+                            fidelity, AutonomousBotRegistry.PopulationForBrainTick);
                     return;
+                }
             }
 
             FSM.Think();
@@ -2833,7 +2853,11 @@ namespace DOL.AI.Brain
             public override void Enter()
             {
                 _brain._ambientWanderMovement = false;
-                _aggroEndTime = GameLoop.GameLoopTime + LEAVE_WHEN_OUT_OF_COMBAT_FOR;
+                // The first-contact window starts at the state's first think, not when it was set:
+                // a pull or raid call ordered between thinks (travel/planning intervals reach ~10 s)
+                // otherwise expired before the bot ever acted on it (run 9/10 pull loops, raid
+                // target calls that never landed on Summoner Cunovinda).
+                _aggroEndTime = long.MaxValue;
             }
 
             public override void Exit()
@@ -2846,6 +2870,8 @@ namespace DOL.AI.Brain
             public override void Think()
             {
                 _brain.AlreadyCheckedHeals = false;
+                if (_aggroEndTime == long.MaxValue)
+                    _aggroEndTime = GameLoop.GameLoopTime + LEAVE_WHEN_OUT_OF_COMBAT_FOR;
 
                 if (_brain._returnToFormationAfterPull && _brain.ActiveOrderedPullTarget == null &&
                     _brain.CalculateNextAttackTarget() == null)
@@ -2991,6 +3017,9 @@ namespace DOL.AI.Brain
             // previous pull and used to make archers/casters repeatedly switch
             // away from the fight their pet had already started.
             Body.TargetObject = protectionTarget ?? directAttacker ?? activePetTarget ?? CalculateNextAttackTarget();
+            // A tethered boss outside its tether is immune: stop hitting it and lead it home (AutonomousTetherReset).
+            if (Body.TargetObject is GameNPC tetheredBoss && AutonomousTetherReset.TryHandle(BotBody, tetheredBoss))
+                return;
 
             if (Body.TargetObject is GameLiving wallTarget && AutonomousRvrDefense.HoldWall(BotBody, wallTarget))
             {
@@ -4858,10 +4887,15 @@ namespace DOL.AI.Brain
 
             if (AutonomousRealmRaid.HasSharedSupport(BotBody))
             {
-                GameLiving raidPatient = AutonomousRealmRaid.SupportMembers(BotBody)
-                    .Concat(AutonomousRealmRaid.SupportPets(BotBody, 1800))
-                    .Where(m => m.IsAlive && m.CurrentRegionID == Body.CurrentRegionID && m.HealthPercent < 80 && Body.IsWithinRadius(m, 1800))
-                    .OrderBy(m => m.HealthPercent).FirstOrDefault();
+                // Lowest-health raid member or pet in range, without sorting the whole roster.
+                GameLiving raidPatient = null;
+                foreach (GameLiving m in AutonomousRealmRaid.SupportMembers(BotBody))
+                    if (m != null && m.IsAlive && m.CurrentRegionID == Body.CurrentRegionID && m.HealthPercent < 80 &&
+                        Body.IsWithinRadius(m, 1800) && (raidPatient == null || m.HealthPercent < raidPatient.HealthPercent))
+                        raidPatient = m;
+                foreach (GameLiving m in AutonomousRealmRaid.SupportPets(BotBody, 1800))
+                    if (m.HealthPercent < 80 && (raidPatient == null || m.HealthPercent < raidPatient.HealthPercent))
+                        raidPatient = m;
                 if (raidPatient != null && (spellTarget == null || raidPatient.HealthPercent < spellTarget.HealthPercent))
                 {
                     spellTarget = raidPatient;

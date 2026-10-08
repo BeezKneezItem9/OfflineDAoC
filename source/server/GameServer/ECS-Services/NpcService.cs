@@ -67,6 +67,7 @@ namespace DOL.GS
                     }
 
                     long startTick = MonotonicTime.NowMs;
+                    NavQueryProfile.Reset();
                     brain.Think();
                     long stopTick = MonotonicTime.NowMs;
 
@@ -77,7 +78,7 @@ namespace DOL.GS
                         // only big ones still get their own warning line.
                         AiTurnStallMonitor.Record(npc.Name, brain.GetType().Name, elapsed);
                         if (AiTurnStallMonitor.ShouldLogIndividually(elapsed))
-                            log.Warn($"Long {Instance.ServiceName}.{nameof(Tick)} for {npc.Name}({npc.ObjectID}) Interval: {brain.ThinkInterval} BrainType: {brain.GetType()} Time: {elapsed}ms");
+                            log.Warn($"Long {Instance.ServiceName}.{nameof(Tick)} for {npc.Name}({npc.ObjectID}) Interval: {brain.ThinkInterval} BrainType: {brain.GetType()} Time: {elapsed}ms{NavQueryProfile.Summary()}{(npc is GameBot slowBot ? $" activity=\"{slowBot.PersistentRecord?.Activity}\" goal=\"{slowBot.PersistentRecord?.ObjectiveKind}\" phase=\"{slowBot.PersistentRecord?.ObjectivePhase}\"" : string.Empty)}");
                     }
 
                     brain.NextThinkTick = GameLoop.GameLoopTime + brain.ThinkInterval;

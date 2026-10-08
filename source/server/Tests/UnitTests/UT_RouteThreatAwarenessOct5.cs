@@ -22,6 +22,12 @@ namespace DOL.UnitTests
         [TestCase(ConColor.RED, true, 2, false, true, 0, true, ExpectedResult = RouteThreatAction.Detour, TestName = "Group: a red is avoided when possible")]
         [TestCase(ConColor.RED, true, 2, false, false, 0, true, ExpectedResult = RouteThreatAction.Pull, TestName = "Group: no way around, a red pair is fought")]
         [TestCase(ConColor.PURPLE, true, 1, false, false, 0, true, ExpectedResult = RouteThreatAction.Retarget, TestName = "Group: a purple with no way around ends the camp")]
+        [TestCase(ConColor.GREY, false, 6, false, false, 0, true, ExpectedResult = RouteThreatAction.Ignore, TestName = "Solo: a grey pack is no threat")]
+        [TestCase(ConColor.GREEN, false, 3, false, true, 0, true, ExpectedResult = RouteThreatAction.Pull, TestName = "Solo: a green pack of three is pulled")]
+        [TestCase(ConColor.GREEN, false, 5, false, false, 0, true, ExpectedResult = RouteThreatAction.Pull, TestName = "Solo: no way around, a green pack of five is fought")]
+        [TestCase(ConColor.BLUE, false, 3, false, false, 0, true, ExpectedResult = RouteThreatAction.Pull, TestName = "Solo: no way around, a blue pack of three is fought")]
+        [TestCase(ConColor.BLUE, false, 4, false, false, 0, true, ExpectedResult = RouteThreatAction.Retarget, TestName = "Solo: a blue pack of four with no way around ends the camp")]
+        [TestCase(ConColor.GREY, false, 1, true, false, 0, true, ExpectedResult = RouteThreatAction.Retarget, TestName = "A grey epic monster still counts")]
         public RouteThreatAction TheFirstThreatOnTheRouteIsHandled(ConColor con, bool grouped, int pack, bool boss,
             bool detour, int detoursSoFar, bool mayRetarget) =>
             AutonomousRouteThreatPolicy.Decide(con, grouped, pack, boss, detour, detoursSoFar, mayRetarget);

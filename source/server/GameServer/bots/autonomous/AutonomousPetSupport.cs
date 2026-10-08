@@ -370,10 +370,12 @@ public static class AutonomousPetSupport
         if (petBrain == null && playerLike.CharacterClass?.ID == (int)eCharacterClass.Necromancer && playerLike.IsShade)
             playerLike.Shade(false);
 
-        List<(Spell Spell, SpellLine Line)> spells = KnownSpells(owner)
-            .Where(entry => spellAllowed == null || spellAllowed(entry.Spell))
-            .Where(entry => AnimistSingleTargetPolicy.AllowsAutomatedSpell(entry.Spell))
-            .ToList();
+        IReadOnlyList<(Spell Spell, SpellLine Line)> spells = owner is GameBot cachedOwner && spellAllowed == null
+            ? BotAutomatedSpells(cachedOwner)
+            : KnownSpells(owner)
+                .Where(entry => spellAllowed == null || spellAllowed(entry.Spell))
+                .Where(entry => AnimistSingleTargetPolicy.AllowsAutomatedSpell(entry.Spell))
+                .ToList();
 
         // Bonedancer commanders are upgraded as new commander ranks become
         // available. The normal player flow replaces the old commander when
@@ -1028,8 +1030,7 @@ public static class AutonomousPetSupport
         if (petBrain.Body is not CommanderPet commander)
             return false;
 
-        List<(Spell Spell, SpellLine Line)> spells = KnownSpells(owner).ToList();
-        return ShouldUpgradeBonedancerCommander(owner, commander, spells, null) ||
+        return ShouldUpgradeBonedancerCommander(owner, commander, BotKnownSpells(owner), null) ||
                NeedsBonedancerArmyUpkeep(owner);
     }
 
@@ -1455,7 +1456,50 @@ public static class AutonomousPetSupport
             yield break;
         }
 
-        if (owner is GameBot bot)
+        if (owner is GameBot cachedBot)
+        {
+            foreach (var entry in BotKnownSpells(cachedBot))
+                yield return entry;
+        }
+    }
+
+    // A bot's spell list only changes when it trains or levels; pet upkeep read it (with power-line
+    // resolution) on every AI turn of every pet class (115 MB of allocations in 40 s, run 8 trace).
+    private sealed class KnownSpellCache
+    {
+        public object Source; public int Count; public byte Level; public long Until;
+        public (Spell Spell, SpellLine Line)[] Items = [];
+        public (Spell Spell, SpellLine Line)[] Automated = [];
+    }
+    private static readonly ConditionalWeakTable<GameBot, KnownSpellCache> KnownSpellCaches = new();
+
+    private static (Spell Spell, SpellLine Line)[] BotKnownSpells(GameBot bot)
+    {
+        KnownSpellCache cache = KnownSpellCaches.GetOrCreateValue(bot);
+        long now = GameLoop.GameLoopTime;
+        var source = bot.Spells;
+        lock (cache)
+        {
+            if (now < cache.Until && ReferenceEquals(cache.Source, source) && cache.Count == (source?.Count ?? 0) && cache.Level == bot.Level)
+                return cache.Items;
+            cache.Items = UncachedBotKnownSpells(bot).ToArray();
+            cache.Automated = Array.FindAll(cache.Items, entry => AnimistSingleTargetPolicy.AllowsAutomatedSpell(entry.Spell));
+            cache.Source = source; cache.Count = source?.Count ?? 0; cache.Level = bot.Level;
+            cache.Until = now + 10_000;
+            return cache.Items;
+        }
+    }
+
+    // The upkeep list without a per-call filter (every ordinary pet turn), cached with the known spells.
+    private static (Spell Spell, SpellLine Line)[] BotAutomatedSpells(GameBot bot)
+    {
+        BotKnownSpells(bot);
+        KnownSpellCache cache = KnownSpellCaches.GetOrCreateValue(bot);
+        lock (cache) return cache.Automated;
+    }
+
+    private static IEnumerable<(Spell Spell, SpellLine Line)> UncachedBotKnownSpells(GameBot bot)
+    {
         {
             bool bonedancer = bot.CharacterClass?.ID == (int)eCharacterClass.Bonedancer;
             foreach (Spell spell in bot.Spells?
@@ -1559,40 +1603,53 @@ public static class AutonomousPetSupport
     /// receives roughly 78% of the probability mass; every lower rank receives
     /// 22% of the previous rank's weight.
     /// </summary>
+    // Reused per thread: pet upkeep asks every turn and usually finds no summon at all
+    // (the old GroupBy/OrderBy version was ~33 MB per 40 s of allocations in run 11).
+    [ThreadStatic] private static List<(Spell Spell, SpellLine Line)> _rankPool;
+
     public static (Spell Spell, SpellLine Line) ChooseWeightedByRank(
         IEnumerable<(Spell Spell, SpellLine Line)> available, bool highestRankOnly = false)
     {
-        if (highestRankOnly)
-            return available.Where(entry => entry.Spell != null)
-                .OrderByDescending(entry => entry.Spell.Level).ThenByDescending(entry => entry.Spell.ID).FirstOrDefault();
-
-        (Spell Spell, SpellLine Line)[][] ranked = available
-            .Where(entry => entry.Spell != null)
-            .GroupBy(entry => entry.Spell.Level)
-            .OrderByDescending(group => group.Key)
-            .Select(group => group.ToArray())
-            .ToArray();
-        if (ranked.Length == 0)
+        List<(Spell Spell, SpellLine Line)> pool = _rankPool ??= new();
+        pool.Clear();
+        foreach (var entry in available)
+            if (entry.Spell != null) pool.Add(entry);
+        if (pool.Count == 0)
             return default;
 
-        double total = 0;
-        double weight = 1;
-        double[] weights = new double[ranked.Length];
-        for (int index = 0; index < ranked.Length; index++)
+        if (highestRankOnly)
         {
-            weights[index] = weight;
-            total += weight;
-            weight *= 0.22;
+            var best = pool[0];
+            for (int i = 1; i < pool.Count; i++)
+                if (pool[i].Spell.Level > best.Spell.Level ||
+                    pool[i].Spell.Level == best.Spell.Level && pool[i].Spell.ID > best.Spell.ID)
+                    best = pool[i];
+            return best;
         }
 
+        // Ranks (distinct spell levels), highest first; each lower rank weighs 0.22 of the one above.
+        pool.Sort(static (a, b) => b.Spell.Level.CompareTo(a.Spell.Level));
+        int ranks = 1;
+        for (int i = 1; i < pool.Count; i++)
+            if (pool[i].Spell.Level != pool[i - 1].Spell.Level) ranks++;
+        double total = 0, weight = 1;
+        for (int rank = 0; rank < ranks; rank++) { total += weight; weight *= 0.22; }
+
         double roll = Random.Shared.NextDouble() * total;
-        for (int index = 0; index < ranked.Length; index++)
+        int chosen = 0;
+        weight = 1;
+        for (int rank = 0; rank < ranks; rank++)
         {
-            roll -= weights[index];
-            if (roll <= 0)
-                return ranked[index][Random.Shared.Next(ranked[index].Length)];
+            roll -= weight;
+            if (roll <= 0) { chosen = rank; break; }
+            weight *= 0.22;
         }
-        return ranked[0][Random.Shared.Next(ranked[0].Length)];
+        int start = 0, current = 0;
+        for (int i = 1; i < pool.Count && current < chosen; i++)
+            if (pool[i].Spell.Level != pool[i - 1].Spell.Level) { current++; start = i; }
+        int end = start + 1;
+        while (end < pool.Count && pool[end].Spell.Level == pool[start].Spell.Level) end++;
+        return pool[start + Random.Shared.Next(end - start)];
     }
 
     public static (Spell Spell, SpellLine Line) ChooseBonedancerMinion(

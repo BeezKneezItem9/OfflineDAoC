@@ -1,0 +1,341 @@
+zone,zone_id,name,capnbry_levels,server_levels,difference,server_spawns,direction
+Salisbury Plains,1,grove nymph,10-15,10-18,3,73,server higher
+Black Mtns. South,2,goblin,8-9,8-32,23,29,server higher
+Black Mtns. North,3,undead druid,11-11,8-10,3,13,server lower
+Cornwall,6,elder beech,23-31,23-28,3,62,server lower
+Cornwall,6,giant skeleton,27-31,27-28,3,6,server lower
+Cornwall,6,moor boogey,27-27,25-30,3,6,server higher
+Campacorentin Forest,8,druid,8-8,22-25,17,18,server higher
+Campacorentin Forest,8,druid sacrificer,9-10,20-24,14,24,server higher
+Lyonesse,10,freybug,39-39,35-38,4,3,server lower
+Lyonesse,10,hamadryad,30-32,30-38,6,26,server higher
+Lyonesse,10,peallaidh,35-38,35-41,3,42,server higher
+Forest Sauvage,11,black poplar fellwood,26-28,24-24,4,4,server lower
+Forest Sauvage,11,hornbeam fellwood,27-30,27-27,3,11,server lower
+Pennine Mountains,14,boggart,45-53,45-49,4,12,server lower
+Pennine Mountains,14,cliff crawler,42-49,42-45,4,21,server lower
+Pennine Mountains,14,cockatrice,42-46,42-43,3,7,server lower
+Pennine Mountains,14,cyhraeth,50-55,50-50,5,3,server lower
+Pennine Mountains,14,freybug,35-42,35-38,4,14,server lower
+Pennine Mountains,14,gnarled fellwood,45-54,45-49,5,22,server lower
+Pennine Mountains,14,hill scrag,39-44,39-41,3,16,server lower
+Pennine Mountains,14,isolationist mercenary,46-50,46-46,4,10,server lower
+Pennine Mountains,14,isolationist scout,47-50,47-47,3,4,server lower
+Pennine Mountains,14,knotted fellwood,43-50,43-46,4,13,server lower
+Pennine Mountains,14,ravenclan giant,50-56,50-51,5,13,server lower
+Pennine Mountains,14,worm,39-46,39-42,4,13,server lower
+Pennine Mountains,14,young brown drake,47-52,47-47,5,3,server lower
+Hadrian's Wall,15,cait sidhe,48-60,48-56,4,12,server lower
+Hadrian's Wall,15,cave fairy,40-51,40-46,5,7,server lower
+Hadrian's Wall,15,legionnaire,30-39,30-36,3,4,server lower
+Stonehenge Barrows,19,cave hound,38-41,38-38,3,8,server lower
+Stonehenge Barrows,19,dark fire,42-46,42-42,4,5,server lower
+Stonehenge Barrows,19,deep goblin,42-45,42-42,3,5,server lower
+Stonehenge Barrows,19,ectoplasm,41-44,41-41,3,7,server lower
+Stonehenge Barrows,19,fallen warrior,41-45,41-41,4,14,server lower
+Stonehenge Barrows,19,grave goblin,40-44,40-40,4,11,server lower
+Stonehenge Barrows,19,scaled fiend,42-45,42-42,3,5,server lower
+Stonehenge Barrows,19,spectral essence,46-51,46-47,4,3,server lower
+Stonehenge Barrows,19,spectral wizard,47-52,47-47,5,2,server lower
+Isle of Glass,51,corpse light,15-15,13-18,3,47,server higher
+Isle of Glass,51,drakoran plunderer,16-18,16-21,3,21,server higher
+Isle of Glass,51,lesser water elemental,4-4,4-8,4,35,server higher
+Isle of Glass,51,urchin rabblerouser,4-4,4-8,4,56,server higher
+Isle of Glass,51,waterlogged corpse,12-13,6-14,6,23,server higher
+Avalon Isle,52,caer caddug baille,39-39,36-42,3,29,server higher
+Avalon Isle,52,caer caddug knight,40-42,40-46,4,13,server higher
+Avalon Isle,52,caer caddug priest,45-45,39-44,6,7,server lower
+Avalon Isle,52,drakoran leech,21-25,31-32,10,27,server higher
+Avalon Isle,52,drakoran thaumaturge,32-37,32-34,3,56,server lower
+Avalon Isle,52,sea hound,32-35,32-39,4,43,server higher
+Avalon Isle,52,water shuck,22-25,21-28,3,8,server higher
+West Svealand,102,cold light,20-21,20-25,4,4,server higher
+Muspelheim,104,charred skeletal warrior,23-28,23-25,3,29,server lower
+Muspelheim,104,fire giant lookout,27-30,27-27,3,12,server lower
+Muspelheim,104,fire giant watchman,29-32,29-29,3,4,server lower
+Muspelheim,104,fire phantom,25-28,25-25,3,3,server lower
+Muspelheim,104,fire toad,27-30,27-27,3,7,server lower
+Muspelheim,104,firecat,24-29,24-24,5,14,server lower
+Muspelheim,104,mephitic ghoul,26-31,25-28,3,23,server lower
+Muspelheim,104,nocuous hound,29-32,29-29,3,7,server lower
+Muspelheim,104,noxious hound,24-29,24-24,5,26,server lower
+Muspelheim,104,seared skeleton,27-32,27-29,3,32,server lower
+Muspelheim,104,young fire wyrm,25-30,25-27,3,13,server lower
+Myrkwood Forest,105,svartalf sorcerer,15-42,15-15,27,2,server lower
+Skona Ravine,106,battle-scarred mauler,34-39,34-35,4,3,server lower
+Skona Ravine,106,elder skogsfru,32-35,32-32,3,10,server lower
+Skona Ravine,106,green orm,38-44,38-40,4,3,server lower
+Skona Ravine,106,moss maiden,24-28,24-25,3,5,server lower
+Skona Ravine,106,sidhe gaoite,35-40,35-36,4,10,server lower
+Skona Ravine,106,werewolf skulker,23-28,23-25,3,8,server lower
+Skona Ravine,106,whispering willow,33-37,33-34,3,15,server lower
+Skona Ravine,106,wolverine,39-44,39-40,4,2,server lower
+Skona Ravine,106,wood rat,24-28,24-25,3,4,server lower
+Vanern Swamp,107,black orm,36-42,36-38,4,12,server lower
+Vanern Swamp,107,broken jotun,54-63,54-57,6,7,server lower
+Vanern Swamp,107,clay jotun,40-46,40-42,4,6,server lower
+Vanern Swamp,107,forest spider,50-57,50-52,5,41,server lower
+Vanern Swamp,107,forest viper,40-48,40-44,4,43,server lower
+Vanern Swamp,107,hagbui berserker,50-55,50-51,4,10,server lower
+Vanern Swamp,107,hagbui runemaster,42-46,42-42,4,3,server lower
+Vanern Swamp,107,hagbui shaman,40-44,40-40,4,1,server lower
+Vanern Swamp,107,hagbui spiritmaster,43-47,43-43,4,3,server lower
+Vanern Swamp,107,hagbui thane,53-58,53-53,5,4,server lower
+Vanern Swamp,107,jotun outcast,58-65,58-59,6,8,server lower
+Vanern Swamp,107,large enslaved orm,48-53,48-50,3,3,server lower
+Vanern Swamp,107,large enslaved orm runner,48-53,48-48,5,4,server lower
+Vanern Swamp,107,mud crab,35-39,35-35,4,11,server lower
+Vanern Swamp,107,mud crab warrior,36-40,36-36,4,3,server lower
+Vanern Swamp,107,mud frog,30-40,30-36,4,77,server lower
+Vanern Swamp,107,reincarnate orm,45-60,45-55,5,15,server lower
+Vanern Swamp,107,small black orm,35-39,35-35,4,18,server lower
+Raumarik,108,bounty hunter,55-59,55-55,4,5,server lower
+Raumarik,108,bounty hunter leader,57-60,57-57,3,2,server lower
+Raumarik,108,chillsome wight,51-57,51-52,5,16,server lower
+Raumarik,108,dire wolverine,58-64,58-58,6,6,server lower
+Raumarik,108,fenrir mystic,57-63,57-57,6,8,server lower
+Raumarik,108,fenrir soldier,54-63,58-58,5,16,server lower
+Raumarik,108,frigid broadleaf,57-61,57-57,4,26,server lower
+Raumarik,108,frore lich,55-62,55-57,5,9,server lower
+Raumarik,108,frost bound bear,47-54,47-50,4,61,server lower
+Raumarik,108,frost cyclops,62-66,61-62,4,3,server lower
+Raumarik,108,frost stallion,54-59,54-55,4,4,server lower
+Raumarik,108,fylgja,50-55,50-52,3,4,server lower
+Raumarik,108,icestrider chiller,43-48,43-45,3,34,server lower
+Raumarik,108,icestrider frostweaver,45-50,44-46,4,21,server lower
+Raumarik,108,icestrider interceptor,47-56,47-51,5,5,server lower
+Raumarik,108,mature wyvern,54-62,54-57,5,7,server lower
+Raumarik,108,savage winterwolf,51-61,51-55,6,34,server lower
+Raumarik,108,sleipneirsson,55-62,55-56,6,9,server lower
+Raumarik,108,undead soldier,45-52,49-52,4,9,server lower
+Raumarik,108,windswept wraith,50-58,50-53,5,30,server lower
+Raumarik,108,winter wolf,42-50,42-46,4,5,server lower
+Uppland,111,fallen troll,44-48,44-45,3,11,server lower
+Uppland,111,fenrir snowscout,37-41,36-38,3,1,server lower
+Uppland,111,fenrir tracker,40-45,40-42,3,4,server lower
+Uppland,111,frost orm,35-39,35-35,4,8,server lower
+Uppland,111,frost spectre,45-51,48-50,3,4,server lower
+Uppland,111,gelid mass,35-39,35-35,4,3,server lower
+Uppland,111,ice scrag,34-37,33-34,3,4,server lower
+Uppland,111,icestrider interceptor,49-54,50-50,4,6,server lower
+Uppland,111,isalf forayer,44-48,44-44,4,2,server lower
+Uppland,111,miserable zombie,28-32,31-31,3,1,server lower
+Uppland,111,nordic yeti,33-39,33-36,3,5,server lower
+Uppland,111,snowshoe bandit,30-38,30-35,3,20,server lower
+Uppland,111,wyvern,36-42,36-39,3,2,server lower
+Yggdra Forest,112,bone-eater slayer,37-41,37-38,3,8,server lower
+Yggdra Forest,112,chattering skeleton,32-35,32-32,3,11,server lower
+Yggdra Forest,112,fenrir prophet,44-48,44-45,3,5,server lower
+Yggdra Forest,112,fenrir snowscout,36-41,36-38,3,6,server lower
+Yggdra Forest,112,frost orm,35-39,35-35,4,4,server lower
+Yggdra Forest,112,gelid mass,35-39,35-35,4,4,server lower
+Yggdra Forest,112,giant snowcrab,33-37,33-34,3,3,server lower
+Yggdra Forest,112,glacial mauler,44-48,44-45,3,6,server lower
+Yggdra Forest,112,ice giant,33-40,33-36,4,4,server lower
+Yggdra Forest,112,ice lizard,34-37,32-34,3,8,server lower
+Yggdra Forest,112,ice scrag,33-37,33-34,3,12,server lower
+Yggdra Forest,112,miserable zombie,28-35,28-32,3,4,server lower
+Yggdra Forest,112,shivering presence,32-36,32-33,3,28,server lower
+Yggdra Forest,112,torpor worm,37-41,37-37,4,8,server lower
+Jamtland Mountains,113,aged boreal cockatrice,49-54,49-49,5,15,server lower
+Jamtland Mountains,113,bone-eater eviscerater,41-45,41-42,3,12,server lower
+Jamtland Mountains,113,fallen troll,44-48,44-45,3,4,server lower
+Jamtland Mountains,113,fenrir prophet,45-49,44-45,4,4,server lower
+Jamtland Mountains,113,fenrir shredder,45-50,45-46,4,13,server lower
+Jamtland Mountains,113,glacial mauler,44-48,44-45,3,4,server lower
+Jamtland Mountains,113,great lynx,40-45,39-42,3,6,server lower
+Jamtland Mountains,113,icestrider interceptor,47-56,47-51,5,2,server lower
+Jamtland Mountains,113,isalf forayer,44-48,44-44,4,4,server lower
+Jamtland Mountains,113,savage wyvern,45-51,45-48,3,6,server lower
+Jamtland Mountains,113,shard golem,42-46,42-42,4,7,server lower
+Jamtland Mountains,113,torpor worm,37-41,37-37,4,4,server lower
+Jamtland Mountains,113,wintery dirge,42-46,0-42,42,7,server lower
+Odin's Gate,115,aurora,46-51,41-47,5,3,server lower
+Odin's Gate,115,bone-eater eviscerater,42-46,41-42,4,11,server lower
+Odin's Gate,115,glacier giant,76-76,86-86,10,1,server higher
+Odin's Gate,115,isalf forayer,44-48,44-44,4,20,server lower
+Odin's Gate,115,shard golem,42-46,42-42,4,4,server lower
+Odin's Gate,115,wintery dirge,40-45,40-42,3,4,server lower
+Malmohus,116,drakulv attendant,51-61,51-55,6,27,server lower
+Malmohus,116,drakulv axehand,48-56,48-52,4,29,server lower
+Malmohus,116,drakulv disciple,62-66,65-65,3,6,server lower
+Malmohus,116,drakulv missionary,36-44,36-40,4,25,server lower
+Malmohus,116,drakulv protector,54-64,54-58,6,34,server lower
+Malmohus,116,drakulv sacrificer,45-52,45-49,3,27,server lower
+Malmohus,116,enraged mara,50-53,50-50,3,9,server lower
+Malmohus,116,patrolling drakulv,39-47,39-43,4,56,server lower
+Malmohus,116,scaled varg snarler,34-39,34-36,3,13,server lower
+Malmohus,116,svartalf bloodbinder,51-60,51-55,5,17,server lower
+Malmohus,116,svartalf foister,48-56,48-52,4,25,server lower
+Malmohus,116,svartalf infiltrator,45-54,45-49,5,23,server lower
+Spindelhalla,125,arachite krigare,40-44,40-40,4,11,server lower
+Spindelhalla,125,arachite prelate,40-43,39-40,3,6,server lower
+Spindelhalla,125,arachite tunnelhost,36-41,36-37,4,27,server lower
+Spindelhalla,125,arachite vakt,37-41,37-38,3,10,server lower
+Spindelhalla,125,cave trow,47-52,47-47,5,22,server lower
+Spindelhalla,125,cave trow trollkarl,48-53,48-48,5,15,server lower
+Spindelhalla,125,crusher,50-53,48-50,3,8,server lower
+Spindelhalla,125,cursed thulian,47-52,47-47,5,5,server lower
+Spindelhalla,125,deeplurk feeder,47-50,47-47,3,11,server lower
+Spindelhalla,125,deeplurk manslayer,47-51,47-48,3,7,server lower
+Spindelhalla,125,duegar tjuv,37-40,37-37,3,1,server lower
+Spindelhalla,125,duegarhunter,39-39,36-36,3,4,server lower
+Spindelhalla,125,ekyps gunstling,45-49,45-45,4,13,server lower
+Spindelhalla,125,ekyps scavenger,42-46,42-42,4,21,server lower
+Spindelhalla,125,fell cat,45-50,45-45,5,8,server lower
+Spindelhalla,125,hallaratta,36-41,36-38,3,20,server lower
+Spindelhalla,125,kopparorm,49-52,49-49,3,5,server lower
+Spindelhalla,125,lost hagbui,42-46,42-42,4,7,server lower
+Spindelhalla,125,mad kobold,42-46,42-42,4,15,server lower
+Spindelhalla,125,spindel,37-41,37-37,4,5,server lower
+Spindelhalla,125,spindel silkster,39-43,39-39,4,15,server lower
+Spindelhalla,125,stinger,37-42,37-39,3,12,server lower
+Spindelhalla,125,svartalf arbetare,37-40,37-37,3,17,server lower
+Spindelhalla,125,svartalf thrall,36-40,36-36,4,17,server lower
+Spindelhalla,125,terra crab,38-44,38-40,4,34,server lower
+Spindelhalla,125,undead troll warrior,47-52,47-47,5,9,server lower
+Varulvhamn,127,large wolfspider,28-31,28-28,3,1,server lower
+Varulvhamn,127,werewolf noble,38-42,38-38,4,7,server lower
+Varulvhamn,127,werewolf scruff,35-38,35-35,3,10,server lower
+Varulvhamn,127,wolfaur pragmatic,35-39,35-35,4,8,server lower
+Cursed Tomb,128,poisonous cave spider,23-26,23-23,3,4,server lower
+Nisse's Lair,129,haunt,17-19,7-7,12,22,server lower
+Nisse's Lair,129,poisonous cave spider,15-19,15-15,4,29,server lower
+Trollheim,150,animate skold,50-55,50-50,5,4,server lower
+Trollheim,150,animate svard,50-55,55-55,5,5,server lower
+Trollheim,150,animate yxa,54-56,52-52,4,9,server lower
+Trollheim,150,anpassa foranst,50-55,50-50,5,46,server lower
+Trollheim,150,blodtorstig slaktare,53-57,53-60,3,42,server higher
+Trollheim,150,elite krigare,55-61,55-58,3,27,server lower
+Trollheim,150,glopsk grattasvamp,55-55,58-58,3,33,server higher
+Trollheim,150,hus'djur blood orm,50-54,53-54,3,27,server lower
+Trollheim,150,kaos krigsman,56-58,56-62,4,77,server higher
+Trollheim,150,morvalt schamen,58-58,54-59,4,40,server higher
+Trollheim,150,morvalt soldat,50-57,50-54,3,15,server lower
+Trollheim,150,veteran gruppchef,64-70,64-64,6,21,server lower
+Trollheim,150,veteran krigare,53-61,55-58,3,34,server lower
+Gripklosa Mountains,152,bergklan tribesman,31-34,31-31,3,1,server lower
+Gripklosa Mountains,152,cave lion,40-45,24-26,19,27,server lower
+Gripklosa Mountains,152,frost duster,33-38,34-35,3,50,server lower
+Gripklosa Mountains,152,griffon loner,25-28,25-25,3,67,server lower
+Gripklosa Mountains,152,griffon scout,43-52,43-49,3,22,server lower
+Gripklosa Mountains,152,hypothermic morvalt,38-43,39-39,4,2,server lower
+Gripklosa Mountains,152,mammoth matriarch,43-43,45-49,6,7,server higher
+Gripklosa Mountains,152,morvalt landflyke,25-29,26-26,3,24,server lower
+Gripklosa Mountains,152,redcap legerdemainist,51-51,52-56,5,11,server higher
+Gripklosa Mountains,152,redcap skulker,37-38,39-42,4,32,server higher
+Gripklosa Mountains,152,woolly serpent,39-44,39-40,4,14,server lower
+Delling Crater,153,cave lion,42-46,24-26,20,18,server lower
+Delling Crater,153,frost duster,33-34,33-38,4,11,server higher
+Delling Crater,153,griffman elder,57-62,57-65,3,28,server higher
+Delling Crater,153,griffman mender,50-54,50-50,4,15,server lower
+Delling Crater,153,griffman second,50-53,50-57,4,20,server higher
+Delling Crater,153,griffman skywatcher,54-57,54-63,6,58,server higher
+Delling Crater,153,griffman squawker,49-58,53-54,4,15,server lower
+Delling Crater,153,griffon bondmate,56-63,56-58,5,27,server lower
+Delling Crater,153,morvalt akare,44-50,44-45,5,11,server lower
+Delling Crater,153,noxious fumes,42-48,42-44,4,70,server lower
+Delling Crater,153,saber-toothed cat,46-50,46-53,3,25,server higher
+Delling Crater,153,steam element,31-35,31-32,3,46,server lower
+Delling Crater,153,sulphurous cloud,34-40,34-37,3,69,server lower
+Delling Crater,153,venerable mammoth,41-45,39-42,3,30,server lower
+Delling Crater,153,woolly mammoth,33-38,34-35,3,72,server lower
+Faraheim,154,gastornis,60-63,60-68,5,50,server higher
+Faraheim,154,gluttonous gulon,56-63,56-58,5,30,server lower
+Faraheim,154,gulon,42-48,42-45,3,48,server lower
+Faraheim,154,iarn dwarf tracker,48-53,48-48,5,3,server lower
+Faraheim,154,tradklan medicine man,52-59,52-55,4,36,server lower
+Faraheim,154,tradklan tribesman,52-59,52-56,3,31,server lower
+Munin Sound,155,marine skrat,32-37,32-34,3,18,server lower
+Munin Sound,155,morvalt renegade,25-25,25-28,3,6,server higher
+Munin Sound,155,sjoalf cleanser,38-42,38-39,3,17,server lower
+Munin Sound,155,sjoalf cultist,32-37,32-34,3,28,server lower
+Munin Sound,155,sjoalf ritualist,39-43,39-40,3,14,server lower
+Munin Sound,155,skalklan conch-gatherer,28-35,33-34,5,11,server lower
+Munin Sound,155,skalklan oyster-harvester,29-32,33-34,4,7,server higher
+Munin Sound,155,skalklan shellcrafter,21-24,21-21,3,15,server lower
+Munin Sound,155,young shale golem,26-31,26-28,3,37,server lower
+Iarnwood,156,iarn dwarf council,54-56,54-62,6,4,server higher
+Iarnwood,156,rancoradra,44-50,44-45,5,45,server lower
+Iarnwood,156,spectral render,65-69,65-65,4,2,server lower
+Modernagrav,158,iarn dwarf tracker,48-55,48-48,7,7,server lower
+Modernagrav,158,isalf forayer,44-48,44-44,4,4,server lower
+Modernagrav,158,isalf marauder,41-41,41-45,4,1,server higher
+Modernagrav,158,morvalt andakuva,46-52,46-49,3,41,server lower
+Modernagrav,158,morvalt avliden,56-56,50-50,6,1,server lower
+Modernagrav,158,morvalt dodlig,55-56,55-60,4,3,server higher
+Modernagrav,158,morvalt vaktare,50-56,50-53,3,40,server lower
+Modernagrav,158,reanimated howler,56-64,56-60,4,39,server lower
+Modernagrav,158,shard golem,45-45,42-42,3,1,server lower
+Modernagrav,158,skogsra woodsman,48-55,48-52,3,7,server lower
+Modernagrav,158,spectral feline,52-61,52-58,3,72,server lower
+Modernagrav,158,spectral snake,46-55,46-52,3,41,server lower
+Modernagrav,158,white wolf,30-33,27-31,3,16,server lower
+Tuscaran Glacier,160,falling ice,99-108,70-70,38,4,server lower
+Tuscaran Glacier,160,griffon icewing,75-79,79-79,4,25,server lower
+Tuscaran Glacier,160,hrimthursa berg,68-74,64-66,8,23,server lower
+Tuscaran Glacier,160,hrimthursa bladehand,72-78,75-77,3,14,server lower
+Tuscaran Glacier,160,hrimthursa dominator,72-80,78-80,6,15,server lower
+Tuscaran Glacier,160,hrimthursa grinder,63-68,61-62,6,7,server lower
+Tuscaran Glacier,160,hrimthursa icereaver,67-74,64-68,6,11,server lower
+Tuscaran Glacier,160,hrimthursa icespine,68-77,71-75,3,19,server lower
+Tuscaran Glacier,160,hrimthursa rook,72-76,75-77,3,17,server higher
+Tuscaran Glacier,160,hrimthursa serac,64-69,61-62,7,19,server lower
+Tuscaran Glacier,160,icebound skeleton,73-75,63-66,10,44,server lower
+Tuscaran Glacier,160,iceweaver,68-76,72-75,4,8,server lower
+Tuscaran Glacier,160,iceweaver trainer,60-71,74-77,14,8,server higher
+Tuscaran Glacier,160,lesser frostbound skeleton,60-67,60-63,4,13,server lower
+Iarnvidiur's Lair,161,animus syndig,55-62,55-57,5,36,server lower
+Iarnvidiur's Lair,161,cadby,45-53,46-46,7,21,server lower
+Iarnvidiur's Lair,161,captured iarn dwarf,49-56,55-55,6,23,server lower
+Iarnvidiur's Lair,161,fjarskafinn,52-61,55-60,3,40,server lower
+Iarnvidiur's Lair,161,hatchling syver,46-53,48-48,5,58,server lower
+Iarnvidiur's Lair,161,kolvarg,51-58,54-54,4,49,server lower
+Iarnvidiur's Lair,161,redcap davin,50-57,51-51,6,29,server lower
+Iarnvidiur's Lair,161,redcap skurk,54-58,54-54,4,25,server lower
+Iarnvidiur's Lair,161,skuggande,47-51,48-48,3,39,server lower
+Iarnvidiur's Lair,161,young syver,54-61,56-56,5,23,server lower
+Lough Derg,200,fallen one,17-17,18-24,7,1,server higher
+Silvermine Mts.,201,deamhan aeir,40-40,34-37,6,23,server lower
+Silvermine Mts.,201,walking rock,21-26,24-24,3,34,server lower
+Shannon Estuary,202,merman,23-25,25-35,10,2,server higher
+Shannon Estuary,202,ollipheist,37-37,34-37,3,13,server lower
+Connacht,207,amadan touched,29-30,29-34,4,14,server higher
+Connacht,207,feccan,1-2,4-4,3,30,server higher
+Breifine,212,bloodletter,49-54,48-49,5,4,server lower
+Emain Macha,214,bean sidhe,39-45,39-41,4,4,server lower
+Emain Macha,214,cliff beetle,31-40,31-37,3,4,server lower
+Emain Macha,214,granny,48-53,48-50,3,18,server lower
+Emain Macha,214,grogan,46-52,46-47,5,26,server lower
+Emain Macha,214,juvenile megafelid,38-42,35-38,4,2,server lower
+Emain Macha,214,loghery man,46-51,46-46,5,15,server lower
+Emain Macha,214,luch hunter,34-37,31-34,3,2,server lower
+Emain Macha,214,rage wolf,32-35,31-32,3,1,server lower
+Emain Macha,214,roan stepper,32-34,29-32,3,1,server lower
+Muire Tomb,221,death worm,14-15,11-14,3,1,server lower
+Spraggon Den,222,pit spraggon,20-20,19-24,4,42,server higher
+Spraggon Den,222,spraggon cutter,23-23,19-26,4,29,server higher
+Passage of Conflict,244,accursed brigand,58-59,58-64,5,51,server higher
+Passage of Conflict,244,accursed marauder,56-61,51-62,5,45,server higher
+Passage of Conflict,244,accursed plunderer,56-56,51-64,8,35,server higher
+Passage of Conflict,244,accursed raider,59-65,54-62,5,47,server lower
+Passage of Conflict,244,doomed fanatic,55-58,55-61,3,18,server higher
+Passage of Conflict,244,doomed raider,55-56,55-60,4,18,server higher
+Dodens Gruva,246,cavernous yeti,52-62,52-56,6,23,server lower
+Dodens Gruva,246,decayed dire wolf,51-60,51-55,5,13,server lower
+Dodens Gruva,246,ice wolf,42-51,44-46,5,7,server lower
+Dodens Gruva,246,widow claw,40-44,40-40,4,6,server lower
+Darkness Falls,249,avernal quasit,32-35,32-42,7,121,server higher
+Darkness Falls,249,cambion,52-52,52-55,3,31,server higher
+Darkness Falls,249,chthonian crawler,60-64,59-67,3,17,server higher
+Darkness Falls,249,condemned necyomancer,52-52,48-53,4,44,server higher
+Darkness Falls,249,cursed necyomancer,42-47,40-58,11,32,server higher
+Darkness Falls,249,essence shredder,54-58,57-60,3,263,server higher
+Darkness Falls,249,experienced necyomancer,36-36,36-49,13,57,server higher
+Darkness Falls,249,naburite drinker,47-54,49-51,3,96,server lower
+Darkness Falls,249,soultorn albion myrmidon,36-36,33-35,3,8,server lower
+Darkness Falls,249,soultorn albion protector,25-25,25-28,3,15,server higher
+Darkness Falls,249,soultorn hibernian thunderer,43-43,43-46,3,1,server higher
+Darkness Falls,249,soultorn norse skiltvakten,28-28,28-31,3,1,server higher
+Darkness Falls,249,succubus,57-61,57-67,6,117,server higher
+Darkness Falls,249,tormented necyomancer,50-50,50-55,5,15,server higher

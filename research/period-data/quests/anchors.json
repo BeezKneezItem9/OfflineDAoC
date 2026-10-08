@@ -1,0 +1,872 @@
+{
+ "_doc": "Placement for quest NPCs/monsters with no CapnBry sighting or walkthrough loc. near = an existing NPC (closest instance in the zone); camp = median of that monster's spawns in the zone; offset = units added to x,y. TODO entries need research before spawning.",
+ "Bline": {
+  "near": "Captain Ryder",
+  "zone": "Black Mtns. South",
+  "offset": [
+   180,
+   -120
+  ]
+ },
+ "Summer Gram": {
+  "near": "Brother Onoloth",
+  "zone": "Avalon Marsh",
+  "offset": [
+   -200,
+   150
+  ]
+ },
+ "Tyria": {
+  "near": "Gunnolf",
+  "zone": "West Svealand",
+  "offset": [
+   150,
+   150
+  ]
+ },
+ "Shade of Harish": {
+  "near": "Sacrificer Harish",
+  "zone": "Black Mtns. South",
+  "offset": [
+   0,
+   0
+  ],
+  "event": true
+ },
+ "Bas": {
+  "near": "Windaille",
+  "zone": "Lough Derg",
+  "offset": [
+   250,
+   0
+  ]
+ },
+ "Neophyte Spirit": {
+  "near": "drakoran neophyte",
+  "zone": "Isle of Glass",
+  "offset": [
+   0,
+   0
+  ],
+  "event": true
+ },
+ "Arawnite Assassin": {
+  "near": "Captain Rhodri",
+  "zone": "Snowdonia",
+  "offset": [
+   -300,
+   -250
+  ],
+  "event": true
+ },
+ "King's Wight": {
+  "camp": "tomb wight",
+  "zone": "Stonehenge Barrows",
+  "offset": [
+   0,
+   0
+  ]
+ },
+ "Wizard Lichas": {
+  "camp": "malefic phantom",
+  "zone": "Stonehenge Barrows",
+  "offset": [
+   0,
+   0
+  ]
+ },
+ "Tradande": {
+  "camp": "host of the earth",
+  "zone": "Skona Ravine",
+  "offset": [
+   0,
+   0
+  ]
+ },
+ "Amano": {
+  "camp": "goblin warrior",
+  "zone": "Black Mtns. North",
+  "offset": [
+   0,
+   0
+  ]
+ },
+ "Undead Patrol": {
+  "camp": "undead soldier",
+  "zone": "Yggdra Forest",
+  "offset": [
+   0,
+   0
+  ]
+ },
+ "Resa": {
+  "camp": "roane maiden",
+  "zone": "Silvermine Mts.",
+  "offset": [
+   0,
+   0
+  ]
+ },
+ "Esmond": {
+  "near": "Eugene Aldar",
+  "zone": "Cornwall",
+  "offset": [
+   -150,
+   120
+  ],
+  "why": "Symbol of the Broken: Cornwall Station, first floor, first room to the left (Eugene Aldar stands on that floor)"
+ },
+ "Commander Blaen": {
+  "TODO": "outpost by the Salisbury Plains bridge southeast of Prydwen Keep"
+ },
+ "Centurion Favius": {
+  "TODO": "pre-1.75 location unknown (1.75: by the Fallen Tower in Salisbury Plains)"
+ },
+ "Erich": {
+  "zone": "Cornwall",
+  "loc": [
+   61100,
+   14800
+  ],
+  "why": "Chains of Death walkthrough: 'located at 61.1k 14.8k Cornwall, NE of Cornwall station' (ruined Roman villa)"
+ },
+ "Lunaris Primus Pilus": {
+  "TODO": "crumbled monastery north of the guard tower in Llyn Barfog"
+ },
+ "Keapi": {
+  "near": "Dunfjall",
+  "zone": "Myrkwood Forest",
+  "offset": [
+   300,
+   200
+  ],
+  "note": "poison merchant in Nalliten"
+ },
+ "Shaman Saelonna": {
+  "TODO": "north of the Arawnite camp past Snowdonia Fortress - the server has no Arawnites in Snowdonia"
+ },
+ "Raemon": {
+  "near": "Chieftain Bolg",
+  "zone": "Breifine",
+  "offset": [
+   -3000,
+   3000
+  ],
+  "why": "Allakhazam Morven's Return: 'the cyclops tower SW of Dun Bolg in Breifine ... a small tower to the left of the road'; no classic loc recorded (only a New Frontiers one), so placed SW of the Dun Bolg keep lord (approximate, ledgered)"
+ },
+ "Iao": {
+  "zone": "Tir na Nog",
+  "loc": [
+   15059,
+   27271
+  ]
+ },
+ "Xaxnxi": {
+  "zone": "Allta Fearann",
+  "loc": [
+   51219,
+   42367
+  ]
+ },
+ "Balle": {
+  "zone": "Uppland",
+  "loc": [
+   38000,
+   51000
+  ]
+ },
+ "Mordwywr": {
+  "zone": "Caldey",
+  "loc": [
+   46000,
+   19000
+  ]
+ },
+ "Brodecia": {
+  "zone": "Forest Sauvage",
+  "loc": [
+   49238,
+   24923
+  ],
+  "note": "New Frontiers loc in the walkthrough; verify against classic Forest Sauvage"
+ },
+ "Halena Edulan": {
+  "camp": "tomb raider",
+  "zone": "Salisbury Plains"
+ },
+ "Abbadona": {
+  "zone": "Shannon Estuary",
+  "loc": [
+   56000,
+   44000
+  ],
+  "event": true,
+  "world": true,
+  "why_world": "talked to (or hunted) on a quest step: a standing NPC rather than a temporary quest spawn (owner 2026-10-07)"
+ },
+ "Fuilwort": {
+  "zone": "Cothrom Gorge",
+  "loc": [
+   50000,
+   57000
+  ]
+ },
+ "Grey Man": {
+  "zone": "Cliffs of Moher",
+  "loc": [
+   15720,
+   18448
+  ]
+ },
+ "Seary": {
+  "near": "Gavina",
+  "zone": "Shannon Estuary",
+  "offset": [
+   -600,
+   -600
+  ]
+ },
+ "Sraoi": {
+  "zone": "Connacht",
+  "loc": [
+   45500,
+   33200
+  ]
+ },
+ "Tangua": {
+  "zone": "Lough Derg",
+  "loc": [
+   31845,
+   35465
+  ]
+ },
+ "Tieru": {
+  "near": "Garyn",
+  "zone": "Vale of Balor",
+  "offset": [
+   150,
+   0
+  ]
+ },
+ "Dwerrania": {
+  "near": "Viraniel",
+  "zone": "Tir na Nog",
+  "offset": [
+   180,
+   -140
+  ],
+  "why": "Viraniel's Plague: Dwerrania stands with Viraniel in Tir na Nog (placed beside him; owner 2026-10-07: they were on top of each other)"
+ },
+ "Reidie": {
+  "near": "Ardghal Corcoran",
+  "zone": "Lough Derg",
+  "offset": [
+   200,
+   120
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Reeni": {
+  "near": "Caitriona",
+  "zone": "Silvermine Mountains",
+  "offset": [
+   220,
+   -150
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Sandu": {
+  "near": "Lynara",
+  "zone": "Caillte Garran",
+  "offset": [
+   -250,
+   180
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Carylina": {
+  "near": "Lynara",
+  "zone": "Caillte Garran",
+  "offset": [
+   -600,
+   0
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Cailbyn": {
+  "near": "Lynara",
+  "zone": "Caillte Garran",
+  "offset": [
+   900,
+   100
+  ],
+  "note": "east outside Droighaid"
+ },
+ "Skorri": {
+  "near": "Juuso",
+  "zone": "Aegir's Landing",
+  "offset": [
+   250,
+   200
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Edmond": {
+  "near": "Roben Fraomar",
+  "zone": "Cornwall",
+  "offset": [
+   120,
+   120
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Hannah": {
+  "near": "Kennard Jameson",
+  "zone": "Isle of Glass",
+  "offset": [
+   400,
+   300
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Meb": {
+  "near": "Arden",
+  "zone": "Aldland",
+  "offset": [
+   300,
+   200
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game",
+  "world": true,
+  "why_world": "talked to (or hunted) on a quest step: a standing NPC rather than a temporary quest spawn (owner 2026-10-07)"
+ },
+ "Lenna": {
+  "near": "Calya",
+  "zone": "Campacorentin Forest",
+  "offset": [
+   250,
+   -200
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Brother Codeth": {
+  "near": "Sergeant Alain",
+  "zone": "Camelot Hills",
+  "offset": [
+   0,
+   -800
+  ],
+  "note": "guard tower north of the Prydwen Keep bridge; verify"
+ },
+ "Scout Dherin": {
+  "near": "Lieutenant Kuebler",
+  "zone": "Forest Sauvage",
+  "offset": [
+   0,
+   2500
+  ],
+  "note": "watch tower south of Castle Sauvage; verify"
+ },
+ "Edith Waring": {
+  "near": "Aiellana",
+  "zone": "Avalon Marsh",
+  "offset": [
+   250,
+   150
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Erdola": {
+  "near": "Keagan",
+  "zone": "Shannon Estuary",
+  "offset": [
+   200,
+   0
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Evyene": {
+  "near": "Vikta",
+  "zone": "Vigilant Rock",
+  "offset": [
+   -900,
+   600
+  ],
+  "note": "on the beach behind Necht"
+ },
+ "Cyllane": {
+  "near": "Fidelma",
+  "zone": "Domnann",
+  "offset": [
+   250,
+   150
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Viraniel": {
+  "near": "Waljan",
+  "zone": "Tir na Nog",
+  "offset": [
+   500,
+   300
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Sailor": {
+  "near": "Evie",
+  "zone": "Shannon Estuary",
+  "offset": [
+   300,
+   0
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Catla's Spirit": {
+  "near": "Juuso",
+  "zone": "Aegir's Landing",
+  "offset": [
+   -1500,
+   800
+  ],
+  "event": true,
+  "note": "on the westernmost of three boulders outside Dyrfjell's wall",
+  "world": true,
+  "why_world": "talked to (or hunted) on a quest step: a standing NPC rather than a temporary quest spawn (owner 2026-10-07)"
+ },
+ "Greyfell's Uncle": {
+  "near": "Aegan",
+  "zone": "Vale of Mularn",
+  "offset": [
+   250,
+   200
+  ],
+  "note": "town NPC placed beside an existing NPC of the same town (walkthrough description); verify in game"
+ },
+ "Strykel": {
+  "zone": "Muspelheim",
+  "loc": [
+   6000,
+   22000
+  ],
+  "why": "Better Off Buried: island of fire east of the entrance, pit with Sulphine, Olash and Bright Flame, 'approx /locs: 6k, 22k'"
+ },
+ "Tomos": {
+  "zone": "Avalon Isle",
+  "loc": [
+   10000,
+   17000
+  ],
+  "event": true,
+  "why": "Spirits of the Orchard: appears on Nalsor's death at Afal Dyffryn, loc 10k,17k",
+  "world": true,
+  "why_world": "talked to (or hunted) on a quest step: a standing NPC rather than a temporary quest spawn (owner 2026-10-07)"
+ },
+ "Worry Wort": {
+  "camp": "faerie frog",
+  "zone": "Snowdonia",
+  "why": "Wizard's Demand: Worry Wort lives with the faerie frogs; the page lists Snowdonia as the related zone (Uthgard also has it there)"
+ },
+ "Blacktooth": {
+  "camp": "cyclops",
+  "zone": "Snowdonia",
+  "offset": [
+   600,
+   -400
+  ],
+  "why": "Blacktooth OTD: 'north of Snowdonia Castle by the Cyclops, near Shadow Hunters', night spawn"
+ },
+ "Melechan": {
+  "zone": "Odin's Gate",
+  "loc": [
+   26204,
+   45159
+  ],
+  "why": "Secret Orders comment (Sep 2004): Melechan at ~26204,45159 in Odin's Gate, in a camp around a fire (only location recorded)"
+ },
+ "Spirit of the Emperor": {
+  "near": "Forgotten Emperor",
+  "zone": "Catacombs of Cardova",
+  "offset": [
+   300,
+   0
+  ],
+  "event": true,
+  "why": "Fall of an Emperor: the talkative spirit in the chamber of cleansing in the deepest part of the catacombs; no loc recorded, placed by the Forgotten Emperor (deepest chamber)",
+  "world": true,
+  "why_world": "talked to (or hunted) on a quest step: a standing NPC rather than a temporary quest spawn (owner 2026-10-07)"
+ },
+ "Emperor Seleucus": {
+  "near": "Forgotten Emperor",
+  "zone": "Catacombs of Cardova",
+  "offset": [
+   -400,
+   300
+  ],
+  "why": "Fall of an Emperor: no loc recorded; the emperor's chambers at the bottom of the catacombs"
+ },
+ "Crotus Princeps Praetorii": {
+  "near": "Forgotten Emperor",
+  "zone": "Catacombs of Cardova",
+  "offset": [
+   500,
+   400
+  ],
+  "why": "Fall of an Emperor: praetorian guard; no loc recorded"
+ },
+ "Olivarius Princeps Praetorii": {
+  "near": "Forgotten Emperor",
+  "zone": "Catacombs of Cardova",
+  "offset": [
+   -500,
+   -400
+  ],
+  "why": "Fall of an Emperor: praetorian guard; no loc recorded"
+ },
+ "Taras Princep Praetorii": {
+  "near": "Forgotten Emperor",
+  "zone": "Catacombs of Cardova",
+  "offset": [
+   0,
+   -500
+  ],
+  "why": "Fall of an Emperor: praetorian guard; no loc recorded"
+ },
+ "Lusmorebane": {
+  "near": "Watcher Rylie",
+  "zone": "Valley of Bri Leith",
+  "offset": [
+   1900,
+   2800
+  ],
+  "why": "Warcry 533: 'kill the mad changling Lusmorebane near Watcher Rylie's stone at the Moon Lake'; placed in the server's mad changeling camp beside the stone"
+ },
+ "western basilisk youth": {
+  "camp": "western basilisk",
+  "zone": "Pennine Mountains",
+  "offset": [
+   450,
+   -350
+  ],
+  "why": "Basilisk Feather kill task: youths live with the western basilisks in the Pennine Mountains (no period sighting of the youths themselves)"
+ },
+ "rubbish": {
+  "camp": "twisted metal",
+  "zone": "Dales of Devwy",
+  "offset": [
+   700,
+   700
+  ],
+  "levels": [
+   43,
+   44,
+   45,
+   46,
+   47
+  ],
+  "why": "Allakhazam mob page (period-data/archive/allakhazam-live/mob_direct.jsonl) gives level and habitat but no location; monster 43-47 in the Dales of Devwy: camp placed beside the zone's level-43 junk constructs (twisted metal); look borrowed from a local creature of its level (ledgered)"
+ },
+ "rusty gyve": {
+  "camp": "contraption",
+  "zone": "Dales of Devwy",
+  "offset": [
+   700,
+   -700
+  ],
+  "levels": [
+   34,
+   35,
+   36,
+   37
+  ],
+  "why": "Allakhazam mob page (period-data/archive/allakhazam-live/mob_direct.jsonl) gives level and habitat but no location; humanoid 34-37 in the Dales of Devwy: camp placed beside the zone's level-34 constructs (contraption); look borrowed from a local creature of its level (ledgered)"
+ },
+ "cliff yale yearling": {
+  "camp": "cliff yale",
+  "zone": "Gwyddneau",
+  "offset": [
+   -700,
+   700
+  ],
+  "levels": [
+   42,
+   43,
+   44
+  ],
+  "why": "Allakhazam mob page (period-data/archive/allakhazam-live/mob_direct.jsonl) gives level and habitat but no location; animal 42-44 in the Plains of Gwyddneau: camp placed beside the cliff yales; looks like a cliff yale",
+  "like": "cliff yale"
+ },
+ "Calikana": {
+  "zone": "Avalon Isle",
+  "loc": [
+   4815,
+   56602
+  ],
+  "event": true,
+  "why": "(owner 2026-10-07: every quest in) Reports: 'the three rocks along the coast in Aldland, southwest from Wearyall' - placed 7k southwest of the Wearyall Village area centre; appears when you arrive (approximate, ledgered)"
+ },
+ "Sirelian": {
+  "camp": "fading spirit",
+  "zone": "Campacorentin Forest",
+  "offset": [
+   600,
+   400
+  ],
+  "levels": [
+   24
+  ],
+  "why": "(owner 2026-10-07: every quest in) The Heretical Hermit: 'resides somewhere in Campacorentin Forest' (no loc anywhere checked); placed at a quiet spirit haunt, level from the quest's range (invented, ledgered)"
+ },
+ "Malefact": {
+  "camp": "thrawn ogre ceorl",
+  "zone": "Krondon",
+  "offset": [
+   500,
+   500
+  ],
+  "levels": [
+   50
+  ],
+  "why": "(owner 2026-10-07: every quest in) Ogre's Might: 'Malefact can be found near the entrance to Krondon' - placed with the entrance-side ogres (lowest-level camp); level invented"
+ },
+ "Cabalist Meical": {
+  "near": "Eyes of the Crafter",
+  "zone": "Dales of Devwy",
+  "offset": [
+   400,
+   300
+  ],
+  "levels": [
+   58
+  ],
+  "why": "(owner 2026-10-07: every quest in) Restoring the Magic: Meical's Tower holds Meical's Fire, Eyes of the Crafter and the Prototype Guard; placed beside the Eyes of the Crafter; a group boss (hits for 500+), level invented"
+ },
+ "Beare Muire": {
+  "near": "Quillan Muire",
+  "zone": "Muire Tomb",
+  "offset": [
+   300,
+   0
+  ],
+  "levels": [
+   24
+  ],
+  "why": "(owner 2026-10-07: every quest in) Rest in Peace: beside the tomb's other named Muire (no loc recorded)"
+ },
+ "wandering curmudgeon": {
+  "near": "curmudgeon harvester",
+  "zone": "Connacht",
+  "offset": [
+   1500,
+   0
+  ],
+  "why": "(owner 2026-10-07: every quest in) Bria's Savior: the wandering curmudgeon in the field, beside the curmudgeon camp"
+ },
+ "werewolf lord": {
+  "camp": "werewolf noble",
+  "zone": "Varulvhamn",
+  "offset": [
+   400,
+   400
+  ],
+  "levels": [
+   44
+  ],
+  "why": "(owner 2026-10-07: every quest in) Werewolf Bane: three werewolf lords; placed with the werewolf nobles (the 'new area' is not on this server)"
+ },
+ "siabra enchanter": {
+  "camp": "ghastly siabra",
+  "zone": "Lough Derg",
+  "offset": [
+   400,
+   -400
+  ],
+  "why": "(owner 2026-10-07: every quest in) Lochlain's Curse / Keara's Enchantment: siabra enchanters on the siabra island east of Tir na mBeo, with the ghastly siabra"
+ },
+ "siabra archer": {
+  "camp": "ghostly siabra",
+  "zone": "Lough Derg",
+  "offset": [
+   400,
+   400
+  ],
+  "why": "(owner 2026-10-07: every quest in) Seeking Glory: siabran archers at the encampment across the river from Ardagh, with the ghostly siabra"
+ },
+ "Driss": {
+  "camp": "moss sheerie",
+  "zone": "Valley of Bri Leith",
+  "offset": [
+   0,
+   0
+  ],
+  "event": true,
+  "why": "(owner 2026-10-07: every quest in) Sheerie Mischief: appears among the sheeries at the pond west of the tower (the server has moss sheeries there, no mist sheeries)"
+ },
+ "sand worm": {
+  "camp": "bog worm",
+  "zone": "Bog of Cullen",
+  "offset": [
+   600,
+   600
+  ],
+  "why": "(owner 2026-10-07: every quest in) Viraniel's Plague: sand worms on the Bog of Cullen beach, beside the bog worms"
+ },
+ "beach anglator": {
+  "camp": "sanidon",
+  "zone": "Vigilant Rock",
+  "offset": [
+   500,
+   500
+  ],
+  "why": "(owner 2026-10-07: every quest in) Face the Twisted: beach anglators come out of the water by the sanidons"
+ },
+ "wildling scout": {
+  "near": "Erekith",
+  "zone": "East Svealand",
+  "offset": [
+   -3500,
+   0
+  ],
+  "levels": [
+   7,
+   8,
+   9
+  ],
+  "why": "(owner 2026-10-07: every quest in) Troubled Wild: 'on the road west out of town, not far from town' (Vasudheim)"
+ },
+ "minion of Haglion": {
+  "camp": "mora dancer",
+  "zone": "Myrkwood Forest",
+  "offset": [
+   600,
+   600
+  ],
+  "levels": [
+   30,
+   31,
+   32
+  ],
+  "why": "(owner 2026-10-07: every quest in) The Wanestone Jewel: Haglion's minions, large wolves southwest of Gna Faste among the mora dancers"
+ },
+ "vanisher": {
+  "zone": "Mount Collory",
+  "loc": [
+   13000,
+   58000
+  ],
+  "why": "(owner 2026-10-07: every quest in) Season of Remorse: vanishers east of the mile gate mountain range (walkthrough loc)"
+ },
+ "Darac": {
+  "near": "captured bergklan",
+  "zone": "Trollheim",
+  "offset": [
+   400,
+   400
+  ],
+  "levels": [
+   53
+  ],
+  "why": "(owner 2026-10-07: every quest in) Stoneheart: down the spiral ramp from the bridge room; no loc recorded, placed by the captured bergklan (approximate)"
+ },
+ "Raiaya": {
+  "near": "Lynara",
+  "zone": "Vale of Balor",
+  "offset": [
+   300,
+   200
+  ],
+  "why": "(owner 2026-10-07: every quest in) The Tree Maidens: Raiaya ends the quest; placed beside Lynara in Droighaid (no loc recorded)"
+ },
+ "Odlran": {
+  "near": "Lauralaye",
+  "zone": "Tir na Nog",
+  "offset": [
+   300,
+   250
+  ],
+  "why": "(owner 2026-10-07: every quest in) Search for the Missing Smith: in the courtyard outside the palace guildhall in Tir na Nog (no loc recorded); placed beside Lauralaye"
+ },
+ "Sentry Dwarn": {
+  "near": "Sentry Crush",
+  "zone": "Myrkwood Forest",
+  "offset": [
+   150,
+   150
+  ],
+  "why": "(owner 2026-10-07: every quest in) Morana's Tunic: 'on top of the tower at Gna Faste', beside the other sentry"
+ },
+ "Silvertone": {
+  "near": "Barkeep Kanar",
+  "zone": "East Svealand",
+  "offset": [
+   150,
+   100
+  ],
+  "why": "(owner 2026-10-07: every quest in) The Legend of Fenrir's Folly: 'in the bar at Vasudheim'"
+ },
+ "Wug": {
+  "world": true,
+  "why_world": "talked to (or hunted) on a quest step: a standing NPC rather than a temporary quest spawn (owner 2026-10-07)"
+ },
+ "Shale Golem Emissary": {
+  "world": true,
+  "why_world": "talked to (or hunted) on a quest step: a standing NPC rather than a temporary quest spawn (owner 2026-10-07)"
+ },
+ "Alsandair Muire": {
+  "near": "Quillan Muire",
+  "zone": "Muire Tomb",
+  "offset": [
+   -300,
+   200
+  ],
+  "levels": [
+   22
+  ],
+  "why": "(owner 2026-10-07: every quest in) Rest in Peace: beside the tomb's other named Muire (no loc recorded)"
+ },
+ "Shyene Muire": {
+  "near": "Quillan Muire",
+  "zone": "Muire Tomb",
+  "offset": [
+   0,
+   -300
+  ],
+  "levels": [
+   22
+  ],
+  "why": "(owner 2026-10-07: every quest in) Rest in Peace: beside the tomb's other named Muire (no loc recorded)"
+ },
+ "siabra": {
+  "camp": "ghastly siabra",
+  "zone": "Lough Derg",
+  "offset": [
+   -400,
+   400
+  ],
+  "why": "(owner 2026-10-07: every quest in) Lochlain's Curse: siabra, with the ghastly siabra"
+ },
+ "Archivist Borath": {
+  "camp": "experienced necyomancer",
+  "zone": "Darkness Falls",
+  "offset": [
+   300,
+   300
+  ],
+  "levels": [
+   40
+  ],
+  "why": "(owner 2026-10-07: every quest in) Black Plague (Hib): 'can be single-pulled through the other mobs in his area' (red to a level 33 group); no loc recorded, placed among the level-40 necyomancers (owner allowed this one Darkness Falls spawn)"
+ },
+ "great brown drake": {
+  "zone": "Pennine Mountains",
+  "loc": [
+   46969,
+   26886
+  ],
+  "levels": [
+   55,
+   57,
+   58
+  ],
+  "why": "(owner 2026-10-07: every quest in) The Legend of Fenrir's Folly: 'great brown drake in the Pennine Mountains northwest of Caer Sursbrooke' - CapnBry radar saw 13 there (levels 55-58); Pennine was an open frontier zone in classic"
+ }
+}

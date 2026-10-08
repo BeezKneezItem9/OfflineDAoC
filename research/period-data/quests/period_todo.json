@@ -1,0 +1,4043 @@
+[
+{
+"key": "A172",
+"name": "Immediate Resolution (version 1)",
+"realm": "Albion",
+"level": "1",
+"zone": "Campacorentin Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A573",
+"name": "Cellar Infestation",
+"realm": "Albion",
+"level": "1",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "A542",
+"name": "Inconnu Poison",
+"realm": "Albion",
+"level": "1",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A258",
+"name": "Commencement",
+"realm": "Albion",
+"level": "2",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A639",
+"name": "Disturbing Illness",
+"realm": "Albion",
+"level": "2",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A29",
+"name": "Flint Weapons",
+"realm": "Albion",
+"level": "2",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A543",
+"name": "Lost Potion",
+"realm": "Albion",
+"level": "2",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A260",
+"name": "Association",
+"realm": "Albion",
+"level": "3",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A31",
+"name": "Nain Hunting",
+"realm": "Albion",
+"level": "3",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A4",
+"name": "Rock Imps",
+"realm": "Albion",
+"level": "3",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A640",
+"name": "Soul Hunt",
+"realm": "Albion",
+"level": "3",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A555",
+"name": "Souls of the Dead",
+"realm": "Albion",
+"level": "3",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "A571",
+"name": "Guild Introduction (Disciple)",
+"realm": "Albion",
+"level": "4",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A641",
+"name": "Guild Introduction (Rogue)",
+"realm": "Albion",
+"level": "4",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "A261",
+"name": "Guild Preparation",
+"realm": "Albion",
+"level": "4",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A15",
+"name": "Zombie Problem",
+"realm": "Albion",
+"level": "4",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A10",
+"name": "Bandit Ears",
+"realm": "Albion",
+"level": "5",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A16",
+"name": "Cleric Mulgrut",
+"realm": "Albion",
+"level": "5",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A30",
+"name": "Ripper",
+"realm": "Albion",
+"level": "5",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A203",
+"name": "Simple Request",
+"realm": "Albion",
+"level": "5",
+"zone": "Snowdonia",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A56",
+"name": "Camdene's Components",
+"realm": "Albion",
+"level": "6",
+"zone": "Avalon Marsh",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A310",
+"name": "Goblin Incursion",
+"realm": "Albion",
+"level": "7",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A5",
+"name": "Heart of Sephucoth",
+"realm": "Albion",
+"level": "7",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A11",
+"name": "Hunt for Slith",
+"realm": "Albion",
+"level": "7",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A13",
+"name": "Search for Sil",
+"realm": "Albion",
+"level": "7",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A12",
+"name": "Sunken Cargo",
+"realm": "Albion",
+"level": "7",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A14",
+"name": "Father Hugrath",
+"realm": "Albion",
+"level": "8",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A33",
+"name": "Lady Leana",
+"realm": "Albion",
+"level": "8",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A1778",
+"name": "Protecting Anniogel",
+"realm": "Albion",
+"level": "8",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A32",
+"name": "Dunan's Bear Tooth",
+"realm": "Albion",
+"level": "9",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A344",
+"name": "Price of Courage",
+"realm": "Albion",
+"level": "9",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A157",
+"name": "Thinking Cap",
+"realm": "Albion",
+"level": "9",
+"zone": "Black Mountains North",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A200",
+"name": "Departed Hero",
+"realm": "Albion",
+"level": "10",
+"zone": "Snowdonia",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A17",
+"name": "Dragon Ant Charm",
+"realm": "Albion",
+"level": "10",
+"zone": "Black Mountains North",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A105",
+"name": "Intervention",
+"realm": "Albion",
+"level": "10",
+"zone": "Snowdonia",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A317",
+"name": "Tale of Druids",
+"realm": "Albion",
+"level": "10",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A128",
+"name": "Cloak of Shades",
+"realm": "Albion",
+"level": "11",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A155",
+"name": "Niea's Missing Brother",
+"realm": "Albion",
+"level": "11",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A158",
+"name": "Sals' Jar",
+"realm": "Albion",
+"level": "11",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A171",
+"name": "Sir Gleran's Lost Necklace",
+"realm": "Albion",
+"level": "11",
+"zone": "Salisbury Plains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A54",
+"name": "Staff of Life",
+"realm": "Albion",
+"level": "11",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A343",
+"name": "Tainted Magic",
+"realm": "Albion",
+"level": "11",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A145",
+"name": "Bandit Camp",
+"realm": "Albion",
+"level": "12",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A112",
+"name": "Guarding the Stone",
+"realm": "Albion",
+"level": "12",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A588",
+"name": "Information / Trickery",
+"realm": "Albion",
+"level": "12",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A160",
+"name": "Barnett's Shield",
+"realm": "Albion",
+"level": "13",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A135",
+"name": "Growler's Necklace",
+"realm": "Albion",
+"level": "13",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A91",
+"name": "Lady Judith's Circlet",
+"realm": "Albion",
+"level": "13",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A103",
+"name": "Slythcur Cloak",
+"realm": "Albion",
+"level": "13",
+"zone": "Avalon Marsh",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A159",
+"name": "The Captured Courier",
+"realm": "Albion",
+"level": "13",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A335",
+"name": "The Growling Ghost",
+"realm": "Albion",
+"level": "13",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A703",
+"name": "Drakoran Watchers",
+"realm": "Albion",
+"level": "14",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A541",
+"name": "Reaching Beyond",
+"realm": "Albion",
+"level": "14",
+"zone": "Avalon Marsh",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A123",
+"name": "Siom's Staff",
+"realm": "Albion",
+"level": "14",
+"zone": "Black Mountains South",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A198",
+"name": "Bedelia's Grief",
+"realm": "Albion",
+"level": "15",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A502",
+"name": "Willing Sacrifice",
+"realm": "Albion",
+"level": "15",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A179",
+"name": "Ivy Weave Gloves",
+"realm": "Albion",
+"level": "16",
+"zone": "Avalon Marsh",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A144",
+"name": "Contyth's Hammer",
+"realm": "Albion",
+"level": "17",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A302",
+"name": "Kindred of the Fallen",
+"realm": "Albion",
+"level": "17",
+"zone": "Forest Sauvage",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A151",
+"name": "Lord Aryon's Box",
+"realm": "Albion",
+"level": "17",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A175",
+"name": "The Stolen Spells",
+"realm": "Albion",
+"level": "17",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A219",
+"name": "Druid Medicine",
+"realm": "Albion",
+"level": "18",
+"zone": "Salisbury Plains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A197",
+"name": "Bishop Burhoff's Curse",
+"realm": "Albion",
+"level": "19",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A195",
+"name": "Escaped Bandits",
+"realm": "Albion",
+"level": "20",
+"zone": "Salisbury Plains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A47",
+"name": "Goblin Hunting",
+"realm": "Albion",
+"level": "20",
+"zone": "Campacorentin Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A88",
+"name": "Oaken Boots",
+"realm": "Albion",
+"level": "20",
+"zone": "Campacorentin Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A87",
+"name": "The Hunt for Arachneida",
+"realm": "Albion",
+"level": "20",
+"zone": "Campacorentin Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A89",
+"name": "Nenet's Research",
+"realm": "Albion",
+"level": "21",
+"zone": "Campacorentin Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A85",
+"name": "The Heretical Hermit",
+"realm": "Albion",
+"level": "21",
+"zone": "Avalon Marsh",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A329",
+"name": "Wizard's Appeal",
+"realm": "Albion",
+"level": "21",
+"zone": "Black Mountains North",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A6",
+"name": "Outcast Ormgarth",
+"realm": "Albion",
+"level": "22",
+"zone": "Campacorentin Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A107",
+"name": "Dugan's Magical Totem",
+"realm": "Albion",
+"level": "24",
+"zone": "Avalon Marsh",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A1794",
+"name": "Uncle Thulin",
+"realm": "Albion",
+"level": "25",
+"zone": "Dales of Devwy",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A670",
+"name": "Failing Magic",
+"realm": "Albion",
+"level": "26",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A78",
+"name": "Tyngyr's Daughter",
+"realm": "Albion",
+"level": "26",
+"zone": "Avalon Marsh",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A169",
+"name": "Amulet of the Planes",
+"realm": "Albion",
+"level": "27",
+"zone": "Campacorentin Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A322",
+"name": "Weakened Bonds",
+"realm": "Albion",
+"level": "27",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A147",
+"name": "Supplies for Lillian",
+"realm": "Albion",
+"level": "28",
+"zone": "Salisbury Plains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A150",
+"name": "The Walelden's Pendant",
+"realm": "Albion",
+"level": "28",
+"zone": "Campacorentin Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A535",
+"name": "Long Lion Fang",
+"realm": "Albion",
+"level": "30",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A725",
+"name": "Undead Infestation",
+"realm": "Albion",
+"level": "30",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A704",
+"name": "Under Attack",
+"realm": "Albion",
+"level": "31",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A161",
+"name": "Wizard's Demand",
+"realm": "Albion",
+"level": "32",
+"zone": "Black Mountains North",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A349",
+"name": "Impossible Mission",
+"realm": "Albion",
+"level": "33",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A574",
+"name": "Reports",
+"realm": "Albion",
+"level": "33",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A1806",
+"name": "Evening the Odds",
+"realm": "Albion",
+"level": "36",
+"zone": "Inishail Island",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A508",
+"name": "Fall of an Emperor",
+"realm": "Albion",
+"level": "36",
+"zone": "Campacorentin Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A572",
+"name": "Spirits of the Orchard",
+"realm": "Albion",
+"level": "36",
+"zone": "Avalon Isle",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A1793",
+"name": "Black Plague (Alb)",
+"realm": "Albion",
+"level": "37",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A1782",
+"name": "Engraved Insignia Ring -- Kill Task",
+"realm": "Albion",
+"level": "38",
+"zone": "Avalon Isle",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A273",
+"name": "Crushed Faith",
+"realm": "Albion",
+"level": "40",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A478",
+"name": "The Forest Plot",
+"realm": "Albion",
+"level": "40",
+"zone": "Forest Sauvage",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A702",
+"name": "Zombies, Ghosts, and Necromancers",
+"realm": "Albion",
+"level": "40",
+"zone": "Dales of Devwy",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A351",
+"name": "Secret Orders",
+"realm": "Albion",
+"level": "41",
+"zone": "Black Mountains North",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A575",
+"name": "Voices of the Dead",
+"realm": "Albion",
+"level": "42",
+"zone": "Avalon Isle",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A296",
+"name": "Prelude to War",
+"realm": "Albion",
+"level": "45",
+"zone": "Camelot Hills",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A707",
+"name": "Malignant Creatures",
+"realm": "Albion",
+"level": "46",
+"zone": "Caldey",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A688",
+"name": "Free the Rogue!",
+"realm": "Albion",
+"level": "48",
+"zone": "Aldland",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A729",
+"name": "Lost Treasure",
+"realm": "Albion",
+"level": "49",
+"zone": "Dales of Devwy",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A699",
+"name": "Ogre's Might",
+"realm": "Albion",
+"level": "49",
+"zone": "Aldland",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A1810",
+"name": "Orcs with Spellbooks",
+"realm": "Albion",
+"level": "49",
+"zone": "Inishail Island",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A686",
+"name": "Restoring the Magic",
+"realm": "Albion",
+"level": "50",
+"zone": "Isle of Glass",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "A226",
+"name": "Cynewulf the Ghostwalker One Time Drop",
+"realm": "Albion",
+"level": "17",
+"zone": "Salisbury Plains",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A222",
+"name": "Cheshire One Time Drop",
+"realm": "Albion",
+"level": "22",
+"zone": "Snowdonia",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A285",
+"name": "Dai One Time Drop",
+"realm": "Albion",
+"level": "24",
+"zone": "Keltoi Fogou",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A223",
+"name": "Black Lion One Time Drop",
+"realm": "Albion",
+"level": "29",
+"zone": "Campacorentin Forest",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A286",
+"name": "Decurion One Time Drop",
+"realm": "Albion",
+"level": "29",
+"zone": "Catacombs of Cardova",
+"type": "One Time Drop",
+"period": "border"
+},
+{
+"key": "A221",
+"name": "Grunge One Time Drop",
+"realm": "Albion",
+"level": "34",
+"zone": "Snowdonia",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A373",
+"name": "Tusker One Time Drop",
+"realm": "Albion",
+"level": "36",
+"zone": "Cornwall",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A245",
+"name": "Nasher One Time Drop",
+"realm": "Albion",
+"level": "37",
+"zone": "Snowdonia",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A505",
+"name": "Nogud the Smasher One Time Drop",
+"realm": "Albion",
+"level": "41",
+"zone": "Snowdonia",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A1787",
+"name": "Angau One Time Drop",
+"realm": "Albion",
+"level": "42",
+"zone": "Pennine Mountains",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A251",
+"name": "Ash One Time Drop",
+"realm": "Albion",
+"level": "43",
+"zone": "Pennine Mountains",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A515",
+"name": "Blacktooth One Time Drop",
+"realm": "Albion",
+"level": "45",
+"zone": "Snowdonia",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "A587",
+"name": "Eye of Arawn One Time Drop",
+"realm": "Albion",
+"level": "45",
+"zone": "Snowdonia",
+"type": "One Time Drop",
+"period": "border"
+},
+{
+"key": "A628",
+"name": "Tattooed Drakoran Skirmisher Head -- Kill Task",
+"realm": "Albion",
+"level": "20",
+"zone": "Isle of Glass",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "A405",
+"name": "Grim Scrap -- Kill Task",
+"realm": "Albion",
+"level": "21",
+"zone": "Black Mountains North",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "A694",
+"name": "Dented Drakoran Marauder Helm -- Kill Task",
+"realm": "Albion",
+"level": "24",
+"zone": "Avalon Isle",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "A409",
+"name": "Afanc Hatchling Tongue -- Kill Task",
+"realm": "Albion",
+"level": "25",
+"zone": "Black Mountains North",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "A585",
+"name": "Billious Goo Pieces -- Kill Task",
+"realm": "Albion",
+"level": "30",
+"zone": "Aldland",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "A618",
+"name": "Cliff Yale Yearling Essence -- Kill Task",
+"realm": "Albion",
+"level": "30",
+"zone": "Dales of Devwy",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "A536",
+"name": "Fell Creature Teeth -- Kill Task",
+"realm": "Albion",
+"level": "30",
+"zone": "Snowdonia",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "A616",
+"name": "Rubbish Pieces -- Kill Task",
+"realm": "Albion",
+"level": "30",
+"zone": "Dales of Devwy",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "A747",
+"name": "Drakoran Leech Bone Necklace -- Kill Task",
+"realm": "Albion",
+"level": "31",
+"zone": "Avalon Isle",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "A606",
+"name": "Gyves Parts -- Kill Task",
+"realm": "Albion",
+"level": "35",
+"zone": "Dales of Devwy",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "A751",
+"name": "Rusty Gyve Bits -- Kill Task",
+"realm": "Albion",
+"level": "35",
+"zone": "Dales of Devwy",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "A471",
+"name": "Unused Arrowheads -- Kill Task",
+"realm": "Albion",
+"level": "41",
+"zone": "Camelot Hills",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "A755",
+"name": "Dried Rowan Leaves  -- Kill Task",
+"realm": "Albion",
+"level": "44",
+"zone": "Avalon Isle",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "A680",
+"name": "Shredded Footman's Cloak  -- Kill Task",
+"realm": "Albion",
+"level": "46",
+"zone": "Avalon Isle",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "A1764",
+"name": "Basilisk Feather -- Kill Task",
+"realm": "Albion",
+"level": "49",
+"zone": "Camelot",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "A1819",
+"name": "Worn Tradeskill Tools (Alb)",
+"realm": "Albion",
+"level": "5",
+"zone": "Camelot",
+"type": "Crafting",
+"period": "border"
+},
+{
+"key": "H736",
+"name": "Miari's Seed",
+"realm": "Hibernia",
+"level": "1",
+"zone": "Domnann",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "H64",
+"name": "Misdelivered Letter",
+"realm": "Hibernia",
+"level": "1",
+"zone": "Shannon Estuary",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H65",
+"name": "Slevin's Powder",
+"realm": "Hibernia",
+"level": "1",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H283",
+"name": "Tadhg's Lost Treasure",
+"realm": "Hibernia",
+"level": "1",
+"zone": "Shannon Estuary",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H62",
+"name": "Way of Arms -- Learn the Paths",
+"realm": "Hibernia",
+"level": "1",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H259",
+"name": "Way of Magic - Learn the Paths",
+"realm": "Hibernia",
+"level": "1",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H333",
+"name": "Way of Stealth - Learn the Paths",
+"realm": "Hibernia",
+"level": "1",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "H546",
+"name": "Wild Wilderness",
+"realm": "Hibernia",
+"level": "1",
+"zone": "Domnann",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "H25",
+"name": "Balm Hunt",
+"realm": "Hibernia",
+"level": "2",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H63",
+"name": "Connla's Fever",
+"realm": "Hibernia",
+"level": "2",
+"zone": "Shannon Estuary",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H334",
+"name": "Please Deliver! (Way of Stealth)",
+"realm": "Hibernia",
+"level": "2",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H740",
+"name": "Protecting the Groves",
+"realm": "Hibernia",
+"level": "2",
+"zone": "Domnann",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "H547",
+"name": "Shade of a Grove",
+"realm": "Hibernia",
+"level": "2",
+"zone": "Domnann",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H289",
+"name": "Troya's Research",
+"realm": "Hibernia",
+"level": "2",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H36",
+"name": "Balance of Nature",
+"realm": "Hibernia",
+"level": "3",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H324",
+"name": "Information is the Key (Celt)",
+"realm": "Hibernia",
+"level": "3",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "H60",
+"name": "Information is the Key (Elf)",
+"realm": "Hibernia",
+"level": "3",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1773",
+"name": "Magic in the Grove",
+"realm": "Hibernia",
+"level": "3",
+"zone": "Domnann",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "H548",
+"name": "Magical Disturbances",
+"realm": "Hibernia",
+"level": "3",
+"zone": "Domnann",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H45",
+"name": "Mild Deception",
+"realm": "Hibernia",
+"level": "3",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H61",
+"name": "Enchanted Bandit Hunt",
+"realm": "Hibernia",
+"level": "4",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1774",
+"name": "Learn the Paths",
+"realm": "Hibernia",
+"level": "4",
+"zone": "Domnann",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "H43",
+"name": "Summoner Expulsion",
+"realm": "Hibernia",
+"level": "4",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H48",
+"name": "Tale of Cad Goddeau",
+"realm": "Hibernia",
+"level": "4",
+"zone": "Shannon Estuary",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H46",
+"name": "Track and Seek",
+"realm": "Hibernia",
+"level": "4",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H549",
+"name": "Way of the Grove -- Learning the Paths",
+"realm": "Hibernia",
+"level": "4",
+"zone": "Domnann",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "H67",
+"name": "Wolf Infestation",
+"realm": "Hibernia",
+"level": "4",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H276",
+"name": "Youth Gone Wrong",
+"realm": "Hibernia",
+"level": "4",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H282",
+"name": "Kylirean's New Armor",
+"realm": "Hibernia",
+"level": "5",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "H305",
+"name": "Spicket, Spackit and Spykit",
+"realm": "Hibernia",
+"level": "5",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H304",
+"name": "The Bug Catcher's Studies",
+"realm": "Hibernia",
+"level": "5",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H34",
+"name": "Evan's Notes",
+"realm": "Hibernia",
+"level": "6",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H26",
+"name": "Cristin's Supplies",
+"realm": "Hibernia",
+"level": "7",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H306",
+"name": "Straw's In Town",
+"realm": "Hibernia",
+"level": "7",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H28",
+"name": "Clik's Raids",
+"realm": "Hibernia",
+"level": "9",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H73",
+"name": "Gormghlaith's Tea",
+"realm": "Hibernia",
+"level": "9",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H100",
+"name": "Little Wind",
+"realm": "Hibernia",
+"level": "9",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H730",
+"name": "Cyllane's Cure",
+"realm": "Hibernia",
+"level": "10",
+"zone": "Domnann",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H66",
+"name": "Fagan's Wand",
+"realm": "Hibernia",
+"level": "11",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H109",
+"name": "Lochlain's Curse",
+"realm": "Hibernia",
+"level": "11",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H74",
+"name": "Rhian's Dyes",
+"realm": "Hibernia",
+"level": "11",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H95",
+"name": "Keara's Enchantment",
+"realm": "Hibernia",
+"level": "12",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H597",
+"name": "Whatcha Gonna Do",
+"realm": "Hibernia",
+"level": "12",
+"zone": "Domnann",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H126",
+"name": "The Hunt for Bristle",
+"realm": "Hibernia",
+"level": "13",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H576",
+"name": "The Status of Information",
+"realm": "Hibernia",
+"level": "13",
+"zone": "Domnann",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H163",
+"name": "Beautiful Music",
+"realm": "Hibernia",
+"level": "14",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H277",
+"name": "Lesser Of Two Evils",
+"realm": "Hibernia",
+"level": "15",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1771",
+"name": "Two Ales, Ailish!",
+"realm": "Hibernia",
+"level": "15",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "H174",
+"name": "Fearan",
+"realm": "Hibernia",
+"level": "16",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H92",
+"name": "Lysagh's Problem",
+"realm": "Hibernia",
+"level": "16",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H330",
+"name": "Regional Distinctions",
+"realm": "Hibernia",
+"level": "16",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H93",
+"name": "Alastriona's Chest",
+"realm": "Hibernia",
+"level": "17",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H516",
+"name": "Rest in Peace",
+"realm": "Hibernia",
+"level": "17",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H124",
+"name": "Riona's Revenge",
+"realm": "Hibernia",
+"level": "17",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H27",
+"name": "Sad Fomorie",
+"realm": "Hibernia",
+"level": "17",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H97",
+"name": "Scuttle",
+"realm": "Hibernia",
+"level": "17",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H162",
+"name": "Spinner's Cloak",
+"realm": "Hibernia",
+"level": "17",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H118",
+"name": "Eoghan's Spell",
+"realm": "Hibernia",
+"level": "20",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H148",
+"name": "Seeking Glory",
+"realm": "Hibernia",
+"level": "20",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H658",
+"name": "Setting Sail",
+"realm": "Hibernia",
+"level": "20",
+"zone": "Shannon Estuary",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H350",
+"name": "The Feud",
+"realm": "Hibernia",
+"level": "20",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H461",
+"name": "Treasure Hunt",
+"realm": "Hibernia",
+"level": "21",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H193",
+"name": "Sheerie Mischief",
+"realm": "Hibernia",
+"level": "22",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H311",
+"name": "A Piece of Gormghlaith's Mind",
+"realm": "Hibernia",
+"level": "23",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H177",
+"name": "Bria's Savior",
+"realm": "Hibernia",
+"level": "24",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H167",
+"name": "Essence of Hostility",
+"realm": "Hibernia",
+"level": "24",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H331",
+"name": "Occupation of Lough Gur (version 1)",
+"realm": "Hibernia",
+"level": "24",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H332",
+"name": "Occupation of Lough Gur (version 2)",
+"realm": "Hibernia",
+"level": "24",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H724",
+"name": "The Broken Seal",
+"realm": "Hibernia",
+"level": "24",
+"zone": "Cliffs of Moher",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H252",
+"name": "Sea Shell Sleeves",
+"realm": "Hibernia",
+"level": "25",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H340",
+"name": "Sraoi's Heart",
+"realm": "Hibernia",
+"level": "25",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1790",
+"name": "The Piper's Price",
+"realm": "Hibernia",
+"level": "25",
+"zone": "Lough Gur",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H250",
+"name": "Larylle's Necklace",
+"realm": "Hibernia",
+"level": "27",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H339",
+"name": "Search for Nasco's Spear",
+"realm": "Hibernia",
+"level": "27",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H207",
+"name": "Sile's Sight",
+"realm": "Hibernia",
+"level": "27",
+"zone": "Shannon Estuary",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1772",
+"name": "Season of Remorse",
+"realm": "Hibernia",
+"level": "28",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H82",
+"name": "Storyteller's Tale",
+"realm": "Hibernia",
+"level": "28",
+"zone": "Shannon Estuary",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H609",
+"name": "Poison for Ivy",
+"realm": "Hibernia",
+"level": "31",
+"zone": "Domnann",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H367",
+"name": "Returning for More",
+"realm": "Hibernia",
+"level": "31",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H369",
+"name": "Returning to the Source",
+"realm": "Hibernia",
+"level": "31",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H101",
+"name": "The Anxious Healer",
+"realm": "Hibernia",
+"level": "31",
+"zone": "Cliffs of Moher",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H368",
+"name": "Traces of the Mad Changlings",
+"realm": "Hibernia",
+"level": "31",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H596",
+"name": "Missing Tapestry",
+"realm": "Hibernia",
+"level": "33",
+"zone": "Caillte Garran",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H578",
+"name": "Crace's Desire",
+"realm": "Hibernia",
+"level": "35",
+"zone": "Domnann",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H127",
+"name": "Criofan's Fish",
+"realm": "Hibernia",
+"level": "35",
+"zone": "Shannon Estuary",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H152",
+"name": "Freeing Osier",
+"realm": "Hibernia",
+"level": "35",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1798",
+"name": "Viraniel's Plague",
+"realm": "Hibernia",
+"level": "35",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H477",
+"name": "Magic's Scar",
+"realm": "Hibernia",
+"level": "36",
+"zone": "Lough Derg",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1807",
+"name": "Xaxnxi's Quest",
+"realm": "Hibernia",
+"level": "36",
+"zone": "Allta Fearann",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1792",
+"name": "Black Plague (Hib)",
+"realm": "Hibernia",
+"level": "37",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H417",
+"name": "Catch of the Day",
+"realm": "Hibernia",
+"level": "38",
+"zone": "Connacht",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H565",
+"name": "Search For The Missing Smith",
+"realm": "Hibernia",
+"level": "38",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H196",
+"name": "The West Wind",
+"realm": "Hibernia",
+"level": "38",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H577",
+"name": "Twisted Evil",
+"realm": "Hibernia",
+"level": "38",
+"zone": "Domnann",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1797",
+"name": "Banba's Road to Grandmaster",
+"realm": "Hibernia",
+"level": "40",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H590",
+"name": "Face the Twisted",
+"realm": "Hibernia",
+"level": "40",
+"zone": "Vigilant Rock",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H415",
+"name": "The Touch of Amadan Duhb",
+"realm": "Hibernia",
+"level": "40",
+"zone": "Shannon Estuary",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H681",
+"name": "Immortal Gift",
+"realm": "Hibernia",
+"level": "43",
+"zone": "Shannon Estuary",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H550",
+"name": "Fylara's Armor",
+"realm": "Hibernia",
+"level": "45",
+"zone": "Vale of Balor",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1796",
+"name": "The Lost Relics",
+"realm": "Hibernia",
+"level": "45",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H589",
+"name": "Corruptors, Botonids, and Trade",
+"realm": "Hibernia",
+"level": "46",
+"zone": "Vigilant Rock",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H711",
+"name": "The Sylvan's Pain",
+"realm": "Hibernia",
+"level": "47",
+"zone": "Caillte Garran",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H610",
+"name": "The Tree Maidens",
+"realm": "Hibernia",
+"level": "48",
+"zone": "Caillte Garran",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H362",
+"name": "Piaras and Lhia",
+"realm": "Hibernia",
+"level": "49",
+"zone": "Silvermine Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H627",
+"name": "Rhoiwyn's Necklace",
+"realm": "Hibernia",
+"level": "49",
+"zone": "Caillte Garran",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H1791",
+"name": "Writhing Death",
+"realm": "Hibernia",
+"level": "49",
+"zone": "Vigilant Rock",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "H494",
+"name": "Sloithi One Time Drop",
+"realm": "Hibernia",
+"level": "17",
+"zone": "Valley of Bri Leith",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H1776",
+"name": "Wilde's One Time Drop",
+"realm": "Hibernia",
+"level": "20",
+"zone": "Valley of Bri Leith",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H243",
+"name": "Brannigan One Time Drop",
+"realm": "Hibernia",
+"level": "25",
+"zone": "Silvermine Mountains",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H269",
+"name": "Muir One Time Drop",
+"realm": "Hibernia",
+"level": "26",
+"zone": "Shannon Estuary",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H371",
+"name": "Banghaisgidheach One Time Drop",
+"realm": "Hibernia",
+"level": "28",
+"zone": "Lough Gur",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H364",
+"name": "Danderpaw One Time Drop",
+"realm": "Hibernia",
+"level": "28",
+"zone": "Shannon Estuary",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H227",
+"name": "Withe One Time Drop",
+"realm": "Hibernia",
+"level": "29",
+"zone": "Connacht",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H236",
+"name": "Famine One Time Drop",
+"realm": "Hibernia",
+"level": "30",
+"zone": "Connacht",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H385",
+"name": "Luchtigern One Time Drop",
+"realm": "Hibernia",
+"level": "30",
+"zone": "Shannon Estuary",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H224",
+"name": "Thistle One Time Drop",
+"realm": "Hibernia",
+"level": "32",
+"zone": "Cruachan Gorge",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H520",
+"name": "Anord One Time Drop",
+"realm": "Hibernia",
+"level": "33",
+"zone": "Mount Collory",
+"type": "One Time Drop",
+"period": "border"
+},
+{
+"key": "H256",
+"name": "Neese One Time Drop",
+"realm": "Hibernia",
+"level": "33",
+"zone": "Bog of Cullen",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H238",
+"name": "Spifnar One Time Drop",
+"realm": "Hibernia",
+"level": "33",
+"zone": "Cruachan Gorge",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H495",
+"name": "Dorbal One Time Drop",
+"realm": "Hibernia",
+"level": "34",
+"zone": "Connacht",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H237",
+"name": "Little Star One Time Drop",
+"realm": "Hibernia",
+"level": "34",
+"zone": "Cruachan Gorge",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H239",
+"name": "Muroi One Time Drop",
+"realm": "Hibernia",
+"level": "34",
+"zone": "Bog of Cullen",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H496",
+"name": "Ailbe's Claw -- One Time Drop",
+"realm": "Hibernia",
+"level": "35",
+"zone": "Lough Gur",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H245",
+"name": "Nasher One Time Drop",
+"realm": "Hibernia",
+"level": "37",
+"zone": "Snowdonia",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H455",
+"name": "Amadan One Time Drop",
+"realm": "Hibernia",
+"level": "38",
+"zone": "Connacht",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H287",
+"name": "Niy the Overseer One Time Drop",
+"realm": "Hibernia",
+"level": "39",
+"zone": "Valley of Bri Leith",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H265",
+"name": "Brarn One Time Drop",
+"realm": "Hibernia",
+"level": "40",
+"zone": "Cliffs of Moher",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H249",
+"name": "Guardian Hru One Time Drop",
+"realm": "Hibernia",
+"level": "40",
+"zone": "Valley of Bri Leith",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H293",
+"name": "Oak Man One Time Drop",
+"realm": "Hibernia",
+"level": "44",
+"zone": "Mount Collory",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H290",
+"name": "Dob One Time Drop",
+"realm": "Hibernia",
+"level": "47",
+"zone": "Bog of Cullen",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H272",
+"name": "Shadowgnash One Time Drop",
+"realm": "Hibernia",
+"level": "47",
+"zone": "Cursed Forest",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H1795",
+"name": "Badb One Time Drop",
+"realm": "Hibernia",
+"level": "48",
+"zone": "Bog of Cullen",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "H382",
+"name": "Squabbler Eye --Kill Task",
+"realm": "Hibernia",
+"level": "29",
+"zone": "Connacht",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H642",
+"name": "Twisted Barkstripper Treant Wood -- Kill Task",
+"realm": "Hibernia",
+"level": "30",
+"zone": "Vigilant Rock",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "H404",
+"name": "Rage Wolf Teeth -- Kill Task",
+"realm": "Hibernia",
+"level": "31",
+"zone": "Valley of Bri Leith",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H403",
+"name": "Torc Teeth -- Kill Task",
+"realm": "Hibernia",
+"level": "34",
+"zone": "Valley of Bri Leith",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H583",
+"name": "Arbordon Arm -- Kill Task",
+"realm": "Hibernia",
+"level": "36",
+"zone": "Caillte Garran",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H390",
+"name": "Gold Lined Drinking Horn -- Kill Task",
+"realm": "Hibernia",
+"level": "36",
+"zone": "Cliffs of Moher",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H611",
+"name": "Vigilant One Leaves -- Kill Task",
+"realm": "Hibernia",
+"level": "36",
+"zone": "Vigilant Rock",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "H668",
+"name": "Cutthroat Vine Poison Sac -- Kill Task",
+"realm": "Hibernia",
+"level": "38",
+"zone": "Caillte Garran",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H562",
+"name": "Sanidon Magical Sand -- Kill Task",
+"realm": "Hibernia",
+"level": "40",
+"zone": "Vigilant Rock",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H430",
+"name": "Vial of Glowing Gasses (Iola) -- Kill Task",
+"realm": "Hibernia",
+"level": "40",
+"zone": "Silvermine Mountains",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "H746",
+"name": "Anglator Meat -- Kill Task",
+"realm": "Hibernia",
+"level": "42",
+"zone": "World's End",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H489",
+"name": "Detrital Crab Meat -- Kill Task",
+"realm": "Hibernia",
+"level": "42",
+"zone": "Shannon Estuary",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "H431",
+"name": "Death Robe (Brisen) -- Kill Task",
+"realm": "Hibernia",
+"level": "43",
+"zone": "Silvermine Mountains",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "H435",
+"name": "Death Robe (Raghnall) -- Kill Task",
+"realm": "Hibernia",
+"level": "43",
+"zone": "Bog of Cullen",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "H436",
+"name": "Death Robe (Sorcha) -- Kill Task",
+"realm": "Hibernia",
+"level": "43",
+"zone": "Shannon Estuary",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "H437",
+"name": "Vial of Glowing Gases (Eiral) -- Kill Task",
+"realm": "Hibernia",
+"level": "43",
+"zone": "Connacht",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H554",
+"name": "Bug Bear Snout -- Kill Task",
+"realm": "Hibernia",
+"level": "44",
+"zone": "Vale of Balor",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "H551",
+"name": "Cervideth Antlers -- Kill Task",
+"realm": "Hibernia",
+"level": "44",
+"zone": "Vale of Balor",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "H402",
+"name": "Umber Bear Teeth -- Kill Task",
+"realm": "Hibernia",
+"level": "44",
+"zone": "Valley of Bri Leith",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H1767",
+"name": "Melancholic Fairy Wings -- Kill Task",
+"realm": "Hibernia",
+"level": "45",
+"zone": "Bog of Cullen",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "H646",
+"name": "Spiteful Sylvanshade Head -- Kill Task",
+"realm": "Hibernia",
+"level": "46",
+"zone": "Domnann",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "H400",
+"name": "Fomorian Gehk Teeth -- Kill Task",
+"realm": "Hibernia",
+"level": "47",
+"zone": "Valley of Bri Leith",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "H692",
+"name": "Venomous Spore Poison Sac -- Kill Task",
+"realm": "Hibernia",
+"level": "49",
+"zone": "Cothrom Gorge",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "H401",
+"name": "Fomorian Wolfbeast Teeth -- Kill Task",
+"realm": "Hibernia",
+"level": "50",
+"zone": "Valley of Bri Leith",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "H1967",
+"name": "Worn Tradeskill Tools (Hib)",
+"realm": "Hibernia",
+"level": "5",
+"zone": "Tir na Nog",
+"type": "Crafting",
+"period": "border"
+},
+{
+"key": "M121",
+"name": "Amora's Aid",
+"realm": "Midgard",
+"level": "1",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M544",
+"name": "Bad Food",
+"realm": "Midgard",
+"level": "1",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "M139",
+"name": "Learn the Hunt",
+"realm": "Midgard",
+"level": "1",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M326",
+"name": "Rinda's Lost Keys",
+"realm": "Midgard",
+"level": "1",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M41",
+"name": "Sveabone Hilt Sword",
+"realm": "Midgard",
+"level": "1",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M308",
+"name": "Trapper's Pride",
+"realm": "Midgard",
+"level": "1",
+"zone": "Myrkwood Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M561",
+"name": "Trial of Strength",
+"realm": "Midgard",
+"level": "1",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M353",
+"name": "Magnild's Cure",
+"realm": "Midgard",
+"level": "2",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "M352",
+"name": "Newfound Group",
+"realm": "Midgard",
+"level": "2",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "M545",
+"name": "Wealthy Prospects",
+"realm": "Midgard",
+"level": "2",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "M39",
+"name": "Aegan's Letter to Helen",
+"realm": "Midgard",
+"level": "3",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M325",
+"name": "Bolli's Leather Supplies",
+"realm": "Midgard",
+"level": "3",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "M563",
+"name": "Mother Dearest",
+"realm": "Midgard",
+"level": "3",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M552",
+"name": "Trial of Bravery",
+"realm": "Midgard",
+"level": "3",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M510",
+"name": "Knowledge of the Gods",
+"realm": "Midgard",
+"level": "4",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "M355",
+"name": "Rogue Trainer",
+"realm": "Midgard",
+"level": "4",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M44",
+"name": "Tric's Lost List",
+"realm": "Midgard",
+"level": "4",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M511",
+"name": "Venture to Gotar",
+"realm": "Midgard",
+"level": "4",
+"zone": "Myrkwood Forest",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "M21",
+"name": "Tomte Jerkin",
+"realm": "Midgard",
+"level": "5",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M96",
+"name": "Hole of the Dead",
+"realm": "Midgard",
+"level": "6",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M69",
+"name": "Simple Misgivings",
+"realm": "Midgard",
+"level": "7",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M18",
+"name": "Svartmoln's Appetite",
+"realm": "Midgard",
+"level": "7",
+"zone": "Svealand East",
+"type": "Mini Quest",
+"period": "period"
+},
+{
+"key": "M146",
+"name": "Troubled Wild",
+"realm": "Midgard",
+"level": "7",
+"zone": "Svealand East",
+"type": "Mini Quest",
+"period": "period"
+},
+{
+"key": "M35",
+"name": "Brutal Chains",
+"realm": "Midgard",
+"level": "8",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M7",
+"name": "Defeat the Hobgoblin Anklebiter",
+"realm": "Midgard",
+"level": "8",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M201",
+"name": "Mucking Through the Ick",
+"realm": "Midgard",
+"level": "8",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M178",
+"name": "Sveawolf Guardian",
+"realm": "Midgard",
+"level": "8",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M318",
+"name": "Bluebell's Disappearance",
+"realm": "Midgard",
+"level": "9",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M23",
+"name": "A Deed of Old",
+"realm": "Midgard",
+"level": "10",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M49",
+"name": "Copious Striders",
+"realm": "Midgard",
+"level": "10",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M58",
+"name": "Letter to Sveck",
+"realm": "Midgard",
+"level": "10",
+"zone": "Svealand East",
+"type": "Mini Quest",
+"period": "period"
+},
+{
+"key": "M38",
+"name": "Minx Wiley",
+"realm": "Midgard",
+"level": "10",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M68",
+"name": "Monstrous Beast",
+"realm": "Midgard",
+"level": "10",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M414",
+"name": "Smyga's Raid",
+"realm": "Midgard",
+"level": "10",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M721",
+"name": "Solving the Argument",
+"realm": "Midgard",
+"level": "10",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M191",
+"name": "Spat the Wild Cat",
+"realm": "Midgard",
+"level": "10",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M319",
+"name": "Tomte Problems",
+"realm": "Midgard",
+"level": "10",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M77",
+"name": "Klippa's Claw",
+"realm": "Midgard",
+"level": "11",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M129",
+"name": "Hunting Party",
+"realm": "Midgard",
+"level": "12",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M558",
+"name": "Ibicus",
+"realm": "Midgard",
+"level": "12",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M320",
+"name": "Tomte Plot",
+"realm": "Midgard",
+"level": "12",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M37",
+"name": "Covet Wiley",
+"realm": "Midgard",
+"level": "13",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M321",
+"name": "Thorgil's Daughter",
+"realm": "Midgard",
+"level": "13",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M636",
+"name": "Kyllikki's Scrolls",
+"realm": "Midgard",
+"level": "14",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M671",
+"name": "Looking Ahead",
+"realm": "Midgard",
+"level": "14",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M98",
+"name": "Evenings Empty Blessing",
+"realm": "Midgard",
+"level": "15",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M137",
+"name": "Lover's Circle",
+"realm": "Midgard",
+"level": "15",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M75",
+"name": "Paranoid Guard",
+"realm": "Midgard",
+"level": "15",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M115",
+"name": "Reach of the Shadow",
+"realm": "Midgard",
+"level": "15",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M114",
+"name": "Brack: Rollo's Story",
+"realm": "Midgard",
+"level": "16",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M164",
+"name": "Protect Huginfell",
+"realm": "Midgard",
+"level": "16",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M509",
+"name": "Tomte of Doom",
+"realm": "Midgard",
+"level": "16",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M111",
+"name": "Waking of the Fallen",
+"realm": "Midgard",
+"level": "16",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M138",
+"name": "Protecting the Healer",
+"realm": "Midgard",
+"level": "17",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M119",
+"name": "Morana's Tunic",
+"realm": "Midgard",
+"level": "18",
+"zone": "Myrkwood Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M132",
+"name": "The Wanestone Jewel (Gokstad's Jewel)",
+"realm": "Midgard",
+"level": "18",
+"zone": "Jordheim",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M210",
+"name": "Fervent",
+"realm": "Midgard",
+"level": "19",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M1781",
+"name": "Helping the Arachites",
+"realm": "Midgard",
+"level": "19",
+"zone": "Myrkwood Forest",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "M345",
+"name": "Helping the Svartalfar",
+"realm": "Midgard",
+"level": "19",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M346",
+"name": "Helping the Werewolves",
+"realm": "Midgard",
+"level": "19",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M300",
+"name": "The Creatures of Myrkwood",
+"realm": "Midgard",
+"level": "19",
+"zone": "Myrkwood Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M228",
+"name": "Living Warning",
+"realm": "Midgard",
+"level": "21",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M192",
+"name": "Widower Hunt",
+"realm": "Midgard",
+"level": "21",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M153",
+"name": "Silent Death",
+"realm": "Midgard",
+"level": "22",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M229",
+"name": "Sugnhild's Revenge",
+"realm": "Midgard",
+"level": "22",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M281",
+"name": "Trustan's Belongings",
+"realm": "Midgard",
+"level": "22",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M521",
+"name": "Protecting Myrkwood",
+"realm": "Midgard",
+"level": "23",
+"zone": "Myrkwood Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M183",
+"name": "Sulphine's Demise",
+"realm": "Midgard",
+"level": "23",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M133",
+"name": "Bowyer's Draw",
+"realm": "Midgard",
+"level": "24",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M168",
+"name": "Foolish Dancers",
+"realm": "Midgard",
+"level": "24",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M723",
+"name": "Helping the Weaponsmith",
+"realm": "Midgard",
+"level": "25",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M241",
+"name": "Stripe",
+"realm": "Midgard",
+"level": "25",
+"zone": "Svealand West",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "M217",
+"name": "Family Business",
+"realm": "Midgard",
+"level": "26",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M154",
+"name": "Nimh's Secret",
+"realm": "Midgard",
+"level": "26",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M231",
+"name": "Better Off Buried",
+"realm": "Midgard",
+"level": "27",
+"zone": "Muspelheim",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M638",
+"name": "Lost Maps",
+"realm": "Midgard",
+"level": "27",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M257",
+"name": "Furf's Reward",
+"realm": "Midgard",
+"level": "29",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M651",
+"name": "Ota's Quest",
+"realm": "Midgard",
+"level": "30",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M189",
+"name": "Tale of Two Trolls",
+"realm": "Midgard",
+"level": "30",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M337",
+"name": "Young Fire Wyrm Lord",
+"realm": "Midgard",
+"level": "30",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M134",
+"name": "Krrrck's Torment",
+"realm": "Midgard",
+"level": "32",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M657",
+"name": "Juuso's Potion",
+"realm": "Midgard",
+"level": "33",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M488",
+"name": "Lord Lauur's Wife",
+"realm": "Midgard",
+"level": "35",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M473",
+"name": "Thraxia's Dilemma",
+"realm": "Midgard",
+"level": "35",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M271",
+"name": "Zrit-Zrit's Item",
+"realm": "Midgard",
+"level": "35",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M1808",
+"name": "Mother's Children",
+"realm": "Midgard",
+"level": "36",
+"zone": "Modernagrav",
+"type": "Regular",
+"period": "border"
+},
+{
+"key": "M1800",
+"name": "Black Plague (Mid)",
+"realm": "Midgard",
+"level": "37",
+"zone": "Jordheim",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M656",
+"name": "Morvalt Crystal",
+"realm": "Midgard",
+"level": "38",
+"zone": "Faraheim",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M591",
+"name": "Gazsi's Nightmares",
+"realm": "Midgard",
+"level": "39",
+"zone": "Faraheim",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M372",
+"name": "Cargila's Blessing",
+"realm": "Midgard",
+"level": "40",
+"zone": "Gotar",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M498",
+"name": "Werewolf Bane",
+"realm": "Midgard",
+"level": "43",
+"zone": "Yggdra Forest",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M706",
+"name": "Gem of the Dwarven King",
+"realm": "Midgard",
+"level": "44",
+"zone": "Faraheim",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M693",
+"name": "Price of Excellence",
+"realm": "Midgard",
+"level": "44",
+"zone": "Jordheim",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M710",
+"name": "Hidden Maps",
+"realm": "Midgard",
+"level": "45",
+"zone": "Gripklosa Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M733",
+"name": "Mammoth Hunt",
+"realm": "Midgard",
+"level": "45",
+"zone": "Gripklosa Mountains",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M1801",
+"name": "Strange Bedfellows (Mid)",
+"realm": "Midgard",
+"level": "45",
+"zone": "Jordheim",
+"type": "Regular",
+"period": "period-lowid"
+},
+{
+"key": "M1770",
+"name": "The Legend of Fenrir's Folly",
+"realm": "Midgard",
+"level": "46",
+"zone": "Svealand East",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M1802",
+"name": "Breaking the Blade (Mid)",
+"realm": "Midgard",
+"level": "47",
+"zone": "Darkness Falls",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M716",
+"name": "Balle's Potion",
+"realm": "Midgard",
+"level": "49",
+"zone": "Uppland",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M689",
+"name": "Catla's Downfall",
+"realm": "Midgard",
+"level": "49",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M713",
+"name": "Dark Places of the Soul",
+"realm": "Midgard",
+"level": "49",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M1809",
+"name": "Final Rest",
+"realm": "Midgard",
+"level": "49",
+"zone": "Modernagrav",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M698",
+"name": "Stoneheart",
+"realm": "Midgard",
+"level": "49",
+"zone": "Aegir's Landing",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M715",
+"name": "Strange Powers",
+"realm": "Midgard",
+"level": "49",
+"zone": "Vale of Mularn",
+"type": "Regular",
+"period": "period"
+},
+{
+"key": "M453",
+"name": "Barkley One Time Drop",
+"realm": "Midgard",
+"level": "7",
+"zone": "Gotar",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M213",
+"name": "Twitchclaw One Time Drop",
+"realm": "Midgard",
+"level": "8",
+"zone": "Gotar",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M212",
+"name": "Tas One Time Drop",
+"realm": "Midgard",
+"level": "9",
+"zone": "Gotar",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M294",
+"name": "Trolki One Time Drop",
+"realm": "Midgard",
+"level": "10",
+"zone": "Gotar",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M214",
+"name": "Vidalf One Time Drop",
+"realm": "Midgard",
+"level": "10",
+"zone": "Gotar",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M215",
+"name": "Birk One Time Drop",
+"realm": "Midgard",
+"level": "13",
+"zone": "Vale of Mularn",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M275",
+"name": "Salix One Time Drop",
+"realm": "Midgard",
+"level": "13",
+"zone": "Myrkwood Forest",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M270",
+"name": "Great Worg One Time Drop",
+"realm": "Midgard",
+"level": "14",
+"zone": "Myrkwood Forest",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M280",
+"name": "Chaes One Time Drop",
+"realm": "Midgard",
+"level": "16",
+"zone": "Svealand West",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M274",
+"name": "Kelda One Time Drop",
+"realm": "Midgard",
+"level": "16",
+"zone": "Svealand West",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M292",
+"name": "Old Smoke One Time Drop",
+"realm": "Midgard",
+"level": "16",
+"zone": "Svealand West",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M263",
+"name": "Pawper One Time Drop",
+"realm": "Midgard",
+"level": "19",
+"zone": "Svealand West",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M291",
+"name": "Tingler Webmother One Time Drop",
+"realm": "Midgard",
+"level": "19",
+"zone": "Myrkwood Forest",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M354",
+"name": "Growling Ghost One Time Drop",
+"realm": "Midgard",
+"level": "21",
+"zone": "Svealand West",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M295",
+"name": "Sentry Incin One Time Drop",
+"realm": "Midgard",
+"level": "21",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M451",
+"name": "Fiery Shield Time Drop",
+"realm": "Midgard",
+"level": "22",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M255",
+"name": "Sorrow One Time Drop",
+"realm": "Midgard",
+"level": "22",
+"zone": "Myrkwood Forest",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M247",
+"name": "Brimstone One Time Drop",
+"realm": "Midgard",
+"level": "23",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M450",
+"name": "Brimstone Breastplate One Time Drop",
+"realm": "Midgard",
+"level": "24",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M246",
+"name": "Gokstorm One Time Drop",
+"realm": "Midgard",
+"level": "24",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M452",
+"name": "Hrodek One Time Drop",
+"realm": "Midgard",
+"level": "24",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M266",
+"name": "Bright Flame One Time Drop",
+"realm": "Midgard",
+"level": "25",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M230",
+"name": "Brika One Time Drop",
+"realm": "Midgard",
+"level": "25",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M474",
+"name": "Coal One Time Drop",
+"realm": "Midgard",
+"level": "25",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M248",
+"name": "Lasaer One Time Drop",
+"realm": "Midgard",
+"level": "25",
+"zone": "Skona Ravine",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M538",
+"name": "Armard One Time Drop",
+"realm": "Midgard",
+"level": "26",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M323",
+"name": "Tradande One Time Drop",
+"realm": "Midgard",
+"level": "28",
+"zone": "Skona Ravine",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M262",
+"name": "Ember One Time Drop",
+"realm": "Midgard",
+"level": "29",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M475",
+"name": "Lord Fire One Time Drop",
+"realm": "Midgard",
+"level": "29",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M316",
+"name": "Vindvasen One Time Drop",
+"realm": "Midgard",
+"level": "29",
+"zone": "Skona Ravine",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M476",
+"name": "Spirit of Flames One Time Drop",
+"realm": "Midgard",
+"level": "30",
+"zone": "Muspelheim",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M374",
+"name": "Thasior One Time Drop",
+"realm": "Midgard",
+"level": "31",
+"zone": "Skona Ravine",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M264",
+"name": "Askafroa One Time Drop",
+"realm": "Midgard",
+"level": "32",
+"zone": "Skona Ravine",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M232",
+"name": "Fjalar One Time Drop",
+"realm": "Midgard",
+"level": "37",
+"zone": "Skona Ravine",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M245",
+"name": "Nasher One Time Drop",
+"realm": "Midgard",
+"level": "37",
+"zone": "Snowdonia",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M288",
+"name": "Captain Gruff One Time Drop",
+"realm": "Midgard",
+"level": "38",
+"zone": "Skona Ravine",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M482",
+"name": "Nagoltooth One Time Drop",
+"realm": "Midgard",
+"level": "41",
+"zone": "Skona Ravine",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M454",
+"name": "Soulsong One Time Drop",
+"realm": "Midgard",
+"level": "41",
+"zone": "Yggdra Forest",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M267",
+"name": "Moira the Quiet One Time Drop",
+"realm": "Midgard",
+"level": "42",
+"zone": "Yggdra Forest",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M268",
+"name": "Ald the Bruce One Time Drop",
+"realm": "Midgard",
+"level": "43",
+"zone": "Yggdra Forest",
+"type": "One Time Drop",
+"period": "period"
+},
+{
+"key": "M600",
+"name": "Morvalt Streber Scalps -- Kill Task",
+"realm": "Midgard",
+"level": "30",
+"zone": "Gripklosa Mountains",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "M580",
+"name": "Crater Cicada Legs -- Kill Task",
+"realm": "Midgard",
+"level": "32",
+"zone": "Delling Crater",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "M579",
+"name": "Steam Element Steam -- Kill Task",
+"realm": "Midgard",
+"level": "32",
+"zone": "Delling Crater",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "M617",
+"name": "Ice Water -- Kill Task",
+"realm": "Midgard",
+"level": "33",
+"zone": "Munin Sound",
+"type": "Kill Task",
+"period": "border"
+},
+{
+"key": "M620",
+"name": "Cultist Staves -- Kill Task",
+"realm": "Midgard",
+"level": "34",
+"zone": "Munin Sound",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "M567",
+"name": "Sioalf Cultist Supplies -- Kill Task",
+"realm": "Midgard",
+"level": "34",
+"zone": "Munin Sound",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "M566",
+"name": "Yellowed Skeleton Bones -- Kill Task",
+"realm": "Midgard",
+"level": "34",
+"zone": "Munin Sound",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "M1785",
+"name": "Woolly Mammoth Hides -- Kill Task",
+"realm": "Midgard",
+"level": "35",
+"zone": "Aegir's Landing",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "M456",
+"name": "Ice Cold Giant Blood -- Kill Task",
+"realm": "Midgard",
+"level": "37",
+"zone": "Svealand East",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "M594",
+"name": "Redcap Red Cap -- Kill Task",
+"realm": "Midgard",
+"level": "37",
+"zone": "Gripklosa Mountains",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "M682",
+"name": "Coral Thing Coral -- Kill Task",
+"realm": "Midgard",
+"level": "38",
+"zone": "Munin Sound",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "M1784",
+"name": "Cave Lioness Sinew -- Kill Task",
+"realm": "Midgard",
+"level": "40",
+"zone": "Aegir's Landing",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "M519",
+"name": "Frosted Grimel Root -- Kill Task",
+"realm": "Midgard",
+"level": "43",
+"zone": "Svealand West",
+"type": "Kill Task",
+"period": "period"
+},
+{
+"key": "M726",
+"name": "Rack of Megaloceros Antlers -- Kill Task",
+"realm": "Midgard",
+"level": "45",
+"zone": "Delling Crater",
+"type": "Kill Task",
+"period": "period-lowid"
+},
+{
+"key": "A2040",
+"name": "Strange Bedfellows (Alb)",
+"realm": "Albion",
+"level": "45",
+"zone": "Camelot",
+"type": "Regular",
+"period": "period-chain"
+},
+{
+"key": "H2007",
+"name": "Strange Bedfellows (Hib)",
+"realm": "Hibernia",
+"level": "45",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period-chain"
+},
+{
+"key": "H3841",
+"name": "Breaking the Blade (Hib)",
+"realm": "Hibernia",
+"level": "47",
+"zone": "Tir na Nog",
+"type": "Regular",
+"period": "period-chain"
+}
+]

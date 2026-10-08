@@ -1,0 +1,6024 @@
+{
+ "20391": {
+  "name": "Abolishment of Sacrifice",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_redoubled_leggings missing"
+  ]
+ },
+ "20148": {
+  "name": "Academy Research",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_songsung_leggings missing"
+  ]
+ },
+ "21284": {
+  "name": "Animare il morti",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_fire_threaded_cloak missing"
+  ]
+ },
+ "21285": {
+  "name": "Animare il morti",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_thought_threaded_cloak missing"
+  ]
+ },
+ "21286": {
+  "name": "Animare il morti",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_chain_shirt_of_comfort missing"
+  ]
+ },
+ "20392": {
+  "name": "Feast of the Decadent",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_shielding_power missing"
+  ]
+ },
+ "20393": {
+  "name": "Feast of the Decadent",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_shielding_power missing"
+  ]
+ },
+ "20394": {
+  "name": "Feast of the Decadent",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_shielding_power missing"
+  ]
+ },
+ "20395": {
+  "name": "Feast of the Decadent",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_shielding_power missing"
+  ]
+ },
+ "20153": {
+  "name": "Deserter Amano",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_vambraces_of_the_defender missing"
+  ]
+ },
+ "20154": {
+  "name": "Deserter Amano",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_vest_of_the_valiant missing"
+  ]
+ },
+ "20155": {
+  "name": "Entry Into Tomorrow",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_might missing"
+  ]
+ },
+ "20396": {
+  "name": "Arc of Ages",
+  "realm": "Albion",
+  "problems": [
+   "step 9: choose item cq_alb_staff_of_earthen_delight missing",
+   "step 9: choose item cq_alb_staff_of_frozen_tears missing"
+  ]
+ },
+ "20397": {
+  "name": "Arc of Ages",
+  "realm": "Albion",
+  "problems": [
+   "step 9: choose item cq_alb_staff_of_body_manipulation missing",
+   "step 9: choose item cq_alb_staff_of_matter_manipulation missing",
+   "step 9: choose item cq_alb_staff_of_mind_manipulation missing"
+  ]
+ },
+ "20399": {
+  "name": "Barbaric Tales",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_sleeves_of_the_stoic missing"
+  ]
+ },
+ "20401": {
+  "name": "Barbaric Tales",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_traveler_s_leggings missing"
+  ]
+ },
+ "20402": {
+  "name": "Barbaric Tales",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_necklace_of_elemental_influence missing"
+  ]
+ },
+ "20161": {
+  "name": "Death's Saving Grace",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_stone_of_smiting missing"
+  ]
+ },
+ "20403": {
+  "name": "Defender's Orders",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_belt_of_the_mighty missing"
+  ]
+ },
+ "20405": {
+  "name": "Defender's Orders",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_the_pure missing"
+  ]
+ },
+ "20410": {
+  "name": "Feast of the Decadent",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_shielding_dweomer missing"
+  ]
+ },
+ "20411": {
+  "name": "Forged Excellence",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_sequence_ring missing"
+  ]
+ },
+ "20165": {
+  "name": "Fortune of Few",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_clarity missing"
+  ]
+ },
+ "20166": {
+  "name": "Fortune of Few",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_minor_elemental_insight missing"
+  ]
+ },
+ "20412": {
+  "name": "Hands Of Fate",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_glowing_gauntlets_of_battle missing"
+  ]
+ },
+ "20413": {
+  "name": "Hands Of Fate",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_mantle_of_the_bowmaster missing"
+  ]
+ },
+ "20414": {
+  "name": "Hands Of Fate",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_haze missing"
+  ]
+ },
+ "20415": {
+  "name": "Hands Of Fate",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_staff_of_the_tempest_wind missing"
+  ]
+ },
+ "20167": {
+  "name": "Haunted Messages",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_holy_pendant missing"
+  ]
+ },
+ "20168": {
+  "name": "Haunted Messages",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_jewel_of_righteous_smite missing"
+  ]
+ },
+ "20169": {
+  "name": "Hidden Insurrection",
+  "realm": "Albion",
+  "problems": [
+   "step 8: choose item cq_alb_spark missing",
+   "step 8: choose item cq_alb_arcing_bludgeoner missing"
+  ]
+ },
+ "20170": {
+  "name": "Hidden Insurrection",
+  "realm": "Albion",
+  "problems": [
+   "step 8: choose item cq_alb_staff_of_eternal_lifeforce missing",
+   "step 8: choose item cq_alb_staff_of_earth_channeling missing",
+   "step 8: choose item cq_alb_staff_of_spirit_consumption missing"
+  ]
+ },
+ "20171": {
+  "name": "Hidden Insurrection",
+  "realm": "Albion",
+  "problems": [
+   "step 8: choose item cq_alb_spark_of_midnight missing"
+  ]
+ },
+ "20172": {
+  "name": "Hidden Insurrection",
+  "realm": "Albion",
+  "problems": [
+   "step 8: choose item cq_alb_kiss_of_death missing",
+   "step 8: choose item cq_alb_sap_of_lost_will missing",
+   "step 8: choose item cq_alb_bloodletter missing",
+   "step 8: choose item cq_alb_blood_encrusted_flail missing"
+  ]
+ },
+ "20173": {
+  "name": "Hidden Insurrection",
+  "realm": "Albion",
+  "problems": [
+   "step 8: choose item cq_alb_staff_of_cursed_bondage missing",
+   "step 8: choose item cq_alb_staff_of_clouded_vision missing",
+   "step 8: choose item cq_alb_staff_of_ceaseless_agony missing"
+  ]
+ },
+ "20416": {
+  "name": "La Morti Parla",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_invoker_s_robes missing"
+  ]
+ },
+ "20417": {
+  "name": "La Morti Parla",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_robes_of_scintillation missing"
+  ]
+ },
+ "20418": {
+  "name": "La Morti Parla",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_leggings_of_comfort missing"
+  ]
+ },
+ "20419": {
+  "name": "Legend of the Lake",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_hardened_leggings missing"
+  ]
+ },
+ "20420": {
+  "name": "Legend of the Lake",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_necklace_of_fortitude missing"
+  ]
+ },
+ "20421": {
+  "name": "Legend of the Lake",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_soft_drake_hide_sleeves missing"
+  ]
+ },
+ "20427": {
+  "name": "Legend of the Lake",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_sleeves_of_the_stoic missing"
+  ]
+ },
+ "20429": {
+  "name": "Legend of the Lake",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_soft_leather_traveler_s_leggings missing"
+  ]
+ },
+ "20430": {
+  "name": "Legend of the Lake",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_necklace_of_elemental_influence missing"
+  ]
+ },
+ "21288": {
+  "name": "Legend of the Lake",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_master_of_arms_platemail missing"
+  ]
+ },
+ "21289": {
+  "name": "Legend of the Lake",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_shadow_oak_longbow missing"
+  ]
+ },
+ "21290": {
+  "name": "Legend of the Lake",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_zealot_s_staff_of_the_pious missing"
+  ]
+ },
+ "21291": {
+  "name": "Legend of the Lake",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_wind_threaded_cloak missing"
+  ]
+ },
+ "21292": {
+  "name": "Legione Perso",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_glowing_adamantium_staff_of_the_fire_tempest missing"
+  ]
+ },
+ "21293": {
+  "name": "Legione Perso",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_staff_of_compliance missing"
+  ]
+ },
+ "21294": {
+  "name": "Legione Perso",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_shield_of_swirling_notes missing"
+  ]
+ },
+ "20003": {
+  "name": "Lisreen's Plight",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_circlet_of_the_lake missing"
+  ]
+ },
+ "20432": {
+  "name": "List of Denial",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_helm_of_the_observant missing"
+  ]
+ },
+ "20435": {
+  "name": "Lord of Deceit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_shades missing"
+  ]
+ },
+ "20436": {
+  "name": "Lord of Deceit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_jewelled_skull_ring missing"
+  ]
+ },
+ "20437": {
+  "name": "Lord of Deceit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_forbidden_rites missing"
+  ]
+ },
+ "20438": {
+  "name": "Lord of Deceit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_heretical_rejuvenation missing"
+  ]
+ },
+ "20445": {
+  "name": "Lord of Deceit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_warm_construct_cloak missing"
+  ]
+ },
+ "20446": {
+  "name": "Lord of Deceit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ignuixs_portable_shadow missing"
+  ]
+ },
+ "20451": {
+  "name": "Passage to Eternity",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_the_iron_will missing"
+  ]
+ },
+ "20452": {
+  "name": "Passage to Eternity",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_defiant_soul missing"
+  ]
+ },
+ "21300": {
+  "name": "Passage to Eternity",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_cape_of_the_iron_will missing"
+  ]
+ },
+ "21301": {
+  "name": "Passage to Eternity",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_cloak_of_defiant_soul missing"
+  ]
+ },
+ "20453": {
+  "name": "Path of the Renegade",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_heavy_pull_short_bow missing"
+  ]
+ },
+ "20455": {
+  "name": "Path of the Renegade",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_soft_doeskin_boots missing"
+  ]
+ },
+ "20457": {
+  "name": "Path of the Renegade",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_staff_of_tainted_rage missing"
+  ]
+ },
+ "20458": {
+  "name": "Path of the Renegade",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_cloak_of_heresy missing"
+  ]
+ },
+ "20459": {
+  "name": "Point of Reason",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_blade_stopper missing"
+  ]
+ },
+ "20189": {
+  "name": "Rebellion Accepted",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_sleeves_of_despair missing"
+  ]
+ },
+ "20461": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_light_chain_tunic missing"
+  ]
+ },
+ "20462": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_spirit_threaded_cloak missing"
+  ]
+ },
+ "20463": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_vest_of_the_infamous_blade missing"
+  ]
+ },
+ "20464": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_tunic_of_dark_suffering missing"
+  ]
+ },
+ "20465": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_pain_threaded_cloak missing"
+  ]
+ },
+ "20466": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_heretical_frenzy_choker missing"
+  ]
+ },
+ "21304": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_gauntlets_of_blinding_speed missing"
+  ]
+ },
+ "21305": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_visage_of_death missing"
+  ]
+ },
+ "21306": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_snowbinder_s_mantle missing"
+  ]
+ },
+ "21307": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_mantle_of_shadow missing"
+  ]
+ },
+ "21308": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_charred_staff_of_blight missing"
+  ]
+ },
+ "21309": {
+  "name": "Regal Nobility",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_shield_of_heretics missing"
+  ]
+ },
+ "21310": {
+  "name": "Scura Tragedia",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_band_of_earth missing"
+  ]
+ },
+ "21311": {
+  "name": "Scura Tragedia",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_bracelet_of_matter_manipulation missing"
+  ]
+ },
+ "21312": {
+  "name": "Scura Tragedia",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_flute_of_displacement missing"
+  ]
+ },
+ "20467": {
+  "name": "Shades and Shadows",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_lucky_pebble missing"
+  ]
+ },
+ "20468": {
+  "name": "Shades and Shadows",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_minding_ring missing"
+  ]
+ },
+ "20469": {
+  "name": "Shades and Shadows",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_quickened_absorption_stone missing"
+  ]
+ },
+ "20470": {
+  "name": "Shades and Shadows",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_reaver_s_stone missing"
+  ]
+ },
+ "20472": {
+  "name": "Shades and Shadows",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_bracelet_of_heretical_ideals missing"
+  ]
+ },
+ "21313": {
+  "name": "Departed Fellowship",
+  "realm": "Albion",
+  "problems": [
+   "step 13: choose item cq_alb_sword_of_the_seraph missing",
+   "step 13: choose item cq_alb_sword_of_eternal_faith missing",
+   "step 13: choose item cq_alb_greatsword_of_eternal_virtue missing",
+   "step 13: choose item cq_alb_cobalt_void_rifter missing"
+  ]
+ },
+ "21314": {
+  "name": "Departed Fellowship",
+  "realm": "Albion",
+  "problems": [
+   "step 13: choose item cq_alb_hammer_of_deliverance missing",
+   "step 13: choose item cq_alb_hammer_of_judgment missing",
+   "step 13: choose item cq_alb_hammer_of_faithful_might missing",
+   "step 13: choose item cq_alb_mace_of_the_cherub missing",
+   "step 13: choose item cq_alb_ivy_avenger missing"
+  ]
+ },
+ "20473": {
+  "name": "Soul of the Academy",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_circle_of_fire missing"
+  ]
+ },
+ "20474": {
+  "name": "Soul of the Academy",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_pendant_of_confusion missing"
+  ]
+ },
+ "20475": {
+  "name": "Soul of the Academy",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_the_adroit missing"
+  ]
+ },
+ "20477": {
+  "name": "Strange Beings",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_necklace_of_greatness missing"
+  ]
+ },
+ "20478": {
+  "name": "Strange Beings",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_jewel_of_grace missing"
+  ]
+ },
+ "20479": {
+  "name": "Strange Beings",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_temple_ring missing"
+  ]
+ },
+ "20481": {
+  "name": "Strange Beings",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_heretical_gloves_of_ire missing"
+  ]
+ },
+ "20489": {
+  "name": "Symbol of the Broken",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_cloak_of_mental_acuity missing"
+  ]
+ },
+ "21318": {
+  "name": "The Craft of Retribution",
+  "realm": "Albion",
+  "problems": [
+   "step 14: choose item cq_alb_lustrous_bardiche_of_retribution missing",
+   "step 14: choose item cq_alb_cerulean_rime missing",
+   "step 14: choose item cq_alb_lustrous_longsword_of_retribution missing",
+   "step 14: choose item cq_alb_cobalt_void_rifter missing",
+   "step 14: choose item cq_alb_mace_of_retribution missing",
+   "step 14: choose item cq_alb_fiery_impaler missing",
+   "step 14: choose item cq_alb_lustrous_great_axe_of_retribution missing",
+   "step 14: choose item cq_alb_ivy_avenger missing"
+  ]
+ },
+ "21319": {
+  "name": "The Craft of Retribution",
+  "realm": "Albion",
+  "problems": [
+   "step 14: choose item cq_alb_shadow_cutter missing",
+   "step 14: choose item cq_alb_shadow_piercer missing"
+  ]
+ },
+ "21320": {
+  "name": "The Craft of Retribution",
+  "realm": "Albion",
+  "problems": [
+   "step 14: choose item cq_alb_staff_of_enhancements missing",
+   "step 14: choose item cq_alb_staff_of_rejuvenation missing"
+  ]
+ },
+ "21321": {
+  "name": "The Craft of Retribution",
+  "realm": "Albion",
+  "problems": [
+   "step 14: choose item cq_alb_staff_of_the_maelstrom missing",
+   "step 14: choose item cq_alb_staff_of_arctic_elderwood missing",
+   "step 14: choose item cq_alb_staff_of_earthen_fury missing"
+  ]
+ },
+ "20193": {
+  "name": "The Lost Stone",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_the_deft missing"
+  ]
+ },
+ "20195": {
+  "name": "The Lost Stone",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_crown_of_sagacity missing"
+  ]
+ },
+ "20197": {
+  "name": "Traveler's Way -- Dwarf Raid",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_flight missing"
+  ]
+ },
+ "20199": {
+  "name": "Traveler's Way -- Dwarf Raid",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_cap_of_the_quickthinker missing"
+  ]
+ },
+ "20493": {
+  "name": "Traveler's Way -- Supply Run",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_sleeves_of_might missing"
+  ]
+ },
+ "20494": {
+  "name": "Traveler's Way -- Supply Run",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_silvered_cap_of_the_intuit missing"
+  ]
+ },
+ "20496": {
+  "name": "Traveler's Way -- Supply Run",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_twisted_bone_bracelet missing"
+  ]
+ },
+ "21322": {
+  "name": "Traveler's Way -- Supply Run",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_sleeves_of_might missing"
+  ]
+ },
+ "21323": {
+  "name": "Traveler's Way -- Supply Run",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_silvered_cap_of_the_intuit missing"
+  ]
+ },
+ "21325": {
+  "name": "Traveler's Way -- Supply Run",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_twisted_bone_bracelet missing"
+  ]
+ },
+ "20498": {
+  "name": "Wisdom",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_band_of_ice_alb missing"
+  ]
+ },
+ "20499": {
+  "name": "Wisdom",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_pendant_of_twisting missing"
+  ]
+ },
+ "20500": {
+  "name": "Wisdom",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_prestige missing"
+  ]
+ },
+ "20200": {
+  "name": "Heart of Albion",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_pendant_of_hope missing"
+  ]
+ },
+ "20506": {
+  "name": "Traveler's Way -- Stones of Power",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_hidden_eye missing"
+  ]
+ },
+ "20507": {
+  "name": "Traveler's Way -- Stones of Power",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_hidden_eye missing"
+  ]
+ },
+ "20508": {
+  "name": "Traveler's Way -- Stones of Power",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_svelte_armor_leggings missing"
+  ]
+ },
+ "21328": {
+  "name": "Traveler's Way -- Stones of Power",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_svelte_armor_leggings missing"
+  ]
+ },
+ "20512": {
+  "name": "Rock Imps",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_yellow_quartz missing"
+  ]
+ },
+ "20019": {
+  "name": "Camdene's Components",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_light_green_dye missing"
+  ]
+ },
+ "20020": {
+  "name": "Goblin Incursion",
+  "realm": "Albion",
+  "problems": [
+   "step 8: choose item cq_alb_bracelet_of_denied_bloodshed missing"
+  ]
+ },
+ "21330": {
+  "name": "Heart of Sephucoth",
+  "realm": "Albion",
+  "problems": [
+   "step 4: choose item cq_alb_crystallized_heart_pendant missing",
+   "step 4: choose item cq_alb_crystallized_heart_talisman missing",
+   "step 4: choose item cq_alb_crystallized_heart_necklace missing",
+   "step 4: choose item cq_alb_fiery_crystal_pendant missing"
+  ]
+ },
+ "21331": {
+  "name": "Sunken Cargo",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_gold_nugget missing"
+  ]
+ },
+ "20524": {
+  "name": "Protecting Anniogel",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_staff_of_substance missing"
+  ]
+ },
+ "20528": {
+  "name": "Protecting Anniogel",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_staff_of_the_dying missing"
+  ]
+ },
+ "20024": {
+  "name": "Thinking Cap",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_thinking_cap missing"
+  ]
+ },
+ "20532": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_damage_consumption missing"
+  ]
+ },
+ "20533": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_damage_consumption missing"
+  ]
+ },
+ "20534": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_the_sound_diminished missing"
+  ]
+ },
+ "20535": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_the_sound_diminished missing"
+  ]
+ },
+ "20536": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_power_repository_ring missing"
+  ]
+ },
+ "20537": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_the_holy_harvest missing"
+  ]
+ },
+ "20538": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_power_repository_ring missing"
+  ]
+ },
+ "20539": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_power_repository_ring missing"
+  ]
+ },
+ "20540": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_the_sound_diminished missing"
+  ]
+ },
+ "20541": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_the_holy_harvest missing"
+  ]
+ },
+ "20542": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_damage_consumption missing"
+  ]
+ },
+ "20543": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_power_repository_ring missing"
+  ]
+ },
+ "20544": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_power_repository_ring missing"
+  ]
+ },
+ "20545": {
+  "name": "Tale of Druids",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ring_of_damage_consumption missing"
+  ]
+ },
+ "20211": {
+  "name": "Staff of Life",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_staff_of_life missing"
+  ]
+ },
+ "20551": {
+  "name": "Tainted Magic",
+  "realm": "Albion",
+  "problems": [
+   "step 9: choose item cq_alb_magician_s_dextrous_sleeves missing",
+   "step 9: choose item cq_alb_magician_s_dextrous_gloves missing"
+  ]
+ },
+ "20552": {
+  "name": "Tainted Magic",
+  "realm": "Albion",
+  "problems": [
+   "step 9: choose item cq_alb_magician_s_sly_gloves missing"
+  ]
+ },
+ "20553": {
+  "name": "Tainted Magic",
+  "realm": "Albion",
+  "problems": [
+   "step 9: choose item cq_alb_boots_of_prestidigitation missing",
+   "step 9: choose item cq_alb_sleeves_of_prestidigitation missing"
+  ]
+ },
+ "20555": {
+  "name": "Tainted Magic",
+  "realm": "Albion",
+  "problems": [
+   "step 9: choose item cq_alb_magician_s_mysterious_sleeves missing",
+   "step 9: choose item cq_alb_magician_s_mysterious_gloves missing"
+  ]
+ },
+ "20559": {
+  "name": "Information / Trickery",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_realm_defender_boots missing"
+  ]
+ },
+ "20560": {
+  "name": "Information / Trickery",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_avalon_defender_s_boots missing"
+  ]
+ },
+ "20561": {
+  "name": "Information / Trickery",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_avalon_defender_s_boots missing"
+  ]
+ },
+ "20562": {
+  "name": "Information / Trickery",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_avalon_defender_s_boots missing"
+  ]
+ },
+ "20563": {
+  "name": "Information / Trickery",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_recondite_defenders_boots missing"
+  ]
+ },
+ "20567": {
+  "name": "Information / Trickery",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_avalon_defender_s_boots missing"
+  ]
+ },
+ "20570": {
+  "name": "Barnett's Shield",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_jagged_axe missing"
+  ]
+ },
+ "20030": {
+  "name": "Slythcur Cloak",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_slythcur_cloak missing"
+  ]
+ },
+ "20215": {
+  "name": "The Captured Courier",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_splitter missing"
+  ]
+ },
+ "20575": {
+  "name": "Drakoran Watchers",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_messenger_s_staff missing"
+  ]
+ },
+ "20577": {
+  "name": "Drakoran Watchers",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_messenger_s_staff missing"
+  ]
+ },
+ "20578": {
+  "name": "Drakoran Watchers",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_messenger_s_staff missing"
+  ]
+ },
+ "20582": {
+  "name": "Drakoran Watchers",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_stolen_robes_of_arawn missing"
+  ]
+ },
+ "20583": {
+  "name": "Drakoran Watchers",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_messenger_s_staff missing"
+  ]
+ },
+ "20031": {
+  "name": "Siom's Staff",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_charred_bone_staff missing"
+  ]
+ },
+ "20587": {
+  "name": "Willing Sacrifice",
+  "realm": "Albion",
+  "problems": [
+   "step 10: choose item cq_alb_scorpio_belt_of_mithra missing",
+   "step 10: choose item cq_alb_crown_of_mithra_chain missing",
+   "step 10: choose item cq_alb_crown_of_mithra_cloth missing",
+   "step 10: choose item cq_alb_mithrian_vest_of_taurus missing",
+   "step 10: choose item cq_alb_mithran_gloves_of_hydra_chain missing",
+   "step 10: choose item cq_alb_mithran_gloves_of_hydra_leather missing",
+   "step 10: choose item cq_alb_mithran_boots_of_leo missing",
+   "step 10: choose item cq_alb_mithran_sleeves_of_perses missing",
+   "step 10: choose item cq_alb_gurz missing",
+   "step 10: choose item cq_alb_ormuzd missing"
+  ]
+ },
+ "20588": {
+  "name": "Ivy Weave Gloves",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ivy_weave_gloves_chain missing"
+  ]
+ },
+ "20589": {
+  "name": "Ivy Weave Gloves",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ivy_weave_gloves_studded missing"
+  ]
+ },
+ "20590": {
+  "name": "Kindred of the Fallen",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_twisted_fellwood_necklace missing"
+  ]
+ },
+ "20591": {
+  "name": "Kindred of the Fallen",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_twisted_fellwood_necklace missing"
+  ]
+ },
+ "20600": {
+  "name": "Kindred of the Fallen",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_twisted_fellwood_necklace missing"
+  ]
+ },
+ "20603": {
+  "name": "Kindred of the Fallen",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_twisted_fellwood_necklace missing"
+  ]
+ },
+ "20219": {
+  "name": "Lord Aryon's Box",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_lifetaker missing"
+  ]
+ },
+ "20220": {
+  "name": "The Stolen Spells",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_vine_necklace missing"
+  ]
+ },
+ "20221": {
+  "name": "Bishop Burhoff's Curse",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_war_hammer missing"
+  ]
+ },
+ "20035": {
+  "name": "Oaken Boots",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_oaken_boots missing"
+  ]
+ },
+ "20607": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ringed_spider_chitin_tunic missing"
+  ]
+ },
+ "20608": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ringed_spider_chitin_tunic missing"
+  ]
+ },
+ "20609": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_studded_spider_eye_vest missing"
+  ]
+ },
+ "20610": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_studded_spider_eye_vest missing"
+  ]
+ },
+ "20611": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_spider_silken_robe missing"
+  ]
+ },
+ "20612": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_studded_spider_eye_vest missing"
+  ]
+ },
+ "20613": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_spider_silken_robe missing"
+  ]
+ },
+ "20614": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_spider_silken_robe missing"
+  ]
+ },
+ "20616": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_spider_emblazoned_tunic missing"
+  ]
+ },
+ "20617": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ringed_spider_chitin_tunic missing"
+  ]
+ },
+ "20618": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_spider_silken_robe missing"
+  ]
+ },
+ "20619": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_spider_silken_robe missing"
+  ]
+ },
+ "20620": {
+  "name": "The Hunt for Arachneida",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ringed_spider_chitin_tunic missing"
+  ]
+ },
+ "21335": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_tooth_plate_sleeves missing"
+  ]
+ },
+ "21336": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_tooth_plate_sleeves missing"
+  ]
+ },
+ "21337": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_tooth_studded_sleeves missing"
+  ]
+ },
+ "21338": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_tooth_chain_sleeves missing"
+  ]
+ },
+ "21339": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_trimmed_pelt_sleeves missing"
+  ]
+ },
+ "21340": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_tooth_chain_sleeves missing"
+  ]
+ },
+ "21341": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_trimmed_pelt_sleeves missing"
+  ]
+ },
+ "21342": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_trimmed_pelt_sleeves missing"
+  ]
+ },
+ "21343": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_boiled_pelt_sleeves missing"
+  ]
+ },
+ "21344": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_trimmed_pelt_sleeves missing"
+  ]
+ },
+ "21345": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_tooth_chain_sleeves missing"
+  ]
+ },
+ "21346": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_trimmed_pelt_sleeves missing"
+  ]
+ },
+ "21347": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_trimmed_pelt_sleeves missing"
+  ]
+ },
+ "21348": {
+  "name": "The Heretical Hermit",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_tooth_chain_sleeves missing"
+  ]
+ },
+ "20638": {
+  "name": "Dugan's Magical Totem",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_skull_shaped_totem missing"
+  ]
+ },
+ "20039": {
+  "name": "Uncle Thulin",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_thulin_s_worn_ring missing"
+  ]
+ },
+ "20040": {
+  "name": "Failing Magic",
+  "realm": "Albion",
+  "problems": [
+   "step 8: choose item cq_alb_opalescent_longsword missing",
+   "step 8: choose item cq_alb_lapis_inlaid_spiked_mace missing",
+   "step 8: choose item cq_alb_opaline_pike missing",
+   "step 8: choose item cq_alb_onyx_tipped_cat_o_nine_tails missing",
+   "step 8: choose item cq_alb_jade_tipped_longbow missing",
+   "step 8: choose item cq_alb_ruby_topped_staff missing",
+   "step 8: choose item cq_alb_sapphire_topped_staff missing"
+  ]
+ },
+ "20639": {
+  "name": "Weakened Bonds",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_ley_infused_belt missing"
+  ]
+ },
+ "20640": {
+  "name": "Supplies for Lillian",
+  "realm": "Albion",
+  "problems": [
+   "step 5: choose item cq_alb_blackened_mantle missing"
+  ]
+ },
+ "20224": {
+  "name": "The Walelden's Pendant",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_chitin_mail missing"
+  ]
+ },
+ "20042": {
+  "name": "Long Lion Fang",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_long_lion_fang missing"
+  ]
+ },
+ "21350": {
+  "name": "Undead Infestation",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_necklace_of_inner_strength missing",
+   "final reward cq_alb_diseased_cloak_of_winter missing"
+  ]
+ },
+ "20641": {
+  "name": "Under Attack",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_staff_of_repugnance missing",
+   "final reward cq_alb_mighty_sword missing"
+  ]
+ },
+ "20642": {
+  "name": "Under Attack",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_staff_of_repugnance missing",
+   "final reward cq_alb_darkened_bow missing"
+  ]
+ },
+ "20643": {
+  "name": "Under Attack",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_staff_of_repugnance missing"
+  ]
+ },
+ "20644": {
+  "name": "Under Attack",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_staff_of_repugnance missing"
+  ]
+ },
+ "21351": {
+  "name": "Wizard's Demand",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_frog_rider_s_riding_gloves missing"
+  ]
+ },
+ "21352": {
+  "name": "Impossible Mission",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_yog_s_iron_fist missing"
+  ]
+ },
+ "20647": {
+  "name": "Evening the Odds",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_jeweled_orc_skin_bracelet missing"
+  ]
+ },
+ "21354": {
+  "name": "Fall of an Emperor",
+  "realm": "Albion",
+  "problems": [
+   "step 14: choose item cq_alb_cloak_of_the_latent missing",
+   "step 14: choose item cq_alb_cloak_of_renitency missing",
+   "step 14: choose item cq_alb_cloak_of_the_vital missing",
+   "step 14: choose item cq_alb_cloak_of_the_resolute missing"
+  ]
+ },
+ "21355": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_arwrweision_arms missing"
+  ]
+ },
+ "21356": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_silvered_constructed_hauberk missing"
+  ]
+ },
+ "21357": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_herwyr_gauntlets missing"
+  ]
+ },
+ "21358": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_cerddorol_mittens missing"
+  ]
+ },
+ "21359": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_lledrith_gloves missing"
+  ]
+ },
+ "21360": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_duwiol_coif missing"
+  ]
+ },
+ "21361": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_lledrith_gloves missing"
+  ]
+ },
+ "21362": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_lledrith_gloves missing"
+  ]
+ },
+ "21363": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_lladron_gloves missing"
+  ]
+ },
+ "21364": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_eneidiau_helm missing"
+  ]
+ },
+ "21365": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_cryfdwr_mittens missing"
+  ]
+ },
+ "21366": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_lledrith_gloves missing"
+  ]
+ },
+ "21367": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_lledrith_gloves missing"
+  ]
+ },
+ "21368": {
+  "name": "Spirits of the Orchard",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_tywyllwch_sleeves missing"
+  ]
+ },
+ "20650": {
+  "name": "Black Plague",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_unstoppered_wondrous_potion_alb missing"
+  ]
+ },
+ "21370": {
+  "name": "Crushed Faith",
+  "realm": "Albion",
+  "problems": [
+   "step 10: choose item cq_alb_glacial_hammer missing",
+   "step 10: choose item cq_alb_glacial_long_hammer missing",
+   "step 10: choose item cq_alb_dash_s_long_hammer missing"
+  ]
+ },
+ "20045": {
+  "name": "Zombies, Ghosts, and Necromancers",
+  "realm": "Albion",
+  "problems": [
+   "step 8: choose item cq_alb_hooded_blades_cloak missing",
+   "step 8: choose item cq_alb_hooded_magic_cloak missing",
+   "step 8: choose item cq_alb_hooded_shadow_cloak missing",
+   "step 8: choose item cq_alb_hooded_pious_cloak missing"
+  ]
+ },
+ "20662": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_strengthening_power missing"
+  ]
+ },
+ "20663": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_strengthening_power missing"
+  ]
+ },
+ "20664": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_quickening_power missing"
+  ]
+ },
+ "20665": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_quickening_power missing"
+  ]
+ },
+ "20666": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_caster_s_minding_thoughts missing"
+  ]
+ },
+ "20668": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_caster_s_minding_thoughts missing"
+  ]
+ },
+ "20669": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_caster_s_minding_thoughts missing"
+  ]
+ },
+ "20670": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_quickening_power missing"
+  ]
+ },
+ "20672": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_strengthening_power missing"
+  ]
+ },
+ "20673": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_caster_s_minding_thoughts missing"
+  ]
+ },
+ "20674": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_caster_s_minding_thoughts missing"
+  ]
+ },
+ "20675": {
+  "name": "Malignant Creatures",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_strengthening_power missing"
+  ]
+ },
+ "20227": {
+  "name": "Free the Rogue!",
+  "realm": "Albion",
+  "problems": [
+   "step 4: choose item cq_alb_ogre_bracer missing",
+   "step 4: choose item cq_alb_shadow_cap missing",
+   "step 4: choose item cq_alb_ogre_s_prayer_stone missing",
+   "step 4: choose item cq_alb_shadow_clasp missing",
+   "step 4: choose item cq_alb_ogre_s_pious_belt missing",
+   "step 4: choose item cq_alb_ogre_s_magical_belt missing"
+  ]
+ },
+ "20677": {
+  "name": "Lost Treasure",
+  "realm": "Albion",
+  "problems": [
+   "step 9: choose item cq_alb_pious_bracer missing",
+   "step 9: choose item cq_alb_roguish_bracer missing"
+  ]
+ },
+ "21371": {
+  "name": "Ogre's Might",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_puzzler_s_globe missing",
+   "final reward cq_alb_scurceol_s_bracer missing"
+  ]
+ },
+ "20678": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_venerable_faeldek_breastplate missing"
+  ]
+ },
+ "20679": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_venerable_faeldek_breastplate missing"
+  ]
+ },
+ "20680": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_venerable_faeldek_studded_vest missing"
+  ]
+ },
+ "20681": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_venerable_faeldek_mail_hauberk missing"
+  ]
+ },
+ "20682": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_robe_of_the_zephyr missing"
+  ]
+ },
+ "20683": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_venerable_faeldek_chain_shirt missing"
+  ]
+ },
+ "20684": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_robe_of_the_zephyr missing"
+  ]
+ },
+ "20685": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_robe_of_the_zephyr missing"
+  ]
+ },
+ "20686": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_venerable_faeldek_leather_jerkin missing"
+  ]
+ },
+ "20687": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_venerable_faeldek_battle_robe missing"
+  ]
+ },
+ "20688": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_venerable_faeldek_mail_hauberk missing"
+  ]
+ },
+ "20689": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_robe_of_the_zephyr missing"
+  ]
+ },
+ "20690": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_robe_of_the_zephyr missing"
+  ]
+ },
+ "20691": {
+  "name": "Orcs with Spellbooks",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_venerable_faeldek_chain_shirt missing"
+  ]
+ },
+ "20702": {
+  "name": "Strange Bedfellows",
+  "realm": "Albion",
+  "problems": [
+   "final reward cq_alb_perfect_life_stone missing"
+  ]
+ },
+ "20703": {
+  "name": "Cad Goddeau A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_boots_of_the_deft_strider missing"
+  ]
+ },
+ "20704": {
+  "name": "Cad Goddeau A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_necklace_of_energy_mentalist missing"
+  ]
+ },
+ "20705": {
+  "name": "Cad Goddeau A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ring_of_nature_affinity missing"
+  ]
+ },
+ "20706": {
+  "name": "Cad Goddeau A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_band_of_woven_grass missing"
+  ]
+ },
+ "20707": {
+  "name": "Cad Goddeau A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_necklace_of_laughing_winds missing"
+  ]
+ },
+ "20708": {
+  "name": "Cad Goddeau B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_hardened_short_bow missing"
+  ]
+ },
+ "20709": {
+  "name": "Cad Goddeau B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_transfixing_robes missing"
+  ]
+ },
+ "20710": {
+  "name": "Cad Goddeau B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_green_vine_necklace missing"
+  ]
+ },
+ "20711": {
+  "name": "Cad Goddeau B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_light_gorse_robe missing"
+  ]
+ },
+ "20712": {
+  "name": "Cad Goddeau B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_light_heather_robe missing"
+  ]
+ },
+ "20713": {
+  "name": "Cad Goddeau B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_biting_daemonite_rapier missing"
+  ]
+ },
+ "20715": {
+  "name": "Cad Goddeau C",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_scarred_vest missing"
+  ]
+ },
+ "20716": {
+  "name": "Cad Goddeau C",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_staff_of_mental_domination missing"
+  ]
+ },
+ "20717": {
+  "name": "Cad Goddeau C",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_earthen_scale_gloves missing"
+  ]
+ },
+ "20718": {
+  "name": "Cad Goddeau C",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_staff_of_natural_tendencies missing"
+  ]
+ },
+ "20719": {
+  "name": "Cad Goddeau C",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_master_valewalker_s_necklace missing"
+  ]
+ },
+ "20720": {
+  "name": "Cad Goddeau C",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_phantom_hide_leggings missing"
+  ]
+ },
+ "20721": {
+  "name": "Cad Goddeau D",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_resonant_gauntlets missing"
+  ]
+ },
+ "20722": {
+  "name": "Cad Goddeau D",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_mindlord_s_crested_cap missing"
+  ]
+ },
+ "20723": {
+  "name": "Cad Goddeau D",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_jagged_shield missing"
+  ]
+ },
+ "20724": {
+  "name": "Cad Goddeau D",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_cap_of_autumnal_splendor missing"
+  ]
+ },
+ "20725": {
+  "name": "Cad Goddeau D",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_cap_of_spring_awakenings missing"
+  ]
+ },
+ "20726": {
+  "name": "Cad Goddeau D",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_phantom_hide_vest missing"
+  ]
+ },
+ "20228": {
+  "name": "Connla's Well",
+  "realm": "Hibernia",
+  "problems": [
+   "step 4: choose item cq_hib_jewel_of_speed missing",
+   "step 4: choose item cq_hib_ranger_charm missing"
+  ]
+ },
+ "20229": {
+  "name": "Connla's Well",
+  "realm": "Hibernia",
+  "problems": [
+   "step 4: choose item cq_hib_warden_charm missing",
+   "step 4: choose item cq_hib_gloves_of_agility missing"
+  ]
+ },
+ "20230": {
+  "name": "Connla's Well",
+  "realm": "Hibernia",
+  "problems": [
+   "step 4: choose item cq_hib_protector_s_cloak_hib missing",
+   "step 4: choose item cq_hib_hero_charm missing"
+  ]
+ },
+ "20231": {
+  "name": "Connla's Well",
+  "realm": "Hibernia",
+  "problems": [
+   "step 4: choose item cq_hib_staff_of_inner_power_void missing",
+   "step 4: choose item cq_hib_eldritch_charm missing"
+  ]
+ },
+ "20727": {
+  "name": "Destructive Forces",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_natures_shroud missing"
+  ]
+ },
+ "20728": {
+  "name": "Destructive Forces",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_carved_wooden_bracer missing"
+  ]
+ },
+ "20729": {
+  "name": "Destructive Forces",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_medallion_of_warriors_spirit missing"
+  ]
+ },
+ "20730": {
+  "name": "Destructive Forces",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_twisted_silver_choker missing"
+  ]
+ },
+ "20233": {
+  "name": "Enchanting Willow",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_swordsmans_belt missing"
+  ]
+ },
+ "20234": {
+  "name": "Enchanting Willow",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_stone_loop_mentalist missing"
+  ]
+ },
+ "20235": {
+  "name": "Enchanting Willow",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_nature_totem missing",
+   "final reward cq_hib_jewel_of_the_forest missing"
+  ]
+ },
+ "20236": {
+  "name": "Enchanting Willow",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_pretty_pebble_ring missing"
+  ]
+ },
+ "20237": {
+  "name": "Enchanting Willow",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_polished_shell_bracer missing"
+  ]
+ },
+ "20238": {
+  "name": "Ilisa's Trade",
+  "realm": "Hibernia",
+  "problems": [
+   "step 12: choose item cq_hib_silvered_spellbound_enchanter_staff missing",
+   "step 12: choose item cq_hib_silvered_spellbound_greatsword missing",
+   "step 12: choose item cq_hib_silvered_spellbound_dagger missing",
+   "step 12: choose item cq_hib_silver_spellbound_mace missing",
+   "step 12: choose item cq_hib_silvered_spellbound_falcata missing",
+   "step 12: choose item cq_hib_silvered_spellbound_shield missing"
+  ]
+ },
+ "21373": {
+  "name": "Morven's Return",
+  "realm": "Hibernia",
+  "problems": [
+   "step 12: choose item cq_hib_mindnumber missing",
+   "step 12: choose item cq_hib_grim_harvester missing",
+   "step 12: choose item cq_hib_first_branch_of_spring missing",
+   "step 12: choose item cq_hib_cathbad_s_blade missing",
+   "step 12: choose item cq_hib_piercer missing",
+   "step 12: choose item cq_hib_fomorian_s_fist missing",
+   "step 12: choose item cq_hib_soul_drinker missing",
+   "step 12: choose item cq_hib_aodh_s_staff missing"
+  ]
+ },
+ "21374": {
+  "name": "Morven's Return",
+  "realm": "Hibernia",
+  "problems": [
+   "step 12: choose item cq_hib_mindnumber missing",
+   "step 12: choose item cq_hib_grim_harvester missing",
+   "step 12: choose item cq_hib_first_branch_of_spring missing",
+   "step 12: choose item cq_hib_cathbad_s_blade missing",
+   "step 12: choose item cq_hib_piercer missing",
+   "step 12: choose item cq_hib_fomorian_s_fist missing",
+   "step 12: choose item cq_hib_soul_drinker missing",
+   "step 12: choose item cq_hib_aodh_s_staff missing"
+  ]
+ },
+ "21375": {
+  "name": "Morven's Return",
+  "realm": "Hibernia",
+  "problems": [
+   "step 12: choose item cq_hib_mindnumber missing",
+   "step 12: choose item cq_hib_grim_harvester missing",
+   "step 12: choose item cq_hib_first_branch_of_spring missing",
+   "step 12: choose item cq_hib_cathbad_s_blade missing",
+   "step 12: choose item cq_hib_piercer missing",
+   "step 12: choose item cq_hib_fomorian_s_fist missing",
+   "step 12: choose item cq_hib_soul_drinker missing",
+   "step 12: choose item cq_hib_aodh_s_staff missing"
+  ]
+ },
+ "21376": {
+  "name": "Morven's Return",
+  "realm": "Hibernia",
+  "problems": [
+   "step 12: choose item cq_hib_mindnumber missing",
+   "step 12: choose item cq_hib_grim_harvester missing",
+   "step 12: choose item cq_hib_first_branch_of_spring missing",
+   "step 12: choose item cq_hib_cathbad_s_blade missing",
+   "step 12: choose item cq_hib_piercer missing",
+   "step 12: choose item cq_hib_fomorian_s_fist missing",
+   "step 12: choose item cq_hib_soul_drinker missing",
+   "step 12: choose item cq_hib_aodh_s_staff missing"
+  ]
+ },
+ "21377": {
+  "name": "Morven's Return",
+  "realm": "Hibernia",
+  "problems": [
+   "step 12: choose item cq_hib_mindnumber missing",
+   "step 12: choose item cq_hib_grim_harvester missing",
+   "step 12: choose item cq_hib_first_branch_of_spring missing",
+   "step 12: choose item cq_hib_cathbad_s_blade missing",
+   "step 12: choose item cq_hib_piercer missing",
+   "step 12: choose item cq_hib_fomorian_s_fist missing",
+   "step 12: choose item cq_hib_soul_drinker missing",
+   "step 12: choose item cq_hib_aodh_s_staff missing"
+  ]
+ },
+ "20239": {
+  "name": "Roane Skin",
+  "realm": "Hibernia",
+  "problems": [
+   "step 6: choose item cq_hib_champion_charm missing"
+  ]
+ },
+ "20240": {
+  "name": "Roane Skin",
+  "realm": "Hibernia",
+  "problems": [
+   "step 6: choose item cq_hib_enchanter_charm missing",
+   "step 6: choose item cq_hib_ring_of_enchantments missing"
+  ]
+ },
+ "20241": {
+  "name": "Roane Skin",
+  "realm": "Hibernia",
+  "problems": [
+   "step 6: choose item cq_hib_bard_charm missing"
+  ]
+ },
+ "20242": {
+  "name": "Roane Skin",
+  "realm": "Hibernia",
+  "problems": [
+   "step 6: choose item cq_hib_nightshade_charm missing"
+  ]
+ },
+ "20731": {
+  "name": "Secret of Nuada's Silver A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_archer_s_sleeves missing"
+  ]
+ },
+ "20732": {
+  "name": "Secret of Nuada's Silver A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_forest_walker_s_vest missing"
+  ]
+ },
+ "20733": {
+  "name": "Secret of Nuada's Silver A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_charred_scale_hauberk missing"
+  ]
+ },
+ "20734": {
+  "name": "Secret of Nuada's Silver A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_runic_woven_cap missing"
+  ]
+ },
+ "20735": {
+  "name": "Secret of Nuada's Silver B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silvered_recurve_bow missing"
+  ]
+ },
+ "20736": {
+  "name": "Secret of Nuada's Silver B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silvered_shield missing"
+  ]
+ },
+ "20737": {
+  "name": "Secret of Nuada's Silver B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silvered_gauntlets missing"
+  ]
+ },
+ "20738": {
+  "name": "Secret of Nuada's Silver B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silvered_staff missing"
+  ]
+ },
+ "20243": {
+  "name": "Seek the Moonstone",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_fagan_s_signet_ring missing"
+  ]
+ },
+ "20244": {
+  "name": "Seek the Moonstone",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_fagan_s_signet_ring missing"
+  ]
+ },
+ "20245": {
+  "name": "Seek the Moonstone",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_fagan_s_signet_ring missing"
+  ]
+ },
+ "20246": {
+  "name": "Seek the Moonstone",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_fagan_s_signet_ring missing"
+  ]
+ },
+ "20743": {
+  "name": "Stolen Ore A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ore_ring missing"
+  ]
+ },
+ "20744": {
+  "name": "Stolen Ore A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silver_threaded_forest_cloak missing"
+  ]
+ },
+ "20745": {
+  "name": "Stolen Ore A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ore_bow missing"
+  ]
+ },
+ "20746": {
+  "name": "Stolen Ore A",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ore_necklace missing"
+  ]
+ },
+ "20747": {
+  "name": "Stolen Ore B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ire_boots missing"
+  ]
+ },
+ "20748": {
+  "name": "Stolen Ore B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ire_bow missing"
+  ]
+ },
+ "20749": {
+  "name": "Stolen Ore B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_woven_belt missing"
+  ]
+ },
+ "20750": {
+  "name": "Stolen Ore B",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_woven_sash missing"
+  ]
+ },
+ "20251": {
+  "name": "Strange Matters Indeed",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_etched_bracer missing"
+  ]
+ },
+ "20252": {
+  "name": "Strange Matters Indeed",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_band_of_woven_gold missing"
+  ]
+ },
+ "20253": {
+  "name": "Strange Matters Indeed",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_encrusted_bracelet missing"
+  ]
+ },
+ "20254": {
+  "name": "Strange Matters Indeed",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_shadowy_gem missing"
+  ]
+ },
+ "20751": {
+  "name": "The Moonstone Twin",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lifter_s_belt missing"
+  ]
+ },
+ "20752": {
+  "name": "The Moonstone Twin",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_enchanted_gold_chain missing"
+  ]
+ },
+ "20753": {
+  "name": "The Moonstone Twin",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ring_of_natures_song missing"
+  ]
+ },
+ "20754": {
+  "name": "The Moonstone Twin",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_cloak_of_night missing"
+  ]
+ },
+ "21378": {
+  "name": "The Moonstone Twin",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_champion_s_jewel missing"
+  ]
+ },
+ "21379": {
+  "name": "The Moonstone Twin",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_enchanter_s_jewel missing"
+  ]
+ },
+ "21380": {
+  "name": "The Moonstone Twin",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bard_s_jewel missing"
+  ]
+ },
+ "21381": {
+  "name": "The Moonstone Twin",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_nightshade_jewel missing"
+  ]
+ },
+ "21382": {
+  "name": "Wug's Jug",
+  "realm": "Hibernia",
+  "problems": [
+   "step 4: choose item cq_hib_gloves_of_the_sure_grip missing",
+   "step 4: choose item cq_hib_blademaster_charm missing"
+  ]
+ },
+ "21383": {
+  "name": "Wug's Jug",
+  "realm": "Hibernia",
+  "problems": [
+   "step 4: choose item cq_hib_mentalist_charm missing",
+   "step 4: choose item cq_hib_cap_of_the_mind missing"
+  ]
+ },
+ "21384": {
+  "name": "Wug's Jug",
+  "realm": "Hibernia",
+  "problems": [
+   "step 4: choose item cq_hib_idol_of_nature missing",
+   "step 4: choose item cq_hib_druid_charm missing"
+  ]
+ },
+ "21385": {
+  "name": "Wug's Jug",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_cap_of_summer_brilliance missing"
+  ]
+ },
+ "21386": {
+  "name": "Wug's Jug",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_cap_of_winter_solitude missing"
+  ]
+ },
+ "20766": {
+  "name": "Last Heir",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bladeturn_belt missing"
+  ]
+ },
+ "20767": {
+  "name": "Last Heir",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_string_of_thoughts missing"
+  ]
+ },
+ "20768": {
+  "name": "Last Heir",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_empathetic_ring missing"
+  ]
+ },
+ "20769": {
+  "name": "Last Heir",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_strand_of_freshwater_pearls missing"
+  ]
+ },
+ "20770": {
+  "name": "Last Heir",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ivory_beaded_sash missing"
+  ]
+ },
+ "21387": {
+  "name": "Last Heir",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_blademaster_s_jewel missing"
+  ]
+ },
+ "21388": {
+  "name": "Last Heir",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_mentalist_s_jewel missing"
+  ]
+ },
+ "21389": {
+  "name": "Last Heir",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_druid_s_jewel missing"
+  ]
+ },
+ "21390": {
+  "name": "Last Heir",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_animist_s_fiery_opal missing"
+  ]
+ },
+ "21391": {
+  "name": "Last Heir",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_valewalker_s_star_sapphire missing"
+  ]
+ },
+ "20771": {
+  "name": "Unnatural Powers",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_emerald_threaded_forest_cloak missing"
+  ]
+ },
+ "20772": {
+  "name": "Unnatural Powers",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_warder_s_ring missing"
+  ]
+ },
+ "20773": {
+  "name": "Unnatural Powers",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_dueler_s_belt missing"
+  ]
+ },
+ "20774": {
+  "name": "Unnatural Powers",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_emerald_beaded_strand_eldritch missing"
+  ]
+ },
+ "20775": {
+  "name": "Unnatural Powers",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ranger_s_jewel missing"
+  ]
+ },
+ "20269": {
+  "name": "In the Interest of Plants",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bracer_of_valor_hib missing"
+  ]
+ },
+ "20270": {
+  "name": "In the Interest of Plants",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_grovegrown_beaded_collar missing"
+  ]
+ },
+ "20271": {
+  "name": "In the Interest of Plants",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_singing_beads missing"
+  ]
+ },
+ "20272": {
+  "name": "In the Interest of Plants",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ring_of_shadows missing"
+  ]
+ },
+ "20777": {
+  "name": "Lost Townfolk of Bran Llyr",
+  "realm": "Hibernia",
+  "problems": [
+   "step 9: choose item cq_hib_druidic_oaken_recurve_bow missing",
+   "step 9: choose item cq_hib_manganese_dagger missing"
+  ]
+ },
+ "20778": {
+  "name": "Lost Townfolk of Bran Llyr",
+  "realm": "Hibernia",
+  "problems": [
+   "step 9: choose item cq_hib_blade_ward missing",
+   "step 9: choose item cq_hib_chieftain_s_blade missing",
+   "step 9: choose item cq_hib_fomorian_s_betrayal missing"
+  ]
+ },
+ "20779": {
+  "name": "Lost Townfolk of Bran Llyr",
+  "realm": "Hibernia",
+  "problems": [
+   "step 9: choose item cq_hib_druidic_oaken_spear missing",
+   "step 9: choose item cq_hib_blade_ward missing",
+   "step 9: choose item cq_hib_sol_protector missing",
+   "step 9: choose item cq_hib_boned_greatsword missing"
+  ]
+ },
+ "20780": {
+  "name": "Lost Townfolk of Bran Llyr",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_balor_s_gift missing"
+  ]
+ },
+ "20273": {
+  "name": "Magic for Torrance",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_dance_of_the_blades_belt missing"
+  ]
+ },
+ "20274": {
+  "name": "Magic for Torrance",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ring_of_the_astute missing"
+  ]
+ },
+ "20275": {
+  "name": "Magic for Torrance",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_woven_vine_ring missing"
+  ]
+ },
+ "20276": {
+  "name": "Magic for Torrance",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_jeweled_leaf_necklace missing"
+  ]
+ },
+ "20277": {
+  "name": "Magic for Torrance",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_forest_strider_s_belt missing"
+  ]
+ },
+ "20278": {
+  "name": "Magical Branches",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_dancing_blades_charm missing"
+  ]
+ },
+ "20279": {
+  "name": "Magical Branches",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_intellectual_s_charm missing"
+  ]
+ },
+ "20280": {
+  "name": "Magical Branches",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_sylvan_carved_totem missing"
+  ]
+ },
+ "20281": {
+  "name": "Magical Branches",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_warped_wood_bracelet missing"
+  ]
+ },
+ "20282": {
+  "name": "Magical Branches",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_wrapped_wood_ring missing"
+  ]
+ },
+ "20781": {
+  "name": "Seek the Moonstone C",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_master_champion_s_necklace missing"
+  ]
+ },
+ "20782": {
+  "name": "Seek the Moonstone C",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_master_enchanter_s_necklace missing"
+  ]
+ },
+ "20783": {
+  "name": "Seek the Moonstone C",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_master_bard_s_necklace missing"
+  ]
+ },
+ "20784": {
+  "name": "Seek the Moonstone C",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_master_nightshade_s_necklace missing"
+  ]
+ },
+ "20284": {
+  "name": "Seek the Moonstone D",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_fagan_s_helm_of_honor missing"
+  ]
+ },
+ "20285": {
+  "name": "Seek the Moonstone D",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_fagan_s_staff missing"
+  ]
+ },
+ "20286": {
+  "name": "Seek the Moonstone D",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_twilight_vest missing"
+  ]
+ },
+ "20287": {
+  "name": "Seek the Moonstone D",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_fagan_s_gloves_of_poison missing"
+  ]
+ },
+ "20288": {
+  "name": "Silver Run",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_boots_of_speed missing"
+  ]
+ },
+ "20289": {
+  "name": "Silver Run",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_boots_of_agility missing"
+  ]
+ },
+ "20290": {
+  "name": "Silver Run",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_hero_s_might missing"
+  ]
+ },
+ "20291": {
+  "name": "Silver Run",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_staff_of_focus missing"
+  ]
+ },
+ "20785": {
+  "name": "Sylvan Shadows",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_quickening_ring missing"
+  ]
+ },
+ "20786": {
+  "name": "Sylvan Shadows",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_staff_of_focus missing"
+  ]
+ },
+ "20787": {
+  "name": "Sylvan Shadows",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bardic_ring missing"
+  ]
+ },
+ "20788": {
+  "name": "Sylvan Shadows",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_shrouding_shadow missing"
+  ]
+ },
+ "20789": {
+  "name": "Sylvan Shadows",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_shrouded_vines missing"
+  ]
+ },
+ "20790": {
+  "name": "Sylvan Shadows",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_band_of_resilience missing"
+  ]
+ },
+ "20791": {
+  "name": "Sylvan Shadows",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bracer_of_hero_s_integrity missing"
+  ]
+ },
+ "20792": {
+  "name": "Sylvan Shadows",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_vine_resilient_necklace missing"
+  ]
+ },
+ "20063": {
+  "name": "Enchanted Bandit Hunt",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ring_of_swords missing"
+  ]
+ },
+ "20837": {
+  "name": "Wolf Infestation",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ring_of_the_wolf missing"
+  ]
+ },
+ "20067": {
+  "name": "Youth Gone Wrong",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_snake_tail_ring missing"
+  ]
+ },
+ "21397": {
+  "name": "Spicket, Spackit and Spykit",
+  "realm": "Hibernia",
+  "problems": [
+   "step 5: choose item cq_hib_spicket_s_belt missing",
+   "step 5: choose item cq_hib_spackit_s_bracer missing",
+   "step 5: choose item cq_hib_spykit_s_ring missing"
+  ]
+ },
+ "21398": {
+  "name": "Straw's In Town",
+  "realm": "Hibernia",
+  "problems": [
+   "step 5: choose item cq_hib_straw_s_gem missing",
+   "step 5: choose item cq_hib_belt_of_nimbleness missing",
+   "step 5: choose item cq_hib_charming_necklace missing",
+   "step 5: choose item cq_hib_choker_of_empathetic_properties missing"
+  ]
+ },
+ "21399": {
+  "name": "Little Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_wind_bracelet missing"
+  ]
+ },
+ "20838": {
+  "name": "Cyllane's Cure",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_leafblade_sword missing"
+  ]
+ },
+ "20840": {
+  "name": "Fagan's Wand",
+  "realm": "Hibernia",
+  "problems": [
+   "step 5: choose item cq_hib_boots_of_the_wicked missing",
+   "step 5: choose item cq_hib_boots_of_the_wicked_mage missing",
+   "step 5: choose item cq_hib_boots_of_the_wicked_fighter missing",
+   "step 5: choose item cq_hib_boots_of_the_wicked_soul missing"
+  ]
+ },
+ "20841": {
+  "name": "Whatcha Gonna Do",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_entwined_pods missing"
+  ]
+ },
+ "20842": {
+  "name": "Whatcha Gonna Do",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_entwined_vine_vest missing"
+  ]
+ },
+ "20843": {
+  "name": "Whatcha Gonna Do",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_entwined_vine_vest missing"
+  ]
+ },
+ "20844": {
+  "name": "Whatcha Gonna Do",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_vine_entwined_hauberk missing"
+  ]
+ },
+ "20845": {
+  "name": "Whatcha Gonna Do",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_constitutional_forebearance missing"
+  ]
+ },
+ "20846": {
+  "name": "Whatcha Gonna Do",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_constitutional_forebearance missing"
+  ]
+ },
+ "20847": {
+  "name": "Whatcha Gonna Do",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_constitutional_forebearance missing"
+  ]
+ },
+ "20848": {
+  "name": "Whatcha Gonna Do",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_shadowblade missing"
+  ]
+ },
+ "20849": {
+  "name": "Whatcha Gonna Do",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_entwined_vine_vest missing"
+  ]
+ },
+ "20850": {
+  "name": "Whatcha Gonna Do",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_shadow_scythe missing"
+  ]
+ },
+ "20305": {
+  "name": "The Hunt for Bristle",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bristle_s_fang missing"
+  ]
+ },
+ "20852": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_woven_leaf_gloves missing"
+  ]
+ },
+ "20853": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_woven_leaf_gloves missing"
+  ]
+ },
+ "20854": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_woven_leaf_gloves missing"
+  ]
+ },
+ "20855": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_heart_of_oak_gauntlets missing"
+  ]
+ },
+ "20856": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_heart_of_oak_gauntlets missing"
+  ]
+ },
+ "20857": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_heart_of_oak_gauntlets missing"
+  ]
+ },
+ "20858": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_protecting_leaf_gauntlets missing"
+  ]
+ },
+ "20859": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_protecting_leaf_gauntlets missing"
+  ]
+ },
+ "20860": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lyrical_leaf_gauntlets missing"
+  ]
+ },
+ "20861": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_shadowy_leaf_gloves missing"
+  ]
+ },
+ "20862": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_arrowleaf_gauntlets missing"
+  ]
+ },
+ "20863": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_woven_leaf_gloves missing"
+  ]
+ },
+ "20864": {
+  "name": "The Status of Information",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_guardian_leaf_gloves missing"
+  ]
+ },
+ "20306": {
+  "name": "Beautiful Music",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lute_of_the_sea missing"
+  ]
+ },
+ "20866": {
+  "name": "Lesser Of Two Evils",
+  "realm": "Hibernia",
+  "problems": [
+   "step 10: choose item cq_hib_vest_of_enlightenment missing",
+   "step 10: choose item cq_hib_bracer_of_the_bold missing",
+   "step 10: choose item cq_hib_bracer_of_understanding missing"
+  ]
+ },
+ "20307": {
+  "name": "Two Ales, Ailish!",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gold_etched_wine_glass missing"
+  ]
+ },
+ "20074": {
+  "name": "Fearan",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_woven_grass_helm missing"
+  ]
+ },
+ "20867": {
+  "name": "Lysagh's Problem",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_fury_sprite_s_ring missing"
+  ]
+ },
+ "20076": {
+  "name": "Alastriona's Chest",
+  "realm": "Hibernia",
+  "problems": [
+   "step 9: choose item cq_hib_skinner_s_gloves_cloth missing",
+   "step 9: choose item cq_hib_skinner_s_gloves_leather missing",
+   "step 9: choose item cq_hib_skinner_s_gloves_reinforced missing",
+   "step 9: choose item cq_hib_skinner_s_gloves_scale missing"
+  ]
+ },
+ "21402": {
+  "name": "Rest in Peace",
+  "realm": "Hibernia",
+  "problems": [
+   "step 10: choose item cq_hib_beare_s_seashell_belt missing",
+   "step 10: choose item cq_hib_shyena_s_gossamer_veil missing",
+   "step 10: choose item cq_hib_alsandair_s_wading_boots missing",
+   "step 10: choose item cq_hib_kacey_s_soft_down_sleeves missing",
+   "step 10: choose item cq_hib_quillan_s_chest_armor missing",
+   "step 10: choose item cq_hib_conaire_s_dueling_gloves missing"
+  ]
+ },
+ "20868": {
+  "name": "Riona's Revenge",
+  "realm": "Hibernia",
+  "problems": [
+   "step 6: choose item cq_hib_dergal_s_runed_hauberk_reinf missing",
+   "step 6: choose item cq_hib_dergal_s_runed_hauberk_scale missing"
+  ]
+ },
+ "20869": {
+  "name": "Scuttle",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_scuttle_s_glowing_tooth missing"
+  ]
+ },
+ "20309": {
+  "name": "Spinner's Cloak",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_spinner_s_cloak missing"
+  ]
+ },
+ "20870": {
+  "name": "Eoghan's Spell",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_pumice_ring missing"
+  ]
+ },
+ "21403": {
+  "name": "Seeking Glory",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_siabrian_recurve_bow missing"
+  ]
+ },
+ "20871": {
+  "name": "Setting Sail",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_tiaga_s_charm missing"
+  ]
+ },
+ "20875": {
+  "name": "Treasure Hunt",
+  "realm": "Hibernia",
+  "problems": [
+   "step 10: choose item cq_hib_mayhem missing",
+   "step 10: choose item cq_hib_chaos missing",
+   "step 10: choose item cq_hib_havoc missing",
+   "step 10: choose item cq_hib_destruction missing",
+   "step 10: choose item cq_hib_confusion missing",
+   "step 10: choose item cq_hib_devastation missing",
+   "step 10: choose item cq_hib_bracer_of_obstruction missing",
+   "final reward cq_hib_glom_s_tiny_brooch missing"
+  ]
+ },
+ "21405": {
+  "name": "Sheerie Mischief",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_mist_formed_bracer missing"
+  ]
+ },
+ "20310": {
+  "name": "A Piece of Gormghlaith's Mind",
+  "realm": "Hibernia",
+  "problems": [
+   "step 12: choose item cq_hib_musical_ring missing",
+   "step 12: choose item cq_hib_jewel_of_absorption missing",
+   "step 12: choose item cq_hib_gloves_of_night missing",
+   "step 12: choose item cq_hib_badger_strength_choker missing"
+  ]
+ },
+ "21406": {
+  "name": "Bria's Savior",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_faerie_drake_hide_shield missing"
+  ]
+ },
+ "20078": {
+  "name": "Essence of Hostility",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_stone_bracer missing"
+  ]
+ },
+ "20900": {
+  "name": "The Broken Seal",
+  "realm": "Hibernia",
+  "problems": [
+   "step 6: choose item cq_hib_waterspun_belt_of_fortitude missing",
+   "step 6: choose item cq_hib_waterspun_belt_of_the_hidden missing",
+   "step 6: choose item cq_hib_waterspun_belt_of_intellect missing",
+   "step 6: choose item cq_hib_waterspun_belt_of_the_thicket missing",
+   "step 6: choose item cq_hib_waterspun_belt missing"
+  ]
+ },
+ "20901": {
+  "name": "Sea Shell Sleeves",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_sea_shell_sleeves missing"
+  ]
+ },
+ "20903": {
+  "name": "The Piper's Price",
+  "realm": "Hibernia",
+  "problems": [
+   "step 13: choose item cq_hib_rescuer_s_scale_hauberk missing",
+   "step 13: choose item cq_hib_rescuer_s_reinforced_vest missing",
+   "step 13: choose item cq_hib_rescuer_s_silk_robe missing",
+   "step 14: choose item cq_hib_glennard_s_short_sword missing",
+   "step 14: choose item cq_hib_glennard_s_club missing",
+   "step 14: choose item cq_hib_glennard_s_stiletto missing",
+   "step 14: choose item cq_hib_glennard_s_scythe missing",
+   "step 14: choose item cq_hib_glennard_s_staff_of_mana missing",
+   "step 14: choose item cq_hib_glennard_s_carved_bow missing",
+   "step 14: choose item cq_hib_glennard_s_light_crafted_staff missing"
+  ]
+ },
+ "20081": {
+  "name": "Larylle's Necklace",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_badger_claw_necklace missing"
+  ]
+ },
+ "20312": {
+  "name": "Sile's Sight",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_pot_of_enamel missing"
+  ]
+ },
+ "21419": {
+  "name": "Season of Remorse",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_empyrean_round_shield_med missing"
+  ]
+ },
+ "21420": {
+  "name": "Season of Remorse",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_empyrean_round_shield_small missing"
+  ]
+ },
+ "21421": {
+  "name": "Season of Remorse",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_empyrean_round_shield_small missing"
+  ]
+ },
+ "20082": {
+  "name": "Poison for Ivy",
+  "realm": "Hibernia",
+  "problems": [
+   "step 8: choose item cq_hib_ivy_trimmed_rapier missing",
+   "step 8: choose item cq_hib_ivy_engraved_falcata missing",
+   "step 8: choose item cq_hib_woven_ivy_short_bow missing",
+   "step 8: choose item cq_hib_vine_engraved_shillelagh missing",
+   "step 8: choose item cq_hib_twisted_vine_staff missing",
+   "step 8: choose item cq_hib_ivy_woven_staff missing",
+   "step 8: choose item cq_hib_braided_ivy_and_vine_staff missing"
+  ]
+ },
+ "20906": {
+  "name": "Returning for More",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_improved_spinner_s_cloak missing"
+  ]
+ },
+ "20907": {
+  "name": "The Anxious Healer",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_cloak_of_obscurement missing"
+  ]
+ },
+ "21423": {
+  "name": "Traces of the Mad Changlings",
+  "realm": "Hibernia",
+  "problems": [
+   "step 3: choose item cq_hib_lusmorebane_s_jeweled_necklace missing",
+   "step 3: choose item cq_hib_belt_of_spryness missing"
+  ]
+ },
+ "20908": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_thought missing"
+  ]
+ },
+ "20909": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_thought missing"
+  ]
+ },
+ "20910": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_thought missing"
+  ]
+ },
+ "20911": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_quickness missing"
+  ]
+ },
+ "20912": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_strength missing"
+  ]
+ },
+ "20913": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_parrying missing"
+  ]
+ },
+ "20914": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_nurturing_growth missing"
+  ]
+ },
+ "20915": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_nurturing_growth missing"
+  ]
+ },
+ "20916": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_musical_might missing"
+  ]
+ },
+ "20917": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_quickness missing"
+  ]
+ },
+ "20918": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_quickness missing"
+  ]
+ },
+ "20919": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_thought missing"
+  ]
+ },
+ "20920": {
+  "name": "Missing Tapestry",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lilerbad_s_beads_of_thought missing"
+  ]
+ },
+ "20922": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silvered_robe missing"
+  ]
+ },
+ "20923": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silver_woven_tunic missing"
+  ]
+ },
+ "20924": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ixthiar_woven_tunic missing"
+  ]
+ },
+ "20925": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silver_reinforced_vest missing"
+  ]
+ },
+ "20926": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silver_scaled_hauberk missing"
+  ]
+ },
+ "20927": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silver_scaled_hauberk missing"
+  ]
+ },
+ "20928": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silver_constructed_hauberk missing"
+  ]
+ },
+ "20929": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silver_constructed_hauberk missing"
+  ]
+ },
+ "20930": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silver_reinforced_vest missing"
+  ]
+ },
+ "20931": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silvered_leather_jerkin missing"
+  ]
+ },
+ "20932": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silver_reinforced_vest missing"
+  ]
+ },
+ "20933": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_silvered_robe missing"
+  ]
+ },
+ "20934": {
+  "name": "Crace's Desire",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_ixthiar_woven_tunic missing"
+  ]
+ },
+ "20936": {
+  "name": "Criofan's Fish",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_kedger_s_gilded_boots missing",
+   "final reward cq_hib_kedger_s_quick_boots missing"
+  ]
+ },
+ "20937": {
+  "name": "Criofan's Fish",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_kedger_s_gilded_boots missing",
+   "final reward cq_hib_kedger_s_quick_boots missing"
+  ]
+ },
+ "20938": {
+  "name": "Criofan's Fish",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_kedger_s_gilded_boots missing"
+  ]
+ },
+ "21424": {
+  "name": "Viraniel's Plague",
+  "realm": "Hibernia",
+  "problems": [
+   "step 10: choose item cq_hib_cloak_of_plague_resistance missing",
+   "step 10: choose item cq_hib_frosted_silver_band missing",
+   "step 10: choose item cq_hib_diamond_skull missing",
+   "step 10: choose item cq_hib_bracer_of_jade missing",
+   "step 10: choose item cq_hib_necklace_of_the_elements missing",
+   "final reward cq_hib_animist_bard_blademaster_champion_druid_eldritch_enchant missing"
+  ]
+ },
+ "20317": {
+  "name": "Magic's Scar",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_vaporous_cloak missing"
+  ]
+ },
+ "20939": {
+  "name": "Xaxnxi's Quest",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_belt_of_the_enduring_wind missing"
+  ]
+ },
+ "20940": {
+  "name": "Xaxnxi's Quest",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_belt_of_the_enduring_wind missing"
+  ]
+ },
+ "20941": {
+  "name": "Xaxnxi's Quest",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_belt_of_the_enduring_wind missing"
+  ]
+ },
+ "20942": {
+  "name": "Xaxnxi's Quest",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_girdle_of_earthen_grandeur missing"
+  ]
+ },
+ "20943": {
+  "name": "Xaxnxi's Quest",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_girdle_of_earthen_grandeur missing"
+  ]
+ },
+ "20944": {
+  "name": "Xaxnxi's Quest",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_belt_of_the_enduring_wind missing"
+  ]
+ },
+ "20945": {
+  "name": "Xaxnxi's Quest",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_girdle_of_earthen_grandeur missing"
+  ]
+ },
+ "20946": {
+  "name": "Xaxnxi's Quest",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_girdle_of_earthen_grandeur missing"
+  ]
+ },
+ "21425": {
+  "name": "Black Plague",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_unstoppered_wondrous_potion_hib missing"
+  ]
+ },
+ "20948": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_mystical_faerie_ring missing"
+  ]
+ },
+ "20949": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_mystical_faerie_ring missing"
+  ]
+ },
+ "20950": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_mystical_faerie_ring missing"
+  ]
+ },
+ "20951": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_faerie_ring_of_defense missing"
+  ]
+ },
+ "20952": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_faerie_ring_of_defense missing"
+  ]
+ },
+ "20953": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_faerie_ring_of_defense missing"
+  ]
+ },
+ "20954": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_faerie_ring_of_defense missing"
+  ]
+ },
+ "20955": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_faerie_ring_of_growth missing"
+  ]
+ },
+ "20956": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_faerie_ring_of_harmony missing"
+  ]
+ },
+ "20957": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_faerie_ring_of_silence missing"
+  ]
+ },
+ "20958": {
+  "name": "Catch of the Day",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_faerie_ring_of_silence missing"
+  ]
+ },
+ "21426": {
+  "name": "Search For The Missing Smith",
+  "realm": "Hibernia",
+  "problems": [
+   "step 6: choose item cq_hib_otherworldly_ring missing",
+   "step 6: choose item cq_hib_chin_fin_ring missing"
+  ]
+ },
+ "21427": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_ring_of_questions missing"
+  ]
+ },
+ "21428": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_ring_of_questions missing"
+  ]
+ },
+ "21429": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_ring_of_questions missing"
+  ]
+ },
+ "21430": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_reinforced_greaves_of_might missing"
+  ]
+ },
+ "21431": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_scale_greaves_of_might missing"
+  ]
+ },
+ "21432": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_scale_greaves_of_might missing"
+  ]
+ },
+ "21433": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_scale_greaves_of_might missing"
+  ]
+ },
+ "21434": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_cloak_of_broichan missing"
+  ]
+ },
+ "21435": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_flute_of_angus_og missing"
+  ]
+ },
+ "21436": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_hauberk_of_deceit missing"
+  ]
+ },
+ "21437": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing",
+   "final reward cq_hib_hauberk_of_lies missing"
+  ]
+ },
+ "21438": {
+  "name": "The West Wind",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_gem_of_the_restless_wind missing"
+  ]
+ },
+ "20960": {
+  "name": "Twisted Evil",
+  "realm": "Hibernia",
+  "problems": [
+   "step 9: choose item cq_hib_moss_covered_coif missing",
+   "step 9: choose item cq_hib_crown_of_leaves missing",
+   "step 9: choose item cq_hib_lustrous_moss_covered_boots missing",
+   "step 9: choose item cq_hib_moss_covered_sleeves missing",
+   "step 9: choose item cq_hib_bark_covered_gauntlets missing",
+   "step 9: choose item cq_hib_crown_of_twigs missing",
+   "step 9: choose item cq_hib_bark_covered_helm missing",
+   "step 9: choose item cq_hib_bark_covered_boots missing"
+  ]
+ },
+ "20319": {
+  "name": "Banba's Road to Grandmaster",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_banba_s_cloak_for_class missing"
+  ]
+ },
+ "21439": {
+  "name": "Face the Twisted",
+  "realm": "Hibernia",
+  "problems": [
+   "step 14: choose item cq_hib_gaia_s_woven_gloves missing"
+  ]
+ },
+ "20961": {
+  "name": "The Touch of Amadan Duhb",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bracelet_of_voided_talent missing"
+  ]
+ },
+ "20962": {
+  "name": "The Touch of Amadan Duhb",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bracelet_of_enchanted_talent missing"
+  ]
+ },
+ "20963": {
+  "name": "The Touch of Amadan Duhb",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bracelet_of_thoughtful_talent missing"
+  ]
+ },
+ "20964": {
+  "name": "The Touch of Amadan Duhb",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bracer_of_hidden_talent missing"
+  ]
+ },
+ "20965": {
+  "name": "The Touch of Amadan Duhb",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bracer_of_hidden_talent missing"
+  ]
+ },
+ "20966": {
+  "name": "The Touch of Amadan Duhb",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_bracelet_of_botanical_talent missing"
+  ]
+ },
+ "20967": {
+  "name": "The Touch of Amadan Duhb",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_artist_s_bracer missing"
+  ]
+ },
+ "20968": {
+  "name": "The Touch of Amadan Duhb",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_lute_of_the_harpers missing"
+  ]
+ },
+ "20969": {
+  "name": "The Touch of Amadan Duhb",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_band_of_hidden_talent missing"
+  ]
+ },
+ "20970": {
+  "name": "The Touch of Amadan Duhb",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_band_of_hidden_talent missing"
+  ]
+ },
+ "21440": {
+  "name": "Immortal Gift",
+  "realm": "Hibernia",
+  "problems": [
+   "step 14: choose item cq_hib_mur_savant_cloak missing",
+   "step 14: choose item cq_hib_cloak_of_steelskin missing",
+   "step 14: choose item cq_hib_cloak_of_the_self_possessed missing",
+   "step 14: choose item cq_hib_shroud_of_the_fog missing"
+  ]
+ },
+ "20084": {
+  "name": "Fylara's Armor",
+  "realm": "Hibernia",
+  "problems": [
+   "step 4: choose item cq_hib_ixthiar_carapace_leggings missing",
+   "step 4: choose item cq_hib_ixthiar_wing_pants missing",
+   "step 4: choose item cq_hib_bugbear_pelt_leggings missing",
+   "step 4: choose item cq_hib_ixthiar_eye_leggings missing",
+   "step 4: choose item cq_hib_bugbear_bloody_pelt_leggings missing"
+  ]
+ },
+ "21441": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_clear_mind missing"
+  ]
+ },
+ "21442": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_clear_mind missing"
+  ]
+ },
+ "21443": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_clear_mind missing"
+  ]
+ },
+ "21444": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_strong_arm missing"
+  ]
+ },
+ "21445": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_strong_arm missing"
+  ]
+ },
+ "21446": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_strong_arm missing"
+  ]
+ },
+ "21447": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_affinity missing"
+  ]
+ },
+ "21448": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_affinity missing"
+  ]
+ },
+ "21449": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_melodious missing"
+  ]
+ },
+ "21450": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_unseen missing"
+  ]
+ },
+ "21451": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_unseen missing"
+  ]
+ },
+ "21452": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_clear_mind missing"
+  ]
+ },
+ "21453": {
+  "name": "The Lost Relics",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_defender_s_cloak_of_the_strong_arm missing"
+  ]
+ },
+ "20972": {
+  "name": "Corruptors, Botonids, and Trade",
+  "realm": "Hibernia",
+  "problems": [
+   "step 14: choose item cq_hib_ixthiar_skin_bracer_of_strength missing",
+   "step 14: choose item cq_hib_ixthiar_skin_bracer_of_nurturing_health missing",
+   "step 14: choose item cq_hib_ixthiar_skin_bracer_of_everlasting_fortitude missing",
+   "step 14: choose item cq_hib_ixthiar_skin_bracer_of_silent_resistance missing",
+   "step 14: choose item cq_hib_ixthiar_skin_bracer_of_stunning_regrowth missing",
+   "step 14: choose item cq_hib_ixthiar_skin_bracer_of_lost_knowledge missing",
+   "step 14: choose item cq_hib_ixthiar_skin_bracer_of_substitution missing"
+  ]
+ },
+ "20973": {
+  "name": "The Sylvan's Pain",
+  "realm": "Hibernia",
+  "problems": [
+   "step 13: choose item cq_hib_holly_ring missing",
+   "step 13: choose item cq_hib_willow_wood_ring missing",
+   "step 13: choose item cq_hib_heather_ring missing",
+   "step 13: choose item cq_hib_aspen_wood_ring missing",
+   "step 13: choose item cq_hib_hawthorn_wood_ring missing",
+   "step 13: choose item cq_hib_hazel_wood_ring missing",
+   "step 13: choose item cq_hib_rowen_wood_ring missing",
+   "step 13: choose item cq_hib_silver_fir_wood_ring missing"
+  ]
+ },
+ "21455": {
+  "name": "The Tree Maidens",
+  "realm": "Hibernia",
+  "problems": [
+   "step 9: choose item cq_hib_song_of_the_bard missing",
+   "step 9: choose item cq_hib_song_of_the_regrower missing",
+   "step 9: choose item cq_hib_song_of_the_blades missing",
+   "step 9: choose item cq_hib_song_of_stealth missing",
+   "step 9: choose item cq_hib_song_of_the_moon missing",
+   "step 9: choose item cq_hib_song_of_the_vines missing",
+   "step 9: choose item cq_hib_song_of_the_sun missing",
+   "step 9: choose item cq_hib_song_of_strength missing",
+   "step 9: choose item cq_hib_song_of_the_scythe missing"
+  ]
+ },
+ "20974": {
+  "name": "Rhoiwyn's Necklace",
+  "realm": "Hibernia",
+  "problems": [
+   "step 6: choose item cq_hib_knotted_vine_belt missing",
+   "step 6: choose item cq_hib_braided_vine_belt missing",
+   "step 6: choose item cq_hib_tree_bark_belt missing",
+   "step 6: choose item cq_hib_belt_of_braided_ivy missing",
+   "step 6: choose item cq_hib_braided_root_belt missing",
+   "step 6: choose item cq_hib_twisted_root_belt missing",
+   "step 6: choose item cq_hib_belt_of_leaves missing",
+   "step 6: choose item cq_hib_fern_leaf_belt missing",
+   "step 6: choose item cq_hib_braided_willow_belt missing",
+   "step 6: choose item cq_hib_twisted_root_precision_belt missing",
+   "final reward cq_hib_rhoiwyn_s_necklace missing"
+  ]
+ },
+ "20321": {
+  "name": "Writhing Death",
+  "realm": "Hibernia",
+  "problems": [
+   "step 8: choose item cq_hib_skillfully_woven_belt missing",
+   "step 8: choose item cq_hib_ring_of_mattering_minds missing",
+   "step 8: choose item cq_hib_dexterous_shadow_beads missing",
+   "step 8: choose item cq_hib_collared_cloak_of_battle missing",
+   "step 8: choose item cq_hib_collared_cloak_of_diversity missing",
+   "step 8: choose item cq_hib_collared_cloak_of_stealth missing",
+   "step 8: choose item cq_hib_collared_cloak_of_intellect missing"
+  ]
+ },
+ "20975": {
+  "name": "Strange Bedfellows",
+  "realm": "Hibernia",
+  "problems": [
+   "final reward cq_hib_perfect_life_stone missing"
+  ]
+ },
+ "20976": {
+  "name": "Breaking the Blade",
+  "realm": "Hibernia",
+  "problems": [
+   "step 6: choose item cq_hib_keelia_s_spiritual_guardian missing",
+   "step 6: choose item cq_hib_keelia_s_protector_of_music missing",
+   "step 6: choose item cq_hib_keelia_s_silent_guardian missing",
+   "step 6: choose item cq_hib_keelia_s_guardian missing",
+   "step 6: choose item cq_hib_keelia_s_mystical_protector missing"
+  ]
+ },
+ "20995": {
+  "name": "A War of Old",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_boots_of_the_slinker missing"
+  ]
+ },
+ "20996": {
+  "name": "A War of Old",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_beastfriend_s_bracer missing"
+  ]
+ },
+ "21001": {
+  "name": "A War of Old",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_shadowed_leggings missing"
+  ]
+ },
+ "21002": {
+  "name": "A War of Old",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_forest_hunter_s_boots missing"
+  ]
+ },
+ "20999": {
+  "name": "A War of Old",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_shadowed_vest missing"
+  ]
+ },
+ "21000": {
+  "name": "A War of Old",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_forest_hunter_s_vest missing"
+  ]
+ },
+ "21457": {
+  "name": "A War of Old",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_moonshadow_cloak missing"
+  ]
+ },
+ "21458": {
+  "name": "A War of Old",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_heart_piercer_bow missing"
+  ]
+ },
+ "21003": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_tyr_s_hand_necklace missing"
+  ]
+ },
+ "21004": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_modi_s_belt_of_bravery missing"
+  ]
+ },
+ "21005": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_belt_of_thunder missing"
+  ]
+ },
+ "21006": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_voice_of_bragi missing"
+  ]
+ },
+ "21007": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_kelgor_s_belt_of_battle missing"
+  ]
+ },
+ "21008": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_hand_shaped_pin missing"
+  ]
+ },
+ "21009": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_badge_of_courage missing"
+  ]
+ },
+ "21010": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_lightning_bolt_pin missing"
+  ]
+ },
+ "21011": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_crystalized_musical_note missing"
+  ]
+ },
+ "21012": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_kelgor_s_tooth missing"
+  ]
+ },
+ "21013": {
+  "name": "An End to the Daggers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_the_gatherer_s_pin missing"
+  ]
+ },
+ "21015": {
+  "name": "Bones Of The Dead",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_ring_of_shrouding missing"
+  ]
+ },
+ "21016": {
+  "name": "Bones Of The Dead",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_kappe_av_jakten missing"
+  ]
+ },
+ "20086": {
+  "name": "Cape of the Mother Wolf",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_cape_of_the_mother_wolf missing"
+  ]
+ },
+ "20332": {
+  "name": "Clan Business",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_runed_ring missing"
+  ]
+ },
+ "20333": {
+  "name": "Clan Business",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_minding_beads missing"
+  ]
+ },
+ "20334": {
+  "name": "Clan Business",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_totem_bones missing"
+  ]
+ },
+ "21017": {
+  "name": "Coplin's Spirit",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_runed_mystical_pants missing"
+  ]
+ },
+ "21018": {
+  "name": "Coplin's Spirit",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_spirit_dweller_s_sleeves missing"
+  ]
+ },
+ "21019": {
+  "name": "Coplin's Spirit",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_boned_mystical_pants missing"
+  ]
+ },
+ "21020": {
+  "name": "Coplin's Spirit",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_cursed_soothsayer_staff missing"
+  ]
+ },
+ "21021": {
+  "name": "Darksong's Dirge",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_pious_ring missing"
+  ]
+ },
+ "21022": {
+  "name": "Darksong's Dirge",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_pious_ring missing"
+  ]
+ },
+ "21023": {
+  "name": "Dark Essence",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_gauntlets_of_vitality missing"
+  ]
+ },
+ "21024": {
+  "name": "Dark Essence",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_necklace_of_stoutness missing"
+  ]
+ },
+ "21025": {
+  "name": "Dark Essence",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_strength_of_thunder_amulet missing"
+  ]
+ },
+ "21026": {
+  "name": "Dark Essence",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_necklace_of_the_lyrical missing"
+  ]
+ },
+ "21027": {
+  "name": "Dark Essence",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_blood_red_tooth missing"
+  ]
+ },
+ "21028": {
+  "name": "Dark Essence",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_strength_of_the_storm_amulet missing"
+  ]
+ },
+ "21029": {
+  "name": "Decoding the Map",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_rune_etched_hauberk missing"
+  ]
+ },
+ "21030": {
+  "name": "Decoding the Map",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_moonshone_gloves missing"
+  ]
+ },
+ "21031": {
+  "name": "Fallen Warrior",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_runed_mystical_gloves missing"
+  ]
+ },
+ "21032": {
+  "name": "Fallen Warrior",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_spirit_dweller_s_pants_pie missing"
+  ]
+ },
+ "21033": {
+  "name": "Fallen Warrior",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_spirit_dweller_s_pants_hits missing"
+  ]
+ },
+ "21034": {
+  "name": "Fallen Warrior",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_bedevilled_cloth_leggings missing"
+  ]
+ },
+ "20337": {
+  "name": "Feathers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_clan_embossed_stone missing"
+  ]
+ },
+ "20338": {
+  "name": "Feathers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_clan_ring missing"
+  ]
+ },
+ "21459": {
+  "name": "Gashir",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_glowing_rune_etched_gloves missing"
+  ]
+ },
+ "21460": {
+  "name": "Gashir",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_moonshone_helm missing"
+  ]
+ },
+ "21035": {
+  "name": "Grenlock Clan",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_runed_mystical_vest missing"
+  ]
+ },
+ "21036": {
+  "name": "Grenlock Clan",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_spirit_dweller_s_vest missing"
+  ]
+ },
+ "21037": {
+  "name": "Grenlock Clan",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_boned_mystical_vest missing"
+  ]
+ },
+ "20340": {
+  "name": "Helping Dalea",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_emerald_flecked_jerkin missing"
+  ]
+ },
+ "20346": {
+  "name": "Jewel Hunt",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_fine_norse_cloak missing"
+  ]
+ },
+ "21038": {
+  "name": "Masrim's Spell",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_evening_s_call_cloak missing"
+  ]
+ },
+ "21039": {
+  "name": "Masrim's Spell",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_huntmanship_gloves missing"
+  ]
+ },
+ "20347": {
+  "name": "Mimir's Protection",
+  "realm": "Midgard",
+  "problems": [
+   "step 12: choose item cq_mid_mimir_s_large_hammer_of_wisdom missing",
+   "step 12: choose item cq_mid_mimir_s_staff_of_wisdom missing",
+   "step 12: choose item cq_mid_mimir_s_hammer_of_wisdom missing",
+   "step 12: choose item cq_mid_gridelin_guard missing"
+  ]
+ },
+ "20348": {
+  "name": "Mimir's Protection",
+  "realm": "Midgard",
+  "problems": [
+   "step 12: choose item cq_mid_mimir_s_staff_of_wisdom missing",
+   "step 12: choose item cq_mid_mimir_s_hammer_of_wisdom missing",
+   "step 12: choose item cq_mid_gridelin_guard missing"
+  ]
+ },
+ "20349": {
+  "name": "New Crest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_runed_clan_staff missing"
+  ]
+ },
+ "20350": {
+  "name": "New Crest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_staff_of_the_spiritualist missing"
+  ]
+ },
+ "20351": {
+  "name": "New Crest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_runed_bone_collar missing"
+  ]
+ },
+ "21040": {
+  "name": "Prove Kobold Helen's Innocence",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_spirit_staff_spiritmaster missing"
+  ]
+ },
+ "21041": {
+  "name": "Prove Kobold Helen's Innocence",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_bedevilled_sleeves missing"
+  ]
+ },
+ "21042": {
+  "name": "Rasczel's Nose",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_skald_s_medallion missing"
+  ]
+ },
+ "21043": {
+  "name": "Runes of Darkness",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_weeping_runic_staff missing"
+  ]
+ },
+ "21044": {
+  "name": "Runes of Darkness",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_weeping_boned_staff missing"
+  ]
+ },
+ "21049": {
+  "name": "Saving the Clan",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_rune_carved_pin missing"
+  ]
+ },
+ "21050": {
+  "name": "Saving the Clan",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_spirit_bone_pin missing"
+  ]
+ },
+ "21051": {
+  "name": "Saving the Clan",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_bone_carved_pin missing"
+  ]
+ },
+ "21053": {
+  "name": "Taldos' Amulet",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_taldos_amulet missing"
+  ]
+ },
+ "21062": {
+  "name": "The Desire of a God",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_healer_s_touch_necklace missing"
+  ]
+ },
+ "21063": {
+  "name": "The Desire of a God",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_fungus_covered_belt missing"
+  ]
+ },
+ "21461": {
+  "name": "The Desire of a God",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_healing_hand_pin missing"
+  ]
+ },
+ "21462": {
+  "name": "The Desire of a God",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_world_engraved_pin missing"
+  ]
+ },
+ "21065": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_strengthened_hauberk missing"
+  ]
+ },
+ "21066": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_berserker_gloves_of_skill missing"
+  ]
+ },
+ "21067": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_thunderous_gauntlets missing"
+  ]
+ },
+ "21068": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_song_spun_ring missing"
+  ]
+ },
+ "21069": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_blood_dyed_sleeves missing"
+  ]
+ },
+ "21070": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_war_ravager_s_sleeves missing"
+  ]
+ },
+ "21071": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_rabid_bearhide_sleeves missing"
+  ]
+ },
+ "21072": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_thunder_striders_leggings missing"
+  ]
+ },
+ "21073": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_note_spinners_gauntlets missing"
+  ]
+ },
+ "21074": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_blood_dyed_legs missing"
+  ]
+ },
+ "21075": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_wanderer_s_leggings missing"
+  ]
+ },
+ "21076": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_war_ravager_s_gauntlets missing"
+  ]
+ },
+ "21077": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_rabid_bearhide_hauberk missing"
+  ]
+ },
+ "21078": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_stormriders_hauberk missing"
+  ]
+ },
+ "21079": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_saga_spinner_s_protector missing"
+  ]
+ },
+ "21080": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_blood_dyed_gauntlets missing"
+  ]
+ },
+ "21081": {
+  "name": "The Red Dagger",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_raven_hauberk missing"
+  ]
+ },
+ "21082": {
+  "name": "The Three Sisters",
+  "realm": "Midgard",
+  "problems": [
+   "step 13: choose item cq_mid_runic_staff_of_the_sisters missing",
+   "step 13: choose item cq_mid_suppressing_staff_of_the_sisters missing",
+   "step 13: choose item cq_mid_suppressive_staff_of_the_sisters missing"
+  ]
+ },
+ "21083": {
+  "name": "The Three Sisters",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_darkened_staff_of_the_sisters missing"
+  ]
+ },
+ "21084": {
+  "name": "The Three Sisters",
+  "realm": "Midgard",
+  "problems": [
+   "step 13: choose item cq_mid_boned_staff_of_darkness missing",
+   "step 13: choose item cq_mid_boned_staff_of_the_ancestors missing",
+   "step 13: choose item cq_mid_boned_staff_of_suppression missing"
+  ]
+ },
+ "21085": {
+  "name": "The Three Sisters",
+  "realm": "Midgard",
+  "problems": [
+   "step 13: choose item cq_mid_hexed_staff_of_the_sisters missing",
+   "step 13: choose item cq_mid_bedevilled_staff_of_the_sisters missing"
+  ]
+ },
+ "21086": {
+  "name": "The War Continues",
+  "realm": "Midgard",
+  "problems": [
+   "step 10: choose item cq_mid_mischief_maker_s_axe missing",
+   "step 10: choose item cq_mid_mischief_maker_s_great_axe missing",
+   "step 10: choose item cq_mid_winter_s_spear missing",
+   "step 10: choose item cq_mid_winter_s_blade missing",
+   "step 10: choose item cq_mid_sword_of_ice missing",
+   "step 10: choose item cq_mid_bow_of_the_north missing"
+  ]
+ },
+ "21087": {
+  "name": "Trealine's Visions",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_beaded_piety missing"
+  ]
+ },
+ "21088": {
+  "name": "Trealine's Visions",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_grenlock_blessed_choker missing"
+  ]
+ },
+ "21089": {
+  "name": "Visions of Darkness",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_bracer_of_mending missing"
+  ]
+ },
+ "21090": {
+  "name": "Visions of Darkness",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_necklace_of_shamanic_magic missing"
+  ]
+ },
+ "21091": {
+  "name": "War Concluded",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_dancing_flame missing"
+  ]
+ },
+ "21092": {
+  "name": "War Concluded",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_crystalized_snowflake_pin missing"
+  ]
+ },
+ "20366": {
+  "name": "Hill Cat Hunt -- Savage Version",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_necklace_of_savage_strength missing"
+  ]
+ },
+ "21096": {
+  "name": "Siv's Spirit",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_runed_mystical_boots missing"
+  ]
+ },
+ "21097": {
+  "name": "Siv's Spirit",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_spirit_dweller_s_gloves missing"
+  ]
+ },
+ "21098": {
+  "name": "Siv's Spirit",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_boned_mystical_boots missing"
+  ]
+ },
+ "21099": {
+  "name": "Siv's Spirit",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_soothsayer_gem missing"
+  ]
+ },
+ "21100": {
+  "name": "The Rod and the Scholars",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_eir_blessed_pendant missing"
+  ]
+ },
+ "21101": {
+  "name": "The Rod and the Scholars",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_blessed_bone_bracer missing"
+  ]
+ },
+ "20110": {
+  "name": "Hole of the Dead",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_kelgor_s_fists missing",
+   "final reward cq_mid_kelgor_s_hands missing"
+  ]
+ },
+ "21140": {
+  "name": "Brutal Chains",
+  "realm": "Midgard",
+  "problems": [
+   "step 5: choose item cq_mid_old_cloth_pants missing",
+   "step 5: choose item cq_mid_old_starklaedar_leggings missing"
+  ]
+ },
+ "20114": {
+  "name": "Copious Striders",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_reed_bracer missing"
+  ]
+ },
+ "20117": {
+  "name": "Smyga's Raid",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_smyga_s_helm missing"
+  ]
+ },
+ "20119": {
+  "name": "Klippa's Claw",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_klippor missing"
+  ]
+ },
+ "20122": {
+  "name": "Thorgil's Daughter",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_tomte_skin_bracelet missing"
+  ]
+ },
+ "21143": {
+  "name": "Kyllikki's Scrolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_ukjent_leger_leggings missing"
+  ]
+ },
+ "21145": {
+  "name": "Looking Ahead",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_runed_symbol_of_shortbeard_s_clan missing"
+  ]
+ },
+ "21146": {
+  "name": "Evenings Empty Blessing",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_berbenet_leggings missing"
+  ]
+ },
+ "20124": {
+  "name": "Lover's Circle",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_ring_of_illbane missing"
+  ]
+ },
+ "20125": {
+  "name": "Paranoid Guard",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_watercast_ring missing"
+  ]
+ },
+ "20126": {
+  "name": "Reach of the Shadow",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_driftspirit_cloak missing"
+  ]
+ },
+ "21465": {
+  "name": "Brack: Rollo's Story",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_brack_s_hammer missing"
+  ]
+ },
+ "20375": {
+  "name": "Protect Huginfell",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_helm_of_the_aki missing"
+  ]
+ },
+ "20376": {
+  "name": "Tomte of Doom",
+  "realm": "Midgard",
+  "problems": [
+   "step 9: choose item cq_mid_vest_of_audhumbla missing",
+   "step 9: choose item cq_mid_sleeves_of_buril missing",
+   "step 9: choose item cq_mid_leggings_of_borr missing",
+   "step 9: choose item cq_mid_jewel_of_bestla missing",
+   "step 9: choose item cq_mid_gloves_of_woden missing",
+   "step 9: choose item cq_mid_circlet_of_willi missing",
+   "step 9: choose item cq_mid_boots_of_weh missing"
+  ]
+ },
+ "20127": {
+  "name": "Waking of the Fallen",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_toe_bone_belt missing"
+  ]
+ },
+ "20377": {
+  "name": "Protecting the Healer",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_the_healer_s_defender missing"
+  ]
+ },
+ "21466": {
+  "name": "Morana's Tunic",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_dancing_silk missing"
+  ]
+ },
+ "21147": {
+  "name": "Fervent",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_fervent_jewel missing"
+  ]
+ },
+ "21148": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_web_bracer missing"
+  ]
+ },
+ "21149": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_web_bracer missing"
+  ]
+ },
+ "21150": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_spider_bracelet missing"
+  ]
+ },
+ "21151": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_web_bracer missing"
+  ]
+ },
+ "21152": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_spider_bracelet missing"
+  ]
+ },
+ "21153": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_arachite_bracelet missing"
+  ]
+ },
+ "21154": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_silk_cuff missing"
+  ]
+ },
+ "21155": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_arachite_bracelet missing"
+  ]
+ },
+ "21156": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_silk_cuff missing"
+  ]
+ },
+ "21157": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_silk_cuff missing"
+  ]
+ },
+ "21158": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_web_bracer missing"
+  ]
+ },
+ "21159": {
+  "name": "Helping the Arachites",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_silver_web_bracer missing"
+  ]
+ },
+ "20129": {
+  "name": "Living Warning",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_flame_helm missing"
+  ]
+ },
+ "20389": {
+  "name": "Widower Hunt",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_widower_shield missing"
+  ]
+ },
+ "20130": {
+  "name": "Silent Death",
+  "realm": "Midgard",
+  "problems": [
+   "step 5: choose item cq_mid_njessi_carved_fang missing",
+   "step 5: choose item cq_mid_njessi_bone_hammer missing",
+   "step 5: choose item cq_mid_njessi_staff_of_pure_thought missing",
+   "step 5: choose item cq_mid_njessi_short_tooth_axe missing",
+   "step 5: choose item cq_mid_njessi_crossed_short_tooth_axe missing",
+   "step 5: choose item cq_mid_njessi_skull_bone_hammer missing",
+   "step 5: choose item cq_mid_njessi_short_tooth_spear missing"
+  ]
+ },
+ "20131": {
+  "name": "Sugnhild's Revenge",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_gauntlets_of_the_redhand missing"
+  ]
+ },
+ "20381": {
+  "name": "Trustan's Belongings",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_trustan_s_belt missing"
+  ]
+ },
+ "21174": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_eye_necklace missing"
+  ]
+ },
+ "21175": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_eye_necklace missing"
+  ]
+ },
+ "21176": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_bone_collar missing"
+  ]
+ },
+ "21177": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_eye_necklace missing"
+  ]
+ },
+ "21178": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_bone_collar missing"
+  ]
+ },
+ "21179": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_finger_necklace missing"
+  ]
+ },
+ "21180": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_hair_collar missing"
+  ]
+ },
+ "21181": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_finger_necklace missing"
+  ]
+ },
+ "21182": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_hair_collar missing"
+  ]
+ },
+ "21183": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_hair_collar missing"
+  ]
+ },
+ "21184": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_eye_necklace missing"
+  ]
+ },
+ "21185": {
+  "name": "Protecting Myrkwood",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_svartalf_eye_necklace missing"
+  ]
+ },
+ "20132": {
+  "name": "Sulphine's Demise",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_flameforged_sword missing"
+  ]
+ },
+ "20382": {
+  "name": "Bowyer's Draw",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_willow_wind_bow missing"
+  ]
+ },
+ "20383": {
+  "name": "Foolish Dancers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_ashen_maul missing"
+  ]
+ },
+ "21468": {
+  "name": "Helping the Weaponsmith",
+  "realm": "Midgard",
+  "problems": [
+   "step 11: choose item cq_mid_obsidian_war_hammer missing",
+   "step 11: choose item cq_mid_obsidian_bastard_sword missing",
+   "step 11: choose item cq_mid_obsidian_long_spear missing",
+   "step 11: choose item cq_mid_obsidian_staff missing",
+   "step 11: choose item cq_mid_obsidian_great_spiked_hammer missing",
+   "step 11: choose item cq_mid_obsidian_great_sword missing",
+   "step 11: choose item cq_mid_double_bladed_obsidian_axe missing",
+   "step 11: choose item cq_mid_obsidian_longsword missing",
+   "step 11: choose item cq_mid_cursed_obsidian_staff missing"
+  ]
+ },
+ "20133": {
+  "name": "Stripe",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_stripe_hide_helm missing"
+  ]
+ },
+ "20384": {
+  "name": "Family Business",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_boots_of_favor missing"
+  ]
+ },
+ "20134": {
+  "name": "Nimh's Secret",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_nimh_s_curse missing"
+  ]
+ },
+ "21187": {
+  "name": "Better Off Buried",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_shining_crown_of_insanity missing"
+  ]
+ },
+ "20135": {
+  "name": "Furf's Reward",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_fine_sash missing"
+  ]
+ },
+ "21189": {
+  "name": "Ota's Quest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_griffin_claw missing"
+  ]
+ },
+ "21190": {
+  "name": "Ota's Quest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_griffin_pelt_shield missing"
+  ]
+ },
+ "21191": {
+  "name": "Ota's Quest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_griffin_s_impervious_pelt missing"
+  ]
+ },
+ "21192": {
+  "name": "Ota's Quest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_hunter_s_mane missing"
+  ]
+ },
+ "21193": {
+  "name": "Ota's Quest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_pelted_fury missing"
+  ]
+ },
+ "21194": {
+  "name": "Ota's Quest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_pelted_fury missing"
+  ]
+ },
+ "21195": {
+  "name": "Ota's Quest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_griffin_totem missing"
+  ]
+ },
+ "21196": {
+  "name": "Ota's Quest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_boned_fist missing"
+  ]
+ },
+ "21198": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_barbed_crescent_crown missing"
+  ]
+ },
+ "21199": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_barbed_crescent_crown missing"
+  ]
+ },
+ "21200": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_rigid_crescent_crown missing"
+  ]
+ },
+ "21201": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_barbed_crescent_crown missing"
+  ]
+ },
+ "21202": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_spiked_crescent_crown missing"
+  ]
+ },
+ "21203": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_thick_crescent_crown missing"
+  ]
+ },
+ "21204": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_woven_crescent_crown missing"
+  ]
+ },
+ "21205": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_thick_crescent_crown missing"
+  ]
+ },
+ "21206": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_woven_crescent_crown missing"
+  ]
+ },
+ "21207": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_woven_crescent_crown missing"
+  ]
+ },
+ "21208": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_spiked_crescent_crown missing"
+  ]
+ },
+ "21209": {
+  "name": "Tale of Two Trolls",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_spiked_crescent_crown missing"
+  ]
+ },
+ "20138": {
+  "name": "Krrrck's Torment",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_bulbous_eye missing"
+  ]
+ },
+ "21212": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mektigskog_cloak missing"
+  ]
+ },
+ "21213": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mektigskog_cloak missing"
+  ]
+ },
+ "21214": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_treskygge_cloak missing"
+  ]
+ },
+ "21215": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mektigskog_cloak missing"
+  ]
+ },
+ "21216": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_treskygge_cloak missing"
+  ]
+ },
+ "21217": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_viltdyr_cloak missing"
+  ]
+ },
+ "21218": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_morktblad_cloak missing"
+  ]
+ },
+ "21219": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_viltdyr_cloak missing"
+  ]
+ },
+ "21220": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_morktblad_cloak missing"
+  ]
+ },
+ "21221": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_morktblad_cloak missing"
+  ]
+ },
+ "21222": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mektigskog_cloak missing"
+  ]
+ },
+ "21223": {
+  "name": "Lord Lauur's Wife",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mektigskog_cloak missing"
+  ]
+ },
+ "21225": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mektigskog_cloak missing"
+  ]
+ },
+ "21226": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mektigskog_cloak missing"
+  ]
+ },
+ "21227": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_treskygge_cloak missing"
+  ]
+ },
+ "21228": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mektigskog_cloak missing"
+  ]
+ },
+ "21229": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_treskygge_cloak missing"
+  ]
+ },
+ "21230": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_viltdyr_cloak missing"
+  ]
+ },
+ "21231": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_morktblad_cloak missing"
+  ]
+ },
+ "21232": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_viltdyr_cloak missing"
+  ]
+ },
+ "21233": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_morktblad_cloak missing"
+  ]
+ },
+ "21234": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_morktblad_cloak missing"
+  ]
+ },
+ "21235": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mektigskog_cloak missing"
+  ]
+ },
+ "21236": {
+  "name": "Thraxia's Dilemma",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mektigskog_cloak missing"
+  ]
+ },
+ "20139": {
+  "name": "Zrit-Zrit's Item",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_agile_defender missing"
+  ]
+ },
+ "21238": {
+  "name": "Mother's Children",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_belt_of_the_enduring_wind missing"
+  ]
+ },
+ "21239": {
+  "name": "Mother's Children",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_girdle_of_earthen_grandeur missing"
+  ]
+ },
+ "21240": {
+  "name": "Mother's Children",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_petrified_mantid_eye missing"
+  ]
+ },
+ "21241": {
+  "name": "Mother's Children",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_belt_of_the_enduring_wind missing"
+  ]
+ },
+ "21242": {
+  "name": "Mother's Children",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_crystallized_mantid_eye missing"
+  ]
+ },
+ "21243": {
+  "name": "Mother's Children",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_belt_of_the_enduring_wind missing"
+  ]
+ },
+ "21245": {
+  "name": "Black Plague",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_unstoppered_wondrous_potion_mid missing"
+  ]
+ },
+ "21246": {
+  "name": "Morvalt Crystal",
+  "realm": "Midgard",
+  "problems": [
+   "step 7: choose item cq_mid_fur_brushed_chain_legs missing",
+   "step 7: choose item cq_mid_mammoth_lined_leggings missing",
+   "step 7: choose item cq_mid_mammoth_hide_pants missing",
+   "step 7: choose item cq_mid_studded_mammoth_pants missing"
+  ]
+ },
+ "21247": {
+  "name": "Gazsi's Nightmares",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_yellowed_bone_gloves missing"
+  ]
+ },
+ "21248": {
+  "name": "Gazsi's Nightmares",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_yellowed_bone_gloves missing"
+  ]
+ },
+ "21249": {
+  "name": "Gazsi's Nightmares",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mammoth_fur_trimmed_helm missing"
+  ]
+ },
+ "21250": {
+  "name": "Gazsi's Nightmares",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_sulphur_studded_sleeves missing"
+  ]
+ },
+ "21251": {
+  "name": "Gazsi's Nightmares",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mammoth_fur_sleeves missing"
+  ]
+ },
+ "21252": {
+  "name": "Gazsi's Nightmares",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_sulphur_encrusted_gloves missing"
+  ]
+ },
+ "21253": {
+  "name": "Gazsi's Nightmares",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_mammoth_fur_sleeves missing"
+  ]
+ },
+ "20142": {
+  "name": "Cargila's Blessing",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_boots_of_stealthy_evasion missing"
+  ]
+ },
+ "21469": {
+  "name": "Werewolf Bane",
+  "realm": "Midgard",
+  "problems": [
+   "step 12: choose item cq_mid_varulbane_1h_sword missing",
+   "step 12: choose item cq_mid_varulbane_1h_axe missing",
+   "step 12: choose item cq_mid_varulbane_1h_hammer missing",
+   "step 12: choose item cq_mid_varulbane_2h_sword missing",
+   "step 12: choose item cq_mid_varulbane_2h_axe missing",
+   "step 12: choose item cq_mid_varulbane_2h_hammer missing",
+   "step 12: choose item cq_mid_varulbane_bow missing"
+  ]
+ },
+ "21255": {
+  "name": "Gem of the Dwarven King",
+  "realm": "Midgard",
+  "problems": [
+   "step 9: choose item cq_mid_nattbrann missing",
+   "step 9: choose item cq_mid_himmelbrann missing",
+   "step 9: choose item cq_mid_gronnbrann missing",
+   "step 9: choose item cq_mid_hvitbrann missing",
+   "step 9: choose item cq_mid_glodende_brann missing",
+   "step 9: choose item cq_mid_solbrann missing",
+   "step 9: choose item cq_mid_hassafran missing"
+  ]
+ },
+ "21256": {
+  "name": "Price of Excellence",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_hammer_of_black_ice missing"
+  ]
+ },
+ "20143": {
+  "name": "Hidden Maps",
+  "realm": "Midgard",
+  "problems": [
+   "step 9: choose item cq_mid_glacier_jewel_sl_cd_bd missing",
+   "step 9: choose item cq_mid_glacier_jewel_hits_cr_bd missing",
+   "step 9: choose item cq_mid_glacier_jewel_hits_thr_cd missing",
+   "step 9: choose item cq_mid_glacier_jewel_hits_bd_sp missing"
+  ]
+ },
+ "21257": {
+  "name": "Mammoth Hunt",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_sleek_mammoth_fur_cloak missing"
+  ]
+ },
+ "21258": {
+  "name": "Mammoth Hunt",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_lucky_string_ring missing"
+  ]
+ },
+ "21259": {
+  "name": "Mammoth Hunt",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_warm_mammoth_fur_cloak missing"
+  ]
+ },
+ "21260": {
+  "name": "Mammoth Hunt",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_furry_boned_legs missing"
+  ]
+ },
+ "21262": {
+  "name": "Strange Bedfellows",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_perfect_life_stone missing"
+  ]
+ },
+ "21470": {
+  "name": "The Legend of Fenrir's Folly",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_fenris_fang_axe missing"
+  ]
+ },
+ "21471": {
+  "name": "The Legend of Fenrir's Folly",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_heart_of_the_sun missing"
+  ]
+ },
+ "21472": {
+  "name": "The Legend of Fenrir's Folly",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_fenris_claw missing"
+  ]
+ },
+ "21263": {
+  "name": "Breaking the Blade",
+  "realm": "Midgard",
+  "problems": [
+   "step 7: choose item cq_mid_mithothyn_s_crown_of_song missing",
+   "step 7: choose item cq_mid_mithothyn_s_crown_of_piety missing",
+   "step 7: choose item cq_mid_mithothyn_s_crown_of_rage missing",
+   "step 7: choose item cq_mid_mithothyn_s_crown_of_might missing",
+   "step 8: choose item cq_mid_vigdis_s_protector missing",
+   "step 8: choose item cq_mid_vigdis_s_singing_protector missing",
+   "step 8: choose item cq_mid_vigdis_s_heroic_protector missing"
+  ]
+ },
+ "20386": {
+  "name": "Strange Powers",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_scaffold_web_cloak missing"
+  ]
+ },
+ "21264": {
+  "name": "Dark Places of the Soul",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_ring_of_spun_silk missing",
+   "final reward cq_mid_herbalist_s_hauberk_of_ivy missing"
+  ]
+ },
+ "21474": {
+  "name": "Catla's Downfall",
+  "realm": "Midgard",
+  "problems": [
+   "step 8: choose item cq_mid_avboyning_bracer missing",
+   "step 8: choose item cq_mid_skjold_bracelet missing"
+  ]
+ },
+ "21265": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_chain_hauberk missing"
+  ]
+ },
+ "21266": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_chain_hauberk missing"
+  ]
+ },
+ "21267": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_leather_jerkin missing"
+  ]
+ },
+ "21268": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_chain_hauberk missing"
+  ]
+ },
+ "21269": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_studded_jerkin missing"
+  ]
+ },
+ "21270": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_chain_shirt missing"
+  ]
+ },
+ "21271": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_cloth_vest missing"
+  ]
+ },
+ "21272": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_chain_shirt missing"
+  ]
+ },
+ "21273": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_cloth_vest missing"
+  ]
+ },
+ "21274": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_cloth_vest missing"
+  ]
+ },
+ "21275": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_studded_jerkin missing"
+  ]
+ },
+ "21276": {
+  "name": "Final Rest",
+  "realm": "Midgard",
+  "problems": [
+   "final reward cq_mid_immaculate_ensanguined_studded_vest missing"
+  ]
+ },
+ "21475": {
+  "name": "Stoneheart",
+  "realm": "Midgard",
+  "problems": [
+   "step 8: choose item cq_mid_troll_s_fist_great_hammer missing",
+   "step 8: choose item cq_mid_stoneheart_staff_axe_hammer_sword_hand_to_hand_1h_or_2h missing"
+  ]
+ }
+}

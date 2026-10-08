@@ -1,0 +1,1480 @@
+zone,zone_id,name,server_levels,server_spawns,classtypes
+Camelot Hills,0,bandit leader,11-11,6,DOL.GS.GameNPC
+Camelot Hills,0,bear cub,2-2,2,DOL.GS.GameNPC
+Camelot Hills,0,brownie,0-0,17,DOL.GS.GameNPC
+Camelot Hills,0,brownie grassrunner,7-7,1,DOL.GS.GameNPC
+Camelot Hills,0,dragon ant queen,10-10,1,DOL.GS.GameNPC
+Camelot Hills,0,dwarven priest,9-9,3,DOL.GS.GameNPC
+Camelot Hills,0,fielath,12-12,1,DOL.GS.GameNPC
+Camelot Hills,0,giant ant,21-24,1,DOL.GS.GameNPC
+Camelot Hills,0,lady leana,6-6,1,DOL.GS.GameNPC
+Camelot Hills,0,moldy skeleton,2-2,1,DOL.GS.GameNPC
+Camelot Hills,0,plague spider,0-0,4,DOL.GS.GameNPC
+Camelot Hills,0,poacher,4-4,1,DOL.GS.GameNPC
+Camelot Hills,0,red adder,10-10,1,DOL.GS.GameNPC
+Camelot Hills,0,small snake,0-0,17,DOL.GS.GameNPC
+Camelot Hills,0,spirit hound,0-0,2,DOL.GS.GameNPC
+Camelot Hills,0,thwori,7-8,1,DOL.GS.GameNPC
+Camelot Hills,0,undead druid,8-10,2,DOL.GS.GameNPC
+Camelot Hills,0,weakened demon,6-6,1,DOL.GS.GameNPC
+Camelot Hills,0,wild sow,2-2,8,DOL.GS.GameNPC
+Camelot Hills,0,ygwrch gyrg,7-7,1,DOL.GS.GameNPC
+Camelot Hills,0,young cutpurse,3-3,2,DOL.GS.GameNPC
+Camelot Hills,0,zombie boar,5-5,1,DOL.GS.NightSpawn
+Camelot Hills,0,zombie farmer,7-7,1,DOL.GS.NightSpawn
+Camelot Hills,0,zombie sow,4-4,6,DOL.GS.NightSpawn
+Salisbury Plains,1,abagu,14-15,1,DOL.GS.GameNPC
+Salisbury Plains,1,adder,7-7,2,DOL.GS.GameNPC
+Salisbury Plains,1,aged basilisk,19-19,23,DOL.GS.GameNPC
+Salisbury Plains,1,archdruid glasan,29-30,1,DOL.GS.GameNPC
+Salisbury Plains,1,berik liglim,30-30,1,DOL.GS.GameNPC
+Salisbury Plains,1,black dog,9-10,4,DOL.GS.GameNPC
+Salisbury Plains,1,cart horse,10-10,2,DOL.GS.GameNPC
+Salisbury Plains,1,disturbed presence,12-14,29,DOL.GS.NightSpawn
+Salisbury Plains,1,druid,7-19,5,DOL.GS.GameNPC
+Salisbury Plains,1,druid sacrificer,9-21,3,DOL.GS.GameNPC
+Salisbury Plains,1,druid seer,8-20,6,DOL.GS.GameNPC
+Salisbury Plains,1,druidic spirit,21-21,2,DOL.GS.GameNPC
+Salisbury Plains,1,emerald snake,5-5,3,DOL.GS.GameNPC
+Salisbury Plains,1,escaped bandit,21-21,4,DOL.GS.GameNPC
+Salisbury Plains,1,escaped bandit leader,19-19,1,DOL.GS.GameNPC
+Salisbury Plains,1,faerie frog,28-30,3,DOL.GS.GameNPC
+Salisbury Plains,1,giant skeleton,27-28,27,DOL.GS.NightSpawn
+Salisbury Plains,1,growler,11-11,1,DOL.GS.GameNPC
+Salisbury Plains,1,kedalinde teanidd,10-10,1,DOL.GS.GameNPC
+Salisbury Plains,1,mercenary tomb raider,26-28,23,DOL.GS.GameNPC
+Salisbury Plains,1,salisbury giant,18-21,26,DOL.GS.GameNPC
+Salisbury Plains,1,seer,2-2,1,DOL.GS.GameNPC
+Salisbury Plains,1,slaver,12-15,3,DOL.GS.GameNPC
+Salisbury Plains,1,slythcur,12-12,1,DOL.GS.GameNPC
+Salisbury Plains,1,small skeletal legionnaire,14-14,1,DOL.GS.GameNPC
+Salisbury Plains,1,spriggarn ambusher,15-15,11,DOL.GS.GameNPC
+Salisbury Plains,1,spriggarn howler,16-16,5,DOL.GS.GameNPC
+Salisbury Plains,1,tomb raider,16-17,23,DOL.GS.GameNPC
+Salisbury Plains,1,water spider gleek,27-32,1,DOL.GS.WaterSpiderGleek
+Salisbury Plains,1,white horse,18-18,1,DOL.GS.GameNPC
+Salisbury Plains,1,yell hound,15-16,1,DOL.GS.NightSpawn
+Salisbury Plains,1,young bear,10-10,14,DOL.GS.GameNPC
+Salisbury Plains,1,young boar,6-6,25,DOL.GS.GameNPC
+Black Mtns. South,2,aldous wynedd,10-10,1,DOL.GS.GameNPC
+Black Mtns. South,2,bandit,5-8,8,DOL.GS.GameNPC
+Black Mtns. South,2,bear cub,2-2,9,DOL.GS.GameNPC
+Black Mtns. South,2,black wolf,3-3,14,DOL.GS.ThroatripperAdd
+Black Mtns. South,2,bouditha wynedd,9-10,1,DOL.GS.GameNPC
+Black Mtns. South,2,decayed zombie,3-3,1,DOL.GS.GameNPC
+Black Mtns. South,2,dwarf brawler,3-4,15,DOL.GS.GameNPC
+Black Mtns. South,2,dwarf pillager,4-5,2,DOL.GS.GameNPC
+Black Mtns. South,2,dwarf raider,5-6,4,DOL.GS.GameNPC
+Black Mtns. South,2,forest lion,6-6,5,DOL.GS.GameNPC
+Black Mtns. South,2,frund,12-13,1,DOL.GS.GameNPC
+Black Mtns. South,2,fusnup,7-7,1,DOL.GS.GameNPC
+Black Mtns. South,2,goblin lookout,8-8,9,DOL.GS.GameNPC
+Black Mtns. South,2,goblin lord,11-11,1,DOL.GS.GameNPC
+Black Mtns. South,2,goblin scout,7-7,6,DOL.GS.GameNPC
+Black Mtns. South,2,goblin shaman,9-10,5,DOL.GS.GameNPC
+Black Mtns. South,2,goblin storm shaman,10-11,1,DOL.GS.GameNPC
+Black Mtns. South,2,great gobzini,11-16,1,DOL.GS.GameNPC
+Black Mtns. South,2,green snake,0-0,88,DOL.GS.GameNPC
+Black Mtns. South,2,grilk,13-13,1,DOL.GS.GameNPC
+Black Mtns. South,2,grilk's bonescraper,8-8,1,DOL.GS.GameNPC
+Black Mtns. South,2,grilk's footscratcher,9-9,1,DOL.GS.GameNPC
+Black Mtns. South,2,grilk's ratmaker,8-8,1,DOL.GS.GameNPC
+Black Mtns. South,2,grilo,7-9,1,DOL.GS.GameNPC
+Black Mtns. South,2,gundron mccory,9-11,1,DOL.GS.GameNPC
+Black Mtns. South,2,jari,11-12,1,DOL.GS.Jari
+Black Mtns. South,2,moldy skeleton,2-2,8,DOL.GS.GameNPC
+Black Mtns. South,2,nain dwarf,9-9,4,DOL.GS.GameNPC
+Black Mtns. South,2,poacher,4-4,3,DOL.GS.GameNPC
+Black Mtns. South,2,poacher leader,5-5,1,DOL.GS.GameNPC
+Black Mtns. South,2,red dwarf bandit,6-8,4,DOL.GS.GameNPC
+Black Mtns. South,2,red dwarf chief,10-10,1,DOL.GS.GameNPC
+Black Mtns. South,2,red dwarf leader,9-13,1,DOL.GS.GameNPC
+Black Mtns. South,2,red dwarf matron,6-8,1,DOL.GS.GameNPC
+Black Mtns. South,2,red dwarf thief,5-7,15,DOL.GS.GameNPC
+Black Mtns. South,2,red dwarf youth,5-5,3,DOL.GS.GameNPC
+Black Mtns. South,2,red lion,3-3,25,DOL.GS.GameNPC
+Black Mtns. South,2,robber,0-0,22,DOL.GS.GameNPC
+Black Mtns. South,2,sacrificer harish,15-15,1,DOL.GS.GameNPC
+Black Mtns. South,2,shaman aslis,18-18,1,DOL.GS.GameNPC
+Black Mtns. South,2,slith,7-7,1,DOL.GS.GameNPC
+Black Mtns. South,2,slith broodling,0-0,8,DOL.GS.GameNPC
+Black Mtns. South,2,small gray wolf,3-3,9,DOL.GS.GameNPC
+Black Mtns. South,2,spectral hound,6-7,10,DOL.GS.GameNPC
+Black Mtns. South,2,spriggarn stalker,5-5,1,DOL.GS.GameNPC
+Black Mtns. South,2,summoned centurion,17-17,1,DOL.GS.GameNPC
+Black Mtns. South,2,summoned rat,1-1,1,DOL.GS.GameNPC
+Black Mtns. South,2,summoned skeleton,20-21,1,DOL.GS.GameNPC
+Black Mtns. South,2,summoned spirit,10-11,1,DOL.GS.GameNPC
+Black Mtns. South,2,summoner salizern,10-10,1,DOL.GS.GameNPC
+Black Mtns. South,2,throatripper,11-11,1,DOL.GS.Throatripper
+Black Mtns. South,2,water snake,0-0,39,DOL.GS.GameNPC
+Black Mtns. South,2,weak skeleton,1-1,14,DOL.GS.GameNPC
+Black Mtns. South,2,welsh hobgoblin,17-19,1,DOL.GS.GameNPC
+Black Mtns. South,2,worker ant,0-0,75,DOL.GS.GameNPC
+Black Mtns. North,3,cauld lad,53-55,1,DOL.GS.GameNPC
+Black Mtns. North,3,crimson initiate,28-30,2,DOL.GS.GameNPC
+Black Mtns. North,3,druid pet,4-4,1,DOL.GS.GameNPC
+Black Mtns. North,3,erick redbeard,12-12,1,DOL.GS.GameNPC
+Black Mtns. North,3,glimbeak,15-15,1,DOL.GS.GameNPC
+Black Mtns. North,3,goblin,8-32,2,DOL.GS.GameNPC
+Black Mtns. North,3,goblin scout,7-7,2,DOL.GS.GameNPC
+Black Mtns. North,3,grimbeak,15-15,1,DOL.GS.GameNPC
+Black Mtns. North,3,heretic elam,15-15,1,DOL.GS.GameNPC
+Black Mtns. North,3,hill avenger,12-12,10,DOL.GS.GameNPC
+Black Mtns. North,3,hill chief alrek,15-15,1,DOL.GS.GameNPC
+Black Mtns. North,3,hill guard,11-11,8,DOL.GS.GameNPC
+Black Mtns. North,3,hill shaman,12-12,3,DOL.GS.GameNPC
+Black Mtns. North,3,hill warrior,10-10,10,DOL.GS.GameNPC
+Black Mtns. North,3,howling maiden,24-26,9,DOL.GS.GameNPC
+Black Mtns. North,3,leorcelis grant,51-52,1,DOL.GS.GameNPC
+Black Mtns. North,3,mystic ulfwag,12-12,1,DOL.GS.GameNPC
+Black Mtns. North,3,necromancer,31-33,2,DOL.GS.GameNPC
+Black Mtns. North,3,sergeant cosworth,10-11,1,DOL.GS.SgtCosworth
+Black Mtns. North,3,sir gerenth,10-10,1,DOL.GS.SirGerenth
+Black Mtns. North,3,slimbeak,15-15,1,DOL.GS.GameNPC
+Black Mtns. North,3,trimbeak,15-15,1,DOL.GS.GameNPC
+Black Mtns. North,3,undead filidh,5-7,7,DOL.GS.GameNPC
+Cornwall,6,aged beech,38-38,20,DOL.GS.GameNPC
+Cornwall,6,brother jarrel,14-14,1,DOL.GS.GameNPC
+Cornwall,6,bucca,23-24,17,DOL.GS.GameNPC
+Cornwall,6,cirfans,50-50,1,DOL.GS.GameNPC
+Cornwall,6,cliff spider,18-18,13,DOL.GS.GameNPC
+Cornwall,6,cliff spiderling,14-14,10,DOL.GS.GameNPC
+Cornwall,6,cornish frog,13-13,18,DOL.GS.GameNPC
+Cornwall,6,cornish giant,40-40,2,DOL.GS.GameNPC
+Cornwall,6,cornish hen,24-24,6,DOL.GS.GameNPC
+Cornwall,6,cornwall drake,40-44,17,DOL.GS.GameNPC
+Cornwall,6,cornwall hunter,23-25,12,DOL.GS.GameNPC
+Cornwall,6,death stalker,18-19,11,DOL.GS.GameNPC
+Cornwall,6,ghostly cleric,12-12,3,DOL.GS.GameNPC
+Cornwall,6,ghostly paladin,12-13,3,DOL.GS.GameNPC
+Cornwall,6,giant skeleton,27-28,6,DOL.GS.NightSpawn
+Cornwall,6,greater boogey,35-41,7,DOL.GS.GameNPC
+Cornwall,6,kalnraw,40-45,1,DOL.GS.GameNPC
+Cornwall,6,moor boogey,25-30,6,DOL.GS.GameNPC
+Cornwall,6,muryan trickster,20-21,1,DOL.GS.GameNPC
+Cornwall,6,skeletal centurion,21-21,1,DOL.GS.GameNPC
+Cornwall,6,skeletal legionnaire,18-18,11,DOL.GS.GameNPC
+Cornwall,6,tusker,45-45,1,DOL.GS.GameNPC
+Campacorentin Forest,8,ancient brownie,22-30,1,DOL.GS.GameNPC
+Campacorentin Forest,8,ant drone,2-2,5,DOL.GS.GameNPC
+Campacorentin Forest,8,aonghas prirerd,20-22,1,DOL.GS.GameNPC
+Campacorentin Forest,8,ashen fellwood,16-17,14,DOL.GS.GameNPC
+Campacorentin Forest,8,bandit,5-8,29,DOL.GS.GameNPC
+Campacorentin Forest,8,brownie,0-0,34,DOL.GS.GameNPC
+Campacorentin Forest,8,brownie nomad,8-9,23,DOL.GS.GameNPC
+Campacorentin Forest,8,creeping crud,2-2,19,DOL.GS.GameNPC
+Campacorentin Forest,8,dappled lynx cub,0-0,36,DOL.GS.GameNPC
+Campacorentin Forest,8,decayed zombie,3-3,15,DOL.GS.GameNPC
+Campacorentin Forest,8,disturbed presence,12-14,49,DOL.GS.NightSpawn
+Campacorentin Forest,8,druid seer,8-20,1,DOL.GS.GameNPC
+Campacorentin Forest,8,dryad,7-9,16,DOL.GS.GameNPC
+Campacorentin Forest,8,dryad invert,9-9,49,DOL.GS.GameNPC
+Campacorentin Forest,8,dryad twig,1-1,17,DOL.GS.GameNPC
+Campacorentin Forest,8,elder fellwood,21-23,1,DOL.GS.GameNPC
+Campacorentin Forest,8,elithralia nodith,21-23,1,DOL.GS.GameNPC
+Campacorentin Forest,8,emerald snake,5-5,9,DOL.GS.GameNPC
+Campacorentin Forest,8,fading spirit,7-8,27,DOL.GS.GameNPC
+Campacorentin Forest,8,faerie bell-wether,5-5,16,DOL.GS.GameNPC
+Campacorentin Forest,8,faerie wolf-crier,4-4,33,DOL.GS.GameNPC
+Campacorentin Forest,8,filidh,7-8,10,DOL.GS.GameNPC
+Campacorentin Forest,8,forest bear cub,3-3,30,DOL.GS.GameNPC
+Campacorentin Forest,8,forest cat,16-16,18,DOL.GS.GameNPC
+Campacorentin Forest,8,forest lion,6-6,34,DOL.GS.GameNPC
+Campacorentin Forest,8,forest snake,3-3,20,DOL.GS.GameNPC
+Campacorentin Forest,8,ghostly knight,8-10,14,DOL.GS.GameNPC
+Campacorentin Forest,8,giant spider,6-8,16,DOL.GS.GameNPC
+Campacorentin Forest,8,gray wolf pup,1-1,25,DOL.GS.GameNPC
+Campacorentin Forest,8,green witch,14-14,1,DOL.GS.GameNPC
+Campacorentin Forest,8,grizzletooth,23-24,1,DOL.GS.GameNPC
+Campacorentin Forest,8,heretical hermit,20-20,1,DOL.GS.GameNPC
+Campacorentin Forest,8,large bloated spider,13-14,14,DOL.GS.GameNPC
+Campacorentin Forest,8,oaken fellwood,18-18,17,DOL.GS.GameNPC
+Campacorentin Forest,8,oaken knight,22-22,1,DOL.GS.GameNPC
+Campacorentin Forest,8,outcast rogue,1-1,10,DOL.GS.GameNPC
+Campacorentin Forest,8,phantom page,4-5,11,DOL.GS.GameNPC
+Campacorentin Forest,8,pixie queen,27-27,1,DOL.GS.GameNPC
+Campacorentin Forest,8,pixie scout,8-8,27,DOL.GS.GameNPC
+Campacorentin Forest,8,red lion,3-3,12,DOL.GS.GameNPC
+Campacorentin Forest,8,river drakeling,5-5,14,DOL.GS.GameNPC
+Campacorentin Forest,8,river racer,7-7,14,DOL.GS.GameNPC
+Campacorentin Forest,8,river sprite,6-6,9,DOL.GS.GameNPC
+Campacorentin Forest,8,river spriteling,3-4,6,DOL.GS.GameNPC
+Campacorentin Forest,8,rot worm,5-5,10,DOL.GS.GameNPC
+Campacorentin Forest,8,rotting skeleton,1-1,14,DOL.GS.GameNPC
+Campacorentin Forest,8,rotting zombie,5-6,17,DOL.GS.GameNPC
+Campacorentin Forest,8,skeleton,2-2,15,DOL.GS.GameNPC
+Campacorentin Forest,8,small bear,4-4,23,DOL.GS.GameNPC
+Campacorentin Forest,8,small gray wolf,3-3,20,DOL.GS.GameNPC
+Campacorentin Forest,8,small snake,0-0,10,DOL.GS.GameNPC
+Campacorentin Forest,8,snake,3-3,16,DOL.GS.GameNPC
+Campacorentin Forest,8,spirit,6-6,22,DOL.GS.GameNPC
+Campacorentin Forest,8,spriggarn,2-2,26,DOL.GS.GameNPC
+Campacorentin Forest,8,spriggarn ambusher,15-15,37,DOL.GS.GameNPC
+Campacorentin Forest,8,spriggarn elder,3-3,30,DOL.GS.GameNPC
+Campacorentin Forest,8,spriggarn howler,16-16,20,DOL.GS.GameNPC
+Campacorentin Forest,8,spriggarn waylayer,14-14,26,DOL.GS.GameNPC
+Campacorentin Forest,8,swamp rat,4-4,16,DOL.GS.GameNPC
+Campacorentin Forest,8,swamp slime,3-3,15,DOL.GS.GameNPC
+Campacorentin Forest,8,sylvan goblin chief,16-17,1,DOL.GS.GameNPC
+Campacorentin Forest,8,sylvan goblin whelp,3-3,22,DOL.GS.GameNPC
+Campacorentin Forest,8,thornpaw,24-25,1,DOL.GS.GameNPC
+Campacorentin Forest,8,tree spirit,6-7,27,DOL.GS.GameNPC
+Campacorentin Forest,8,undead goblin warrior,5-5,12,DOL.GS.GameNPC
+Campacorentin Forest,8,wandering spirit,9-11,23,DOL.GS.GameNPC
+Campacorentin Forest,8,weak skeleton,1-1,24,DOL.GS.GameNPC
+Campacorentin Forest,8,wild boar,10-10,5,DOL.GS.GameNPC
+Campacorentin Forest,8,will o' wisp,9-11,21,DOL.GS.GameNPC
+Campacorentin Forest,8,wood ogre berserker,14-15,9,DOL.GS.GameNPC
+Campacorentin Forest,8,wood ogre lord,16-16,1,DOL.GS.GameNPC
+Campacorentin Forest,8,wood ogre scourge,12-13,20,DOL.GS.GameNPC
+Campacorentin Forest,8,wood ogre seer,14-14,21,DOL.GS.GameNPC
+Campacorentin Forest,8,young boar,6-6,19,DOL.GS.GameNPC
+Avalon Marsh,9,black bear,16-21,7,DOL.GS.GameNPC
+Avalon Marsh,9,bloody-bones,7-7,13,DOL.GS.GameNPC
+Avalon Marsh,9,bogman fisher,9-9,17,DOL.GS.GameNPC
+Avalon Marsh,9,bogman hunter,11-11,5,DOL.GS.GameNPC
+Avalon Marsh,9,dappled lynx,2-3,1,DOL.GS.GameNPC
+Avalon Marsh,9,death grip vines,7-7,25,DOL.GS.GameNPC
+Avalon Marsh,9,dooben,14-14,1,DOL.GS.Dooben
+Avalon Marsh,9,fallen paladin,11-11,2,DOL.GS.GameNPC
+Avalon Marsh,9,ghostly knight,8-10,15,DOL.GS.GameNPC
+Avalon Marsh,9,ghoul footman,17-17,8,DOL.GS.GameNPC
+Avalon Marsh,9,ghoul knight,18-18,33,DOL.GS.GameNPC
+Avalon Marsh,9,ghoul lord,19-19,14,DOL.GS.GameNPC
+Avalon Marsh,9,giant water leaper,15-15,13,DOL.GS.GameNPC
+Avalon Marsh,9,impling,0-0,9,DOL.GS.GameNPC
+Avalon Marsh,9,marsh lord,32-35,1,DOL.GS.GameNPC
+Avalon Marsh,9,marsh worm,9-11,7,DOL.GS.GameNPC
+Avalon Marsh,9,mist monster,16-16,8,DOL.GS.GameNPC
+Avalon Marsh,9,mist sprite,6-6,33,DOL.GS.GameNPC
+Avalon Marsh,9,mud golem,14-14,14,DOL.GS.GameNPC
+Avalon Marsh,9,mud worm,0-0,12,DOL.GS.GameNPC
+Avalon Marsh,9,phantom page,4-5,10,DOL.GS.GameNPC
+Avalon Marsh,9,phantom squire,6-7,5,DOL.GS.GameNPC
+Avalon Marsh,9,pixie,6-7,2,DOL.GS.GameNPC
+Avalon Marsh,9,quicksand,16-16,8,DOL.GS.GameNPC
+Avalon Marsh,9,river racer,7-7,28,DOL.GS.GameNPC
+Avalon Marsh,9,river spriteling,3-4,16,DOL.GS.GameNPC
+Avalon Marsh,9,scrag,8-8,13,DOL.GS.GameNPC
+Avalon Marsh,9,scragling,6-6,3,DOL.GS.GameNPC
+Avalon Marsh,9,scum toad,0-0,18,DOL.GS.GameNPC
+Avalon Marsh,9,skeleton,2-2,2,DOL.GS.GameNPC
+Avalon Marsh,9,slough serpent,0-0,28,DOL.GS.GameNPC
+Avalon Marsh,9,spiny eel,3-3,30,DOL.GS.GameNPC
+Avalon Marsh,9,undead knight fiedel,28-30,1,DOL.GS.GameNPC
+Avalon Marsh,9,vagdush,14-14,1,DOL.GS.Vagdush
+Avalon Marsh,9,water leaper,8-10,15,DOL.GS.GameNPC
+Avalon Marsh,9,will o' wisp,9-11,24,DOL.GS.GameNPC
+Avalon Marsh,9,wisp ghoul,0-0,4,DOL.GS.GameNPC
+Avalon Marsh,9,wood ogre scourge,12-13,8,DOL.GS.GameNPC
+Lyonesse,10,arawnite shamaness,34-35,5,DOL.GS.GameNPC
+Lyonesse,10,arawnite warrior,34-35,2,DOL.GS.GameNPC
+Lyonesse,10,archer,45-45,13,DOL.GS.GameNPC
+Lyonesse,10,bone snapper,63-63,36,DOL.GS.GameNPC
+Lyonesse,10,cailleach guard,60-66,7,DOL.GS.GameNPC
+Lyonesse,10,cailleach priest,60-67,7,DOL.GS.GameNPC
+Lyonesse,10,cailleach uragaig,70-70,1,DOL.GS.CailleachUragaig
+Lyonesse,10,danaoin clerk,35-39,13,DOL.GS.GameNPC
+Lyonesse,10,danaoin farmer,44-46,15,DOL.GS.GameNPC
+Lyonesse,10,danaoin fisherman,40-42,11,DOL.GS.GameNPC
+Lyonesse,10,danaoin sailor,44-46,9,DOL.GS.GameNPC
+Lyonesse,10,danaoin soldier,50-54,3,DOL.GS.GameNPC
+Lyonesse,10,dunter,30-34,5,DOL.GS.GameNPC
+Lyonesse,10,farmer,29-40,10,DOL.GS.GameNPC
+Lyonesse,10,fitful bwca,35-36,4,DOL.GS.GameNPC
+Lyonesse,10,footman,45-45,5,DOL.GS.GameNPC
+Lyonesse,10,freybug,35-38,3,DOL.GS.GameNPC
+Lyonesse,10,gabriel hound,40-48,4,DOL.GS.GameNPC
+Lyonesse,10,giant lizard,36-38,3,DOL.GS.GameNPC
+Lyonesse,10,knight,0-49,7,DOL.GS.GameNPC
+Lyonesse,10,moorlich,48-48,23,DOL.GS.GameNPC
+Lyonesse,10,peallaidh,35-41,42,DOL.GS.GameNPC
+Lyonesse,10,pikeman,44-50,3,DOL.GS.GameNPC
+Lyonesse,10,priest of arawn,50-54,11,DOL.GS.GameNPC
+Lyonesse,10,pygmy goblin,43-43,5,DOL.GS.GameNPC
+Lyonesse,10,pygmy goblin tangler,45-45,15,DOL.GS.PygmyGoblinTangler
+Lyonesse,10,shepherd,34-34,14,DOL.GS.GameNPC
+Lyonesse,10,townsman,30-30,2,DOL.GS.GameNPC
+Lyonesse,10,witherwoode,57-57,9,DOL.GS.GameNPC
+Forest Sauvage,11,ancient basilisk,21-21,3,DOL.GS.GameNPC
+Forest Sauvage,11,ashen fellwood,16-17,3,DOL.GS.GameNPC
+Forest Sauvage,11,aspen fellwood,23-23,8,DOL.GS.GameNPC
+Forest Sauvage,11,black poplar fellwood,24-24,4,DOL.GS.GameNPC
+Forest Sauvage,11,death stalker,18-19,7,DOL.GS.GameNPC
+Forest Sauvage,11,ebony fellwood,13-14,12,DOL.GS.GameNPC
+Forest Sauvage,11,forest adder,16-17,19,DOL.GS.GameNPC
+Forest Sauvage,11,forest ettin,12-16,8,DOL.GS.GameNPC
+Forest Sauvage,11,forest giant,18-21,28,DOL.GS.GameNPC
+Forest Sauvage,11,forest hunter,21-24,35,DOL.GS.GameNPC
+Forest Sauvage,11,giant wolf,15-17,3,DOL.GS.GameNPC
+Forest Sauvage,11,hitback dummy - right click to reset,50-50,1,DOL.GS.HitbackDummy
+Forest Sauvage,11,hornbeam fellwood,27-27,11,DOL.GS.GameNPC
+Forest Sauvage,11,new mob,1-1,51,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardCorpseSummoner;DOL.GS.Keeps.GuardFighter;DOL.GS.Keeps.GuardLord;DOL.GS.Keeps.GuardMerchant
+Forest Sauvage,11,oaken fellwood,18-18,4,DOL.GS.GameNPC
+Forest Sauvage,11,rainbow sprite,32-40,60,DOL.GS.RainbowSpriteBlue;DOL.GS.RainbowSpriteGreen;DOL.GS.RainbowSpriteTan;DOL.GS.RainbowSpriteWhite
+Forest Sauvage,11,rob ria,40-40,1,DOL.GS.GameNPC
+Forest Sauvage,11,silver oaken fellwood,31-31,10,DOL.GS.GameNPC
+Forest Sauvage,11,small skeletal centurion,17-17,3,DOL.GS.GameNPC
+Forest Sauvage,11,small skeletal legionnaire,14-14,8,DOL.GS.GameNPC
+Forest Sauvage,11,total: 0 dps: 0,10-50,3,DOL.GS.DPSDummy
+Snowdonia,12,angry bwca,45-47,3,DOL.GS.GameNPC
+Snowdonia,12,bwca,24-24,20,DOL.GS.GameNPC
+Snowdonia,12,cyclops,41-42,26,DOL.GS.GameNPC
+Snowdonia,12,faerie frog,28-30,53,DOL.GS.DaySpawn;DOL.GS.GameNPC
+Snowdonia,12,faint grim,20-23,8,DOL.GS.GameNPC
+Snowdonia,12,giant boar,34-35,6,DOL.GS.GameNPC
+Snowdonia,12,giant skeleton,27-28,19,DOL.GS.NightSpawn
+Snowdonia,12,hill scrag,39-41,6,DOL.GS.GameNPC
+Snowdonia,12,new mob,1-1,45,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardCorpseSummoner;DOL.GS.Keeps.GuardFighter
+Pennine Mountains,14,angry bwca,45-47,11,DOL.GS.GameNPC
+Pennine Mountains,14,boggart,45-49,12,DOL.GS.GameNPC
+Pennine Mountains,14,cliff crawler,42-45,21,DOL.GS.GameNPC
+Pennine Mountains,14,cockatrice,42-43,7,DOL.GS.GameNPC
+Pennine Mountains,14,cyhraeth,50-50,3,DOL.GS.GameNPC
+Pennine Mountains,14,draco magnificens,61-61,1,DOL.GS.GameEpicNPC
+Pennine Mountains,14,ellyll guard,49-51,14,DOL.GS.GameNPC
+Pennine Mountains,14,fiery fiend,41-43,4,DOL.GS.GameNPC
+Pennine Mountains,14,freybug,35-38,14,DOL.GS.GameNPC
+Pennine Mountains,14,gnarled fellwood,45-49,22,DOL.GS.GameNPC
+Pennine Mountains,14,hill scrag,39-41,16,DOL.GS.GameNPC
+Pennine Mountains,14,hollow man,39-41,1,DOL.GS.GameNPC
+Pennine Mountains,14,isolationist cleric,46-48,7,DOL.GS.GameNPC
+Pennine Mountains,14,isolationist mercenary,46-46,10,DOL.GS.GameNPC
+Pennine Mountains,14,isolationist scout,47-47,4,DOL.GS.GameNPC
+Pennine Mountains,14,knotted fellwood,43-46,13,DOL.GS.GameNPC
+Pennine Mountains,14,new mob,1-1,95,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardCorpseSummoner;DOL.GS.Keeps.GuardFighter;DOL.GS.Keeps.GuardLord
+Pennine Mountains,14,ravenclan giant,50-51,13,DOL.GS.GameNPC
+Pennine Mountains,14,worm,39-42,13,DOL.GS.GameNPC
+Pennine Mountains,14,young brown drake,47-47,3,DOL.GS.GameNPC
+Hadrian's Wall,15,cait sidhe,48-56,12,DOL.GS.GameNPC
+Hadrian's Wall,15,cave fairy,40-46,7,DOL.GS.GameNPC
+Hadrian's Wall,15,legionnaire,30-36,4,DOL.GS.GameNPC
+Hadrian's Wall,15,new mob,1-1,18,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardCorpseSummoner;DOL.GS.Keeps.GuardFighter;DOL.GS.Keeps.GuardMerchant
+Hadrian's Wall,15,templar,50-54,6,DOL.GS.GameNPC
+Stonehenge Barrows,19,barrow wight,43-44,11,DOL.GS.GameNPC
+Stonehenge Barrows,19,celtic lich,50-50,8,DOL.GS.GameNPC
+Stonehenge Barrows,19,celtic sepulchre warrior,47-47,11,DOL.GS.GameNPC
+Stonehenge Barrows,19,creeping ooze,42-42,6,DOL.GS.GameNPC
+Stonehenge Barrows,19,dark fire,42-42,5,DOL.GS.GameNPC
+Stonehenge Barrows,19,decaying tomb raider,36-36,4,DOL.GS.GameNPC
+Stonehenge Barrows,19,diseased rat,38-38,1,DOL.GS.GameNPC
+Stonehenge Barrows,19,fiery fiend,41-43,2,DOL.GS.GameNPC
+Stonehenge Barrows,19,ghoulic viper,42-42,18,DOL.GS.GameNPC
+Stonehenge Barrows,19,grave goblin whelp,28-32,5,DOL.GS.GameNPC
+Stonehenge Barrows,19,malefic phantom,47-47,12,DOL.GS.GameNPC
+Stonehenge Barrows,19,marrow leech,38-38,3,DOL.GS.GameNPC
+Stonehenge Barrows,19,megalith wight,46-46,8,DOL.GS.GameNPC
+Stonehenge Barrows,19,megalithic terror,49-49,5,DOL.GS.GameNPC
+Stonehenge Barrows,19,ossuary guardian,48-48,2,DOL.GS.GameNPC
+Stonehenge Barrows,19,petrified grovewood,43-43,6,DOL.GS.GameNPC
+Stonehenge Barrows,19,priestess of purity,44-44,2,DOL.GS.GameNPC
+Stonehenge Barrows,19,reanimated foe,37-38,8,DOL.GS.GameNPC
+Stonehenge Barrows,19,sacrificial soul,43-43,6,DOL.GS.GameNPC
+Stonehenge Barrows,19,saxonbone skeleton,40-40,6,DOL.GS.GameNPC
+Stonehenge Barrows,19,shade of ambrosius aurelianus,54-54,1,DOL.GS.GameNPC
+Stonehenge Barrows,19,skeletal druid,44-44,5,DOL.GS.GameNPC
+Stonehenge Barrows,19,skeletal druidess,44-44,2,DOL.GS.GameNPC
+Stonehenge Barrows,19,skeletal high priestess,46-46,1,DOL.GS.GameNPC
+Stonehenge Barrows,19,spectral wizard,47-47,2,DOL.GS.GameNPC
+Stonehenge Barrows,19,tomb wight,42-42,9,DOL.GS.GameNPC
+Stonehenge Barrows,19,undead retainer,36-37,5,DOL.GS.GameNPC
+Tomb of Mithra,21,acolyte nascita,13-16,1,DOL.GS.GameNPC
+Tomb of Mithra,21,aged bleeder,13-14,4,DOL.GS.GameNPC
+Tomb of Mithra,21,anilius,14-14,1,DOL.GS.Anilius
+Tomb of Mithra,21,bleeder broodmother,11-12,2,DOL.GS.GameNPC
+Tomb of Mithra,21,bleeder hatchling,9-10,16,DOL.GS.GameNPC
+Tomb of Mithra,21,botched sacrifice,11-11,15,DOL.GS.GameNPC
+Tomb of Mithra,21,chilled presence,10-10,4,DOL.GS.GameNPC
+Tomb of Mithra,21,cursed believer,13-13,7,DOL.GS.GameNPC
+Tomb of Mithra,21,decaying cadaver,8-8,1,DOL.GS.GameNPC
+Tomb of Mithra,21,decaying spirit,8-8,13,DOL.GS.GameNPC
+Tomb of Mithra,21,devout follower,9-9,4,DOL.GS.GameNPC
+Tomb of Mithra,21,doomed minion,12-12,5,DOL.GS.GameNPC
+Tomb of Mithra,21,dreadful cadaver,8-8,6,DOL.GS.GameNPC
+Tomb of Mithra,21,erisus,13-13,1,DOL.GS.Erisus
+Tomb of Mithra,21,fallen paladin,11-11,4,DOL.GS.GameNPC
+Tomb of Mithra,21,favonius facilis,16-16,1,DOL.GS.GameNPC
+Tomb of Mithra,21,forgotten promise,9-9,1,DOL.GS.GameNPC
+Tomb of Mithra,21,ghost miner,11-12,3,DOL.GS.GameNPC
+Tomb of Mithra,21,high priest andania,15-15,1,DOL.GS.HighPriestAndania
+Tomb of Mithra,21,insidious whisper,14-14,3,DOL.GS.GameNPC
+Tomb of Mithra,21,lingering shade,11-11,2,DOL.GS.GameNPC
+Tomb of Mithra,21,living entombed,11-11,23,DOL.GS.GameNPC
+Tomb of Mithra,21,malevolent disciple,13-13,18,DOL.GS.GameNPC
+Tomb of Mithra,21,menacing presense,8-13,3,DOL.GS.GameNPC
+Tomb of Mithra,21,mindless minion,8-10,3,DOL.GS.GameNPC
+Tomb of Mithra,21,putrid sacrificer,9-9,3,DOL.GS.GameNPC
+Tomb of Mithra,21,spiteful wraith,10-10,3,DOL.GS.GameNPC
+Tomb of Mithra,21,tortured soul,9-9,1,DOL.GS.GameNPC
+Tomb of Mithra,21,undead builder,9-9,7,DOL.GS.GameNPC
+Tomb of Mithra,21,undead guardsman,9-9,6,DOL.GS.GameNPC
+Tomb of Mithra,21,undead poacher,9-9,2,DOL.GS.GameNPC
+Tomb of Mithra,21,unfortunate pragmatic,9-9,5,DOL.GS.GameNPC
+Tomb of Mithra,21,virilis,15-15,1,DOL.GS.GameNPC
+Tomb of Mithra,21,virilus,15-15,1,DOL.GS.GameNPC
+Isle of Glass,51,alluvian,15-15,1,DOL.GS.GameNPC
+Isle of Glass,51,alluvian globule,10-10,7,DOL.GS.GameNPC
+Isle of Glass,51,araich,11-11,1,DOL.GS.GameNPC
+Isle of Glass,51,buggane,13-17,37,DOL.GS.GameNPC
+Isle of Glass,51,caldech,10-10,1,DOL.GS.GameNPC
+Isle of Glass,51,commander slor'vid,31-31,1,DOL.GS.GameNPC
+Isle of Glass,51,corpse candle,9-12,10,DOL.GS.GameNPC
+Isle of Glass,51,corpse glow,1-2,2,DOL.GS.GameNPC
+Isle of Glass,51,corpse light,13-18,47,DOL.GS.GameNPC
+Isle of Glass,51,drakoran border watcher,11-13,1,DOL.GS.GameNPC
+Isle of Glass,51,drakoran neophyte,11-12,20,DOL.GS.GameNPC
+Isle of Glass,51,drakoran plunderer,16-21,21,DOL.GS.GameNPC
+Isle of Glass,51,ewart haralder,22-22,1,DOL.GS.GameNPC
+Isle of Glass,51,flood,20-20,1,DOL.GS.GameNPC
+Isle of Glass,51,flood waters,17-17,4,DOL.GS.GameNPC
+Isle of Glass,51,giant dragonfly,5-9,49,DOL.GS.GameNPC
+Isle of Glass,51,guagaran whelp,10-13,34,DOL.GS.GameNPC
+Isle of Glass,51,jocias,2-2,1,DOL.GS.GameNPC
+Isle of Glass,51,lieutenant grrar,28-28,1,DOL.GS.GameNPC
+Isle of Glass,51,lieutenant yal'ris,27-27,1,DOL.GS.GameNPC
+Isle of Glass,51,lieutenant zudd,25-25,1,DOL.GS.GameNPC
+Isle of Glass,51,martley,11-11,1,DOL.GS.GameNPC
+Isle of Glass,51,sodden corpse,11-12,10,DOL.GS.GameNPC
+Isle of Glass,51,sogrot,2-2,1,DOL.GS.GameNPC
+Isle of Glass,51,svarm,12-12,1,DOL.GS.GameNPC
+Isle of Glass,51,svarm spawn,10-10,6,DOL.GS.GameNPC
+Isle of Glass,51,torrent,7-7,1,DOL.GS.GameNPC
+Isle of Glass,51,urchin ambusher,12-12,1,DOL.GS.GameNPC
+Isle of Glass,51,urchin hooligan,11-14,103,DOL.GS.GameNPC
+Isle of Glass,51,urchin rabblerouser,4-8,56,DOL.GS.GameNPC
+Isle of Glass,51,waterlogged corpse,6-14,23,DOL.GS.GameNPC
+Avalon Isle,52,barak,26-26,1,DOL.GS.GameNPC
+Avalon Isle,52,bolin,33-33,1,DOL.GS.GameNPC
+Avalon Isle,52,caer caddug bodyguard,40-44,8,DOL.GS.GameNPC
+Avalon Isle,52,caer caddug equerry,38-41,11,DOL.GS.GameNPC
+Avalon Isle,52,caer caddug footsoldier,35-41,17,DOL.GS.GameNPC
+Avalon Isle,52,caer caddug seer,35-40,18,DOL.GS.GameNPC
+Avalon Isle,52,decaying marshman,32-40,46,DOL.GS.GameNPC
+Avalon Isle,52,drakoran patrol,32-34,1,DOL.GS.GameNPC
+Avalon Isle,52,kelsanor,42-42,1,DOL.GS.GameNPC
+Avalon Isle,52,kovos,35-35,1,DOL.GS.GameNPC
+Avalon Isle,52,lammia enchantress,35-42,30,DOL.GS.GameNPC
+Avalon Isle,52,lord caddug,68-68,1,DOL.GS.GameNPC
+Avalon Isle,52,nalsor,35-35,1,DOL.GS.GameNPC
+Avalon Isle,52,prios,28-28,1,DOL.GS.GameNPC
+Avalon Isle,52,torvarg,35-35,1,DOL.GS.GameNPC
+Avalon Isle,52,undead apple harvester,30-34,108,DOL.GS.GameNPC
+Avalon Isle,52,undead ganger,32-37,27,DOL.GS.GameNPC
+Avalon Isle,52,undead seedsmen,19-22,9,DOL.GS.GameNPC
+Avalon Isle,52,vask,33-33,1,DOL.GS.GameNPC
+Avalon Isle,52,water shuck,21-28,8,DOL.GS.GameNPC
+Vale of Mularn,100,asbjom,22-22,1,DOL.GS.GameNPC
+Vale of Mularn,100,bear,8-8,3,DOL.GS.GameNPC
+Vale of Mularn,100,birk,14-14,1,DOL.GS.GameNPC
+Vale of Mularn,100,black mauler cub,0-0,18,DOL.GS.GameNPC
+Vale of Mularn,100,galkvinne,22-22,1,DOL.GS.GameNPC
+Vale of Mularn,100,gors,6-6,1,DOL.GS.GameNPC
+Vale of Mularn,100,gulak,5-5,1,DOL.GS.GameNPC
+Vale of Mularn,100,hobgoblin fish-catcher,0-0,1,DOL.GS.GameNPC
+Vale of Mularn,100,mud snake,0-0,29,DOL.GS.GameNPC
+Vale of Mularn,100,nordic dirge,6-6,1,DOL.GS.GameNPC
+Vale of Mularn,100,prugor,11-11,1,DOL.GS.GameNPC
+Vale of Mularn,100,rasczel,10-10,1,DOL.GS.GameNPC
+Vale of Mularn,100,scout grogor,9-9,1,DOL.GS.GameNPC
+Vale of Mularn,100,scout haurg,9-9,1,DOL.GS.GameNPC
+Vale of Mularn,100,smyga,9-9,1,DOL.GS.GameNPC
+Vale of Mularn,100,spat,8-8,1,DOL.GS.GameNPC
+Vale of Mularn,100,vasa,9-9,1,DOL.GS.GameNPC
+Vale of Mularn,100,vein spiderling,0-0,23,DOL.GS.GameNPC
+Vale of Mularn,100,votan,1-1,1,DOL.GS.GameNPC
+Vale of Mularn,100,vrede,12-12,1,DOL.GS.GameNPC
+East Svealand,101,bonk,11-11,1,DOL.GS.GameNPC
+East Svealand,101,envy drakeling,9-9,14,DOL.GS.GameNPC
+East Svealand,101,gib,2-2,1,DOL.GS.GameNPC
+East Svealand,101,ick,8-8,1,DOL.GS.GameNPC
+East Svealand,101,impling,0-0,4,DOL.GS.GameNPC
+East Svealand,101,lake serpent,10-11,1,DOL.GS.GameNPC
+East Svealand,101,lupine gnawer,0-0,14,DOL.GS.GameNPC
+East Svealand,101,mud snake,0-0,7,DOL.GS.GameNPC
+East Svealand,101,ocug,9-9,1,DOL.GS.GameNPC
+East Svealand,101,queen major,15-15,1,DOL.GS.QueenMajor
+East Svealand,101,riv,10-10,1,DOL.GS.GameNPC
+East Svealand,101,scrip,0-0,1,DOL.GS.GameNPC
+East Svealand,101,snarls,7-7,1,DOL.GS.Snarls
+East Svealand,101,sveawolf cub,0-0,6,DOL.GS.GameNPC
+East Svealand,101,tawny lynx,8-8,1,DOL.GS.GameNPC
+East Svealand,101,tawny lynx cub,0-0,7,DOL.GS.GameNPC
+East Svealand,101,tomte aggressor,9-9,8,DOL.GS.GameNPC
+East Svealand,101,vein spider,5-5,2,DOL.GS.GameNPC
+East Svealand,101,vein spiderling,0-0,5,DOL.GS.GameNPC
+East Svealand,101,water snake,0-0,3,DOL.GS.GameNPC
+East Svealand,101,whirlwind,6-6,2,DOL.GS.GameNPC
+East Svealand,101,wildling,0-0,22,DOL.GS.GameNPC
+East Svealand,101,wind wisp,9-9,7,DOL.GS.GameNPC
+West Svealand,102,chaes,16-16,1,DOL.GS.GameNPC
+West Svealand,102,chiseler,20-24,4,DOL.GS.GameNPC
+West Svealand,102,follower of loki,10-10,1,DOL.GS.GameNPC
+West Svealand,102,fridgeir gestsson,21-21,1,DOL.GS.GameNPC
+West Svealand,102,frosty colt,20-20,3,DOL.GS.GameNPC
+West Svealand,102,giant lemer,23-23,1,DOL.GS.GiantLemer
+West Svealand,102,green serpent,2-2,1,DOL.GS.GameNPC
+West Svealand,102,guthr,14-14,1,DOL.GS.GameNPC
+West Svealand,102,helda,15-15,1,DOL.GS.GameNPC
+West Svealand,102,henrek,13-13,1,DOL.GS.GameNPC
+West Svealand,102,kelda,15-15,1,DOL.GS.GameNPC
+West Svealand,102,lone weeping willow,10-10,1,DOL.GS.GameNPC
+West Svealand,102,modervarg,13-13,1,DOL.GS.GameNPC
+West Svealand,102,old smoke,15-15,1,DOL.GS.GameNPC
+West Svealand,102,pawper,19-19,1,DOL.GS.GameNPC
+West Svealand,102,rugged dwarven pony,4-4,2,DOL.GS.GameNPC
+West Svealand,102,sanguinite ghoul,13-14,3,DOL.GS.GameNPC
+West Svealand,102,shadow,10-11,28,DOL.GS.NightSpawn
+West Svealand,102,skalheng,14-14,1,DOL.GS.GameNPC
+West Svealand,102,snow imp,20-22,2,DOL.GS.GameNPC
+West Svealand,102,squirt,15-15,1,DOL.GS.GameNPC
+West Svealand,102,sveawolf packleader,14-14,1,DOL.GS.GameNPC
+West Svealand,102,swift,16-16,1,DOL.GS.GameNPC
+West Svealand,102,thorsgir,15-15,1,DOL.GS.GameNPC
+West Svealand,102,ugnof toestubber,16-16,1,DOL.GS.GameNPC
+West Svealand,102,ulga,13-13,1,DOL.GS.GameNPC
+West Svealand,102,wiley,10-10,1,DOL.GS.GameNPC
+Gotar,103,barkley,6-6,1,DOL.GS.GameNPC
+Gotar,103,black mauler juvenile,5-5,1,DOL.GS.GameNPC
+Gotar,103,black rixtas,16-16,1,DOL.GS.GameNPC
+Gotar,103,carrion lizard,3-3,8,DOL.GS.GameNPC
+Gotar,103,davnis,9-9,1,DOL.GS.GameNPC
+Gotar,103,drowned soul,3-3,15,DOL.GS.NightSpawn
+Gotar,103,hobgoblin fish-catcher,0-0,8,DOL.GS.GameNPC
+Gotar,103,huldu hunter,4-4,1,DOL.GS.GameNPC
+Gotar,103,huldu stalker,5-5,3,DOL.GS.GameNPC
+Gotar,103,jordande,20-20,1,DOL.GS.GameNPC
+Gotar,103,perfidious pook,10-10,14,DOL.GS.GameNPC
+Gotar,103,roaming thrall,7-7,1,DOL.GS.GameNPC
+Gotar,103,salix,14-14,1,DOL.GS.GameNPC
+Gotar,103,scout argyle,15-15,1,DOL.GS.ScoutArgyle
+Gotar,103,seithkona,5-5,2,DOL.GS.GameNPC
+Gotar,103,skeletal oarsman,5-5,14,DOL.GS.NightSpawn
+Gotar,103,styrimathr ygna,7-7,1,DOL.GS.NightSpawn
+Gotar,103,thraxia,20-20,1,DOL.GS.DaySpawn
+Gotar,103,tweedle,7-7,1,DOL.GS.GameNPC
+Gotar,103,twitchclaw,9-9,1,DOL.GS.GameNPC
+Gotar,103,vefyn,8-8,1,DOL.GS.GameNPC
+Gotar,103,vein spiderling,0-0,3,DOL.GS.GameNPC
+Gotar,103,vidalf,10-10,1,DOL.GS.GameNPC
+Gotar,103,water snake,0-0,17,DOL.GS.GameNPC
+Gotar,103,wildling,0-0,9,DOL.GS.GameNPC
+Gotar,103,willen,5-5,1,DOL.GS.GameNPC
+Gotar,103,wolf nipper,0-0,50,DOL.GS.GameNPC
+Muspelheim,104,bjame,26-26,1,DOL.GS.GameNPC
+Muspelheim,104,brimstone,23-23,1,DOL.GS.GameNPC
+Muspelheim,104,charred skeletal commander,26-29,1,DOL.GS.GameNPC
+Muspelheim,104,coal,25-25,1,DOL.GS.GameNPC
+Muspelheim,104,dverge crackler,28-28,2,DOL.GS.GameNPC
+Muspelheim,104,dverge fire-eater,30-30,1,DOL.GS.GameNPC
+Muspelheim,104,dverge igniter,25-25,2,DOL.GS.GameNPC
+Muspelheim,104,eld,23-23,1,DOL.GS.GameNPC
+Muspelheim,104,gokstorm,25-25,1,DOL.GS.GameNPC
+Muspelheim,104,grogak,26-26,1,DOL.GS.GameNPC
+Muspelheim,104,konung botolf redhands,28-28,1,DOL.GS.GameNPC
+Muspelheim,104,maghemoth,30-30,1,DOL.GS.GameNPC
+Muspelheim,104,plasmatasm,23-25,1,DOL.GS.GameNPC
+Muspelheim,104,pyrophantom,28-30,1,DOL.GS.GameNPC
+Muspelheim,104,sinyr,31-31,1,DOL.GS.GameNPC
+Muspelheim,104,spirit of flames,29-29,1,DOL.GS.GameNPC
+Muspelheim,104,sulphine,22-22,1,DOL.GS.GameNPC
+Muspelheim,104,sulphuric ghoul,22-22,1,DOL.GS.GameNPC
+Muspelheim,104,vapor wraith,30-30,5,DOL.GS.GameNPC
+Muspelheim,104,young wyrm lord,33-33,1,DOL.GS.GameNPC
+Myrkwood Forest,105,anakol,32-32,1,DOL.GS.GameNPC
+Myrkwood Forest,105,baron falwur,22-22,1,DOL.GS.GameNPC
+Myrkwood Forest,105,bjorn,23-23,1,DOL.GS.GameNPC
+Myrkwood Forest,105,brittle skeleton,0-0,10,DOL.GS.GameNPC
+Myrkwood Forest,105,corpse eater,11-13,9,DOL.GS.GameNPC
+Myrkwood Forest,105,death spider,18-18,5,DOL.GS.GameNPC
+Myrkwood Forest,105,decaying norseman,11-11,4,DOL.GS.GameNPC
+Myrkwood Forest,105,envy drakeling,9-9,1,DOL.GS.GameNPC
+Myrkwood Forest,105,gray worg,10-10,15,DOL.GS.GameNPC
+Myrkwood Forest,105,great tingler,16-18,17,DOL.GS.GameNPC
+Myrkwood Forest,105,great worg,17-17,1,DOL.GS.GameNPC
+Myrkwood Forest,105,haglion's minion,26-26,7,DOL.GS.NightSpawn
+Myrkwood Forest,105,hog-nose slither,0-0,19,DOL.GS.GameNPC
+Myrkwood Forest,105,minor werewolf noble,19-21,9,DOL.GS.GameNPC
+Myrkwood Forest,105,myrk shadow,10-11,15,DOL.GS.GameNPC
+Myrkwood Forest,105,niswen,20-20,1,DOL.GS.GameNPC
+Myrkwood Forest,105,njessi,22-25,1,DOL.GS.Njessi
+Myrkwood Forest,105,ove alfevson,23-23,1,DOL.GS.GameNPC
+Myrkwood Forest,105,priest thaxtix,28-28,1,DOL.GS.GameNPC
+Myrkwood Forest,105,priestess araxia,20-20,1,DOL.GS.GameNPC
+Myrkwood Forest,105,ridgeback worg,11-13,10,DOL.GS.GameNPC
+Myrkwood Forest,105,shrieking willow,18-18,15,DOL.GS.GameNPC
+Myrkwood Forest,105,sorrow,22-22,1,DOL.GS.GameNPC
+Myrkwood Forest,105,spectral bayer,13-13,1,DOL.GS.GameNPC
+Myrkwood Forest,105,svartalf hunter,14-15,5,DOL.GS.GameNPC
+Myrkwood Forest,105,svartskogsfru,17-17,2,DOL.GS.GameNPC
+Myrkwood Forest,105,tingler webmother,19-19,1,DOL.GS.GameNPC
+Myrkwood Forest,105,venomspitter,11-13,9,DOL.GS.GameNPC
+Myrkwood Forest,105,werewolf,17-17,13,DOL.GS.GameNPC
+Skona Ravine,106,askafroa,34-34,1,DOL.GS.GameNPC
+Skona Ravine,106,brush cat,25-27,32,DOL.GS.GameNPC
+Skona Ravine,106,callow wolverine,30-31,8,DOL.GS.GameNPC
+Skona Ravine,106,captain gruff,39-39,1,DOL.GS.GameNPC
+Skona Ravine,106,cargila,40-40,1,DOL.GS.GameNPC
+Skona Ravine,106,elf of gashir,20-20,3,DOL.GS.GameNPC
+Skona Ravine,106,fjalar,37-37,1,DOL.GS.GameNPC
+Skona Ravine,106,furf,29-29,1,DOL.GS.GameNPC
+Skona Ravine,106,galar,36-36,1,DOL.GS.GameNPC
+Skona Ravine,106,giant tree frog,20-21,20,DOL.GS.GameNPC
+Skona Ravine,106,great tingler,16-18,10,DOL.GS.GameNPC
+Skona Ravine,106,korban,19-19,1,DOL.GS.NightSpawn
+Skona Ravine,106,krrrck,25-25,1,DOL.GS.NightSpawn
+Skona Ravine,106,lasaer,26-26,1,DOL.GS.GameNPC
+Skona Ravine,106,mokerkialfi,56-56,1,DOL.GS.GameNPC
+Skona Ravine,106,nagoltooth,41-41,1,DOL.GS.GameNPC
+Skona Ravine,106,pine mephit,23-23,1,DOL.GS.GameNPC
+Skona Ravine,106,priestess of gashir,20-20,1,DOL.GS.GameNPC
+Skona Ravine,106,ra of oak,30-30,5,DOL.GS.GameNPC
+Skona Ravine,106,ra of pine,29-29,13,DOL.GS.GameNPC
+Skona Ravine,106,shrieking willow,18-18,9,DOL.GS.GameNPC
+Skona Ravine,106,stripe,36-36,1,DOL.GS.Stripe
+Skona Ravine,106,thasior,31-31,1,DOL.GS.GameNPC
+Skona Ravine,106,timber cat,36-37,29,DOL.GS.GameNPC
+Skona Ravine,106,timberland badger,32-33,26,DOL.GS.GameNPC;DOL.GS.ZritZritAdd
+Skona Ravine,106,tree spirit,26-27,12,DOL.GS.GameNPC
+Skona Ravine,106,vindvasen,30-30,1,DOL.GS.GameNPC
+Skona Ravine,106,werewolf,17-17,17,DOL.GS.GameNPC
+Skona Ravine,106,werewolf captain,37-38,1,DOL.GS.GameNPC
+Skona Ravine,106,werewolf courier,27-28,1,DOL.GS.GameNPC
+Skona Ravine,106,werewolf guard,31-33,35,DOL.GS.GameNPC
+Skona Ravine,106,werewolf lieutenant,33-34,1,DOL.GS.GameNPC
+Skona Ravine,106,werewolf warder,27-30,24,DOL.GS.GameNPC
+Skona Ravine,106,wind spirit,27-28,19,DOL.GS.GameNPC
+Skona Ravine,106,wolfaur gladiator,40-40,1,DOL.GS.GameNPC
+Skona Ravine,106,wolfaur headsman,33-36,19,DOL.GS.GameNPC
+Skona Ravine,106,woodland badger,22-23,21,DOL.GS.GameNPC;DOL.GS.StripeAdd
+Skona Ravine,106,young wolverine,28-29,19,DOL.GS.GameNPC
+Skona Ravine,106,zrit-zrit,35-35,1,DOL.GS.ZritZrit
+Vanern Swamp,107,broken jotun,54-57,7,DOL.GS.GameNPC
+Vanern Swamp,107,forest spider queen,55-55,2,DOL.GS.GameNPC
+Vanern Swamp,107,freyana,46-46,1,DOL.GS.NightSpawn
+Vanern Swamp,107,hagbui thane,53-53,4,DOL.GS.GameNPC
+Vanern Swamp,107,jango,62-62,1,DOL.GS.GameNPC
+Vanern Swamp,107,jotun outcast,58-59,8,DOL.GS.GameNPC
+Vanern Swamp,107,jotun overlord,62-62,1,DOL.GS.GameNPC
+Vanern Swamp,107,noma rindasdottir,35-35,1,DOL.GS.GameNPC
+Vanern Swamp,107,rottild the traitor,55-55,1,DOL.GS.GameNPC
+Vanern Swamp,107,ulfketill,65-65,1,DOL.GS.Ulfketill
+Raumarik,108,bounty hunter,55-55,5,DOL.GS.GameNPC
+Raumarik,108,bounty hunter leader,57-57,2,DOL.GS.GameNPC
+Raumarik,108,chillsome wight,51-52,16,DOL.GS.GameNPC
+Raumarik,108,dire wolverine,58-58,6,DOL.GS.GameNPC
+Raumarik,108,fenrir mystic,57-57,8,DOL.GS.GameNPC
+Raumarik,108,fenrir soldier,58-58,16,DOL.GS.GameNPC
+Raumarik,108,frigid broadleaf,57-57,26,DOL.GS.GameNPC
+Raumarik,108,frore lich,55-57,9,DOL.GS.GameNPC
+Raumarik,108,frost cyclops,61-62,3,DOL.GS.GameNPC
+Raumarik,108,frost stallion,54-55,4,DOL.GS.GameNPC
+Raumarik,108,greater fenrir,59-64,3,DOL.GS.GameNPC
+Raumarik,108,hagall the red dagger,58-58,1,DOL.GS.GameNPC
+Raumarik,108,hugi,74-74,1,DOL.GS.Hugi
+Raumarik,108,loken,65-65,2,DOL.GS.Loken
+Raumarik,108,mature wyvern,54-57,7,DOL.GS.GameNPC
+Raumarik,108,oona,65-65,1,DOL.GS.Oona
+Raumarik,108,raumarik revenant,77-77,1,DOL.GS.RaumarikRevenant
+Raumarik,108,red dagger,46-46,4,DOL.GS.GameNPC
+Raumarik,108,runemistress shayla,45-45,1,DOL.GS.GameNPC
+Raumarik,108,runil,58-60,1,DOL.GS.Runil
+Raumarik,108,savage winterwolf,51-55,34,DOL.GS.GameNPC
+Raumarik,108,servant of kelic,48-52,3,DOL.GS.GameNPC
+Raumarik,108,sleipneirsson,55-56,9,DOL.GS.GameNPC
+Raumarik,108,undead soldier,49-52,9,DOL.GS.OonaUndeadSoldier
+Raumarik,108,wretch of winter,70-77,9,DOL.GS.WrethOfWinterArachite;DOL.GS.WrethOfWinterCrab;DOL.GS.WrethOfWinterIce;DOL.GS.WrethOfWinterJotun;DOL.GS.WrethOfWinterLich;DOL.GS.WrethOfWinterOgre;DOL.GS.WrethOfWinterRaumarik;DOL.GS.WrethOfWinterScorp;DOL.GS.WrethOfWinterSpider
+Uppland,111,aurora,41-47,4,DOL.GS.GameNPC
+Uppland,111,biting wind,29-33,4,DOL.GS.GameNPC
+Uppland,111,block of ice,36-37,7,DOL.GS.GameNPC
+Uppland,111,bone-eater oracle,39-41,3,DOL.GS.GameNPC
+Uppland,111,chiseler,20-24,14,DOL.GS.GameNPC
+Uppland,111,fallen troll,44-45,11,DOL.GS.GameNPC
+Uppland,111,fenrir prophet,44-45,4,DOL.GS.GameNPC
+Uppland,111,fenrir snowscout,36-38,1,DOL.GS.GameNPC
+Uppland,111,fenrir tracker,40-42,4,DOL.GS.GameNPC
+Uppland,111,fossegrim,29-31,4,DOL.GS.GameNPC
+Uppland,111,frost orm,35-35,8,DOL.GS.GameNPC
+Uppland,111,frost spectre,48-50,4,DOL.GS.GameNPC
+Uppland,111,gelid mass,35-35,3,DOL.GS.GameNPC
+Uppland,111,giant snowcrab,33-34,10,DOL.GS.GameNPC
+Uppland,111,great lynx,39-42,8,DOL.GS.GameNPC
+Uppland,111,hitback dummy - right click to reset,36-50,2,DOL.GS.HitbackDummy
+Uppland,111,ice scrag,33-34,4,DOL.GS.GameNPC
+Uppland,111,iceberg,41-42,4,DOL.GS.GameNPC
+Uppland,111,icestrider interceptor,50-50,6,DOL.GS.GameNPC
+Uppland,111,isalf forayer,44-44,2,DOL.GS.GameNPC
+Uppland,111,miserable zombie,31-31,1,DOL.GS.GameNPC
+Uppland,111,new mob,1-1,41,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardCorpseSummoner;DOL.GS.Keeps.GuardFighter;DOL.GS.Keeps.GuardLord;DOL.GS.Keeps.GuardMerchant;DOL.GS.Keeps.GuardStaticArcher
+Uppland,111,nordic yeti,33-36,5,DOL.GS.GameNPC
+Uppland,111,shivering presence,32-33,27,DOL.GS.Scripts.ShiveringPresence
+Uppland,111,snow giant,30-33,14,DOL.GS.GameNPC
+Uppland,111,snowshoe bandit,30-35,20,DOL.GS.GameNPC
+Uppland,111,thawing corpse,31-31,5,DOL.GS.GameNPC
+Uppland,111,torpor worm,37-37,7,DOL.GS.GameNPC
+Uppland,111,total: 0 dps: 0,15-50,4,DOL.GS.DPSDummy
+Uppland,111,wyvern,36-39,2,DOL.GS.GameNPC
+Yggdra Forest,112,alpine cockatrice,32-33,4,DOL.GS.GameNPC
+Yggdra Forest,112,bone-eater oracle,39-41,4,DOL.GS.GameNPC
+Yggdra Forest,112,bone-eater slayer,37-38,8,DOL.GS.GameNPC
+Yggdra Forest,112,chattering skeleton,32-32,11,DOL.GS.GameNPC
+Yggdra Forest,112,fenrir prophet,44-45,5,DOL.GS.GameNPC
+Yggdra Forest,112,fenrir shredder,45-46,4,DOL.GS.GameNPC
+Yggdra Forest,112,fenrir snowscout,36-38,6,DOL.GS.GameNPC
+Yggdra Forest,112,fenrir tracker,40-42,4,DOL.GS.GameNPC
+Yggdra Forest,112,frost hound,30-31,8,DOL.GS.GameNPC
+Yggdra Forest,112,frost orm,35-35,4,DOL.GS.GameNPC
+Yggdra Forest,112,gelid mass,35-35,4,DOL.GS.GameNPC
+Yggdra Forest,112,giant snowcrab,33-34,3,DOL.GS.GameNPC
+Yggdra Forest,112,glacial mauler,44-45,6,DOL.GS.GameNPC
+Yggdra Forest,112,great lynx,39-42,5,DOL.GS.GameNPC
+Yggdra Forest,112,ice giant,33-36,4,DOL.GS.GameNPC
+Yggdra Forest,112,ice lizard,32-34,8,DOL.GS.GameNPC
+Yggdra Forest,112,ice scrag,33-34,12,DOL.GS.GameNPC
+Yggdra Forest,112,icestrider frostweaver,44-46,4,DOL.GS.GameNPC
+Yggdra Forest,112,miserable zombie,28-32,4,DOL.GS.GameNPC
+Yggdra Forest,112,new mob,1-1,31,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardCorpseSummoner;DOL.GS.Keeps.GuardFighter;DOL.GS.Keeps.GuardLord;DOL.GS.Keeps.GuardStaticArcher
+Yggdra Forest,112,shivering presence,32-33,28,DOL.GS.GameNPC;DOL.GS.Scripts.ShiveringPresence
+Yggdra Forest,112,torpor worm,37-37,8,DOL.GS.GameNPC
+Yggdra Forest,112,wyvern,36-39,6,DOL.GS.GameNPC
+Jamtland Mountains,113,aged boreal cockatrice,49-49,15,DOL.GS.GameNPC
+Jamtland Mountains,113,aurora,41-47,10,DOL.GS.GameNPC
+Jamtland Mountains,113,bone-eater eviscerater,41-42,12,DOL.GS.GameNPC
+Jamtland Mountains,113,fallen troll,44-45,4,DOL.GS.GameNPC
+Jamtland Mountains,113,fenrir prophet,44-45,4,DOL.GS.GameNPC
+Jamtland Mountains,113,fenrir shredder,45-46,13,DOL.GS.GameNPC
+Jamtland Mountains,113,ghoulish warrior,44-45,2,DOL.GS.GameNPC
+Jamtland Mountains,113,glacial mauler,44-45,4,DOL.GS.GameNPC
+Jamtland Mountains,113,great lynx,39-42,6,DOL.GS.GameNPC
+Jamtland Mountains,113,icestrider interceptor,47-51,2,DOL.GS.GameNPC
+Jamtland Mountains,113,isalf forayer,44-44,4,DOL.GS.GameNPC
+Jamtland Mountains,113,new mob,1-1,103,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardCorpseSummoner;DOL.GS.Keeps.GuardFighter;DOL.GS.Keeps.GuardLord
+Jamtland Mountains,113,rainbow sprite,32-40,28,DOL.GS.RainbowSpriteBlue;DOL.GS.RainbowSpriteGreen;DOL.GS.RainbowSpriteTan;DOL.GS.RainbowSpriteWhite
+Jamtland Mountains,113,savage wyvern,45-48,6,DOL.GS.GameNPC
+Jamtland Mountains,113,shard golem,42-42,7,DOL.GS.GameNPC
+Jamtland Mountains,113,torpor worm,37-37,4,DOL.GS.GameNPC
+Jamtland Mountains,113,winter wolf,42-46,9,DOL.GS.GameNPC
+Jamtland Mountains,113,wintery dirge,0-42,7,DOL.GS.GameNPC
+Odin's Gate,115,aurora,41-47,3,DOL.GS.GameNPC
+Odin's Gate,115,bone-eater eviscerater,41-42,11,DOL.GS.GameNPC
+Odin's Gate,115,fylgja,50-52,1,DOL.GS.GameNPC
+Odin's Gate,115,glacier giant,86-86,1,DOL.GS.GlacierGiant
+Odin's Gate,115,icestrider frostweaver,44-46,8,DOL.GS.GameNPC
+Odin's Gate,115,isalf forayer,44-44,20,DOL.GS.GameNPC
+Odin's Gate,115,new mob,1-1,15,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardFighter;DOL.GS.Keeps.GuardLord
+Odin's Gate,115,shard golem,42-42,4,DOL.GS.GameNPC
+Odin's Gate,115,wintery dirge,40-42,4,DOL.GS.GameNPC
+Malmohus,116,arnulv,51-51,2,DOL.GS.GameNPC
+Malmohus,116,bjornvarg,56-56,2,DOL.GS.GameNPC
+Malmohus,116,burr,47-48,2,DOL.GS.GameNPC
+Malmohus,116,desukva,54-54,1,DOL.GS.GameNPC
+Malmohus,116,drakulv attendant,51-55,27,DOL.GS.GameNPC
+Malmohus,116,drakulv disciple,65-65,6,DOL.GS.GameNPC
+Malmohus,116,drakulv executioner,57-67,33,DOL.GS.GameNPC
+Malmohus,116,drakulv protector,54-58,34,DOL.GS.GameNPC
+Malmohus,116,drakulv soultrapper,62-63,5,DOL.GS.GameNPC
+Malmohus,116,eildird,51-51,1,DOL.GS.GameNPC
+Malmohus,116,eiorharn,47-47,1,DOL.GS.GameNPC
+Malmohus,116,esulv,47-47,1,DOL.GS.GameNPC
+Malmohus,116,geirolf,49-52,1,DOL.GS.GameNPC
+Malmohus,116,gjalpinulva,80-80,1,DOL.GS.MidGjalpinulva
+Malmohus,116,gunnolf,50-50,2,DOL.GS.GameNPC
+Malmohus,116,hrolleif,56-56,1,DOL.GS.GameNPC
+Malmohus,116,hunter's pet,0-0,2,DOL.GS.GameNPC
+Malmohus,116,ingardild,52-55,1,DOL.GS.GameNPC
+Malmohus,116,kariig,53-53,2,DOL.GS.GameNPC
+Malmohus,116,kleng,52-56,2,DOL.GS.GameNPC
+Malmohus,116,ljornrn,51-51,1,DOL.GS.GameNPC
+Malmohus,116,rana,49-49,1,DOL.GS.GameNPC
+Malmohus,116,steinolf,55-55,1,DOL.GS.Steinolf
+Malmohus,116,svartalf bloodbinder,51-55,17,DOL.GS.GameNPC
+Malmohus,116,swarm of flies,52-54,34,DOL.GS.GameNPC
+Malmohus,116,ulf,52-52,1,DOL.GS.GameNPC
+Malmohus,116,venomous tree crawler,55-55,3,DOL.GS.GameNPC
+Malmohus,116,wyulv,54-54,1,DOL.GS.GameNPC
+Malmohus,116,yar,73-73,1,DOL.GS.Yar
+Spindelhalla,125,danin,41-41,1,DOL.GS.GameNPC
+Spindelhalla,125,duegarhunter,36-36,4,DOL.GS.GameNPC
+Spindelhalla,125,fas,52-52,1,DOL.GS.GameNPC
+Spindelhalla,125,igo,50-50,1,DOL.GS.GameNPC
+Spindelhalla,125,kalf,47-47,1,DOL.GS.GameMerchant
+Spindelhalla,125,kalph,47-47,1,DOL.GS.GameNPC
+Spindelhalla,125,ond,53-53,1,DOL.GS.GameNPC
+Spindelhalla,125,scavenger argo,50-50,1,DOL.GS.GameNPC
+Spindelhalla,125,smarta,37-37,1,DOL.GS.GameNPC
+Spindelhalla,125,stor ekyps,47-47,4,DOL.GS.GameNPC
+Spindelhalla,125,te'bui,35-35,1,DOL.GS.GameNPC
+Spindelhalla,125,vixitr,41-41,1,DOL.GS.GameNPC
+Spindelhalla,125,yleg,45-45,1,DOL.GS.GameNPC
+Vendo Caverns,126,grjotgard,23-23,1,DOL.GS.GameNPC
+Varulvhamn,127,crazed lycantic,34-34,7,DOL.GS.GameNPC
+Varulvhamn,127,faz,35-35,1,DOL.GS.GameNPC
+Varulvhamn,127,frenetic wolfspider,38-38,9,DOL.GS.GameNPC
+Varulvhamn,127,high lord athulf,44-44,1,DOL.GS.GameNPC
+Varulvhamn,127,high lord modolfr,44-44,1,DOL.GS.GameNPC
+Varulvhamn,127,high lord tarnkappe,44-44,1,DOL.GS.GameNPC
+Varulvhamn,127,hresveigr,45-45,1,DOL.GS.GameNPC
+Varulvhamn,127,hresvelgr,46-46,1,DOL.GS.GameNPC
+Varulvhamn,127,king hresvelgr,46-46,1,DOL.GS.GameNPC
+Varulvhamn,127,lord bete,38-38,1,DOL.GS.GameNPC
+Varulvhamn,127,lord brumma,39-39,1,DOL.GS.GameNPC
+Varulvhamn,127,lord gifttand,41-41,1,DOL.GS.GameNPC
+Varulvhamn,127,lord grym,38-38,1,DOL.GS.GameNPC
+Varulvhamn,127,lord huggtand,38-38,1,DOL.GS.GameNPC
+Varulvhamn,127,lord ungar,39-39,1,DOL.GS.GameNPC
+Varulvhamn,127,lord vild,38-38,1,DOL.GS.GameNPC
+Varulvhamn,127,manstrale,36-36,1,DOL.GS.GameNPC
+Varulvhamn,127,ritter,39-39,1,DOL.GS.GameNPC
+Varulvhamn,127,thelod,36-36,1,DOL.GS.GameNPC
+Varulvhamn,127,werewolf churl,34-34,17,DOL.GS.GameNPC
+Varulvhamn,127,werewolf grimnought,39-39,5,DOL.GS.GameNPC
+Varulvhamn,127,wolfaur lunarian,39-39,10,DOL.GS.GameNPC
+Varulvhamn,127,wolfaur quixot,37-37,46,DOL.GS.GameNPC
+Varulvhamn,127,wolfspider,25-25,5,DOL.GS.GameNPC
+Cursed Tomb,128,bevard,23-23,1,DOL.GS.GameNPC
+Cursed Tomb,128,cave spider,13-14,2,DOL.GS.GameNPC
+Cursed Tomb,128,draugr commander,23-23,1,DOL.GS.GameNPC
+Cursed Tomb,128,dread lichess,26-26,1,DOL.GS.GameNPC
+Cursed Tomb,128,haggert,23-23,1,DOL.GS.GameNPC
+Cursed Tomb,128,lost spirit,19-19,9,DOL.GS.GameNPC
+Cursed Tomb,128,rotting corpse,24-24,1,DOL.GS.GameNPC
+Cursed Tomb,128,tomb priestess,23-23,1,DOL.GS.GameNPC
+Cursed Tomb,128,troika,24-24,1,DOL.GS.GameNPC
+Cursed Tomb,128,way keeper,19-20,1,DOL.GS.GameNPC
+Nisse's Lair,129,callilepis nocturna,19-19,1,DOL.GS.GameNPC
+Nisse's Lair,129,executioner,13-13,1,DOL.GS.GameNPC
+Nisse's Lair,129,hnaki,20-20,1,DOL.GS.GameNPC
+Nisse's Lair,129,nioll,11-11,1,DOL.GS.GameNPC
+Nisse's Lair,129,prisoner,0-0,2,DOL.GS.GameNPC
+Nisse's Lair,129,ripp,25-25,1,DOL.GS.GameNPC
+Nisse's Lair,129,rygnol,12-12,1,DOL.GS.GameNPC
+Nisse's Lair,129,skirr,22-22,1,DOL.GS.GameNPC
+Trollheim,150,alchemist phorzbreg,65-65,1,DOL.GS.GameNPC
+Trollheim,150,animate spjut,54-54,8,DOL.GS.GameNPC
+Trollheim,150,animate yxa,52-52,9,DOL.GS.GameNPC
+Trollheim,150,apologet nesnuir,67-67,1,DOL.GS.GameNPC
+Trollheim,150,bagskytt hem'varn,60-66,12,DOL.GS.GameNPC
+Trollheim,150,berusade vaktare,52-59,48,DOL.GS.GameNPC
+Trollheim,150,blodtorstig slaktare,53-60,42,DOL.GS.GameNPC
+Trollheim,150,captain hem'varn,64-64,2,DOL.GS.GameNPC
+Trollheim,150,dagar,60-60,1,DOL.GS.Dagar
+Trollheim,150,elite hem'varn,63-68,9,DOL.GS.GameNPC
+Trollheim,150,elite krigare,55-58,27,DOL.GS.GameNPC
+Trollheim,150,faurs hem'varn,59-63,24,DOL.GS.GameNPC
+Trollheim,150,fostra orm,61-61,1,DOL.GS.FostraOrm
+Trollheim,150,glopsk grattasvamp,58-58,33,DOL.GS.GameNPC
+Trollheim,150,grindvaktare,56-56,1,DOL.GS.GameNPC
+Trollheim,150,gruppchef,55-59,14,DOL.GS.GameNPC
+Trollheim,150,jarala den kvinnlig,60-60,1,DOL.GS.GameEpicDungeonNPC
+Trollheim,150,kaos krigsman,56-62,77,DOL.GS.GameNPC
+Trollheim,150,magister kurgol,65-65,1,DOL.GS.GameNPC
+Trollheim,150,master smed,58-58,1,DOL.GS.GameNPC
+Trollheim,150,morvalt fornskugga,55-55,22,DOL.GS.GameNPC
+Trollheim,150,morvalt larjunge,52-58,73,DOL.GS.GameNPC
+Trollheim,150,morvalt schamen,54-59,40,DOL.GS.GameNPC
+Trollheim,150,morvalt skugga,52-60,137,DOL.GS.GameNPC
+Trollheim,150,morvalt spjut master,61-61,7,DOL.GS.GameNPC
+Trollheim,150,morvalt svard master,59-59,10,DOL.GS.GameNPC
+Trollheim,150,morvalt yxa master,57-57,1,DOL.GS.GameNPC
+Trollheim,150,nedat gungledar,70-70,1,DOL.GS.GameNPC
+Trollheim,150,nedat korkigen,56-56,8,DOL.GS.GameNPC
+Trollheim,150,nosdoden,80-80,1,DOL.GS.Nosdoden
+Trollheim,150,olen den bartender,67-67,1,DOL.GS.GameNPC
+Trollheim,150,overste callejo,65-65,1,DOL.GS.GameNPC
+Trollheim,150,rotodjur,71-71,1,DOL.GS.Rotoddjur
+Trollheim,150,sallours,62-62,1,DOL.GS.GameNPC
+Trollheim,150,snemel den forsumlig,65-65,1,DOL.GS.GameNPC
+Trollheim,150,soldat hem'varn,58-62,13,DOL.GS.GameNPC
+Trollheim,150,stalactite,54-58,47,DOL.GS.GameNPC
+Trollheim,150,stalagmite,58-60,13,DOL.GS.GameNPC
+Trollheim,150,storrow,64-64,1,DOL.GS.GameEpicNPC
+Trollheim,150,trollkarl bonchar,62-65,2,DOL.GS.GameNPC;DOL.GS.Rift
+Trollheim,150,trollkarl tranare,64-64,11,DOL.GS.GameNPC
+Trollheim,150,troloss,54-54,1,DOL.GS.GameNPC
+Trollheim,150,uppat gungledar,77-77,1,DOL.GS.GameNPC
+Trollheim,150,uppat korkigen,56-56,27,DOL.GS.GameNPC
+Trollheim,150,vakt varaffar,57-57,5,DOL.GS.GameNPC
+Trollheim,150,veteran gruppchef,64-64,21,DOL.GS.GameNPC
+Trollheim,150,veteran krigare,55-58,34,DOL.GS.GameNPC
+Aegir's Landing,151,durl,13-13,1,DOL.GS.GameNPC
+Aegir's Landing,151,enraged scimitar kit,8-8,1,DOL.GS.GameNPC
+Aegir's Landing,151,gohl,11-11,1,DOL.GS.GameNPC
+Aegir's Landing,151,ibicus,14-14,1,DOL.GS.GameNPC
+Aegir's Landing,151,ixich,13-13,1,DOL.GS.GameNPC
+Aegir's Landing,151,krum,17-17,1,DOL.GS.GameNPC
+Aegir's Landing,151,musslaklan trader,16-16,1,DOL.GS.GameNPC
+Aegir's Landing,151,rith,15-15,1,DOL.GS.GameNPC
+Aegir's Landing,151,sand jelly,9-15,71,DOL.GS.GameNPC
+Aegir's Landing,151,shambling shade,15-15,1,DOL.GS.GameNPC
+Aegir's Landing,151,shreg,22-22,1,DOL.GS.GameNPC
+Aegir's Landing,151,soxulfr,2-2,1,DOL.GS.GameNPC
+Aegir's Landing,151,talvor,22-22,1,DOL.GS.GameNPC
+Aegir's Landing,151,torg the hunter,19-19,1,DOL.GS.GameNPC
+Aegir's Landing,151,torlieva,15-15,1,DOL.GS.GameNPC
+Aegir's Landing,151,uger,15-15,1,DOL.GS.GameNPC
+Gripklosa Mountains,152,bergklan slopewatcher,42-46,4,DOL.GS.GameNPC
+Gripklosa Mountains,152,bergklan tribesman,31-31,1,DOL.GS.GameNPC
+Gripklosa Mountains,152,beskydda grundar,41-41,1,DOL.GS.GameNPC
+Gripklosa Mountains,152,cave lion,24-26,27,DOL.GS.GameNPC
+Gripklosa Mountains,152,hostile myling,37-43,46,DOL.GS.Scripts.Myling
+Gripklosa Mountains,152,idette,27-27,1,DOL.GS.GameNPC
+Gripklosa Mountains,152,kreg,38-38,1,DOL.GS.GameNPC
+Gripklosa Mountains,152,loden,26-26,1,DOL.GS.GameNPC
+Gripklosa Mountains,152,mammoth calf,11-11,12,DOL.GS.GameNPC
+Gripklosa Mountains,152,morvalt avliden,50-50,26,DOL.GS.GameNPC
+Gripklosa Mountains,152,morvalt framkalla,47-52,26,DOL.GS.GameNPC
+Gripklosa Mountains,152,myling,29-34,83,DOL.GS.Scripts.Myling
+Gripklosa Mountains,152,old matriarch,57-57,1,DOL.GS.GameNPC
+Gripklosa Mountains,152,pelterer blegkrak,29-29,1,DOL.GS.GameNPC
+Gripklosa Mountains,152,redcap butcher,53-61,19,DOL.GS.GameNPC
+Gripklosa Mountains,152,redcap legerdemainist,52-56,11,DOL.GS.GameNPC
+Gripklosa Mountains,152,sha-ra,45-45,1,DOL.GS.GameNPC
+Gripklosa Mountains,152,streber rengo,33-33,1,DOL.GS.GameNPC
+Gripklosa Mountains,152,vaetild,30-30,1,DOL.GS.GameNPC
+Delling Crater,153,anicho,45-45,1,DOL.GS.GameNPC
+Delling Crater,153,brunhil,50-50,1,DOL.GS.GameMerchant
+Delling Crater,153,caldera lord,53-56,4,DOL.GS.GameNPC
+Delling Crater,153,cave lioness,38-42,3,DOL.GS.GameNPC
+Delling Crater,153,dellingstad alblastere,48-56,20,DOL.GS.GameNPC
+Delling Crater,153,dellingstad citizen,45-47,4,DOL.GS.GameNPC
+Delling Crater,153,dellingstad fortifier,48-56,15,DOL.GS.GameNPC
+Delling Crater,153,dellingstad miner,45-50,9,DOL.GS.GameNPC
+Delling Crater,153,dellingstad soothsayer,52-53,5,DOL.GS.GameNPC
+Delling Crater,153,forgemaster brungar,52-52,1,DOL.GS.GameMerchant
+Delling Crater,153,greater myling,35-40,47,DOL.GS.Scripts.Myling
+Delling Crater,153,griffman elder,57-65,28,DOL.GS.GameNPC
+Delling Crater,153,griffman skywatcher,54-63,58,DOL.GS.GameNPC
+Delling Crater,153,griffman squawker,53-54,15,DOL.GS.GameNPC
+Delling Crater,153,griffon bondmate,56-58,27,DOL.GS.GameNPC
+Delling Crater,153,griffon companion,59-67,32,DOL.GS.GameNPC
+Delling Crater,153,griffon draftrider,51-58,42,DOL.GS.GameNPC
+Delling Crater,153,griffon scout,43-49,3,DOL.GS.GameNPC
+Delling Crater,153,griffon sweep leader,44-44,1,DOL.GS.GameNPC
+Delling Crater,153,griffon sweeper,40-40,1,DOL.GS.GameNPC
+Delling Crater,153,hako,38-38,1,DOL.GS.GameNPC
+Delling Crater,153,kampestein,45-45,1,DOL.GS.GameNPC
+Delling Crater,153,khrin,50-50,1,DOL.GS.GameNPC
+Delling Crater,153,klippe,43-43,1,DOL.GS.GameNPC
+Delling Crater,153,ornulf,47-47,1,DOL.GS.GameNPC
+Delling Crater,153,smastein,37-37,1,DOL.GS.GameNPC
+Delling Crater,153,vorkald,52-52,1,DOL.GS.GameNPC
+Delling Crater,153,weaponmaster zargin,54-54,1,DOL.GS.GameNPC
+Delling Crater,153,zargin's student,45-49,5,DOL.GS.GameNPC
+Faraheim,154,blood render,60-66,34,DOL.GS.GameNPC
+Faraheim,154,bokko,60-60,1,DOL.GS.GameNPC
+Faraheim,154,boligar,64-64,1,DOL.GS.Boligar
+Faraheim,154,bone cruncher,56-63,47,DOL.GS.GameNPC
+Faraheim,154,cicada-killer,52-57,78,DOL.GS.GameNPC
+Faraheim,154,crazed morvalt schamen,56-56,1,DOL.GS.GameNPC
+Faraheim,154,cronk,63-63,1,DOL.GS.Cronk
+Faraheim,154,dalgo,70-70,1,DOL.GS.Dalgo
+Faraheim,154,dalicren,59-59,1,DOL.GS.GameNPC
+Faraheim,154,gastornis,60-68,50,DOL.GS.GameNPC
+Faraheim,154,gluttonous gulon,56-58,30,DOL.GS.GameNPC
+Faraheim,154,goretooth,68-68,1,DOL.GS.Goretooth
+Faraheim,154,gorp,54-54,1,DOL.GS.GameNPC
+Faraheim,154,luso,50-50,1,DOL.GS.GameNPC
+Faraheim,154,minerva,50-50,1,DOL.GS.GameStableMaster
+Faraheim,154,morbax,56-56,1,DOL.GS.GameNPC
+Faraheim,154,pathfinder folar,50-50,1,DOL.GS.GameNPC
+Faraheim,154,shredclaw,67-67,1,DOL.GS.Shredclaw
+Faraheim,154,terror bird,52-56,57,DOL.GS.GameNPC
+Faraheim,154,tradklan darter,52-57,45,DOL.GS.GameNPC
+Faraheim,154,tradklan medicine man,52-55,36,DOL.GS.GameNPC
+Faraheim,154,tradklan tribesman,52-56,31,DOL.GS.GameNPC
+Faraheim,154,trude,54-54,1,DOL.GS.GameNPC
+Faraheim,154,unne,41-41,1,DOL.GS.GameNPC
+Faraheim,154,uppsala,54-54,1,DOL.GS.GameNPC
+Faraheim,154,valmak,64-64,1,DOL.GS.Valmak
+Faraheim,154,wulok,54-54,1,DOL.GS.GameNPC
+Munin Sound,155,ancestral skalklan,32-39,20,DOL.GS.GameNPC
+Munin Sound,155,edrigu,34-34,1,DOL.GS.GameNPC
+Munin Sound,155,ghirni,25-25,1,DOL.GS.GameNPC
+Munin Sound,155,greater myling,35-41,18,DOL.GS.Scripts.Myling
+Munin Sound,155,predacious mushroom,18-21,8,DOL.GS.GameNPC
+Munin Sound,155,sea spray,19-24,13,DOL.GS.GameNPC
+Munin Sound,155,skalklan trailfinder,23-23,3,DOL.GS.GameNPC
+Munin Sound,155,ulif,36-36,1,DOL.GS.GameNPC
+Munin Sound,155,urtzi,42-42,1,DOL.GS.GameNPC
+Iarnwood,156,aage,56-56,1,DOL.GS.GameMerchant
+Iarnwood,156,animus giant,57-66,104,DOL.GS.GameNPC
+Iarnwood,156,chief tarek,68-68,1,DOL.GS.ChiefTarek
+Iarnwood,156,fengundorm,54-61,49,DOL.GS.GameNPC
+Iarnwood,156,forest skrat,48-55,3,DOL.GS.GameNPC
+Iarnwood,156,griffolich,59-67,47,DOL.GS.GameNPC
+Iarnwood,156,iarn dwarf council,54-62,4,DOL.GS.GameNPC
+Iarnwood,156,iarn dwarf huntress,54-56,3,DOL.GS.GameNPC
+Iarnwood,156,koli,52-52,1,DOL.GS.GameNPC
+Iarnwood,156,masher,64-64,1,DOL.GS.GameNPC
+Iarnwood,156,pulverizer,56-64,83,DOL.GS.GameNPC
+Iarnwood,156,sariloc,48-48,1,DOL.GS.GameNPC
+Iarnwood,156,spectral render,65-65,2,DOL.GS.GameNPC
+Iarnwood,156,syn,59-59,1,DOL.GS.Blacksmith
+Iarnwood,156,unok,55-55,1,DOL.GS.GameNPC
+Iarnwood,156,vasrem,70-70,1,DOL.GS.Vasrem
+Iarnwood,156,will sapper,51-58,36,DOL.GS.GameNPC
+Modernagrav,158,alivor,50-50,1,DOL.GS.GameNPC
+Modernagrav,158,asutri,50-50,1,DOL.GS.GameNPC
+Modernagrav,158,basilius,66-66,1,DOL.GS.Basilius
+Modernagrav,158,bone-eater warleader,45-45,1,DOL.GS.GameNPC
+Modernagrav,158,corrupted howler,52-62,41,DOL.GS.GameNPC
+Modernagrav,158,decaying mammoth,58-64,26,DOL.GS.GameNPC
+Modernagrav,158,fengarus,54-63,77,DOL.GS.GameNPC
+Modernagrav,158,fisk,42-42,1,DOL.GS.GameNPC
+Modernagrav,158,grul mgnuk,58-58,1,DOL.GS.GameNPC
+Modernagrav,158,hoden,60-60,1,DOL.GS.GameNPC
+Modernagrav,158,mortufoghus,77-77,1,DOL.GS.Mortufoghus
+Modernagrav,158,morvalt avliden,50-50,1,DOL.GS.GameNPC
+Modernagrav,158,morvalt befara,55-55,1,DOL.GS.GameNPC
+Modernagrav,158,morvalt blandare,44-46,35,DOL.GS.GameNPC
+Modernagrav,158,morvalt dodlig,55-60,3,DOL.GS.GameNPC
+Modernagrav,158,morvalt gravmaniska,51-54,2,DOL.GS.GameNPC
+Modernagrav,158,pirmin,45-45,1,DOL.GS.GameNPC
+Modernagrav,158,reanimated howler,56-60,39,DOL.GS.GameNPC
+Modernagrav,158,redcap bestigar,52-58,112,DOL.GS.GameNPC
+Modernagrav,158,redcap vandrare,56-64,51,DOL.GS.GameNPC
+Modernagrav,158,rolf,50-50,1,DOL.GS.GameNPC
+Modernagrav,158,shard golem,42-42,1,DOL.GS.GameNPC
+Modernagrav,158,shiake,44-44,1,DOL.GS.GameNPC
+Modernagrav,158,spectral feline,52-58,72,DOL.GS.GameNPC
+Modernagrav,158,spectral sjoalf waverunner,36-40,4,DOL.GS.GameNPC
+Modernagrav,158,thawing corpse,31-31,1,DOL.GS.GameNPC
+Tuscaran Glacier,160,council hord,77-77,1,DOL.GS.Scripts.Hord
+Tuscaran Glacier,160,council nokkvi,78-78,1,DOL.GS.Nokkvi
+Tuscaran Glacier,160,council otrygg,77-77,1,DOL.GS.Otrygg
+Tuscaran Glacier,160,council ozur,77-77,1,DOL.GS.Scripts.Ozur
+Tuscaran Glacier,160,council vagn,78-78,1,DOL.GS.Vagn
+Tuscaran Glacier,160,elder council birghir,80-80,1,DOL.GS.Birghir
+Tuscaran Glacier,160,elder council guthlac,80-80,1,DOL.GS.Guthlac
+Tuscaran Glacier,160,falling ice,70-70,4,DOL.GS.FallingIce
+Tuscaran Glacier,160,fornfrusenen,75-75,1,DOL.GS.Fornfrusenen
+Tuscaran Glacier,160,frostbound skeleton,70-70,3,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,griffon icewing,79-79,25,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimathursa tormentor,77-79,19,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa berg,64-66,23,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa bladehand,75-77,14,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa depredator,75-77,17,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa dominator,78-80,15,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa grinder,61-62,7,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa harrower,74-78,16,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa icereaver,64-68,11,DOL.GS.GameEpicNPC;DOL.GS.GameNPC
+Tuscaran Glacier,160,hrimthursa icespine,71-75,19,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa icesplitter,61-62,9,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa icetouch,73-75,16,DOL.GS.HrimthursaIcetouch
+Tuscaran Glacier,160,hrimthursa rook,75-77,17,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa sculptor,63-65,11,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa seer,74-77,10,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa serac,61-62,19,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hrimthursa throne guard,77-79,15,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,hurika,85-85,1,DOL.GS.Hurika
+Tuscaran Glacier,160,icebound skeleton,63-66,44,DOL.GS.GameEpicNPC;DOL.GS.GameNPC
+Tuscaran Glacier,160,icelord agmundr,81-81,1,DOL.GS.Agmundr
+Tuscaran Glacier,160,icelord hakr,82-82,1,DOL.GS.Hakr
+Tuscaran Glacier,160,icelord kvasir,80-80,1,DOL.GS.Kvasir
+Tuscaran Glacier,160,icelord skuf,80-80,1,DOL.GS.Skuf
+Tuscaran Glacier,160,icelord steinvor,80-80,1,DOL.GS.Steinvor
+Tuscaran Glacier,160,iceweaver,72-75,8,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,iceweaver trainer,74-77,8,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,issorden,78-78,1,DOL.GS.Issorden
+Tuscaran Glacier,160,jailer vifil,82-82,1,DOL.GS.Jailer
+Tuscaran Glacier,160,king tuscar,85-85,1,DOL.GS.KingTuscar
+Tuscaran Glacier,160,lesser frostbound skeleton,60-63,13,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,lesser icebound skeleton,58-60,25,DOL.GS.GameNPC
+Tuscaran Glacier,160,queen kula,85-85,1,DOL.GS.QueenKula
+Tuscaran Glacier,160,royal iceweaver,78-78,1,DOL.GS.GameEpicNPC
+Tuscaran Glacier,160,torst,80-80,1,DOL.GS.Torst
+Iarnvidiur's Lair,161,ancient syver,68-68,1,DOL.GS.AncientSyver
+Iarnvidiur's Lair,161,animus rondjur,62-62,14,DOL.GS.GameNPC
+Iarnvidiur's Lair,161,animus syndig,55-57,36,DOL.GS.GameNPC
+Iarnvidiur's Lair,161,delegalt,65-68,1,DOL.GS.Delegalt
+Iarnvidiur's Lair,161,droom,65-68,1,DOL.GS.Droom
+Iarnvidiur's Lair,161,dyranapur,59-59,1,DOL.GS.Dyranapur
+Iarnvidiur's Lair,161,egilvarg,58-58,58,DOL.GS.GameNPC
+Iarnvidiur's Lair,161,fjarskafinn,55-60,40,DOL.GS.GameNPC
+Iarnvidiur's Lair,161,grymvarg,62-62,28,DOL.GS.GameNPC
+Iarnvidiur's Lair,161,hati,69-69,1,DOL.GS.Hati
+Iarnvidiur's Lair,161,hurjavelen,68-68,1,DOL.GS.Hurjavelen
+Iarnvidiur's Lair,161,iarnvidiur,75-75,1,DOL.GS.Iarnvidiur
+Iarnvidiur's Lair,161,kolvarg,54-54,49,DOL.GS.GameNPC
+Iarnvidiur's Lair,161,lydsyg,58-58,1,DOL.GS.Lydsyg
+Iarnvidiur's Lair,161,mahattava,66-66,1,DOL.GS.Mahattava
+Iarnvidiur's Lair,161,narfi,61-61,25,DOL.GS.GameNPC
+Iarnvidiur's Lair,161,redcap ermit,61-61,16,DOL.GS.GameNPC
+Iarnvidiur's Lair,161,redcap skurk,54-54,25,DOL.GS.GameNPC
+Iarnvidiur's Lair,161,skoll,69-69,1,DOL.GS.Skoll
+Iarnvidiur's Lair,161,stanga,66-66,1,DOL.GS.Stanga
+Iarnvidiur's Lair,161,syver,62-62,14,DOL.GS.GameNPC
+Iarnvidiur's Lair,161,young syver,56-56,23,DOL.GS.GameNPC
+Lough Derg,200,annoying lucradan,0-0,16,DOL.GS.GameNPC
+Lough Derg,200,badger cub,0-0,14,DOL.GS.GameNPC
+Lough Derg,200,barca,10-12,1,DOL.GS.GameNPC
+Lough Derg,200,bertha,14-14,1,DOL.GS.Bertha
+Lough Derg,200,blackthorn,8-9,63,DOL.GS.Blackthorn
+Lough Derg,200,bristle,13-13,1,DOL.GS.GameNPC
+Lough Derg,200,campkeeper,15-17,3,DOL.GS.GameNPC
+Lough Derg,200,curmudgeon fighter,16-18,9,DOL.GS.GameNPC
+Lough Derg,200,curmudgeon poacher,15-15,7,DOL.GS.GameNPC
+Lough Derg,200,dacyn,8-8,1,DOL.GS.GameNPC
+Lough Derg,200,dergan tussler,14-14,1,DOL.GS.GameNPC
+Lough Derg,200,duana,14-14,1,DOL.GS.GameNPC
+Lough Derg,200,dwayne,3-3,1,DOL.GS.GameNPC
+Lough Derg,200,fallen one,18-24,1,DOL.GS.FallenOne
+Lough Derg,200,fishing bear forager,13-14,8,DOL.GS.GameNPC
+Lough Derg,200,ghastly siabra,13-15,4,DOL.GS.GameNPC
+Lough Derg,200,hazard,9-9,1,DOL.GS.GameNPC
+Lough Derg,200,hughar,16-16,1,DOL.GS.GameNPC
+Lough Derg,200,large eirebug,9-11,10,DOL.GS.GameNPC
+Lough Derg,200,lugradan whelp,4-6,2,DOL.GS.GameNPC
+Lough Derg,200,minor changeling,1-2,45,DOL.GS.Scripts.Changeling
+Lough Derg,200,mist sheerie,20-21,1,DOL.GS.GameNPC
+Lough Derg,200,morty,11-11,1,DOL.GS.Morty
+Lough Derg,200,nock,13-13,1,DOL.GS.GameNPC
+Lough Derg,200,nofier,25-25,1,DOL.GS.GameNPC
+Lough Derg,200,parthanan,17-18,20,DOL.GS.Parthanan
+Lough Derg,200,primrose,10-10,2,DOL.GS.GameNPC
+Lough Derg,200,prunar,10-10,1,DOL.GS.GameNPC
+Lough Derg,200,rock sheerie,18-21,15,DOL.GS.GameNPC
+Lough Derg,200,rounder,22-22,1,DOL.GS.GameNPC
+Lough Derg,200,sabha,3-3,1,DOL.GS.GameNPC
+Lough Derg,200,singing curmudgeon,17-17,2,DOL.GS.GameNPC
+Lough Derg,200,small walking boulder,2-3,3,DOL.GS.GameNPC
+Lough Derg,200,spackit,4-4,1,DOL.GS.GameNPC
+Lough Derg,200,spectral orchard nipper,10-10,1,DOL.GS.GameNPC
+Lough Derg,200,spraggonite,5-6,2,DOL.GS.GameNPC
+Lough Derg,200,spykit,4-4,1,DOL.GS.GameNPC
+Lough Derg,200,tharl,19-19,1,DOL.GS.GameNPC
+Lough Derg,200,xerxes,6-6,1,DOL.GS.GameNPC
+Silvermine Mts.,201,chieftain dergal,24-24,1,DOL.GS.GameNPC
+Silvermine Mts.,201,deamhan aeir,34-37,23,DOL.GS.NightSpawn
+Silvermine Mts.,201,deamhan creig,17-18,6,DOL.GS.GameNPC
+Silvermine Mts.,201,druid,18-18,4,DOL.GS.GameNPC
+Silvermine Mts.,201,eirebug,4-5,1,DOL.GS.GameNPC
+Silvermine Mts.,201,enchanted luricaduane,23-23,1,DOL.GS.GameNPC
+Silvermine Mts.,201,gray spectre,22-24,52,DOL.GS.NightSpawn
+Silvermine Mts.,201,mountain mephit,20-23,8,DOL.GS.GameNPC
+Silvermine Mts.,201,nictol the unkempt,28-28,1,DOL.GS.GameNPC
+Silvermine Mts.,201,overseer camlin,26-26,1,DOL.GS.GameNPC
+Silvermine Mts.,201,pebble,25-25,1,DOL.GS.GameNPC
+Silvermine Mts.,201,rock clipper,21-23,1,DOL.GS.GameNPC
+Silvermine Mts.,201,rolling stone,23-23,1,DOL.GS.GameNPC
+Silvermine Mts.,201,sapper,18-18,1,DOL.GS.GameNPC
+Silvermine Mts.,201,sargoth,25-25,1,DOL.GS.GameNPC
+Silvermine Mts.,201,scar-nose,26-26,1,DOL.GS.GameNPC
+Silvermine Mts.,201,seireadan,3-3,1,DOL.GS.GameNPC
+Silvermine Mts.,201,sheevra chieftain,15-16,5,DOL.GS.GameNPC
+Silvermine Mts.,201,sheevra miner,13-14,9,DOL.GS.GameNPC
+Silvermine Mts.,201,small walking boulder,2-3,29,DOL.GS.GameNPC
+Silvermine Mts.,201,spraggonet,23-28,26,DOL.GS.GameNPC
+Silvermine Mts.,201,spraggonilt,15-22,28,DOL.GS.GameNPC
+Silvermine Mts.,201,spraggonix,25-26,3,DOL.GS.GameNPC
+Silvermine Mts.,201,stinky,16-16,1,DOL.GS.GameNPC
+Silvermine Mts.,201,stone sheerie,19-22,8,DOL.GS.GameNPC
+Silvermine Mts.,201,tiny eirebug,22-22,1,DOL.GS.GameNPC
+Silvermine Mts.,201,ualtar,20-20,1,DOL.GS.GameNPC
+Shannon Estuary,202,arracht,38-38,1,DOL.GS.GameNPC
+Shannon Estuary,202,beach rat,1-2,17,DOL.GS.GameNPC
+Shannon Estuary,202,danderpaw,36-36,1,DOL.GS.GameNPC
+Shannon Estuary,202,eriu fiscere,13-15,10,DOL.GS.GameNPC
+Shannon Estuary,202,eriu henter,19-22,23,DOL.GS.GameNPC
+Shannon Estuary,202,eriu kedger,16-18,3,DOL.GS.GameNPC
+Shannon Estuary,202,far liath,31-32,5,DOL.GS.GameNPC
+Shannon Estuary,202,gurite footpad,16-16,1,DOL.GS.GameNPC
+Shannon Estuary,202,kaen kedger,34-34,1,DOL.GS.GameNPC
+Shannon Estuary,202,kirwyn,26-26,1,DOL.GS.GameNPC
+Shannon Estuary,202,lethe,32-32,1,DOL.GS.GameNPC
+Shannon Estuary,202,lugradan,25-30,4,DOL.GS.GameNPC
+Shannon Estuary,202,merman,25-35,2,DOL.GS.GameNPC
+Shannon Estuary,202,merrow,20-22,2,DOL.GS.GameNPC
+Shannon Estuary,202,ollipheist,34-37,13,DOL.GS.GameNPC
+Shannon Estuary,202,rat boy,3-3,2,DOL.GS.GameNPC
+Shannon Estuary,202,solas,34-34,1,DOL.GS.GameNPC
+Shannon Estuary,202,spraggonix,25-26,7,DOL.GS.GameNPC
+Shannon Estuary,202,spraggonix elder,31-33,2,DOL.GS.GameNPC
+Shannon Estuary,202,srandamar,23-23,1,DOL.GS.GameNPC
+Shannon Estuary,202,walking rock,24-24,9,DOL.GS.GameNPC
+Shannon Estuary,202,water badger,21-23,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,blademaster,15-15,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,druid,18-18,5,DOL.GS.GameNPC
+Valley of Bri Leith,206,empyrean elder,41-44,3,DOL.GS.GameNPC
+Valley of Bri Leith,206,empyrean guardian,34-38,36,DOL.GS.GameNPC
+Valley of Bri Leith,206,empyrean keeper,23-25,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,empyrean orb,10-10,6,DOL.GS.GameNPC
+Valley of Bri Leith,206,empyrean overseer,37-39,15,DOL.GS.GameNPC
+Valley of Bri Leith,206,empyrean sentinel,25-29,4,DOL.GS.GameNPC
+Valley of Bri Leith,206,empyrean watcher,16-18,6,DOL.GS.GameNPC
+Valley of Bri Leith,206,empyrean wisp,13-15,11,DOL.GS.GameNPC
+Valley of Bri Leith,206,erhael,27-27,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,faerie drake,20-22,24,DOL.GS.GameNPC
+Valley of Bri Leith,206,faerie horse,18-23,17,DOL.GS.GameNPC
+Valley of Bri Leith,206,faerie steed,19-24,14,DOL.GS.GameNPC
+Valley of Bri Leith,206,fearan,15-15,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,fee lion,25-27,10,DOL.GS.GameNPC
+Valley of Bri Leith,206,fury sprite,14-16,5,DOL.GS.GameNPC
+Valley of Bri Leith,206,grass sheerie,13-15,15,DOL.GS.GameNPC
+Valley of Bri Leith,206,guardian hru,40-40,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,hill hound,18-20,5,DOL.GS.GameNPC
+Valley of Bri Leith,206,keeper rasa,26-26,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,mad changeling,27-29,16,DOL.GS.Scripts.Changeling
+Valley of Bri Leith,206,merman,18-18,4,DOL.GS.GameNPC
+Valley of Bri Leith,206,mikka,50-50,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,miner cucugar,13-13,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,niy the overseer,40-40,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,nymir,27-27,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,primrose,10-10,25,DOL.GS.GameNPC
+Valley of Bri Leith,206,rage wolf,31-32,8,DOL.GS.GameNPC
+Valley of Bri Leith,206,riocard,28-28,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,siog seeker,28-31,25,DOL.GS.GameNPC
+Valley of Bri Leith,206,siog waylayer,19-19,3,DOL.GS.GameNPC
+Valley of Bri Leith,206,sloithi,17-17,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,tric,25-25,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,veil wisp,11-13,19,DOL.GS.GameNPC
+Valley of Bri Leith,206,watcher rylie,19-19,1,DOL.GS.WatcherRylie
+Valley of Bri Leith,206,wilde,24-24,1,DOL.GS.GameNPC
+Valley of Bri Leith,206,wrath sprite,27-28,8,DOL.GS.GameNPC
+Connacht,207,alp luachra,29-31,12,DOL.GS.GameNPC
+Connacht,207,amadan,39-39,1,DOL.GS.GameNPC
+Connacht,207,amadan dubh,42-42,1,DOL.GS.GameNPC
+Connacht,207,anger sprite,11-13,25,DOL.GS.GameNPC
+Connacht,207,annoying lucradan,0-0,29,DOL.GS.GameNPC
+Connacht,207,azure idolater,24-25,8,DOL.GS.GameNPC
+Connacht,207,badger cub,0-1,17,DOL.GS.GameNPC
+Connacht,207,bocan,15-15,1,DOL.GS.GameNPC
+Connacht,207,bodachan sabhaill,2-4,4,DOL.GS.GameNPC
+Connacht,207,changeling,11-11,4,DOL.GS.Scripts.Changeling
+Connacht,207,chieftain ultan,15-15,1,DOL.GS.GameNPC
+Connacht,207,cluricaun,22-24,23,DOL.GS.GameNPC
+Connacht,207,cluricaun trip,7-9,8,DOL.GS.GameNPC
+Connacht,207,curmudgeon crab-catcher,7-7,5,DOL.GS.GameNPC
+Connacht,207,curmudgeon harvester,9-11,4,DOL.GS.GameNPC
+Connacht,207,daewain,15-15,1,DOL.GS.Daewain
+Connacht,207,faerie beetle,17-17,11,DOL.GS.GameNPC
+Connacht,207,famine,32-32,1,DOL.GS.GameNPC
+Connacht,207,feckless lucragan,4-4,10,DOL.GS.GameNPC
+Connacht,207,fishing bear forager,13-14,6,DOL.GS.GameNPC
+Connacht,207,follower of ultan,14-14,1,DOL.GS.GameNPC
+Connacht,207,ghoulie,20-22,1,DOL.GS.GameNPC
+Connacht,207,grumoz demon,10-11,4,DOL.GS.GameNPC
+Connacht,207,hitback dummy - right click to reset,36-50,2,DOL.GS.HitbackDummy
+Connacht,207,irewood sapling,21-22,11,DOL.GS.GameNPC
+Connacht,207,irewood seedling,4-5,1,DOL.GS.GameNPC
+Connacht,207,juliy the jester,15-15,1,DOL.GS.GameNPC
+Connacht,207,lough wolf,7-9,9,DOL.GS.GameNPC
+Connacht,207,lucan,6-7,1,DOL.GS.GameNPC
+Connacht,207,manes demon,7-8,5,DOL.GS.GameNPC
+Connacht,207,merucha,30-33,6,DOL.GS.GameNPC
+Connacht,207,orik,17-17,1,DOL.GS.GameNPC
+Connacht,207,parthanan,17-18,24,DOL.GS.Parthanan
+Connacht,207,phantom wickerman,28-30,5,DOL.GS.GameNPC;DOL.GS.NightSpawn
+Connacht,207,pikebane,22-22,1,DOL.GS.GameNPC
+Connacht,207,pookha,33-35,10,DOL.GS.GameNPC
+Connacht,207,rathil o'carolan,17-17,1,DOL.GS.GameNPC
+Connacht,207,siabra raider,37-39,8,DOL.GS.GameNPC
+Connacht,207,spraggonoll,7-9,6,DOL.GS.GameNPC
+Connacht,207,spykit,4-4,1,DOL.GS.GameNPC
+Connacht,207,total: 0 dps: 0,10-50,3,DOL.GS.DPSDummy
+Connacht,207,touched,39-39,1,DOL.GS.GameNPC
+Connacht,207,voice of the azure,27-27,6,DOL.GS.GameNPC
+Connacht,207,walking rock,24-24,1,DOL.GS.GameNPC
+Connacht,207,wild crouch,5-6,8,DOL.GS.GameNPC
+Connacht,207,wind ghoul,7-7,40,DOL.GS.NightSpawn
+Connacht,207,windaille,6-6,1,DOL.GS.GameNPC
+Connacht,207,young irewood,24-28,42,DOL.GS.GameNPC
+Mount Collory,210,aughisky,31-33,3,DOL.GS.GameNPC
+Mount Collory,210,faerie badger,32-34,6,DOL.GS.GameNPC
+Mount Collory,210,grovewood,38-40,6,DOL.GS.GameNPC
+Mount Collory,210,hillock changeling,35-37,30,DOL.GS.Scripts.Changeling
+Mount Collory,210,irewood,29-31,5,DOL.GS.GameNPC
+Mount Collory,210,irewood sapling,21-22,6,DOL.GS.GameNPC
+Mount Collory,210,mad changeling,27-29,13,DOL.GS.Scripts.Changeling
+Mount Collory,210,new mob,1-1,47,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardCorpseSummoner;DOL.GS.Keeps.GuardFighter;DOL.GS.Keeps.GuardLord
+Mount Collory,210,sett dweller,27-31,6,DOL.GS.GameNPC
+Mount Collory,210,sett matron,35-38,6,DOL.GS.GameNPC
+Mount Collory,210,sett protector,32-33,6,DOL.GS.GameNPC
+Breifine,212,bloodletter,48-49,4,DOL.GS.GameNPC
+Breifine,212,earthshaker,47-49,4,DOL.GS.GameNPC
+Breifine,212,evern,76-76,1,DOL.GS.Evern
+Breifine,212,grogan,46-47,3,DOL.GS.GameNPC
+Breifine,212,new mob,1-1,25,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardCorpseSummoner;DOL.GS.Keeps.GuardFighter;DOL.GS.Keeps.GuardLord;DOL.GS.Keeps.GuardStaticArcher
+Breifine,212,spectral manslayer,50-53,4,DOL.GS.GameNPC
+Breifine,212,umber bear,42-45,4,DOL.GS.GameNPC
+Emain Macha,214,amadan touched,29-34,2,DOL.GS.GameNPC
+Emain Macha,214,bean sidhe,39-41,4,DOL.GS.GameNPC
+Emain Macha,214,cliff beetle,31-37,4,DOL.GS.GameNPC
+Emain Macha,214,granny,48-50,18,DOL.GS.GameNPC
+Emain Macha,214,graugach,32-33,2,DOL.GS.GameNPC
+Emain Macha,214,grogan,46-47,26,DOL.GS.GameNPC
+Emain Macha,214,hillock changeling,35-37,3,DOL.GS.Scripts.Changeling
+Emain Macha,214,juvenile megafelid,35-38,2,DOL.GS.GameNPC
+Emain Macha,214,loghery man,46-46,15,DOL.GS.GameNPC
+Emain Macha,214,luch hunter,31-34,2,DOL.GS.GameNPC
+Emain Macha,214,new mob,1-1,24,DOL.GS.Keeps.GuardArcher;DOL.GS.Keeps.GuardCommander;DOL.GS.Keeps.GuardFighter;DOL.GS.Keeps.GuardLord;DOL.GS.Keeps.GuardMerchant
+Emain Macha,214,rage wolf,31-32,1,DOL.GS.GameNPC
+Emain Macha,214,roan stepper,29-32,1,DOL.GS.GameNPC
+Muire Tomb,221,frang,20-20,1,DOL.GS.GameNPC
+Muire Tomb,221,muire champion,19-20,7,DOL.GS.GameNPC
+Muire Tomb,221,muire herbalist,18-20,3,DOL.GS.GameNPC;DOL.GS.MuireHerbalist
+Muire Tomb,221,muire hero,19-21,2,DOL.GS.GameNPC
+Muire Tomb,221,mummy hag wizard,17-20,2,DOL.GS.GameNPC
+Muire Tomb,221,quillan muire,24-24,1,DOL.GS.QuillanMuire
+Spraggon Den,222,dramacus,30-30,1,DOL.GS.Dramacus
+Spraggon Den,222,ick,22-22,1,DOL.GS.Ick
+Spraggon Den,222,pit boss,23-25,10,DOL.GS.GameNPC
+Spraggon Den,222,ruckus,26-26,1,DOL.GS.Ruckus
+Spraggon Den,222,spraggon runner,21-23,10,DOL.GS.GameNPC
+Spraggon Den,222,spraggon springer,19-25,37,DOL.GS.GameNPC
+Spraggon Den,222,spraggonale,22-23,11,DOL.GS.GameNPC
+Spraggon Den,222,spraggonix,25-26,30,DOL.GS.GameNPC
+Spraggon Den,222,spraggonote,24-28,32,DOL.GS.GameNPC
+Spraggon Den,222,spriggit,26-26,1,DOL.GS.Spriggit
+Spraggon Den,222,tabor,28-28,1,DOL.GS.Tabor
+Spraggon Den,222,yadda,27-27,1,DOL.GS.Yadda
+Darkness Falls,249,ambassador mannam,65-65,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,behemoth,99-99,1,DOL.GS.Behemoth
+Darkness Falls,249,caisha,50-50,1,DOL.GS.GameNPC
+Darkness Falls,249,cambion,52-55,31,DOL.GS.GameNPC
+Darkness Falls,249,chamberlain,79-79,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chaosian,55-60,57,DOL.GS.GameNPC
+Darkness Falls,249,chthonian crawler,59-67,17,DOL.GS.GameNPC
+Darkness Falls,249,chthonic knight absax,70-70,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight aciel,59-62,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight ain,62-62,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight azea,70-70,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight babyzu,65-65,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight carabia,65-65,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight carnivon,64-64,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight exal,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight exte,60-60,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight ezpeth,66-66,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight fonath,74-74,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight gaapoler,72-72,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight haag,66-72,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight ibeko,60-60,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight marbos,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight obarus,60-60,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight olov,64-64,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight prosel,64-64,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight ronoro,66-66,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight tamuel,64-64,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight ukobat,66-66,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight vosoes,66-72,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight zaeber,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight zafan,67-67,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,chthonic knight zagal,70-70,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,clinging soul,42-42,26,DOL.GS.GameNPC
+Darkness Falls,249,condemned necyomancer,48-53,44,DOL.GS.GameNPC
+Darkness Falls,249,director kobil,53-53,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,duke alloc,75-75,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,duke aypol,75-75,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,duke bimure,75-75,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,duke eligar,75-75,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,duke harboris,67-75,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,duke sallis,67-75,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,duke satori,67-75,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,duke zepor,64-64,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,earl amagin,71-71,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,earl fenex,71-71,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,earl glassalab,71-71,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,earl ipostian,71-71,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,earl mercur,71-71,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,earl mermer,71-71,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,earl oraxus,71-71,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,earl vone,71-71,1,DOL.GS.GameNPC
+Darkness Falls,249,earl zh'alzhak,67-71,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,essence shredder,57-60,263,DOL.GS.GameNPC
+Darkness Falls,249,field marshal nebir,70-70,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,gatekeeper dommel,65-65,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,grand chancellor adremal,79-79,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,high lord baelerdoth,80-80,1,DOL.GS.HighLordBaelerdoth
+Darkness Falls,249,high lord baln,70-70,1,DOL.GS.HighLordBaln
+Darkness Falls,249,high lord oro,65-70,3,DOL.GS.HighLordOro;DOL.GS.HighLordOroClone
+Darkness Falls,249,high lord saeor,70-70,1,DOL.GS.HighLordSaeor
+Darkness Falls,249,inquisitor asil,66-66,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor bor,70-70,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor eciraum,66-66,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor factol,60-65,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor famuel,74-74,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor haap,70-70,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor hadis,65-65,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor haimir,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor hellos,59-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor irawn,60-60,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor lokis,60-60,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor medebo,60-60,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor morg,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor morrian,65-65,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor mucifen,64-64,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor nej,64-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor nifil,64-64,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor niloc,66-66,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor tlaw,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor yor,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor zaviben,72-72,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,inquisitor zazinol,72-72,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,lecherous gress,40-40,1,DOL.GS.GameNPC
+Darkness Falls,249,legion,83-83,1,DOL.GS.Scripts.Legion
+Darkness Falls,249,lieutenant gargantan,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,lieutenant loran,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,lieutenant persun,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mahr,54-59,35,DOL.GS.GameNPC
+Darkness Falls,249,malroch the cook,43-43,1,DOL.GS.GameNPC
+Darkness Falls,249,marquis almen,70-70,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,marquis chaosmar,73-73,2,DOL.GS.GameEpicNPC
+Darkness Falls,249,marquis dortaleon,73-73,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,marquis focalleste,73-73,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,marquis haurian,67-70,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,marquis sabonach,73-73,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,marquis scottiax,73-73,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,marquis valupa,73-73,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator axtanax,60-60,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator ezerak,65-67,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator felrath,65-67,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator konapher,74-74,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator laicanroth,67-67,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator lazorous,64-64,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator marbozer,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator namox,64-67,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator nianax,65-65,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator novinrac,64-64,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator odius,65-67,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator okabi,62-65,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator oprionach,74-74,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator oronor,66-66,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator phaxazis,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator samiol,74-74,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator taboku,66-66,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator uxybab,62-62,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator vorazax,72-72,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator vozoaz,72-72,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator xaabaro,68-68,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator xagalith,77-77,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator xakanos,64-64,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator xazbalor,70-70,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator yooginroth,72-72,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,mutilator zurabo,60-60,1,DOL.GS.GameEpicNPC
+Darkness Falls,249,nightmare,62-67,42,DOL.GS.GameNPC
+Darkness Falls,249,pale guardian,67-72,6,DOL.GS.GameEpicNPC;DOL.GS.GameNPC
+Darkness Falls,249,prince abdin,78-78,1,DOL.GS.PrinceAbdin
+Darkness Falls,249,prince asmoien,78-78,1,DOL.GS.PrinceAsmoien
+Darkness Falls,249,prince ba'alorien,78-78,1,DOL.GS.PrinceBaalorien
+Darkness Falls,249,princess nahemah,71-71,1,DOL.GS.PrincessNahemah
+Darkness Falls,249,soultorn albion alerion knight,43-43,2,DOL.GS.GameNPC
+Darkness Falls,249,soultorn albion dragon knight,50-51,2,DOL.GS.GameNPC
+Darkness Falls,249,soultorn albion gryphon knight,35-38,10,DOL.GS.GameNPC
+Darkness Falls,249,soultorn albion phoenix knight,40-44,10,DOL.GS.GameNPC
+Darkness Falls,249,soultorn albion protector,25-28,15,DOL.GS.GameNPC
+Darkness Falls,249,soultorn albion warder,30-30,7,DOL.GS.GameNPC
+Darkness Falls,249,soultorn hibernian grove protector,35-35,6,DOL.GS.GameNPC
+Darkness Falls,249,soultorn hibernian silver hand,40-44,24,DOL.GS.GameNPC
+Darkness Falls,249,soultorn hibernian wayfayer,25-28,19,DOL.GS.GameNPC
+Darkness Falls,249,soultorn norse einherjar,45-54,16,DOL.GS.GameNPC
+Darkness Falls,249,soultorn norse elding herra,45-45,1,DOL.GS.GameNPC
+Darkness Falls,249,soultorn norse flammen herra,43-43,2,DOL.GS.GameNPC
+Darkness Falls,249,soultorn norse flammen vakten,33-34,4,DOL.GS.GameNPC
+Darkness Falls,249,soultorn norse isen herra,40-45,5,DOL.GS.GameNPC
+Darkness Falls,249,soultorn norse isen vakten,30-33,6,DOL.GS.GameNPC
+Darkness Falls,249,soultorn norse skiltvakten,28-31,1,DOL.GS.GameNPC
+Darkness Falls,249,succubus,57-67,117,DOL.GS.GameNPC
+Darkness Falls,249,tormented necyomancer,50-55,15,DOL.GS.GameNPC
+Darkness Falls,249,umbral aegis,64-67,13,DOL.GS.GameNPC
+Darkness Falls,249,umbral hulk,56-65,21,DOL.GS.GameEpicNPC
+Darkness Falls,249,umbrood warrior,52-59,28,DOL.GS.GameNPC

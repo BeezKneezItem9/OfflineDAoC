@@ -3,7 +3,7 @@
 The newest version is first. For the full detail of every earlier update, see
 [docs/history/CHANGELOG-0.3-to-0.32b.md](docs/history/CHANGELOG-0.3-to-0.32b.md).
 
-## Coming in 0.35 / 0.35b (not released yet)
+## Coming in 0.4 / 0.4b (not released yet)
 
 These changes are being collected for the next download. They are **not** in the 0.34 / 0.34b
 downloads yet.
@@ -345,28 +345,26 @@ downloads yet.
   levels were 5+ off have their period levels. Bots grind the new camps, and the new monsters count for
   bounties and for the charm lists. The epic dungeons and Darkness Falls are unchanged. A lynx cub, a
   bodachan sabhaill and a mudman that stood inside Howth's walls are gone.
-- Classic quests (1.65 and classic Shrouded Isles) for players: 425 quests, from the original class epic
-  lines to the trainer and optional quests, with their recorded dialogue, rewards and experience, and the
-  quest NPCs and monsters the server lacked. Steps that need more than a conversation or a kill work too:
-  using an item at a place, reaching a place, trading a monster's drop to an NPC (kill tasks, repeatable),
-  choosing your reward by whispering its name, and more. Items an NPC hands you are re-issued if you lose
-  them, and quest items can be dropped. Each quest in your journal shows its next step with its own red
-  marker on the map.
-- Red map markers really are red now for every quest. The game client only drew bounty markers red;
-  reputation quests, the Sluaghbinder epic and the classic quests were drawn as green dots that looked like
-  bots. Every step with a place shows a red dot, including the spot where a quest monster will appear.
-- The Quest Journal's useless BOUNTY MAP button is now QUEST GUIDE. Each click shows the next page of your
-  active quests' walkthroughs, then your next quest: the Allakhazam quest guides as they read in 2001-2004
-  (period copies for 418 of 442 quests; the rest from today's page with later-patch notes removed). Quests
-  made for this server show their own journal text. /questguide <quest name> opens any classic quest's
-  guide. /task on a guard, merchant or crafter asks it for a task, as in the original game.
-- 45 more classic quests are in (442 quests, 1,282 quest rows with the per-class versions). Their missing quest NPCs and monsters are placed from
-  the walkthroughs, Warcry spoilers and period bestiaries. Kill-task monsters and the creatures a quest
-  collects from live in camps of six to eight that bots grind too. "Speak the words" steps work: type the
-  words in /say at the place, at night where the walkthrough says so. Reward items that no period page
-  records yet will follow.
+- Classic quests (1.65 and classic Shrouded Isles) for players: **448 quests** (1,302 quest versions, counting the
+  per-class versions of the epic and trainer quests), from the original class epic lines to the trainer, optional
+  and kill-task quests, with their recorded dialogue, experience and the quest NPCs and monsters the server
+  lacked (placed from the period walkthroughs, Warcry spoilers and period bestiaries). Steps that need more than a
+  conversation or a kill work too: using an item at a place, reaching a place, trading a monster's drop to an NPC
+  (kill tasks, repeatable), choosing your reward by whispering its name, typing the words of power in /say at the
+  right place (at night where the walkthrough says so), and more. Items an NPC hands you are re-issued if you lose
+  them, and quest items can be dropped. Kill-task monsters and the creatures a quest collects from live in camps of
+  six to eight that bots grind too. **Quest rewards are still in progress:** many reward items are not in yet and
+  are added as their period item pages are collected.
+- Red map markers for every quest. Each quest in your journal shows its next step with its own red marker on the
+  map, including the spot where a quest monster will appear. The game client used to draw only bounty markers
+  red; reputation quests, the Sluaghbinder epic and the classic quests showed green dots that looked like bots.
+- Quest Guide: /questguide (or /task with no guard, merchant or crafter targeted) shows the Allakhazam walkthrough
+  of your active quests as it read in 2001-2004 (period copies for 424 of 448 quests; the rest from today's page
+  with later-patch notes removed), a page at a time. Quests made for this server show their own journal text.
+  /questguide <quest name> [page] opens any classic quest's guide. /task on a guard, merchant or crafter asks it
+  for a task, as in the original game; /task status shows your current task.
 
-**Sluaghbinder (0.35b)**
+**Sluaghbinder (0.4b)**
 - The Epic Spells page shows only the raise ranks whose quest you have finished.
 - Muirenn's quests get a red map marker like bounties: on the target while hunting and on Muirenn
   after the kill.
@@ -401,6 +399,16 @@ downloads yet.
 - The server log notes every minute with a stall of a second or more (slowest stage, garbage
   collection pause, the slowest AI turns and a likely cause), and the very noisy short AI-turn lines
   are only written for turns of 100 ms or more.
+
+**For modders**
+- `research/period-data/`: the period (2001-2004) research behind the classic quests and the restored monster
+  populations: every script, the quest specs and ledgers, spawn and bestiary plans, radar sighting coordinates
+  and the Wayback capture indexes. Raw copies of other websites' pages stay out of the repository; the fetch
+  scripts rebuild them locally (see its README).
+- The navmesh builder (`source/development-tools/OpenDAoC-BuildNav`) builds every point of each zone wall (bots
+  used to cross zone edges and climb mountains through gaps), keeps doors and the far-LOD stand-ins from sealing
+  doorways, and matches zone-edge terrain to the neighbouring zone, so the rebuilt meshes follow the paths players
+  can walk.
 
 **Credits**
 - Thanks to the [stefanrows/OfflineDAoC](https://github.com/stefanrows/OfflineDAoC) fork (Stefan Rows

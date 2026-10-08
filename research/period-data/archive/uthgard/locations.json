@@ -1,0 +1,600 @@
+{
+ "Satefe": [
+  {
+   "zone": "Lough Derg",
+   "zone_id": "1",
+   "monster_id": "1956",
+   "locs": [
+    [
+     64025,
+     14863
+    ],
+    [
+     54000,
+     24327
+    ],
+    [
+     62878,
+     15622
+    ],
+    [
+     63007,
+     15045
+    ],
+    [
+     63253,
+     13940
+    ],
+    [
+     62169,
+     16672
+    ]
+   ]
+  }
+ ],
+ "Spicket": [
+  {
+   "zone": "Lough Derg",
+   "zone_id": "1",
+   "monster_id": "20666",
+   "locs": [
+    [
+     63253,
+     13940
+    ],
+    [
+     64025,
+     14863
+    ],
+    [
+     62169,
+     16672
+    ],
+    [
+     62878,
+     15622
+    ],
+    [
+     63007,
+     15045
+    ]
+   ]
+  },
+  {
+   "zone": "Connacht",
+   "zone_id": "4",
+   "monster_id": "5760",
+   "locs": [
+    [
+     59648,
+     15744
+    ]
+   ]
+  }
+ ],
+ "Muir": [
+  {
+   "zone": "Shannon Estuary",
+   "zone_id": "2",
+   "monster_id": "5242",
+   "locs": [
+    [
+     52514,
+     27848
+    ],
+    [
+     9664,
+     6784
+    ],
+    [
+     10043,
+     6795
+    ]
+   ]
+  }
+ ],
+ "Scuttle": [
+  {
+   "zone": "Silvermine Mountains",
+   "zone_id": "3",
+   "monster_id": "2229",
+   "locs": [
+    [
+     13200,
+     52250
+    ],
+    [
+     15232,
+     58560
+    ],
+    [
+     6575,
+     54291
+    ],
+    [
+     7811,
+     54635
+    ],
+    [
+     24374,
+     50293
+    ],
+    [
+     18530,
+     45407
+    ],
+    [
+     19859,
+     45934
+    ],
+    [
+     7230,
+     57270
+    ],
+    [
+     25858,
+     48767
+    ],
+    [
+     26290,
+     44550
+    ],
+    [
+     26749,
+     42941
+    ],
+    [
+     15694,
+     52756
+    ],
+    [
+     9602,
+     49792
+    ],
+    [
+     24768,
+     43456
+    ],
+    [
+     20801,
+     47614
+    ],
+    [
+     25537,
+     41988
+    ],
+    [
+     6167,
+     56702
+    ],
+    [
+     20098,
+     47171
+    ],
+    [
+     12823,
+     50702
+    ],
+    [
+     25197,
+     51960
+    ],
+    [
+     7360,
+     53440
+    ],
+    [
+     14336,
+     59328
+    ],
+    [
+     5556,
+     53777
+    ],
+    [
+     8034,
+     56262
+    ],
+    [
+     15177,
+     53394
+    ],
+    [
+     35661,
+     25712
+    ],
+    [
+     10051,
+     51392
+    ],
+    [
+     10919,
+     45141
+    ],
+    [
+     5494,
+     64264
+    ],
+    [
+     18367,
+     46480
+    ],
+    [
+     20668,
+     39109
+    ],
+    [
+     25856,
+     43458
+    ],
+    [
+     21378,
+     54458
+    ],
+    [
+     17728,
+     53888
+    ],
+    [
+     25230,
+     38523
+    ],
+    [
+     11338,
+     50450
+    ],
+    [
+     11474,
+     52626
+    ],
+    [
+     20937,
+     46127
+    ],
+    [
+     7355,
+     55857
+    ],
+    [
+     24384,
+     49920
+    ]
+   ]
+  }
+ ],
+ "Withe": [
+  {
+   "zone": "Connacht",
+   "zone_id": "4",
+   "monster_id": "5123",
+   "locs": [
+    [
+     31601,
+     6014
+    ],
+    [
+     59648,
+     15744
+    ]
+   ]
+  }
+ ],
+ "Alsandair Muire": [
+  {
+   "zone": "Muire Tomb",
+   "zone_id": "6",
+   "monster_id": "273",
+   "locs": []
+  }
+ ],
+ "Beare Muire": [
+  {
+   "zone": "Muire Tomb",
+   "zone_id": "6",
+   "monster_id": "608",
+   "locs": []
+  }
+ ],
+ "Glare": [
+  {
+   "zone": "Valley of Bri Leith",
+   "zone_id": "7",
+   "monster_id": "4295",
+   "locs": [
+    [
+     34453,
+     33216
+    ]
+   ]
+  }
+ ],
+ "Lusmorebane": [
+  {
+   "zone": "Valley of Bri Leith",
+   "zone_id": "7",
+   "monster_id": "5288",
+   "locs": []
+  }
+ ],
+ "Brannigan": [
+  {
+   "zone": "Lough Gur",
+   "zone_id": "8",
+   "monster_id": "384",
+   "locs": [
+    [
+     55998,
+     16970
+    ],
+    [
+     40941,
+     61280
+    ]
+   ]
+  }
+ ],
+ "Lunaris primus pilus": [
+  {
+   "zone": "Llyn Barfog",
+   "zone_id": "9",
+   "monster_id": "1521",
+   "locs": [
+    [
+     17476,
+     41431
+    ]
+   ]
+  }
+ ],
+ "bird-eating frog": [
+  {
+   "zone": "Cruachan Gorge",
+   "zone_id": "12",
+   "monster_id": "3957",
+   "locs": [
+    [
+     17095,
+     48100
+    ],
+    [
+     11630,
+     55214
+    ],
+    [
+     18863,
+     44740
+    ]
+   ]
+  },
+  {
+   "zone": "Mount Collory",
+   "zone_id": "34",
+   "monster_id": "17563",
+   "locs": []
+  }
+ ],
+ "Thistle": [
+  {
+   "zone": "Cruachan Gorge",
+   "zone_id": "12",
+   "monster_id": "9639",
+   "locs": []
+  }
+ ],
+ "fanged sinach": [
+  {
+   "zone": "Cliffs of Moher",
+   "zone_id": "14",
+   "monster_id": "16274",
+   "locs": [
+    [
+     3709,
+     14016
+    ]
+   ]
+  }
+ ],
+ "Dob": [
+  {
+   "zone": "Bog of Cullen",
+   "zone_id": "16",
+   "monster_id": "1131",
+   "locs": []
+  }
+ ],
+ "Neese": [
+  {
+   "zone": "Bog of Cullen",
+   "zone_id": "16",
+   "monster_id": "2390",
+   "locs": []
+  }
+ ],
+ "Archivist Borath": [
+  {
+   "zone": "Darkness Falls",
+   "zone_id": "17",
+   "monster_id": "4393",
+   "locs": []
+  }
+ ],
+ "Blacktooth": [
+  {
+   "zone": "Snowdonia",
+   "zone_id": "18",
+   "monster_id": "955",
+   "locs": []
+  }
+ ],
+ "Shaman Saelonna": [
+  {
+   "zone": "Snowdonia",
+   "zone_id": "18",
+   "monster_id": "9809",
+   "locs": [
+    [
+     21914,
+     46564
+    ]
+   ]
+  }
+ ],
+ "Tylwyth Teg rover": [
+  {
+   "zone": "Snowdonia",
+   "zone_id": "18",
+   "monster_id": "424",
+   "locs": []
+  },
+  {
+   "zone": "Pennine Mountains",
+   "zone_id": "20",
+   "monster_id": "8794",
+   "locs": []
+  }
+ ],
+ "Worry Wort": [
+  {
+   "zone": "Snowdonia",
+   "zone_id": "18",
+   "monster_id": "13457",
+   "locs": []
+  }
+ ],
+ "great brown drake": [
+  {
+   "zone": "Pennine Mountains",
+   "zone_id": "20",
+   "monster_id": "7883",
+   "locs": []
+  }
+ ],
+ "tylwyth teg rover": [
+  {
+   "zone": "Pennine Mountains",
+   "zone_id": "20",
+   "monster_id": "945",
+   "locs": []
+  }
+ ],
+ "Rathis": [
+  {
+   "zone": "Vale of Mularn",
+   "zone_id": "33",
+   "monster_id": "8926",
+   "locs": [
+    [
+     37824,
+     33408
+    ],
+    [
+     34243,
+     27514
+    ]
+   ]
+  }
+ ],
+ "Anord": [
+  {
+   "zone": "Mount Collory",
+   "zone_id": "34",
+   "monster_id": "4491",
+   "locs": []
+  }
+ ],
+ "vanisher": [
+  {
+   "zone": "Mount Collory",
+   "zone_id": "34",
+   "monster_id": "790",
+   "locs": []
+  }
+ ],
+ "Centurion Favius": [
+  {
+   "zone": "Cornwall",
+   "zone_id": "37",
+   "monster_id": "5939",
+   "locs": [
+    [
+     53953,
+     50276
+    ]
+   ]
+  }
+ ],
+ "Erich": [
+  {
+   "zone": "Cornwall",
+   "zone_id": "37",
+   "monster_id": "5943",
+   "locs": []
+  }
+ ],
+ "Crotus Princeps Praetorii": [
+  {
+   "zone": "Catacombs of Cardova",
+   "zone_id": "38",
+   "monster_id": "2135",
+   "locs": []
+  }
+ ],
+ "Emperor Seleucus": [
+  {
+   "zone": "Catacombs of Cardova",
+   "zone_id": "38",
+   "monster_id": "19618",
+   "locs": []
+  }
+ ],
+ "Olivarius Princeps Praetorii": [
+  {
+   "zone": "Catacombs of Cardova",
+   "zone_id": "38",
+   "monster_id": "6903",
+   "locs": []
+  }
+ ],
+ "Strykel": [
+  {
+   "zone": "Muspelheim",
+   "zone_id": "44",
+   "monster_id": "22235",
+   "locs": []
+  }
+ ],
+ "King Smugluk": [
+  {
+   "zone": "Black Mountains North",
+   "zone_id": "46",
+   "monster_id": "7723",
+   "locs": [
+    [
+     18710,
+     27019
+    ],
+    [
+     4731,
+     38025
+    ]
+   ]
+  }
+ ],
+ "Mootang": [
+  {
+   "zone": "Black Mountains North",
+   "zone_id": "46",
+   "monster_id": "4630",
+   "locs": [
+    [
+     17793,
+     26731
+    ],
+    [
+     4731,
+     38025
+    ]
+   ]
+  }
+ ]
+}

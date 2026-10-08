@@ -83,6 +83,8 @@ internal sealed partial class MainForm : Form
     private readonly ComboBox _playerXpRate = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 108 };
     private readonly ComboBox _botXpRate = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 108 };
     private readonly CheckBox _makeMeGm = new() { Text = "Make Me a GM", AutoSize = true, ForeColor = DaocTheme.Parchment, Font = new Font("Georgia", 9f, FontStyle.Bold) };
+    private readonly CheckBox _rvrAnnouncements = new() { Text = "RvR and battleground announcements", AutoSize = true, Checked = true, ForeColor = DaocTheme.Parchment, Font = new Font("Georgia", 9f, FontStyle.Bold) };
+    private readonly CheckBox _pveAnnouncements = new() { Text = "PvE realm event announcements", AutoSize = true, Checked = true, ForeColor = DaocTheme.Parchment, Font = new Font("Georgia", 9f, FontStyle.Bold) };
     private readonly Label _xpSettingsStatus = new()
     {
         AutoSize = true,
@@ -113,6 +115,7 @@ internal sealed partial class MainForm : Form
     private readonly ComboBox _rvrRealm = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 120 };
     private readonly TextBox _rvrSearch = new() { Width = 240, PlaceholderText = "Search RvR name, zone or task" };
     private RvrWorldSnapshot? _rvrWorld;
+    private readonly BattlegroundsPanel _battlegroundsPanel = new();
     private bool _rvrServerRunning;
     private string _rvrSortProperty = "Name";
     private bool _rvrSortAscending = true;
@@ -490,11 +493,14 @@ internal sealed partial class MainForm : Form
         groups.Controls.Add(BuildActiveGroupsPanel());
         var rvr = new TabPage("Active RvR") { BackColor = DaocTheme.Panel, ForeColor = DaocTheme.Text };
         rvr.Controls.Add(BuildActiveRvrPanel());
-        var xpSettings = new TabPage("XP Settings") { BackColor = DaocTheme.Panel, ForeColor = DaocTheme.Text };
+        var xpSettings = new TabPage("Options") { BackColor = DaocTheme.Panel, ForeColor = DaocTheme.Text };
         xpSettings.Controls.Add(BuildXpSettingsPanel());
         tabs.TabPages.Add(population);
         tabs.TabPages.Add(groups);
         tabs.TabPages.Add(rvr);
+        var battlegrounds = new TabPage("Battlegrounds") { BackColor = DaocTheme.Panel, ForeColor = DaocTheme.Text };
+        battlegrounds.Controls.Add(_battlegroundsPanel);
+        tabs.TabPages.Add(battlegrounds);
         var events = new TabPage("Realm Events") { BackColor = DaocTheme.Panel, ForeColor = DaocTheme.Text };
         events.Controls.Add(BuildRealmEventsPanel());
         tabs.TabPages.Add(events);
@@ -518,7 +524,7 @@ internal sealed partial class MainForm : Form
         var surface = new InsetPanel
         {
             Dock = DockStyle.Top,
-            Height = 274,
+            Height = 354,
             Margin = new Padding(18),
             Padding = new Padding(20),
             Accent = DaocTheme.Gold,
@@ -527,7 +533,7 @@ internal sealed partial class MainForm : Form
         {
             Dock = DockStyle.Fill,
             ColumnCount = 3,
-            RowCount = 5,
+            RowCount = 7,
             BackColor = Color.Transparent,
         };
         layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 210));
@@ -537,13 +543,15 @@ internal sealed partial class MainForm : Form
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 48));
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 48));
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
         layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
         var titlePanel = new Panel { Dock = DockStyle.Fill, BackColor = Color.Transparent };
         titlePanel.Controls.Add(new Label
         {
             AutoSize = true,
-            Text = "EXPERIENCE RATE CONTROL",
+            Text = "OPTIONS",
             Font = new Font("Georgia", 13f, FontStyle.Bold),
             ForeColor = DaocTheme.GoldLight,
             Location = new Point(0, 12),
@@ -563,7 +571,15 @@ internal sealed partial class MainForm : Form
         layout.SetColumnSpan(_makeMeGm, 2);
         layout.Controls.Add(XpRateDescription("Applies to your account at the next server startup."), 2, 3);
         _makeMeGm.CheckedChanged += async (_, _) => await SaveGmSettingAsync();
-        layout.Controls.Add(_xpSettingsStatus, 0, 4);
+        layout.Controls.Add(_rvrAnnouncements, 0, 4);
+        layout.SetColumnSpan(_rvrAnnouncements, 2);
+        layout.Controls.Add(XpRateDescription("Screen and chat announcements to every realm when frontier or battleground keeps and relics fall, or sieges start."), 2, 4);
+        _rvrAnnouncements.CheckedChanged += async (_, _) => await SaveAnnouncementSettingAsync();
+        layout.Controls.Add(_pveAnnouncements, 0, 5);
+        layout.SetColumnSpan(_pveAnnouncements, 2);
+        layout.Controls.Add(XpRateDescription("Screen announcements when realm raids form, and to every realm when a final boss (epic dungeons, Summoner's Hall, Darkness Falls) is defeated."), 2, 5);
+        _pveAnnouncements.CheckedChanged += async (_, _) => await SaveAnnouncementSettingAsync();
+        layout.Controls.Add(_xpSettingsStatus, 0, 6);
         layout.SetColumnSpan(_xpSettingsStatus, 3);
         surface.Controls.Add(layout);
         return surface;
@@ -1248,6 +1264,7 @@ internal sealed partial class MainForm : Form
             _groups.AddRange(snapshot.Groups);
             _rvrWorld = snapshot.RvrWorld;
             _rvrServerRunning = snapshot.ServerState.Equals("Running", StringComparison.OrdinalIgnoreCase);
+            _battlegroundsPanel.Show(_rvrWorld?.Battlegrounds, _rvrServerRunning);
             bool snapshotStarting = snapshot.ServerState.Equals("Starting", StringComparison.OrdinalIgnoreCase);
             string displayedServerState = _stoppingServer
                 ? "Stopping…"
@@ -1429,14 +1446,18 @@ internal sealed partial class MainForm : Form
             _botXpRate.Enabled = editable;
             _makeMeGm.Checked = snapshot.MakeMeGm;
             _makeMeGm.Enabled = editable;
+            _rvrAnnouncements.Checked = snapshot.RvrAnnouncements;
+            _rvrAnnouncements.Enabled = editable;
+            _pveAnnouncements.Checked = snapshot.PveAnnouncements;
+            _pveAnnouncements.Enabled = editable;
             if (_savingXpRates)
             {
                 _xpSettingsStatus.ForeColor = DaocTheme.Success;
                 return;
             }
             _xpSettingsStatus.Text = editable
-                ? "Server stopped — choose a rate to save it for the next startup."
-                : "XP RATE LOCKED — stop the server before changing these settings.";
+                ? "Server stopped — changes are saved for the next startup."
+                : "OPTIONS LOCKED — stop the server before changing these settings.";
             _xpSettingsStatus.ForeColor = editable ? DaocTheme.Success : DaocTheme.Muted;
         }
         finally
@@ -1485,6 +1506,68 @@ internal sealed partial class MainForm : Form
             _savingXpRates = false;
             await RefreshDashboardAsync();
         }
+    }
+
+    private async Task SaveAnnouncementSettingAsync()
+    {
+        if (_loadingXpRates || _savingXpRates) return;
+        bool rvr = _rvrAnnouncements.Checked;
+        bool pve = _pveAnnouncements.Checked;
+        if (IsServerRunning() || FindExactServerProcess() is not null)
+        {
+            MessageBox.Show(this, "Stop the server before changing announcements.", "Server is running");
+            await RefreshDashboardAsync();
+            return;
+        }
+        _savingXpRates = true;
+        _rvrAnnouncements.Enabled = _pveAnnouncements.Enabled = _makeMeGm.Enabled = _playerXpRate.Enabled = _botXpRate.Enabled = _startButton.Enabled = false;
+        _xpSettingsStatus.Text = "APPLYING ANNOUNCEMENT SETTINGS…";
+        _xpSettingsStatus.ForeColor = DaocTheme.Success;
+        try { await Task.Run(() => PersistAnnouncementSettings(rvr, pve)); }
+        catch (Exception ex) { MessageBox.Show(this, ex.Message, "Unable to save announcement setting"); }
+        finally { _savingXpRates = false; await RefreshDashboardAsync(); }
+    }
+
+    // Two switches (owner 2026-10-07): RvR and battleground, and PvE realm events, both default on. The single
+    // game_wide_announcements switch they replace is removed.
+    private void PersistAnnouncementSettings(bool rvr, bool pve)
+    {
+        if (IsServerRunning() || FindExactServerProcess() is not null)
+            throw new InvalidOperationException("The server must be fully stopped.");
+        if (!File.Exists(_database))
+            throw new InvalidOperationException("The prepared world database is missing.");
+        using var connection = new SQLiteConnection($"Data Source={_database};Version=3;Pooling=False;Default Timeout=10");
+        connection.Open();
+        using var transaction = connection.BeginTransaction();
+        using var command = connection.CreateCommand();
+        command.Transaction = transaction;
+        command.CommandText = """
+            INSERT INTO ServerProperty (Category, `Key`, Description, DefaultValue, Value, LastTimeRowUpdated, ServerProperty_ID)
+            VALUES ('autonomous', @key, @description, 'True', @value, @updated, '')
+            ON CONFLICT(`Key`) DO UPDATE SET
+                Value=excluded.Value,
+                LastTimeRowUpdated=excluded.LastTimeRowUpdated
+            """;
+        var key = command.Parameters.AddWithValue("@key", "");
+        var description = command.Parameters.AddWithValue("@description", "");
+        var value = command.Parameters.AddWithValue("@value", "");
+        command.Parameters.AddWithValue("@updated", DateTime.UtcNow.ToString("O"));
+        foreach (var (name, text, on) in new[]
+        {
+            ("rvr_battleground_announcements", "RvR and battleground announcements (keeps, relics, sieges), set in the Offline DAoC launcher.", rvr),
+            ("pve_realm_event_announcements", "PvE realm event announcements (raids forming, raid final bosses), set in the Offline DAoC launcher.", pve),
+        })
+        {
+            key.Value = name;
+            description.Value = text;
+            value.Value = on ? "True" : "False";
+            command.ExecuteNonQuery();
+        }
+        using var retire = connection.CreateCommand();
+        retire.Transaction = transaction;
+        retire.CommandText = "DELETE FROM ServerProperty WHERE `Key`='game_wide_announcements'";
+        retire.ExecuteNonQuery();
+        transaction.Commit();
     }
 
     private async Task SaveGmSettingAsync()
@@ -1777,7 +1860,21 @@ internal sealed partial class MainForm : Form
             gm.CommandText = "SELECT Value FROM offline_local_options WHERE Key='MakeMeGM'";
             makeMeGm = string.Equals(gm.ExecuteScalar()?.ToString(), "true", StringComparison.OrdinalIgnoreCase);
         }
-        return new DashboardSnapshot(serverState, bots, groups, active, memoryMb, botAiDelay, playerXpRate, botXpRate, makeMeGm, ReadRvrWorld());
+        bool rvrAnnouncements = ReadSwitch(connection, "rvr_battleground_announcements");
+        bool pveAnnouncements = ReadSwitch(connection, "pve_realm_event_announcements");
+        return new DashboardSnapshot(serverState, bots, groups, active, memoryMb, botAiDelay, playerXpRate, botXpRate, makeMeGm, ReadRvrWorld(),
+            rvrAnnouncements, pveAnnouncements);
+    }
+
+    // Anything but an explicit "false" (including a missing row) reads as on.
+    private static bool ReadSwitch(SQLiteConnection connection, string key)
+    {
+        if (!TableExists(connection, "ServerProperty"))
+            return true;
+        using var command = connection.CreateCommand();
+        command.CommandText = "SELECT Value FROM ServerProperty WHERE `Key`=@key LIMIT 1";
+        command.Parameters.AddWithValue("@key", key);
+        return !string.Equals(command.ExecuteScalar()?.ToString(), "false", StringComparison.OrdinalIgnoreCase);
     }
 
     private static double ReadServerRate(SQLiteConnection connection, string key, double fallback)
@@ -2016,6 +2113,8 @@ internal sealed partial class MainForm : Form
                 ? _auctionSortAscending ? SortOrder.Ascending : SortOrder.Descending
                 : SortOrder.None;
         }
+
+        bool allowSluaghbinder = SluaghbinderEnabled(connection, transaction);
     }
 
     // "VERSION 0.34b" with the custom Sluaghbinder class (the default), "VERSION 0.34" in the
@@ -2076,7 +2175,6 @@ internal sealed partial class MainForm : Form
             while (reader.Read()) reserved.Add(reader.GetString(0));
         }
 
-        bool allowSluaghbinder = SluaghbinderEnabled(connection, transaction);
         var identities = new List<BotCharacterGenerator.Identity>(count);
         for (int index = 0; index < count; index++)
         {
@@ -3116,7 +3214,8 @@ internal sealed partial class MainForm : Form
         public string MemberRole { get; set; } = string.Empty;
     }
     private sealed record DashboardSnapshot(string ServerState, List<BotRow> Bots, List<GroupRow> Groups,
-        int Active, double ServerMemoryMb, BotAiDelayReport? BotAiDelay, double PlayerXpRate, double BotXpRate, bool MakeMeGm = false, RvrWorldSnapshot? RvrWorld = null);
+        int Active, double ServerMemoryMb, BotAiDelayReport? BotAiDelay, double PlayerXpRate, double BotXpRate, bool MakeMeGm = false, RvrWorldSnapshot? RvrWorld = null,
+        bool RvrAnnouncements = true, bool PveAnnouncements = true);
 
     private sealed record LiveBotStatus(long BotId, int Level, string ZoneName, string Activity,
         string CurrentGoal, string TargetName, string TravelDestination, string ObjectiveProgress,
@@ -3139,14 +3238,15 @@ internal sealed partial class MainForm : Form
              State.StartsWith("ESCORT", StringComparison.OrdinalIgnoreCase) ||
              State.StartsWith("DROPPED", StringComparison.OrdinalIgnoreCase) ||
              State.StartsWith("Under attack", StringComparison.OrdinalIgnoreCase));
-        public string Marker => Kind == "Dragon" ? "◆ DRAGON" : Kind == "Epic dungeon" ? "◆ DUNGEON" : Kind == "Relic" ? "◆ RELIC" : Kind == "Relic keep" ? "▣ RELIC KEEP" : "▣ KEEP";
+        public string Marker => Kind == "Dragon" ? "◆ DRAGON" : Kind == "Epic dungeon" ? "◆ DUNGEON" : Kind == "Neutral raid" ? "◆ NEUTRAL RAID" : Kind == "Relic" ? "◆ RELIC" : Kind == "Relic keep" ? "▣ RELIC KEEP" : "▣ KEEP";
         // Compatibility with the last-known JSON generated by older servers.
         // Current publishers filter by the authoritative server keep flag.
         public bool IsProtectedPortal => Kind.Equals("Portal keep", StringComparison.OrdinalIgnoreCase) ||
             Name.EndsWith("Portal Keep", StringComparison.OrdinalIgnoreCase);
     }
     private sealed record EventParticipant(string EventId, string GroupId, string Name, string Realm, string Location, string Activity, int X, int Y, int Z);
-    private sealed record RvrWorldSnapshot(DateTime UpdatedUtc, bool Running, List<RvrObjective> Objectives, List<EventParticipant>? Participants = null);
+    private sealed record RvrWorldSnapshot(DateTime UpdatedUtc, bool Running, List<RvrObjective> Objectives, List<EventParticipant>? Participants = null,
+        List<BattlegroundsPanel.Status>? Battlegrounds = null);
 
     private sealed record XpRateOption(double Multiplier, string Label)
     {
