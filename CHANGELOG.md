@@ -275,6 +275,13 @@ downloads yet.
 - Bots staged at their realm's second border keep (Druim Cain, Snowdonia Fortress, Vindsaul Faste) walk into
   the frontier through that keep's gate. Frontier medallions are only sold at the first border keep, and
   Hibernian siege recruits at Druim Cain used to stand still for a quarter of an hour trying to reach one.
+- Siege armies move as full groups. Bots that answer a siege, a defense or a relic battle on their own are
+  formed into parties of eight with the other nearby recruits of the same side, so attackers and defenders
+  travel and fight as groups instead of one by one.
+- Every side goes after a stolen relic wherever it is: the thieves escort it home, and the defenders and the
+  third realm chase it down, whether it is carried with an escort, carried alone or lying on the ground. This
+  now also happens when the relic is snatched before the siege battle has formally begun (that used to end
+  the event and send everyone home).
 
 **World**
 - Bots cross from zone to zone only where real ground meets, so long trips (for example from Hibernia's
