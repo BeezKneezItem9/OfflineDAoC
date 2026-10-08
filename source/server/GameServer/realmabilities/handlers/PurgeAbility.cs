@@ -99,7 +99,7 @@ namespace DOL.GS.RealmAbilities
                 if (e.HasPositiveEffect)
                     continue;
 
-                if (e is ECSImmunityEffect)
+                if (e is ECSImmunityEffect or ManaRootsECSEffect)
                     continue;
 
                 effectsToRemove.Add(e);

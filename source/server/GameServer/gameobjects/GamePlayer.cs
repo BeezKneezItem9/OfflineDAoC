@@ -2337,7 +2337,12 @@ namespace DOL.GS
 
         protected override int GetPowerRegenerationInterval()
         {
-            return GetHealthAndPowerRegenerationInterval();
+            // Mana Roots restores the ordinary out-of-combat cadence, using the
+            // unchanged native amount calculator for every legitimate source.
+            // Health and the actual combat state are deliberately unaffected.
+            return ManaRoots.IsRestoring(this)
+                ? ClassicRestRegeneration.HealthAndPowerInterval(IsSitting, false)
+                : GetHealthAndPowerRegenerationInterval();
         }
 
         protected override int GetEnduranceRegenerationInterval()
@@ -3420,6 +3425,7 @@ namespace DOL.GS
                 // Copy-on-write.
                 List<(SpellLine, List<Skill>)> newList = [.. _usableListSpells];
                 GamePlayerUtils.UpdateUsableListSpells(this, newList);
+                ManaRoots.AppendUsableSpells(this, newList);
                 _usableListSpells = newList;
                 return newList;
             }
@@ -3458,6 +3464,8 @@ namespace DOL.GS
         {
             // refresh specs
             LoadClassSpecializations(sendMessages);
+
+            ManaRoots.GrantTo(this);
 
             // lock specialization while refreshing...
             lock (_specializationLock)
@@ -7712,6 +7720,10 @@ namespace DOL.GS
         /// <returns>true if mounted successfully or false if not</returns>
         public virtual bool MountSteed(GameNPC steed, bool forced)
         {
+            // A voluntary taxi/steed ride must not bypass the self-root's risk.
+            if (!forced && ManaRoots.ActiveEffect(this) != null)
+                return false;
+
             // Sanity 'coherence' checks
             if (Steed != null)
                 if (!DismountSteed(forced))

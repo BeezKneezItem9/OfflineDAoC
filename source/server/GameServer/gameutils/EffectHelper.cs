@@ -53,6 +53,8 @@ namespace DOL.GS
                     return eEffect.AblativeArmor;
                 case eSpellType.MeleeDamageBuff:
                     return eEffect.MeleeDamageBuff;
+                case eSpellType.ManaRoots:
+                    return eEffect.ManaRoots;
                 case eSpellType.ParryBuff:
                     return eEffect.ParryBuff;
                 case eSpellType.CombatSpeedBuff:

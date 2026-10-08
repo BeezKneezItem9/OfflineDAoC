@@ -157,6 +157,7 @@ namespace DOL.GS
         SpeedOfSound,
         Ichor,
         // Generic parry chance buff (e.g. the Sluaghbinder's Barrow Deflection).
-        ParryBuff
+        ParryBuff,
+        ManaRoots
     }
 }
