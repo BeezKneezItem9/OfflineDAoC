@@ -49,17 +49,3 @@ misses is lost. Scope: Classic, Shrouded Isles and Trials of Atlantis as they st
 | `../quests/quest_guides.json` | the in-game Quest Guide text (built by `quests/build_quest_guides.py`) | per quest: period walkthrough (418 of 442 from 2001-2004 copies), its source and last-updated date; copied to runtime/server/classic-quest-guides.json |
 | `wayback-warcry/` | Internet Archive copies of daoc.warcry.com (Camelot Warcry) | the period quest database (summaries, hints, full spoiler walkthroughs with player-submitted spawn notes), NPC and item databases, compendium maps — last capture on or before 2004-12-07; fetcher `wayback_warcry.py` |
 | `allakhazam-live/` | camelot.allakhazam.com today | every Classic/SI/ToA quest page (all dialogue, steps, rewards, every player comment with dates), every period-zone bestiary page, every monster page (levels, habitats, drops, comments), every item page those link (full stats, sources, comments); one file per kind (`quest`, `item`, `mob`, `zone`, `zoneinfo`, `questlist`, `zonelist`, `*_comments`). Collected in a browser tab (the site refuses scripts) by `zam_worker.js`, handed to `../quests/walk_receiver.py`. Pages carry their own "Last Updated" dates; comments carry posting dates, so post-period additions can be told apart. |
-
-## About this published copy (GitHub)
-
-- The scripts were written for one local install; paths in them read `C:/OfflineDAoC` (the install root, the folder
-  that holds `runtime/` and `development-source/`) and `C:/OfflineDAoC/scratch/dbcopy.db` (a read-only copy of
-  `runtime/data/opendaoc.sqlite3.db`, so nothing reads the live database while the server runs). Edit the paths at
-  the top of a script before running it.
-- Kept local and not published here: raw copies of other websites' pages (the Allakhazam, Wayback Machine, Camelot
-  Warcry, Uthgard and CapnBry page archives, Uthgard map images, the archived Illia's Camelot Bestiary) and the
-  verbatim Allakhazam walkthrough text, including the in-game Quest Guide file built from it. The fetch scripts in
-  `archive/` rebuild them on your own machine; `quests/build_quest_guides.py` then writes the Quest Guide file
-  (`runtime/server/classic-quest-guides.json`).
-- Published: every script, the ledgers and reports, the quest specs and everything derived from the sources
-  (resolved quests, spawn plans, bestiary plans, radar sighting coordinates and levels, Wayback capture indexes).

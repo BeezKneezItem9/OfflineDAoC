@@ -85,12 +85,8 @@ namespace DOL.GS
             }
             if (!bot.IsWithinRadius(port.Porter, AutonomousTownTeleporters.ArrivalRadius))
             {
-                Zone zone = bot.CurrentZone;
-                IPathfindingMgr nav = PathfindingProvider.Instance;
-                Vector3 porter = new(port.Porter.X, port.Porter.Y, port.Porter.Z);
-                Vector3 target = zone != null && nav.IsAvailable && nav.HasNavmesh(zone)
-                    ? nav.GetClosestPoint(zone, porter, 160, 160, 256, nav.DefaultFilters) ?? porter
-                    : porter;
+                // stop a short way out, never on the NPC (players must be able to click the teleporter)
+                Vector3 target = AutonomousTownTeleporters.StandOff(port.Porter, bot);
                 if (!IssuePath(bot, target))
                 {
                     FailTownPort(bot, "no connected route to the teleporter");

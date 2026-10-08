@@ -3751,9 +3751,9 @@
   "place": {
    "zone_id": 14,
    "region": 1,
-   "x": 574607,
-   "y": 385258,
-   "z": 5728,
+   "x": 574353,
+   "y": 385013,
+   "z": 5938,
    "levels": [],
    "source": "anchor western basilisk",
    "on_mesh": true
@@ -3771,29 +3771,29 @@
   "role": "drop source",
   "camp": [
    {
-    "x": 574957,
-    "y": 385258,
-    "z": 5488
+    "x": 574703,
+    "y": 385013,
+    "z": 5723
    },
    {
-    "x": 574782,
-    "y": 385561,
-    "z": 5458
+    "x": 574528,
+    "y": 385316,
+    "z": 5754
    },
    {
-    "x": 574432,
-    "y": 385561,
-    "z": 5734
+    "x": 574178,
+    "y": 385316,
+    "z": 5916
    },
    {
-    "x": 574257,
-    "y": 385258,
-    "z": 5884
+    "x": 574003,
+    "y": 385013,
+    "z": 6202
    },
    {
-    "x": 574432,
-    "y": 384954,
-    "z": 5889
+    "x": 574178,
+    "y": 384709,
+    "z": 6162
    }
   ]
  },
@@ -4256,7 +4256,9 @@
    "level": "6",
    "classtype": "DOL.GS.GameNPC"
   },
-  "spec_spawn": null,
+  "spec_spawn": {
+   "for_player": true
+  },
   "zone": "Shannon Estuary",
   "loc_note": "grove of dead birch trees north of Connla at the fork, east of Mag Mell",
   "role": "talk",
@@ -5023,6 +5025,36 @@
   "loc_note": null,
   "role": "kill",
   "qlevel": 9
+ },
+ {
+  "name": "Lucan",
+  "realm": "Hibernia",
+  "quests": [
+   "Enchanting Willow step 2"
+  ],
+  "event": false,
+  "place": {
+   "zone_id": 202,
+   "region": 200,
+   "x": 297386,
+   "y": 654239,
+   "z": 5449,
+   "levels": [
+    6
+   ],
+   "source": "CapnBry",
+   "on_mesh": true
+  },
+  "template": null,
+  "spec_spawn": {
+   "level": 6,
+   "like": "Lucan",
+   "look_only": true
+  },
+  "zone": "Shannon Estuary",
+  "loc_note": "Enchanting Willow: 'Guardian is located across estuary from Connla. Name is Lucan' (period Allakhazam page, loc 10k 40k); CapnBry radar saw Lucan in Shannon Estuary at 10666, 39839. The world's only Lucan is an aggressive level-6 ghost in Connacht (not period), so a peaceful Lucan ghost stands at the period spot",
+  "role": "talk",
+  "qlevel": 7
  },
  {
   "name": "Lusmorebane",
@@ -7047,9 +7079,9 @@
   "place": {
    "zone_id": 200,
    "region": 200,
-   "x": 354460,
-   "y": 527144,
-   "z": 4622,
+   "x": 357065,
+   "y": 519123,
+   "z": 4774,
    "levels": [],
    "source": "anchor ghostly siabra",
    "on_mesh": true
@@ -7062,29 +7094,29 @@
   "qlevel": 20,
   "camp": [
    {
-    "x": 354810,
-    "y": 527144,
-    "z": 4599
+    "x": 357415,
+    "y": 519123,
+    "z": 4756
    },
    {
-    "x": 354635,
-    "y": 527447,
-    "z": 4619
+    "x": 357240,
+    "y": 519426,
+    "z": 4739
    },
    {
-    "x": 354285,
-    "y": 527447,
-    "z": 4685
+    "x": 356890,
+    "y": 519426,
+    "z": 4759
    },
    {
-    "x": 354110,
-    "y": 527144,
-    "z": 4684
+    "x": 356715,
+    "y": 519123,
+    "z": 4791
    },
    {
-    "x": 354285,
-    "y": 526840,
-    "z": 4605
+    "x": 356890,
+    "y": 518819,
+    "z": 4809
    }
   ]
  },
@@ -7503,30 +7535,6 @@
   "loc_note": null,
   "role": "talk",
   "qlevel": 49
- },
- {
-  "name": "Bone-eater Spine Ripper",
-  "realm": "Midgard",
-  "quests": [
-   "The Three Sisters step 6"
-  ],
-  "event": false,
-  "place": {
-   "zone_id": 112,
-   "region": 100,
-   "x": 712360,
-   "y": 688744,
-   "z": 10014,
-   "levels": [],
-   "source": "walkthrough",
-   "on_mesh": true
-  },
-  "template": null,
-  "spec_spawn": null,
-  "zone": "Yggdra Forest",
-  "loc_note": null,
-  "role": "kill",
-  "qlevel": 40
  },
  {
   "name": "Bright Flame",
@@ -10281,39 +10289,6 @@
   "qlevel": 22
  },
  {
-  "name": "flurry",
-  "realm": "Midgard",
-  "quests": [
-   "The Red Dagger (level 25) step 5"
-  ],
-  "event": false,
-  "place": {
-   "zone_id": 112,
-   "region": 100,
-   "x": 703399,
-   "y": 727099,
-   "z": 5705,
-   "levels": [
-    23,
-    25
-   ],
-   "source": "CapnBry",
-   "on_mesh": true
-  },
-  "template": {
-   "id": 60160927,
-   "model": "127",
-   "size": "50;53;48",
-   "level": "23",
-   "classtype": "DOL.GS.GameNPC"
-  },
-  "spec_spawn": null,
-  "zone": "Uppland",
-  "loc_note": null,
-  "role": "kill",
-  "qlevel": 25
- },
- {
   "name": "great brown drake",
   "realm": "Midgard",
   "quests": [
@@ -10481,42 +10456,6 @@
   "loc_note": null,
   "role": "kill",
   "qlevel": 45
- },
- {
-  "name": "taiga cat",
-  "realm": "Midgard",
-  "quests": [
-   "Blessed Enchantments step 10"
-  ],
-  "event": false,
-  "place": {
-   "zone_id": 113,
-   "region": 100,
-   "x": 681393,
-   "y": 643110,
-   "z": 3968,
-   "levels": [
-    32,
-    33,
-    34,
-    35,
-    36
-   ],
-   "source": "CapnBry",
-   "on_mesh": true
-  },
-  "template": {
-   "id": 60166754,
-   "model": "135",
-   "size": "50;51;52;49;48;53;54",
-   "level": "32-33",
-   "classtype": "DOL.GS.GameNPC"
-  },
-  "spec_spawn": null,
-  "zone": "Uppland",
-  "loc_note": null,
-  "role": "kill",
-  "qlevel": 40
  },
  {
   "name": "tomte scavenger",

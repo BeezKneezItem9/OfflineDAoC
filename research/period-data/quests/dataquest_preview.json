@@ -1828,7 +1828,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_sleeves_of_the_stoic",
-   "ID": 20427
+   "ID": 21288
   },
   {
    "Name": "Legend of the Lake",
@@ -1858,7 +1858,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_gauntlets_of_archery",
-   "ID": 20428
+   "ID": 21289
   },
   {
    "Name": "Legend of the Lake",
@@ -1888,7 +1888,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_soft_leather_traveler_s_leggings",
-   "ID": 20429
+   "ID": 21290
   },
   {
    "Name": "Legend of the Lake",
@@ -1918,7 +1918,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_necklace_of_elemental_influence",
-   "ID": 20430
+   "ID": 21291
   },
   {
    "Name": "Legend of the Lake",
@@ -1948,7 +1948,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_master_of_arms_platemail",
-   "ID": 21288
+   "ID": 21476
   },
   {
    "Name": "Legend of the Lake",
@@ -1978,7 +1978,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_shadow_oak_longbow",
-   "ID": 21289
+   "ID": 21477
   },
   {
    "Name": "Legend of the Lake",
@@ -2008,7 +2008,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_zealot_s_staff_of_the_pious",
-   "ID": 21290
+   "ID": 21478
   },
   {
    "Name": "Legend of the Lake",
@@ -2038,7 +2038,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_wind_threaded_cloak",
-   "ID": 21291
+   "ID": 21479
   },
   {
    "Name": "Legione Perso",
@@ -2428,7 +2428,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_cloak_of_the_shadowy_embers",
-   "ID": 20444
+   "ID": 21295
   },
   {
    "Name": "Lord of Deceit",
@@ -2458,7 +2458,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_warm_construct_cloak",
-   "ID": 20445
+   "ID": 21296
   },
   {
    "Name": "Lord of Deceit",
@@ -2488,7 +2488,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_ignuixs_portable_shadow",
-   "ID": 20446
+   "ID": 21297
   },
   {
    "Name": "Lord of Deceit",
@@ -2518,7 +2518,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_cloak_of_murky_secrets",
-   "ID": 20447
+   "ID": 21298
   },
   {
    "Name": "Lord of Deceit",
@@ -2548,7 +2548,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_cloak_of_forgotten_curses",
-   "ID": 20448
+   "ID": 21299
   },
   {
    "Name": "Lord of Deceit",
@@ -2578,7 +2578,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21295
+   "ID": 21480
   },
   {
    "Name": "Lord of Deceit",
@@ -2608,7 +2608,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21296
+   "ID": 21481
   },
   {
    "Name": "Lord of Deceit",
@@ -2638,7 +2638,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21297
+   "ID": 21482
   },
   {
    "Name": "Lord of Deceit",
@@ -2668,7 +2668,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21298
+   "ID": 21483
   },
   {
    "Name": "Lord of Deceit",
@@ -2698,7 +2698,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21299
+   "ID": 21484
   },
   {
    "Name": "Passage to Eternity",
@@ -2728,7 +2728,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_ring_of_the_iron_will",
-   "ID": 20451
+   "ID": 21302
   },
   {
    "Name": "Passage to Eternity",
@@ -2758,7 +2758,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_ring_of_defiant_soul",
-   "ID": 20452
+   "ID": 21303
   },
   {
    "Name": "Passage to Eternity",
@@ -2788,7 +2788,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_cape_of_the_iron_will",
-   "ID": 21300
+   "ID": 21485
   },
   {
    "Name": "Passage to Eternity",
@@ -2818,7 +2818,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_cloak_of_defiant_soul",
-   "ID": 21301
+   "ID": 21486
   },
   {
    "Name": "Passage to Eternity",
@@ -2848,7 +2848,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21302
+   "ID": 21487
   },
   {
    "Name": "Passage to Eternity",
@@ -2878,7 +2878,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21303
+   "ID": 21488
   },
   {
    "Name": "Path of the Renegade",
@@ -3298,7 +3298,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_light_chain_tunic",
-   "ID": 20461
+   "ID": 21304
   },
   {
    "Name": "Regal Nobility",
@@ -3328,7 +3328,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_spirit_threaded_cloak",
-   "ID": 20462
+   "ID": 21305
   },
   {
    "Name": "Regal Nobility",
@@ -3358,7 +3358,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_vest_of_the_infamous_blade",
-   "ID": 20463
+   "ID": 21306
   },
   {
    "Name": "Regal Nobility",
@@ -3388,7 +3388,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_tunic_of_dark_suffering",
-   "ID": 20464
+   "ID": 21307
   },
   {
    "Name": "Regal Nobility",
@@ -3418,7 +3418,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_pain_threaded_cloak",
-   "ID": 20465
+   "ID": 21308
   },
   {
    "Name": "Regal Nobility",
@@ -3448,7 +3448,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_heretical_frenzy_choker",
-   "ID": 20466
+   "ID": 21309
   },
   {
    "Name": "Regal Nobility",
@@ -3478,7 +3478,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_gauntlets_of_blinding_speed",
-   "ID": 21304
+   "ID": 21489
   },
   {
    "Name": "Regal Nobility",
@@ -3508,7 +3508,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_visage_of_death",
-   "ID": 21305
+   "ID": 21490
   },
   {
    "Name": "Regal Nobility",
@@ -3538,7 +3538,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_snowbinder_s_mantle",
-   "ID": 21306
+   "ID": 21491
   },
   {
    "Name": "Regal Nobility",
@@ -3568,7 +3568,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_mantle_of_shadow",
-   "ID": 21307
+   "ID": 21492
   },
   {
    "Name": "Regal Nobility",
@@ -3598,7 +3598,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_charred_staff_of_blight",
-   "ID": 21308
+   "ID": 21493
   },
   {
    "Name": "Regal Nobility",
@@ -3628,7 +3628,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_shield_of_heretics",
-   "ID": 21309
+   "ID": 21494
   },
   {
    "Name": "Scura Tragedia",
@@ -4348,7 +4348,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_bernor_s_well_used_cloak",
-   "ID": 20488
+   "ID": 21315
   },
   {
    "Name": "Symbol of the Broken",
@@ -4378,7 +4378,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_cloak_of_mental_acuity",
-   "ID": 20489
+   "ID": 21316
   },
   {
    "Name": "Symbol of the Broken",
@@ -4408,7 +4408,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_cape_of_coruscating_harmony",
-   "ID": 20490
+   "ID": 21317
   },
   {
    "Name": "Symbol of the Broken",
@@ -4438,7 +4438,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21315
+   "ID": 21495
   },
   {
    "Name": "Symbol of the Broken",
@@ -4468,7 +4468,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21316
+   "ID": 21496
   },
   {
    "Name": "Symbol of the Broken",
@@ -4498,7 +4498,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21317
+   "ID": 21497
   },
   {
    "Name": "The Craft of Retribution",
@@ -4948,7 +4948,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_sleeves_of_might",
-   "ID": 20493
+   "ID": 21322
   },
   {
    "Name": "Traveler's Way -- Supply Run",
@@ -4978,7 +4978,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_silvered_cap_of_the_intuit",
-   "ID": 20494
+   "ID": 21323
   },
   {
    "Name": "Traveler's Way -- Supply Run",
@@ -5008,7 +5008,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_falconheaded_cloak_pin",
-   "ID": 20495
+   "ID": 21324
   },
   {
    "Name": "Traveler's Way -- Supply Run",
@@ -5038,7 +5038,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_twisted_bone_bracelet",
-   "ID": 20496
+   "ID": 21325
   },
   {
    "Name": "Traveler's Way -- Supply Run",
@@ -5068,7 +5068,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_sleeves_of_might",
-   "ID": 21322
+   "ID": 21498
   },
   {
    "Name": "Traveler's Way -- Supply Run",
@@ -5098,7 +5098,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_silvered_cap_of_the_intuit",
-   "ID": 21323
+   "ID": 21499
   },
   {
    "Name": "Traveler's Way -- Supply Run",
@@ -5128,7 +5128,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_falconheaded_cloak_pin",
-   "ID": 21324
+   "ID": 21500
   },
   {
    "Name": "Traveler's Way -- Supply Run",
@@ -5158,7 +5158,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_twisted_bone_bracelet",
-   "ID": 21325
+   "ID": 21501
   },
   {
    "Name": "Traveler's Way -- Supply Run",
@@ -5428,7 +5428,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_hidden_eye",
-   "ID": 20506
+   "ID": 21326
   },
   {
    "Name": "Traveler's Way -- Stones of Power",
@@ -5458,7 +5458,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_hidden_eye",
-   "ID": 20507
+   "ID": 21327
   },
   {
    "Name": "Traveler's Way -- Stones of Power",
@@ -5488,7 +5488,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_svelte_armor_leggings",
-   "ID": 20508
+   "ID": 21328
   },
   {
    "Name": "Traveler's Way -- Stones of Power",
@@ -5518,7 +5518,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_demon_soul_gem",
-   "ID": 21326
+   "ID": 21502
   },
   {
    "Name": "Traveler's Way -- Stones of Power",
@@ -5548,7 +5548,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_demon_soul_gem",
-   "ID": 21327
+   "ID": 21503
   },
   {
    "Name": "Traveler's Way -- Stones of Power",
@@ -5578,7 +5578,7 @@
    "realm": "Albion",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_alb_svelte_armor_leggings",
-   "ID": 21328
+   "ID": 21504
   },
   {
    "Name": "Immediate Resolution",
@@ -16948,7 +16948,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_bladeturn_belt",
-   "ID": 20766
+   "ID": 21392
   },
   {
    "Name": "Last Heir",
@@ -16978,7 +16978,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_string_of_thoughts",
-   "ID": 20767
+   "ID": 21393
   },
   {
    "Name": "Last Heir",
@@ -17008,7 +17008,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_empathetic_ring",
-   "ID": 20768
+   "ID": 21394
   },
   {
    "Name": "Last Heir",
@@ -17038,7 +17038,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_strand_of_freshwater_pearls",
-   "ID": 20769
+   "ID": 21395
   },
   {
    "Name": "Last Heir",
@@ -17068,7 +17068,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_ivory_beaded_sash",
-   "ID": 20770
+   "ID": 21396
   },
   {
    "Name": "Last Heir",
@@ -17098,7 +17098,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_blademaster_s_jewel",
-   "ID": 21387
+   "ID": 21505
   },
   {
    "Name": "Last Heir",
@@ -17128,7 +17128,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_mentalist_s_jewel",
-   "ID": 21388
+   "ID": 21506
   },
   {
    "Name": "Last Heir",
@@ -17158,7 +17158,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_druid_s_jewel",
-   "ID": 21389
+   "ID": 21507
   },
   {
    "Name": "Last Heir",
@@ -17188,7 +17188,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_animist_s_fiery_opal",
-   "ID": 21390
+   "ID": 21508
   },
   {
    "Name": "Last Heir",
@@ -17218,7 +17218,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_valewalker_s_star_sapphire",
-   "ID": 21391
+   "ID": 21509
   },
   {
    "Name": "Last Heir",
@@ -17248,7 +17248,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21392
+   "ID": 21510
   },
   {
    "Name": "Last Heir",
@@ -17278,7 +17278,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21393
+   "ID": 21511
   },
   {
    "Name": "Last Heir",
@@ -17308,7 +17308,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21394
+   "ID": 21512
   },
   {
    "Name": "Last Heir",
@@ -17338,7 +17338,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21395
+   "ID": 21513
   },
   {
    "Name": "Last Heir",
@@ -17368,7 +17368,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21396
+   "ID": 21514
   },
   {
    "Name": "Unnatural Powers",
@@ -22058,7 +22058,7 @@
    "Description": "Bring me four [spraggoncle] cloaks and I will spin you a cloak.",
    "AcceptText": "spraggoncle",
    "StepType": "0|0|0|0|10|2|3",
-   "TargetName": "spraggonale;222|spraggonale;222|spraggonale;222|spraggonale;222|Banba;200|Reidie;200|Banba;200",
+   "TargetName": "spraggonale;200|spraggonale;200|spraggonale;200|spraggonale;200|Banba;200|Reidie;200|Banba;200",
    "StepItemTemplates": "cq_spraggoncle_cloak;60|cq_spraggoncle_cloak;60|cq_spraggoncle_cloak;60|cq_spraggoncle_cloak;60||cq_note_for_reidie|cq_dye",
    "SourceName": "",
    "CollectItemTemplate": "||||cq_spraggoncle_cloak|cq_note_for_reidie|cq_dye",
@@ -22358,7 +22358,7 @@
    "Description": "I'm making tea and need a few [ingredients].",
    "AcceptText": "ingredients",
    "StepType": "0|0|10|6|6|0|0|0|8|2|2|9",
-   "TargetName": "river beetle drone;200|river beetle drone;200|Gormghlaith;200|Sentinel Beacan;200|Chief Proinnsias;200|spraggonale;222|spraggonale;222|Boss;200||Chief Proinnsias;200|Gormghlaith;200|Gormghlaith;200",
+   "TargetName": "river beetle drone;200|river beetle drone;200|Gormghlaith;200|Sentinel Beacan;200|Chief Proinnsias;200|spraggonale;200|spraggonale;200|Boss;200||Chief Proinnsias;200|Gormghlaith;200|Gormghlaith;200",
    "StepItemTemplates": "cq_river_beetle_drone_carapace;60|cq_river_beetle_drone_carapace;60||||||cq_boss_s_corpse||cq_boss_s_corpse|cq_blackthorn_leaves|",
    "SourceName": "SEARCH;9;;200;368618;600714;300;5",
    "CollectItemTemplate": "||cq_river_beetle_drone_carapace|||||||cq_boss_s_corpse|cq_blackthorn_leaves|",
@@ -22468,7 +22468,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_brigh_bann",
-   "ID": 20888
+   "ID": 21407
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22498,7 +22498,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_brigh_bann",
-   "ID": 20889
+   "ID": 21408
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22528,7 +22528,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_brigh_bann",
-   "ID": 20890
+   "ID": 21409
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22558,7 +22558,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_luth_bann",
-   "ID": 20891
+   "ID": 21410
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22588,7 +22588,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_luth_bann",
-   "ID": 20892
+   "ID": 21411
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22618,7 +22618,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_luth_bann",
-   "ID": 20893
+   "ID": 21412
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22648,7 +22648,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_luth_bann",
-   "ID": 20894
+   "ID": 21413
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22678,7 +22678,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_comas_bann",
-   "ID": 20895
+   "ID": 21414
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22708,7 +22708,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_bard_s_bann",
-   "ID": 20896
+   "ID": 21415
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22738,7 +22738,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_gramail_bann",
-   "ID": 20897
+   "ID": 21416
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22768,7 +22768,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_gramail_bann",
-   "ID": 20898
+   "ID": 21417
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22798,7 +22798,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 20899
+   "ID": 21418
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22828,7 +22828,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_brigh_bann",
-   "ID": 21407
+   "ID": 21515
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22858,7 +22858,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_brigh_bann",
-   "ID": 21408
+   "ID": 21516
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22888,7 +22888,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_brigh_bann",
-   "ID": 21409
+   "ID": 21517
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22918,7 +22918,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_luth_bann",
-   "ID": 21410
+   "ID": 21518
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22948,7 +22948,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_luth_bann",
-   "ID": 21411
+   "ID": 21519
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -22978,7 +22978,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_luth_bann",
-   "ID": 21412
+   "ID": 21520
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -23008,7 +23008,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_luth_bann",
-   "ID": 21413
+   "ID": 21521
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -23038,7 +23038,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_comas_bann",
-   "ID": 21414
+   "ID": 21522
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -23068,7 +23068,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_bard_s_bann",
-   "ID": 21415
+   "ID": 21523
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -23098,7 +23098,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_gramail_bann",
-   "ID": 21416
+   "ID": 21524
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -23128,7 +23128,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_hib_gramail_bann",
-   "ID": 21417
+   "ID": 21525
   },
   {
    "Name": "Occupation of Lough Gur",
@@ -23158,7 +23158,7 @@
    "realm": "Hibernia",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "",
-   "ID": 21418
+   "ID": 21526
   },
   {
    "Name": "The Broken Seal",
@@ -25418,14 +25418,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25448,14 +25448,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25478,14 +25478,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25508,14 +25508,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25538,14 +25538,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25568,14 +25568,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25598,14 +25598,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25628,14 +25628,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25658,14 +25658,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25688,14 +25688,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25718,14 +25718,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -25748,14 +25748,14 @@
    "Description": "Speak with Tiarnan; someone has gone [missing] on the west wind.",
    "AcceptText": "missing",
    "StepType": "4|2|4|0|4|4|4|4|5",
-   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|ambient pixie;200|missing man;200|Bairfhionn;201",
+   "TargetName": "Tiarnan;201|Guard Dooley;200|Doran;200|Aoife;200|Doran;200|Bairfhionn;201|Troya;200|missing man;200|Bairfhionn;201",
    "StepItemTemplates": "|cq_note_for_guard_dooley|||||||",
    "SourceName": "",
    "CollectItemTemplate": "|cq_note_for_guard_dooley|||||||",
    "AdvanceText": "||||||||",
    "SourceText": "See Tiarnan upstairs near the rogue trainers.||||||||",
    "TargetText": "||||||||",
-   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Bairfhionn tells you his home is Howth.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn.",
+   "StepText": "See Tiarnan upstairs near the rogue trainers.|Give the note to Guard Dooley at the guard tower west of the Tir na Nog north gate.|Find the crazy lurikeen Doran.|Kill Aoife, the greater zephyr on the hill southeast of Doran (clear the zephyrs to make her appear).|Return to Doran: the person you seek has gone home.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home.|Ask in Howth: he is near the stepping stones.|Talk to him by the stepping stones.|Return to Bairfhionn outside the Alainn Cuir in Tir na Nog.",
    "MinLevel": 38,
    "MaxLevel": 50,
    "MaxCount": 1,
@@ -27568,7 +27568,7 @@
    "realm": "Midgard",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_mid_shadowed_leggings",
-   "ID": 21001
+   "ID": 21457
   },
   {
    "Name": "A War of Old",
@@ -27598,7 +27598,7 @@
    "realm": "Midgard",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_mid_forest_hunter_s_boots",
-   "ID": 21002
+   "ID": 21458
   },
   {
    "Name": "A War of Old",
@@ -27688,7 +27688,7 @@
    "realm": "Midgard",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_mid_moonshadow_cloak",
-   "ID": 21457
+   "ID": 21527
   },
   {
    "Name": "A War of Old",
@@ -27718,7 +27718,7 @@
    "realm": "Midgard",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_mid_heart_piercer_bow",
-   "ID": 21458
+   "ID": 21528
   },
   {
    "Name": "An End to the Daggers",
@@ -30088,7 +30088,7 @@
    "realm": "Midgard",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_mid_healer_s_touch_necklace",
-   "ID": 21062
+   "ID": 21461
   },
   {
    "Name": "The Desire of a God",
@@ -30118,7 +30118,7 @@
    "realm": "Midgard",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_mid_fungus_covered_belt",
-   "ID": 21063
+   "ID": 21462
   },
   {
    "Name": "The Desire of a God",
@@ -30148,7 +30148,7 @@
    "realm": "Midgard",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_mid_healing_hand_pin",
-   "ID": 21461
+   "ID": 21529
   },
   {
    "Name": "The Desire of a God",
@@ -30178,7 +30178,7 @@
    "realm": "Midgard",
    "ClassType": "DOL.GS.Quests.ClassicQuestStep",
    "FinalRewardItemTemplates": "cq_mid_world_engraved_pin",
-   "ID": 21462
+   "ID": 21530
   },
   {
    "Name": "The Desire of a God",
@@ -30728,7 +30728,7 @@
    "Description": "[Sisters]",
    "AcceptText": "Sisters",
    "StepType": "4|0|2|4|0|0|4|4|0|2|4|2|9",
-   "TargetName": "Jodis Rindasdottir;100|Werewolf Shaman;100|Jodis Rindasdottir;100|Edonia Rindasdottir;100|wyvern;100|Bone-eater Spine Ripper;100|Edonia Rindasdottir;100|Coplin Alfevson;100|battle-scarred mauler;100|Norma;100|Arnfinn;100|Anrid;101|Anrid;101",
+   "TargetName": "Jodis Rindasdottir;100|Werewolf Shaman;100|Jodis Rindasdottir;100|Edonia Rindasdottir;100|wyvern;100|bone-eater spine-ripper;100|Edonia Rindasdottir;100|Coplin Alfevson;100|battle-scarred mauler;100|Norma;100|Arnfinn;100|Anrid;101|Anrid;101",
    "StepItemTemplates": "||cq_sword_hilt||cq_sister_s_drawings|cq_sister_s_book||cq_sword_pommel||cq_bear_bladder||cq_sword_of_the_sisters|",
    "SourceName": "",
    "CollectItemTemplate": "||cq_sword_hilt|||||||cq_bear_bladder||cq_sword_of_the_sisters|",
@@ -30758,7 +30758,7 @@
    "Description": "[Sisters]",
    "AcceptText": "Sisters",
    "StepType": "4|0|2|4|0|0|4|4|0|2|4|3",
-   "TargetName": "Jodis Rindasdottir;100|Werewolf Shaman;100|Jodis Rindasdottir;100|Edonia Rindasdottir;100|wyvern;100|Bone-eater Spine Ripper;100|Edonia Rindasdottir;100|Coplin Alfevson;100|battle-scarred mauler;100|Norma;100|Arnfinn;100|Anrid;101",
+   "TargetName": "Jodis Rindasdottir;100|Werewolf Shaman;100|Jodis Rindasdottir;100|Edonia Rindasdottir;100|wyvern;100|bone-eater spine-ripper;100|Edonia Rindasdottir;100|Coplin Alfevson;100|battle-scarred mauler;100|Norma;100|Arnfinn;100|Anrid;101",
    "StepItemTemplates": "||cq_sword_hilt||cq_sister_s_drawings|cq_sister_s_book||cq_sword_pommel||cq_bear_bladder||cq_sword_of_the_sisters",
    "SourceName": "",
    "CollectItemTemplate": "||cq_sword_hilt|||||||cq_bear_bladder||cq_sword_of_the_sisters",
@@ -30788,7 +30788,7 @@
    "Description": "[Sisters]",
    "AcceptText": "Sisters",
    "StepType": "4|0|2|4|0|0|4|4|0|2|4|2|9",
-   "TargetName": "Jodis Rindasdottir;100|Werewolf Shaman;100|Jodis Rindasdottir;100|Edonia Rindasdottir;100|wyvern;100|Bone-eater Spine Ripper;100|Edonia Rindasdottir;100|Coplin Alfevson;100|battle-scarred mauler;100|Norma;100|Arnfinn;100|Anrid;101|Anrid;101",
+   "TargetName": "Jodis Rindasdottir;100|Werewolf Shaman;100|Jodis Rindasdottir;100|Edonia Rindasdottir;100|wyvern;100|bone-eater spine-ripper;100|Edonia Rindasdottir;100|Coplin Alfevson;100|battle-scarred mauler;100|Norma;100|Arnfinn;100|Anrid;101|Anrid;101",
    "StepItemTemplates": "||cq_sword_hilt||cq_sister_s_drawings|cq_sister_s_book||cq_sword_pommel||cq_bear_bladder||cq_sword_of_the_sisters|",
    "SourceName": "",
    "CollectItemTemplate": "||cq_sword_hilt|||||||cq_bear_bladder||cq_sword_of_the_sisters|",
@@ -30818,7 +30818,7 @@
    "Description": "[Sisters]",
    "AcceptText": "Sisters",
    "StepType": "4|0|2|4|0|0|4|4|0|2|4|2|9",
-   "TargetName": "Jodis Rindasdottir;100|Werewolf Shaman;100|Jodis Rindasdottir;100|Edonia Rindasdottir;100|wyvern;100|Bone-eater Spine Ripper;100|Edonia Rindasdottir;100|Coplin Alfevson;100|battle-scarred mauler;100|Norma;100|Arnfinn;100|Anrid;101|Anrid;101",
+   "TargetName": "Jodis Rindasdottir;100|Werewolf Shaman;100|Jodis Rindasdottir;100|Edonia Rindasdottir;100|wyvern;100|bone-eater spine-ripper;100|Edonia Rindasdottir;100|Coplin Alfevson;100|battle-scarred mauler;100|Norma;100|Arnfinn;100|Anrid;101|Anrid;101",
    "StepItemTemplates": "||cq_sword_hilt||cq_sister_s_drawings|cq_sister_s_book||cq_sword_pommel||cq_bear_bladder||cq_sword_of_the_sisters|",
    "SourceName": "",
    "CollectItemTemplate": "||cq_sword_hilt|||||||cq_bear_bladder||cq_sword_of_the_sisters|",
@@ -35078,7 +35078,7 @@
    "Description": "Greetings. My name is Trustan, and I have just moved here from near Gna Faste in Myrkwood Forest. Have you been there? It is quite a pleasant place, except for [all the fighting] that goes on there.",
    "AcceptText": "get my things",
    "StepType": "6|0|2|4|0|0|4|3",
-   "TargetName": "Atzar;100|werewolf pup;100|Atzar;100|Curka;100|arachite youngling;100|svartalf watcher;100|Atzar;100|Trustan;100",
+   "TargetName": "Atzar;100|werewolf pup;100|Atzar;100|Curka;100|arachite youngling;100|svartalf;100|Atzar;100|Trustan;100",
    "StepItemTemplates": "||cq_trustan_s_sword||cq_trustan_s_shield|cq_trustan_s_helm||cq_trustan_s_pack",
    "SourceName": "",
    "CollectItemTemplate": "||cq_trustan_s_sword|||||cq_trustan_s_pack",
@@ -35708,7 +35708,7 @@
    "Description": "You did a great job getting rid of that infamous Blodfelag camp. I hear they may be making other plans now, so be wary.",
    "AcceptText": "something",
    "StepType": "4|4|0|4|8|8|2|1",
-   "TargetName": "Gudlor;100|Agnor Crusher;100|boreal cockatrice;151|Agnor Crusher;100|||Gudlor;100|Strykel;100",
+   "TargetName": "Gudlor;100|Agnor Crusher;100|boreal cockatrice;100|Agnor Crusher;100|||Gudlor;100|Strykel;100",
    "StepItemTemplates": "cq_book_av_den_dode|cq_ring_av_den_dode|||||cq_book_av_den_dode|",
    "SourceName": "SEARCH;5;;100;670360;772280;400;5",
    "CollectItemTemplate": "||||||cq_book_av_den_dode|",
@@ -40842,7 +40842,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "amulet"
+   "donor": "amminus"
   },
   {
    "Id_nb": "cq_amulet_of_fasius_previlus",
@@ -40864,7 +40864,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "amulet"
+   "donor": "previlus"
   },
   {
    "Id_nb": "cq_amulet_of_loki",
@@ -40974,7 +40974,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "seeds"
+   "donor": "andryw"
   },
   {
    "Id_nb": "cq_anglator_bone",
@@ -41018,7 +41018,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "apple"
+   "donor": "brandy"
   },
   {
    "Id_nb": "cq_apple_etched_token",
@@ -41634,7 +41634,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "parts"
+   "donor": "unnatural"
   },
   {
    "Id_nb": "cq_bananach_essence",
@@ -41810,7 +41810,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "head"
+   "donor": "barkstripper"
   },
   {
    "Id_nb": "cq_barnett_s_belongings",
@@ -42052,7 +42052,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "belladonna"
   },
   {
    "Id_nb": "cq_belt_of_animation",
@@ -42954,7 +42954,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "little"
+   "donor": "bottled"
   },
   {
    "Id_nb": "cq_bottom_half_of_the_blackthorn_wand",
@@ -43086,7 +43086,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "seeds"
+   "donor": "brent"
   },
   {
    "Id_nb": "cq_brick_of_mud",
@@ -43526,7 +43526,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "dagger"
+   "donor": "sacrificial"
   },
   {
    "Id_nb": "cq_caisha_s_soul_stone",
@@ -43768,7 +43768,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "skin"
+   "donor": "changeling"
   },
   {
    "Id_nb": "cq_channeler_s_orb",
@@ -43790,7 +43790,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "channeler"
   },
   {
    "Id_nb": "cq_charm",
@@ -43922,7 +43922,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "citadel"
   },
   {
    "Id_nb": "cq_clarity_stone",
@@ -44230,7 +44230,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "cold"
+   "donor": "casket"
   },
   {
    "Id_nb": "cq_cold_stone",
@@ -44670,7 +44670,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "focus"
+   "donor": "crotus"
   },
   {
    "Id_nb": "cq_crown",
@@ -45154,7 +45154,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "harp"
+   "donor": "dagda"
   },
   {
    "Id_nb": "cq_damp_skeleton_bone",
@@ -45660,7 +45660,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "blood"
+   "donor": "driff"
   },
   {
    "Id_nb": "cq_driftspirit_cloak",
@@ -45902,7 +45902,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "sword"
+   "donor": "dueling"
   },
   {
    "Id_nb": "cq_dustan_s_box",
@@ -46474,7 +46474,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "bwca"
+   "donor": "enraged"
   },
   {
    "Id_nb": "cq_eresidae_s_carcass",
@@ -46760,7 +46760,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "faqist"
   },
   {
    "Id_nb": "cq_fearann_wyvern_hatchling_stomach",
@@ -46980,7 +46980,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "firecat"
   },
   {
    "Id_nb": "cq_first_half_of_the_book",
@@ -47750,7 +47750,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "head"
+   "donor": "ghirni"
   },
   {
    "Id_nb": "cq_giant_ant_mandible",
@@ -48014,7 +48014,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "glory"
   },
   {
    "Id_nb": "cq_glowing_branch",
@@ -48168,7 +48168,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "journal"
+   "donor": "gogarty"
   },
   {
    "Id_nb": "cq_gold_lined_drinking_horn",
@@ -49752,7 +49752,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "charm"
+   "donor": "kacey"
   },
   {
    "Id_nb": "cq_kearcs_hammerhead",
@@ -50148,7 +50148,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "seeds"
+   "donor": "lenor"
   },
   {
    "Id_nb": "cq_letter_for_fagan",
@@ -50918,7 +50918,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "head"
+   "donor": "lusmorebane"
   },
   {
    "Id_nb": "cq_mad_grazer_leg_bone",
@@ -51556,7 +51556,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "meical"
   },
   {
    "Id_nb": "cq_meical_s_key",
@@ -51578,7 +51578,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "meical"
   },
   {
    "Id_nb": "cq_meical_s_pendant",
@@ -52128,7 +52128,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "head"
+   "donor": "morven"
   },
   {
    "Id_nb": "cq_muspelheim_fire_ant_digestive_sac",
@@ -52414,7 +52414,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "guard"
+   "donor": "dooley"
   },
   {
    "Id_nb": "cq_note_for_kaylee",
@@ -52553,7 +52553,7 @@
    "Name": "Note for Scribe Eril",
    "Level": 1,
    "Item_Type": 40,
-   "Model": 603,
+   "Model": 488,
    "Weight": 1,
    "Quality": 100,
    "Durability": 50000,
@@ -52590,7 +52590,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "note"
+   "donor": "keeler"
   },
   {
    "Id_nb": "cq_note_for_trapper_jora",
@@ -52619,7 +52619,7 @@
    "Name": "Note from Catla",
    "Level": 1,
    "Item_Type": 40,
-   "Model": 603,
+   "Model": 605,
    "Weight": 1,
    "Quality": 100,
    "Durability": 50000,
@@ -52634,7 +52634,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "note"
+   "donor": "catla"
   },
   {
    "Id_nb": "cq_note_from_hunter_ceron",
@@ -52663,7 +52663,7 @@
    "Name": "Note from Meical",
    "Level": 1,
    "Item_Type": 40,
-   "Model": 603,
+   "Model": 488,
    "Weight": 1,
    "Quality": 100,
    "Durability": 50000,
@@ -52678,7 +52678,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "note"
+   "donor": "meical"
   },
   {
    "Id_nb": "cq_note_from_varrin",
@@ -52722,7 +52722,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "note"
+   "donor": "cadbg"
   },
   {
    "Id_nb": "cq_note_to_cleddyf",
@@ -52810,7 +52810,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "note"
+   "donor": "tiarnan"
   },
   {
    "Id_nb": "cq_noxious_fur",
@@ -52832,7 +52832,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "noxious"
   },
   {
    "Id_nb": "cq_oaken_bark",
@@ -52920,7 +52920,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "scepter"
+   "donor": "olivarius"
   },
   {
    "Id_nb": "cq_olvaerr_s_cloak",
@@ -53228,7 +53228,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "wizard"
+   "donor": "parthelonian"
   },
   {
    "Id_nb": "cq_pellinistra_s_wand",
@@ -53360,7 +53360,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "fang"
+   "donor": "pericolias"
   },
   {
    "Id_nb": "cq_phaeghoul_s_hand",
@@ -53668,7 +53668,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "potion"
+   "donor": "viraniel"
   },
   {
    "Id_nb": "cq_potion_of_healing",
@@ -54086,7 +54086,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "puzzler"
   },
   {
    "Id_nb": "cq_pysling_essence",
@@ -54174,7 +54174,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "head"
+   "donor": "raemon"
   },
   {
    "Id_nb": "cq_ragged_bear_skin",
@@ -54900,7 +54900,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "head"
+   "donor": "ronat"
   },
   {
    "Id_nb": "cq_rotting_hog_tail",
@@ -55010,7 +55010,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "runed"
+   "donor": "trolls"
   },
   {
    "Id_nb": "cq_runed_etched_glasses",
@@ -55120,7 +55120,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "tooth"
+   "donor": "saber"
   },
   {
    "Id_nb": "cq_sack_of_bones",
@@ -55736,7 +55736,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "bracer"
+   "donor": "scurceol"
   },
   {
    "Id_nb": "cq_scuttle_s_tooth",
@@ -55956,7 +55956,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "sealed"
+   "donor": "keriann"
   },
   {
    "Id_nb": "cq_sealed_letter_for_thora",
@@ -56418,7 +56418,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "book"
+   "donor": "seleucus"
   },
   {
    "Id_nb": "cq_serk_s_poison_sac",
@@ -56946,7 +56946,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "head"
+   "donor": "sirelian"
   },
   {
    "Id_nb": "cq_sister_s_book",
@@ -57848,7 +57848,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "bone"
+   "donor": "spraggonoll"
   },
   {
    "Id_nb": "cq_sprig_of_vervain",
@@ -58024,7 +58024,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "body"
+   "donor": "stilter"
   },
   {
    "Id_nb": "cq_stilter_tentacle",
@@ -58200,7 +58200,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "stoneheart"
   },
   {
    "Id_nb": "cq_stoppered_wondrous_potion",
@@ -58244,7 +58244,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "head"
+   "donor": "straw"
   },
   {
    "Id_nb": "cq_strider_leg",
@@ -58288,7 +58288,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "bark"
+   "donor": "strip"
   },
   {
    "Id_nb": "cq_stripe_hide_helm",
@@ -58376,7 +58376,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "fragment"
   },
   {
    "Id_nb": "cq_supplies",
@@ -58794,7 +58794,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "focus"
+   "donor": "taras"
   },
   {
    "Id_nb": "cq_tattered_flesh",
@@ -59388,7 +59388,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "token"
+   "donor": "armorer"
   },
   {
    "Id_nb": "cq_tome_of_summoning",
@@ -59454,14 +59454,14 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "pouch"
+   "donor": "tomos"
   },
   {
    "Id_nb": "cq_tomos_seeds",
    "Name": "Tomos' Seeds",
    "Level": 1,
    "Item_Type": 40,
-   "Model": 535,
+   "Model": 488,
    "Weight": 1,
    "Quality": 100,
    "Durability": 50000,
@@ -59476,7 +59476,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "seeds"
+   "donor": "tomos"
   },
   {
    "Id_nb": "cq_tomte_artifact",
@@ -59674,7 +59674,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "potion"
+   "donor": "translucent"
   },
   {
    "Id_nb": "cq_treant_piece",
@@ -59718,7 +59718,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "head"
+   "donor": "treecutter"
   },
   {
    "Id_nb": "cq_tric_s_spellbook",
@@ -59894,7 +59894,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "head"
+   "donor": "uileog"
   },
   {
    "Id_nb": "cq_uncut_stones",
@@ -60048,7 +60048,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "wondrous"
+   "donor": "unstoppered"
   },
   {
    "Id_nb": "cq_unused_arrowhead",
@@ -60158,7 +60158,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "veil"
   },
   {
    "Id_nb": "cq_veiled_bracer_of_eyes",
@@ -60642,7 +60642,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "necklace"
+   "donor": "wanestone"
   },
   {
    "Id_nb": "cq_warning_to_ludlow",
@@ -60994,7 +60994,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "wildling"
   },
   {
    "Id_nb": "cq_wiley_s_boots",
@@ -61170,7 +61170,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "charm"
+   "donor": "direction"
   },
   {
    "Id_nb": "cq_wolfhound_bladder",
@@ -61346,7 +61346,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": null
+   "donor": "wormtooth"
   },
   {
    "Id_nb": "cq_worn_journal",
@@ -61698,7 +61698,7 @@
    "MaxCount": 1,
    "PackSize": 1,
    "PackageID": "ClassicQuest",
-   "donor": "wind"
+   "donor": "zephyr"
   }
  ],
  "item_collisions": []

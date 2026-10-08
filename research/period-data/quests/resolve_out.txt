@@ -1,4 +1,4 @@
-quests 592 steps 2236 with marker 2121 unresolved names 293
+quests 592 steps 2236 with marker 2165 unresolved names 287
   Albion | Agisthil 1
   Albion | Aithne Con 1
   Albion | Albion Scout 2
@@ -24,7 +24,6 @@ quests 592 steps 2236 with marker 2121 unresolved names 293
   Albion | Cilydd Difwych 1
   Albion | Ciraron Webweaver 1
   Albion | Cleddyf Difwych 2
-  Albion | Commander Blaen 1
   Albion | Crotus Princeps Praetorii 1
   Albion | Cyfer Difwych 1
   Albion | Cyfwlch Difwych 2
@@ -101,7 +100,6 @@ quests 592 steps 2236 with marker 2121 unresolved names 293
   Albion | ellyll villager 1
   Albion | gytrash 1
   Albion | tidal mongrel 1
-  Albion | undead farmer 1
   Hibernia | Abbadona 1
   Hibernia | Aessa 2
   Hibernia | Alsandair Muire 1
@@ -132,7 +130,6 @@ quests 592 steps 2236 with marker 2121 unresolved names 293
   Hibernia | Fuilwort 1
   Hibernia | Glare 1
   Hibernia | Grey Man 1
-  Hibernia | Hervelina 4
   Hibernia | Iao 1
   Hibernia | Kacey Muire 2
   Hibernia | Lashold 1
@@ -201,7 +198,6 @@ quests 592 steps 2236 with marker 2121 unresolved names 293
   Midgard | Arakane 1
   Midgard | Balle 1
   Midgard | Blackpaw 1
-  Midgard | Bone-eater Spine Ripper 1
   Midgard | Catla's Spirit 1
   Midgard | Coplin Alfevson 2
   Midgard | Crystal Bearer 1
@@ -282,12 +278,10 @@ quests 592 steps 2236 with marker 2121 unresolved names 293
   Midgard | Widower 1
   Midgard | Wildtooth 1
   Midgard | arachite youngling 1
-  Midgard | flurry 1
   Midgard | great brown drake 1
   Midgard | minion of Haglion 1
   Midgard | plague rat 1
   Midgard | svartalf dark forester 1
-  Midgard | taiga cat 1
   Midgard | tomte scavenger 1
   Midgard | werewolf lord 1
   Midgard | werewolf pup 1

@@ -104,7 +104,13 @@ def find_donor(e, place):
     lowercase = e["name"][:1].islower()
     note = " ".join(str(x or "") for x in (e.get("loc_note"), (e.get("spec_spawn") or {}).get("like") if isinstance(e.get("spec_spawn"), dict) else ""))
     note_words = [w for w in SPECIES_WORDS if _re.search(r"\b" + w + r"s?\b", note.lower())]
-    if lowercase:   # a species name ("tidal mongrel"): the whole name, then its words from the head noun back
+    if lowercase and friendly:  # a person described, not named ("missing man"): only real species words (2026-10-08:
+        # "man" matched a monster's name and the missing man in Howth looked like a small earth golem)
+        tries = [w for w in SPECIES_WORDS if _re.search(r"\b" + w + r"s?\b", e["name"].lower())] + note_words
+        if not tries:
+            levels = place.get("levels") or []
+            return local_donor(place, friendly, int(sorted(levels)[len(levels) // 2]) if levels else 20, humanoid=True)
+    elif lowercase:   # a species name ("tidal mongrel"): the whole name, then its words from the head noun back
         tries = ([" ".join(name_words)] if len(name_words) > 1 else []) + name_words[::-1] + note_words
     else:           # a personal name: only words that are species ("Noble Werewolf Alina"), then the note's species
         tries = [w for w in SPECIES_WORDS if _re.search(r"\b" + w + r"\b", e["name"].lower())] + note_words

@@ -108,6 +108,9 @@ for q in resolved:
         entry["qlevel"] = max(entry.get("qlevel") or 0, int(q.get("level") or 0))
         entry["event"] = entry["event"] or is_event(s)
         if isinstance(ns.get("spawn"), dict): entry["spec_spawn"] = ns["spawn"]
+        # look_only: borrow the NPC template's looks but not the template itself (it would replace the peace flag and
+        # aggression on load: the world's "Lucan" ghost template is aggressive)
+        if isinstance(ns.get("spawn"), dict) and ns["spawn"].get("look_only"): entry["template"] = None
         if entry["place"] is None:
             place = classic_sighting(name)
             if not place and ns.get("at"):

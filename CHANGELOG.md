@@ -371,6 +371,10 @@ downloads yet.
   page at a time; click the button again for the next page. Quests made for this server show their own journal text.
   /questguide <quest name> [page] opens any classic quest's guide. /task on a guard, merchant or crafter asks it
   for a task, as in the original game; /task status shows your current task.
+- Quest NPCs added for the classic quests look like people when they are people. A quest NPC with no recorded
+  appearance used to borrow a monster's look from a word in its name (the missing man in Howth was a small earth
+  golem); it now looks like a townsperson nearby. The West Wind's journal says where Bairfhionn stands (outside the
+  Alainn Cuir in Tir na Nog), and its "ask in Howth" step now has you ask a townsperson instead of an ambient pixie.
 
 **Sluaghbinder (0.4b)**
 - The Epic Spells page shows only the raise ranks whose quest you have finished.

@@ -3335,135 +3335,22 @@
     }
    ]
   },
-  "20427": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 574097,
-      "Y": 498308,
-      "Z": 2427
-     }
-    },
-    {
-     "Custom": {
-      "Kind": "quest",
-      "Quest": "Wizard Lost|Barbaric Tales|Lisreen's Plight|Forged Excellence",
-      "Count": 2
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 574097,
-      "Y": 498308,
-      "Z": 2427
-     }
-    }
-   ]
-  },
-  "20428": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 574097,
-      "Y": 498308,
-      "Z": 2427
-     }
-    },
-    {
-     "Custom": {
-      "Kind": "quest",
-      "Quest": "Wizard Lost|Barbaric Tales|Lisreen's Plight|Forged Excellence",
-      "Count": 2
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 574097,
-      "Y": 498308,
-      "Z": 2427
-     }
-    }
-   ]
-  },
-  "20429": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 574097,
-      "Y": 498308,
-      "Z": 2427
-     }
-    },
-    {
-     "Custom": {
-      "Kind": "quest",
-      "Quest": "Wizard Lost|Barbaric Tales|Lisreen's Plight|Forged Excellence",
-      "Count": 2
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 574097,
-      "Y": 498308,
-      "Z": 2427
-     }
-    }
-   ]
-  },
-  "20430": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 574097,
-      "Y": 498308,
-      "Z": 2427
-     }
-    },
-    {
-     "Custom": {
-      "Kind": "quest",
-      "Quest": "Wizard Lost|Barbaric Tales|Lisreen's Plight|Forged Excellence",
-      "Count": 2
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 574097,
-      "Y": 498308,
-      "Z": 2427
-     }
-    }
-   ]
-  },
   "21288": {
    "Steps": [
     null,
     {
      "Marker": {
       "Region": 1,
-      "X": 511758,
-      "Y": 381906,
-      "Z": 7992
+      "X": 574097,
+      "Y": 498308,
+      "Z": 2427
      }
     },
     {
-     "Marker": {
-      "Region": 10,
-      "X": 36630,
-      "Y": 22326,
-      "Z": 9192
+     "Custom": {
+      "Kind": "quest",
+      "Quest": "Wizard Lost|Barbaric Tales|Lisreen's Plight|Forged Excellence",
+      "Count": 2
      }
     },
     {
@@ -3472,14 +3359,6 @@
       "X": 574097,
       "Y": 498308,
       "Z": 2427
-     }
-    },
-    {
-     "Marker": {
-      "Region": 10,
-      "X": 33490,
-      "Y": 30944,
-      "Z": 8194
      }
     }
    ]
@@ -3490,17 +3369,16 @@
     {
      "Marker": {
       "Region": 1,
-      "X": 511758,
-      "Y": 381906,
-      "Z": 7992
+      "X": 574097,
+      "Y": 498308,
+      "Z": 2427
      }
     },
     {
-     "Marker": {
-      "Region": 10,
-      "X": 36630,
-      "Y": 22326,
-      "Z": 9192
+     "Custom": {
+      "Kind": "quest",
+      "Quest": "Wizard Lost|Barbaric Tales|Lisreen's Plight|Forged Excellence",
+      "Count": 2
      }
     },
     {
@@ -3510,18 +3388,66 @@
       "Y": 498308,
       "Z": 2427
      }
-    },
-    {
-     "Marker": {
-      "Region": 10,
-      "X": 33490,
-      "Y": 30944,
-      "Z": 8194
-     }
     }
    ]
   },
   "21290": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 574097,
+      "Y": 498308,
+      "Z": 2427
+     }
+    },
+    {
+     "Custom": {
+      "Kind": "quest",
+      "Quest": "Wizard Lost|Barbaric Tales|Lisreen's Plight|Forged Excellence",
+      "Count": 2
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 574097,
+      "Y": 498308,
+      "Z": 2427
+     }
+    }
+   ]
+  },
+  "21291": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 574097,
+      "Y": 498308,
+      "Z": 2427
+     }
+    },
+    {
+     "Custom": {
+      "Kind": "quest",
+      "Quest": "Wizard Lost|Barbaric Tales|Lisreen's Plight|Forged Excellence",
+      "Count": 2
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 574097,
+      "Y": 498308,
+      "Z": 2427
+     }
+    }
+   ]
+  },
+  "21476": {
    "Steps": [
     null,
     {
@@ -3558,7 +3484,81 @@
     }
    ]
   },
-  "21291": {
+  "21477": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 511758,
+      "Y": 381906,
+      "Z": 7992
+     }
+    },
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 36630,
+      "Y": 22326,
+      "Z": 9192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 574097,
+      "Y": 498308,
+      "Z": 2427
+     }
+    },
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 33490,
+      "Y": 30944,
+      "Z": 8194
+     }
+    }
+   ]
+  },
+  "21478": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 511758,
+      "Y": 381906,
+      "Z": 7992
+     }
+    },
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 36630,
+      "Y": 22326,
+      "Z": 9192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 574097,
+      "Y": 498308,
+      "Z": 2427
+     }
+    },
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 33490,
+      "Y": 30944,
+      "Z": 8194
+     }
+    }
+   ]
+  },
+  "21479": {
    "Steps": [
     null,
     {
@@ -4277,7 +4277,7 @@
     }
    ]
   },
-  "20444": {
+  "21295": {
    "Steps": [
     null,
     {
@@ -4342,7 +4342,7 @@
     }
    ]
   },
-  "20445": {
+  "21296": {
    "Steps": [
     null,
     {
@@ -4407,7 +4407,7 @@
     }
    ]
   },
-  "20446": {
+  "21297": {
    "Steps": [
     null,
     {
@@ -4472,7 +4472,7 @@
     }
    ]
   },
-  "20447": {
+  "21298": {
    "Steps": [
     null,
     {
@@ -4537,7 +4537,7 @@
     }
    ]
   },
-  "20448": {
+  "21299": {
    "Steps": [
     null,
     {
@@ -4602,7 +4602,7 @@
     }
    ]
   },
-  "21295": {
+  "21480": {
    "Steps": [
     null,
     {
@@ -4633,7 +4633,7 @@
     }
    ]
   },
-  "21296": {
+  "21481": {
    "Steps": [
     null,
     {
@@ -4664,7 +4664,7 @@
     }
    ]
   },
-  "21297": {
+  "21482": {
    "Steps": [
     null,
     {
@@ -4695,7 +4695,7 @@
     }
    ]
   },
-  "21298": {
+  "21483": {
    "Steps": [
     null,
     {
@@ -4726,7 +4726,7 @@
     }
    ]
   },
-  "21299": {
+  "21484": {
    "Steps": [
     null,
     {
@@ -4754,248 +4754,248 @@
      },
      "NeedsItem": "cq_ellyll_journal",
      "Issuer": "Ellyll Seer"
-    }
-   ]
-  },
-  "20451": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 504860,
-      "Y": 496433,
-      "Z": 2460
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 606393,
-      "Y": 329878,
-      "Z": 4200
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 510209,
-      "Y": 380648,
-      "Z": 8512
-     },
-     "NeedsItem": "cq_templar_focus_gem",
-     "Issuer": "templar"
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 606393,
-      "Y": 329878,
-      "Z": 4200
-     },
-     "Grant": [
-      "cq_templar_focus_gem"
-     ],
-     "GrantFrom": "Bertie Dracon"
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 606393,
-      "Y": 329878,
-      "Z": 4200
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 606393,
-      "Y": 329878,
-      "Z": 4200
-     }
-    },
-    {
-     "Marker": {
-      "Region": 10,
-      "X": 39560,
-      "Y": 27109,
-      "Z": 8382
-     }
-    }
-   ]
-  },
-  "20452": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 504860,
-      "Y": 496433,
-      "Z": 2460
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 606393,
-      "Y": 329878,
-      "Z": 4200
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 510209,
-      "Y": 380648,
-      "Z": 8512
-     },
-     "NeedsItem": "cq_templar_focus_gem",
-     "Issuer": "templar"
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 606393,
-      "Y": 329878,
-      "Z": 4200
-     },
-     "Grant": [
-      "cq_templar_focus_gem"
-     ],
-     "GrantFrom": "Bertie Dracon"
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 606393,
-      "Y": 329878,
-      "Z": 4200
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 606393,
-      "Y": 329878,
-      "Z": 4200
-     }
-    },
-    {
-     "Marker": {
-      "Region": 10,
-      "X": 39519,
-      "Y": 27641,
-      "Z": 8382
-     }
-    }
-   ]
-  },
-  "21300": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 591214,
-      "Y": 371516,
-      "Z": 8219
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 529475,
-      "Y": 359313,
-      "Z": 8320
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 594248,
-      "Y": 379256,
-      "Z": 5041
-     },
-     "Spawn": {
-      "Name": "Sockburn worm",
-      "TemplateId": 60168034,
-      "Level": 55,
-      "Model": 0,
-      "Region": 1,
-      "X": 594248,
-      "Y": 379256,
-      "Z": 5041,
-      "TriggerRadius": 1200,
-      "DespawnSeconds": 600,
-      "Count": 1
-     }
-    },
-    {
-     "Marker": {
-      "Region": 10,
-      "X": 39560,
-      "Y": 27109,
-      "Z": 8382
-     },
-     "NeedsItem": "cq_wormtooth",
-     "Issuer": "Sockburn worm"
-    }
-   ]
-  },
-  "21301": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 591214,
-      "Y": 371516,
-      "Z": 8219
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 529475,
-      "Y": 359313,
-      "Z": 8320
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 594248,
-      "Y": 379256,
-      "Z": 5041
-     },
-     "Spawn": {
-      "Name": "Sockburn worm",
-      "TemplateId": 60168034,
-      "Level": 55,
-      "Model": 0,
-      "Region": 1,
-      "X": 594248,
-      "Y": 379256,
-      "Z": 5041,
-      "TriggerRadius": 1200,
-      "DespawnSeconds": 600,
-      "Count": 1
-     }
-    },
-    {
-     "Marker": {
-      "Region": 10,
-      "X": 39519,
-      "Y": 27641,
-      "Z": 8382
-     },
-     "NeedsItem": "cq_wormtooth",
-     "Issuer": "Sockburn worm"
     }
    ]
   },
   "21302": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 504860,
+      "Y": 496433,
+      "Z": 2460
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 606393,
+      "Y": 329878,
+      "Z": 4200
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 510209,
+      "Y": 380648,
+      "Z": 8512
+     },
+     "NeedsItem": "cq_templar_focus_gem",
+     "Issuer": "templar"
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 606393,
+      "Y": 329878,
+      "Z": 4200
+     },
+     "Grant": [
+      "cq_templar_focus_gem"
+     ],
+     "GrantFrom": "Bertie Dracon"
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 606393,
+      "Y": 329878,
+      "Z": 4200
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 606393,
+      "Y": 329878,
+      "Z": 4200
+     }
+    },
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 39560,
+      "Y": 27109,
+      "Z": 8382
+     }
+    }
+   ]
+  },
+  "21303": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 504860,
+      "Y": 496433,
+      "Z": 2460
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 606393,
+      "Y": 329878,
+      "Z": 4200
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 510209,
+      "Y": 380648,
+      "Z": 8512
+     },
+     "NeedsItem": "cq_templar_focus_gem",
+     "Issuer": "templar"
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 606393,
+      "Y": 329878,
+      "Z": 4200
+     },
+     "Grant": [
+      "cq_templar_focus_gem"
+     ],
+     "GrantFrom": "Bertie Dracon"
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 606393,
+      "Y": 329878,
+      "Z": 4200
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 606393,
+      "Y": 329878,
+      "Z": 4200
+     }
+    },
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 39519,
+      "Y": 27641,
+      "Z": 8382
+     }
+    }
+   ]
+  },
+  "21485": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 591214,
+      "Y": 371516,
+      "Z": 8219
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 529475,
+      "Y": 359313,
+      "Z": 8320
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 594248,
+      "Y": 379256,
+      "Z": 5041
+     },
+     "Spawn": {
+      "Name": "Sockburn worm",
+      "TemplateId": 60168034,
+      "Level": 55,
+      "Model": 0,
+      "Region": 1,
+      "X": 594248,
+      "Y": 379256,
+      "Z": 5041,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
+     }
+    },
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 39560,
+      "Y": 27109,
+      "Z": 8382
+     },
+     "NeedsItem": "cq_wormtooth",
+     "Issuer": "Sockburn worm"
+    }
+   ]
+  },
+  "21486": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 591214,
+      "Y": 371516,
+      "Z": 8219
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 529475,
+      "Y": 359313,
+      "Z": 8320
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 594248,
+      "Y": 379256,
+      "Z": 5041
+     },
+     "Spawn": {
+      "Name": "Sockburn worm",
+      "TemplateId": 60168034,
+      "Level": 55,
+      "Model": 0,
+      "Region": 1,
+      "X": 594248,
+      "Y": 379256,
+      "Z": 5041,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
+     }
+    },
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 39519,
+      "Y": 27641,
+      "Z": 8382
+     },
+     "NeedsItem": "cq_wormtooth",
+     "Issuer": "Sockburn worm"
+    }
+   ]
+  },
+  "21487": {
    "Steps": [
     null,
     {
@@ -5092,7 +5092,7 @@
     }
    ]
   },
-  "21303": {
+  "21488": {
    "Steps": [
     null,
     {
@@ -5814,291 +5814,44 @@
     }
    ]
   },
-  "20461": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 477792,
-      "Y": 393640,
-      "Z": 4782
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_arawnite_orders",
-     "Issuer": "Sir Dillus"
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 464099,
-      "Y": 403259,
-      "Z": 4104
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_cythraul_skull",
-     "Issuer": "cythraul"
-    }
-   ]
-  },
-  "20462": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 477792,
-      "Y": 393640,
-      "Z": 4782
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_arawnite_orders",
-     "Issuer": "Sir Dillus"
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 464099,
-      "Y": 403259,
-      "Z": 4104
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_cythraul_skull",
-     "Issuer": "cythraul"
-    }
-   ]
-  },
-  "20463": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 477792,
-      "Y": 393640,
-      "Z": 4782
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_arawnite_orders",
-     "Issuer": "Sir Dillus"
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 464099,
-      "Y": 403259,
-      "Z": 4104
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_cythraul_skull",
-     "Issuer": "cythraul"
-    }
-   ]
-  },
-  "20464": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 477792,
-      "Y": 393640,
-      "Z": 4782
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_arawnite_orders",
-     "Issuer": "Sir Dillus"
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 464099,
-      "Y": 403259,
-      "Z": 4104
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_cythraul_skull",
-     "Issuer": "cythraul"
-    }
-   ]
-  },
-  "20465": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 477792,
-      "Y": 393640,
-      "Z": 4782
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_arawnite_orders",
-     "Issuer": "Sir Dillus"
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 464099,
-      "Y": 403259,
-      "Z": 4104
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_cythraul_skull",
-     "Issuer": "cythraul"
-    }
-   ]
-  },
-  "20466": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 477792,
-      "Y": 393640,
-      "Z": 4782
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_arawnite_orders",
-     "Issuer": "Sir Dillus"
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 464099,
-      "Y": 403259,
-      "Z": 4104
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 453217,
-      "Y": 400338,
-      "Z": 2107
-     },
-     "NeedsItem": "cq_cythraul_skull",
-     "Issuer": "cythraul"
-    }
-   ]
-  },
   "21304": {
    "Steps": [
     null,
     {
      "Marker": {
-      "Region": 10,
-      "X": 35308,
-      "Y": 21876,
-      "Z": 8447
+      "Region": 1,
+      "X": 477792,
+      "Y": 393640,
+      "Z": 4782
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 527779,
-      "Y": 359568,
-      "Z": 9088
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
      },
-     "Spawn": {
-      "Name": "Arawnite Assassin",
-      "TemplateId": 60157994,
-      "Level": 31,
-      "Model": 0,
+     "NeedsItem": "cq_arawnite_orders",
+     "Issuer": "Sir Dillus"
+    },
+    {
+     "Marker": {
       "Region": 1,
-      "X": 527779,
-      "Y": 359568,
-      "Z": 9088,
-      "TriggerRadius": 1200,
-      "DespawnSeconds": 600,
-      "Count": 1
+      "X": 464099,
+      "Y": 403259,
+      "Z": 4104
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 528239,
-      "Y": 359818,
-      "Z": 9088
-     }
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
+     },
+     "NeedsItem": "cq_cythraul_skull",
+     "Issuer": "cythraul"
     }
    ]
   },
@@ -6107,40 +5860,39 @@
     null,
     {
      "Marker": {
-      "Region": 10,
-      "X": 35308,
-      "Y": 21876,
-      "Z": 8447
+      "Region": 1,
+      "X": 477792,
+      "Y": 393640,
+      "Z": 4782
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 527779,
-      "Y": 359568,
-      "Z": 9088
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
      },
-     "Spawn": {
-      "Name": "Arawnite Assassin",
-      "TemplateId": 60157994,
-      "Level": 31,
-      "Model": 0,
+     "NeedsItem": "cq_arawnite_orders",
+     "Issuer": "Sir Dillus"
+    },
+    {
+     "Marker": {
       "Region": 1,
-      "X": 527779,
-      "Y": 359568,
-      "Z": 9088,
-      "TriggerRadius": 1200,
-      "DespawnSeconds": 600,
-      "Count": 1
+      "X": 464099,
+      "Y": 403259,
+      "Z": 4104
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 528239,
-      "Y": 359818,
-      "Z": 9088
-     }
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
+     },
+     "NeedsItem": "cq_cythraul_skull",
+     "Issuer": "cythraul"
     }
    ]
   },
@@ -6149,40 +5901,39 @@
     null,
     {
      "Marker": {
-      "Region": 10,
-      "X": 35308,
-      "Y": 21876,
-      "Z": 8447
+      "Region": 1,
+      "X": 477792,
+      "Y": 393640,
+      "Z": 4782
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 527779,
-      "Y": 359568,
-      "Z": 9088
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
      },
-     "Spawn": {
-      "Name": "Arawnite Assassin",
-      "TemplateId": 60157994,
-      "Level": 31,
-      "Model": 0,
+     "NeedsItem": "cq_arawnite_orders",
+     "Issuer": "Sir Dillus"
+    },
+    {
+     "Marker": {
       "Region": 1,
-      "X": 527779,
-      "Y": 359568,
-      "Z": 9088,
-      "TriggerRadius": 1200,
-      "DespawnSeconds": 600,
-      "Count": 1
+      "X": 464099,
+      "Y": 403259,
+      "Z": 4104
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 528239,
-      "Y": 359818,
-      "Z": 9088
-     }
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
+     },
+     "NeedsItem": "cq_cythraul_skull",
+     "Issuer": "cythraul"
     }
    ]
   },
@@ -6191,44 +5942,125 @@
     null,
     {
      "Marker": {
-      "Region": 10,
-      "X": 35308,
-      "Y": 21876,
-      "Z": 8447
+      "Region": 1,
+      "X": 477792,
+      "Y": 393640,
+      "Z": 4782
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 527779,
-      "Y": 359568,
-      "Z": 9088
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
      },
-     "Spawn": {
-      "Name": "Arawnite Assassin",
-      "TemplateId": 60157994,
-      "Level": 31,
-      "Model": 0,
+     "NeedsItem": "cq_arawnite_orders",
+     "Issuer": "Sir Dillus"
+    },
+    {
+     "Marker": {
       "Region": 1,
-      "X": 527779,
-      "Y": 359568,
-      "Z": 9088,
-      "TriggerRadius": 1200,
-      "DespawnSeconds": 600,
-      "Count": 1
+      "X": 464099,
+      "Y": 403259,
+      "Z": 4104
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 528239,
-      "Y": 359818,
-      "Z": 9088
-     }
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
+     },
+     "NeedsItem": "cq_cythraul_skull",
+     "Issuer": "cythraul"
     }
    ]
   },
   "21308": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 477792,
+      "Y": 393640,
+      "Z": 4782
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
+     },
+     "NeedsItem": "cq_arawnite_orders",
+     "Issuer": "Sir Dillus"
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 464099,
+      "Y": 403259,
+      "Z": 4104
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
+     },
+     "NeedsItem": "cq_cythraul_skull",
+     "Issuer": "cythraul"
+    }
+   ]
+  },
+  "21309": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 477792,
+      "Y": 393640,
+      "Z": 4782
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
+     },
+     "NeedsItem": "cq_arawnite_orders",
+     "Issuer": "Sir Dillus"
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 464099,
+      "Y": 403259,
+      "Z": 4104
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 453217,
+      "Y": 400338,
+      "Z": 2107
+     },
+     "NeedsItem": "cq_cythraul_skull",
+     "Issuer": "cythraul"
+    }
+   ]
+  },
+  "21489": {
    "Steps": [
     null,
     {
@@ -6270,7 +6102,175 @@
     }
    ]
   },
-  "21309": {
+  "21490": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 35308,
+      "Y": 21876,
+      "Z": 8447
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 527779,
+      "Y": 359568,
+      "Z": 9088
+     },
+     "Spawn": {
+      "Name": "Arawnite Assassin",
+      "TemplateId": 60157994,
+      "Level": 31,
+      "Model": 0,
+      "Region": 1,
+      "X": 527779,
+      "Y": 359568,
+      "Z": 9088,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 528239,
+      "Y": 359818,
+      "Z": 9088
+     }
+    }
+   ]
+  },
+  "21491": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 35308,
+      "Y": 21876,
+      "Z": 8447
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 527779,
+      "Y": 359568,
+      "Z": 9088
+     },
+     "Spawn": {
+      "Name": "Arawnite Assassin",
+      "TemplateId": 60157994,
+      "Level": 31,
+      "Model": 0,
+      "Region": 1,
+      "X": 527779,
+      "Y": 359568,
+      "Z": 9088,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 528239,
+      "Y": 359818,
+      "Z": 9088
+     }
+    }
+   ]
+  },
+  "21492": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 35308,
+      "Y": 21876,
+      "Z": 8447
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 527779,
+      "Y": 359568,
+      "Z": 9088
+     },
+     "Spawn": {
+      "Name": "Arawnite Assassin",
+      "TemplateId": 60157994,
+      "Level": 31,
+      "Model": 0,
+      "Region": 1,
+      "X": 527779,
+      "Y": 359568,
+      "Z": 9088,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 528239,
+      "Y": 359818,
+      "Z": 9088
+     }
+    }
+   ]
+  },
+  "21493": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 35308,
+      "Y": 21876,
+      "Z": 8447
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 527779,
+      "Y": 359568,
+      "Z": 9088
+     },
+     "Spawn": {
+      "Name": "Arawnite Assassin",
+      "TemplateId": 60157994,
+      "Level": 31,
+      "Model": 0,
+      "Region": 1,
+      "X": 527779,
+      "Y": 359568,
+      "Z": 9088,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 528239,
+      "Y": 359818,
+      "Z": 9088
+     }
+    }
+   ]
+  },
+  "21494": {
    "Steps": [
     null,
     {
@@ -7602,7 +7602,7 @@
     }
    ]
   },
-  "20488": {
+  "21315": {
    "Steps": [
     null,
     {
@@ -7641,7 +7641,7 @@
     }
    ]
   },
-  "20489": {
+  "21316": {
    "Steps": [
     null,
     {
@@ -7680,7 +7680,7 @@
     }
    ]
   },
-  "20490": {
+  "21317": {
    "Steps": [
     null,
     {
@@ -7719,7 +7719,7 @@
     }
    ]
   },
-  "21315": {
+  "21495": {
    "Steps": [
     null,
     {
@@ -7788,7 +7788,7 @@
     }
    ]
   },
-  "21316": {
+  "21496": {
    "Steps": [
     null,
     {
@@ -7857,7 +7857,7 @@
     }
    ]
   },
-  "21317": {
+  "21497": {
    "Steps": [
     null,
     {
@@ -9035,158 +9035,34 @@
     }
    ]
   },
-  "20493": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 10,
-      "X": 32961,
-      "Y": 26733,
-      "Z": 7830
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 585708,
-      "Y": 536071,
-      "Z": 2072
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 578764,
-      "Y": 557360,
-      "Z": 2157
-     },
-     "NeedsItem": "cq_supplies",
-     "Issuer": "Lady Aelawen"
-    }
-   ]
-  },
-  "20494": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 10,
-      "X": 32961,
-      "Y": 26733,
-      "Z": 7830
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 585708,
-      "Y": 536071,
-      "Z": 2072
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 578764,
-      "Y": 557360,
-      "Z": 2157
-     },
-     "NeedsItem": "cq_supplies",
-     "Issuer": "Lady Aelawen"
-    }
-   ]
-  },
-  "20495": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 10,
-      "X": 32961,
-      "Y": 26733,
-      "Z": 7830
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 585708,
-      "Y": 536071,
-      "Z": 2072
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 578764,
-      "Y": 557360,
-      "Z": 2157
-     },
-     "NeedsItem": "cq_supplies",
-     "Issuer": "Lady Aelawen"
-    }
-   ]
-  },
-  "20496": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 10,
-      "X": 32961,
-      "Y": 26733,
-      "Z": 7830
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 585708,
-      "Y": 536071,
-      "Z": 2072
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 578764,
-      "Y": 557360,
-      "Z": 2157
-     },
-     "NeedsItem": "cq_supplies",
-     "Issuer": "Lady Aelawen"
-    }
-   ]
-  },
   "21322": {
    "Steps": [
     null,
     {
      "Marker": {
-      "Region": 1,
-      "X": 508535,
-      "Y": 477271,
-      "Z": 2284
+      "Region": 10,
+      "X": 32961,
+      "Y": 26733,
+      "Z": 7830
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 523086,
-      "Y": 408688,
-      "Z": 4205
+      "X": 585708,
+      "Y": 536071,
+      "Z": 2072
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 511475,
-      "Y": 380909,
-      "Z": 7992
+      "X": 578764,
+      "Y": 557360,
+      "Z": 2157
      },
      "NeedsItem": "cq_supplies",
-     "Issuer": "Thol Dunnin"
+     "Issuer": "Lady Aelawen"
     }
    ]
   },
@@ -9195,33 +9071,95 @@
     null,
     {
      "Marker": {
-      "Region": 1,
-      "X": 508535,
-      "Y": 477271,
-      "Z": 2284
+      "Region": 10,
+      "X": 32961,
+      "Y": 26733,
+      "Z": 7830
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 523086,
-      "Y": 408688,
-      "Z": 4205
+      "X": 585708,
+      "Y": 536071,
+      "Z": 2072
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 511475,
-      "Y": 380909,
-      "Z": 7992
+      "X": 578764,
+      "Y": 557360,
+      "Z": 2157
      },
      "NeedsItem": "cq_supplies",
-     "Issuer": "Thol Dunnin"
+     "Issuer": "Lady Aelawen"
     }
    ]
   },
   "21324": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 32961,
+      "Y": 26733,
+      "Z": 7830
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 585708,
+      "Y": 536071,
+      "Z": 2072
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 578764,
+      "Y": 557360,
+      "Z": 2157
+     },
+     "NeedsItem": "cq_supplies",
+     "Issuer": "Lady Aelawen"
+    }
+   ]
+  },
+  "21325": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 10,
+      "X": 32961,
+      "Y": 26733,
+      "Z": 7830
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 585708,
+      "Y": 536071,
+      "Z": 2072
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 578764,
+      "Y": 557360,
+      "Z": 2157
+     },
+     "NeedsItem": "cq_supplies",
+     "Issuer": "Lady Aelawen"
+    }
+   ]
+  },
+  "21498": {
    "Steps": [
     null,
     {
@@ -9252,7 +9190,69 @@
     }
    ]
   },
-  "21325": {
+  "21499": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 508535,
+      "Y": 477271,
+      "Z": 2284
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 523086,
+      "Y": 408688,
+      "Z": 4205
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 511475,
+      "Y": 380909,
+      "Z": 7992
+     },
+     "NeedsItem": "cq_supplies",
+     "Issuer": "Thol Dunnin"
+    }
+   ]
+  },
+  "21500": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 508535,
+      "Y": 477271,
+      "Z": 2284
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 523086,
+      "Y": 408688,
+      "Z": 4205
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 511475,
+      "Y": 380909,
+      "Z": 7992
+     },
+     "NeedsItem": "cq_supplies",
+     "Issuer": "Thol Dunnin"
+    }
+   ]
+  },
+  "21501": {
    "Steps": [
     null,
     {
@@ -9713,127 +9713,34 @@
     }
    ]
   },
-  "20506": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 559748,
-      "Y": 513895,
-      "Z": 2619
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 496920,
-      "Y": 437761,
-      "Z": 3281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 559748,
-      "Y": 513895,
-      "Z": 2619
-     },
-     "NeedsItem": "cq_hidden_eye",
-     "Issuer": "giant spider"
-    }
-   ]
-  },
-  "20507": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 559748,
-      "Y": 513895,
-      "Z": 2619
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 496920,
-      "Y": 437761,
-      "Z": 3281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 559748,
-      "Y": 513895,
-      "Z": 2619
-     },
-     "NeedsItem": "cq_hidden_eye",
-     "Issuer": "giant spider"
-    }
-   ]
-  },
-  "20508": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 559748,
-      "Y": 513895,
-      "Z": 2619
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 496920,
-      "Y": 437761,
-      "Z": 3281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 1,
-      "X": 559748,
-      "Y": 513895,
-      "Z": 2619
-     },
-     "NeedsItem": "cq_hidden_eye",
-     "Issuer": "giant spider"
-    }
-   ]
-  },
   "21326": {
    "Steps": [
     null,
     {
      "Marker": {
       "Region": 1,
-      "X": 504903,
-      "Y": 474395,
-      "Z": 2788
+      "X": 559748,
+      "Y": 513895,
+      "Z": 2619
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 601056,
-      "Y": 534989,
-      "Z": 2511
+      "X": 496920,
+      "Y": 437761,
+      "Z": 3281
      }
     },
     {
      "Marker": {
       "Region": 1,
-      "X": 504903,
-      "Y": 474395,
-      "Z": 2788
+      "X": 559748,
+      "Y": 513895,
+      "Z": 2619
      },
-     "NeedsItem": "cq_demon_soul_gem",
-     "Issuer": "Weakened demon"
+     "NeedsItem": "cq_hidden_eye",
+     "Issuer": "giant spider"
     }
    ]
   },
@@ -9843,6 +9750,68 @@
     {
      "Marker": {
       "Region": 1,
+      "X": 559748,
+      "Y": 513895,
+      "Z": 2619
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 496920,
+      "Y": 437761,
+      "Z": 3281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 559748,
+      "Y": 513895,
+      "Z": 2619
+     },
+     "NeedsItem": "cq_hidden_eye",
+     "Issuer": "giant spider"
+    }
+   ]
+  },
+  "21328": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 559748,
+      "Y": 513895,
+      "Z": 2619
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 496920,
+      "Y": 437761,
+      "Z": 3281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 559748,
+      "Y": 513895,
+      "Z": 2619
+     },
+     "NeedsItem": "cq_hidden_eye",
+     "Issuer": "giant spider"
+    }
+   ]
+  },
+  "21502": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
       "X": 504903,
       "Y": 474395,
       "Z": 2788
@@ -9868,7 +9837,38 @@
     }
    ]
   },
-  "21328": {
+  "21503": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 504903,
+      "Y": 474395,
+      "Z": 2788
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 601056,
+      "Y": 534989,
+      "Z": 2511
+     }
+    },
+    {
+     "Marker": {
+      "Region": 1,
+      "X": 504903,
+      "Y": 474395,
+      "Z": 2788
+     },
+     "NeedsItem": "cq_demon_soul_gem",
+     "Issuer": "Weakened demon"
+    }
+   ]
+  },
+  "21504": {
    "Steps": [
     null,
     {
@@ -28713,9 +28713,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 326854,
-      "Y": 459336,
-      "Z": 6608
+      "X": 297386,
+      "Y": 654239,
+      "Z": 5449
      }
     },
     {
@@ -28724,6 +28724,19 @@
       "X": 315977,
       "Y": 624893,
       "Z": 5089
+     },
+     "Spawn": {
+      "Name": "Ciar",
+      "TemplateId": 60159213,
+      "Level": 6,
+      "Model": 0,
+      "Region": 200,
+      "X": 315977,
+      "Y": 624893,
+      "Z": 5089,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
      }
     }
    ]
@@ -28742,9 +28755,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 326854,
-      "Y": 459336,
-      "Z": 6608
+      "X": 297386,
+      "Y": 654239,
+      "Z": 5449
      }
     },
     {
@@ -28753,6 +28766,19 @@
       "X": 315977,
       "Y": 624893,
       "Z": 5089
+     },
+     "Spawn": {
+      "Name": "Ciar",
+      "TemplateId": 60159213,
+      "Level": 6,
+      "Model": 0,
+      "Region": 200,
+      "X": 315977,
+      "Y": 624893,
+      "Z": 5089,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
      }
     }
    ]
@@ -28771,9 +28797,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 326854,
-      "Y": 459336,
-      "Z": 6608
+      "X": 297386,
+      "Y": 654239,
+      "Z": 5449
      }
     },
     {
@@ -28782,6 +28808,19 @@
       "X": 315977,
       "Y": 624893,
       "Z": 5089
+     },
+     "Spawn": {
+      "Name": "Ciar",
+      "TemplateId": 60159213,
+      "Level": 6,
+      "Model": 0,
+      "Region": 200,
+      "X": 315977,
+      "Y": 624893,
+      "Z": 5089,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
      }
     }
    ]
@@ -28800,9 +28839,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 326854,
-      "Y": 459336,
-      "Z": 6608
+      "X": 297386,
+      "Y": 654239,
+      "Z": 5449
      }
     },
     {
@@ -28811,6 +28850,19 @@
       "X": 315977,
       "Y": 624893,
       "Z": 5089
+     },
+     "Spawn": {
+      "Name": "Ciar",
+      "TemplateId": 60159213,
+      "Level": 6,
+      "Model": 0,
+      "Region": 200,
+      "X": 315977,
+      "Y": 624893,
+      "Z": 5089,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
      }
     }
    ]
@@ -28829,9 +28881,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 326854,
-      "Y": 459336,
-      "Z": 6608
+      "X": 297386,
+      "Y": 654239,
+      "Z": 5449
      }
     },
     {
@@ -28840,6 +28892,19 @@
       "X": 315977,
       "Y": 624893,
       "Z": 5089
+     },
+     "Spawn": {
+      "Name": "Ciar",
+      "TemplateId": 60159213,
+      "Level": 6,
+      "Model": 0,
+      "Region": 200,
+      "X": 315977,
+      "Y": 624893,
+      "Z": 5089,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1
      }
     }
    ]
@@ -29009,9 +29074,23 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 326854,
-      "Y": 459336,
-      "Z": 6608
+      "X": 296759,
+      "Y": 453487,
+      "Z": 7137
+     },
+     "Spawn": {
+      "Name": "Lucan",
+      "TemplateId": 60163439,
+      "Level": 6,
+      "Model": 0,
+      "Region": 200,
+      "X": 296759,
+      "Y": 453487,
+      "Z": 7137,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1,
+      "Peaceful": true
      }
     },
     {
@@ -29128,9 +29207,23 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 326854,
-      "Y": 459336,
-      "Z": 6608
+      "X": 296759,
+      "Y": 453487,
+      "Z": 7137
+     },
+     "Spawn": {
+      "Name": "Lucan",
+      "TemplateId": 60163439,
+      "Level": 6,
+      "Model": 0,
+      "Region": 200,
+      "X": 296759,
+      "Y": 453487,
+      "Z": 7137,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1,
+      "Peaceful": true
      }
     },
     {
@@ -29247,9 +29340,23 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 326854,
-      "Y": 459336,
-      "Z": 6608
+      "X": 296759,
+      "Y": 453487,
+      "Z": 7137
+     },
+     "Spawn": {
+      "Name": "Lucan",
+      "TemplateId": 60163439,
+      "Level": 6,
+      "Model": 0,
+      "Region": 200,
+      "X": 296759,
+      "Y": 453487,
+      "Z": 7137,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1,
+      "Peaceful": true
      }
     },
     {
@@ -29366,9 +29473,23 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 326854,
-      "Y": 459336,
-      "Z": 6608
+      "X": 296759,
+      "Y": 453487,
+      "Z": 7137
+     },
+     "Spawn": {
+      "Name": "Lucan",
+      "TemplateId": 60163439,
+      "Level": 6,
+      "Model": 0,
+      "Region": 200,
+      "X": 296759,
+      "Y": 453487,
+      "Z": 7137,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1,
+      "Peaceful": true
      }
     },
     {
@@ -29485,9 +29606,23 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 326854,
-      "Y": 459336,
-      "Z": 6608
+      "X": 296759,
+      "Y": 453487,
+      "Z": 7137
+     },
+     "Spawn": {
+      "Name": "Lucan",
+      "TemplateId": 60163439,
+      "Level": 6,
+      "Model": 0,
+      "Region": 200,
+      "X": 296759,
+      "Y": 453487,
+      "Z": 7137,
+      "TriggerRadius": 1200,
+      "DespawnSeconds": 600,
+      "Count": 1,
+      "Peaceful": true
      }
     },
     {
@@ -31836,473 +31971,55 @@
     }
    ]
   },
-  "20766": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335285,
-      "Y": 720894,
-      "Z": 4313
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298433,
-      "Y": 687562,
-      "Z": 5069
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 320304,
-      "Y": 725323,
-      "Z": 4281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 320304,
-      "Y": 725323,
-      "Z": 4281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    }
-   ]
-  },
-  "20767": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335285,
-      "Y": 720894,
-      "Z": 4313
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298433,
-      "Y": 687562,
-      "Z": 5069
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 320304,
-      "Y": 725323,
-      "Z": 4281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 320304,
-      "Y": 725323,
-      "Z": 4281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    }
-   ]
-  },
-  "20768": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335285,
-      "Y": 720894,
-      "Z": 4313
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298433,
-      "Y": 687562,
-      "Z": 5069
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 320304,
-      "Y": 725323,
-      "Z": 4281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 320304,
-      "Y": 725323,
-      "Z": 4281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    }
-   ]
-  },
-  "20769": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335285,
-      "Y": 720894,
-      "Z": 4313
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298433,
-      "Y": 687562,
-      "Z": 5069
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 320304,
-      "Y": 725323,
-      "Z": 4281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 320304,
-      "Y": 725323,
-      "Z": 4281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    }
-   ]
-  },
-  "20770": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335285,
-      "Y": 720894,
-      "Z": 4313
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298433,
-      "Y": 687562,
-      "Z": 5069
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 320304,
-      "Y": 725323,
-      "Z": 4281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 320304,
-      "Y": 725323,
-      "Z": 4281
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    }
-   ]
-  },
-  "21387": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 375187,
-      "Y": 760587,
-      "Z": 4888
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 477147,
-      "Y": 537910,
-      "Z": 5262
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 404256,
-      "Y": 758704,
-      "Z": 4947
-     }
-    }
-   ]
-  },
-  "21388": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 375187,
-      "Y": 760587,
-      "Z": 4888
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 477147,
-      "Y": 537910,
-      "Z": 5262
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 404256,
-      "Y": 758704,
-      "Z": 4947
-     }
-    }
-   ]
-  },
-  "21389": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 375187,
-      "Y": 760587,
-      "Z": 4888
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 477147,
-      "Y": 537910,
-      "Z": 5262
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 404256,
-      "Y": 758704,
-      "Z": 4947
-     }
-    }
-   ]
-  },
-  "21390": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 375187,
-      "Y": 760587,
-      "Z": 4888
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 477147,
-      "Y": 537910,
-      "Z": 5262
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 404256,
-      "Y": 758704,
-      "Z": 4947
-     }
-    }
-   ]
-  },
-  "21391": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 375187,
-      "Y": 760587,
-      "Z": 4888
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 343472,
-      "Y": 706087,
-      "Z": 6360
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 477147,
-      "Y": 537910,
-      "Z": 5262
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 404256,
-      "Y": 758704,
-      "Z": 4947
-     }
-    }
-   ]
-  },
   "21392": {
    "Steps": [
     null,
     {
      "Marker": {
       "Region": 200,
-      "X": 315407,
-      "Y": 719833,
-      "Z": 4248
+      "X": 335285,
+      "Y": 720894,
+      "Z": 4313
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 478120,
-      "Y": 530519,
-      "Z": 5203
+      "X": 298433,
+      "Y": 687562,
+      "Z": 5069
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 320304,
+      "Y": 725323,
+      "Z": 4281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 320304,
+      "Y": 725323,
+      "Z": 4281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
      }
     }
    ]
@@ -32313,17 +32030,49 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 315407,
-      "Y": 719833,
-      "Z": 4248
+      "X": 335285,
+      "Y": 720894,
+      "Z": 4313
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 478120,
-      "Y": 530519,
-      "Z": 5203
+      "X": 298433,
+      "Y": 687562,
+      "Z": 5069
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 320304,
+      "Y": 725323,
+      "Z": 4281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 320304,
+      "Y": 725323,
+      "Z": 4281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
      }
     }
    ]
@@ -32334,22 +32083,345 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 315407,
-      "Y": 719833,
-      "Z": 4248
+      "X": 335285,
+      "Y": 720894,
+      "Z": 4313
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 478120,
-      "Y": 530519,
-      "Z": 5203
+      "X": 298433,
+      "Y": 687562,
+      "Z": 5069
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 320304,
+      "Y": 725323,
+      "Z": 4281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 320304,
+      "Y": 725323,
+      "Z": 4281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
      }
     }
    ]
   },
   "21395": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335285,
+      "Y": 720894,
+      "Z": 4313
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 298433,
+      "Y": 687562,
+      "Z": 5069
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 320304,
+      "Y": 725323,
+      "Z": 4281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 320304,
+      "Y": 725323,
+      "Z": 4281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    }
+   ]
+  },
+  "21396": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335285,
+      "Y": 720894,
+      "Z": 4313
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 298433,
+      "Y": 687562,
+      "Z": 5069
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 320304,
+      "Y": 725323,
+      "Z": 4281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 320304,
+      "Y": 725323,
+      "Z": 4281
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    }
+   ]
+  },
+  "21505": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 375187,
+      "Y": 760587,
+      "Z": 4888
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 477147,
+      "Y": 537910,
+      "Z": 5262
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 404256,
+      "Y": 758704,
+      "Z": 4947
+     }
+    }
+   ]
+  },
+  "21506": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 375187,
+      "Y": 760587,
+      "Z": 4888
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 477147,
+      "Y": 537910,
+      "Z": 5262
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 404256,
+      "Y": 758704,
+      "Z": 4947
+     }
+    }
+   ]
+  },
+  "21507": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 375187,
+      "Y": 760587,
+      "Z": 4888
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 477147,
+      "Y": 537910,
+      "Z": 5262
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 404256,
+      "Y": 758704,
+      "Z": 4947
+     }
+    }
+   ]
+  },
+  "21508": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 375187,
+      "Y": 760587,
+      "Z": 4888
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 477147,
+      "Y": 537910,
+      "Z": 5262
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 404256,
+      "Y": 758704,
+      "Z": 4947
+     }
+    }
+   ]
+  },
+  "21509": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 375187,
+      "Y": 760587,
+      "Z": 4888
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 343472,
+      "Y": 706087,
+      "Z": 6360
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 477147,
+      "Y": 537910,
+      "Z": 5262
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 404256,
+      "Y": 758704,
+      "Z": 4947
+     }
+    }
+   ]
+  },
+  "21510": {
    "Steps": [
     null,
     {
@@ -32370,7 +32442,70 @@
     }
    ]
   },
-  "21396": {
+  "21511": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 315407,
+      "Y": 719833,
+      "Z": 4248
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 478120,
+      "Y": 530519,
+      "Z": 5203
+     }
+    }
+   ]
+  },
+  "21512": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 315407,
+      "Y": 719833,
+      "Z": 4248
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 478120,
+      "Y": 530519,
+      "Z": 5203
+     }
+    }
+   ]
+  },
+  "21513": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 315407,
+      "Y": 719833,
+      "Z": 4248
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 478120,
+      "Y": 530519,
+      "Z": 5203
+     }
+    }
+   ]
+  },
+  "21514": {
    "Steps": [
     null,
     {
@@ -37431,9 +37566,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 305538,
-      "Y": 454421,
-      "Z": 4958
+      "X": 349904,
+      "Y": 506870,
+      "Z": 4925
      }
     },
     {
@@ -40563,34 +40698,34 @@
     null,
     {
      "Marker": {
-      "Region": 222,
-      "X": 34124,
-      "Y": 37375,
-      "Z": 15210
+      "Region": 200,
+      "X": 360323,
+      "Y": 595098,
+      "Z": 6316
      }
     },
     {
      "Marker": {
-      "Region": 222,
-      "X": 34124,
-      "Y": 37375,
-      "Z": 15210
+      "Region": 200,
+      "X": 360323,
+      "Y": 595098,
+      "Z": 6316
      }
     },
     {
      "Marker": {
-      "Region": 222,
-      "X": 34124,
-      "Y": 37375,
-      "Z": 15210
+      "Region": 200,
+      "X": 360323,
+      "Y": 595098,
+      "Z": 6316
      }
     },
     {
      "Marker": {
-      "Region": 222,
-      "X": 34124,
-      "Y": 37375,
-      "Z": 15210
+      "Region": 200,
+      "X": 360323,
+      "Y": 595098,
+      "Z": 6316
      }
     },
     {
@@ -40682,9 +40817,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 354460,
-      "Y": 527144,
-      "Z": 4622
+      "X": 357065,
+      "Y": 519123,
+      "Z": 4774
      }
     },
     {
@@ -40729,9 +40864,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 354460,
-      "Y": 527144,
-      "Z": 4622
+      "X": 357065,
+      "Y": 519123,
+      "Z": 4774
      }
     },
     {
@@ -41200,18 +41335,18 @@
     },
     {
      "Marker": {
-      "Region": 222,
-      "X": 34124,
-      "Y": 37375,
-      "Z": 15210
+      "Region": 200,
+      "X": 360323,
+      "Y": 595098,
+      "Z": 6316
      }
     },
     {
      "Marker": {
-      "Region": 222,
-      "X": 34124,
-      "Y": 37375,
-      "Z": 15210
+      "Region": 200,
+      "X": 360323,
+      "Y": 595098,
+      "Z": 6316
      }
     },
     {
@@ -41376,1110 +41511,64 @@
     }
    ]
   },
-  "20888": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20889": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20890": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20891": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20892": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20893": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20894": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20895": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20896": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20897": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20898": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
-  "20899": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 298865,
-      "Y": 687771,
-      "Z": 4937
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 334024,
-      "Y": 721033,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 435864,
-      "Y": 501243,
-      "Z": 3984
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 333978,
-      "Y": 719052,
-      "Z": 4296
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335407,
-      "Y": 718957,
-      "Z": 4316
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 323235,
-      "Y": 713282,
-      "Z": 4288
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     },
-     "NeedsItem": "cq_smidget_s_gem",
-     "Issuer": "Smidget"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 335778,
-      "Y": 709567,
-      "Z": 4526
-     }
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 359946,
-      "Y": 537804,
-      "Z": 5073
-     }
-    }
-   ]
-  },
   "21407": {
    "Steps": [
     null,
     {
      "Marker": {
       "Region": 200,
-      "X": 371006,
-      "Y": 529791,
-      "Z": 5167
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 323199,
-      "Y": 674758,
-      "Z": 5124
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 317647,
-      "Y": 697887,
-      "Z": 4579
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Smirky"
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
     },
     {
      "Marker": {
@@ -42488,16 +41577,8 @@
       "Y": 537804,
       "Z": 5073
      },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Trefor"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     }
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
     },
     {
      "Marker": {
@@ -42505,9 +41586,7 @@
       "X": 335778,
       "Y": 709567,
       "Z": 4526
-     },
-     "NeedsItem": "cq_sack_of_rotting_fish",
-     "Issuer": "Trefor"
+     }
     },
     {
      "Marker": {
@@ -42525,60 +41604,58 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 371006,
-      "Y": 529791,
-      "Z": 5167
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 323199,
-      "Y": 674758,
-      "Z": 5124
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 317647,
-      "Y": 697887,
-      "Z": 4579
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Smirky"
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
     },
     {
      "Marker": {
@@ -42587,16 +41664,8 @@
       "Y": 537804,
       "Z": 5073
      },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Trefor"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     }
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
     },
     {
      "Marker": {
@@ -42604,9 +41673,7 @@
       "X": 335778,
       "Y": 709567,
       "Z": 4526
-     },
-     "NeedsItem": "cq_sack_of_rotting_fish",
-     "Issuer": "Trefor"
+     }
     },
     {
      "Marker": {
@@ -42624,60 +41691,58 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 371006,
-      "Y": 529791,
-      "Z": 5167
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 323199,
-      "Y": 674758,
-      "Z": 5124
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 317647,
-      "Y": 697887,
-      "Z": 4579
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Smirky"
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
     },
     {
      "Marker": {
@@ -42686,16 +41751,8 @@
       "Y": 537804,
       "Z": 5073
      },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Trefor"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     }
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
     },
     {
      "Marker": {
@@ -42703,9 +41760,7 @@
       "X": 335778,
       "Y": 709567,
       "Z": 4526
-     },
-     "NeedsItem": "cq_sack_of_rotting_fish",
-     "Issuer": "Trefor"
+     }
     },
     {
      "Marker": {
@@ -42723,60 +41778,58 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 371006,
-      "Y": 529791,
-      "Z": 5167
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 323199,
-      "Y": 674758,
-      "Z": 5124
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 317647,
-      "Y": 697887,
-      "Z": 4579
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Smirky"
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
     },
     {
      "Marker": {
@@ -42785,16 +41838,8 @@
       "Y": 537804,
       "Z": 5073
      },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Trefor"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     }
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
     },
     {
      "Marker": {
@@ -42802,9 +41847,7 @@
       "X": 335778,
       "Y": 709567,
       "Z": 4526
-     },
-     "NeedsItem": "cq_sack_of_rotting_fish",
-     "Issuer": "Trefor"
+     }
     },
     {
      "Marker": {
@@ -42822,60 +41865,58 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 371006,
-      "Y": 529791,
-      "Z": 5167
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 323199,
-      "Y": 674758,
-      "Z": 5124
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 317647,
-      "Y": 697887,
-      "Z": 4579
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Smirky"
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
     },
     {
      "Marker": {
@@ -42884,16 +41925,8 @@
       "Y": 537804,
       "Z": 5073
      },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Trefor"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     }
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
     },
     {
      "Marker": {
@@ -42901,9 +41934,7 @@
       "X": 335778,
       "Y": 709567,
       "Z": 4526
-     },
-     "NeedsItem": "cq_sack_of_rotting_fish",
-     "Issuer": "Trefor"
+     }
     },
     {
      "Marker": {
@@ -42921,60 +41952,58 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 371006,
-      "Y": 529791,
-      "Z": 5167
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 323199,
-      "Y": 674758,
-      "Z": 5124
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 317647,
-      "Y": 697887,
-      "Z": 4579
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Smirky"
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
     },
     {
      "Marker": {
@@ -42983,16 +42012,8 @@
       "Y": 537804,
       "Z": 5073
      },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Trefor"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     }
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
     },
     {
      "Marker": {
@@ -43000,9 +42021,7 @@
       "X": 335778,
       "Y": 709567,
       "Z": 4526
-     },
-     "NeedsItem": "cq_sack_of_rotting_fish",
-     "Issuer": "Trefor"
+     }
     },
     {
      "Marker": {
@@ -43020,60 +42039,58 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 371006,
-      "Y": 529791,
-      "Z": 5167
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 323199,
-      "Y": 674758,
-      "Z": 5124
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 317647,
-      "Y": 697887,
-      "Z": 4579
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Smirky"
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
     },
     {
      "Marker": {
@@ -43082,16 +42099,8 @@
       "Y": 537804,
       "Z": 5073
      },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Trefor"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     }
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
     },
     {
      "Marker": {
@@ -43099,9 +42108,7 @@
       "X": 335778,
       "Y": 709567,
       "Z": 4526
-     },
-     "NeedsItem": "cq_sack_of_rotting_fish",
-     "Issuer": "Trefor"
+     }
     },
     {
      "Marker": {
@@ -43119,60 +42126,58 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 371006,
-      "Y": 529791,
-      "Z": 5167
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 323199,
-      "Y": 674758,
-      "Z": 5124
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 317647,
-      "Y": 697887,
-      "Z": 4579
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Smirky"
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
     },
     {
      "Marker": {
@@ -43181,16 +42186,8 @@
       "Y": 537804,
       "Z": 5073
      },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Trefor"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     }
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
     },
     {
      "Marker": {
@@ -43198,9 +42195,7 @@
       "X": 335778,
       "Y": 709567,
       "Z": 4526
-     },
-     "NeedsItem": "cq_sack_of_rotting_fish",
-     "Issuer": "Trefor"
+     }
     },
     {
      "Marker": {
@@ -43218,60 +42213,58 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 371006,
-      "Y": 529791,
-      "Z": 5167
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 323199,
-      "Y": 674758,
-      "Z": 5124
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 317647,
-      "Y": 697887,
-      "Z": 4579
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Smirky"
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
     },
     {
      "Marker": {
@@ -43280,16 +42273,8 @@
       "Y": 537804,
       "Z": 5073
      },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Trefor"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     }
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
     },
     {
      "Marker": {
@@ -43297,9 +42282,7 @@
       "X": 335778,
       "Y": 709567,
       "Z": 4526
-     },
-     "NeedsItem": "cq_sack_of_rotting_fish",
-     "Issuer": "Trefor"
+     }
     },
     {
      "Marker": {
@@ -43317,60 +42300,58 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 371006,
-      "Y": 529791,
-      "Z": 5167
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 323199,
-      "Y": 674758,
-      "Z": 5124
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 352097,
-      "Y": 607558,
-      "Z": 5155
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 317647,
-      "Y": 697887,
-      "Z": 4579
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
      }
     },
     {
      "Marker": {
       "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Smirky"
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
     },
     {
      "Marker": {
@@ -43379,16 +42360,8 @@
       "Y": 537804,
       "Z": 5073
      },
-     "NeedsItem": "cq_smirky_s_ring",
-     "Issuer": "Trefor"
-    },
-    {
-     "Marker": {
-      "Region": 200,
-      "X": 292843,
-      "Y": 732975,
-      "Z": 6192
-     }
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
     },
     {
      "Marker": {
@@ -43396,9 +42369,7 @@
       "X": 335778,
       "Y": 709567,
       "Z": 4526
-     },
-     "NeedsItem": "cq_sack_of_rotting_fish",
-     "Issuer": "Trefor"
+     }
     },
     {
      "Marker": {
@@ -43411,6 +42382,180 @@
    ]
   },
   "21417": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21418": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 298865,
+      "Y": 687771,
+      "Z": 4937
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 334024,
+      "Y": 721033,
+      "Z": 4316
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 435864,
+      "Y": 501243,
+      "Z": 3984
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 333978,
+      "Y": 719052,
+      "Z": 4296
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335407,
+      "Y": 718957,
+      "Z": 4316
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323235,
+      "Y": 713282,
+      "Z": 4288
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smidget_s_gem",
+     "Issuer": "Smidget"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21515": {
    "Steps": [
     null,
     {
@@ -43509,7 +42654,997 @@
     }
    ]
   },
-  "21418": {
+  "21516": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 371006,
+      "Y": 529791,
+      "Z": 5167
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323199,
+      "Y": 674758,
+      "Z": 5124
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 317647,
+      "Y": 697887,
+      "Z": 4579
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Smirky"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     },
+     "NeedsItem": "cq_sack_of_rotting_fish",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21517": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 371006,
+      "Y": 529791,
+      "Z": 5167
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323199,
+      "Y": 674758,
+      "Z": 5124
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 317647,
+      "Y": 697887,
+      "Z": 4579
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Smirky"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     },
+     "NeedsItem": "cq_sack_of_rotting_fish",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21518": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 371006,
+      "Y": 529791,
+      "Z": 5167
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323199,
+      "Y": 674758,
+      "Z": 5124
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 317647,
+      "Y": 697887,
+      "Z": 4579
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Smirky"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     },
+     "NeedsItem": "cq_sack_of_rotting_fish",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21519": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 371006,
+      "Y": 529791,
+      "Z": 5167
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323199,
+      "Y": 674758,
+      "Z": 5124
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 317647,
+      "Y": 697887,
+      "Z": 4579
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Smirky"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     },
+     "NeedsItem": "cq_sack_of_rotting_fish",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21520": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 371006,
+      "Y": 529791,
+      "Z": 5167
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323199,
+      "Y": 674758,
+      "Z": 5124
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 317647,
+      "Y": 697887,
+      "Z": 4579
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Smirky"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     },
+     "NeedsItem": "cq_sack_of_rotting_fish",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21521": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 371006,
+      "Y": 529791,
+      "Z": 5167
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323199,
+      "Y": 674758,
+      "Z": 5124
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 317647,
+      "Y": 697887,
+      "Z": 4579
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Smirky"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     },
+     "NeedsItem": "cq_sack_of_rotting_fish",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21522": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 371006,
+      "Y": 529791,
+      "Z": 5167
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323199,
+      "Y": 674758,
+      "Z": 5124
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 317647,
+      "Y": 697887,
+      "Z": 4579
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Smirky"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     },
+     "NeedsItem": "cq_sack_of_rotting_fish",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21523": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 371006,
+      "Y": 529791,
+      "Z": 5167
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323199,
+      "Y": 674758,
+      "Z": 5124
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 317647,
+      "Y": 697887,
+      "Z": 4579
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Smirky"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     },
+     "NeedsItem": "cq_sack_of_rotting_fish",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21524": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 371006,
+      "Y": 529791,
+      "Z": 5167
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323199,
+      "Y": 674758,
+      "Z": 5124
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 317647,
+      "Y": 697887,
+      "Z": 4579
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Smirky"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     },
+     "NeedsItem": "cq_sack_of_rotting_fish",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21525": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 371006,
+      "Y": 529791,
+      "Z": 5167
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 323199,
+      "Y": 674758,
+      "Z": 5124
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 352097,
+      "Y": 607558,
+      "Z": 5155
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 317647,
+      "Y": 697887,
+      "Z": 4579
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Smirky"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     },
+     "NeedsItem": "cq_smirky_s_ring",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 292843,
+      "Y": 732975,
+      "Z": 6192
+     }
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 335778,
+      "Y": 709567,
+      "Z": 4526
+     },
+     "NeedsItem": "cq_sack_of_rotting_fish",
+     "Issuer": "Trefor"
+    },
+    {
+     "Marker": {
+      "Region": 200,
+      "X": 359946,
+      "Y": 537804,
+      "Z": 5073
+     }
+    }
+   ]
+  },
+  "21526": {
    "Steps": [
     null,
     {
@@ -48578,9 +48713,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -48657,9 +48792,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -48736,9 +48871,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -48815,9 +48950,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -48894,9 +49029,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -48973,9 +49108,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -49052,9 +49187,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -49131,9 +49266,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -49210,9 +49345,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -49289,9 +49424,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -49368,9 +49503,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -49447,9 +49582,9 @@
     {
      "Marker": {
       "Region": 200,
-      "X": 341166,
-      "Y": 591717,
-      "Z": 5465
+      "X": 342246,
+      "Y": 592979,
+      "Z": 5456
      }
     },
     {
@@ -54124,7 +54259,7 @@
     }
    ]
   },
-  "21001": {
+  "21457": {
    "Steps": [
     null,
     {
@@ -54169,7 +54304,7 @@
     }
    ]
   },
-  "21002": {
+  "21458": {
    "Steps": [
     null,
     {
@@ -54280,7 +54415,7 @@
     }
    ]
   },
-  "21457": {
+  "21527": {
    "Steps": [
     null,
     {
@@ -54319,7 +54454,7 @@
     }
    ]
   },
-  "21458": {
+  "21528": {
    "Steps": [
     null,
     {
@@ -58094,81 +58229,81 @@
     }
    ]
   },
-  "21062": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 101,
-      "X": 30641,
-      "Y": 32093,
-      "Z": 8305
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 717463,
-      "Y": 721738,
-      "Z": 11080
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 749417,
-      "Y": 647580,
-      "Z": 4996
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 805929,
-      "Y": 702449,
-      "Z": 4960
-     }
-    }
-   ]
-  },
-  "21063": {
-   "Steps": [
-    null,
-    {
-     "Marker": {
-      "Region": 101,
-      "X": 30641,
-      "Y": 32093,
-      "Z": 8305
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 717463,
-      "Y": 721738,
-      "Z": 11080
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 749417,
-      "Y": 647580,
-      "Z": 4996
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 805929,
-      "Y": 702449,
-      "Z": 4960
-     }
-    }
-   ]
-  },
   "21461": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 101,
+      "X": 30641,
+      "Y": 32093,
+      "Z": 8305
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 717463,
+      "Y": 721738,
+      "Z": 11080
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 749417,
+      "Y": 647580,
+      "Z": 4996
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 805929,
+      "Y": 702449,
+      "Z": 4960
+     }
+    }
+   ]
+  },
+  "21462": {
+   "Steps": [
+    null,
+    {
+     "Marker": {
+      "Region": 101,
+      "X": 30641,
+      "Y": 32093,
+      "Z": 8305
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 717463,
+      "Y": 721738,
+      "Z": 11080
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 749417,
+      "Y": 647580,
+      "Z": 4996
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 805929,
+      "Y": 702449,
+      "Z": 4960
+     }
+    }
+   ]
+  },
+  "21529": {
    "Steps": [
     null,
     {
@@ -58199,7 +58334,7 @@
     }
    ]
   },
-  "21462": {
+  "21530": {
    "Steps": [
     null,
     {
@@ -58738,25 +58873,25 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 665051,
-      "Y": 795244,
-      "Z": 7498
+      "X": 697806,
+      "Y": 711852,
+      "Z": 5926
      }
     },
     {
      "Marker": {
       "Region": 100,
-      "X": 666055,
-      "Y": 797981,
-      "Z": 8091
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 703399,
-      "Y": 727099,
+      "X": 703618,
+      "Y": 728183,
       "Z": 5705
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 774119,
+      "Y": 651326,
+      "Z": 5978
      }
     },
     {
@@ -58799,25 +58934,25 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 665051,
-      "Y": 795244,
-      "Z": 7498
+      "X": 697806,
+      "Y": 711852,
+      "Z": 5926
      }
     },
     {
      "Marker": {
       "Region": 100,
-      "X": 666055,
-      "Y": 797981,
-      "Z": 8091
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 703399,
-      "Y": 727099,
+      "X": 703618,
+      "Y": 728183,
       "Z": 5705
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 774119,
+      "Y": 651326,
+      "Z": 5978
      }
     },
     {
@@ -58860,25 +58995,25 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 665051,
-      "Y": 795244,
-      "Z": 7498
+      "X": 697806,
+      "Y": 711852,
+      "Z": 5926
      }
     },
     {
      "Marker": {
       "Region": 100,
-      "X": 666055,
-      "Y": 797981,
-      "Z": 8091
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 703399,
-      "Y": 727099,
+      "X": 703618,
+      "Y": 728183,
       "Z": 5705
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 774119,
+      "Y": 651326,
+      "Z": 5978
      }
     },
     {
@@ -58921,25 +59056,25 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 665051,
-      "Y": 795244,
-      "Z": 7498
+      "X": 697806,
+      "Y": 711852,
+      "Z": 5926
      }
     },
     {
      "Marker": {
       "Region": 100,
-      "X": 666055,
-      "Y": 797981,
-      "Z": 8091
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 703399,
-      "Y": 727099,
+      "X": 703618,
+      "Y": 728183,
       "Z": 5705
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 774119,
+      "Y": 651326,
+      "Z": 5978
      }
     },
     {
@@ -58982,25 +59117,25 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 665051,
-      "Y": 795244,
-      "Z": 7498
+      "X": 697806,
+      "Y": 711852,
+      "Z": 5926
      }
     },
     {
      "Marker": {
       "Region": 100,
-      "X": 666055,
-      "Y": 797981,
-      "Z": 8091
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 703399,
-      "Y": 727099,
+      "X": 703618,
+      "Y": 728183,
       "Z": 5705
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 774119,
+      "Y": 651326,
+      "Z": 5978
      }
     },
     {
@@ -59043,25 +59178,25 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 665051,
-      "Y": 795244,
-      "Z": 7498
+      "X": 697806,
+      "Y": 711852,
+      "Z": 5926
      }
     },
     {
      "Marker": {
       "Region": 100,
-      "X": 666055,
-      "Y": 797981,
-      "Z": 8091
-     }
-    },
-    {
-     "Marker": {
-      "Region": 100,
-      "X": 703399,
-      "Y": 727099,
+      "X": 703618,
+      "Y": 728183,
       "Z": 5705
+     }
+    },
+    {
+     "Marker": {
+      "Region": 100,
+      "X": 774119,
+      "Y": 651326,
+      "Z": 5978
      }
     },
     {
@@ -59134,9 +59269,9 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 712360,
-      "Y": 688744,
-      "Z": 10014
+      "X": 712004,
+      "Y": 690275,
+      "Z": 9708
      }
     },
     {
@@ -59266,9 +59401,9 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 712360,
-      "Y": 688744,
-      "Z": 10014
+      "X": 712004,
+      "Y": 690275,
+      "Z": 9708
      }
     },
     {
@@ -59381,9 +59516,9 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 712360,
-      "Y": 688744,
-      "Z": 10014
+      "X": 712004,
+      "Y": 690275,
+      "Z": 9708
      }
     },
     {
@@ -59513,9 +59648,9 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 712360,
-      "Y": 688744,
-      "Z": 10014
+      "X": 712004,
+      "Y": 690275,
+      "Z": 9708
      }
     },
     {
@@ -60127,9 +60262,9 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 681393,
-      "Y": 643110,
-      "Z": 3968
+      "X": 721509,
+      "Y": 643868,
+      "Z": 6267
      }
     },
     {
@@ -61596,41 +61731,41 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 767699,
-      "Y": 749823,
-      "Z": 4552
+      "X": 802090,
+      "Y": 891996,
+      "Z": 4733
      }
     },
     {
      "Marker": {
       "Region": 100,
-      "X": 767699,
-      "Y": 749823,
-      "Z": 4552
+      "X": 802090,
+      "Y": 891996,
+      "Z": 4733
      }
     },
     {
      "Marker": {
       "Region": 100,
-      "X": 767699,
-      "Y": 749823,
-      "Z": 4552
+      "X": 802090,
+      "Y": 891996,
+      "Z": 4733
      }
     },
     {
      "Marker": {
       "Region": 100,
-      "X": 767699,
-      "Y": 749823,
-      "Z": 4552
+      "X": 802090,
+      "Y": 891996,
+      "Z": 4733
      }
     },
     {
      "Marker": {
       "Region": 100,
-      "X": 767699,
-      "Y": 749823,
-      "Z": 4552
+      "X": 802090,
+      "Y": 891996,
+      "Z": 4733
      }
     },
     {
@@ -65733,9 +65868,9 @@
     {
      "Marker": {
       "Region": 100,
-      "X": 792751,
-      "Y": 921032,
-      "Z": 4769
+      "X": 815903,
+      "Y": 915931,
+      "Z": 4776
      }
     },
     {
@@ -67104,10 +67239,10 @@
     },
     {
      "Marker": {
-      "Region": 151,
-      "X": 364970,
-      "Y": 366210,
-      "Z": 8152
+      "Region": 100,
+      "X": 764974,
+      "Y": 660322,
+      "Z": 5942
      }
     },
     {
@@ -75192,7 +75327,6 @@
   "4420a12d-9a75-564a-a6d3-7ebc4f1487bf",
   "44db9acf-525e-5868-bb2f-30b762dcac3b",
   "454af81c-2916-4229-80de-edaa8eb48ff0",
-  "456a1385-2e79-5f3b-bbc0-4b0e7536522d",
   "46d5097b-2a4d-5ef1-8bb5-d0291454484f",
   "47487ad4-bafd-5af4-9c6f-15233aeb4fb9",
   "4832",

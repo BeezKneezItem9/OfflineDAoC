@@ -142,5 +142,24 @@
    "role": "talk"
   },
   "why": "The West Wind: 'talk to the guy near the stepping stones' in Howth; no page records his name or the stones' loc, so an unnamed man is placed at the water's edge beside Howth (invented placement, ledgered)"
+ },
+ "H81|Lucan": {
+  "spawn": {
+   "name": "Lucan",
+   "zone": "Shannon Estuary",
+   "loc": [
+    10666,
+    39839
+   ],
+   "role": "talk",
+   "level": 6,
+   "like": "Lucan",
+   "look_only": true
+  },
+  "why": "Enchanting Willow: 'Guardian is located across estuary from Connla. Name is Lucan' (period Allakhazam page, loc 10k 40k); CapnBry radar saw Lucan in Shannon Estuary at 10666, 39839. The world's only Lucan is an aggressive level-6 ghost in Connacht (not period), so a peaceful Lucan ghost stands at the period spot"
+ },
+ "H196|<Howth townsperson>": {
+  "npc": "Troya",
+  "why": "The West Wind step 7: 'talk to an NPC in Howth' (name not recorded); it had resolved to an ambient pixie. Troya is a plain Howth townsperson (not a merchant or trainer) standing by the stepping-stones spot"
  }
 }

@@ -39,7 +39,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "fe76247d-ab9e-5a21-b66a-f629e577c87b",
    "_role": "kill",
    "_quests": [
@@ -86,7 +86,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7498e7fd-e199-59b6-a28c-f28ece4bf129",
    "_role": "kill",
    "_quests": [
@@ -133,7 +133,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "566d05a8-171f-5d92-8053-58b5a9e3a5a5",
    "_role": "talk",
    "_quests": [
@@ -180,7 +180,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "6fbed1bf-25a9-5fbb-910c-930fd479354a",
    "_role": "talk",
    "_quests": [
@@ -228,7 +228,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "69e8b827-ee6d-52d8-bcb1-e81104669c27",
    "_role": "kill",
    "_quests": [
@@ -275,7 +275,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "de2ffa96-cbba-5942-b4c3-664c7d6390e9",
    "_role": "otd",
    "_quests": [
@@ -322,7 +322,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "8168ef51-962d-5ae5-b7e8-11f268917446",
    "_role": "kill",
    "_quests": [
@@ -369,7 +369,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "daf48ac5-beb4-5661-856b-e7b3c40b7c4d",
    "_role": "kill",
    "_quests": [
@@ -416,7 +416,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "66773c3c-0303-5014-833a-a0e16572458f",
    "_role": "kill",
    "_quests": [
@@ -463,7 +463,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b40fb462-b9f7-503c-9962-77d8723b5b03",
    "_role": "otd",
    "_quests": [
@@ -510,7 +510,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "56f08289-21fb-50b5-9050-65e07a107736",
    "_role": "kill",
    "_quests": [
@@ -557,7 +557,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9a0e8455-627f-52f0-a3c6-b7a991a6618b",
    "_role": "deliver",
    "_quests": [
@@ -606,7 +606,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1f426577-5ff4-547e-86bc-eda0a39233e5",
    "_role": "otd",
    "_quests": [
@@ -653,7 +653,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "97c5b723-b48d-50a5-b4a2-d7fe0f0cd73e",
    "_role": "talk",
    "_quests": [
@@ -700,7 +700,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "91d8947a-0ed4-5a87-8147-b5348aaf01cc",
    "_role": "talk",
    "_quests": [
@@ -748,7 +748,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "48f45a38-0ba4-57b4-be37-30733fac9998",
    "_role": "kill",
    "_quests": [
@@ -795,7 +795,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "77d83187-b069-57fc-849c-5a6c20dd2732",
    "_role": "kill",
    "_quests": [
@@ -842,7 +842,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0c157650-311a-55f4-b104-e31e47fbf91c",
    "_role": "talk",
    "_quests": [
@@ -890,7 +890,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2953147e-5b03-53b4-8718-9880fc80b97a",
    "_role": "kill",
    "_quests": [
@@ -937,7 +937,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d35abfa5-af49-5fae-982e-34d9079a7408",
    "_role": "kill",
    "_quests": [
@@ -984,7 +984,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4017a73e-d9f2-5123-9ea0-ef51e648c903",
    "_role": "talk",
    "_quests": [
@@ -1032,7 +1032,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "dfac56f0-fc4e-576f-a4ae-07c19b8143c8",
    "_role": "kill",
    "_quests": [
@@ -1079,7 +1079,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "03b5a836-c6bb-5d99-a1a5-17c1ca8f03dd",
    "_role": "kill",
    "_quests": [
@@ -1126,7 +1126,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "874ba0f9-c83c-505b-95aa-574b0b62ae66",
    "_role": "kill",
    "_quests": [
@@ -1173,7 +1173,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "131b1823-8724-51ad-8f5b-1f7c0a3a1c25",
    "_role": "deliver",
    "_quests": [
@@ -1221,7 +1221,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1b142f54-e410-5536-b2cd-44c416684405",
    "_role": "kill",
    "_quests": [
@@ -1268,7 +1268,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7dc3a880-df64-5772-b2a3-715b39de0503",
    "_role": "kill",
    "_quests": [
@@ -1315,7 +1315,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "650595cd-5057-5d41-8e48-638729fb74a1",
    "_role": "kill",
    "_quests": [
@@ -1363,7 +1363,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e062fb6a-78bb-5baf-950d-40fb1ee51258",
    "_role": "otd",
    "_quests": [
@@ -1410,7 +1410,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1b6e65fe-ad48-51f0-9203-c4495820e2fe",
    "_role": "kill",
    "_quests": [
@@ -1458,7 +1458,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b09ebff4-6f36-5f47-bb41-48161840d41c",
    "_role": "kill",
    "_quests": [
@@ -1505,7 +1505,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c066ef95-948c-5fe9-bdb7-200c60e7683a",
    "_role": "kill",
    "_quests": [
@@ -1552,7 +1552,7 @@
    "Gender": 2,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a6ad8291-57d3-5bca-a8a9-195026ac2156",
    "_role": "talk",
    "_quests": [
@@ -1600,7 +1600,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "eeb1740a-d333-5176-a7c2-c84a3a1a7728",
    "_role": "talk",
    "_quests": [
@@ -1649,7 +1649,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4cb2f5bd-ba84-5372-af34-99c83b60f672",
    "_role": "kill",
    "_quests": [
@@ -1696,7 +1696,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a592bbd4-5728-56bc-b0b8-d4fbb17b9968",
    "_role": "kill",
    "_quests": [
@@ -1743,7 +1743,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e7fae601-c6b4-5edd-b694-b1a42a5e1303",
    "_role": "deliver",
    "_quests": [
@@ -1790,7 +1790,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "10fa5734-bf0e-5391-8afb-346d2b5b9e61",
    "_role": "kill",
    "_quests": [
@@ -1838,7 +1838,7 @@
    "Gender": 2,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d61b81cb-d1c6-5bb6-a405-4a6188115e9d",
    "_role": "kill",
    "_quests": [
@@ -1885,7 +1885,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "820891d5-089d-5d73-a3ad-2d9aeb76e9af",
    "_role": "kill",
    "_quests": [
@@ -1932,7 +1932,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d83a7137-678c-5bfc-a630-beac3066945e",
    "_role": "kill",
    "_quests": [
@@ -1979,7 +1979,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "cc2e2afa-f8f7-550f-9aed-764a8529d3a3",
    "_role": "kill",
    "_quests": [
@@ -2026,7 +2026,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2ae5fe5f-9ccf-5a0b-b4b2-1f0e1b73a490",
    "_role": "otd",
    "_quests": [
@@ -2073,7 +2073,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0ac01619-4e05-5161-a1cc-92d4ca85daa7",
    "_role": "deliver",
    "_quests": [
@@ -2121,7 +2121,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4a11b81f-ce56-5169-8b8a-539dc7930a1a",
    "_role": "kill",
    "_quests": [
@@ -2168,7 +2168,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c9bd10db-5e21-5f64-b6a5-ea4d54059467",
    "_role": "whisper",
    "_quests": [
@@ -2215,7 +2215,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0f21086e-b72b-5fbd-b2b3-ae09515f07ab",
    "_role": "kill",
    "_quests": [
@@ -2262,7 +2262,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "29945a96-6a08-51f5-8df9-f63612026614",
    "_role": "kill",
    "_quests": [
@@ -2309,7 +2309,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0b60c44d-3411-540f-8e4e-b38104f222df",
    "_role": "kill",
    "_quests": [
@@ -2356,7 +2356,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7787f246-3023-56f1-8df2-adce16beece4",
    "_role": "kill",
    "_quests": [
@@ -2403,7 +2403,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b000c026-f6aa-5696-af2a-0bdfdd03827e",
    "_role": "kill",
    "_quests": [
@@ -2450,7 +2450,7 @@
    "Gender": 2,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9feb2fe7-3309-5e15-ad3f-e512730542d7",
    "_role": "talk",
    "_quests": [
@@ -2497,7 +2497,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4be01980-284d-578b-af70-bf6d00217e4a",
    "_role": "talk",
    "_quests": [
@@ -2545,7 +2545,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "bd3c8fe5-c0d4-55a4-a98f-552009769bf2",
    "_role": "kill",
    "_quests": [
@@ -2592,7 +2592,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2e56bb44-7bc2-5fe9-ade3-0130a35e2c08",
    "_role": "kill",
    "_quests": [
@@ -2639,7 +2639,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9726d742-def4-5d10-b23b-fbe75059c3c0",
    "_role": "talk",
    "_quests": [
@@ -2687,7 +2687,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "18665736-1a1d-584e-9dda-25357376454e",
    "_role": "talk",
    "_quests": [
@@ -2736,7 +2736,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1f7bf7f0-0f6a-59f2-a2b2-9b61e458123f",
    "_role": "kill",
    "_quests": [
@@ -2783,7 +2783,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0f4f4a1d-c1f6-5c59-b62d-242d2f2d4139",
    "_role": "whisper",
    "_quests": [
@@ -2831,7 +2831,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f2da1b40-88f7-5516-bbf7-e8c15d488db8",
    "_role": "kill",
    "_quests": [
@@ -2879,7 +2879,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "82453659-a432-5209-a8c2-56bf91cbe0be",
    "_role": "talk",
    "_quests": [
@@ -2927,7 +2927,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d5913594-869f-5d90-bcea-fce428f63926",
    "_role": "kill",
    "_quests": [
@@ -2974,7 +2974,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9d3bb2ac-9eeb-5b63-b267-726041f8f45c",
    "_role": "talk",
    "_quests": [
@@ -3036,7 +3036,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "41b77c78-fbc9-5de3-90a6-7120fb44ef4e",
    "_role": "otd",
    "_quests": [
@@ -3085,7 +3085,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9da298a4-c414-59b7-97fd-484d81478b7a",
    "_role": "otd",
    "_quests": [
@@ -3132,7 +3132,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a148152b-42d7-5ad3-ac1a-aba163436d78",
    "_role": "kill",
    "_quests": [
@@ -3179,7 +3179,7 @@
    "Gender": 2,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4db87d31-38fe-5279-ac5e-61668326de1e",
    "_role": "kill",
    "_quests": [
@@ -3226,7 +3226,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0b5280aa-da15-5a6b-94f9-8b4bfe19ab1b",
    "_role": "kill",
    "_quests": [
@@ -3273,7 +3273,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "8952dc35-119b-5734-aa2e-141c092c204a",
    "_role": "talk",
    "_quests": [
@@ -3320,7 +3320,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7713ec3a-3e66-5339-ae61-cce2bf84cbc0",
    "_role": "kill",
    "_quests": [
@@ -3367,7 +3367,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "5da972c1-40d8-58e7-a37a-22b606e39185",
    "_role": "kill",
    "_quests": [
@@ -3414,7 +3414,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "61119e6a-e8c4-5244-a3e4-7acbf7043d7f",
    "_role": "kill",
    "_quests": [
@@ -3461,7 +3461,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 16,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "76adce5b-d53f-5618-ada6-76537678ece5",
    "_role": "kill",
    "_quests": [
@@ -3508,7 +3508,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c018ec91-d19a-5bdb-8858-7235df906332",
    "_role": "trade",
    "_quests": [
@@ -3556,7 +3556,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "96ea040a-2b84-5371-ba36-f5c200b72535",
    "_role": "talk",
    "_quests": [
@@ -3604,7 +3604,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "8933132d-0482-55ee-9da3-814d7e3403ec",
    "_role": "kill",
    "_quests": [
@@ -3651,7 +3651,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b8eca9eb-ca71-5117-aaf6-ef1dd18bb4da",
    "_role": "kill",
    "_quests": [
@@ -3698,7 +3698,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "83715e97-4489-5ee0-bebf-bcba9152c494",
    "_role": "kill",
    "_quests": [
@@ -3745,7 +3745,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "47487ad4-bafd-5af4-9c6f-15233aeb4fb9",
    "_role": "kill",
    "_quests": [
@@ -3792,7 +3792,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a3347d36-6028-5063-b7df-ff93ed7e0aee",
    "_role": "talk",
    "_quests": [
@@ -3839,7 +3839,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "cdcaace0-7dbc-542c-88b9-a242cd1b2497",
    "_role": "talk",
    "_quests": [
@@ -3887,7 +3887,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 51,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1c7b3764-6ff3-5f35-8f38-73792a30de59",
    "_role": "kill",
    "_quests": [
@@ -3934,7 +3934,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "26cabb67-bfdc-5214-a063-29b2d96109d7",
    "_role": "deliver",
    "_quests": [
@@ -3981,7 +3981,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "57ab6546-8ae8-5fef-a1f9-ac7ddcdcdd17",
    "_role": "kill",
    "_quests": [
@@ -4028,7 +4028,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "06709e79-1687-5cae-bd4c-cf01e562627f",
    "_role": "kill",
    "_quests": [
@@ -4075,7 +4075,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b6397716-5134-5694-9402-59a9837eb310",
    "_role": "kill",
    "_quests": [
@@ -4122,7 +4122,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "508985c0-883f-5699-a957-159e63115d02",
    "_role": "kill",
    "_quests": [
@@ -4169,7 +4169,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "bf3cc092-b238-53a1-b05d-be3c67188aef",
    "_role": "kill",
    "_quests": [
@@ -4216,7 +4216,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "6ef9d596-3180-56db-b52d-0081bd9f8824",
    "_role": "kill",
    "_quests": [
@@ -4263,7 +4263,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0d5d7c12-1c47-508b-851e-d8025ca1291a",
    "_role": "kill",
    "_quests": [
@@ -4310,7 +4310,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "bee28be8-9384-5adc-a954-10ea3af1c74e",
    "_role": "kill",
    "_quests": [
@@ -4357,7 +4357,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "29866528-2c65-51d9-8875-d5a7afc71609",
    "_role": "kill",
    "_quests": [
@@ -4404,7 +4404,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7366f944-f61b-50ef-9188-4ee80ed1f899",
    "_role": "kill",
    "_quests": [
@@ -4451,7 +4451,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "647ee9ce-c840-5378-a455-c5401f35523f",
    "_role": "kill",
    "_quests": [
@@ -4499,7 +4499,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a060f313-0c80-5162-b97e-9c989e7d8506",
    "_role": "drop source",
    "_quests": [
@@ -4546,7 +4546,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e130d541-ee0b-5cd1-9be1-59a5915d3472",
    "_role": "drop source",
    "_quests": [
@@ -4593,7 +4593,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "969bc277-6084-51cd-876f-16287a585832",
    "_role": "drop source",
    "_quests": [
@@ -4640,7 +4640,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2f123367-6e1b-5557-8e25-66134d061533",
    "_role": "drop source",
    "_quests": [
@@ -4687,7 +4687,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "87f0ec60-84a3-50d3-906d-83f25e23331b",
    "_role": "drop source",
    "_quests": [
@@ -4734,7 +4734,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "3efbd04a-df77-5a72-8102-aa78ec4232ca",
    "_role": "drop source",
    "_quests": [
@@ -4781,7 +4781,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "43fcae3c-16ac-57f5-bba2-b949e1386fd8",
    "_role": "kill",
    "_quests": [
@@ -4828,7 +4828,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "877732ad-9f26-57dc-b6c1-d3852567bfbb",
    "_role": "kill",
    "_quests": [
@@ -4875,7 +4875,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "641c50b4-78a0-5ba0-a439-46037fd21fbe",
    "_role": "drop source",
    "_quests": [
@@ -4922,7 +4922,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "97fec8fc-1bf3-510d-9d1b-bac3bc2352f8",
    "_role": "drop source",
    "_quests": [
@@ -4969,7 +4969,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "6f5df745-bc46-57f8-bead-31690ae8d4e1",
    "_role": "drop source",
    "_quests": [
@@ -5016,7 +5016,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "3f31d87b-beae-5a9c-a094-f3d6db6db33e",
    "_role": "drop source",
    "_quests": [
@@ -5063,7 +5063,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d4b8ddf9-2707-5a3d-8c37-a057e7a474ec",
    "_role": "drop source",
    "_quests": [
@@ -5110,7 +5110,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1a26249a-ad32-53ff-8e26-1147c46d08e8",
    "_role": "drop source",
    "_quests": [
@@ -5157,7 +5157,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a8364498-048a-5b61-8ca4-6d63898a14f1",
    "_role": "drop source",
    "_quests": [
@@ -5205,7 +5205,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0f618e41-bda7-5cfe-b72e-a9bb7675bdbf",
    "_role": "drop source",
    "_quests": [
@@ -5253,7 +5253,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "6ce7bf38-89d0-50d7-bbf2-66ead3032006",
    "_role": "drop source",
    "_quests": [
@@ -5301,7 +5301,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e02204e9-753a-57f5-ab27-61a7c7c62aee",
    "_role": "drop source",
    "_quests": [
@@ -5349,7 +5349,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9d8e469b-2ca2-5672-8f12-6f9512e97a64",
    "_role": "drop source",
    "_quests": [
@@ -5397,7 +5397,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "3b3c7d8d-fa4e-518e-a272-1d72893eb6f9",
    "_role": "drop source",
    "_quests": [
@@ -5445,7 +5445,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "39f4a48e-6244-5d89-a387-7ef65bc32d29",
    "_role": "collect",
    "_quests": [
@@ -5492,7 +5492,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a2a8696f-3c4f-5e60-8057-c1636b6693ff",
    "_role": "collect",
    "_quests": [
@@ -5539,7 +5539,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "51144eea-1e0d-56cb-8d38-0ae51bf7cffb",
    "_role": "collect",
    "_quests": [
@@ -5586,7 +5586,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "50b0d26c-eb47-5746-9935-aae9445c862f",
    "_role": "collect",
    "_quests": [
@@ -5633,7 +5633,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "07250bec-66ba-5655-950f-8513b1c8234a",
    "_role": "collect",
    "_quests": [
@@ -5680,7 +5680,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d66d6fef-8754-57c9-a39a-29f8aa6e7d3d",
    "_role": "collect",
    "_quests": [
@@ -5698,42 +5698,42 @@
    "Speed": 200,
    "Heading": 1247,
    "Region": 1,
-   "Model": 831,
-   "Size": 250,
-   "Strength": 78,
-   "Constitution": 78,
-   "Dexterity": 90,
-   "Quickness": 90,
-   "Intelligence": 90,
-   "Piety": 90,
-   "Empathy": 90,
-   "Charisma": 90,
-   "Level": 61,
+   "Model": 1008,
+   "Size": 50,
+   "Strength": 30,
+   "Constitution": 30,
+   "Dexterity": 30,
+   "Quickness": 30,
+   "Intelligence": 30,
+   "Piety": 30,
+   "Empathy": 30,
+   "Charisma": 30,
+   "Level": 1,
    "Realm": 1,
-   "EquipmentTemplateID": "",
+   "EquipmentTemplateID": "generalvaul",
    "ItemsListTemplateID": null,
    "NPCTemplateID": -1,
-   "Race": 2006,
+   "Race": 2005,
    "Flags": 16,
    "AggroLevel": 0,
    "AggroRange": 0,
-   "MeleeDamageType": 1,
+   "MeleeDamageType": 3,
    "RespawnInterval": 30,
-   "FactionID": 7,
-   "BodyType": 8,
+   "FactionID": 0,
+   "BodyType": 6,
    "HouseNumber": 0,
    "RoamingRange": 0,
    "IsCloakHoodUp": 0,
    "Gender": 0,
    "PackageID": "ClassicQuest",
-   "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "VisibleWeaponSlots": 34,
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "232c7f51-12c2-51a5-ac47-87f065d24cb8",
    "_role": "talk",
    "_quests": [
     "Abolishment of Sacrifice step 2"
    ],
-   "_donor": "species 'tower guard' -> Tower Guardian"
+   "_donor": "nearest townsperson General Vaul"
   },
   {
    "ClassType": "DOL.GS.GameNPC",
@@ -5774,7 +5774,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "30e70ac4-dfdc-55d8-94e1-7a33b7372a5c",
    "_role": "drop source",
    "_quests": [
@@ -5821,7 +5821,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "35b509c2-de6e-5d80-bb99-0478a78d575f",
    "_role": "drop source",
    "_quests": [
@@ -5868,7 +5868,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f7904ef7-eae0-596b-b4aa-a5ab09071279",
    "_role": "drop source",
    "_quests": [
@@ -5915,7 +5915,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0e6b4de2-93f5-5fce-9af9-06f7b6c348c1",
    "_role": "drop source",
    "_quests": [
@@ -5962,7 +5962,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7df23536-17e7-5773-80f8-b79a4fe7e557",
    "_role": "drop source",
    "_quests": [
@@ -6009,7 +6009,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e86b2ef6-5427-5812-8519-3e0382112b8c",
    "_role": "drop source",
    "_quests": [
@@ -6056,7 +6056,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "143fb0de-9aa1-5f98-9037-5fb1231a7655",
    "_role": "drop source",
    "_quests": [
@@ -6103,7 +6103,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c5ffbcdb-acc9-5344-90c5-a3bfe597810d",
    "_role": "drop source",
    "_quests": [
@@ -6150,7 +6150,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a52c1c47-3434-5c10-af9a-1b34e12304a1",
    "_role": "drop source",
    "_quests": [
@@ -6197,7 +6197,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4bf53155-b458-5de3-aa20-fb24ff80e029",
    "_role": "drop source",
    "_quests": [
@@ -6244,7 +6244,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "411aa4a4-3632-574e-b08f-1e9c854b3633",
    "_role": "drop source",
    "_quests": [
@@ -6291,7 +6291,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "411f1b2b-e998-5948-ba11-ec0fe26377b9",
    "_role": "drop source",
    "_quests": [
@@ -6338,7 +6338,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ebad94b9-33a6-5e24-bdcb-5c3c51a0a7cf",
    "_role": "drop source",
    "_quests": [
@@ -6385,7 +6385,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d69c6bdb-8b3d-546a-8f50-c1db571b075c",
    "_role": "drop source",
    "_quests": [
@@ -6432,7 +6432,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2719a750-cdfb-5672-a6d3-5f63f3ba9619",
    "_role": "drop source",
    "_quests": [
@@ -6479,7 +6479,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "aa97fef2-26a4-5de4-8e92-2294190347d4",
    "_role": "drop source",
    "_quests": [
@@ -6491,9 +6491,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "western basilisk youth",
    "Guild": "",
-   "X": 574607,
-   "Y": 385258,
-   "Z": 5728,
+   "X": 574353,
+   "Y": 385013,
+   "Z": 5938,
    "Speed": 200,
    "Heading": 950,
    "Region": 1,
@@ -6526,7 +6526,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b979b382-1d86-57e8-8df5-b674c2f9dd4d",
    "_role": "drop source",
    "_quests": [
@@ -6538,9 +6538,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "western basilisk youth",
    "Guild": "",
-   "X": 574957,
-   "Y": 385258,
-   "Z": 5488,
+   "X": 574703,
+   "Y": 385013,
+   "Z": 5723,
    "Speed": 200,
    "Heading": 142,
    "Region": 1,
@@ -6573,7 +6573,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "43a2b03b-01ad-5cb8-afa8-0bd7c4a0ccb3",
    "_role": "drop source",
    "_quests": [
@@ -6585,9 +6585,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "western basilisk youth",
    "Guild": "",
-   "X": 574782,
-   "Y": 385561,
-   "Z": 5458,
+   "X": 574528,
+   "Y": 385316,
+   "Z": 5754,
    "Speed": 200,
    "Heading": 244,
    "Region": 1,
@@ -6620,7 +6620,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e1331832-9e9d-510f-8707-8dcb2e984f7b",
    "_role": "drop source",
    "_quests": [
@@ -6632,9 +6632,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "western basilisk youth",
    "Guild": "",
-   "X": 574432,
-   "Y": 385561,
-   "Z": 5734,
+   "X": 574178,
+   "Y": 385316,
+   "Z": 5916,
    "Speed": 200,
    "Heading": 2444,
    "Region": 1,
@@ -6667,7 +6667,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "98344af9-c331-544a-82e4-8b84ce71624a",
    "_role": "drop source",
    "_quests": [
@@ -6679,9 +6679,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "western basilisk youth",
    "Guild": "",
-   "X": 574257,
-   "Y": 385258,
-   "Z": 5884,
+   "X": 574003,
+   "Y": 385013,
+   "Z": 6202,
    "Speed": 200,
    "Heading": 1082,
    "Region": 1,
@@ -6714,7 +6714,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7498cd40-ee2e-5a38-9499-7fb4c7715d64",
    "_role": "drop source",
    "_quests": [
@@ -6726,9 +6726,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "western basilisk youth",
    "Guild": "",
-   "X": 574432,
-   "Y": 384954,
-   "Z": 5889,
+   "X": 574178,
+   "Y": 384709,
+   "Z": 6162,
    "Speed": 200,
    "Heading": 2097,
    "Region": 1,
@@ -6761,7 +6761,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "36b5e44c-2561-5cd1-aa1d-4a2d9a4a3c7d",
    "_role": "drop source",
    "_quests": [
@@ -6808,7 +6808,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "cfdfdd2e-dc6d-5115-8c32-58aa8f74950d",
    "_role": "kill",
    "_quests": [
@@ -6855,7 +6855,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1f3d36b9-b842-5a00-9e05-ad0e704414a8",
    "_role": "talk",
    "_quests": [
@@ -6903,7 +6903,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "919a0156-45d4-57b4-bf1b-bf2cccdf3a68",
    "_role": "otd",
    "_quests": [
@@ -6950,7 +6950,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "8ef18028-fb54-5ad3-b76e-02247ae4f753",
    "_role": "kill",
    "_quests": [
@@ -6997,7 +6997,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f0218036-7b24-5b7d-a623-1afbabf4f02a",
    "_role": "kill",
    "_quests": [
@@ -7044,7 +7044,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "3d1e2f64-ae81-5e14-9aee-18949c13dd69",
    "_role": "kill",
    "_quests": [
@@ -7091,7 +7091,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4420a12d-9a75-564a-a6d3-7ebc4f1487bf",
    "_role": "kill",
    "_quests": [
@@ -7138,7 +7138,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f1002183-1b9d-5e50-aa80-1d1b7a6aa9cd",
    "_role": "kill",
    "_quests": [
@@ -7185,7 +7185,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b7893aea-bd76-5f13-9500-1d617b2bcf03",
    "_role": "otd",
    "_quests": [
@@ -7232,7 +7232,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "91ffb98c-9bff-565c-a0e2-df8204ea53f1",
    "_role": "talk",
    "_quests": [
@@ -7284,7 +7284,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ed026452-b764-57d3-bdf6-16681c7ccce8",
    "_role": "deliver",
    "_quests": [
@@ -7331,7 +7331,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "024f7fe3-adaf-5945-be0e-41cbdb233b5b",
    "_role": "talk",
    "_quests": [
@@ -7379,7 +7379,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1ba0d84a-5f6e-52d3-b19e-7468853b9508",
    "_role": "talk",
    "_quests": [
@@ -7427,7 +7427,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c28f951f-08bd-5406-9bd5-901ed4b5d4f4",
    "_role": "talk",
    "_quests": [
@@ -7476,7 +7476,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "09a149a4-2a9d-55db-81bb-02facea9404f",
    "_role": "kill",
    "_quests": [
@@ -7523,7 +7523,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "79399bdc-08dd-5b4b-bee0-8bec30872fbd",
    "_role": "kill",
    "_quests": [
@@ -7570,7 +7570,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "af68a4fc-713d-547f-8ff9-941abc2eb00d",
    "_role": "talk",
    "_quests": [
@@ -7618,7 +7618,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "937866f8-4eec-5232-9403-c442149c1fa4",
    "_role": "talk",
    "_quests": [
@@ -7667,7 +7667,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "fac8315a-c7ed-56d1-bcd9-53448edd9396",
    "_role": "otd",
    "_quests": [
@@ -7714,7 +7714,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d0b6c68d-a936-5775-bc11-0f5d5e3d4e98",
    "_role": "whisper",
    "_quests": [
@@ -7763,7 +7763,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c3175020-b817-5172-9b08-3137ffa28f1e",
    "_role": "talk",
    "_quests": [
@@ -7810,7 +7810,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9e75f7c4-7f11-5257-8779-2d9df00ad483",
    "_role": "kill",
    "_quests": [
@@ -7857,7 +7857,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ae54ec11-35e3-544e-9018-133dccb1287a",
    "_role": "talk",
    "_quests": [
@@ -7904,7 +7904,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e2940064-d7fb-5b42-9b66-b890939c8560",
    "_role": "kill",
    "_quests": [
@@ -7951,7 +7951,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "715288ef-b150-551f-b2b8-1a79eb5dbfce",
    "_role": "deliver",
    "_quests": [
@@ -7999,7 +7999,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "62496034-e8e1-527d-88d0-593516e6052c",
    "_role": "kill",
    "_quests": [
@@ -8046,7 +8046,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "dec7861e-f617-5141-9501-92e9a0e1292a",
    "_role": "talk",
    "_quests": [
@@ -8095,7 +8095,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "824e38e0-4098-5aa1-af5a-19549e342063",
    "_role": "talk",
    "_quests": [
@@ -8142,7 +8142,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4f712d98-4946-599d-ba45-5ff8906fdc91",
    "_role": "kill",
    "_quests": [
@@ -8189,7 +8189,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "436c852c-2cab-5f66-8c12-0dfd8af4dd7e",
    "_role": "kill",
    "_quests": [
@@ -8236,7 +8236,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ab9f9076-1c4f-5f42-9a21-d7ba1a06666e",
    "_role": "kill",
    "_quests": [
@@ -8283,7 +8283,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "cfe0ad35-81ea-513a-9ff6-8ffeac7102f5",
    "_role": "talk",
    "_quests": [
@@ -8331,7 +8331,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d2667f36-7e5e-5d23-a1de-b9d98f5493cb",
    "_role": "kill",
    "_quests": [
@@ -8379,7 +8379,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "dd53b8cc-8abf-533d-8528-bb8309ddb567",
    "_role": "kill",
    "_quests": [
@@ -8426,7 +8426,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "19c59cc0-6cc7-51cd-aa7e-dc368cbff3cc",
    "_role": "kill",
    "_quests": [
@@ -8473,7 +8473,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0a1add33-4cbf-52af-b884-62dbe806b34b",
    "_role": "kill",
    "_quests": [
@@ -8520,13 +8520,60 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e898b0e9-46eb-5ad5-94b4-51b26e657a2e",
    "_role": "otd",
    "_quests": [
     "Little Star One Time Drop (one-time drop)"
    ],
    "_donor": "species 'stepper' -> roan stepper"
+  },
+  {
+   "ClassType": "DOL.GS.GameNPC",
+   "Name": "Lucan",
+   "Guild": "",
+   "X": 297386,
+   "Y": 654239,
+   "Z": 5449,
+   "Speed": 200,
+   "Heading": 4042,
+   "Region": 200,
+   "Model": 307,
+   "Size": 53,
+   "Strength": 49,
+   "Constitution": 30,
+   "Dexterity": 30,
+   "Quickness": 30,
+   "Intelligence": 30,
+   "Piety": 30,
+   "Empathy": 30,
+   "Charisma": 30,
+   "Level": 6,
+   "Realm": 3,
+   "EquipmentTemplateID": "aed5798d-8949-47f9-821d-c233cd2569fc;8719cf9c-96a8-4362-9d4e-70f669a8d235",
+   "ItemsListTemplateID": "",
+   "NPCTemplateID": -1,
+   "Race": 2009,
+   "Flags": 17,
+   "AggroLevel": 0,
+   "AggroRange": 0,
+   "MeleeDamageType": 0,
+   "RespawnInterval": 30,
+   "FactionID": 0,
+   "BodyType": 11,
+   "HouseNumber": 0,
+   "RoamingRange": 0,
+   "IsCloakHoodUp": 0,
+   "Gender": 0,
+   "PackageID": "ClassicQuest",
+   "VisibleWeaponSlots": 0,
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
+   "Mob_ID": "d208f890-c53a-50a2-a08b-ea2d024661c0",
+   "_role": "talk",
+   "_quests": [
+    "Enchanting Willow step 2"
+   ],
+   "_donor": null
   },
   {
    "ClassType": "DOL.GS.GameNPC",
@@ -8567,7 +8614,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f1e78345-f001-5dca-9038-c4a1551da247",
    "_role": "kill",
    "_quests": [
@@ -8614,7 +8661,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f7fd965b-d778-5cc3-8b6d-3c36fd5cfd92",
    "_role": "talk",
    "_quests": [
@@ -8662,7 +8709,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9a645f3c-cdd5-5ea1-a692-5844240669f9",
    "_role": "talk",
    "_quests": [
@@ -8709,7 +8756,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "506674de-8b14-5965-9320-2197f653dc0b",
    "_role": "talk",
    "_quests": [
@@ -8756,7 +8803,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2810ad46-5486-572d-9e5d-6815e4363f89",
    "_role": "kill",
    "_quests": [
@@ -8803,7 +8850,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7b4aa5ac-a076-5b6d-9599-a33147dc5591",
    "_role": "kill",
    "_quests": [
@@ -8850,7 +8897,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "dc0c43f8-2e82-544f-8495-8cd4fc347689",
    "_role": "otd",
    "_quests": [
@@ -8897,7 +8944,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9d077978-bb69-5a47-b4f0-4480d7886589",
    "_role": "kill",
    "_quests": [
@@ -8944,7 +8991,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "258d1dc6-4f4b-5e17-b39e-b687ab4f5a00",
    "_role": "talk",
    "_quests": [
@@ -8991,7 +9038,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "28a63f87-3e68-550e-b3c0-1631cff581e6",
    "_role": "deliver",
    "_quests": [
@@ -9038,7 +9085,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "081250b9-b7f8-555e-973e-80d33b23bfd0",
    "_role": "kill",
    "_quests": [
@@ -9085,7 +9132,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "5195c664-a5f3-59e6-9c8a-1961f1a9138b",
    "_role": "talk",
    "_quests": [
@@ -9132,7 +9179,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "3eb615d3-a482-5a63-b1db-19d9602e1dc2",
    "_role": "talk",
    "_quests": [
@@ -9184,7 +9231,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "559233b0-03f8-59cf-90c1-ded7abf9fd5a",
    "_role": "talk",
    "_quests": [
@@ -9236,7 +9283,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a52847eb-1fdc-5f8b-9698-22626cfb2545",
    "_role": "talk",
    "_quests": [
@@ -9283,7 +9330,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "80d63aed-0dbb-536e-bb87-d8d8c450b17c",
    "_role": "talk",
    "_quests": [
@@ -9331,7 +9378,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "50c43a14-1a57-5f53-ac63-1e424fa33f41",
    "_role": "kill",
    "_quests": [
@@ -9378,7 +9425,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a7afba84-57b1-5606-9d83-bf2acf4b6083",
    "_role": "talk",
    "_quests": [
@@ -9425,7 +9472,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d44ae46b-69bc-57ea-9898-aacd61906a10",
    "_role": "kill",
    "_quests": [
@@ -9472,7 +9519,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b16c01f6-ad84-5749-a540-e57a6c45ee9b",
    "_role": "deliver",
    "_quests": [
@@ -9519,7 +9566,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "95e81474-b2d1-5db0-9cbb-b7790fa3b510",
    "_role": "talk",
    "_quests": [
@@ -9567,7 +9614,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "5cbf1dba-d07e-5053-9790-06afe55f34ad",
    "_role": "kill",
    "_quests": [
@@ -9614,7 +9661,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "347b4cb0-4b4e-5142-affd-82ad1766ea3f",
    "_role": "kill",
    "_quests": [
@@ -9661,7 +9708,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e87c058f-131d-5a53-8826-5c192853ef67",
    "_role": "talk",
    "_quests": [
@@ -9708,7 +9755,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e4f9ec8f-7980-5ebb-98b4-e299795bf5a3",
    "_role": "otd",
    "_quests": [
@@ -9755,7 +9802,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "5aad4beb-991a-54d2-84d2-8cd02ebc072a",
    "_role": "talk",
    "_quests": [
@@ -9803,7 +9850,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ee7447ad-604f-5f33-a1f7-e8384c566cab",
    "_role": "otd",
    "_quests": [
@@ -9850,7 +9897,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "34944c7a-83f1-5c0b-a4b1-b12bedb2b99e",
    "_role": "kill",
    "_quests": [
@@ -9897,7 +9944,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d780ccf8-2679-5b72-8dff-7e444c896839",
    "_role": "kill",
    "_quests": [
@@ -9944,7 +9991,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d40c6b35-2ad1-5f42-a85c-0c7215f459e0",
    "_role": "kill",
    "_quests": [
@@ -9991,7 +10038,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "8aebeb82-017c-56bf-8e6a-02bca7f318e0",
    "_role": "whisper",
    "_quests": [
@@ -10038,7 +10085,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a0cbcf5f-0172-5c97-94ce-a0b7e18165bd",
    "_role": "kill",
    "_quests": [
@@ -10085,7 +10132,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "81eed681-1408-512c-a193-0ddb7b0ffe4b",
    "_role": "talk",
    "_quests": [
@@ -10132,7 +10179,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c50e2bf9-66ab-5360-8d06-edb9349e67e3",
    "_role": "kill",
    "_quests": [
@@ -10179,7 +10226,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "55e7a111-3d3f-53b9-abec-f7d0bae39c77",
    "_role": "talk",
    "_quests": [
@@ -10228,7 +10275,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1459fc11-9f69-5366-8e27-ed499dafe9e7",
    "_role": "kill",
    "_quests": [
@@ -10275,7 +10322,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7665fea1-4f02-54bf-b690-eba7f212f0cf",
    "_role": "otd",
    "_quests": [
@@ -10322,7 +10369,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c16ff508-c4db-57bf-ab7a-c0b89bc8b4fd",
    "_role": "talk",
    "_quests": [
@@ -10369,7 +10416,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "962cb6a6-49ea-5df2-b95d-5be72da0a821",
    "_role": "talk",
    "_quests": [
@@ -10419,7 +10466,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "335da041-70b3-5d28-a49b-dbe1a2766a29",
    "_role": "kill",
    "_quests": [
@@ -10466,7 +10513,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "31998023-e659-5a7c-988d-c4080f08bd18",
    "_role": "collect",
    "_quests": [
@@ -10513,7 +10560,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c21441d8-f1a4-5937-949a-508bbb2e8a6e",
    "_role": "collect",
    "_quests": [
@@ -10560,7 +10607,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a545f164-9bb4-5e08-b19c-1b3e43ae280e",
    "_role": "collect",
    "_quests": [
@@ -10607,7 +10654,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "aceb089c-df5d-528e-845d-9bcbbbca51eb",
    "_role": "collect",
    "_quests": [
@@ -10654,7 +10701,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "245a366f-8282-57fc-aaa0-2e9c6eae0f9a",
    "_role": "collect",
    "_quests": [
@@ -10701,7 +10748,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "edb5aa6a-3d5f-5eb4-a738-29cffa23655f",
    "_role": "collect",
    "_quests": [
@@ -10748,7 +10795,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "5e9a0bd4-dfaa-5fd8-8350-22d4970f32d2",
    "_role": "collect",
    "_quests": [
@@ -10795,7 +10842,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ea965107-18be-5229-8da3-9d02f2358268",
    "_role": "collect",
    "_quests": [
@@ -10842,7 +10889,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c3fb63ac-c013-54e1-95c9-fdf59c99ba2a",
    "_role": "collect",
    "_quests": [
@@ -10889,7 +10936,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b6b834c2-bcc9-5130-80a0-9840dcbd9f3a",
    "_role": "collect",
    "_quests": [
@@ -10936,7 +10983,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4571da1d-9ded-54a6-beb2-50314096824b",
    "_role": "collect",
    "_quests": [
@@ -10983,7 +11030,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0b34a6ef-4481-51a6-a5bc-f787689511aa",
    "_role": "collect",
    "_quests": [
@@ -11030,7 +11077,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e4cb5281-059d-5d36-8e23-f9f9ede1e96d",
    "_role": "kill",
    "_quests": [
@@ -11077,7 +11124,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d2c85170-c1d9-5a8c-9235-479c4ba205b6",
    "_role": "collect",
    "_quests": [
@@ -11125,7 +11172,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e17a3762-d741-58ac-84f4-8eb3b3227aa6",
    "_role": "collect",
    "_quests": [
@@ -11173,7 +11220,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "259f4b86-b2d1-52a1-a267-cc27f6c3e552",
    "_role": "collect",
    "_quests": [
@@ -11221,7 +11268,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c84ba4c0-e2ee-54e8-96b6-dcb43418f7fd",
    "_role": "collect",
    "_quests": [
@@ -11269,7 +11316,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ae825726-c3ec-56f3-b42f-ab9a8139dee2",
    "_role": "collect",
    "_quests": [
@@ -11317,7 +11364,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "59c3be84-1eb6-5f0d-b2c8-09962f6468a7",
    "_role": "collect",
    "_quests": [
@@ -11365,7 +11412,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "fb786b88-ce01-5f82-856f-78a2bc618606",
    "_role": "collect",
    "_quests": [
@@ -11412,7 +11459,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "30bbf089-26c1-5155-9634-b9a60b1a237e",
    "_role": "collect",
    "_quests": [
@@ -11459,7 +11506,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "6367c39b-4e3d-5b6a-9b7c-17e6417685cb",
    "_role": "collect",
    "_quests": [
@@ -11506,7 +11553,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1c7f56df-0575-5791-ba3a-8b6a266b732c",
    "_role": "collect",
    "_quests": [
@@ -11553,7 +11600,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "5c4b6a49-81c4-50b7-a106-d6ff41d1b7db",
    "_role": "collect",
    "_quests": [
@@ -11600,7 +11647,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "53ad37e8-1347-516c-95be-cc195384d92d",
    "_role": "collect",
    "_quests": [
@@ -11647,7 +11694,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1067389b-a1c4-5025-8af0-be216c90ec84",
    "_role": "kill",
    "_quests": [
@@ -11694,7 +11741,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7fb8e9a0-0d02-5ce7-8ef9-800394e5b9fc",
    "_role": "collect",
    "_quests": [
@@ -11741,7 +11788,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0ff2c315-7107-5c7f-9945-f27df8702228",
    "_role": "collect",
    "_quests": [
@@ -11788,7 +11835,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c905a562-fbe9-5370-913f-8b1b8e3405eb",
    "_role": "collect",
    "_quests": [
@@ -11835,7 +11882,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "6b93ea34-d354-5881-ad11-61898a316c59",
    "_role": "collect",
    "_quests": [
@@ -11882,7 +11929,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "6cb2b6de-5786-52be-88b8-11a782f5ba44",
    "_role": "collect",
    "_quests": [
@@ -11929,7 +11976,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e2000ca5-4e95-5d0a-a7a9-f48ad514f34a",
    "_role": "collect",
    "_quests": [
@@ -11976,7 +12023,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "87187e0d-5440-550e-8ecc-b16bb10b9534",
    "_role": "collect",
    "_quests": [
@@ -12023,7 +12070,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "36f49a2b-161d-5e8b-b390-5311e3d817b6",
    "_role": "collect",
    "_quests": [
@@ -12070,7 +12117,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c5926e2f-0bc5-59e6-b276-ab5c6af5aa54",
    "_role": "collect",
    "_quests": [
@@ -12117,7 +12164,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "115d1143-ab64-5dce-830d-c562a1a58331",
    "_role": "collect",
    "_quests": [
@@ -12164,7 +12211,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4e52b621-b7d1-5c84-a011-174162bfac23",
    "_role": "collect",
    "_quests": [
@@ -12211,7 +12258,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "dbfdac3a-443a-5e19-88a7-10406892f19c",
    "_role": "collect",
    "_quests": [
@@ -12258,7 +12305,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2eb037a6-dea6-5470-bed3-fd32da29c4fb",
    "_role": "whisper",
    "_quests": [
@@ -12274,45 +12321,45 @@
    "X": 342438,
    "Y": 592514,
    "Z": 5458,
-   "Speed": 180,
+   "Speed": 200,
    "Heading": 3655,
    "Region": 200,
-   "Model": 124,
-   "Size": 26,
-   "Strength": 0,
-   "Constitution": 30,
-   "Dexterity": 30,
-   "Quickness": 30,
+   "Model": 377,
+   "Size": 50,
+   "Strength": 245,
+   "Constitution": 35,
+   "Dexterity": 70,
+   "Quickness": 35,
    "Intelligence": 30,
    "Piety": 30,
    "Empathy": 30,
-   "Charisma": 30,
-   "Level": 3,
+   "Charisma": 245,
+   "Level": 40,
    "Realm": 3,
-   "EquipmentTemplateID": null,
+   "EquipmentTemplateID": "a442f7b3-5062-4389-83f0-270ae785f1e6",
    "ItemsListTemplateID": null,
    "NPCTemplateID": -1,
-   "Race": 2003,
+   "Race": 0,
    "Flags": 16,
    "AggroLevel": 0,
    "AggroRange": 0,
-   "MeleeDamageType": 1,
+   "MeleeDamageType": 2,
    "RespawnInterval": 30,
    "FactionID": 0,
-   "BodyType": 4,
+   "BodyType": 0,
    "HouseNumber": 0,
    "RoamingRange": 0,
    "IsCloakHoodUp": 0,
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2da12405-5a95-5ff7-ae8b-bc8571261c2c",
    "_role": "talk",
    "_quests": [
     "The West Wind step 8"
    ],
-   "_donor": "species 'man' -> mudman"
+   "_donor": "nearest townsperson Troya"
   },
   {
    "ClassType": "DOL.GS.GameNPC",
@@ -12353,7 +12400,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c068540a-e477-5e94-b177-3e83d4bcdeda",
    "_role": "kill",
    "_quests": [
@@ -12400,7 +12447,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7a57766b-37b1-5a63-8052-26436ff83126",
    "_role": "collect",
    "_quests": [
@@ -12447,7 +12494,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "79f4ab8e-35be-5418-b749-5922c0b6dab8",
    "_role": "collect",
    "_quests": [
@@ -12494,7 +12541,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "97ec3495-2796-55b9-ae42-52973b2b32f6",
    "_role": "collect",
    "_quests": [
@@ -12541,7 +12588,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "88c1ed41-7683-5ea0-a1c1-149f0976f4fc",
    "_role": "collect",
    "_quests": [
@@ -12588,7 +12635,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d9ed460d-abb6-50d3-9500-1d2b6e49f682",
    "_role": "collect",
    "_quests": [
@@ -12635,7 +12682,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "86423a2b-d997-5c6a-bce1-ba8ec5fbbf98",
    "_role": "collect",
    "_quests": [
@@ -12682,7 +12729,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f69480e3-4629-563c-85d1-aa703261cf39",
    "_role": "collect",
    "_quests": [
@@ -12729,7 +12776,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f3eeb7bc-1d92-5f0e-9e07-f8fa72dfdf93",
    "_role": "collect",
    "_quests": [
@@ -12776,7 +12823,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "463ba6de-7892-5fac-a1f9-d8615b28a572",
    "_role": "collect",
    "_quests": [
@@ -12823,7 +12870,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f04b289b-eae0-5434-9002-6ec1455a46ca",
    "_role": "collect",
    "_quests": [
@@ -12870,7 +12917,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c2fe3464-e1af-5d6b-a26b-9940727fe9e7",
    "_role": "collect",
    "_quests": [
@@ -12917,7 +12964,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4a8c216b-84b2-5022-bf06-95dfe955f587",
    "_role": "collect",
    "_quests": [
@@ -12964,7 +13011,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "3c5a1321-3ca7-58f9-a838-d9a4bc3e7469",
    "_role": "collect",
    "_quests": [
@@ -13011,7 +13058,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "145bd5a6-8d15-5ab2-aadd-4400e708b59b",
    "_role": "collect",
    "_quests": [
@@ -13058,7 +13105,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "27bc7d4c-8116-5300-a939-cfdcbff403a4",
    "_role": "collect",
    "_quests": [
@@ -13105,7 +13152,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1999be9b-eec7-5b7c-a511-87c1313d091b",
    "_role": "collect",
    "_quests": [
@@ -13152,7 +13199,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "01f59ccc-90a1-5206-b59e-61094f7e35b9",
    "_role": "collect",
    "_quests": [
@@ -13199,7 +13246,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e71dde5c-d8f0-58d3-bdb1-8e0343f11218",
    "_role": "collect",
    "_quests": [
@@ -13246,7 +13293,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0b52cde9-1b44-5bd3-bdb6-35cb06b19d58",
    "_role": "collect",
    "_quests": [
@@ -13293,7 +13340,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d4f1e817-7e37-5232-b821-0e6a5bd19636",
    "_role": "collect",
    "_quests": [
@@ -13340,7 +13387,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "073f6fe4-2b4f-5e95-b3ca-506580e4f014",
    "_role": "kill",
    "_quests": [
@@ -13387,7 +13434,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9f7e43cf-0c5c-544b-ad8e-2b79d21c9827",
    "_role": "collect",
    "_quests": [
@@ -13434,7 +13481,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "80ec93a2-33b6-55ec-a7c1-fd0f0ff73941",
    "_role": "collect",
    "_quests": [
@@ -13481,7 +13528,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "6dfc5a3c-dd07-5dfc-8ae6-0d363c59feee",
    "_role": "collect",
    "_quests": [
@@ -13528,7 +13575,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b6156ba5-c60b-5dc6-85bd-63e7177fd873",
    "_role": "collect",
    "_quests": [
@@ -13575,7 +13622,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "21ffd460-3469-5e9f-9d12-50d43477f1f6",
    "_role": "collect",
    "_quests": [
@@ -13622,7 +13669,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "927f260e-eab0-52ae-976e-66bc57051a1a",
    "_role": "collect",
    "_quests": [
@@ -13634,9 +13681,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "siabra archer",
    "Guild": "",
-   "X": 354460,
-   "Y": 527144,
-   "Z": 4622,
+   "X": 357065,
+   "Y": 519123,
+   "Z": 4774,
    "Speed": 180,
    "Heading": 2952,
    "Region": 200,
@@ -13669,7 +13716,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "18f12f7e-2073-5251-8622-ed8c0a0318dd",
    "_role": "collect",
    "_quests": [
@@ -13681,9 +13728,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "siabra archer",
    "Guild": "",
-   "X": 354810,
-   "Y": 527144,
-   "Z": 4599,
+   "X": 357415,
+   "Y": 519123,
+   "Z": 4756,
    "Speed": 180,
    "Heading": 1540,
    "Region": 200,
@@ -13716,7 +13763,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "55875dfb-2ebf-5f06-a36b-cc7c05585a82",
    "_role": "collect",
    "_quests": [
@@ -13728,9 +13775,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "siabra archer",
    "Guild": "",
-   "X": 354635,
-   "Y": 527447,
-   "Z": 4619,
+   "X": 357240,
+   "Y": 519426,
+   "Z": 4739,
    "Speed": 180,
    "Heading": 3105,
    "Region": 200,
@@ -13763,7 +13810,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4d23bcc3-0f23-59c9-90fa-a676242c8083",
    "_role": "collect",
    "_quests": [
@@ -13775,9 +13822,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "siabra archer",
    "Guild": "",
-   "X": 354285,
-   "Y": 527447,
-   "Z": 4685,
+   "X": 356890,
+   "Y": 519426,
+   "Z": 4759,
    "Speed": 180,
    "Heading": 1500,
    "Region": 200,
@@ -13810,7 +13857,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7226eedc-7f14-5688-a0e0-93b4fd508356",
    "_role": "collect",
    "_quests": [
@@ -13822,9 +13869,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "siabra archer",
    "Guild": "",
-   "X": 354110,
-   "Y": 527144,
-   "Z": 4684,
+   "X": 356715,
+   "Y": 519123,
+   "Z": 4791,
    "Speed": 180,
    "Heading": 806,
    "Region": 200,
@@ -13857,7 +13904,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d757c0ee-5b37-5f09-ac1c-206a2eb997a3",
    "_role": "collect",
    "_quests": [
@@ -13869,9 +13916,9 @@
    "ClassType": "DOL.GS.GameNPC",
    "Name": "siabra archer",
    "Guild": "",
-   "X": 354285,
-   "Y": 526840,
-   "Z": 4605,
+   "X": 356890,
+   "Y": 518819,
+   "Z": 4809,
    "Speed": 180,
    "Heading": 1230,
    "Region": 200,
@@ -13904,7 +13951,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f7ce7ca3-5ebc-5bda-a768-48024e235076",
    "_role": "collect",
    "_quests": [
@@ -13951,7 +13998,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "16f7c321-4558-5fa4-abbf-e1dc2e24362c",
    "_role": "collect",
    "_quests": [
@@ -13999,7 +14046,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4590ba41-5248-5ab3-9dc4-453f54f77529",
    "_role": "collect",
    "_quests": [
@@ -14047,7 +14094,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f79d460f-e800-5997-8c60-b39d97441222",
    "_role": "collect",
    "_quests": [
@@ -14095,7 +14142,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "09a2737f-58bb-5109-8745-1a970df9bc5c",
    "_role": "collect",
    "_quests": [
@@ -14143,7 +14190,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f64d57af-7403-568e-88ad-e8db233bb099",
    "_role": "collect",
    "_quests": [
@@ -14191,7 +14238,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "96fb0127-1900-5b36-8591-bb8514dc948e",
    "_role": "collect",
    "_quests": [
@@ -14239,7 +14286,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b0282c8d-26cb-572b-ac9d-d258d7118749",
    "_role": "kill",
    "_quests": [
@@ -14286,7 +14333,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "3657a060-6030-561a-ae58-04e69f90fea5",
    "_role": "collect",
    "_quests": [
@@ -14333,7 +14380,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d33c39fc-3877-561f-9963-f5c8c442ff4d",
    "_role": "collect",
    "_quests": [
@@ -14380,7 +14427,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f5b055d6-8d09-5bc7-a19b-b4622ce274a0",
    "_role": "collect",
    "_quests": [
@@ -14427,7 +14474,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "3fe20966-d456-5116-9fe2-fd0f84c91dc7",
    "_role": "collect",
    "_quests": [
@@ -14474,7 +14521,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "de78dc3c-601f-5377-8098-c65b44de38cd",
    "_role": "collect",
    "_quests": [
@@ -14521,7 +14568,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "173cde43-e1bc-53db-bc99-b50372db11ef",
    "_role": "collect",
    "_quests": [
@@ -14568,7 +14615,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "cff230d0-26a5-5e70-b406-118bbbb04b8b",
    "_role": "kill",
    "_quests": [
@@ -14615,7 +14662,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "178178dd-920b-571a-9df2-b388408a8542",
    "_role": "kill",
    "_quests": [
@@ -14662,7 +14709,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "18942b03-5ef5-5112-b50f-9153c3ba8227",
    "_role": "kill",
    "_quests": [
@@ -14709,7 +14756,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "deeb2b3e-2dfd-5b1c-a2df-f046a2d31a0f",
    "_role": "otd",
    "_quests": [
@@ -14756,7 +14803,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9b0455cd-a441-5e21-8b47-1890cb5966eb",
    "_role": "kill",
    "_quests": [
@@ -14803,7 +14850,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "588fc6f5-2ee1-5029-bc46-63e80c8f3d3f",
    "_role": "otd",
    "_quests": [
@@ -14850,7 +14897,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "701fe792-e525-5993-8238-95461a93dc4d",
    "_role": "talk",
    "_quests": [
@@ -14898,60 +14945,13 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1778cce4-15e9-5ae7-8f82-39f5e1d64ea7",
    "_role": "talk",
    "_quests": [
     "Dark Places of the Soul step 9"
    ],
    "_donor": null
-  },
-  {
-   "ClassType": "DOL.GS.GameNPC",
-   "Name": "Bone-eater Spine Ripper",
-   "Guild": "",
-   "X": 712360,
-   "Y": 688744,
-   "Z": 10014,
-   "Speed": 180,
-   "Heading": 3366,
-   "Region": 100,
-   "Model": 24,
-   "Size": 52,
-   "Strength": 0,
-   "Constitution": 30,
-   "Dexterity": 30,
-   "Quickness": 30,
-   "Intelligence": 30,
-   "Piety": 30,
-   "Empathy": 30,
-   "Charisma": 30,
-   "Level": 40,
-   "Realm": 0,
-   "EquipmentTemplateID": "32d355fd-2996-40ef-8c83-5ecc7eef3c54",
-   "ItemsListTemplateID": null,
-   "NPCTemplateID": -1,
-   "Race": 2009,
-   "Flags": 0,
-   "AggroLevel": 200,
-   "AggroRange": 500,
-   "MeleeDamageType": 2,
-   "RespawnInterval": 600,
-   "FactionID": 63,
-   "BodyType": 11,
-   "HouseNumber": 0,
-   "RoamingRange": 0,
-   "IsCloakHoodUp": 0,
-   "Gender": 0,
-   "PackageID": "ClassicQuest",
-   "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
-   "Mob_ID": "456a1385-2e79-5f3b-bbc0-4b0e7536522d",
-   "_role": "kill",
-   "_quests": [
-    "The Three Sisters step 6"
-   ],
-   "_donor": "nearest local humanoid icy skeleton"
   },
   {
    "ClassType": "DOL.GS.GameNPC",
@@ -14992,7 +14992,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ae14fd25-2085-5d17-93c3-90a88cac6511",
    "_role": "otd",
    "_quests": [
@@ -15039,7 +15039,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "052af823-5abd-597e-8113-8b9d59d1cac9",
    "_role": "deliver",
    "_quests": [
@@ -15086,7 +15086,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "5f27d31d-1c92-5332-8557-9ac29b5cacea",
    "_role": "talk",
    "_quests": [
@@ -15134,7 +15134,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7639e2e1-3e5b-5d4b-8bb9-7fa9ae80f252",
    "_role": "whisper",
    "_quests": [
@@ -15181,7 +15181,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "04d6e9c8-ba3b-59da-ad07-462cae00bfc6",
    "_role": "talk",
    "_quests": [
@@ -15229,7 +15229,7 @@
    "Gender": 2,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1b846a57-8317-5459-a9c1-42e3632cb57d",
    "_role": "talk",
    "_quests": [
@@ -15283,7 +15283,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ebd46f96-0280-577d-8a71-31fe4f23d9d1",
    "_role": "talk",
    "_quests": [
@@ -15330,7 +15330,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c5c14a09-0919-5aa7-8061-2f0c77ef41eb",
    "_role": "kill",
    "_quests": [
@@ -15377,7 +15377,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9b3a39bf-43b5-5cdd-a172-94b9e901a015",
    "_role": "talk",
    "_quests": [
@@ -15425,7 +15425,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "15f2601e-24d8-5790-a9ff-05be41512f17",
    "_role": "deliver",
    "_quests": [
@@ -15472,7 +15472,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "db5eec82-a40c-5da7-b67e-f7562b8f129f",
    "_role": "kill",
    "_quests": [
@@ -15519,7 +15519,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "fc954ca3-e6ed-5530-9d0e-70907e833349",
    "_role": "talk",
    "_quests": [
@@ -15567,7 +15567,7 @@
    "Gender": 2,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "34f980f1-c9d0-51e1-b613-88901fbe6d5b",
    "_role": "talk",
    "_quests": [
@@ -15618,7 +15618,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a1f9fed6-5e40-5899-a8e7-bdb34a24eb8b",
    "_role": "kill",
    "_quests": [
@@ -15665,7 +15665,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a5974f3d-49f7-5c19-9207-bc30e62dfaea",
    "_role": "kill",
    "_quests": [
@@ -15712,7 +15712,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4a68ab63-6533-58a3-a2f6-46d82e82e5cf",
    "_role": "deliver",
    "_quests": [
@@ -15759,7 +15759,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "69ebced3-c4d4-51c4-836a-729b29aaf2cb",
    "_role": "kill",
    "_quests": [
@@ -15806,7 +15806,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 51,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d85dc699-9bf7-5c92-8519-b7e3944c4c1a",
    "_role": "deliver",
    "_quests": [
@@ -15853,7 +15853,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "aa9f916b-bbd3-5642-b7a3-bbfa47801597",
    "_role": "kill",
    "_quests": [
@@ -15900,7 +15900,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b56933ad-52fe-5944-97a3-df94ac43933b",
    "_role": "talk",
    "_quests": [
@@ -15948,7 +15948,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "8af77dac-46b7-53cf-b5cb-6b4d9ad4e97b",
    "_role": "kill",
    "_quests": [
@@ -15995,7 +15995,7 @@
    "Gender": 2,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "52d176bd-ca21-55f1-ad36-8d997d4dd306",
    "_role": "deliver",
    "_quests": [
@@ -16045,7 +16045,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "94be344e-357f-559e-9c52-fc048fb3b36f",
    "_role": "deliver",
    "_quests": [
@@ -16093,7 +16093,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e655c4ae-8ba5-544f-a344-01bcaa9743ac",
    "_role": "kill",
    "_quests": [
@@ -16140,7 +16140,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7e8dead6-daf8-5f0b-b67e-02b82c296a0a",
    "_role": "talk",
    "_quests": [
@@ -16188,7 +16188,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f9015b6d-c57b-5a9f-b200-05e9e0cc1fa1",
    "_role": "talk",
    "_quests": [
@@ -16235,7 +16235,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c378bae4-8601-58b3-bb30-1e8661e7d257",
    "_role": "otd",
    "_quests": [
@@ -16282,7 +16282,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f0492ddc-1a55-5297-bfc5-4d8f44dd9f70",
    "_role": "kill",
    "_quests": [
@@ -16329,7 +16329,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "cfac9ca8-7ee2-573d-bfe7-dbcad2acf499",
    "_role": "kill",
    "_quests": [
@@ -16376,7 +16376,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a15e6168-c8e4-5af5-a2e2-8b3743c9485b",
    "_role": "otd",
    "_quests": [
@@ -16423,7 +16423,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "17dd830e-5508-57c5-9cc0-fd70bf4420d3",
    "_role": "kill",
    "_quests": [
@@ -16472,7 +16472,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f62a27f5-c4d4-50ce-abd3-6e413c7b0042",
    "_role": "kill",
    "_quests": [
@@ -16519,7 +16519,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "27350c85-b38b-5302-9ccb-0ff3d2c36e11",
    "_role": "kill",
    "_quests": [
@@ -16566,7 +16566,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e4a1bad5-921f-54c3-9982-4a2ea733b5f7",
    "_role": "talk",
    "_quests": [
@@ -16614,7 +16614,7 @@
    "Gender": 2,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2990675f-a3f3-5a51-b9c7-b2b7c7b1d9b9",
    "_role": "talk",
    "_quests": [
@@ -16661,7 +16661,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "11daae1e-91a6-566c-aa37-91c07b2122d3",
    "_role": "kill",
    "_quests": [
@@ -16708,7 +16708,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7aeea102-bfbf-5bd3-beb8-65478996049f",
    "_role": "talk",
    "_quests": [
@@ -16756,7 +16756,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "3e4ffddd-4fea-519c-a368-144e1b048fdf",
    "_role": "kill",
    "_quests": [
@@ -16803,7 +16803,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "14d224ff-a94d-595e-bf1f-ae5500316053",
    "_role": "kill",
    "_quests": [
@@ -16850,7 +16850,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c6ed0c2b-223a-5d08-ad03-bb039b8a44ca",
    "_role": "otd",
    "_quests": [
@@ -16897,7 +16897,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "25cc2721-8414-5402-ba3b-e60e61b4b4c3",
    "_role": "talk",
    "_quests": [
@@ -16945,7 +16945,7 @@
    "Gender": 2,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c4a978c5-e5bd-5503-990c-ebfeef5fe46c",
    "_role": "kill",
    "_quests": [
@@ -16992,7 +16992,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2a40f639-e148-5562-baaa-b663ad750196",
    "_role": "kill",
    "_quests": [
@@ -17039,7 +17039,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "279cc9ec-8778-5d10-bf80-13017a9b7ced",
    "_role": "otd",
    "_quests": [
@@ -17086,7 +17086,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "98e34cee-90e0-5ece-8567-a3666bbd1a4b",
    "_role": "kill",
    "_quests": [
@@ -17133,7 +17133,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "87bd6a8b-c98c-54ad-af2c-ecdec7b61582",
    "_role": "kill",
    "_quests": [
@@ -17180,7 +17180,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0c3a1c2e-c222-5216-b4d9-fe021a4caff9",
    "_role": "collect",
    "_quests": [
@@ -17227,7 +17227,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7469eb1b-e6ba-5cae-af72-ad4438fe940f",
    "_role": "kill",
    "_quests": [
@@ -17274,7 +17274,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "2867077f-8330-5cb3-97be-8146218a30b1",
    "_role": "kill",
    "_quests": [
@@ -17321,7 +17321,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f1b8588e-7c2f-5730-8431-ad4afd00dbe0",
    "_role": "deliver",
    "_quests": [
@@ -17368,7 +17368,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "042cba7b-bd80-5d28-91cd-f9edef170adb",
    "_role": "kill",
    "_quests": [
@@ -17415,7 +17415,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1730454b-3331-54ba-89f3-9ca56682f779",
    "_role": "kill",
    "_quests": [
@@ -17462,7 +17462,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "59ea950b-cf24-5ae9-afaa-3215cc1f77ba",
    "_role": "collect",
    "_quests": [
@@ -17509,7 +17509,7 @@
    "Gender": 2,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ab7161d4-d028-5000-bb93-cb170ef7ec51",
    "_role": "kill",
    "_quests": [
@@ -17556,7 +17556,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a09d1aa2-166a-57d7-8a32-709f6aff8af1",
    "_role": "kill",
    "_quests": [
@@ -17603,7 +17603,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "44db9acf-525e-5868-bb2f-30b762dcac3b",
    "_role": "kill",
    "_quests": [
@@ -17650,7 +17650,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "5717fe8e-d792-5c47-9609-08f1327adc1a",
    "_role": "kill",
    "_quests": [
@@ -17697,7 +17697,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "886fb8e1-bb1d-571f-912f-6fd6a2aeb650",
    "_role": "kill",
    "_quests": [
@@ -17744,7 +17744,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "174a855f-a206-5cef-9f8f-bb0bd207a37a",
    "_role": "kill",
    "_quests": [
@@ -17791,7 +17791,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0b80c29a-9a95-50f3-bd26-8e83d29ab169",
    "_role": "kill",
    "_quests": [
@@ -17838,7 +17838,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "db2030f2-be4f-5ba6-844b-ecddd7ccaa79",
    "_role": "talk",
    "_quests": [
@@ -17885,7 +17885,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c1d986b3-61a1-555b-9580-41901b33b377",
    "_role": "otd",
    "_quests": [
@@ -17932,7 +17932,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4d6f6e70-5ff9-53f1-a734-50369a5ddc67",
    "_role": "whisper",
    "_quests": [
@@ -17980,7 +17980,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "5ee021e7-b1e1-5f50-b630-427f2780cb9d",
    "_role": "kill",
    "_quests": [
@@ -18027,7 +18027,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d54de059-a579-5a3b-b6d5-0d776eed3061",
    "_role": "kill",
    "_quests": [
@@ -18074,7 +18074,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b982ca11-cdec-5fbb-aa2f-36fd78c6b947",
    "_role": "talk",
    "_quests": [
@@ -18122,7 +18122,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "f48e8d25-5a44-5814-959e-2b582b9ac1f6",
    "_role": "talk",
    "_quests": [
@@ -18169,7 +18169,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "fd50855f-1915-5190-8337-b7717798456e",
    "_role": "talk",
    "_quests": [
@@ -18217,7 +18217,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1c3ce427-7938-52dc-9ed8-8a0333d1d6d0",
    "_role": "kill",
    "_quests": [
@@ -18264,7 +18264,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c52c4f86-50ba-59c5-880e-a43784c492d6",
    "_role": "otd",
    "_quests": [
@@ -18311,7 +18311,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "20941fc6-e6c2-52a0-b730-8524d8f78782",
    "_role": "kill",
    "_quests": [
@@ -18358,7 +18358,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7305c038-e1d3-5cef-931e-f2d1d1c19804",
    "_role": "kill",
    "_quests": [
@@ -18405,7 +18405,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7d1cfe51-7258-53bc-b817-fd41f2a04619",
    "_role": "kill",
    "_quests": [
@@ -18452,7 +18452,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "01096fd3-df0d-5b5b-b49b-e541d3718c37",
    "_role": "whisper",
    "_quests": [
@@ -18500,7 +18500,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "faec9722-b458-5f3f-8245-6b478b46a7dc",
    "_role": "otd",
    "_quests": [
@@ -18547,7 +18547,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ef993303-e41c-589e-a92a-47a08e4c536e",
    "_role": "kill",
    "_quests": [
@@ -18595,7 +18595,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a32b6fd2-3c90-56b2-b4a3-19623956d17d",
    "_role": "deliver",
    "_quests": [
@@ -18642,7 +18642,7 @@
    "Gender": 1,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b1a0f25c-c78c-5408-be57-5f68d4c8bcaa",
    "_role": "kill",
    "_quests": [
@@ -18689,7 +18689,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "46d5097b-2a4d-5ef1-8bb5-d0291454484f",
    "_role": "kill",
    "_quests": [
@@ -18736,7 +18736,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "bc13c771-45ea-5ef7-930c-0e65695e7157",
    "_role": "talk",
    "_quests": [
@@ -18784,7 +18784,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "6cf0e9ce-72fc-5c90-befe-df11b1faceb6",
    "_role": "otd",
    "_quests": [
@@ -18831,7 +18831,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "19c01d21-11c8-51b3-ba4f-c8883a8b4faf",
    "_role": "deliver",
    "_quests": [
@@ -18879,7 +18879,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 240,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b0d6a21e-33c1-550f-994b-c3bca650227a",
    "_role": "kill",
    "_quests": [
@@ -18926,7 +18926,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b088b664-2f40-54a2-a092-5ad2ea82e32f",
    "_role": "kill",
    "_quests": [
@@ -18973,7 +18973,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "691de2d2-10a1-57f6-92fb-7c3a6afb633d",
    "_role": "kill",
    "_quests": [
@@ -19020,7 +19020,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "91e33ab6-764c-587f-83c0-dcf9201cafcc",
    "_role": "kill",
    "_quests": [
@@ -19067,7 +19067,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "493445fc-2f02-5f78-a587-a33a2e3aa072",
    "_role": "kill",
    "_quests": [
@@ -19114,58 +19114,11 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "dd5ee717-6900-5636-bf07-9dfcb8c2b471",
    "_role": "kill",
    "_quests": [
     "Trustan's Belongings step 5"
-   ],
-   "_donor": null
-  },
-  {
-   "ClassType": "DOL.GS.GameNPC",
-   "Name": "flurry",
-   "Guild": "",
-   "X": 703399,
-   "Y": 727099,
-   "Z": 5705,
-   "Speed": 188,
-   "Heading": 1703,
-   "Region": 100,
-   "Model": 127,
-   "Size": 50,
-   "Strength": 53,
-   "Constitution": 30,
-   "Dexterity": 30,
-   "Quickness": 30,
-   "Intelligence": 30,
-   "Piety": 30,
-   "Empathy": 30,
-   "Charisma": 30,
-   "Level": 23,
-   "Realm": 0,
-   "EquipmentTemplateID": null,
-   "ItemsListTemplateID": null,
-   "NPCTemplateID": 60160927,
-   "Race": 2003,
-   "Flags": 1,
-   "AggroLevel": 51,
-   "AggroRange": 500,
-   "MeleeDamageType": 2,
-   "RespawnInterval": 120,
-   "FactionID": 0,
-   "BodyType": 4,
-   "HouseNumber": 0,
-   "RoamingRange": 300,
-   "IsCloakHoodUp": 0,
-   "Gender": 0,
-   "PackageID": "ClassicQuest",
-   "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
-   "Mob_ID": "431b2ddc-6ebb-585d-93e2-c35f2f13d1a2",
-   "_role": "kill",
-   "_quests": [
-    "The Red Dagger (level 25) step 5"
    ],
    "_donor": null
   },
@@ -19208,7 +19161,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c245d2d7-7af1-5e00-a829-5b280eabad63",
    "_role": "collect",
    "_quests": [
@@ -19255,7 +19208,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "b5bb1ab2-d57e-56c3-b4ff-56169a67dae9",
    "_role": "collect",
    "_quests": [
@@ -19302,7 +19255,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "a17cb04d-87a4-59e6-898d-29813c33ed34",
    "_role": "collect",
    "_quests": [
@@ -19349,7 +19302,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "311bfe25-58d4-59f5-819c-9a08c3dda422",
    "_role": "collect",
    "_quests": [
@@ -19396,7 +19349,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "24cae234-dea4-5175-90fd-033a55ac348f",
    "_role": "collect",
    "_quests": [
@@ -19443,7 +19396,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "21f288d2-67fe-52ab-9d09-2029bd070a7c",
    "_role": "collect",
    "_quests": [
@@ -19490,7 +19443,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d35df510-e9c7-5198-a913-6208c96d5c3c",
    "_role": "collect",
    "_quests": [
@@ -19537,7 +19490,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "1014437f-1e3a-5d27-889e-537774ffcf39",
    "_role": "collect",
    "_quests": [
@@ -19584,7 +19537,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "9fdd4aa1-d162-5078-a1ab-fee7e17c878f",
    "_role": "collect",
    "_quests": [
@@ -19631,7 +19584,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "5ec0b416-1ab5-5239-aabd-3859d19d2bfe",
    "_role": "collect",
    "_quests": [
@@ -19678,7 +19631,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "693279c5-b174-5a25-852d-e2b72b1061b2",
    "_role": "collect",
    "_quests": [
@@ -19725,7 +19678,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "dd1ad6a1-80dc-5e72-8d18-d35a6f75f208",
    "_role": "collect",
    "_quests": [
@@ -19772,7 +19725,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "091249fd-3cbf-5596-9d10-5455c184f2a8",
    "_role": "kill",
    "_quests": [
@@ -19819,60 +19772,13 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7e847296-31f2-58b4-90a3-c53e39b04fd5",
    "_role": "kill",
    "_quests": [
     "Strange Bedfellows (Mid) step 2"
    ],
    "_donor": "species 'svartalf' -> svartalf foister"
-  },
-  {
-   "ClassType": "DOL.GS.GameNPC",
-   "Name": "taiga cat",
-   "Guild": "",
-   "X": 681393,
-   "Y": 643110,
-   "Z": 3968,
-   "Speed": 200,
-   "Heading": 746,
-   "Region": 100,
-   "Model": 135,
-   "Size": 50,
-   "Strength": 62,
-   "Constitution": 33,
-   "Dexterity": 66,
-   "Quickness": 33,
-   "Intelligence": 30,
-   "Piety": 30,
-   "Empathy": 30,
-   "Charisma": 30,
-   "Level": 32,
-   "Realm": 0,
-   "EquipmentTemplateID": null,
-   "ItemsListTemplateID": null,
-   "NPCTemplateID": 60166754,
-   "Race": 2000,
-   "Flags": 0,
-   "AggroLevel": 0,
-   "AggroRange": 500,
-   "MeleeDamageType": 2,
-   "RespawnInterval": 120,
-   "FactionID": 0,
-   "BodyType": 1,
-   "HouseNumber": 0,
-   "RoamingRange": 300,
-   "IsCloakHoodUp": 0,
-   "Gender": 0,
-   "PackageID": "ClassicQuest",
-   "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
-   "Mob_ID": "0728c34e-b34f-5887-af56-6b8cc1c4c1a0",
-   "_role": "kill",
-   "_quests": [
-    "Blessed Enchantments step 10"
-   ],
-   "_donor": null
   },
   {
    "ClassType": "DOL.GS.GameNPC",
@@ -19913,7 +19819,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "da22959c-996c-5a15-9b74-4d1e108fdec2",
    "_role": "collect",
    "_quests": [
@@ -19960,7 +19866,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "85d4f9e7-e76d-53c1-87a3-34e57347d363",
    "_role": "collect",
    "_quests": [
@@ -20007,7 +19913,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "dc69637b-9901-5ffb-8fbc-bdcf7f669f7e",
    "_role": "collect",
    "_quests": [
@@ -20054,7 +19960,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "ffdcf255-6dcd-515d-905d-075da3a2b507",
    "_role": "collect",
    "_quests": [
@@ -20101,7 +20007,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "c9f55e87-e228-54da-b957-96e0aefa5294",
    "_role": "collect",
    "_quests": [
@@ -20148,7 +20054,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0ca3716b-3bb8-5f81-87aa-4d16a22faa4a",
    "_role": "collect",
    "_quests": [
@@ -20195,7 +20101,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 255,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "15be1c19-f9ab-572b-8fbe-16e273ee654b",
    "_role": "kill",
    "_quests": [
@@ -20242,7 +20148,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "43bcac32-52e3-5916-9fbf-063e56383c71",
    "_role": "kill",
    "_quests": [
@@ -20289,7 +20195,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "4878bfb5-89bc-5547-a13f-572591f5897e",
    "_role": "collect",
    "_quests": [
@@ -20336,7 +20242,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "28775160-cd60-5c3d-8d1c-89c6c0955541",
    "_role": "collect",
    "_quests": [
@@ -20383,7 +20289,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "e7d2ca31-7cb8-55a6-9e0e-d3e3ae8ed8ce",
    "_role": "collect",
    "_quests": [
@@ -20430,7 +20336,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "0a809d85-6918-5a90-bf12-a1abf0fda9a5",
    "_role": "collect",
    "_quests": [
@@ -20477,7 +20383,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "d93a1b0f-b729-51b9-939d-6c3ded32718e",
    "_role": "collect",
    "_quests": [
@@ -20524,7 +20430,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "165a9b9b-6183-5681-8837-70dc37a017e6",
    "_role": "collect",
    "_quests": [
@@ -20571,7 +20477,7 @@
    "Gender": 0,
    "PackageID": "ClassicQuest",
    "VisibleWeaponSlots": 0,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "Mob_ID": "7fced153-5317-5599-a7f0-d23aa7046863",
    "_role": "kill",
    "_quests": [
@@ -20585,70 +20491,70 @@
    "MobName": "Cheshire",
    "ItemTemplateID": "Cat_Hide_Boots",
    "MinLevel": 22,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "LootOTD_ID": "15e113e6-8562-50a4-acd7-6c9c959cf40d"
   },
   {
    "MobName": "Angau",
    "ItemTemplateID": "Deathly Wizard Staff",
    "MinLevel": 42,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "LootOTD_ID": "f1f5af86-9d4e-5f5d-a486-cf8295413ea3"
   },
   {
    "MobName": "Angau",
    "ItemTemplateID": "Deathly Theurgist Staff",
    "MinLevel": 42,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "LootOTD_ID": "a87aa513-93f4-5748-8acd-f5d04d69db23"
   },
   {
    "MobName": "Angau",
    "ItemTemplateID": "Deathly Cabalist Staff",
    "MinLevel": 42,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "LootOTD_ID": "e0caa8b2-3c95-5b4a-ab41-11e4177f899b"
   },
   {
    "MobName": "Ash",
    "ItemTemplateID": "Black_Ash_Soul_Slayer",
    "MinLevel": 43,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "LootOTD_ID": "1e33ad5b-8b43-5f89-af9a-aa0b0b49687a"
   },
   {
    "MobName": "Blacktooth",
    "ItemTemplateID": "Rancid_Black_Tooth",
    "MinLevel": 45,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "LootOTD_ID": "8eb70a37-4bb4-59f1-bbf1-d5ba3c9baded"
   },
   {
    "MobName": "Ald the Bruce",
    "ItemTemplateID": "Ghostly_Cloak",
    "MinLevel": 43,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "LootOTD_ID": "4da5ec5b-7695-5201-a034-d99900f4ee78"
   },
   {
    "MobName": "Spifnar",
    "ItemTemplateID": "Crescent_Reaver",
    "MinLevel": 33,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "LootOTD_ID": "f287640c-4038-5c52-a4b1-41d73a72ac35"
   },
   {
    "MobName": "Little Star",
    "ItemTemplateID": "Little_Stars_Braided_Mane",
    "MinLevel": 34,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "LootOTD_ID": "3d1935c4-b6bc-5aba-9333-c9200e432282"
   },
   {
    "MobName": "Oak Man",
    "ItemTemplateID": "Enchanter_Staff_of_the_Arcane",
    "MinLevel": 44,
-   "LastTimeRowUpdated": "2026-10-08 03:56:52",
+   "LastTimeRowUpdated": "2026-10-08 06:14:50",
    "LootOTD_ID": "2ea6a088-6143-56dc-906e-522b5ba30c33"
   }
  ],

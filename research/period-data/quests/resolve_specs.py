@@ -273,7 +273,7 @@ for path in sorted(glob.glob(os.path.join(HERE, "specs", "*.jsonl"))):
                 spn = ov["spawn"]
                 wp = world_point(spn["zone"], spn.get("loc"), realm)
                 r["needs_spawn"] = dict(name=spn["name"], at=wp, zone=spn["zone"], loc_note=ov["why"],
-                                        spawn={k: v for k, v in spn.items() if k in ("level", "like")}, role=spn.get("role"))
+                                        spawn={k: v for k, v in spn.items() if k in ("level", "like", "look_only")}, role=spn.get("role"))
                 r["override"] = ov["why"]
                 if wp: r["marker"] = wp
                 planned = PLANNED.get(spn["name"].lower())

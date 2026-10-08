@@ -38,6 +38,31 @@ public static class AutonomousTownTeleporters
 
     public sealed record Plan(GameNPC Porter, DbTeleport Destination, double Seconds, double BaselineSeconds);
 
+    /// <summary>How far from the teleporter NPC a bot stops to use it (inside ArrivalRadius).</summary>
+    public const int StandOffDistance = 170;
+
+    /// <summary>
+    /// Where a bot stops to use a teleporter: a short way out from the NPC on the side it comes from, spread a little
+    /// per bot so a group fans out around it (owner 2026-10-08: bots walked onto the NPC itself and players could not
+    /// click the teleporter). Snapped to the navmesh; the NPC's own spot only when no ground is found around it.
+    /// </summary>
+    public static Vector3 StandOff(GameNPC porter, GameLiving bot)
+    {
+        double angle = bot.X == porter.X && bot.Y == porter.Y ? 0 : Math.Atan2(bot.Y - porter.Y, bot.X - porter.X);
+        angle += ((int)(bot.ObjectID % 7) - 3) * 0.35;
+        var point = new Vector3(porter.X + (float)(Math.Cos(angle) * StandOffDistance),
+            porter.Y + (float)(Math.Sin(angle) * StandOffDistance), porter.Z);
+        var spot = new Vector3(porter.X, porter.Y, porter.Z);
+        Zone zone = porter.CurrentZone;
+        IPathfindingMgr nav = PathfindingProvider.Instance;
+        if (zone == null || !nav.IsAvailable || !nav.HasNavmesh(zone))
+            return point;
+        Vector3? ground = nav.GetClosestPoint(zone, point, 60, 60, 256, nav.DefaultFilters);
+        if (ground.HasValue && Vector2.Distance(new(ground.Value.X, ground.Value.Y), new(spot.X, spot.Y)) >= 90)
+            return ground.Value;
+        return nav.GetClosestPoint(zone, spot, 160, 160, 256, nav.DefaultFilters) ?? spot;
+    }
+
     private static readonly HashSet<ushort> NeverPlannedRegions = [2, 102, 202, 73, 130, 60, 160, 191, 249];
 
     private sealed record PorterCache(long Until, GameNPC[] Porters);

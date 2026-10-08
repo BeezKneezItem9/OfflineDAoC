@@ -1,48 +1,11 @@
-2 ('event', 'NO PLACE', 'template')
-16 ('event', 'placed', 'no template')
+12 ('event', 'placed', 'no template')
 10 ('event', 'placed', 'template')
-22 ('permanent', 'NO PLACE', 'no template')
-13 ('permanent', 'NO PLACE', 'template')
-64 ('permanent', 'placed', 'no template')
-209 ('permanent', 'placed', 'template')
-3 ('permanent', 'placed-off-mesh', 'template')
-  needs a place: Albion | Cabalist Meical | None | None
-  needs a place: Albion | Calikana | None | None
-  needs a place: Albion | Commander Blaen | outpost by the Salisbury Plains bridge southeast of Prydwen Keep | None
-  needs a place: Albion | Malefact | None | None
-  needs a place: Albion | Sirelian | None | None
-  needs a place: Albion | Worry Wort | None | anchor faerie frog
-  needs a place: Albion | billious goo | None | None
-  needs a place: Albion | cliff yale yearling | None | None
-  needs a place: Albion | rubbish | None | None
-  needs a place: Albion | rusty gyve | None | None
-  needs a place: Albion | undead farmer | None | None
-  needs a place: Albion | western basilisk youth | None | None
-  needs a place: Hibernia | Alsandair Muire | None | None
+4 ('permanent', 'NO PLACE', 'template')
+88 ('permanent', 'placed', 'no template')
+219 ('permanent', 'placed', 'template')
+1 ('permanent', 'placed-off-mesh', 'template')
+  needs a place: Albion | Cheshire | Named cat near the howling knifemen/maidens by the first lake from the keep. | walkthrough loc
   needs a place: Hibernia | Anord | Named evanescer (only New Frontiers locs recorded). | None
-  needs a place: Hibernia | Archivist Borath | None | None
-  needs a place: Hibernia | Beare Muire | anchor Muire not found in Muire Tomb | None
   needs a place: Hibernia | Dob | Extremely rare named bear in the bog; pierce trainers (30 pierce to equip). | None
-  needs a place: Hibernia | Driss | None | None
-  needs a place: Hibernia | Hervelina | None | None
-  needs a place: Hibernia | Lusmorebane | None | None
   needs a place: Hibernia | Neese | Named siabra mireguard at the encampment around two glowing rocks by the pond nearest the siabra lookout tower. | None
-  needs a place: Hibernia | Odlran | None | None
-  needs a place: Hibernia | Raemon | cyclops tower southwest of Dun Bolg in Breifine - the server has no cyclopes there | None
-  needs a place: Hibernia | Raiaya | None | None
-  needs a place: Hibernia | Shyene Muire | None | None
   needs a place: Hibernia | Thistle | Rare spawn in the trees beside the gorge rats north of Druim Ligen. | None
-  needs a place: Hibernia | beach anglator | None | None
-  needs a place: Hibernia | sand worm | None | None
-  needs a place: Hibernia | siabra | None | None
-  needs a place: Hibernia | siabra archer | None | None
-  needs a place: Hibernia | siabra enchanter | None | None
-  needs a place: Hibernia | vanisher | None | CapnBry
-  needs a place: Hibernia | wandering curmudgeon | None | None
-  needs a place: Midgard | Darac | None | None
-  needs a place: Midgard | Sentry Dwarn | None | None
-  needs a place: Midgard | Silvertone | None | None
-  needs a place: Midgard | great brown drake | None | CapnBry
-  needs a place: Midgard | minion of Haglion | None | None
-  needs a place: Midgard | werewolf lord | None | None
-  needs a place: Midgard | wildling scout | None | None

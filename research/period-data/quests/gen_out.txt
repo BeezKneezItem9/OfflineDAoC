@@ -1,0 +1,6 @@
+classic-quests.preview.json: quests=1302 questMonsters=344 steps with markers=7668
+reward items needed=1187 unrecorded reward entries=1
+rows=1302 items=958 skipped={'one-time drop (world loot)': 79, 'already in game (Atlas XP Item quest)': 31, 'trainer class without id': 2} duplicate names=150
+Counter({'Albion': 474, 'Hibernia': 430, 'Midgard': 398})
+steps per quest: [(4, 166), (5, 153), (3, 150), (7, 147), (2, 140), (6, 132), (8, 117), (9, 83)]
+item rows=958 collisions with existing ids=0 generic sack=10

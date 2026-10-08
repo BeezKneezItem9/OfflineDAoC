@@ -98,7 +98,8 @@ def event_spawn(q, s):
     # "appears when you arrive" and has no NPC in the world is spawned when the player reaches its point.
     arrives = not s.get('target') and (sw.get('on_kills_of') or sp.get('spawn_on_kills_of') or sw.get('on_search') or
                                        APPEARS.search((sp.get('loc_note') or '') + ' ' + (sp.get('text') or '')))
-    if not (on_talk or on_death or sw.get('for_player') or arrives or sp.get('do') == 'event'): return None
+    summoned = sw.get('summoned_by')  # an NPC another one calls up for the player to talk to (Lucan in Morven's Return)
+    if not (on_talk or on_death or summoned or sw.get('for_player') or arrives or sp.get('do') == 'event'): return None
     def where(name):
         if not name: return None
         g = q.get('giver')
@@ -107,7 +108,7 @@ def event_spawn(q, s):
             t = o.get('target')
             if t and t.get('name', '').lower() == name.lower(): return t
         return None
-    anchor = where(on_talk) or where(on_death) or s.get('marker') or (q.get('giver') if on_talk or on_death else None)
+    anchor = where(summoned) or where(on_talk) or where(on_death) or s.get('marker') or (q.get('giver') if on_talk or on_death else None)
     planned = PLAN_PLACE.get((sp.get('npc') or '').lower())
     if planned and not (on_talk or on_death) and (not anchor or anchor.get('z') is None):
         anchor = planned
@@ -124,7 +125,8 @@ def event_spawn(q, s):
     return {'Name': sp.get('npc'), 'TemplateId': t[0] if t else 0, 'Level': level,
             'Model': num(t[2]) if t and not t[0] else 0,
             'Region': anchor['region'], 'X': anchor['x'], 'Y': anchor['y'], 'Z': anchor['z'],
-            'TriggerRadius': 0 if on_talk or on_death else 1200, 'DespawnSeconds': 600, 'Count': 1}
+            'TriggerRadius': 0 if on_talk or on_death else 1200, 'DespawnSeconds': 600, 'Count': 1,
+            **({'Peaceful': True} if summoned else {})}
 
 def strip_name(n):
     return re.sub(r'\s*\(.*?\)\s*$', '', n or '').strip()
@@ -354,6 +356,9 @@ def build(q):
             pass
         text = sp.get('text', '')
         marker = s.get('marker') if (s.get('marker') or {}).get('z') is not None else None
+        if isinstance(sp.get('spawn'), dict) and sp['spawn'].get('summoned_by'):
+            ev = event_spawn(q, s)  # a summoned NPC: the red dot goes where it is called up, not to a namesake elsewhere
+            if ev: marker = {'region': ev['Region'], 'x': ev['X'], 'y': ev['Y'], 'z': ev['Z']}
         if marker is None and s['do'] in ('kill', 'collect', 'event'):
             ev = event_spawn(q, s)  # the red dot goes where the step's monster will appear
             if ev and ev['TriggerRadius']: marker = {'region': ev['Region'], 'x': ev['X'], 'y': ev['Y'], 'z': ev['Z']}
@@ -424,7 +429,7 @@ def build(q):
                 area = {'text': (sp.get('found') or '').replace(';', ',').replace('|', '/'), 'region': w['Region'], 'x': w['X'],
                         'y': w['Y'], 'radius': w['Radius'], 'seconds': int(sp.get('seconds') or 5)}
             steps.append([8, '', '', text, '', None, None, None, area])
-        spawn = event_spawn(q, s) if s['do'] in ('kill', 'collect', 'event') else None
+        spawn = event_spawn(q, s) if s['do'] in ('kill', 'collect', 'event') or             (isinstance(sp.get('spawn'), dict) and sp['spawn'].get('summoned_by')) else None
         spans.append((start, len(steps)))
         if s.get('class_targets'):  # "your trainer" / "another trainer": each class row's own NPC
             for k in range(start, len(steps)):
@@ -632,15 +637,21 @@ RACES = {q['spec']['src']: q['spec']['races'] for q in resolved if q['spec'].get
 # quests take the next free ones.
 import sqlite3 as _sq
 _db = _sq.connect(r"file:C:/OfflineDAoC/scratch/dbcopy.db?mode=ro", uri=True)
-known = {(n, s, str(a or '')): i for i, n, s, a in _db.execute("select ID, Name, StartName, AllowedClasses from DataQuest where ID >= ?", (FIRST_ID,))}
-used = set(known.values())
+# Leveled variants share a name, giver and classes ("Legend of the Lake" x3): match on the step text too, so each
+# keeps its own id (2026-10-08: the plain key let variants swap ids on every run).
+known, known_text = {}, {}
+for i, n, s, a, st in _db.execute("select ID, Name, StartName, AllowedClasses, StepText from DataQuest where ID >= ? order by ID", (FIRST_ID,)):
+    known.setdefault((n, s, str(a or '')), []).append(i)
+    known_text.setdefault((n, s, str(a or ''), st or ''), []).append(i)
+used = {i for ids in known.values() for i in ids}
 next_id = max(used | {FIRST_ID - 1}) + 1
 config = {'Quests': {}, 'QuestMonsterIds': []}
 named_ids = set()
 for n, r in enumerate(rows):
     key = (r['Name'], r['StartName'], str(r['AllowedClasses'] or ''))
-    if key in known and known[key] in used:
-        r['ID'] = known[key]; used.discard(known[key])
+    free = [i for i in known_text.get(key + (r['StepText'] or '',), []) if i in used] or            [i for i in known.get(key, []) if i in used]
+    if free:
+        r['ID'] = free[0]; used.discard(free[0])
     else:
         r['ID'] = next_id; next_id += 1
     types = [int(t) for t in r['StepType'].split('|')]

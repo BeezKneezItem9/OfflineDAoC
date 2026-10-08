@@ -63,6 +63,9 @@ namespace DOL.GS.Quests
             public int Count { get; set; } = 1;
             /// <summary>It leaves again after this long if nobody kills it.</summary>
             public int DespawnSeconds { get; set; } = 600;
+            /// <summary>An NPC summoned for the player to talk to (the Enchantress calls up Lucan in Morven's Return):
+            /// it appears at the point instead of beside the player, is of the player's realm and never attacks.</summary>
+            public bool Peaceful { get; set; }
         }
 
         /// <summary>
@@ -623,17 +626,22 @@ namespace DOL.GS.Quests
                 npc.Name = spawn.Name;
                 if (spawn.Level > 0) npc.Level = spawn.Level;
                 if (spawn.Model > 0) npc.Model = spawn.Model;
-                npc.Realm = eRealm.None;
+                npc.Realm = spawn.Peaceful ? player.Realm : eRealm.None;
                 // A short way off on walkable ground, then they come at the player (owner 2026-10-07: spawning on top
-                // of the player looked wrong).
-                var at = ApproachPoint(player, i);
-                npc.CurrentRegionID = player.CurrentRegionID;
+                // of the player looked wrong). A summoned NPC stands at its point, beside the NPC that summons it.
+                var at = spawn.Peaceful ? new System.Numerics.Vector3(spawn.X + 90 + 60 * i, spawn.Y, spawn.Z) : ApproachPoint(player, i);
+                npc.CurrentRegionID = spawn.Peaceful ? spawn.Region : player.CurrentRegionID;
                 npc.X = (int)at.X; npc.Y = (int)at.Y; npc.Z = (int)at.Z;
                 npc.Heading = npc.GetHeading(player);
                 npc.RespawnInterval = -1; // never respawns: one encounter for this player's step
                 npc.TempProperties.SetProperty(EventSpawnProperty, player.Name);
+                if (spawn.Peaceful)
+                {
+                    npc.Flags |= GameNPC.eFlags.PEACE;
+                    if (npc.Brain is DOL.AI.Brain.StandardMobBrain calm) calm.AggroLevel = 0;
+                }
                 if (!npc.AddToWorld()) continue;
-                if (npc.Brain is DOL.AI.Brain.StandardMobBrain brain) brain.AddToAggroList(player, 1);
+                if (!spawn.Peaceful && npc.Brain is DOL.AI.Brain.StandardMobBrain brain) brain.AddToAggroList(player, 1);
                 spawned.Add(npc);
                 new ECSGameTimer(npc, _ => { if (npc.ObjectState == GameObject.eObjectState.Active) npc.Delete(); return 0; },
                     Math.Max(60, spawn.DespawnSeconds) * 1000);

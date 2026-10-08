@@ -167,7 +167,7 @@ namespace DOL.GS
             SetStatus(bot, $"Heading to {porter.Name}", $"Battleground: {bracket.Name}",
                 $"Walking to the teleporter for {bracket.Name}", porter.Name, porter.CurrentZone?.Description ?? string.Empty);
             if (bot.CurrentRegionID == porter.CurrentRegionID)
-                return IssuePath(bot, new(porter.X, porter.Y, porter.Z));
+                return IssuePath(bot, AutonomousTownTeleporters.StandOff(porter, bot));
             CampDestination previous = _camp;
             _camp = new("battleground-teleporter", porter.Name, porter.CurrentZone?.Description ?? string.Empty,
                 porter.CurrentRegionID, porter.X, porter.Y, porter.Z, 1, false, false);

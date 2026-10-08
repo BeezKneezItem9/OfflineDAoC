@@ -6778,7 +6778,7 @@
      "mob_id": "0cdb4eef-3fef-4116-92c4-52665b3ccea1",
      "level": 14,
      "zone": "Forest Sauvage",
-     "count": 12,
+     "count": 35,
      "same_zone": false
     },
     "marker": {
@@ -12142,7 +12142,7 @@
      "mob_id": "59c68296-388f-48a3-8ad0-fed6db7e1f44",
      "level": 27,
      "zone": "Forest Sauvage",
-     "count": 11,
+     "count": 15,
      "same_zone": true
     },
     "marker": {
@@ -12258,7 +12258,7 @@
      "mob_id": "1cffa1fd-bfdf-49d1-8ac8-fa691d94d6fd",
      "level": 44,
      "zone": "Pennine Mountains",
-     "count": 13,
+     "count": 25,
      "same_zone": true
     },
     "marker": {
@@ -12294,7 +12294,7 @@
      "mob_id": "3666abc0-720c-4850-893c-7a143c2c8165",
      "level": 46,
      "zone": "Pennine Mountains",
-     "count": 22,
+     "count": 34,
      "same_zone": true
     },
     "marker": {
@@ -18021,7 +18021,7 @@
      "mob_id": "0589dc19-7f70-4736-97f1-a5ce40ceeded",
      "level": 0,
      "zone": "Black Mtns. South",
-     "count": 104,
+     "count": 110,
      "same_zone": true
     },
     "marker": {
@@ -22122,7 +22122,7 @@
      "mob_id": "0c7f769d-b19a-49ce-aa36-fafe39328bcf",
      "level": 0,
      "zone": "Avalon Marsh",
-     "count": 60,
+     "count": 63,
      "same_zone": true
     },
     "marker": {
@@ -25903,7 +25903,7 @@
      "mob_id": "097d3ec4-d154-4d00-982e-b2e355031b96",
      "level": 0,
      "zone": "Salisbury Plains",
-     "count": 40,
+     "count": 44,
      "same_zone": true
     },
     "marker": {
@@ -26053,7 +26053,7 @@
      "mob_id": "12e58da6-a3fb-450d-be25-d2a2b52dfb49",
      "level": 0,
      "zone": "Black Mtns. North",
-     "count": 22,
+     "count": 26,
      "same_zone": true
     },
     "marker": {
@@ -31915,7 +31915,7 @@
      "mob_id": "0cdb4eef-3fef-4116-92c4-52665b3ccea1",
      "level": 14,
      "zone": "Forest Sauvage",
-     "count": 12,
+     "count": 35,
      "same_zone": false
     },
     "marker": {
@@ -32450,7 +32450,7 @@
      "mob_id": "bdfc8054-aa2a-46df-b439-16e2f4367433",
      "level": 16,
      "zone": "Forest Sauvage",
-     "count": 17,
+     "count": 39,
      "same_zone": true
     },
     "marker": {
@@ -33888,7 +33888,7 @@
      "mob_id": "48dc941b-74c1-4d1e-a4f1-95fa3983c5d7",
      "level": 16,
      "zone": "Forest Sauvage",
-     "count": 19,
+     "count": 33,
      "same_zone": true
     },
     "marker": {
@@ -34754,7 +34754,7 @@
      "mob_id": "014942e0-43a9-4ffc-9875-4f9d7c40098c",
      "level": 0,
      "zone": "Campacorentin Forest",
-     "count": 28,
+     "count": 31,
      "same_zone": true
     },
     "marker": {
@@ -34997,7 +34997,7 @@
      "mob_id": "0461017e-207a-4562-acaa-46b848259731",
      "level": 0,
      "zone": "Campacorentin Forest",
-     "count": 38,
+     "count": 42,
      "same_zone": true
     },
     "marker": {
@@ -36002,7 +36002,7 @@
      "mob_id": "bdfc8054-aa2a-46df-b439-16e2f4367433",
      "level": 16,
      "zone": "Forest Sauvage",
-     "count": 17,
+     "count": 39,
      "same_zone": true
     },
     "marker": {
@@ -38678,7 +38678,7 @@
      "mob_id": "0cdb4eef-3fef-4116-92c4-52665b3ccea1",
      "level": 14,
      "zone": "Forest Sauvage",
-     "count": 12,
+     "count": 35,
      "same_zone": false
     },
     "marker": {
@@ -39304,7 +39304,7 @@
      "mob_id": "181cb49d-3819-40df-b6e9-8ae58ce70618",
      "level": 0,
      "zone": "Tepok's Mine",
-     "count": 4,
+     "count": 10,
      "same_zone": true
     },
     "marker": {
@@ -41657,7 +41657,7 @@
      "y": 44197,
      "z": 15007,
      "mob_id": "1fba9dc1-4cf7-40b3-964e-a0ab64f7074d",
-     "level": 41,
+     "level": 39,
      "zone": "Catacombs of Cardova",
      "count": 1,
      "same_zone": true
@@ -45208,7 +45208,7 @@
      "mob_id": "068242c7-2347-4ced-a148-3d556d3efaed",
      "level": 48,
      "zone": "Pennine Mountains",
-     "count": 12,
+     "count": 37,
      "same_zone": true
     },
     "marker": {
@@ -51648,38 +51648,51 @@
     "spec": {
      "do": "talk",
      "npc": "Lucan",
-     "zone": "Connacht",
+     "zone": "Shannon Estuary",
      "loc": [
-      40300,
-      40925
+      10666,
+      39839
      ],
-     "loc_note": "ghost by the standing stones southeast of the Muire Tomb; maybe night only",
+     "loc_note": "ghost across the estuary from Connla near a large boulder (period page loc 10k 40k; CapnBry radar 10666, 39839); the period page says he may be a night spawn",
      "text": "Find her 'Guardian' Lucan across the estuary."
+    },
+    "needs_spawn": {
+     "name": "Lucan",
+     "at": {
+      "region": 200,
+      "x": 297386,
+      "y": 654239,
+      "z": null,
+      "zone": "Shannon Estuary"
+     },
+     "zone": "Shannon Estuary",
+     "loc_note": "Enchanting Willow: 'Guardian is located across estuary from Connla. Name is Lucan' (period Allakhazam page, loc 10k 40k); CapnBry radar saw Lucan in Shannon Estuary at 10666, 39839. The world's only Lucan is an aggressive level-6 ghost in Connacht (not period), so a peaceful Lucan ghost stands at the period spot",
+     "spawn": {
+      "level": 6,
+      "like": "Lucan",
+      "look_only": true
+     },
+     "role": "talk"
+    },
+    "override": "Enchanting Willow: 'Guardian is located across estuary from Connla. Name is Lucan' (period Allakhazam page, loc 10k 40k); CapnBry radar saw Lucan in Shannon Estuary at 10666, 39839. The world's only Lucan is an aggressive level-6 ghost in Connacht (not period), so a peaceful Lucan ghost stands at the period spot",
+    "marker": {
+     "region": 200,
+     "x": 297386,
+     "y": 654239,
+     "z": 5449
     },
     "target": {
      "name": "Lucan",
      "region": 200,
-     "x": 326854,
-     "y": 459336,
-     "z": 6608,
-     "mob_id": "dc9cba7d-b5c8-43d1-b2f8-f3fd67bf60f7",
+     "x": 297386,
+     "y": 654239,
+     "z": 5449,
+     "mob_id": "d208f890-c53a-50a2-a08b-ea2d024661c0",
      "level": 6,
-     "zone": "Connacht",
+     "zone": null,
      "count": 1,
-     "same_zone": true
-    },
-    "marker": {
-     "region": 200,
-     "x": 326854,
-     "y": 459336,
-     "z": 6608
-    },
-    "zone_region": 200,
-    "zone_area": {
-     "region": 200,
-     "x": 319488,
-     "y": 450560,
-     "radius": 32768
+     "same_zone": true,
+     "planned": true
     }
    },
    {
@@ -51692,7 +51705,11 @@
      "drop": "Live Willow Branch",
      "chance": 100,
      "finish": true,
-     "text": "Destroy Ciar so Lucan may rest; take the willow branch."
+     "text": "Destroy Ciar so Lucan may rest; take the willow branch.",
+     "spawn": {
+      "for_player": true
+     },
+     "loc_note": "period page: 'Kill Ciar after she freaks out' on returning from Lucan; the grove Ciar is a peaceful talk NPC, so a hostile Ciar (her own ghost template) comes for the player at the grove"
     },
     "target": {
      "name": "Ciar",
@@ -51711,8 +51728,10 @@
      "name": "Ciar",
      "at": null,
      "zone": "Shannon Estuary",
-     "loc_note": null,
-     "spawn": null
+     "loc_note": "period page: 'Kill Ciar after she freaks out' on returning from Lucan; the grove Ciar is a peaceful talk NPC, so a hostile Ciar (her own ghost template) comes for the player at the grove",
+     "spawn": {
+      "for_player": true
+     }
     },
     "marker": {
      "region": 200,
@@ -51765,12 +51784,12 @@
     {
      "do": "talk",
      "npc": "Lucan",
-     "zone": "Connacht",
+     "zone": "Shannon Estuary",
      "loc": [
-      40300,
-      40925
+      10666,
+      39839
      ],
-     "loc_note": "ghost by the standing stones southeast of the Muire Tomb; maybe night only",
+     "loc_note": "ghost across the estuary from Connla near a large boulder (period page loc 10k 40k; CapnBry radar 10666, 39839); the period page says he may be a night spawn",
      "text": "Find her 'Guardian' Lucan across the estuary."
     },
     {
@@ -51780,7 +51799,11 @@
      "drop": "Live Willow Branch",
      "chance": 100,
      "finish": true,
-     "text": "Destroy Ciar so Lucan may rest; take the willow branch."
+     "text": "Destroy Ciar so Lucan may rest; take the willow branch.",
+     "spawn": {
+      "for_player": true
+     },
+     "loc_note": "period page: 'Kill Ciar after she freaks out' on returning from Lucan; the grove Ciar is a peaceful talk NPC, so a hostile Ciar (her own ghost template) comes for the player at the grove"
     }
    ],
    "rewards": {
@@ -52628,7 +52651,13 @@
      "npc": "Lucan",
      "zone": "Connacht",
      "keyword": "Morven's Heirs",
-     "text": "Ask Lucan about Morven's heirs."
+     "text": "Ask Lucan about Morven's heirs.",
+     "spawn": {
+      "summoned_by": "Enchantress",
+      "like": "Lucan",
+      "level": 6
+     },
+     "loc_note": "period page: the Enchantress summons Lucan (clurichaun village, north end building, loc 10k 36k); you say 'Morven's Heirs' to him. A peaceful Lucan is called up beside her for the player (not the aggressive Connacht Lucan)"
     },
     "target": {
      "name": "Lucan",
@@ -53082,7 +53111,13 @@
      "npc": "Lucan",
      "zone": "Connacht",
      "keyword": "Morven's Heirs",
-     "text": "Ask Lucan about Morven's heirs."
+     "text": "Ask Lucan about Morven's heirs.",
+     "spawn": {
+      "summoned_by": "Enchantress",
+      "like": "Lucan",
+      "level": 6
+     },
+     "loc_note": "period page: the Enchantress summons Lucan (clurichaun village, north end building, loc 10k 36k); you say 'Morven's Heirs' to him. A peaceful Lucan is called up beside her for the player (not the aggressive Connacht Lucan)"
     },
     {
      "do": "kill",
@@ -57584,7 +57619,7 @@
      "y": 537910,
      "z": 5262,
      "mob_id": "01654aca-10ff-4796-b942-ee89b46670e7",
-     "level": 56,
+     "level": 53,
      "zone": "Cursed Forest",
      "count": 66,
      "same_zone": false
@@ -63675,7 +63710,7 @@
      "mob_id": "215b02c0-f752-4ed0-8edc-512a9d8cb609",
      "level": 7,
      "zone": "Lough Derg",
-     "count": 121,
+     "count": 124,
      "same_zone": true
     },
     "marker": {
@@ -63713,7 +63748,7 @@
      "mob_id": "0b6bfba5-8be6-439c-9550-a44c173d4399",
      "level": 7,
      "zone": "Lough Derg",
-     "count": 25,
+     "count": 42,
      "same_zone": true
     },
     "marker": {
@@ -63875,7 +63910,7 @@
      "mob_id": "02b2bb93-f9e9-4ad2-8823-5aec5b5ac8da",
      "level": 2,
      "zone": "Shannon Estuary",
-     "count": 121,
+     "count": 124,
      "same_zone": true
     },
     "marker": {
@@ -63913,7 +63948,7 @@
      "mob_id": "9ed468fd-44f9-4708-ba2c-37f92b79fd52",
      "level": 1,
      "zone": "Shannon Estuary",
-     "count": 85,
+     "count": 99,
      "same_zone": true
     },
     "marker": {
@@ -64554,7 +64589,7 @@
      "mob_id": "2c5fc21e-3ddf-414b-813d-2a79b42124e3",
      "level": 1,
      "zone": "Silvermine Mts.",
-     "count": 58,
+     "count": 78,
      "same_zone": true
     },
     "marker": {
@@ -64630,7 +64665,7 @@
      "mob_id": "3a4c2456-cf3e-4421-98ef-8e0aaa571225",
      "level": 2,
      "zone": "Silvermine Mts.",
-     "count": 85,
+     "count": 99,
      "same_zone": true
     },
     "marker": {
@@ -64943,7 +64978,7 @@
      "mob_id": "215b02c0-f752-4ed0-8edc-512a9d8cb609",
      "level": 7,
      "zone": "Lough Derg",
-     "count": 121,
+     "count": 124,
      "same_zone": true
     },
     "marker": {
@@ -65305,7 +65340,7 @@
      "mob_id": "0b6248f0-39b9-4022-83d1-95c2c480102c",
      "level": 20,
      "zone": "Silvermine Mts.",
-     "count": 25,
+     "count": 42,
      "same_zone": false
     },
     "marker": {
@@ -67467,7 +67502,7 @@
      "mob_id": "120aa608-b50f-4458-bc4e-ac75a5f8053b",
      "level": 3,
      "zone": "Lough Derg",
-     "count": 34,
+     "count": 40,
      "same_zone": true
     },
     "marker": {
@@ -67542,7 +67577,7 @@
      "mob_id": "215b02c0-f752-4ed0-8edc-512a9d8cb609",
      "level": 7,
      "zone": "Lough Derg",
-     "count": 121,
+     "count": 124,
      "same_zone": true
     },
     "marker": {
@@ -67930,7 +67965,7 @@
      "mob_id": "1232e5a7-c938-49fc-aa3d-59087015f083",
      "level": 8,
      "zone": "Lough Derg",
-     "count": 64,
+     "count": 81,
      "same_zone": true
     },
     "marker": {
@@ -67968,7 +68003,7 @@
      "mob_id": "1dbf7618-89dd-45fd-b851-6877f933a465",
      "level": 8,
      "zone": "Lough Derg",
-     "count": 72,
+     "count": 82,
      "same_zone": true
     },
     "marker": {
@@ -68263,7 +68298,7 @@
      "mob_id": "0f8c8fe6-dfc6-4c7b-aa14-034ac2ee3e17",
      "level": 6,
      "zone": "Connacht",
-     "count": 78,
+     "count": 101,
      "same_zone": true
     },
     "marker": {
@@ -68301,7 +68336,7 @@
      "mob_id": "0c77e76e-b0ae-45e7-838f-1c4d40a1c3e8",
      "level": 8,
      "zone": "Connacht",
-     "count": 73,
+     "count": 140,
      "same_zone": true
     },
     "marker": {
@@ -68339,7 +68374,7 @@
      "mob_id": "2c6c1dad-ec9e-4f4f-9161-5eeeff7c9776",
      "level": 7,
      "zone": "Connacht",
-     "count": 27,
+     "count": 36,
      "same_zone": true
     },
     "marker": {
@@ -68736,7 +68771,7 @@
      "mob_id": "104098c4-fca1-4ef2-9269-bfcbddc84879",
      "level": 7,
      "zone": "Lough Derg",
-     "count": 78,
+     "count": 101,
      "same_zone": true
     },
     "marker": {
@@ -68774,7 +68809,7 @@
      "mob_id": "104098c4-fca1-4ef2-9269-bfcbddc84879",
      "level": 7,
      "zone": "Lough Derg",
-     "count": 78,
+     "count": 101,
      "same_zone": true
     },
     "marker": {
@@ -68812,7 +68847,7 @@
      "mob_id": "104098c4-fca1-4ef2-9269-bfcbddc84879",
      "level": 7,
      "zone": "Lough Derg",
-     "count": 78,
+     "count": 101,
      "same_zone": true
     },
     "marker": {
@@ -69118,20 +69153,20 @@
     "target": {
      "name": "lunantishee",
      "region": 200,
-     "x": 305538,
-     "y": 454421,
-     "z": 4958,
-     "mob_id": "13470bb7-5fcf-475e-8c85-67e5948809f3",
+     "x": 349904,
+     "y": 506870,
+     "z": 4925,
+     "mob_id": "56af73d6-4b6e-5f7b-b91d-16ee5cb0e800",
      "level": 8,
-     "zone": "Connacht",
-     "count": 25,
-     "same_zone": false
+     "zone": "Lough Derg",
+     "count": 50,
+     "same_zone": true
     },
     "marker": {
      "region": 200,
-     "x": 305538,
-     "y": 454421,
-     "z": 4958
+     "x": 349904,
+     "y": 506870,
+     "z": 4925
     },
     "zone_region": 200,
     "zone_area": {
@@ -69162,7 +69197,7 @@
      "mob_id": "0b93d759-481f-4aa3-85ed-afd884939911",
      "level": 7,
      "zone": "Lough Derg",
-     "count": 53,
+     "count": 65,
      "same_zone": true
     },
     "marker": {
@@ -69340,7 +69375,7 @@
      "mob_id": "104098c4-fca1-4ef2-9269-bfcbddc84879",
      "level": 7,
      "zone": "Lough Derg",
-     "count": 78,
+     "count": 101,
      "same_zone": true
     },
     "marker": {
@@ -69378,7 +69413,7 @@
      "mob_id": "b253b680-b9fa-4d05-be50-5bc4c96b594b",
      "level": 7,
      "zone": "Lough Derg",
-     "count": 32,
+     "count": 40,
      "same_zone": true
     },
     "marker": {
@@ -70125,7 +70160,7 @@
      "mob_id": "01afe6ed-d646-40fd-9c3e-922efaaf5691",
      "level": 7,
      "zone": "Connacht",
-     "count": 59,
+     "count": 65,
      "same_zone": true,
      "species_of": "enchanted wind ghoul"
     },
@@ -70643,7 +70678,7 @@
      "mob_id": "0f7f0c00-972e-4fe5-aff3-c4ac192412e4",
      "level": 10,
      "zone": "Lough Derg",
-     "count": 32,
+     "count": 47,
      "same_zone": true
     },
     "marker": {
@@ -70681,7 +70716,7 @@
      "mob_id": "12cc4e82-da14-4307-bd2b-ec7d6b47c9f1",
      "level": 11,
      "zone": "Lough Derg",
-     "count": 30,
+     "count": 48,
      "same_zone": true
     },
     "marker": {
@@ -76351,22 +76386,21 @@
     },
     "target": {
      "name": "spraggonale",
-     "region": 222,
-     "x": 34124,
-     "y": 37375,
-     "z": 15210,
-     "mob_id": "12bfb992-8b43-44e6-aedd-caf67b627e04",
-     "level": 23,
-     "zone": "Spraggon Den",
-     "count": 11,
-     "same_zone": false
+     "region": 200,
+     "x": 360323,
+     "y": 595098,
+     "z": 6316,
+     "mob_id": "933f8ea6-d642-55e6-a22f-b5f7ca528051",
+     "level": 22,
+     "zone": "Silvermine Mts.",
+     "count": 13,
+     "same_zone": true
     },
     "marker": {
      "region": 200,
-     "x": 330312,
-     "y": 557761,
-     "z": null,
-     "zone": "Silvermine Mts."
+     "x": 360323,
+     "y": 595098,
+     "z": 6316
     },
     "zone_region": 200,
     "zone_area": {
@@ -76936,9 +76970,9 @@
     "target": {
      "name": "siabra archer",
      "region": 200,
-     "x": 354460,
-     "y": 527144,
-     "z": 4622,
+     "x": 357065,
+     "y": 519123,
+     "z": 4774,
      "mob_id": "18f12f7e-2073-5251-8622-ed8c0a0318dd",
      "level": 20,
      "zone": null,
@@ -76955,9 +76989,9 @@
     },
     "marker": {
      "region": 200,
-     "x": 354460,
-     "y": 527144,
-     "z": 4622
+     "x": 357065,
+     "y": 519123,
+     "z": 4774
     },
     "zone_region": 200,
     "zone_area": {
@@ -78844,21 +78878,21 @@
     },
     "target": {
      "name": "spraggonale",
-     "region": 222,
-     "x": 34124,
-     "y": 37375,
-     "z": 15210,
-     "mob_id": "12bfb992-8b43-44e6-aedd-caf67b627e04",
-     "level": 23,
-     "zone": "Spraggon Den",
-     "count": 11,
-     "same_zone": false
+     "region": 200,
+     "x": 360323,
+     "y": 595098,
+     "z": 6316,
+     "mob_id": "933f8ea6-d642-55e6-a22f-b5f7ca528051",
+     "level": 22,
+     "zone": "Silvermine Mts.",
+     "count": 13,
+     "same_zone": true
     },
     "marker": {
-     "region": 222,
-     "x": 34124,
-     "y": 37375,
-     "z": 15210
+     "region": 200,
+     "x": 360323,
+     "y": 595098,
+     "z": 6316
     },
     "zone_region": 200,
     "zone_area": {
@@ -79615,7 +79649,7 @@
      "y": 487965,
      "z": 5277,
      "mob_id": "c5b8ce63-f3b2-4b18-ad52-eb4a7f917aa2",
-     "level": 19,
+     "level": 18,
      "zone": "Lough Derg",
      "count": 1,
      "same_zone": true
@@ -79689,7 +79723,7 @@
      "y": 487965,
      "z": 5277,
      "mob_id": "c5b8ce63-f3b2-4b18-ad52-eb4a7f917aa2",
-     "level": 19,
+     "level": 18,
      "zone": "Lough Derg",
      "count": 1,
      "same_zone": true
@@ -83930,7 +83964,7 @@
      "mob_id": "18496ae3-860e-4777-9ef1-3c567fe4af9e",
      "level": 37,
      "zone": "Valley of Bri Leith",
-     "count": 36,
+     "count": 39,
      "same_zone": true
     },
     "marker": {
@@ -84077,7 +84111,7 @@
      "mob_id": "18496ae3-860e-4777-9ef1-3c567fe4af9e",
      "level": 37,
      "zone": "Valley of Bri Leith",
-     "count": 36,
+     "count": 39,
      "same_zone": true
     },
     "marker": {
@@ -84167,7 +84201,7 @@
      "mob_id": "18496ae3-860e-4777-9ef1-3c567fe4af9e",
      "level": 37,
      "zone": "Valley of Bri Leith",
-     "count": 36,
+     "count": 39,
      "same_zone": true
     },
     "marker": {
@@ -87997,7 +88031,7 @@
      "mob_id": "3a7e6135-74f1-494a-aef1-2664a43ad344",
      "level": 32,
      "zone": "Valley of Bri Leith",
-     "count": 17,
+     "count": 34,
      "same_zone": false
     },
     "marker": {
@@ -90179,7 +90213,7 @@
      "do": "talk",
      "npc": "Bairfhionn",
      "zone": "Tir na Nog",
-     "text": "Bairfhionn tells you his home is Howth."
+     "text": "Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home."
     },
     "target": {
      "name": "Bairfhionn",
@@ -90217,23 +90251,23 @@
      "text": "Ask in Howth: he is near the stepping stones."
     },
     "target": {
-     "name": "ambient pixie",
+     "name": "Troya",
      "region": 200,
-     "x": 341166,
-     "y": 591717,
-     "z": 5465,
-     "mob_id": "14e4a094-56bd-49e0-8f68-b95914d8ad87",
-     "level": 1,
+     "x": 342246,
+     "y": 592979,
+     "z": 5456,
+     "mob_id": "cc47574b-a710-4989-9834-30597620f2c2",
+     "level": 40,
      "zone": "Silvermine Mts.",
      "count": 1,
-     "same_zone": true,
-     "generic": "<Howth townsperson>"
+     "same_zone": true
     },
+    "override": "The West Wind step 7: 'talk to an NPC in Howth' (name not recorded); it had resolved to an ambient pixie. Troya is a plain Howth townsperson (not a merchant or trainer) standing by the stepping-stones spot",
     "marker": {
      "region": 200,
-     "x": 341166,
-     "y": 591717,
-     "z": 5465
+     "x": 342246,
+     "y": 592979,
+     "z": 5456
     }
    },
    {
@@ -90288,7 +90322,7 @@
      "npc": "Bairfhionn",
      "zone": "Tir na Nog",
      "finish": true,
-     "text": "Return to Bairfhionn."
+     "text": "Return to Bairfhionn outside the Alainn Cuir in Tir na Nog."
     },
     "target": {
      "name": "Bairfhionn",
@@ -90377,7 +90411,7 @@
      "do": "talk",
      "npc": "Bairfhionn",
      "zone": "Tir na Nog",
-     "text": "Bairfhionn tells you his home is Howth."
+     "text": "Return to Bairfhionn outside the Alainn Cuir in Tir na Nog: she knows where the man you seek calls home."
     },
     {
      "do": "talk",
@@ -90396,7 +90430,7 @@
      "npc": "Bairfhionn",
      "zone": "Tir na Nog",
      "finish": true,
-     "text": "Return to Bairfhionn."
+     "text": "Return to Bairfhionn outside the Alainn Cuir in Tir na Nog."
     }
    ],
    "rewards": {
@@ -92312,7 +92346,7 @@
      "mob_id": "1009c9fc-8803-4e5f-97b3-89b03bac7ffc",
      "level": 35,
      "zone": "Connacht",
-     "count": 39,
+     "count": 66,
      "same_zone": true
     },
     "marker": {
@@ -102278,7 +102312,7 @@
      "mob_id": "100019171",
      "level": 8,
      "zone": "Aegir's Landing",
-     "count": 42,
+     "count": 47,
      "same_zone": true
     },
     "marker": {
@@ -103451,7 +103485,7 @@
      "mob_id": "100018499",
      "level": 9,
      "zone": "Aegir's Landing",
-     "count": 29,
+     "count": 32,
      "same_zone": true
     },
     "marker": {
@@ -104686,7 +104720,7 @@
      "mob_id": "0b3fc5e8-2313-4002-8976-d015622e24d0",
      "level": 25,
      "zone": "Muspelheim",
-     "count": 26,
+     "count": 33,
      "same_zone": true
     },
     "marker": {
@@ -105414,7 +105448,7 @@
      "mob_id": "100018472",
      "level": 6,
      "zone": "Aegir's Landing",
-     "count": 24,
+     "count": 26,
      "same_zone": true
     },
     "marker": {
@@ -106456,7 +106490,7 @@
      "mob_id": "100018499",
      "level": 9,
      "zone": "Aegir's Landing",
-     "count": 29,
+     "count": 32,
      "same_zone": true
     },
     "marker": {
@@ -106495,7 +106529,7 @@
      "mob_id": "100018473",
      "level": 10,
      "zone": "Aegir's Landing",
-     "count": 83,
+     "count": 92,
      "same_zone": true
     },
     "marker": {
@@ -106564,7 +106598,7 @@
      "mob_id": "100018535",
      "level": 12,
      "zone": "Aegir's Landing",
-     "count": 98,
+     "count": 99,
      "same_zone": true
     },
     "marker": {
@@ -106847,7 +106881,7 @@
      "mob_id": "5864867c-8ece-4284-a034-ce91d0a58065",
      "level": 36,
      "zone": "Uppland",
-     "count": 5,
+     "count": 14,
      "same_zone": true
     },
     "marker": {
@@ -107043,7 +107077,7 @@
      "mob_id": "02dbdf32-2c16-4028-9ff0-a362397bc054",
      "level": 35,
      "zone": "Skona Ravine",
-     "count": 10,
+     "count": 12,
      "same_zone": true
     },
     "marker": {
@@ -107086,7 +107120,7 @@
      "mob_id": "050334d7-c141-4d99-a654-09592395612a",
      "level": 38,
      "zone": "Vanern Swamp",
-     "count": 18,
+     "count": 23,
      "same_zone": true
     },
     "marker": {
@@ -111405,20 +111439,20 @@
     "target": {
      "name": "cold light",
      "region": 100,
-     "x": 665051,
-     "y": 795244,
-     "z": 7498,
-     "mob_id": "011b5726-3215-4385-9682-b8f320fee85d",
-     "level": 20,
-     "zone": "West Svealand",
-     "count": 28,
-     "same_zone": false
+     "x": 697806,
+     "y": 711852,
+     "z": 5926,
+     "mob_id": "cd2af4d9-346b-5a2c-85f2-c03b4ae73b93",
+     "level": 25,
+     "zone": "Yggdra Forest",
+     "count": 79,
+     "same_zone": true
     },
     "marker": {
      "region": 100,
-     "x": 665051,
-     "y": 795244,
-     "z": 7498
+     "x": 697806,
+     "y": 711852,
+     "z": 5926
     },
     "zone_region": 100,
     "zone_area": {
@@ -111441,20 +111475,20 @@
     "target": {
      "name": "chiseler",
      "region": 100,
-     "x": 666055,
-     "y": 797981,
-     "z": 8091,
-     "mob_id": "8b1716ce-4f2a-4b65-b9b2-cd55a1f20495",
-     "level": 20,
-     "zone": "West Svealand",
-     "count": 43,
-     "same_zone": false
+     "x": 703618,
+     "y": 728183,
+     "z": 5705,
+     "mob_id": "168a856b-1ada-5ee3-a3ab-78f5b0cf10b7",
+     "level": 22,
+     "zone": "Yggdra Forest",
+     "count": 95,
+     "same_zone": true
     },
     "marker": {
      "region": 100,
-     "x": 666055,
-     "y": 797981,
-     "z": 8091
+     "x": 703618,
+     "y": 728183,
+     "z": 5705
     },
     "zone_region": 100,
     "zone_area": {
@@ -111481,34 +111515,20 @@
     "target": {
      "name": "flurry",
      "region": 100,
-     "x": 703399,
-     "y": 727099,
-     "z": 5705,
-     "mob_id": "431b2ddc-6ebb-585d-93e2-c35f2f13d1a2",
-     "level": 23,
-     "zone": null,
-     "count": 1,
-     "same_zone": true,
-     "planned": true
-    },
-    "needs_spawn": {
-     "name": "flurry",
-     "at": {
-      "region": 100,
-      "x": 775654,
-      "y": 650851,
-      "z": null,
-      "zone": "Uppland"
-     },
+     "x": 774119,
+     "y": 651326,
+     "z": 5978,
+     "mob_id": "fa5b2035-68bd-5e16-b695-3e124fb6b5d7",
+     "level": 25,
      "zone": "Uppland",
-     "loc_note": null,
-     "spawn": null
+     "count": 6,
+     "same_zone": true
     },
     "marker": {
      "region": 100,
-     "x": 703399,
-     "y": 727099,
-     "z": 5705
+     "x": 774119,
+     "y": 651326,
+     "z": 5978
     },
     "zone_region": 100,
     "zone_area": {
@@ -111909,7 +111929,7 @@
      "mob_id": "42aa4793-8761-4f0c-8231-7ee0e389b841",
      "level": 38,
      "zone": "Yggdra Forest",
-     "count": 8,
+     "count": 24,
      "same_zone": true
     },
     "marker": {
@@ -111942,36 +111962,22 @@
      "text": "Recover her book from a bone-eater spine ripper."
     },
     "target": {
-     "name": "Bone-eater Spine Ripper",
+     "name": "bone-eater spine-ripper",
      "region": 100,
-     "x": 712360,
-     "y": 688744,
-     "z": 10014,
-     "mob_id": "456a1385-2e79-5f3b-bbc0-4b0e7536522d",
-     "level": 40,
-     "zone": null,
-     "count": 1,
-     "same_zone": true,
-     "planned": true
-    },
-    "needs_spawn": {
-     "name": "Bone-eater Spine Ripper",
-     "at": {
-      "region": 100,
-      "x": 712360,
-      "y": 688744,
-      "z": null,
-      "zone": "Yggdra Forest"
-     },
+     "x": 712004,
+     "y": 690275,
+     "z": 9708,
+     "mob_id": "444e4d69-4fcd-5f90-87b1-589437095dd2",
+     "level": 39,
      "zone": "Yggdra Forest",
-     "loc_note": null,
-     "spawn": null
+     "count": 21,
+     "same_zone": true
     },
     "marker": {
      "region": 100,
-     "x": 712360,
-     "y": 688744,
-     "z": 10014
+     "x": 712004,
+     "y": 690275,
+     "z": 9708
     },
     "zone_region": 100,
     "zone_area": {
@@ -112100,7 +112106,7 @@
      "mob_id": "12c9b2d2-83db-421d-9817-e37af72cd36d",
      "level": 35,
      "zone": "Skona Ravine",
-     "count": 3,
+     "count": 5,
      "same_zone": true
     },
     "marker": {
@@ -112623,7 +112629,7 @@
      "mob_id": "9666513f-052a-4b4d-8738-ce1955ee4525",
      "level": 38,
      "zone": "Skona Ravine",
-     "count": 1,
+     "count": 3,
      "same_zone": true
     },
     "marker": {
@@ -113073,7 +113079,7 @@
      "mob_id": "100018473",
      "level": 10,
      "zone": "Aegir's Landing",
-     "count": 83,
+     "count": 92,
      "same_zone": true
     },
     "marker": {
@@ -114008,7 +114014,7 @@
      "mob_id": "12c9b2d2-83db-421d-9817-e37af72cd36d",
      "level": 35,
      "zone": "Skona Ravine",
-     "count": 3,
+     "count": 5,
      "same_zone": true
     },
     "marker": {
@@ -114291,7 +114297,7 @@
      "mob_id": "3e18818a-c00c-4370-9e6e-e69da136fa46",
      "level": 39,
      "zone": "Uppland",
-     "count": 8,
+     "count": 24,
      "same_zone": true
     },
     "marker": {
@@ -114326,34 +114332,20 @@
     "target": {
      "name": "taiga cat",
      "region": 100,
-     "x": 681393,
-     "y": 643110,
-     "z": 3968,
-     "mob_id": "0728c34e-b34f-5887-af56-6b8cc1c4c1a0",
-     "level": 32,
-     "zone": null,
-     "count": 1,
-     "same_zone": true,
-     "planned": true
-    },
-    "needs_spawn": {
-     "name": "taiga cat",
-     "at": {
-      "region": 100,
-      "x": 754674,
-      "y": 637282,
-      "z": null,
-      "zone": "Uppland"
-     },
+     "x": 721509,
+     "y": 643868,
+     "z": 6267,
+     "mob_id": "5011d3c0-1e4d-59cc-8ac2-a9d0ebc81d9a",
+     "level": 33,
      "zone": "Uppland",
-     "loc_note": null,
-     "spawn": null
+     "count": 44,
+     "same_zone": true
     },
     "marker": {
      "region": 100,
-     "x": 681393,
-     "y": 643110,
-     "z": 3968
+     "x": 721509,
+     "y": 643868,
+     "z": 6267
     },
     "zone_region": 100,
     "zone_area": {
@@ -115959,7 +115951,7 @@
      "mob_id": "022a616c-8f0c-48f1-8319-1ee03ec41c9c",
      "level": 14,
      "zone": "Gotar",
-     "count": 59,
+     "count": 63,
      "same_zone": true
     },
     "marker": {
@@ -116293,7 +116285,7 @@
      "mob_id": "008dd715-7ea3-4ecb-8f6c-f2f90863217b",
      "level": 0,
      "zone": "Vale of Mularn",
-     "count": 18,
+     "count": 29,
      "same_zone": true
     },
     "marker": {
@@ -116436,7 +116428,7 @@
      "mob_id": "0699c0e2-4b25-4dc8-a4eb-c37935d5fd75",
      "level": 1,
      "zone": "Vale of Mularn",
-     "count": 10,
+     "count": 47,
      "same_zone": true
     },
     "marker": {
@@ -116473,7 +116465,7 @@
      "mob_id": "008dd715-7ea3-4ecb-8f6c-f2f90863217b",
      "level": 0,
      "zone": "Vale of Mularn",
-     "count": 18,
+     "count": 29,
      "same_zone": true
     },
     "marker": {
@@ -116663,7 +116655,7 @@
      "mob_id": "0e5fec18-1b2a-48f0-a426-0489c9c2f003",
      "level": 7,
      "zone": "East Svealand",
-     "count": 9,
+     "count": 11,
      "same_zone": true
     },
     "marker": {
@@ -116844,20 +116836,20 @@
     "target": {
      "name": "tawny lynx cub",
      "region": 100,
-     "x": 767699,
-     "y": 749823,
-     "z": 4552,
-     "mob_id": "187e9590-d28a-47ce-a438-f1b7136bbcdd",
+     "x": 802090,
+     "y": 891996,
+     "z": 4733,
+     "mob_id": "c8edf118-9260-5942-86c0-0f4b2b7820ba",
      "level": 7,
-     "zone": "East Svealand",
-     "count": 7,
-     "same_zone": false
+     "zone": "Myrkwood Forest",
+     "count": 21,
+     "same_zone": true
     },
     "marker": {
      "region": 100,
-     "x": 767699,
-     "y": 749823,
-     "z": 4552
+     "x": 802090,
+     "y": 891996,
+     "z": 4733
     },
     "zone_region": 100,
     "zone_area": {
@@ -117648,7 +117640,7 @@
      "mob_id": "ccd996f1-697b-4d3c-80bc-2973be1efd0a",
      "level": 0,
      "zone": "Vale of Mularn",
-     "count": 9,
+     "count": 34,
      "same_zone": true
     },
     "marker": {
@@ -118083,7 +118075,7 @@
      "mob_id": "02a54a05-59d9-444e-9385-4b919c061a4f",
      "level": 2,
      "zone": "Vale of Mularn",
-     "count": 26,
+     "count": 27,
      "same_zone": true
     },
     "marker": {
@@ -118159,7 +118151,7 @@
      "mob_id": "37dcf1c3-3601-4949-859a-547490cb7589",
      "level": 1,
      "zone": "Vale of Mularn",
-     "count": 23,
+     "count": 37,
      "same_zone": true
     },
     "marker": {
@@ -119530,7 +119522,7 @@
      "mob_id": "351be318-75e8-4b77-8ca9-6cb9c597227a",
      "level": 12,
      "zone": "East Svealand",
-     "count": 20,
+     "count": 21,
      "same_zone": true
     },
     "marker": {
@@ -121135,7 +121127,7 @@
      "mob_id": "07eaad31-0b85-412b-808d-c94c54875c4b",
      "level": 9,
      "zone": "East Svealand",
-     "count": 44,
+     "count": 76,
      "same_zone": true
     },
     "marker": {
@@ -122345,7 +122337,7 @@
      "mob_id": "100018473",
      "level": 10,
      "zone": "Aegir's Landing",
-     "count": 83,
+     "count": 92,
      "same_zone": true
     },
     "marker": {
@@ -122383,7 +122375,7 @@
      "mob_id": "100018499",
      "level": 9,
      "zone": "Aegir's Landing",
-     "count": 29,
+     "count": 32,
      "same_zone": true
     },
     "marker": {
@@ -122459,7 +122451,7 @@
      "mob_id": "100018535",
      "level": 12,
      "zone": "Aegir's Landing",
-     "count": 98,
+     "count": 99,
      "same_zone": true
     },
     "marker": {
@@ -123293,7 +123285,7 @@
      "mob_id": "00601a3a-5845-4df5-8691-5db30cbb2584",
      "level": 16,
      "zone": "West Svealand",
-     "count": 25,
+     "count": 31,
      "same_zone": true
     },
     "marker": {
@@ -124984,7 +124976,7 @@
      "mob_id": "5a51cb6e-1dfd-479a-b5db-8421f56cc918",
      "level": 13,
      "zone": "Vale of Mularn",
-     "count": 7,
+     "count": 16,
      "same_zone": true
     },
     "marker": {
@@ -126001,7 +125993,7 @@
      "mob_id": "0de85a41-b01b-4357-8437-4f07031e09f4",
      "level": 18,
      "zone": "Nisse's Lair",
-     "count": 30,
+     "count": 55,
      "same_zone": true
     },
     "marker": {
@@ -128103,7 +128095,7 @@
      "mob_id": "093845c6-7753-491c-8a46-444e76eeb26d",
      "level": 19,
      "zone": "West Svealand",
-     "count": 8,
+     "count": 13,
      "same_zone": true
     },
     "marker": {
@@ -129093,7 +129085,7 @@
      "y": 886010,
      "z": 4640,
      "mob_id": "5e980882-8d98-4d92-99d2-67fbfb57259f",
-     "level": 24,
+     "level": 22,
      "zone": "Myrkwood Forest",
      "count": 1,
      "same_zone": true
@@ -129676,23 +129668,22 @@
      "text": "Kill the svartalf who took Trustan's helm, east of the Galplen direction stone near the undead area."
     },
     "target": {
-     "name": "svartalf watcher",
+     "name": "svartalf",
      "region": 100,
-     "x": 792751,
-     "y": 921032,
-     "z": 4769,
-     "mob_id": "3023c301-88d6-4b9b-9444-8afda412be18",
-     "level": 31,
+     "x": 815903,
+     "y": 915931,
+     "z": 4776,
+     "mob_id": "600be80d-8eb1-597d-9c27-c077942e9931",
+     "level": 11,
      "zone": "Myrkwood Forest",
-     "count": 10,
-     "same_zone": true,
-     "species_of": "svartalf"
+     "count": 1,
+     "same_zone": true
     },
     "marker": {
      "region": 100,
-     "x": 792751,
-     "y": 921032,
-     "z": 4769
+     "x": 815903,
+     "y": 915931,
+     "z": 4776
     },
     "zone_region": 100,
     "zone_area": {
@@ -131177,7 +131168,7 @@
      "mob_id": "100019322",
      "level": 26,
      "zone": "Gripklosa Mountains",
-     "count": 24,
+     "count": 29,
      "same_zone": true
     },
     "marker": {
@@ -132365,22 +132356,21 @@
     },
     "target": {
      "name": "boreal cockatrice",
-     "region": 151,
-     "x": 364970,
-     "y": 366210,
-     "z": 8152,
-     "mob_id": "01445470-f4df-4001-ae3c-bb19318c0b10",
-     "level": 27,
-     "zone": "Faraheim",
-     "count": 23,
-     "same_zone": false
+     "region": 100,
+     "x": 764974,
+     "y": 660322,
+     "z": 5942,
+     "mob_id": "21a8c106-7cb1-5eff-b248-568bc698466f",
+     "level": 28,
+     "zone": "Uppland",
+     "count": 73,
+     "same_zone": true
     },
     "marker": {
      "region": 100,
-     "x": 750896,
-     "y": 648708,
-     "z": null,
-     "zone": "Uppland"
+     "x": 764974,
+     "y": 660322,
+     "z": 5942
     },
     "zone_region": 100,
     "zone_area": {
@@ -134482,7 +134472,7 @@
      "mob_id": "100018772",
      "level": 35,
      "zone": "Gripklosa Mountains",
-     "count": 82,
+     "count": 85,
      "same_zone": true
     },
     "marker": {
@@ -134520,7 +134510,7 @@
      "mob_id": "100018710",
      "level": 29,
      "zone": "Gripklosa Mountains",
-     "count": 59,
+     "count": 61,
      "same_zone": true
     },
     "marker": {
@@ -136252,7 +136242,7 @@
      "mob_id": "100018533",
      "level": 35,
      "zone": "Gripklosa Mountains",
-     "count": 95,
+     "count": 100,
      "same_zone": true,
      "species_of": "morvalt"
     },
@@ -136497,7 +136487,7 @@
      "mob_id": "100018466",
      "level": 35,
      "zone": "Delling Crater",
-     "count": 60,
+     "count": 62,
      "same_zone": true
     },
     "marker": {
@@ -137354,7 +137344,7 @@
      "mob_id": "226fc7ea-4ed4-4729-9c26-9049c923cec6",
      "level": 36,
      "zone": "Vanern Swamp",
-     "count": 3,
+     "count": 48,
      "same_zone": true
     },
     "marker": {
@@ -140467,7 +140457,7 @@
      "mob_id": "97fe29f5-9164-4db2-b118-2d760469d8a7",
      "level": 38,
      "zone": "Skona Ravine",
-     "count": 3,
+     "count": 20,
      "same_zone": true
     },
     "marker": {
@@ -140509,7 +140499,7 @@
      "mob_id": "075a988e-1ddb-42a8-bf8f-0405e2325aa5",
      "level": 40,
      "zone": "Vanern Swamp",
-     "count": 43,
+     "count": 66,
      "same_zone": true
     },
     "marker": {
@@ -142124,7 +142114,7 @@
      "mob_id": "0310b2d2-520c-4e07-b64e-bbff07cd8306",
      "level": 46,
      "zone": "Iarnvidiur's Lair",
-     "count": 37,
+     "count": 38,
      "same_zone": true
     },
     "marker": {
@@ -142535,7 +142525,7 @@
      "mob_id": "05053ae1-1e6f-4c87-aa9e-391deea40aab",
      "level": 61,
      "zone": "Modernagrav",
-     "count": 41,
+     "count": 42,
      "same_zone": true
     },
     "marker": {
