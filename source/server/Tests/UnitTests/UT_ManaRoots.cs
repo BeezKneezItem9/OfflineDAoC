@@ -16,7 +16,7 @@ using NUnit.Framework;
 namespace DOL.UnitTests
 {
     [TestFixture, NonParallelizable]
-    public class UT_ManaRoots
+    public partial class UT_ManaRoots
     {
         private sealed class TestServer : GameServer
         {
@@ -208,29 +208,29 @@ namespace DOL.UnitTests
             player.AbilityBonus[eProperty.PowerRegenerationAmount] = ability;
             player.SpecBuffBonusCategory[eProperty.PowerRegenerationAmount] = debuff;
             int amount = player.GetModified(eProperty.PowerRegenerationAmount);
-            Assert.That(Interval(player), Is.EqualTo(6000));
+            Assert.That(Interval(player), Is.EqualTo(3000));
             player.LastAttackTickPvE = GameLoop.GameLoopTime;
-            Assert.That(Interval(player), Is.EqualTo(14000));
+            Assert.That(Interval(player), Is.EqualTo(7000));
             var (effect, _) = Apply(player);
             Assert.That(effect, Is.Not.Null);
             Assert.Multiple(() =>
             {
-                Assert.That(Interval(player), Is.EqualTo(6000));
-                Assert.That(Interval(player, "Health"), Is.EqualTo(14000));
+                Assert.That(Interval(player), Is.EqualTo(3000));
+                Assert.That(Interval(player, "Health"), Is.EqualTo(7000));
                 Assert.That(player.GetModified(eProperty.PowerRegenerationAmount), Is.EqualTo(amount));
                 Assert.That(player.InCombat, Is.True);
                 Assert.That(player.LastAttackTickPvE, Is.EqualTo(100000));
             });
             long expiry = effect.ExpireTick;
             player.LastAttackTickPvE = 0;
-            Assert.That(Interval(player), Is.EqualTo(6000));
+            Assert.That(Interval(player), Is.EqualTo(3000));
             Assert.That(effect.ExpireTick, Is.EqualTo(expiry));
             player.LastAttackedByEnemyTickPvP = GameLoop.GameLoopTime;
-            Assert.That(Interval(player), Is.EqualTo(6000));
+            Assert.That(Interval(player), Is.EqualTo(3000));
             Assert.That(effect.ExpireTick, Is.EqualTo(expiry));
             effect.End();
             player.effectListComponent.BeginTick();
-            Assert.That(Interval(player), Is.EqualTo(14000));
+            Assert.That(Interval(player), Is.EqualTo(7000));
             Assert.That(player.GetModified(eProperty.PowerRegenerationAmount), Is.EqualTo(amount));
         }
 
@@ -240,13 +240,13 @@ namespace DOL.UnitTests
             GamePlayer player = Animist();
             player.IsSitting = true;
             player.LastAttackTickPvE = GameLoop.GameLoopTime;
-            Assert.That(Interval(player), Is.EqualTo(10000));
+            Assert.That(Interval(player), Is.EqualTo(5000));
             DOL.GS.ServerProperties.Properties.MANA_REGEN_AMOUNT_HALVED_BELOW_50_PERCENT = true;
             DOL.GS.ServerProperties.Properties.MANA_REGEN_AMOUNT_MODIFIER = 2;
             int amount = player.GetModified(eProperty.PowerRegenerationAmount);
             Apply(player);
             Assert.That(Interval(player), Is.EqualTo(3000));
-            Assert.That(Interval(player, "Health"), Is.EqualTo(10000));
+            Assert.That(Interval(player, "Health"), Is.EqualTo(5000));
             Assert.That(player.GetModified(eProperty.PowerRegenerationAmount), Is.EqualTo(amount));
         }
 
@@ -261,7 +261,7 @@ namespace DOL.UnitTests
             int amount = player.GetModified(eProperty.PowerRegenerationAmount);
             int interval = (int)typeof(GameLiving).GetMethod("PowerRegenerationTimerCallback", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(player, new object[] { null });
             Assert.That(player.Mana, Is.EqualTo(100 + amount));
-            Assert.That(interval, Is.EqualTo(6000));
+            Assert.That(interval, Is.EqualTo(3000));
         }
 
         [Test]

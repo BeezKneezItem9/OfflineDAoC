@@ -154,7 +154,7 @@ namespace DOL.UnitTests
                     int low = new PowerRegenerationAmountCalculator().CalcValue(bot, eProperty.PowerRegenerationAmount);
                     bot.Mana = 75;
                     Assert.That(new PowerRegenerationAmountCalculator().CalcValue(bot, eProperty.PowerRegenerationAmount), Is.EqualTo(low));
-                    Assert.That(low, Is.EqualTo(3));
+                    Assert.That(low, Is.EqualTo(7));
                     foreach (int start in new[] { 20, 75 })
                     {
                         bot.Mana = start; SetRecovery(bot, true);
@@ -170,7 +170,7 @@ namespace DOL.UnitTests
                 Field(typeof(GameLiving), human, "m_mana", 10);
                 int humanLow = new PowerRegenerationAmountCalculator().CalcValue(human, eProperty.PowerRegenerationAmount);
                 Field(typeof(GameLiving), human, "m_mana", human.MaxMana);
-                Assert.That(new PowerRegenerationAmountCalculator().CalcValue(human, eProperty.PowerRegenerationAmount), Is.GreaterThan(humanLow));
+                Assert.That(new PowerRegenerationAmountCalculator().CalcValue(human, eProperty.PowerRegenerationAmount), Is.EqualTo(humanLow));
             }
             finally
             {

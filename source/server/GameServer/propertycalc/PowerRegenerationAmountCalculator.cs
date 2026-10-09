@@ -24,33 +24,14 @@ namespace DOL.GS.PropertyCalc
               - All health and power regeneration aids are now twice as effective.
              */
 
-            // Reverted 1.87 changes.
-            // From DoL's `5 + (living.Level / 2.75)`.
-            // 12 power per tick at level 50 instead of 23.18.
+            // 1.78 removes the low-power penalty, including legacy saved True settings.
+            // 1.87 doubles the native base and every net aid exactly once, before
+            // the independent server modifier and final integer truncation.
             double regen = 2.5 + living.Level * 0.2;
-            int debuff = living.SpecBuffBonusCategory[property];
-
-            if (debuff < 0)
-                debuff = -debuff;
-
+            int debuff = Math.Abs(living.SpecBuffBonusCategory[property]);
             regen += living.BaseBuffBonusCategory[property] + living.AbilityBonus[property] + living.ItemBonus[property] - debuff;
-
-            bool listCasterBelowHalf = living switch
-            {
-                GamePlayer player => player.CharacterClass.ClassType is eClassType.ListCaster && player.ManaPercent < 50,
-                // Bot balance: a low power bar must not slow recovery further.
-                // This applies to both persistent bots and /spawn companions;
-                // real players still obey the configured classic penalty.
-                GameBot => false,
-                _ => false,
-            };
-            if (ServerProperties.Properties.MANA_REGEN_AMOUNT_HALVED_BELOW_50_PERCENT && listCasterBelowHalf)
-            {
-                regen /= 2;
-            }
-
-            regen *= ServerProperties.Properties.MANA_REGEN_AMOUNT_MODIFIER;
-            return Math.Max(1, (int) regen);
+            regen *= 2 * ServerProperties.Properties.MANA_REGEN_AMOUNT_MODIFIER;
+            return Math.Max(1, (int)regen);
         }
     }
 }

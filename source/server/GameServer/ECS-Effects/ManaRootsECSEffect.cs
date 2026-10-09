@@ -25,7 +25,7 @@ namespace DOL.GS
         {
             Owner.BuffBonusMultCategory1.Set((int)eProperty.MaxSpeed, this, 0);
             Owner.OnMaxSpeedChange();
-            RestartPowerTimer();
+            RefreshPowerTimer();
             ((ManaRootsSpellHandler)SpellHandler).SendVisuals(true);
             _nextVisualTick = GameLoop.GameLoopTime + ManaRoots.VisualIntervalMs;
             OnEffectStartsMsg(true, false, false);
@@ -62,18 +62,19 @@ namespace DOL.GS
             NextTick = 0;
             Owner.BuffBonusMultCategory1.Remove((int)eProperty.MaxSpeed, this);
             Owner.OnMaxSpeedChange();
-            RestartPowerTimer();
+            RefreshPowerTimer();
             OnEffectExpiresMsg(true, false, false);
         }
 
-        private void RestartPowerTimer()
+        private void RefreshPowerTimer()
         {
-            // Leave an already-normal out-of-combat tick in place. In combat,
-            // re-arm at the restored/native interval without awarding any power.
-            if (Owner.InCombat)
+            if (!Owner.IsAlive || Owner.ObjectState != GameObject.eObjectState.Active)
+            {
                 Owner.StopPowerRegeneration();
-            if (Owner.IsAlive && Owner.ObjectState == GameObject.eObjectState.Active)
-                Owner.StartPowerRegeneration();
+                return;
+            }
+            Owner.RefreshPowerRegenerationInterval();
+            Owner.StartPowerRegeneration();
         }
     }
 }

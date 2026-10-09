@@ -28,9 +28,9 @@ namespace DOL.GS.PropertyCalc
               - All health and power regeneration aids are now twice as effective.
              */
 
-            // Reverted 1.87 changes.
-            // From DoL's `living.Level * 0.6` above level 25, `10 + (living.Level * 0.2)` below level 26.
-            // 15 health per tick at level 50 instead of 30.
+            // Apply 1.87 to the existing level curve and net aids, before server modifiers.
+            // Ordinary NPC evade recovery below deliberately retains its separate rule.
+            // The classic level-50 base of 15 becomes 30 before aids.
             double regen = 2.5 + living.Level * 0.25;
             int debuff = living.SpecBuffBonusCategory[property];
 
@@ -38,6 +38,8 @@ namespace DOL.GS.PropertyCalc
                 debuff = -debuff;
 
             regen += living.BaseBuffBonusCategory[property] + living.AbilityBonus[property] + living.ItemBonus[property] - debuff;
+
+            regen *= 2;
 
             if (living is GameNPC npc && living is not GameBot)
             {

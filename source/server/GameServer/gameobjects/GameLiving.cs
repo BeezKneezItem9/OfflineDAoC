@@ -2533,6 +2533,11 @@ namespace DOL.GS
 		/// </summary>
 		protected ECSGameTimer m_enduRegenerationTimer;
 
+        public void RefreshPowerRegenerationInterval()
+        {
+            m_powerRegenerationTimer.RefreshInterval();
+        }
+
 		protected virtual int GetHealthRegenerationInterval()
 		{
 			// Not sure if 30 is correct, but it's supposed to be very slow.
@@ -3909,8 +3914,8 @@ namespace DOL.GS
 			m_mana = 1;
 			m_endurance = 1;
 
-			m_healthRegenerationTimer = new(this, HealthRegenerationTimerCallback);
-			m_powerRegenerationTimer = new(this, PowerRegenerationTimerCallback);
+			m_healthRegenerationTimer = new(this, HealthRegenerationTimerCallback) { IntervalProvider = GetHealthRegenerationInterval, PreserveInitialTick = this is GameBot };
+			m_powerRegenerationTimer = new(this, PowerRegenerationTimerCallback) { IntervalProvider = GetPowerRegenerationInterval, PreserveInitialTick = this is GameBot };
 			m_enduRegenerationTimer = new(this, EnduranceRegenerationTimerCallback);
 		}
 	}

@@ -863,7 +863,7 @@ namespace DOL.GS.ServerProperties
 		[ServerProperty("rates", "mana_regen_amount_modifier", "Mana regen amount modifier", 1.0)]
 		public static double MANA_REGEN_AMOUNT_MODIFIER;
 
-		[ServerProperty("rates", "mana_regen_amount_halved_below_50_percent", "Should the mana regen amount be halved below 50%? Affects list casters only.", true)]
+		[ServerProperty("rates", "mana_regen_amount_halved_below_50_percent", "Legacy compatibility key; ignored since DAoC 1.78 removed the below-50% power penalty.", false)]
 		public static bool MANA_REGEN_AMOUNT_HALVED_BELOW_50_PERCENT;
 
 		/// <summary>

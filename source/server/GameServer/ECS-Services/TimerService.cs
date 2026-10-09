@@ -51,7 +51,8 @@ namespace DOL.GS
                 if (Diagnostics.CheckServiceObjectCount)
                     Interlocked.Increment(ref Instance.EntityCount);
 
-                if (GameServiceUtils.ShouldTick(timer.NextTick))
+                timer.RefreshInterval();
+                if (timer.IsAlive && GameServiceUtils.ShouldTick(timer.NextTick))
                 {
                     long startTick = MonotonicTime.NowMs;
                     timer.Tick();
@@ -76,6 +77,10 @@ namespace DOL.GS
         public ECSTimerCallback Callback { private get; set; }
         public MethodInfo CallbackInfo => Callback?.GetMethodInfo();
         public int Interval { get; set; }
+        // Optional dynamic cadence; other timers retain their existing behavior.
+        public Func<int> IntervalProvider { get; set; }
+        public bool PreserveInitialTick { get; set; }
+        private bool _hasTicked;
         public long NextTick { get; protected set; }
         public bool IsAlive { get; private set; }
         public int TimeUntilElapsed => (int) (NextTick - GameLoop.GameLoopTime);
@@ -109,11 +114,28 @@ namespace DOL.GS
 
         public void Start(int interval)
         {
+            _hasTicked = false;
             Interval = interval;
             NextTick = GameLoop.GameLoopTime + interval;
 
             if (ServiceObjectStore.Add(this))
                 IsAlive = true;
+        }
+
+        public void RefreshInterval()
+        {
+            if (!IsAlive || IntervalProvider == null || (PreserveInitialTick && !_hasTicked))
+                return;
+            int interval = IntervalProvider();
+            if (interval <= 0 || interval == Interval)
+                return;
+            long anchoredDue = NextTick - Interval + interval;
+            // A faster cadence preserves an imminent tick. A slower cadence is
+            // measured from the previous scheduled tick, never from effect cleanup.
+            if (interval < Interval && anchoredDue < GameLoop.GameLoopTime)
+                anchoredDue = GameLoop.GameLoopTime + interval;
+            NextTick = interval < Interval ? Math.Min(NextTick, anchoredDue) : anchoredDue;
+            Interval = interval;
         }
 
         public void Stop()
@@ -124,6 +146,7 @@ namespace DOL.GS
 
         public void Tick()
         {
+            _hasTicked = true;
             if (Callback != null)
                 Interval = Callback.Invoke(this);
 

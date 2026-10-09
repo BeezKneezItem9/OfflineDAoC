@@ -6,12 +6,15 @@ namespace DOL.GS
     {
         public static int HealthAndPowerInterval(bool sitting, bool inCombat)
         {
-            return (6 - (sitting ? 3 : 0) + (inCombat ? 8 : 0) - (sitting && inCombat ? 1 : 0)) * 1000;
+            // 1.87: standing OOC matches sitting; halve the classic combat intervals.
+            return !inCombat ? 3000 : sitting ? 5000 : 7000;
         }
 
         public static int BaseEndurancePerTick(bool sitting, bool inCombat, bool moving)
         {
-            return inCombat || moving ? 0 : sitting ? 4 : 1;
+            // One-second endurance clock already exists. Match seated OOC throughput,
+            // including movement; combat and sprint costs remain separate.
+            return inCombat ? 0 : 4;
         }
     }
 }
