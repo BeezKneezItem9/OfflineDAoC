@@ -108,12 +108,25 @@ namespace DOL.GS
                         }
                         _home = new Portal(this, _bind, _expedition);
                         _away = new Portal(this, _expedition, _bind);
-                        if (!_home.AddToWorld() || !_away.AddToWorld())
+                        try
+                        {
+                            if (!_home.AddToWorld() || !_away.AddToWorld())
+                            {
+                                Clear(_owner);
+                                return 0;
+                            }
+                        }
+                        catch
                         {
                             Clear(_owner);
-                            return 0;
+                            throw;
                         }
                         _owner.Out.SendMessage("Your private return portals will remain for ten minutes. Use /use2 on the recall stone to replace them.", eChatType.CT_System, eChatLoc.CL_SystemWindow);
+                    }
+                    if (_home.ObjectState != GameObject.eObjectState.Active || _away.ObjectState != GameObject.eObjectState.Active)
+                    {
+                        Clear(_owner);
+                        return 0;
                     }
                     return 1000;
                 }
@@ -122,25 +135,30 @@ namespace DOL.GS
             {
                 lock (_owner)
                 {
-                    if (player != _owner || _disposed || !Pairs.TryGetValue(player, out Pair current) || current != this ||
-                        GameLoop.GameLoopTime - _created >= Lifetime || BindPoint(player) != _bind ||
-                        !player.IsWithinRadius(portal, 256) || !AllowedState(player) ||
-                        !AllowedLocation(player, Position(player)) || !AllowedLocation(player, destination))
+                    if (!CanTravel(player, portal, destination))
                         return false;
                     player.LeaveHouse();
                     return player.MoveTo(destination.Region, destination.X, destination.Y, destination.Z, destination.Heading);
                 }
             }
+            private bool CanTravel(GamePlayer player, Portal portal, Endpoint destination) =>
+                player == _owner && !_disposed && Pairs.TryGetValue(player, out Pair current) && current == this &&
+                GameLoop.GameLoopTime - _created < Lifetime && BindPoint(player) == _bind &&
+                (portal == _home || portal == _away) &&
+                _home?.ObjectState == GameObject.eObjectState.Active && _away?.ObjectState == GameObject.eObjectState.Active &&
+                player.CurrentRegionID == portal.CurrentRegionID && player.IsWithinRadius(portal, 256) && AllowedState(player) &&
+                AllowedLocation(player, Position(player)) && AllowedLocation(player, destination);
+
             public void Dispose()
             {
                 _disposed = true;
                 _timer?.Stop();
-                _home?.Delete();
-                _away?.Delete();
+                try { _home?.Delete(); }
+                finally { _away?.Delete(); }
             }
         }
 
-        private sealed class Portal : GameNPC
+        private sealed class Portal : GameStaticItem
         {
             private readonly Pair _pair;
             private readonly Endpoint _destination;
@@ -149,11 +167,11 @@ namespace DOL.GS
                 _pair = pair;
                 _destination = destination;
                 Name = "Beez's Private Return Portal";
-                Model = 0x783; // Existing FrontiersPortalStone.TeleporterEffect stock model.
-                MaxSpeedBase = 0;
-                Flags = eFlags.PEACE;
+                // ITEM namespace: objects.csv 4319 -> items.csv 2334 -> magprtl2.nif.
+                // A solid stone gateway, rather than the NPC teleporter_ground effect.
+                Model = 4319;
+                LoadedFromScript = true;
                 Realm = eRealm.None;
-                Level = 1;
                 CurrentRegionID = position.Region;
                 X = position.X; Y = position.Y; Z = position.Z; Heading = position.Heading;
             }

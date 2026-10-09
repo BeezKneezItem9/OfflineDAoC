@@ -438,7 +438,7 @@ namespace DOL.UnitTests
             Type pairType = typeof(BeezBindPortals).GetNestedType("Pair", BindingFlags.NonPublic);
             Type portalType = typeof(BeezBindPortals).GetNestedType("Portal", BindingFlags.NonPublic);
             object pair = Activator.CreateInstance(pairType, [owner, bind, bind]);
-            GameNPC portal = (GameNPC)Activator.CreateInstance(portalType, [pair, bind, bind]);
+            GameStaticItem portal = (GameStaticItem)Activator.CreateInstance(portalType, [pair, bind, bind]);
             var pairs = (IDictionary)typeof(BeezBindPortals).GetField("Pairs", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
             pairs[owner] = pair;
             try
@@ -447,6 +447,9 @@ namespace DOL.UnitTests
                 owner.BindXpos++;
                 Assert.That(portal.Interact(owner), Is.False);
                 Assert.That(portal.InternalID, Is.Null.Or.Empty);
+                Assert.That(portal.Model, Is.EqualTo(4319));
+                Assert.That(portal.GameObjectType, Is.EqualTo(eGameObjectType.ITEM));
+                Assert.That(portal.LoadedFromScript, Is.True);
                 BeezBindPortals.Clear(owner);
                 Assert.That(pairs.Contains(owner), Is.False);
                 Assert.That(portal.Interact(owner), Is.False);
@@ -497,6 +500,56 @@ namespace DOL.UnitTests
             player.effectListComponent.BeginTick();
             Assert.That(effect.IsEnded, Is.True);
             Assert.That(player.BaseBuffBonusCategory[eProperty.Strength], Is.Zero);
+        }
+
+        [Test]
+        public void GatewayPairAllowsBothDirectionsAndRemovesAnOrphanedEndpoint()
+        {
+            PortalRegion region = (PortalRegion)RuntimeHelpers.GetUninitializedObject(typeof(PortalRegion));
+            Field(typeof(Region), region, "m_regionData", new RegionData { Id = 1 });
+            Field(typeof(Region), region, "m_zones", new List<Zone> { new(region, 1, "test", 0, 0, 1000, 1000, 0, false, 0, false, 0, 0, 0, 0, 0) });
+            region.Areas = [];
+            var regions = (System.Collections.Concurrent.ConcurrentDictionary<ushort, Region>)typeof(WorldMgr).GetField("m_regions", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+            regions.TryGetValue(1, out Region previous);
+            regions[1] = region;
+            GamePlayer owner = Player();
+            owner.CurrentRegion = region;
+            owner.BindRegion = 1; owner.BindXpos = 100; owner.BindYpos = 100;
+            var bind = BeezBindPortals.BindPoint(owner);
+            var expedition = new BeezBindPortals.Endpoint(1, 800, 800, 0, 1024);
+            Type pairType = typeof(BeezBindPortals).GetNestedType("Pair", BindingFlags.NonPublic);
+            Type portalType = typeof(BeezBindPortals).GetNestedType("Portal", BindingFlags.NonPublic);
+            object pair = Activator.CreateInstance(pairType, [owner, expedition, bind]);
+            GameStaticItem home = (GameStaticItem)Activator.CreateInstance(portalType, [pair, bind, expedition]);
+            GameStaticItem away = (GameStaticItem)Activator.CreateInstance(portalType, [pair, expedition, bind]);
+            Field(pairType, pair, "_home", home); Field(pairType, pair, "_away", away);
+            var pairs = (IDictionary)typeof(BeezBindPortals).GetField("Pairs", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+            pairs[owner] = pair;
+            MethodInfo canTravel = pairType.GetMethod("CanTravel", BindingFlags.Instance | BindingFlags.NonPublic);
+            try
+            {
+                home.ObjectState = away.ObjectState = GameObject.eObjectState.Active;
+                owner.X = bind.X; owner.Y = bind.Y;
+                Assert.That(canTravel.Invoke(pair, [owner, home, expedition]), Is.True);
+                Assert.That(canTravel.Invoke(pair, [owner, away, bind]), Is.False, "Remote endpoint cannot be activated");
+                owner.X = expedition.X; owner.Y = expedition.Y;
+                Assert.That(canTravel.Invoke(pair, [owner, away, bind]), Is.True);
+                Assert.That(home.Model, Is.EqualTo(away.Model));
+                away.ObjectState = GameObject.eObjectState.Inactive;
+                Assert.That(canTravel.Invoke(pair, [owner, away, bind]), Is.False);
+                home.ObjectState = GameObject.eObjectState.Inactive; // Neither fixture object is registered in Region.
+                Assert.That(pairType.GetMethod("Tick", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(pair, [null]), Is.Zero);
+                Assert.That(pairs.Contains(owner), Is.False);
+                Assert.That(home.ObjectState, Is.EqualTo(GameObject.eObjectState.Deleted));
+                Assert.That(away.ObjectState, Is.EqualTo(GameObject.eObjectState.Deleted));
+            }
+            finally
+            {
+                // The fixture never registers objects in Region; avoid asking its stub to remove them.
+                home.ObjectState = away.ObjectState = GameObject.eObjectState.Inactive;
+                BeezBindPortals.Clear(owner);
+                if (previous == null) regions.TryRemove(1, out _); else regions[1] = previous;
+            }
         }
 
         [Test]
