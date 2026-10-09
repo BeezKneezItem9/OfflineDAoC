@@ -1,0 +1,55 @@
+name: Publish existing Beez Windows test package
+on:
+  push:
+    branches: [beez-test-d39eb0a-download]
+    paths:
+      - .github/workflows/publish-beez-test.yml
+permissions:
+  contents: write
+concurrency:
+  group: publish-beez-test-d39eb0a
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out existing download files
+        uses: actions/checkout@v4
+      - name: Reassemble and verify unchanged ZIP
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, pathlib, zipfile
+          manifest = json.loads(pathlib.Path('DOWNLOAD-MANIFEST.json').read_text())
+          assert manifest['commit'] == 'd39eb0a9a4d56c80630421c99b92472b33fba6fe'
+          assert manifest['sha256'] == '28001694c4da079cddabae38cebd1623863f11f43cbfccb07db2f445513bf102'
+          output = pathlib.Path(manifest['filename'])
+          with output.open('wb') as destination:
+              for part in manifest['parts']:
+                  data = pathlib.Path(part['name']).read_bytes()
+                  assert len(data) == part['bytes']
+                  assert hashlib.sha256(data).hexdigest() == part['sha256']
+                  destination.write(data)
+          assert output.stat().st_size == manifest['bytes']
+          assert hashlib.sha256(output.read_bytes()).hexdigest() == manifest['sha256']
+          assert output.with_suffix('.zip.sha256').read_text().split()[0] == manifest['sha256']
+          with zipfile.ZipFile(output) as archive:
+              assert archive.testzip() is None
+              for name in ['DEPLOYMENT.md', 'Deploy-TestBuild.ps1', 'Rollback-TestBuild.ps1', 'REPLACEMENTS.csv', 'SHA256SUMS']:
+                  assert name in archive.namelist()
+          print('Existing ZIP verified; no rebuild or server execution.')
+          PY
+      - name: Publish prerelease at validated source commit
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create beez-test-d39eb0a \
+            beez-online-d39eb0a-win-x64-release.zip \
+            beez-online-d39eb0a-win-x64-release.zip.sha256 \
+            --repo BeezKneezItem9/OfflineDAoC \
+            --target d39eb0a9a4d56c80630421c99b92472b33fba6fe \
+            --prerelease \
+            --title 'Beez Online Windows x64 Test Build — d39eb0a' \
+            --notes-file RELEASE-NOTES.md
