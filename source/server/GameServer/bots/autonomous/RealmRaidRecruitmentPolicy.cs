@@ -43,4 +43,7 @@ public static class RealmRaidRecruitmentPolicy
         !(present >= AutonomousMinimumPresent && !landed);
 
     public static bool BattleExpired(bool forced, long now, long deadline) => !forced && now >= deadline;
+
+    /// <summary>A raid party that lost members (but still exists) takes replacements up to its size when it joined.</summary>
+    public static bool NeedsReplacement(int target, int members) => members > 0 && members < target;
 }

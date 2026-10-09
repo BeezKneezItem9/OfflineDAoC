@@ -11,6 +11,16 @@ namespace DOL.GS
         private long _nextRouteThreatScanTick;
         private long _lastRouteThreatRetargetTick = long.MinValue / 2;
         private readonly Dictionary<GameNPC, int> _routeThreatDetours = new();
+        // Monsters next to the route that cannot be walked to (a ledge above the road): they
+        // cannot reach the route either, so they are passed by instead of pulled. Run 8: route
+        // pulls on such monsters left bots standing until the 15-minute watchdog.
+        private readonly HashSet<GameNPC> _unreachableRouteThreats = new();
+        // The last route pull: the same monster found again, still out of combat, means the pull
+        // never landed. After three it is passed by like an unreachable one.
+        private GameNPC _lastRouteThreatPull;
+        private int _routeThreatPullRepeats;
+        private long _lastRouteThreatPullTick;
+        private const int RouteThreatPullAttempts = 3;
 
         /// <summary>
         /// Open-world route threat awareness (see AutonomousRouteThreatPolicy). Called right before
@@ -74,6 +84,8 @@ namespace DOL.GS
                     continue;
                 // The monster this detour is already going around.
                 if (detouring && _routeThreatDetours.ContainsKey(npc))
+                    continue;
+                if (_unreachableRouteThreats.Contains(npc))
                     continue;
                 if (AutonomousDungeonPolicy.IntersectsCorridor(corridor, position, mob.AggroRange + margin,
                         AutonomousRouteThreatPolicy.LookAhead, out float along) && along < first)
@@ -139,6 +151,26 @@ namespace DOL.GS
                             $"Waiting for the whole party before clearing {blocker.Name} from the route",
                             blocker.Name, _camp?.ZoneName ?? string.Empty);
                         return true;
+                    }
+                    if (!AutonomousNavigationSurface.TryFloor(nav, zone, blockerPosition, out Vector3 blockerFloor) ||
+                        !AutonomousZoneItinerary.HasCompleteCorridor(nav, zone, new(bot.X, bot.Y, bot.Z), blockerFloor))
+                    {
+                        _unreachableRouteThreats.Add(blocker);
+                        Log.Info($"AUTONOMOUS_ROUTE_THREAT_UNREACHABLE bot={bot.Name} id={bot.DatabaseID} target=\"{blocker.Name}\" " +
+                                 $"at={blocker.X},{blocker.Y},{blocker.Z} zone=\"{zone.Description}\"");
+                        return false;
+                    }
+                    _routeThreatPullRepeats = blocker == _lastRouteThreatPull && now - _lastRouteThreatPullTick < 45_000
+                        ? _routeThreatPullRepeats + 1 : 0;
+                    _lastRouteThreatPull = blocker;
+                    _lastRouteThreatPullTick = now;
+                    if (_routeThreatPullRepeats >= RouteThreatPullAttempts)
+                    {
+                        _unreachableRouteThreats.Add(blocker);
+                        _routeThreatPullRepeats = 0;
+                        Log.Info($"AUTONOMOUS_ROUTE_THREAT_PULL_FAILED bot={bot.Name} id={bot.DatabaseID} target=\"{blocker.Name}\" " +
+                                 $"attempts={RouteThreatPullAttempts} at={blocker.X},{blocker.Y},{blocker.Z} zone=\"{zone.Description}\"");
+                        return false;
                     }
                     bot.StopMovingOnPath();
                     bot.StopMoving();
@@ -241,6 +273,11 @@ namespace DOL.GS
 
         private void PruneRouteThreatDetours()
         {
+            if (_unreachableRouteThreats.Count > 0)
+            {
+                _unreachableRouteThreats.RemoveWhere(npc => !npc.IsAlive || npc.ObjectState != GameObject.eObjectState.Active);
+                if (_unreachableRouteThreats.Count > 32) _unreachableRouteThreats.Clear();
+            }
             if (_routeThreatDetours.Count == 0)
                 return;
             foreach (GameNPC npc in _routeThreatDetours.Keys.Where(npc => !npc.IsAlive ||

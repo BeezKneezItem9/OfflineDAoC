@@ -684,8 +684,6 @@ namespace DOL.GS
                 return;
             }
             Zone zone = Owner.CurrentZone;
-            if (Owner is GameBot borderBot && AutonomousRvrTravel.OpenNearbyBorderDoors(borderBot, destination))
-                _pathfinder.ForceReplot = true;
 
             if (!_pathfinder.ShouldPath(zone, destination))
             {
@@ -768,7 +766,10 @@ namespace DOL.GS
                 case PathfindingStatus.BufferTooSmall:
                 case PathfindingStatus.NoPathFound: // Happens when either the current position or the destination isn't on a mesh.
                 {
-                    if (IsPersistentAutonomous(this) || CompanionFollowPolicy.HasFormationOrder(Owner as GameBot))
+                    // Owner 2026-10-07: raid bots chasing a wall archer were jumped onto the keep wall (the node nearest
+                    // the target), inside a keep whose gate still stood. No bot in the frontier takes that jump.
+                    if (IsPersistentAutonomous(this) || CompanionFollowPolicy.HasFormationOrder(Owner as GameBot) ||
+                        Owner is GameBot && AutonomousWorldBotController.IsBattleground(Owner))
                     {
                         PauseMovement(this, destination);
                         break;

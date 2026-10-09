@@ -247,8 +247,14 @@ namespace DOL.GS.PacketHandler
 							guildName = ((DbLanguageGameNpc)translation).GuildName;
 					}
 
-					BeezEnemyIdentity.Resolve(m_gameClient.Player, npc, ref name, ref guildName);
-				ReadOnlySpan<char> nameSpan = name;
+					// Enemy-realm gamebots: race and realm rank title, never the real name (goal 12).
+					if (AutonomousNameMask.Hides(m_gameClient.Player, npc))
+					{
+						name = AutonomousNameMask.RaceName(m_gameClient.Player, (GameBot)npc);
+						guildName = AutonomousNameMask.RankTitle(m_gameClient.Player, (GameBot)npc);
+					}
+
+					ReadOnlySpan<char> nameSpan = name;
 					int maxNameLength = 47 - add.Length - 2;
 
 					if (nameSpan.Length > maxNameLength)

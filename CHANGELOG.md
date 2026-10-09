@@ -3,12 +3,31 @@
 The newest version is first. For the full detail of every earlier update, see
 [docs/history/CHANGELOG-0.3-to-0.32b.md](docs/history/CHANGELOG-0.3-to-0.32b.md).
 
-## Coming in 0.35 / 0.35b (not released yet)
+## 0.35 / 0.35b "Claude Takeover III" — 2026-10-08
 
-These changes are being collected for the next download. They are **not** in the 0.34 / 0.34b
-downloads yet.
+Everything added since 0.34, in one complete download. The overview is in
+[docs/RELEASE-0.35.md](docs/RELEASE-0.35.md); every change is listed below.
+
+**Download and setup**
+- One complete download in checked parts, with two editions, as in 0.34:
+  - **0.35b** includes the Sluaghbinder.
+  - **0.35** has the classic class list only.
+- The 0.35 game client now has every client improvement of 0.35b (the classic frontier war map, red map
+  markers for every quest and the working QUEST GUIDE button); only the Sluaghbinder class is left out.
+- The launcher shows which edition is installed: **VERSION 0.35b** or **VERSION 0.35**.
+- Every install still gets its own account on the first ENTER REALM, an empty world for its own bots and
+  default launcher settings, and a client settings profile that is new for 0.35.
+- The progress transfer tool now also imports **0.34 and 0.34b** saves, as well as every earlier version.
+  See [docs/TRANSFER-PROGRESS.md](docs/TRANSFER-PROGRESS.md).
+- Every database and client change listed below is already in the download.
+- Quest Guide walkthroughs are the Allakhazam (camelot.allakhazam.com) quest pages as archived in 2001-2004,
+  written by Allakhazam's contributors; each guide names its source.
 
 **Companion bots and gamebots**
+- Your /spawn and /raid companions keep their pets when you travel. Their pets used to die on every teleport
+  and horse ride (the old frontier teleporters and stable routes included), and the pet classes kept
+  re-summoning. A companion's pet now comes along within a region and rejoins it at the end of a horse ride,
+  as your own pet does.
 - The /raid 40 and /raid 80 window keeps your raid when you change zones. Zoning (for example into
   Galladoria) used to show every spot in the raid window as empty although the whole raid was still
   with you; the window now refills itself once the new zone has loaded.
@@ -58,6 +77,16 @@ downloads yet.
 - Savage bots no longer swap between a shield and their hand-to-hand offhand weapon every few seconds.
 
 **Gamebots**
+- Gamebots stop a short way out from a teleporter NPC (town teleporters and the battleground teleporters),
+  spread around it, instead of walking onto the NPC itself, so players can click the teleporter again.
+- Gamebots no longer work the border keep door levers, which kept you from using them. They walk through
+  the doors and leave the levers to you.
+- An enemy gamebot's real name no longer shows when it dies ("... dies!") or in the "worth no realm points"
+  message; you see its race there too, as everywhere else.
+- Stealthed enemy gamebots are invisible unless you are within detection range, like stealthed players.
+  They used to show as a ghostly outline.
+- Keep guards, archers and lords, gamebots and pets no longer drop items. Gamebots stand in for players, and
+  killing a player never dropped loot. A raid's siege used to fill your bags with random gear.
 - Gamebots earn realm points for PvP kills, the same share a player would get, whether they kill an
   enemy gamebot or a player, and their realm rank now goes up with their realm points.
 - Gamebots spend their realm points on realm abilities at their class trainer, like a player. Each
@@ -102,8 +131,62 @@ downloads yet.
   real entrance.
 - Bots take Korlis's gryphon from Hagall to the Iarn Dwarf Camp instead of swimming to Modernagrav.
 - Bot group names in the launcher and the logs name their realm ("albion-...").
+- Bots that stop to pull a monster in their way now actually attack it. The pull could run out before
+  the bot's next decision, so it stood still and pulled the same monster again every few seconds, often
+  for many minutes (about 600 times an hour across the server). A monster that still won't come after
+  three pulls is walked past.
+- Every group of three or more now pulls from range: a ranged member pulls the monster back to the
+  waiting party instead of the tank walking into the pack. While the target is still out of range the
+  party keeps walking toward it. Groups kill noticeably faster (level 50 groups about 60% more kills an
+  hour, low-level groups about 50% more experience an hour).
+- Gamebots use the town teleporters (Master Visur, Stor Gothi Annark and Channeler Glasny, by the bind
+  stones and in the capitals) like players do, but only to their own realm's destinations. A bot takes
+  one only when it is clearly quicker than walking or a stable-master horse, and still rides horses
+  (including the Shrouded Isles flights) where those are quicker. Groups, warbands and raid parties
+  gather at the teleporter and go together, and RvR bots use them to reach their border keep. They land
+  on the ground, even where a destination sits in the air (Mularn). In testing, bots reached their camps
+  about 40% faster and raids filled their rally points much sooner. On by default; the server property
+  `bot_use_town_teleporters` turns it off. These teleporters are not authentic to 1.65; they come from
+  later live versions of DAoC. Most freeshards have them, and Atlas, a classic 1.65 freeshard that has
+  since closed, had them too.
+
+- Gamebots can take part in the battlegrounds. A fourth goal, Battlegrounds %, sends bots to the
+  battleground of their level by a realm teleporter: Abermenai (15-19), Thidranki (20-24), Murdaigean
+  (25-29) or Caledonia (30-35). There they fight the other realms, attack the central keep when another
+  realm (or its neutral guards) holds it, and defend it when their realm does. Bots outside those levels
+  do solo or group PvE with that share instead. The goal is off (0%) unless you turn it on.
+- Bots no longer stand for minutes "fighting" an enemy player or bot they can't reach or hurt: after 90
+  seconds without landing any damage they move on and ignore that target for five minutes.
+- A bot that hit a route problem while travelling to its camp could stop thinking for that turn with an
+  error; it now just picks a new camp.
+- Enemy-realm gamebots are shown the way enemy players were in the period game: by their race (for
+  example "Saracen"), with their realm rank title where a guild name would be, never by their own name.
+  This holds for their nameplate and for combat, spell, resist and death messages. Gamebots of your own
+  realm, pets, companion bots and game masters keep their real names.
+- RvR bots stay on the frontier they picked for 20 to 25 minutes. They used to re-plan every minute
+  across all three frontiers and kept porting home and out again through the portal keeps (one bot
+  ported 11 times in half an hour). A relic on the move, a siege or a defense call still pulls them
+  wherever they are needed.
+- Battleground monsters are camps for solo and group PvE bots whose level fits that battleground.
+- Bots crossing between zones prefer crossings that lead onto the zone's main ground instead of onto a
+  ledge or plateau with no way down (the East Svealand plateau caught over a hundred bots in one run).
+- A defending army that has gathered fewer than half its defenders waits up to four more minutes for
+  the rest before it marches, so defenders arrive together instead of a handful at a time.
+- Siege armies march as one column. After the muster, the army follows a march leader to the siege
+  camp, members keep close to the leader, the leader waits briefly when most of the column has fallen
+  behind, and anyone in the column helps a member under attack. Armies used to walk the whole way one by
+  one and lost half their strength to roaming enemies before reaching the keep.
 
 **Realm events and raids**
+- Raids lead bosses back home. Many raid bosses (every epic dungeon and Summoner's Hall final boss
+  among them) can't be hurt once they are drawn away from their lair. Bots now stop attacking such a
+  boss and the one it chases runs back toward its lair so it follows, the way players do it; the raid no
+  longer skips a boss for this (Summoner Roesia was skipped at 28%).
+- Caer Sidi: Skeletal Sacristan walks his loop slowly enough for a raid to follow him (he used to walk
+  faster than bots run), and spells hurt him a little more.
+- When a raid boss takes no damage for three minutes because the whole raid is busy with its guards
+  and adds, some of the fighters switch to the boss (Princess Nahemah in Darkness Falls was skipped at
+  full health with 65 raiders next to her).
 - New neutral raid events: Summoner's Hall and Darkness Falls. Every realm can run its own 300-bot
   expedition there, forced from the launcher (new "Neutral raid" events) or started automatically like
   the dragons and epic dungeons, so two (rarely three) realms can be inside at the same time. Each realm
@@ -135,11 +218,93 @@ downloads yet.
 - Forced epic dungeon rallies no longer announce in faction chat that a dragon must land.
 - Epic dungeon raids check their next target from every party, not only from the front. A raid with no
   reachable encounter for 20 minutes ends as "Route blocked" instead of holding 300 bots for hours.
+- Raid members now attack a boss when the raid calls them to it. The call used to run out before the
+  bots acted on it, so bosses such as Summoner Cunovinda were skipped at nearly full health. Summoner's
+  Hall has now been cleared by bots on their own: an automatic Midgard raid killed all three summoners
+  and Grand Summoner Govannon.
+- Keep and relic sieges: the attacking realm gathers its army at its own guarded portal outpost inside
+  the enemy frontier, then marches on the keep together once it is strong enough to start the siege
+  (or after 20 minutes), instead of warbands arriving one at a time and being picked off. Attackers
+  fighting at the keep now count as present, and bots that left their RvR task no longer keep holding a
+  place in the siege.
+- A short line at the top of the screen (no sound, nothing in the chat box) tells every player, of any
+  realm, when a keep or relic siege begins. Your own realm's raids get the same kind of line when they
+  start forming, automatic or started from the launcher (dragons, epic dungeons, Summoner's Hall,
+  Darkness Falls), so you can join the bots at the rally point.
+- Bots now set up and use siege weapons the way players did. They had never managed to place one. Rams go
+  right in front of the outer gate, then a new ram at the inner keep door, and the bots standing at a ram crew
+  it like riders. Trebuchets pound the doors from range, catapults lob shots onto defenders and wall archers,
+  and ballistas take on enemy siege engines. Defenders set up inside their walls. Siege crews get their engine
+  on the spot instead of leaving to shop for one, and they take over any idle engine of their kind, a ram you
+  drop included. Bot archers and casters shoot back at archers on the walls, and melee bots stop chasing a
+  target up on a wall they can't reach.
+- A siege army that has marched on a keep attacks as soon as it gets there, instead of waiting at its posts
+  and being whittled down.
+- Attacking an enemy keep yourself now raises a defense sized to your force. Alone, in a group, with a /raid 40
+  or a /raid 80, up to 24, 48, 128 or 240 defenders answer. Your own realm and the third realm send up to 8,
+  16, 48 or 96 each. A horn sounds and the announcement matches the size: a small defense force, a defense
+  force, a large defensive force or a massive defense force has been rallied. The defenders gather briefly at
+  a nearby keep and march in as one big wave once 80% of them have gathered (or after ten minutes), while your
+  realm's warbands and the third realm's arrive however they can. Joining a siege the bots planned themselves
+  raises no alarm.
+- If you take the keep, the realm that lost it comes back once to take it back. It gathers its army at its
+  outpost (80% of it, or ten minutes), marches, and strikes the moment it arrives, sized like the defense you
+  beat (up to 240 against a /raid 80), and it fights for up to 30 minutes. You'll need to hold the keep.
+- Bot armies bring more siege equipment: an army sets up two rams and a trebuchet on the gate (trebuchets
+  hit doors hardest), plus a catapult and ballistas, and every bot standing at a ram helps it hit harder.
+  Defenders set up catapults and ballistas inside the keep. A smaller force still brings a ram.
+- A siege ends as defended once the attacking army has been driven off and stays gone for ten minutes,
+  so the defenders go back to the world instead of waiting out a four-hour timer.
+- Siege weapons can no longer hurt a keep lord, and bots and their pets can't hurt him either while the gate or the
+  keep door is still standing (their spells and arrows used to reach him through the walls). You have to break in
+  and fight your way to him. Rams also go for the keep door after the gate, not the small side postern, and
+  bots now set up rams at the keep door once the gate is broken (they used to look for a spot inside the keep,
+  behind the door).
+- Your /raid 40 and /raid 80 fight keep sieges on their own. When you attack an enemy keep, the raid splits into
+  squads of eight. One squad stays with you as a bodyguard. The others set up rams, catapults, trebuchets and
+  ballistas, shoot the archers off the walls, hold the gate, and storm the keep lord once the doors are down.
+  When you defend a friendly keep, they hold the doors with siege engines in the courtyard. They stay at
+  their posts until the fight is over, helping you only when you're nearby, then regroup on you. If you pick
+  up a relic they escort you, and a relic you leave lying for 20 seconds is picked up by one of them. In the
+  frontier your raid also engages enemy gamebots on its own, within 2,000 under /aggressive or 1,000 under
+  /defensive, and it is called back if it chases too far. Archers up on the walls are left to the raid's
+  ranged bots and healers: a melee bot drops a target it can't walk to instead of standing under the wall,
+  and bots in the frontier are never moved up onto a keep wall while the gate still stands.
+- Every realm is told when a raid kills the final boss of an epic dungeon, Summoner's Hall or Darkness
+  Falls ("Albion's forces have defeated Legion in Darkness Falls!"), enemy realms' victories included,
+  the same way keeps and relics taken are announced.
+- Battleground keep sieges are announced too: when a realm starts attacking a battleground's central
+  keep, and when the keep is taken.
+- Grand Summoner Govannon has 200,000 health (was 300,000); raids wore out against him at half health.
 - Tuscaran Glacier: the raid could get stuck for hours on a small walkable patch hidden under the ice
   floor. Those hidden patches are removed from the Tuscaran Glacier and Galladoria navigation maps, so
   nothing can be routed onto them; every real room is still reachable.
 
+- A siege army that is still mostly on the road when its gathering time runs out waits ten more minutes
+  for the rest, instead of marching with too few to start the battle. Bots waiting at a siege rally are
+  no longer moved back to town by the "stuck" check.
+- Bigger, quicker sieges. A keep siege now draws up to 128 attackers, 64 defenders and 64 from the third realm;
+  a relic siege 240, 120 and 120. The third realm joins in half of all sieges. Armies gather for 12 minutes
+  (one 5-minute extension if most are still on the road) instead of 20 plus 10.
+- The launcher's RvR tab shows a siege rally's gathering time ("marching in 6m", then "Marching to the
+  keep") and the attack window separately. The old "Preparation" countdown was the whole attack window and
+  kept running after the army had marched, so relic rallies looked like an hour of preparation.
+- Bots staged at their realm's second border keep (Druim Cain, Snowdonia Fortress, Vindsaul Faste) walk into
+  the frontier through that keep's gate. Frontier medallions are only sold at the first border keep, and
+  Hibernian siege recruits at Druim Cain used to stand still for a quarter of an hour trying to reach one.
+- Siege armies move as full groups. Bots that answer a siege, a defense or a relic battle on their own are
+  formed into parties of eight with the other nearby recruits of the same side, so attackers and defenders
+  travel and fight as groups instead of one by one.
+- Every side goes after a stolen relic wherever it is: the thieves escort it home, and the defenders and the
+  third realm chase it down, whether it is carried with an escort, carried alone or lying on the ground. This
+  now also happens when the relic is snatched before the siege battle has formally begun (that used to end
+  the event and send everyone home).
+
 **World**
+- The realm war map (KEEPS) shows the classic frontier. Its zone tiles are the classic frontier zone maps, and every
+  keep, border keep and relic keep icon sits where that keep really stands, on all three realm pages; the game
+  client used to draw New Frontiers terrain with the keep icons at New Frontiers spots. Your own position shows on
+  the war map while you are in the frontier, and the milegate icons the classic frontier never had are gone.
 - Bots cross from zone to zone only where real ground meets, so long trips (for example from Hibernia's
   home zones into the frontier) no longer end on a walled-off mountain shelf. Bots riding a stable-master
   horse now land on the ground at Castle Sauvage, Svasud Faste and other stops where the route used to end
@@ -178,6 +343,54 @@ downloads yet.
   number with the gray wolf pup, so he sometimes appeared as a level 1 pup, and the starter-area pups
   could appear as a level 20 Hermit.
 
+- The battlegrounds are open from every realm teleporter (Master Visur, Stor Gothi Annark, Channeler
+  Glasny and their apprentices): say [Battlegrounds] to see the brackets and go to yours. The frontier
+  medallion teleporter uses the same brackets, now with all four battlegrounds. Entry is by level only:
+  there is no realm point cap on this server.
+- Midgard characters leaving a battleground are sent to Svasud Faste again. The exit looked for a
+  location that doesn't exist and left them where they were.
+- All four battlegrounds have their monsters, never above the battleground's level: Abermenai (15-19),
+  Thidranki (20-24), Murdaigean (25-29) and Caledonia (30-35), from period sources. Dun Murdaigean and
+  Dun Abermenai have their central keeps with Renegade guards and a Renegade Chieftain; the launcher's
+  reset-all-keeps button resets them with the rest.
+- The Coruscating Mine has fewer monsters. Many of its camps had been entered twice a few steps apart,
+  so groups pulled double camps; the duplicates are gone, and the monsters that period bestiaries show as
+  rare there (unseelie viewers, casoliths, vein golems, lode protectors and the like) are rarer again.
+- Howth and Connla in Hibernia have their low-level monsters back: feccans, skeletal pawns, villainous
+  youths, water beetles, spraggons and the rest of the level 1-15 populations, placed where period
+  radar logs saw them. There used to be no monsters at all near Howth.
+- Monster populations restored from period bestiaries across the classic and Shrouded Isles zones: 223
+  species that period radar logs, Illia's Camelot Bestiary and Uthgard agree were missing are back, and
+  camps the server never populated have their monsters again (5,677 spawns, placed where 1.65 radar logs
+  saw them, never inside towns). Seven species no source lists in their zones are gone, and monsters whose
+  levels were 5+ off have their period levels. Bots grind the new camps, and the new monsters count for
+  bounties and for the charm lists. The epic dungeons and Darkness Falls are unchanged. A lynx cub, a
+  bodachan sabhaill and a mudman that stood inside Howth's walls are gone.
+- Classic quests (1.65 and classic Shrouded Isles) for players: **448 quests** (1,302 quest versions, counting the
+  per-class versions of the epic and trainer quests), from the original class epic lines to the trainer, optional
+  and kill-task quests, with their recorded dialogue, experience and the quest NPCs and monsters the server
+  lacked (placed from the period walkthroughs, Warcry spoilers and period bestiaries). Steps that need more than a
+  conversation or a kill work too: using an item at a place, reaching a place, trading a monster's drop to an NPC
+  (kill tasks, repeatable), choosing your reward by whispering its name, typing the words of power in /say at the
+  right place (at night where the walkthrough says so), an NPC that another one calls up for you (the Enchantress
+  summons Lucan in Morven's Return), a quest NPC who turns on you (Ciar in Enchanting Willow), and more. Items an NPC hands you are re-issued if you lose
+  them, and quest items can be dropped. Kill-task monsters and the creatures a quest collects from live in camps of
+  six to eight that bots grind too. **Quest rewards are still in progress:** many reward items are not in yet and
+  are added as their period item pages are collected.
+- Red map markers for every quest. Each quest in your journal shows its next step with its own red marker on the
+  map, including the spot where a quest monster will appear. The game client used to draw only bounty markers
+  red; reputation quests, the Sluaghbinder epic and the classic quests showed green dots that looked like bots.
+- Quest Guide: the Quest Journal's QUEST GUIDE button (it used to say BOUNTY MAP and did nothing), /questguide, or
+  /task with no guard, merchant or crafter targeted shows the Allakhazam walkthrough of your active quests as it read
+  in 2001-2004 (period copies for 424 of 448 quests; the rest from today's page with later-patch notes removed), a
+  page at a time; click the button again for the next page. Quests made for this server show their own journal text.
+  /questguide <quest name> [page] opens any classic quest's guide. /task on a guard, merchant or crafter asks it
+  for a task, as in the original game; /task status shows your current task.
+- Quest NPCs added for the classic quests look like people when they are people. A quest NPC with no recorded
+  appearance used to borrow a monster's look from a word in its name (the missing man in Howth was a small earth
+  golem); it now looks like a townsperson nearby. The West Wind's journal says where Bairfhionn stands (outside the
+  Alainn Cuir in Tir na Nog), and its "ask in Howth" step now has you ask a townsperson instead of an ambient pixie.
+
 **Sluaghbinder (0.35b)**
 - The Epic Spells page shows only the raise ranks whose quest you have finished.
 - Muirenn's quests get a red map marker like bounties: on the target while hunting and on Muirenn
@@ -195,12 +408,30 @@ downloads yet.
 - Realm Records: new DELETE ALL RECORDS button (clears only the launcher's event history, no game
   data), and "Stopped by player" and "Route blocked" outcomes.
 
+- The XP Settings tab is now called Options. It has two new switches, both on by default and changeable
+  while the server is stopped: RvR and battleground announcements (keeps and relics taken, sieges
+  started), and PvE realm event announcements (raids forming, final bosses defeated).
+- Bot Goals Setting has a Battlegrounds % column next to Solo PvE, Group PvE and RvR (not for level 50).
+- A new Battlegrounds tab shows each battleground's level bracket, who holds its central keep, and how
+  many bots of each realm are inside or on their way.
+
 **Server**
+- Monster spells of the "no variance" damage type (Scorcher DD, Scorcher DD AE and others) now scale with the
+  caster's level like other monster spells, instead of always hitting for their base damage.
+- Server log labels name Albion "Albion" instead of "_FirstPlayerRealm" (bot and group entries).
+- With many bots online the server creates about a third less short-lived memory per second (bot
+  registry, pet upkeep, frontier enemy checks and more), so it pauses less often to clean up.
 - The server no longer keeps one CPU core at 100% when the launcher is closed or crashes while the
   server is still running (thanks to lometur, pull request #3).
 - The server log notes every minute with a stall of a second or more (slowest stage, garbage
   collection pause, the slowest AI turns and a likely cause), and the very noisy short AI-turn lines
   are only written for turns of 100 ms or more.
+
+**For modders**
+- The navmesh builder (`source/development-tools/OpenDAoC-BuildNav`) builds every point of each zone wall (bots
+  used to cross zone edges and climb mountains through gaps), keeps doors and the far-LOD stand-ins from sealing
+  doorways, and matches zone-edge terrain to the neighbouring zone, so the rebuilt meshes follow the paths players
+  can walk.
 
 **Credits**
 - Thanks to the [stefanrows/OfflineDAoC](https://github.com/stefanrows/OfflineDAoC) fork (Stefan Rows

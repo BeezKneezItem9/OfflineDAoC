@@ -1,20 +1,35 @@
-# Beez Online — six-feature implementation review
+# Beez Online — retained custom features and upstream integration
 
-Status: implemented in the working tree; deployment and playable-server startup are awaiting approval. No played database, client binary, bot roster, or live installation was modified. No live validation was performed. Animist work and historical RP research are excluded.
+The integration branch adopts `shadowofze/OfflineDAoC` main at
+`d337d184034f4c84e1e1748fda7f5b2deef135b8`. Per the owner's integration instruction,
+the original Beez RP recovery and enemy naming systems have been removed in favor
+of upstream. The Developer Ring, Buff Stone, simultaneous songs/chants, owner-only
+Bind Stone portals, and single-rank level-15 Mana Roots remain.
 
-## Feature changes and boundaries
+This describes the integration branch, not a deployed playable installation.
+No server startup or deployment was performed. Automated results are recorded in
+`docs/BEEZ-UPSTREAM-INTEGRATION.md`; real gameplay still requires acceptance.
 
-### 1. Autonomous enemy RP and normal human RR progression
+## Upstream realm points and identity
 
-Eligible autonomous, non-temporary enemy victims in RvR regions/zones use the shared player RP arithmetic: victim value, contribution fraction, participant split, recipient cap, rank adjustment, and group bonus. Pets resolve to their reward owner. Nearby autonomous contributors count toward a mixed group's split but receive no RP or RR progression. The normal human `GainRealmPoints` path retains rate, progression, and battleground policies. Ordinary human-victim repeat-death eligibility remains unchanged.
+Autonomous victim rewards now use upstream's repeat-kill eligibility window:
+a recent victim pays no RP until `rates/rp_worth_seconds` has elapsed. The old
+Beez linear recovery floor, persistent-BotId recovery cache, RvR-only victim gate,
+and shared replacement for human-victim arithmetic are gone. Upstream awards
+participating gamebots RP, derives their realm levels from the player table, and
+allows them to train and use realm abilities. Death diagnostics are retained.
 
-For a positive normal share B, recovery is `min(B, max(1, floor(B * clamp(elapsed / interval, 0, 1))))`. The existing `rates/rp_worth_seconds` setting supplies the interval, default 300 seconds. An unseen victim pays the full normal share. Every autonomous death updates victim-wide state, even when nobody qualifies for payout. State uses persistent BotId, survives bot-object reconstruction, and resets with the server process. Expired identities are pruned during activity without evicting recovering victims or imposing a capacity-dependent reward exception. No RP history claim is made for this approved custom rule.
+Enemy identity now uses upstream `AutonomousNameMask` and its normal server-rule
+and staff exceptions. The 1.124 NPC serializer shows race and realm rank title
+rather than Beez's blank guild field. Upstream combat, spell and death message
+paths are used unchanged. Beez's additional serializer, examine, pet-message,
+effect-message and loot-message overrides have been removed. This intentionally
+uses upstream's coverage; it does not certify every client/UI surface.
 
-### 2. Viewer-relative classic enemy identity
+`BeezRealmRewards.cs`, `BeezEnemyIdentity.cs`, their call sites and nine tests of
+the removed custom behavior no longer exist. Upstream RP/rank/name tests remain.
 
-Hostile autonomous gamebots show their translated race/gender name and no personal guild label in all three NPC-create serializers. Friendly names remain intact, and stored bot identities remain intact. Examine, attacking/defending/pet combat, observer messages, spell messages, death messages, and loot text use the recipient's relation to the bot. Loot creator metadata defensively uses a generic realm-adventurer label for autonomous victims. Staff and PvE realm exceptions still follow existing server rules.
-
-NPC inheritance and packet classification remain unchanged. Existing realm/hostility flags are preserved. Automated name-policy tests do **not** establish the client's exact red-name shade, target-window presentation, or all incidental UI surfaces.
+## Retained feature changes and boundaries
 
 ### 3. Beez's Developer Ring
 
@@ -54,88 +69,45 @@ Primary use retains the normal recall handler. Secondary `/use2` on an owned per
 
 Creation and every traversal check ownership, alive/active state, combat, movement, CC, casting, mounts, relics, valid endpoints, disabled/restricted regions, RvR regions/zones, battlegrounds, instances, jail, keep areas, and normal zoning rules. House interiors are rejected because the endpoint snapshot has no house-instance identity. Existing item reuse is respected. Death, disconnect, bind changes, replacement, failed arrival/world insertion, and expiry dispose the pair. Server restart drops the runtime state. Companion travel continues through the existing normal movement coordinator; portals themselves accept only their owner.
 
-## Exact materially changed files/classes
+### 7. Mana Roots
 
-Paths below are relative to the repository root. Shared hooks intentionally appear once.
+The single Animist spell remains available at level 15, for 60 seconds, with no
+extra ranks, power cost or reuse timer. It locks movement independently of native
+roots and restores only the native out-of-combat power-tick cadence. Native tick
+amounts, health cadence and combat state are unchanged. Purge still cannot remove
+it, including after upstream's support for bot Purge. See [MANA-ROOTS.md](MANA-ROOTS.md)
+for implementation details and manual acceptance.
 
-| File | Class / responsibility |
-| --- | --- |
-| `source/server/GameServer/gameutils/BeezRealmRewards.cs` | BeezRealmRewards: shared arithmetic and victim-wide recovery cache |
-| `source/server/GameServer/bots/autonomous/AutonomousBotRealmPointRewards.cs` | AutonomousBotRealmPointRewards: eligibility/contributions/human awards |
-| `source/server/GameServer/bots/GameBot.cs` | GameBot: death recording and enemy examine |
-| `source/server/GameServer/serverrules/AbstractServerRules.cs` | AbstractServerRules: shared player arithmetic and loot presentation |
-| `source/server/GameServer/gameutils/BeezEnemyIdentity.cs` | BeezEnemyIdentity: viewer-relative names and messages |
-| `source/server/GameServer/packets/Server/PacketLib168.cs` | PacketLib168: NPC-create name/guild |
-| `source/server/GameServer/packets/Server/PacketLib171.cs` | PacketLib171: NPC-create name/guild |
-| `source/server/GameServer/packets/Server/PacketLib1124.cs` | PacketLib1124: NPC-create name/guild |
-| `source/server/GameServer/ECS-Components/AttackComponent.cs` | AttackComponent: combat/observer presentation |
-| `source/server/GameServer/gameobjects/GameLiving.cs` | GameLiving: pet combat presentation and song-source registry |
-| `source/server/GameServer/gameobjects/GameNPC.cs` | GameNPC: viewer-relative deaths |
-| `source/server/GameServer/ECS-Effects/ECSGameEffect.cs` | ECSGameEffect: viewer-relative effect messages |
-| `source/server/GameServer/spells/DamageAddAndShield.cs` | DamageAddSpellHandler / DamageShieldSpellHandler: combat names |
-| `source/server/GameServer/gameutils/BeezDeveloperItems.cs` | BeezDeveloperItems, BeezDeveloperRing, BeezBuffStone: templates/grants/item behavior |
-| `source/server/GameServer/commands/playercommands/beezitems.cs` | BeezItemsCommandHandler: self grant |
-| `source/server/GameServer/packets/Client/168/CharacterCreateRequestHandler.cs` | CharacterCreateRequestHandler: grant after starter handlers |
-| `source/server/GameServer/gameobjects/GamePlayer.cs` | GamePlayer: item bonuses, lifecycle cleanup, item-use dispatch, weapon switch |
-| `source/server/GameServer/gameutils/BeezBuffs.cs` | BeezBuffs: verified manifests and stone-only application context |
-| `source/server/GameServer/spells/SpellHandler.cs` | SpellHandler: stone context, concentration/song scope, combat names |
-| `source/server/GameServer/spells/SingleStatBuff.cs` | SingleStatBuff: stone-only effectiveness |
-| `source/server/GameServer/ECS-Effects/ECSGameSpellEffect.cs` | ECSGameSpellEffect: session lifetime, save exclusion, concentration policy |
-| `source/server/GameServer/ECS-Components/EffectListComponent.cs` | EffectListComponent: stronger-buff guard and scoped pulse coexistence |
-| `source/server/GameServer/ECS-Services/EffectService.cs` | EffectService: stone expiry exemption and scoped source upkeep |
-| `source/server/GameServer/gameutils/BeezSongs.cs` | BeezSongs: class/line/family policy and bot maintenance |
-| `source/server/GameServer/ECS-Effects/ECSPulseEffect.cs` | ECSPulseEffect: scoped source registration/removal |
-| `source/server/GameServer/bots/BotBrain.cs` | BotBrain: concurrent maintenance replaces twisting |
-| `source/server/GameServer/bots/BotSpellPower.cs` | BotSpellPower: scoped upkeep cost |
-| `source/server/GameServer/gameutils/BeezBindPortals.cs` | BeezBindPortals / Pair / Portal: session portal lifecycle and safeguards |
-| `source/server/Tests/UnitTests/UT_BeezOnline.cs` | UT_BeezOnline: 51 targeted cases across six features |
-| `source/server/Tests/Fixtures/BeezBuffSpells.json` | 51 verified spell/line metadata entries; no database or save data |
-| `source/server/Tests/Tests.csproj` | Embeds the spell metadata fixture |
-| `source/server/Tests/UnitTests/UT_BotMobileSongs.cs` | Updates native-line fixtures and old twisting expectations; preserves movement/melee/reuse checks |
-| `source/server/Tests/UnitTests/UT_RvrExpansion.cs` | Supplies normal viewer/brain context for the enemy examine regression |
+## Database and configuration
 
-## Database/configuration additions
+The retained custom features need no schema migration. On a later approved
+startup, `BeezDeveloperItems.Load` creates missing `ItemTemplate` rows
+`beez_developer_ring` and `beez_buff_stone`, with the custom types
+`DOL.GS.BeezDeveloperRing` and `DOL.GS.BeezBuffStone`. Existing matching IDs are
+left intact; verify their class types before gameplay. Character creation and
+`/beezitems` use ordinary owned inventory records.
 
-No schema migration or new server-property setting is required. On a later approved startup, `BeezDeveloperItems.Load` creates missing `ItemTemplate` records with IDs `beez_developer_ring` and `beez_buff_stone` and custom class types `DOL.GS.BeezDeveloperRing` and `DOL.GS.BeezBuffStone`. Existing matching IDs are left intact and should be checked for the intended class types before gameplay. Character creation and `/beezitems` create ordinary owned `Inventory` records. The bonus vector itself is implemented in code because it exceeds the ordinary template's bonus-field count.
+Bind portals, Buff Stone effects and the song registry remain session state.
+Mana Roots registration stays in memory and active effects are not saved.
+Upstream's bot realm-ability points use the existing serialized-abilities field.
+New upstream server properties and release quest/navigation assets are listed
+in the integration report. No live database or configuration has been changed.
 
-The existing bind item/primary spell is identified by its `GatewayPersonalBind` handler; no secondary spell record or item-template rewrite was added. RP uses the existing `rp_worth_seconds` setting. Buffs, recovery history, song-source registry, and portal NPCs require no new saved records. Buff Stone effects never enter `PlayerXEffect` storage.
+## Manual acceptance
 
-The supplied spell-only database was opened read-only. Its SHA-256 remains `54a92c0691e7d778e1a344890325cd02ed7d2e99767ee3bb676339b9df316f6b`. Only selected world-spell metadata was copied into the test fixture; the SQLite database is not part of the repository changes.
+Use a separately approved disposable playable copy with a backed-up database.
 
-## Automated/build validation
-
-- Release solution build: **passed, 0 errors, 637 warnings**. Warnings include existing obsolete-code, analyzer, and NuGet advisory messages; dependency upgrades were outside this scope.
-- Targeted feature and nearby regression selection: **308 passed, 0 failed**.
-- Final full server test suite: **2,641 executed/passed, 0 failed; 58 not executed**. The TRX contains 2,699 outcomes; the console's `Skipped: 0` summary omits the 58 `NotExecuted` installed-data/navmesh probe outcomes.
-- The new six-feature fixture contains **51 passing cases**, including all 51 verified buff entries in its catalog/handler test.
-- Whitespace review uses `cr-at-eol` to respect the repository's CRLF convention.
-
-Commands:
-
-```bash
-dotnet build "source/server/Dawn of Light.sln" -c Release -p:EnableWindowsTargeting=true
-dotnet test source/server/Tests/Tests.csproj -c Release --no-build --logger 'trx;LogFileName=beez-final.trx'
-```
-
-The full-run result artifact is `source/server/Tests/TestResults/beez-final.trx` (ignored by git). Earlier failures were corrected: isolated fixture initialization, native song-line fixtures, obsolete twisting expectations, and bot cast dispatch/instrument maintenance. No unresolved automated test failure remains. Installed-data probes, client presentation, and actual in-game behavior are not established by these results.
-
-## Implementation refinements / deviations
-
-The six-feature scope and exclusions are unchanged. Creation grants run after starter handlers to avoid slot-order collisions. Recovery state is pruned by the active time window rather than imposing a hard ID capacity that could change first-kill rewards. Portal arrival uses a small positional tolerance rather than exact heading equality; house interiors are rejected rather than storing unsafe house-local coordinates. Portals reuse the stock teleport-effect model and existing movement APIs. The secondary bind action is dispatched server-side without adding a guessed secondary spell record. These choices keep the implementation reviewable and avoid changing world spell data or the client.
-
-## Remaining manual acceptance tests and risks
-
-Use a separately approved test install/copy database. None of these checks has been performed here.
-
-| Feature | Required in-game checks |
-| --- | --- |
-| RP/RR | Known native-equivalent first reward; immediate and 75/150/300-second repeat kills; another attacker killing the same victim; deaths without human payout; unload/reload; pets/companions; mixed/solo groups and range; normal human RR/RA/save/relog progression; no bot RR gains; RvR/BG caps; no ordinary NPC/friendly rewards |
-| Identity | Normal player viewers from all realms; allied and enemy views simultaneously; race/gender text, guild suppression, target/examine/combat/spell/death/loot surfaces; all supported packet/client versions; exact hostile red-name shade; staff exceptions and neutral/temporary companions |
-| Ring | New-human grant after all starters; existing-player `/beezitems`; full backpack and saved/vault ownership; equip/remove/relog/refresh; all stat/resist/skill/hits/power caps; other ROG bonuses; tooltip/delve/stat-window presentation; no damage/armor cap bypass or bot grants |
-| Buff Stone | Each realm/class package, especially caster-only acuity behavior; duration beyond original timers; missing-effect restoration and weaker upgrades; stronger/equal ordinary buffs and same-ID effects; disabled buffs; zoning/reload; death/release/logout/relog; concentration and icons; no companions/groups/bots/nearby recipients; no saved effect records |
-| Songs/chants | Every eligible class/line with multiple families; learned ranks, activation costs/reuse/instruments; melee weapon changes and travel; CC suspension/recovery; child-effect stacking/range; bot maintenance and resurrection priorities; unrelated caster speed, PBT, focus, charm/mez and pet/self pulses retain their behavior |
-| Bind portals | Primary recall unchanged; client actually sends secondary `/use2` for the existing recall item; same/cross-region loading; both directions, owner-only access, proximity and heading; same stock model is visible/selectable; ten-minute/reuse/bind-change/death/logout cleanup; failed transfer/insertion; RvR/BG/keep/relic/jail/instance/disabled region/combat/mount/interior restrictions; normal companion travel |
-
-Client-dependent points remain the exact enemy name color, target/UI presentation, unlimited-session buff icon display, custom item tooltip/use affordances, secondary bind-use signaling, and portal visibility/selectability. If the client refuses a required action or presentation, that is a separately reviewable blocker; no client patch has been made. Portal floor geometry and asynchronous loading, large bot populations, and the installed playable spell/item catalogs still require runtime acceptance.
-
-Deployment and playable-server startup are not approved or performed. Stop here for review.
+- Confirm upstream RP repeat-kill gating, player/bot/pet/group splits, bot realm
+  ranks and trainer abilities, plus human progression and battleground caps.
+- Check enemy race/rank display and upstream messages from allied, hostile and
+  staff clients. Review older packet versions and examine/pet/effect/loot text
+  for differences from the removed broader Beez naming overrides.
+- Check new/existing character grants, ring equip/remove/relog and legal caps.
+- Check all three Buff Stone packages, stronger-buff preservation, concentration,
+  zoning, death/logout cleanup and absence of saved effects.
+- Check simultaneous songs for each eligible class: learned ranks, instruments,
+  melee switching, travel, crowd control and normal child-effect conflicts.
+- Check owner-only two-way Bind Stone use, return journeys, cooldowns, expiry,
+  death/logout/rebinding and forbidden locations. Verify companions travel normally.
+- Run the Mana Roots acceptance steps in its guide and check that bot Purge does
+  not weaken the Animist movement lock.

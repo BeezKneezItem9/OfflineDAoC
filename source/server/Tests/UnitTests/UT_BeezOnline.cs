@@ -114,33 +114,6 @@ namespace DOL.UnitTests
             return new StatBuffECSEffect(new(player, spell.Duration, effectiveness, handler));
         }
 
-        [TestCase(900, 0, 1)]
-        [TestCase(900, 75000, 225)]
-        [TestCase(900, 150000, 450)]
-        [TestCase(900, 300000, 900)]
-        [TestCase(900, -1, 1)]
-        [TestCase(0, 0, 0)]
-        public void RepeatDeathRecovery(int reward, long elapsed, int expected) =>
-            Assert.That(BeezRealmRewards.Recover(reward, elapsed, 300000), Is.EqualTo(expected));
-
-        [Test]
-        public void RecoveryIsVictimWideAndSurvivesReconstruction()
-        {
-            const long id = 919100;
-            Assert.That(BeezRealmRewards.RecordDeath(id, 1000000, 300000), Is.EqualTo(long.MaxValue));
-            Assert.That(BeezRealmRewards.RecordDeath(id, 1100000, 300000), Is.EqualTo(100000));
-            Assert.That(BeezRealmRewards.RecordDeath(id, 1100000, 300000), Is.Zero);
-            Assert.That(BeezRealmRewards.RecordDeath(id + 1, 1100000, 300000), Is.EqualTo(long.MaxValue));
-        }
-
-        [Test]
-        public void MixedGroupSharesIncludeUnpaidBotMembers()
-        {
-            Assert.That(BeezRealmRewards.Calculate(900, 0, 900, 0, 2, 2, 1, true), Is.EqualTo(506));
-            Assert.That(BeezRealmRewards.Calculate(900, 0, 900, 0, 1, 1, 0, true), Is.Zero);
-            Assert.That(BeezRealmRewards.Recover(900, 0, 0), Is.EqualTo(900));
-        }
-
         [TestCase(1)]
         [TestCase(20)]
         [TestCase(50)]
@@ -300,34 +273,6 @@ namespace DOL.UnitTests
             Assert.That(snapshot, Is.EqualTo(new BeezBindPortals.Endpoint(1, 123, 456, 789, 1024)));
             player.BindXpos++;
             Assert.That(BeezBindPortals.BindPoint(player), Is.Not.EqualTo(snapshot));
-        }
-
-        private sealed class IdentityBot : GameBot
-        {
-            private IdentityBot() : base((OfflineWorldBotRecord)null) { }
-            public override eRealm Realm { get; set; }
-        }
-
-        [Test]
-        public void IdentityIsViewerRelativeAndNeverChangesTheStoredBotName()
-        {
-            IdentityBot bot = (IdentityBot)RuntimeHelpers.GetUninitializedObject(typeof(IdentityBot));
-            Field(typeof(GameNPC), bot, "m_brains", new ArrayList());
-            bot.Realm = eRealm.Midgard;
-            bot.Name = "SecretBotName";
-            bot.Race = 5;
-            typeof(GameBot).GetProperty(nameof(GameBot.IsAutonomousWorldBot)).SetValue(bot, true);
-            GamePlayer enemy = Player();
-            GamePlayer friend = Player(realm: eRealm.Midgard);
-            string name = bot.Name, guild = "SecretGuild";
-            BeezEnemyIdentity.Resolve(enemy, bot, ref name, ref guild);
-            Assert.That(name, Is.EqualTo(enemy.RaceToTranslatedName(bot.Race, bot.Gender)));
-            Assert.That(guild, Is.Empty);
-            Assert.That(BeezEnemyIdentity.Message(enemy, "SecretBotName dies!", bot), Does.Not.Contain("SecretBotName"));
-            Assert.That(BeezEnemyIdentity.Name(friend, bot), Does.Contain("SecretBotName"));
-            Assert.That(bot.Name, Is.EqualTo("SecretBotName"));
-            typeof(GameBot).GetProperty(nameof(GameBot.IsTemporaryGroupHelper)).SetValue(bot, true);
-            Assert.That(BeezEnemyIdentity.IsEnemy(enemy, bot), Is.False);
         }
 
         private static ECSPulseEffect Pulse(GamePlayer player, int id, string type, string line = "Chants")

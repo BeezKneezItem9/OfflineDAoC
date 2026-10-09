@@ -350,7 +350,9 @@ namespace DOL.GS
                 Span<float> buffer = rentedBuffer.AsSpan(0, MAX_POLY * 3);
                 Span<EDtPolyFlags> flags = rentedFlags.AsSpan(0, MAX_POLY);
 
+                long profiled = NavQueryProfile.Start();
                 EDtStatus status = PathStraight(query, startFloats, endFloats, _defaultHalfExtents, filters, options, out int numNodes, buffer, flags);
+                NavQueryProfile.Stop(NavQueryProfile.Kind.PathStraight, profiled);
 
                 if ((status & EDtStatus.DT_SUCCESS) == 0)
                     return new(PathfindingStatus.NoPathFound, 0);
@@ -408,7 +410,9 @@ namespace DOL.GS
             FillRecastFloats(end, endFloats);
 
             Span<float> outVec = stackalloc float[3];
+            long profiled = NavQueryProfile.Start();
             EDtStatus status = MoveAlongSurface(query, startFloats, endFloats, _defaultHalfExtents, filters, outVec);
+            NavQueryProfile.Stop(NavQueryProfile.Kind.OtherQuery, profiled);
 
             return (status & EDtStatus.DT_SUCCESS) == 0 ? null : new(outVec[0] * INV_FACTOR, outVec[2] * INV_FACTOR, outVec[1] * INV_FACTOR);
         }
@@ -422,7 +426,9 @@ namespace DOL.GS
             FillRecastFloats(position, center);
 
             Span<float> outVec = stackalloc float[3];
+            long profiled = NavQueryProfile.Start();
             EDtStatus status = FindRandomPointAroundCircle(query, center, radius * CONVERSION_FACTOR, _defaultHalfExtents, filters, outVec);
+            NavQueryProfile.Stop(NavQueryProfile.Kind.OtherQuery, profiled);
 
             return (status & EDtStatus.DT_SUCCESS) == 0 ? null : new(outVec[0] * INV_FACTOR, outVec[2] * INV_FACTOR, outVec[1] * INV_FACTOR);
         }
@@ -436,7 +442,9 @@ namespace DOL.GS
             FillRecastFloats(position, center);
 
             Span<float> outVec = stackalloc float[3];
+            long profiled = NavQueryProfile.Start();
             EDtStatus status = FindClosestPoint(query, center, _defaultHalfExtents, filters, outVec);
+            NavQueryProfile.Stop(NavQueryProfile.Kind.ClosestPoint, profiled);
 
             return (status & EDtStatus.DT_SUCCESS) == 0 ? null : new(outVec[0] * INV_FACTOR, outVec[2] * INV_FACTOR, outVec[1] * INV_FACTOR);
         }
@@ -453,7 +461,9 @@ namespace DOL.GS
             FillRecastFloats(new(xRange, yRange, zRange), polyPickEx);
 
             Span<float> outVec = stackalloc float[3];
+            long profiled = NavQueryProfile.Start();
             EDtStatus status = FindClosestPoint(query, center, polyPickEx, filters, outVec);
+            NavQueryProfile.Stop(NavQueryProfile.Kind.ClosestPoint, profiled);
 
             return (status & EDtStatus.DT_SUCCESS) == 0 ? null : new(outVec[0] * INV_FACTOR, outVec[2] * INV_FACTOR, outVec[1] * INV_FACTOR);
         }

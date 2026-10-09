@@ -43,16 +43,25 @@ namespace DOL.GS
         public static RouteThreatAction Decide(ConColor con, bool grouped, int packSize, bool bossLike,
             bool detourAvailable, int detoursSoFar, bool mayRetarget)
         {
+            // A grey monster is no threat (and in DAoC rarely aggroes); lower cons are fought in
+            // bigger packs. Run 7 (2026-10-06): 14% of give-ups were greys 6+ levels below the
+            // bot and many more were green or blue packs of three to five.
+            if (con <= ConColor.GREY && !bossLike)
+                return RouteThreatAction.Ignore;
+            int easyPack = grouped ? con <= ConColor.BLUE ? 5 : 3
+                : con <= ConColor.GREEN ? 3 : con <= ConColor.BLUE ? 2 : 1;
+            int manageablePack = grouped ? con <= ConColor.BLUE ? 6 : 4
+                : con <= ConColor.GREEN ? 5 : con <= ConColor.BLUE ? 3 : 2;
             bool easy = !bossLike && (grouped
-                ? con <= ConColor.ORANGE && packSize <= 3
-                : con <= ConColor.YELLOW && packSize <= 1);
+                ? con <= ConColor.ORANGE && packSize <= easyPack
+                : con <= ConColor.YELLOW && packSize <= easyPack);
             if (easy)
                 return RouteThreatAction.Pull;
             if (detourAvailable && detoursSoFar < MaxDetoursPerThreat)
                 return RouteThreatAction.Detour;
             bool manageable = !bossLike && (grouped
-                ? con <= ConColor.RED && packSize <= 4
-                : con <= ConColor.ORANGE && packSize <= 2);
+                ? con <= ConColor.RED && packSize <= manageablePack
+                : con <= ConColor.ORANGE && packSize <= manageablePack);
             if (manageable)
                 return RouteThreatAction.Pull;
             return mayRetarget ? RouteThreatAction.Retarget : RouteThreatAction.Ignore;

@@ -13,10 +13,12 @@ namespace DOL.UnitTests
         public void SiegeSlotsPreferTheKitTheBotAlreadyCarries()
         {
             Assert.That(AutonomousSiegeJobs.SlotKind(0, true), Is.EqualTo(BotSiegeKind.Ram));
-            Assert.That(AutonomousSiegeJobs.SlotKind(2, true), Is.EqualTo(BotSiegeKind.Catapult));
-            Assert.That(AutonomousSiegeJobs.SlotKind(3, true), Is.EqualTo(BotSiegeKind.Trebuchet));
+            Assert.That(AutonomousSiegeJobs.SlotKind(2, true), Is.EqualTo(BotSiegeKind.Trebuchet));
+            Assert.That(AutonomousSiegeJobs.SlotKind(3, true), Is.EqualTo(BotSiegeKind.Catapult));
             Assert.That(AutonomousSiegeJobs.SlotKind(4, true), Is.EqualTo(BotSiegeKind.Ballista));
-            Assert.That(AutonomousSiegeJobs.SlotOrder(6, true, BotSiegeKind.Trebuchet).First(), Is.EqualTo(3));
+            Assert.That(AutonomousSiegeJobs.SlotOrder(6, true, BotSiegeKind.Catapult).First(), Is.EqualTo(3));
+            // Defenders never get a trebuchet (no spot inside the keep clears its 2,000 minimum range).
+            Assert.That(Enumerable.Range(0, 6).Select(i => AutonomousSiegeJobs.SlotKind(i, false)), Has.None.EqualTo(BotSiegeKind.Trebuchet));
             Assert.That(AutonomousSiegeJobs.SlotOrder(6, true, null), Is.EqualTo(new[] { 0, 1, 2, 3, 4, 5 }));
         }
 

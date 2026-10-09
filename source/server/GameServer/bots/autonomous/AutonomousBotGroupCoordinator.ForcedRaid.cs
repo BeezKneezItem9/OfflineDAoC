@@ -145,4 +145,58 @@ public static partial class AutonomousBotGroupCoordinator
             return true;
         }
     }
+
+    /// <summary>
+    /// Fills a gap in a raid party with one free level-50 bot of the realm, closest to the rally
+    /// hub first, preferring a class that can take the released member's role. Forced raids
+    /// may take any free bot that is not in a group; automatic raids only take waiting group
+    /// applicants, as when they recruit. A released bot is never taken back. No teleport: the
+    /// newcomer walks to the party like a late member.
+    /// </summary>
+    public static bool TryRefillRaidParty(string eventId, Group group, ushort hubRegion, Vector3 hubCenter,
+        bool forced, long[] released)
+    {
+        if (group == null) return false;
+        lock (Sync)
+        {
+            if (!Sessions.TryGetValue(group, out Session session) || session.Ending ||
+                session.RaidMusterEvent == null && AutonomousRealmRaid.GetView(group) == null) return false;
+            GameBot[] members = BotMembers(group);
+            if (members.Length == 0 || members.Length >= 8) return false;
+            eRealm realm = members[0].Realm;
+            var releasedIds = released.ToHashSet();
+            GameBot[] candidates = AutonomousBotRegistry.Snapshot().Where(b => AutonomousRealmRaid.IsEligible(b) &&
+                    b.Realm == realm && b.Group == null && b.IsAlive && b.PersistentRecord != null &&
+                    b.CurrentRegion != null && !b.InCombat && !b.IsAttacking && !releasedIds.Contains(b.DatabaseID) &&
+                    !AutonomousRealmRaid.IsReserved(b) &&
+                    !AutonomousRvrEventLayer.IsForceCommitted(RvrForceId(b), GameLoop.GameLoopTime) &&
+                    (forced || AutonomousObjectiveAssignments.Is(b, eAutonomousObjectiveKind.GroupPve)))
+                .OrderBy(b => ForcedRecruitDistance(b.CurrentRegionID, b.X, b.Y, hubRegion, hubCenter))
+                .Take(ForcedRecruitWindow).ToArray();
+            if (candidates.Length == 0) return false;
+            BotPveGroupRole? wanted = session.ReleasedRaidRoles.Count > 0 ? session.ReleasedRaidRoles[0] : null;
+            GameBot chosen = wanted is BotPveGroupRole role
+                ? candidates.FirstOrDefault(b => BotPartyRoles.CanFill((eCharacterClass)b.CharacterClass.ID, role)) ?? candidates[0]
+                : candidates[0];
+            BotPveGroupRole chosenRole = wanted is BotPveGroupRole w && BotPartyRoles.CanFill((eCharacterClass)chosen.CharacterClass.ID, w)
+                ? w : Enum.GetValues<BotPveGroupRole>().First(r => BotPartyRoles.CanFill((eCharacterClass)chosen.CharacterClass.ID, r));
+            if (!group.AddMember(chosen)) return false;
+            if (!AutonomousRealmRaid.AddReplacement(group, chosen))
+            {
+                session.ProcessingAttendanceRemovals = true;
+                try { group.RemoveMember(chosen, retainSingleRemainingMember: true); }
+                finally { session.ProcessingAttendanceRemovals = false; }
+                return false;
+            }
+            if (wanted is BotPveGroupRole filled && filled == chosenRole) session.ReleasedRaidRoles.RemoveAt(0);
+            session.PveRoles[MemberKey(chosen)] = chosenRole;
+            session.LockedSize = BotMembers(group).Length;
+            AutonomousRvrEventLayer.RemoveForce($"rvr-{chosen.DatabaseID}");
+            AutonomousObjectiveAssignments.AssignForcedRaid(chosen, eventId, forced);
+            WriteSessionMetadata(session, BotMembers(group));
+            Log.Info($"REALM_RAID_REPLACEMENT event={eventId} group={session.Id} bot={chosen.Name} role={chosenRole} " +
+                $"region={chosen.CurrentRegionID} position={chosen.X},{chosen.Y},{chosen.Z} size={BotMembers(group).Length}");
+            return true;
+        }
+    }
 }

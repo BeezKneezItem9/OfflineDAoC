@@ -417,6 +417,25 @@ public static class AutonomousStableRoutePlanner
         regionId == 100 && position.Z is >= 4_660 and <= 4_705 &&
         Vector2.DistanceSquared(new(position.X, position.Y), new(803743, 722129)) <= 80 * 80;
 
+    /// <summary>
+    /// The walkable floor under a stable-route landing that is not on the navmesh: the nearest floor
+    /// in height at the same spot (at most 48 units across, 600 up or down). False when the landing
+    /// is already on the floor or no floor is close enough.
+    /// </summary>
+    public static bool TryGroundLanding(IPathfindingMgr nav, Zone zone, Vector3 landing, out Vector3 floor)
+    {
+        floor = default;
+        if (nav == null || zone == null || !nav.IsAvailable || !nav.HasNavmesh(zone)) return false;
+        if (nav.GetClosestPoint(zone, landing, 24, 24, 64, nav.DefaultFilters).HasValue) return false;
+        Vector3? ground = nav.GetClosestPoint(zone, landing, 48, 48, 600, nav.DefaultFilters);
+        if (!ground.HasValue || !IsGroundLanding(landing, ground.Value)) return false;
+        floor = ground.Value;
+        return true;
+    }
+
+    public static bool IsGroundLanding(Vector3 landing, Vector3 ground) =>
+        Vector2.Distance(new(landing.X, landing.Y), new(ground.X, ground.Y)) <= 48 && MathF.Abs(ground.Z - landing.Z) <= 600;
+
     public static bool ShouldCorrectAuditedMularnLanding(bool confirmedArrival, bool alive,
         ushort regionId, Vector3 position) =>
         confirmedArrival && alive && IsAuditedMularnLanding(regionId, position);

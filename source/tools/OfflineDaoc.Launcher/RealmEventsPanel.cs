@@ -30,7 +30,7 @@ internal sealed partial class MainForm
         panel.Controls.Add(_rvrUpdated, 0, 0);
         var filters = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, WrapContents = true };
         _eventRealm.Items.AddRange(["All realms", "Albion", "Midgard", "Hibernia"]);
-        _eventKind.Items.AddRange(["All events", "Keep", "Relic keep", "Relic", "Dragon", "Epic dungeon"]);
+        _eventKind.Items.AddRange(["All events", "Keep", "Relic keep", "Relic", "Dragon", "Epic dungeon", "Neutral raid"]);
         _eventActingRealm.Items.AddRange(["Albion", "Midgard", "Hibernia"]);
         _eventRealm.SelectedIndex = _eventKind.SelectedIndex = _eventActingRealm.SelectedIndex = 0;
         filters.Controls.AddRange([_eventRealm, _eventKind, _eventSearch, _eventActiveOnly,
@@ -153,9 +153,15 @@ internal sealed partial class MainForm
             ("epic-albion", "Caer Sidi", "Albion", "Epic dungeon"),
             ("epic-midgard", "Tuscaran Glacier", "Midgard", "Epic dungeon"),
             ("epic-hibernia", "Galladoria", "Hibernia", "Epic dungeon"),
+            ("summoners-albion", "Summoner's Hall", "Albion", "Neutral raid"),
+            ("summoners-midgard", "Summoner's Hall", "Midgard", "Neutral raid"),
+            ("summoners-hibernia", "Summoner's Hall", "Hibernia", "Neutral raid"),
+            ("darkness-albion", "Darkness Falls", "Albion", "Neutral raid"),
+            ("darkness-midgard", "Darkness Falls", "Midgard", "Neutral raid"),
+            ("darkness-hibernia", "Darkness Falls", "Hibernia", "Neutral raid"),
         })
         {
-            if (current.Any(row => row.Id == id || row.Kind == kind && row.Name == name)) continue;
+            if (current.Any(row => row.Id == id || row.Kind == kind && row.Name == name && row.Owner == realm)) continue;
             yield return new RvrObjective(kind, name, realm, "Awaiting server snapshot", name, "",
                 "Start the updated server and refresh for live readiness and cooldown", id, 0, true);
         }
@@ -193,7 +199,7 @@ internal sealed partial class MainForm
         if (_eventStart != null) _eventStart.Enabled = enabled;
         if (_eventReset != null) _eventReset.Enabled = enabled;
         // Stop event: dragon and epic dungeon expeditions that are running (forced or automatic).
-        if (_eventStop != null) _eventStop.Enabled = enabled && selected!.IsActiveEvent && selected.Kind is "Dragon" or "Epic dungeon";
+        if (_eventStop != null) _eventStop.Enabled = enabled && selected!.IsActiveEvent && selected.Kind is "Dragon" or "Epic dungeon" or "Neutral raid";
     }
 
     private sealed record EventCommandResult(string Id, bool Success, string Message, DateTime UpdatedUtc);
@@ -217,7 +223,7 @@ internal sealed partial class MainForm
     private async Task SendEventCommandAsync(string action)
     {
         if (_eventRequestPending || !_rvrServerRunning || _rvrObjectivesGrid.CurrentRow?.DataBoundItem is not RvrObjective target || target.IsCatalogOnly || string.IsNullOrEmpty(target.Id)) return;
-        if (action == "start" && target.Kind is "Dragon" or "Epic dungeon" && MessageBox.Show(this,
+        if (action == "start" && target.Kind is "Dragon" or "Epic dungeon" or "Neutral raid" && MessageBox.Show(this,
             "Force this expedition? This requires 300 available level-50 autonomous bots and reassigns their ordinary tasks. Bots already assigned or reserved for another expedition or siege are protected. Departure requires 200 individually present bots; late arrivals join directly.\n\n" +
             "The closest available bots are chosen first. Everyone travels to a safe service hub together, then formed parties advance to the encounter. The attack starts as soon as 200 have arrived (and a dragon has landed). A forced expedition has no time limit: it runs until the encounter is defeated or you press STOP EVENT.\n\n" +
             "A forced expedition may run alongside another event in this realm, but cannot duplicate the same encounter. This explicit order can override the Bot Goals Setting percentages for its participants. Players, companions and mixed-level parties are excluded.",
