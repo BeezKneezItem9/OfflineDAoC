@@ -1,0 +1,64 @@
+name: Publish Beez regeneration Windows test release
+on:
+  push:
+    branches: [beez-test-d583ee3-download]
+    paths: [.github/workflows/publish-beez-test.yml]
+permissions:
+  contents: write
+concurrency:
+  group: publish-beez-test-d583ee3
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out validated package transport
+        uses: actions/checkout@v4
+      - name: Reassemble and validate package
+        shell: bash
+        run: |
+          python3 - <<'CHECK'
+          import hashlib,json,pathlib,zipfile
+          m=json.loads(pathlib.Path('DOWNLOAD-MANIFEST.json').read_text())
+          assert m['commit'] == 'd583ee32832a108cc030e6bb4d4f776052de6a00'
+          assert m['sha256'] == '5d854b073d4cba04819b4436aeda2c26b6b1213d6fcca4b6ad125d98c157e0f6'
+          output=pathlib.Path(m['filename'])
+          with output.open('wb') as destination:
+              for part in m['parts']:
+                  data=pathlib.Path(part['name']).read_bytes()
+                  assert len(data)==part['bytes']
+                  assert hashlib.sha256(data).hexdigest()==part['sha256']
+                  destination.write(data)
+          assert output.stat().st_size==m['bytes']
+          assert hashlib.sha256(output.read_bytes()).hexdigest()==m['sha256']
+          assert output.with_suffix('.zip.sha256').read_text().split()[0]==m['sha256']
+          with zipfile.ZipFile(output) as archive:
+              assert archive.testzip() is None
+              for name in ['DEPLOYMENT.md','Deploy-TestBuild.ps1','Rollback-TestBuild.ps1','REPLACEMENTS.csv','SHA256SUMS','RELEASE-NOTES.md','notices/BEEZ-REGENERATION-OVERHAUL.md']:
+                  assert name in archive.namelist()
+              info=json.loads(archive.read('BUILD-INFO.json'))
+              assert info['commit']==m['commit'] and info['selfContained'] and info['rid']=='win-x64'
+              assert info['tests']['passed']==2839 and info['tests']['failed']==0
+              for proof in info['sourceRevisionChecks']:
+                  data=archive.read(proof['path'])
+                  assert m['commit'].encode() in data
+                  assert hashlib.sha256(data).hexdigest()==proof['sha256']
+              for line in archive.read('SHA256SUMS').decode().splitlines():
+                  expected,name=line.split('  ',1)
+                  assert hashlib.sha256(archive.read(name)).hexdigest()==expected
+          print('Exact commit, binaries, complete package hashes and deployment files verified.')
+          CHECK
+      - name: Publish GitHub prerelease
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create beez-test-d583ee3 \
+            beez-online-d583ee3-win-x64-release.zip \
+            beez-online-d583ee3-win-x64-release.zip.sha256 \
+            --repo BeezKneezItem9/OfflineDAoC \
+            --target d583ee32832a108cc030e6bb4d4f776052de6a00 \
+            --prerelease \
+            --title 'Beez Online Regeneration Overhaul — Windows x64 Test Build d583ee3' \
+            --notes-file RELEASE-NOTES.md

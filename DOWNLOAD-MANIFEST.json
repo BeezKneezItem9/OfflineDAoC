@@ -1,0 +1,28 @@
+{
+  "commit": "d583ee32832a108cc030e6bb4d4f776052de6a00",
+  "filename": "beez-online-d583ee3-win-x64-release.zip",
+  "bytes": 115719961,
+  "sha256": "5d854b073d4cba04819b4436aeda2c26b6b1213d6fcca4b6ad125d98c157e0f6",
+  "parts": [
+    {
+      "name": "beez-online-d583ee3-win-x64-release.zip.part01",
+      "bytes": 33554432,
+      "sha256": "8a5d0b067c20d3cd31b1c104c925564a5370c241da090b813b48641f57c9e75c"
+    },
+    {
+      "name": "beez-online-d583ee3-win-x64-release.zip.part02",
+      "bytes": 33554432,
+      "sha256": "3ff3b151722a7411c78abfc5310e9fb4af680548737848018ce065bab63f7d26"
+    },
+    {
+      "name": "beez-online-d583ee3-win-x64-release.zip.part03",
+      "bytes": 33554432,
+      "sha256": "b940613067d9005fca2e6408eb9a43fd5dd2d3b2bd2c43fc4b9b0a5ccd5c5a5d"
+    },
+    {
+      "name": "beez-online-d583ee3-win-x64-release.zip.part04",
+      "bytes": 15056665,
+      "sha256": "14d84c256f29f4464050a0ace9d4696db166c1089755aba8e6106f8b2a92a54f"
+    }
+  ]
+}

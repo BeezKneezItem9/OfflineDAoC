@@ -1,0 +1,1 @@
+Publication transport for validated Beez test package d583ee3. The workflow verifies and reassembles the exact cloud-built ZIP and publishes it at source commit d583ee32832a108cc030e6bb4d4f776052de6a00. No deployment or server launch.
