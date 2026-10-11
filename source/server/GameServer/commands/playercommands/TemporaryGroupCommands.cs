@@ -84,7 +84,7 @@ namespace DOL.GS.Commands
                 .Select(entry => $"[{entry.CharacterClass}]")
                 .ToArray();
             string links = string.Join('\n', choices.Chunk(4).Select(chunk => string.Join("   ", chunk)));
-            return $"Choose a {GlobalConstants.RealmToName(realm)} companion to add to your group:\n\n{links}\n\nClick one class name.";
+            return $"Choose a {GlobalConstants.RealmToName(realm)} companion to add to your group:\n\n{links}\n\n[Refresh] — Updates your grouped bots to your current level without disbanding or respawning them.\n\nClick a class name or Refresh.";
         }
 
         internal static bool Open(GamePlayer player)
@@ -118,10 +118,14 @@ namespace DOL.GS.Commands
             if (!ReferenceEquals(source, _owner) || string.IsNullOrWhiteSpace(text))
                 return false;
 
-            if (!TemporaryGroupClassCatalog.TryResolve(_owner.Realm, text, out eCharacterClass characterClass))
-                return false;
-
-            SpawnTemporaryGroupBotCommandHandler.Spawn(_owner.Client, characterClass);
+            if (text.Equals("refresh", StringComparison.OrdinalIgnoreCase))
+                SpawnTemporaryGroupBotCommandHandler.Refresh(_owner);
+            else
+            {
+                if (!TemporaryGroupClassCatalog.TryResolve(_owner.Realm, text, out eCharacterClass characterClass))
+                    return false;
+                SpawnTemporaryGroupBotCommandHandler.Spawn(_owner.Client, characterClass);
+            }
 
             // A class can be clicked repeatedly and other classes can be added
             // without typing /spawn again. Reassert the invisible conversation
@@ -178,7 +182,7 @@ namespace DOL.GS.Commands
         }
     }
 
-    [CmdAttribute("&spawn", ePrivLevel.Player, "Opens the companion class menu or creates a temporary helper", "/spawn [class name]")]
+    [CmdAttribute("&spawn", ePrivLevel.Player, "Opens the companion class menu or creates a temporary helper", "/spawn [class name|refresh]")]
     public sealed class SpawnTemporaryGroupBotCommandHandler : AbstractCommandHandler, ICommandHandler
     {
         public void OnCommand(GameClient client, string[] args)
@@ -186,14 +190,14 @@ namespace DOL.GS.Commands
             GamePlayer player = client.Player;
             if (args.Length < 2)
             {
-                if (player.Group != null && player.Group.MemberCount >= player.Group.MaximumMemberCount)
-                {
-                    DisplayMessage(client, "Your group is full.");
-                    return;
-                }
-
                 if (!TemporaryGroupSpawnMenu.Open(player))
-                    DisplayMessage(client, "The companion class menu could not open here. Use /spawn <class name> instead.");
+                    DisplayMessage(client, "The companion class menu could not open here. Use /spawn <class name> or /spawn refresh instead.");
+                return;
+            }
+
+            if (args.Length == 2 && args[1].Equals("refresh", StringComparison.OrdinalIgnoreCase))
+            {
+                Refresh(player);
                 return;
             }
 
@@ -205,6 +209,11 @@ namespace DOL.GS.Commands
             }
 
             Spawn(client, characterClass);
+        }
+
+        internal static void Refresh(GamePlayer player)
+        {
+            player.Out.SendMessage(CompanionLevelRefresh.Refresh(player), eChatType.CT_System, eChatLoc.CL_SystemWindow);
         }
 
         internal static void Spawn(GameClient client, eCharacterClass characterClass)

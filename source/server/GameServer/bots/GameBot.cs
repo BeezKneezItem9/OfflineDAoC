@@ -1881,9 +1881,7 @@ namespace DOL.GS
 
         public override void SortSpells()
         {
-            if (Spells.Count < 1)
-                return;
-
+            // Clear previous selections even when a level reduction leaves no spells.
             InstantHarmfulSpells?.Clear();
             HarmfulSpells?.Clear();
             InstantHealSpells?.Clear();
@@ -2973,6 +2971,57 @@ namespace DOL.GS
             }
             int maximumMana = MaxMana;
             if (Mana > maximumMana) Mana = maximumMana;
+        }
+
+        /// <summary>
+        /// In-place companion synchronization. The command preflights the entire
+        /// group outside combat/casting/travel; this is not a world progression path.
+        /// Rebuild from the existing build plan, including when lowering a level.
+        /// </summary>
+        internal void RefreshCompanionLevel(byte level)
+        {
+            string[] classAbilities = GetSpecList().SelectMany(spec => spec.GetAbilitiesForLiving(this))
+                .Select(ability => ability.KeyName).Distinct().ToArray();
+            foreach (string key in classAbilities)
+                RemoveAbility(key);
+
+            // Summons retain their old level independently of their owner. Use
+            // the existing release lifecycle; AI can summon the new learned rank.
+            AutonomousPetSupport.CancelPendingCharm(this);
+            AutonomousPetSupport.ReleaseFieldTurrets(this);
+            CommandNpcRelease();
+            Level = level; // SetStats rebuilds racial/class stats and pool limits.
+            LoadClassSpecializations(false);
+            foreach (Specialization spec in GetSpecList().Where(spec => spec.Trainable))
+                spec.Level = 1;
+            m_leftOverSpecPoints = 0;
+            SpendSpecPoints(Level, 0);
+            Styles?.Clear();
+            lock (m_spellLines) m_spellLines.Clear();
+            m_usableSkills.Clear();
+            m_usableListSpells.Clear();
+            Spells = new List<Spell>();
+            RefreshSpecDependantSkills(false);
+            GetAllUsableSkills(true);
+            GetAllUsableListSpells(true);
+            SetBotSpells();
+            SortStyles();
+            SortSpells();
+            RefreshItemBonuses(); // Retain the same item instances and configuration.
+            Health = MaxHealth;
+            Mana = MaxMana;
+            Endurance = MaxEndurance;
+            TargetObject = null;
+            if (Brain is BotBrain brain)
+                brain.ClearAggroList();
+            if (IsTemporaryGroupHelper && Level == 50)
+                _endgameCompanionEquipped = true; // Refresh must not roll replacement gear next turn.
+            if (IsAutonomousWorldBot)
+            {
+                Experience = GamePlayer.GetExperienceAmountForLevel(Level - 1);
+                _lastAutonomousTrainedLevel = Level;
+                MarkAutonomousStateDirty();
+            }
         }
 
         private void LoadPersistedSpecs(string serialized)

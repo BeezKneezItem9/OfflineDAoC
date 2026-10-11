@@ -12,10 +12,10 @@ namespace DOL.UnitTests
         [TestCase(eRealm.Albion)]
         [TestCase(eRealm.Midgard)]
         [TestCase(eRealm.Hibernia)]
-        public void MenuContainsEveryAndOnlyCurrentRealmClass(eRealm realm)
+        public void MenuContainsEveryCurrentRealmClassAndRefresh(eRealm realm)
         {
             string[] expected = TemporaryGroupClassCatalog.ForRealm(realm)
-                .Select(entry => entry.CharacterClass.ToString())
+                .Select(entry => entry.CharacterClass.ToString()).Append("Refresh")
                 .ToArray();
             string[] links = Regex.Matches(TemporaryGroupSpawnMenu.BuildMenuText(realm), @"\[([^\]]+)\]")
                 .Select(match => match.Groups[1].Value)
