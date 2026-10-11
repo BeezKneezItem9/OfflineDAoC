@@ -3,6 +3,7 @@ BEEZ_TEST_CLIENT points to that client. On Linux, provide libsqlite3.so.0 as win
 on LD_LIBRARY_PATH to exercise the exact native ABI without claiming Windows validation.
 """
 import csv
+from contextlib import closing, contextmanager
 import hashlib
 import json
 import os
@@ -18,6 +19,13 @@ TOOLS = Path(__file__).resolve().parents[1]
 PS = os.environ.get('BEEZ_TEST_POWERSHELL', 'powershell.exe' if os.name == 'nt' else 'pwsh')
 CLIENT = os.environ.get('BEEZ_TEST_CLIENT')
 
+@contextmanager
+def connection(path):
+    # sqlite3's context manager commits/rolls back but does not close the handle.
+    with closing(sqlite3.connect(path)) as c:
+        with c:
+            yield c
+
 class ToolTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory(prefix='beez-tools-')
@@ -25,7 +33,7 @@ class ToolTests(unittest.TestCase):
         self.install = self.root / 'playable'
         self.db = self.install / 'runtime/data/opendaoc.sqlite3.db'
         self.db.parent.mkdir(parents=True)
-        with sqlite3.connect(self.db) as c:
+        with connection(self.db) as c:
             c.executescript("""CREATE TABLE ClassXSpecialization(ClassID INT,SpecKeyName TEXT);
             CREATE TABLE Mob(Mob_ID TEXT,ClassType TEXT);
             CREATE TABLE ServerProperty(Key TEXT,Value TEXT);
@@ -50,11 +58,11 @@ class ToolTests(unittest.TestCase):
         self.tmp.cleanup()
 
     def sql(self, statement):
-        with sqlite3.connect(self.db) as c:
+        with connection(self.db) as c:
             c.executescript(statement)
 
     def state(self):
-        with sqlite3.connect(self.db) as c:
+        with connection(self.db) as c:
             return {name: c.execute('SELECT * FROM "'+name+'" ORDER BY rowid').fetchall()
                     for (name,) in c.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")}
 
@@ -63,7 +71,7 @@ class ToolTests(unittest.TestCase):
             # Windows CI tests the real winsqlite3 ABI with a tiny client stand-in.
             # Only its known test-byte hash is substituted; every other hash is real.
             mock_hash = hashlib.sha256(b'Beez CI client stand-in').hexdigest()
-            prelude = ("function Get-FileHash { param($LiteralPath,$Path,$Algorithm) "
+            prelude = ("Import-Module Microsoft.PowerShell.Utility; function Get-FileHash { param($LiteralPath,$Path,$Algorithm) "
                 "$p=$LiteralPath; if (!$p) {$p=$Path}; "
                 "$h=Microsoft.PowerShell.Utility\\Get-FileHash -LiteralPath $p -Algorithm $Algorithm; "
                 "if ($h.Hash -eq '"+mock_hash+"') {[pscustomobject]@{Hash='e1d471bb19108610ab9c8ca77dd41af40afe716685b03f4cdeda88c05678463b';Path=$p;Algorithm='SHA256'}} else {$h} }; "
@@ -136,7 +144,7 @@ class ToolTests(unittest.TestCase):
         self.assertIn('BLOCKED', self.enable(ok=False)); self.assertFalse(self.db.exists())
 
     def test_locked_database(self):
-        with sqlite3.connect(self.db) as c:
+        with connection(self.db) as c:
             c.execute('BEGIN IMMEDIATE')
             self.assertIn('locked', self.enable(ok=False))
         self.assertEqual(self.state()['ServerProperty'][0][1], 'False')

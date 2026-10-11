@@ -32,6 +32,18 @@ function Assert-PlainPath([string]$path) {
         if ($parent -eq $cursor) { break }; $cursor = $parent
     }
 }
+function Get-CanonicalPath([string]$path) {
+    $full = [IO.Path]::GetFullPath($path)
+    $tail = New-Object 'System.Collections.Generic.List[string]'
+    while (!(Test-Path -LiteralPath $full)) {
+        $tail.Insert(0,[IO.Path]::GetFileName($full))
+        $full = [IO.Path]::GetDirectoryName($full)
+        if (!$full) { throw 'Cannot resolve cache parent.' }
+    }
+    $full = (Resolve-Path -LiteralPath $full).Path
+    foreach ($part in $tail) { $full = Join-Path $full $part }
+    return [IO.Path]::GetFullPath($full).TrimEnd([IO.Path]::DirectorySeparatorChar)
+}
 function Assert-Relative([string]$path) {
     if ([string]::IsNullOrWhiteSpace($path) -or $path -match '\\|:|^/|[\x00-\x1f]' -or
         @($path.Split('/') | Where-Object { $_ -eq '..' -or $_ -eq '.' -or $_ -eq '' -or $_ -match '[. ]$' }).Count) {
@@ -124,7 +136,7 @@ if ($EnableSluaghbinder) {
     & (Join-Path $PSScriptRoot 'Enable-Sluaghbinder.ps1') -InstallRoot $InstallRoot -CheckOnly
 }
 if (!$CacheRoot) { $CacheRoot = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'BeezUpdater' }
-$CacheRoot = [IO.Path]::GetFullPath($CacheRoot).TrimEnd([IO.Path]::DirectorySeparatorChar)
+$CacheRoot = Get-CanonicalPath $CacheRoot
 if ($CacheRoot.Equals($InstallRoot,[StringComparison]::OrdinalIgnoreCase) -or
     $CacheRoot.StartsWith($InstallRoot + [IO.Path]::DirectorySeparatorChar,[StringComparison]::OrdinalIgnoreCase)) {
     throw 'Updater cache and backups must be outside the playable installation.'
@@ -135,7 +147,7 @@ New-Item -ItemType Directory -Path $CacheRoot -Force | Out-Null
 $releases = @(); $page = 1
 # /releases/latest excludes prereleases: enumerate release pages instead.
 while ($page -le 20) {
-    $batch = @(Invoke-RestMethod -Uri "https://api.github.com/repos/$repository/releases?per_page=100&page=$page" -Headers @{ 'User-Agent'='Beez-Updater'; 'Accept'='application/vnd.github+json' })
+    $batch = @(Invoke-RestMethod -Uri "https://api.github.com/repos/$repository/releases?per_page=100&page=$page" -Headers @{ 'User-Agent'='Beez-Updater'; 'Accept'='application/vnd.github+json' } | ForEach-Object { $_ })
     $releases += $batch
     if ($batch.Count -lt 100) { break }; $page++
 }
