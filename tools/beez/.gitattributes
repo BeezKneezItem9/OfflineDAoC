@@ -1,0 +1,2 @@
+# Maintenance integrity checks use identical bytes on every developer/CI platform.
+* text eol=lf
