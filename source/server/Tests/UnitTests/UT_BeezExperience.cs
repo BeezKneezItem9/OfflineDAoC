@@ -29,8 +29,10 @@ namespace DOL.UnitTests
         }
         public class EmptyProxy : DispatchProxy
         {
+            public Action<MethodInfo> OnCall;
             protected override object Invoke(MethodInfo method, object[] args)
             {
+                OnCall?.Invoke(method);
                 Type type = method.ReturnType;
                 if (type.IsGenericType && typeof(IEnumerable).IsAssignableFrom(type))
                     return Activator.CreateInstance(typeof(List<>).MakeGenericType(type.GetGenericArguments()));
@@ -71,7 +73,7 @@ namespace DOL.UnitTests
         }
         private GameServer _previous;
         private double _xp, _rvr, _camp, _dungeon, _rp, _bp;
-        private int _cap, _pvpCap, _bonus, _window, _kills, _worth;
+        private int _cap, _pvpCap, _bonus, _multiplier, _worth;
         private bool _zones;
         private PetTestLanguageScope _language;
         private object _translations;
@@ -95,10 +97,10 @@ namespace DOL.UnitTests
             _rp = P.RP_RATE; _bp = P.BP_RATE; P.RP_RATE = P.BP_RATE = 1;
             _xp = P.XP_RATE; _rvr = P.RvR_XP_RATE; _camp = P.MAX_CAMP_BONUS; _dungeon = P.MAX_DUNGEON_CAMP_BONUS;
             _cap = P.XP_CAP_PERCENT; _pvpCap = P.XP_PVP_CAP_PERCENT; _bonus = P.DARKNESS_FALLS_XP_BONUS_PERCENT;
-            _window = P.RVR_XP_REPEAT_WINDOW_SECONDS; _kills = P.RVR_XP_REPEAT_MAX_KILLS; _worth = P.RP_WORTH_SECONDS; _zones = P.ENABLE_ZONE_BONUSES;
+            _multiplier = P.RVR_KILL_XP_MULTIPLIER; _worth = P.RP_WORTH_SECONDS; _zones = P.ENABLE_ZONE_BONUSES;
             P.XP_RATE = P.RvR_XP_RATE = 1; P.MAX_CAMP_BONUS = .55; P.MAX_DUNGEON_CAMP_BONUS = .66;
             P.XP_CAP_PERCENT = P.XP_PVP_CAP_PERCENT = 125; P.DARKNESS_FALLS_XP_BONUS_PERCENT = 20;
-            P.RVR_XP_REPEAT_WINDOW_SECONDS = 3600; P.RVR_XP_REPEAT_MAX_KILLS = 3; P.RP_WORTH_SECONDS = 300; P.ENABLE_ZONE_BONUSES = true;
+            P.RVR_KILL_XP_MULTIPLIER = 100; P.RP_WORTH_SECONDS = 300; P.ENABLE_ZONE_BONUSES = true;
         }
         [TearDown]
         public void TearDown()
@@ -106,7 +108,7 @@ namespace DOL.UnitTests
             P.RP_RATE = _rp; P.BP_RATE = _bp;
             P.XP_RATE = _xp; P.RvR_XP_RATE = _rvr; P.MAX_CAMP_BONUS = _camp; P.MAX_DUNGEON_CAMP_BONUS = _dungeon;
             P.XP_CAP_PERCENT = _cap; P.XP_PVP_CAP_PERCENT = _pvpCap; P.DARKNESS_FALLS_XP_BONUS_PERCENT = _bonus;
-            P.RVR_XP_REPEAT_WINDOW_SECONDS = _window; P.RVR_XP_REPEAT_MAX_KILLS = _kills; P.RP_WORTH_SECONDS = _worth; P.ENABLE_ZONE_BONUSES = _zones;
+            P.RVR_KILL_XP_MULTIPLIER = _multiplier; P.RP_WORTH_SECONDS = _worth; P.ENABLE_ZONE_BONUSES = _zones;
             foreach (var actor in _actors)
             {
                 actor.StopHealthRegeneration(); actor.StopPowerRegeneration(); actor.StopEnduranceRegeneration();
@@ -228,7 +230,7 @@ namespace DOL.UnitTests
         [TestCase(30, 30, 0, 1d, 0L)]
         [TestCase(30, 30, 1, 0d, 0L)]
         public void RvrAmountUsesVictimLevelCapsContributionAndIntegerRounding(int recipient, int victim, int count, double damage, long expected) =>
-            Assert.That(RvrExperienceRewards.Calculate((byte)recipient, (byte)victim, count, damage), Is.EqualTo(expected));
+            Assert.That(RvrExperienceRewards.CalculateNative((byte)recipient, (byte)victim, count, damage), Is.EqualTo(expected));
         [TestCase(false)] [TestCase(true)]
         public void RealAndAutonomousVictimsAwardExactlyOnce(bool botVictim)
         {
@@ -236,7 +238,7 @@ namespace DOL.UnitTests
             GameLiving victim = botVictim ? Autonomous() : Human(30, eRealm.Midgard);
             victim.XPGainers[recipient] = 100;
             RvrExperienceRewards.Award(victim); RvrExperienceRewards.Award(victim);
-            Assert.That(recipient.Total, Is.EqualTo(6605616));
+            Assert.That(recipient.Total, Is.EqualTo(660561600));
             Assert.That(recipient.Reward.AllowMultiply, Is.False);
         }
         [Test]
@@ -246,7 +248,7 @@ namespace DOL.UnitTests
             Group group = new(player); player.Group = group; bot.Group = group;
             victim.XPGainers[player] = 100; victim.XPGainers[bot] = 0;
             RvrExperienceRewards.Award(victim);
-            Assert.That(player.Total, Is.EqualTo(3302808)); Assert.That(bot.Total, Is.EqualTo(3302808));
+            Assert.That(player.Total, Is.EqualTo(330280800)); Assert.That(bot.Total, Is.EqualTo(330280800));
         }
         [TestCase("friendly")] [TestCase("helper")] [TestCase("gray")] [TestCase("none")] [TestCase("inactive")] [TestCase("noXp")] [TestCase("recent")]
         public void InvalidKillsDoNotGiveXp(string reason)
@@ -269,7 +271,7 @@ namespace DOL.UnitTests
             victim.XPGainers[player] = 25; victim.XPGainers[guard] = 75;
             victim.XPGainers[Human()] = double.NaN;
             RvrExperienceRewards.Award(victim);
-            Assert.That(player.Total, Is.EqualTo(1651404));
+            Assert.That(player.Total, Is.EqualTo(165140400));
         }
         [TestCase(1, false)] [TestCase(20, false)] [TestCase(249, false)] [TestCase(163, false)]
         [TestCase(1, true)] [TestCase(20, true)] [TestCase(249, true)] [TestCase(163, true)]
@@ -283,7 +285,7 @@ namespace DOL.UnitTests
             if (autonomous) GameServer.ServerRules.OnNpcKilled((GameNPC)victim, player);
             else GameServer.ServerRules.OnPlayerKilled((GamePlayer)victim, player);
             var db = (DbCoreCharacter)typeof(GamePlayer).GetField("m_dbCharacter", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(player);
-            Assert.That(player.Experience - before, Is.EqualTo(6605616));
+            Assert.That(player.Experience - before, Is.EqualTo(660561600));
             Assert.That(db.Experience, Is.EqualTo(player.Experience), "Actual character record must change, not only a captured reward argument");
             Assert.That(player.RealmPoints, Is.EqualTo(100), "Existing RP must remain intact");
             Assert.That(player.BountyPoints, Is.EqualTo(autonomous ? 0 : 19), "Preserve existing BP: bot victims currently award none");
@@ -300,8 +302,8 @@ namespace DOL.UnitTests
             long beforeFirst = first.Experience, beforeSecond = second.Experience;
             if (autonomous) GameServer.ServerRules.OnNpcKilled((GameNPC)victim, first);
             else GameServer.ServerRules.OnPlayerKilled((GamePlayer)victim, first);
-            Assert.That(first.Experience - beforeFirst, Is.EqualTo(3302808));
-            Assert.That(second.Experience - beforeSecond, Is.EqualTo(3302808));
+            Assert.That(first.Experience - beforeFirst, Is.EqualTo(330280800));
+            Assert.That(second.Experience - beforeSecond, Is.EqualTo(330280800));
         }
         [TestCase(1, 30, 1, 1, 2559676L)] [TestCase(20, 30, 1, 1, 2741330L)] [TestCase(249, 30, 1, 1, 3071610L)]
         [TestCase(249, 33, 1, 1, 3839514L)] [TestCase(20, 30, 2, 1, 1473877L)] [TestCase(249, 30, 2, 1, 1639017L)]
@@ -333,13 +335,13 @@ namespace DOL.UnitTests
         [Test]
         public void AutonomousRecipientActuallyGainsProgressionExperience()
         {
-            Bot recipient = Autonomous(30, eRealm.Albion), victim = Autonomous();
+            Bot recipient = Autonomous(49, eRealm.Albion), victim = Autonomous(49);
             recipient.ApplyActualExperience = true;
-            typeof(GameBot).GetProperty(nameof(GameBot.Experience))!.SetValue(recipient, GamePlayer.GetExperienceAmountForLevel(29));
+            typeof(GameBot).GetProperty(nameof(GameBot.Experience))!.SetValue(recipient, GamePlayer.GetExperienceAmountForLevel(48));
             long before = recipient.Experience;
             victim.XPGainers[recipient] = 100;
             RvrExperienceRewards.Award(victim);
-            Assert.That(recipient.Experience - before, Is.EqualTo(6605616));
+            Assert.That(recipient.Experience - before, Is.EqualTo(14605414800L));
             Assert.That(recipient.AutonomousStateDirty, Is.True);
         }
         [Test]
@@ -393,29 +395,107 @@ namespace DOL.UnitTests
             victim.XPGainers[player] = 50; victim.XPGainers[pet] = 50;
             long before = player.Experience;
             RvrExperienceRewards.Award(victim);
-            Assert.That(player.Experience - before, Is.EqualTo(6605616));
+            Assert.That(player.Experience - before, Is.EqualTo(660561600));
         }
-        [Test]
-        public void ConcurrentPairRewardsCannotExceedQuota()
+        [TestCase(10, 1, 2048000L)] [TestCase(10, 2, 1024000L)]
+        [TestCase(30, 1, 660561600L)] [TestCase(30, 2, 330280800L)]
+        [TestCase(49, 1, 14605414800L)] [TestCase(49, 2, 7302707400L)]
+        public void MultipliedNativeSoloAndGroupRewardsMatchAtMultipleLevels(int level, int members, long expected)
         {
-            string player = Guid.NewGuid().ToString(), victim = Guid.NewGuid().ToString();
-            int accepted = 0;
-            System.Threading.Tasks.Parallel.For(0, 32, _ =>
+            long native = RvrExperienceRewards.CalculateNative((byte)level, (byte)level, members, 1);
+            Assert.That(RvrExperienceRewards.ScaleReward(native, 0), Is.EqualTo(expected));
+        }
+        [TestCase(1, 6605616L)] [TestCase(100, 660561600L)] [TestCase(0, 0L)] [TestCase(-1, 0L)]
+        public void MultiplierIsConfigurableAndNeverUsesPveRate(int multiplier, long expected)
+        {
+            P.RVR_KILL_XP_MULTIPLIER = multiplier; P.XP_RATE = 10; P.RvR_XP_RATE = 17;
+            GamePlayer player = Character(); Bot victim = Autonomous(); victim.CurrentRegion = player.CurrentRegion;
+            victim.XPGainers[player] = 100; long before = player.Experience;
+            RvrExperienceRewards.Award(victim);
+            Assert.That(player.Experience - before, Is.EqualTo(expected));
+        }
+        [TestCase(10, 1, false)] [TestCase(10, 1, true)] [TestCase(10, 2, false)] [TestCase(10, 2, true)]
+        [TestCase(30, 1, false)] [TestCase(30, 1, true)] [TestCase(30, 2, false)] [TestCase(30, 2, true)]
+        [TestCase(49, 1, false)] [TestCase(49, 1, true)] [TestCase(49, 2, false)] [TestCase(49, 2, true)]
+        public void ActualSoloAndGroupDeathRewardsScaleAtMultipleLevelsWithoutPveRate(int level, int members, bool autonomous)
+        {
+            P.XP_RATE = P.RvR_XP_RATE = 10;
+            GamePlayer player = Character((byte)level);
+            GameLiving victim = autonomous ? Autonomous((byte)level) : Character((byte)level, eRealm.Midgard);
+            victim.CurrentRegion = player.CurrentRegion; victim.XPGainers[player] = 100;
+            GamePlayer support = null;
+            if (members == 2)
             {
-                if (RvrExperienceRewards.TryRecordReward(player, victim, 0)) Interlocked.Increment(ref accepted);
-            });
-            Assert.That(accepted, Is.EqualTo(3));
+                support = Character((byte)level); support.CurrentRegion = player.CurrentRegion;
+                Group group = new(player); player.Group = group; support.Group = group;
+                victim.XPGainers[support] = 0;
+            }
+            long before = player.Experience, supportBefore = support?.Experience ?? 0;
+            if (autonomous) GameServer.ServerRules.OnNpcKilled((GameNPC)victim, player);
+            else GameServer.ServerRules.OnPlayerKilled((GamePlayer)victim, player);
+            long expected = 4 * GameServer.ServerRules.GetExperienceForLiving(level) / members * 100;
+            Assert.That(player.Experience - before, Is.EqualTo(expected));
+            if (support != null) Assert.That(support.Experience - supportBefore, Is.EqualTo(expected));
+        }
+        [TestCase(false)] [TestCase(true)]
+        public void RealmAndBountyPointsFinishBeforeLargeCharacterXpGrant(bool autonomous)
+        {
+            GamePlayer player = Character();
+            GameLiving victim = autonomous ? Autonomous() : Character(30, eRealm.Midgard);
+            victim.CurrentRegion = player.CurrentRegion; victim.XPGainers[player] = 100;
+            long before = player.Experience;
+            bool rpPaidBeforeXp = false, bpPaidBeforeXp = autonomous;
+            ((EmptyProxy)player.Out).OnCall = method =>
+            {
+                if (method.Name != nameof(IPacketLib.SendUpdatePoints)) return;
+                if (player.RealmPoints == 100 && player.Experience == before) rpPaidBeforeXp = true;
+                if (player.BountyPoints == 19 && player.Experience == before) bpPaidBeforeXp = true;
+            };
+            if (autonomous) GameServer.ServerRules.OnNpcKilled((GameNPC)victim, player);
+            else GameServer.ServerRules.OnPlayerKilled((GamePlayer)victim, player);
+            Assert.That(rpPaidBeforeXp, Is.True);
+            Assert.That(bpPaidBeforeXp, Is.True);
+            Assert.That(player.Experience - before, Is.EqualTo(660561600));
         }
         [Test]
-        public void RepeatQuotaIsPerStablePairAndExpiresAtRollingBoundary()
+        public void NativeCapAppliesBeforeMultiplierAndRoundingIsNotRepeated()
         {
-            string recipient = Guid.NewGuid().ToString(), victim = Guid.NewGuid().ToString();
-            Assert.That(RvrExperienceRewards.TryRecordReward(recipient, victim, 0), Is.True);
-            Assert.That(RvrExperienceRewards.TryRecordReward(recipient, victim, 300000), Is.True);
-            Assert.That(RvrExperienceRewards.TryRecordReward(recipient, victim, 600000), Is.True);
-            Assert.That(RvrExperienceRewards.TryRecordReward(recipient, victim, 900000), Is.False);
-            Assert.That(RvrExperienceRewards.TryRecordReward(recipient, victim + "other", 900000), Is.True);
-            Assert.That(RvrExperienceRewards.TryRecordReward(recipient, victim, 3600000), Is.True);
+            Assert.That(RvrExperienceRewards.ScaleReward(RvrExperienceRewards.CalculateNative(30, 33, 1, 1), 0), Is.EqualTo(825702000));
+            Assert.That(RvrExperienceRewards.ScaleReward(RvrExperienceRewards.CalculateNative(30, 30, 1, .333), 0), Is.EqualTo(219967000));
+        }
+        [Test]
+        public void ExtremeSettingsAndStoredExperienceCannotOverflow()
+        {
+            P.RVR_KILL_XP_MULTIPLIER = int.MaxValue; P.XP_PVP_CAP_PERCENT = int.MaxValue;
+            Assert.That(RvrExperienceRewards.CalculateNative(49, 50, 1, 1), Is.GreaterThan(0));
+            Assert.That(RvrExperienceRewards.ScaleReward(long.MaxValue, 0), Is.EqualTo(long.MaxValue));
+            Assert.That(RvrExperienceRewards.ScaleReward(long.MaxValue, long.MaxValue - 7), Is.EqualTo(7));
+            Assert.That(RvrExperienceRewards.ScaleReward(long.MaxValue, long.MaxValue), Is.Zero);
+            GamePlayer player = Character(); player.Experience = long.MaxValue - 7;
+            Bot victim = Autonomous(); victim.CurrentRegion = player.CurrentRegion; victim.XPGainers[player] = 100;
+            RvrExperienceRewards.Award(victim);
+            Assert.That(player.Experience, Is.EqualTo(long.MaxValue));
+        }
+        [Test]
+        public void MoreThanThreeEligibleDeathsOfSameVictimAreRewardedWithoutRollingLedger()
+        {
+            Player player = Human(); Bot victim = Autonomous();
+            // Each iteration represents a new otherwise-eligible death after native worthiness clears.
+            for (int i = 0; i < 5; i++)
+            {
+                victim.TempProperties.RemoveProperty("beez.rvr.xp.last.death");
+                victim.XPGainers[player] = 100;
+                RvrExperienceRewards.Award(victim);
+            }
+            Assert.That(player.Total, Is.EqualTo(5 * 660561600L));
+        }
+        [Test]
+        public void ConcurrentDuplicateDeathPaysActualCharacterOnlyOnce()
+        {
+            GamePlayer player = Character(); Bot victim = Autonomous(); victim.CurrentRegion = player.CurrentRegion;
+            victim.XPGainers[player] = 100; long before = player.Experience;
+            System.Threading.Tasks.Parallel.For(0, 32, _ => RvrExperienceRewards.Award(victim));
+            Assert.That(player.Experience - before, Is.EqualTo(660561600));
         }
     }
 }

@@ -1911,7 +1911,6 @@ namespace DOL.GS.ServerRules
             if (Properties.ENABLE_WARMAPMGR && killer is GamePlayer && killer.CurrentRegion.ID == 163)
                 WarMapMgr.AddFight((byte) killer.CurrentZone.ID, killer.X, killer.Y, (byte) killer.Realm, (byte) killedPlayer.Realm);
 
-            RvrExperienceRewards.Award(killedPlayer);
             killedPlayer.Statistics.AddToDeaths();
             killedPlayer.LastDeathRealmPoints = 0; // Reset first in case this is a PvE death for example.
             AutonomousBotRealmPointRewards.PayGamebotsForPlayerKill(killedPlayer);
@@ -1924,7 +1923,10 @@ namespace DOL.GS.ServerRules
                 out _);
 
             if (playerCountAndDamage.Count == 0)
+            {
+                RvrExperienceRewards.Award(killedPlayer);
                 return;
+            }
 
             bool isWorthAnything = false;
 
@@ -1943,6 +1945,9 @@ namespace DOL.GS.ServerRules
 
             if (isWorthAnything)
                 killedPlayer.LastDeathRealmPoints = killedPlayer.RealmPointsValue;
+
+            // Finish RP/BP and kill statistics before XP can advance the recipient level.
+            RvrExperienceRewards.Award(killedPlayer);
 
             static void ProcessXpGainers(GamePlayer killedPlayer,
                 out double totalDamage,

@@ -1,6 +1,7 @@
 # Darkness Falls and enemy-realm character XP
 
-Investigated against `d583ee32832a108cc030e6bb4d4f776052de6a00` on
+Original investigation used `d583ee32832a108cc030e6bb4d4f776052de6a00`.
+The RvR design revision follows XP fix `c12d2382db7460c9fbaff33527a8e2a8a7517346` on
 `beez-online-six-features`. This change does not publish a release, deploy
 binaries, start a server, or replace an installed database/world catalog.
 
@@ -129,6 +130,13 @@ restrictions (members more than five levels higher), range/contribution and the
 victim's recent-death worthiness remain relevant. In particular, level-50 killers do not get further character leveling
 XP under the new explicitly capped policy.
 
+### Revised RvR design: 100× native reward, no rolling quotas
+
+RvR is intended as a primary leveling path. The configurable
+`rvr_kill_xp_multiplier` defaults to **100** and applies once to the completed
+native PvP character-XP reward, for both real-player and autonomous victims.
+It does **not** also apply the server's 10× PvE rate.
+
 ### Shared reward path and protections
 
 `gameutils/RvrExperienceRewards.cs` is called from both player and eligible-bot
@@ -143,8 +151,11 @@ For each eligible recipient:
 ```
 victim value = 4 * native same-level NPC XP(victim level)
 recipient cap = 4 * native same-level NPC XP(recipient level) * XP_PVP_Cap_Percent / 100
-share = truncate(min(floor(victim value / eligible group members), cap)
-                 * group damage / all nonnegative finite damage)
+native share = truncate(min(floor(victim value / eligible group members), floor(cap))
+                        * group damage / all nonnegative finite damage)
+native reward = native share + applicable native human-recipient outpost XP
+scaled reward = native reward * max(0, rvr_kill_xp_multiplier)
+actual grant = min(scaled reward, long.MaxValue - max(0, current character XP))
 ```
 
 The four-times victim value preserves existing real-player XP valuation;
@@ -153,7 +164,13 @@ formula with one member. The cap applies before damage fraction. Human recipient
 retain native outpost XP bonuses on their adjusted share. There is no extra
 PvE/RvR location, item, camp or group-multiplier amplification on PvP XP.
 Native character gain/progression and autonomous XP/state-dirty persistence
-paths apply the result. Existing RP, BP and money calculations are retained.
+paths apply the result. Native caps and truncation run **before** multiplication:
+a 100× reward has a correspondingly scaled native cap, rather than being clipped
+back to its old 1× cap. Zero/negative multipliers disable character kill XP.
+Decimal intermediates, saturated conversion and recipient storage headroom prevent
+integer overflow even at extreme configured values. A multiplier of 1 reproduces
+the prior native reward. Existing RP, BP and money calculations are retained,
+and those rewards finish **before** the larger XP grant can change recipient level.
 In particular, autonomous victims previously awarded no BP and still award none;
 this change does not silently add or remove BP rewards.
 
@@ -163,33 +180,48 @@ human-account kills, XP opt-out, and maximum-level recipients. Native
 `rp_worth_seconds` applies to recent human deaths and bot RP death timestamps.
 An XP death stamp also prevents duplicate/reentrant reward calls.
 
-A separate rolling limit permits **3 XP-rewarded kills per recipient/victim
-identity per 3,600 seconds**. It uses stable character ObjectId / bot DatabaseID,
-so recreating a bot object or relogging a character within the running server
-cannot evade that pair quota. This limit affects XP only, preserving RP/BP rules.
-It does not grant extra XP for the final blow or pay the old player XP path again.
-The history is server memory and resets on server restart; it is not a new
-persistent schema or a cross-server anti-farming ledger.
+All hourly/rolling XP quotas, per-recipient/victim ledgers, cleanup scheduling,
+stable-pair identity checks and their two server properties have been removed.
+There is no fourth-kill/hour exclusion. Native `rp_worth_seconds` recent-death
+worthiness remains; this is a per-death cooldown, not an hourly quota. The
+victim-local XP death stamp still rejects duplicate/concurrent calls for the
+same death. For bot victims, XP uses worthiness captured **before** RP updates
+the death timestamp, so paying RP first does not accidentally suppress XP.
+The existing death engine calls rewards before clearing damage credit.
 
 ### Numerical enemy-kill comparisons
 
-Level-30 killer/victim, no keep/item/location bonus, all damage eligible, rates
-1, recent-death cooldown clear. Values before are baseline **code rewards**; the solo human and bot values
-were also measured against the published release binary. These are not claimed
-to reproduce the user's installed-world state. After values are tested
-through death reward entry points into actual character records.
+Unless a row states otherwise, killer and victim have the same listed level,
+no keep/item/location bonus, all damage eligible, rates 1 and recent-death
+cooldown clear. Previous values are the native 1× code rewards from `c12d238`.
+The separate published-release probe described below predates that bot XP fix.
+These are not claimed to reproduce the user's installed-world state. New solo
+and group values are tested through death reward entry points into actual
+character records.
 
-| Encounter | Before character XP | After character XP |
+| Encounter | Previous 1× reward (`c12d238`) | New default 100× reward |
 |---|---:|---:|
-| Solo human enemy victim | 6,605,616 verified release-binary reward | 6,605,616 |
-| Solo autonomous enemy victim | 0 | 6,605,616 |
-| Two-member group, human enemy victim, each member | 3,302,808 nominal native reward | 3,302,808 |
-| Two-member group, autonomous enemy victim, each member | 0 | 3,302,808 |
-| Solo level-33 autonomous victim, level-30 killer | 0 | 8,257,020 (cap) |
-| Solo autonomous victim; killer contributes 25%, guard 75% | 0 | 1,651,404 |
-| Friendly, gray, helper, same-account, duel or invalid kill | No legitimate XP entitlement | 0 |
-| Fourth rewarded kill of same identity pair in rolling hour | No rolling XP quota | 0 |
-| Level-50 recipient | No further character level possible | 0 |
+| Level 10 solo, either victim type | 20,480 | 2,048,000 |
+| Level 10 two-member group, each member, either victim type | 10,240 | 1,024,000 |
+| Level 30 solo, either victim type | 6,605,616 | 660,561,600 |
+| Level 30 two-member group, each member, either victim type | 3,302,808 | 330,280,800 |
+| Level 49 solo, either victim type | 146,054,148 | 14,605,414,800 |
+| Level 49 two-member group, each member, either victim type | 73,027,074 | 7,302,707,400 |
+| Level-30 killer / level-33 victim, native cap | 8,257,020 | 825,702,000 |
+| Level-30 solo; killer 25%, guard 75% damage | 1,651,404 | 165,140,400 |
+| Level-30 solo; damage fraction .333, native truncation | 2,199,670 | 219,967,000 |
+| Fourth otherwise-eligible same-victim kill in rolling hour | 0 (old quota) | Normal 100× reward |
+| Friendly, gray, helper, same-account, duel or invalid kill | 0 | 0 |
+| Level-50 recipient | 0 | 0 |
+
+The previously released `d583ee3` autonomous-victim path paid **zero** character
+XP, unlike the `c12d238` 1× fix. The new figures above compare against that fix,
+not against an invented observed installed-world amount. Setting the PvE rate
+to 10 does not turn 660,561,600 into 6,605,616,000. These numerical assertions
+include actual character record increases via solo/group death reward entry
+points at levels 10, 30 and 49 for both victim types. Native training requirements
+and multi-stage level advancement remain unchanged; an XP grant is not a bypass
+of those character progression rules.
 
 Actual-record tests exercise regions 1, 20, 249 and 163 for **both** human and
 bot victims, including RP=100 and human BP=19 versus bot BP=0 in controlled solo
@@ -205,8 +237,12 @@ loader; missing keys are registered with defaults at the next authorized startup
 | Property | Default | Meaning |
 |---|---:|---|
 | `darkness_falls_xp_bonus_percent` | 20 | Independent DF NPC zone-bonus floor; 0 disables floor; clamp 0–1000 |
-| `rvr_xp_repeat_window_seconds` | 3600 | Rolling recipient/victim XP window; minimum effective 1 second |
-| `rvr_xp_repeat_max_kills` | 3 | Maximum XP-rewarded kills per pair; minimum effective 1 |
+| `rvr_kill_xp_multiplier` | 100 | Scale completed native PvP character XP once; 0 disables it; negative values act as 0 |
+
+Existing saved `rvr_xp_repeat_window_seconds` and `rvr_xp_repeat_max_kills` rows
+are unused and ignored; no code reads them, no new rows are registered for them,
+and no persistent data needs deleting. The new multiplier key is registered with
+100 at the next authorized startup. RP/BP rate properties are unchanged.
 
 Restoring DF's ordinary PvE rate does not change saved `xp_rate` or
 `rvr_zones_xp_rate`, nor rates for any other region. Setting the floor to zero
@@ -221,7 +257,7 @@ help distinguish catalog differences and character state:
 SELECT Key, Value FROM ServerProperty
 WHERE lower(Key) IN ('xp_rate','rvr_zones_xp_rate','bot_xp_rate',
  'enable_zone_bonuses','xp_cap_percent','xp_pvp_cap_percent','rp_worth_seconds',
- 'darkness_falls_xp_bonus_percent','rvr_xp_repeat_window_seconds','rvr_xp_repeat_max_kills');
+ 'darkness_falls_xp_bonus_percent','rvr_kill_xp_multiplier');
 SELECT ZoneID, RegionID, Name, Experience FROM Zones WHERE RegionID IN (1,20,249);
 SELECT Name, Level, Realm, Experience, GainXP, HCFlag, DeathTime, PlayedTime
 FROM DOLCharacters WHERE Name = '<test character>';
@@ -237,30 +273,27 @@ Recommended in-game checks after a separately approved build/deployment: use a
 below-50 XP-enabled character; compare actual XP counters before/after equal
 ordinary NPCs with comparable camp age, then an autonomous enemy and a separate
 human enemy; repeat with two nearby group members (one doing no damage). Verify
-XP opt-out, level-50 cap, gray kills, recent-death exclusion and fourth same-pair
-kill suppression. Confirm RP/BP remain correct. Keep DF and enemy-kill measurements
+XP opt-out, level-50 cap, gray kills, recent-death exclusion, duplicate death
+suppression and normal fourth-or-later otherwise-eligible same-victim rewards. Confirm RP/BP remain correct. Keep DF and enemy-kill measurements
 separate. Existing Mana Roots, Bind Stone, Buff Stone and other custom mechanics
 are outside this change.
 
 ## Validation
 
-Release GameServer compilation succeeded. The final available-workspace full
-suite passed **2,936 tests**, with **61 pre-existing ignored/NotExecuted tests**.
-The console summary says “Skipped: 0”; the TRX contains those 61 ignored rows,
-so they are explicitly included in this report rather than described as passing.
-There are **56 new XP cases**. The 41 pre-existing, uncommitted Animist diagnostic
-cases are left outside this commit; the committed baseline was 2,839 passes.
-The final committed-scope suite passed **2,895 tests**, plus the same 61 ignored
-cases. The final focused XP/RP/BP/rate suite passed **78 tests**. Counts match
-2,839 committed baseline cases + 56 new XP cases; adding the 41 earlier
-uncommitted diagnostics produces the 2,936 available-workspace pass count.
+Validation completed before committing/pushing this 100× revision:
 
-One earlier committed-scope run had an unrelated intermittent failure in
-`UT_BotCombatRefinement.MillionHandoffDecisionsAllocateNothing`: 808 bytes versus
-expected zero. It passed in isolation and on the unchanged full-suite retry.
-The bot movement implementation/test was not modified to conceal that failure.
-Existing compile/analyzer and package advisory warnings remain; no dependency
-changes are part of this task.
+- GameServer Release build: **0 errors**, 584 warnings.
+- Focused XP/RP/rate tests: **98 passed**, including 82 `UT_BeezExperience` cases.
+- Full committed-scope regression suite: **2,921 passed**, no failures; 61 existing
+  ignored cases. This excludes only the earlier uncommitted turret diagnostics.
+- Full available workspace suite: **2,962 passed**, no failures; the same 61
+  ignored cases. Its additional 41 turret diagnostic cases are outside this commit.
+
+The committed suite increased from 2,895 to 2,921 passes: two obsolete rolling
+quota tests were removed and 28 cases were added for scaling, native caps,
+integer/storage safety, actual solo/group XP at levels 10/30/49 for both victim
+kinds, RP/BP ordering and duplicate-death concurrency. Saved configuration and
+world/character data are not rewritten. All tests use the new Release binaries.
 
 An additional read-only console probe referenced the **existing published
 Windows release's managed DLL**, with an in-memory database/packet test adapter;
@@ -300,5 +333,5 @@ inherited references in `AbstractServerRules.cs`, including
 `http://www.camelotherald.com/more/110.shtml`,
 `http://news-daoc.goa.com/view_patchnote_archive.php?id_article=2478`, and
 `http://www.camelotherald.com/more/567.shtml`. Their live availability was not
-verified here; they are not independent evidence for the new DF floor or repeat
-quota. Those two rules are explicitly configurable Beez policy.
+verified here; they are not independent evidence for the new DF floor or 100× RvR
+multiplier. Those two rules are explicitly configurable Beez policy.

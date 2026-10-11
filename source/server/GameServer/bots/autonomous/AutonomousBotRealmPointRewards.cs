@@ -79,7 +79,6 @@ public static class AutonomousBotRealmPointRewards
         if (!IsEligibleVictim(killedBot))
             return;
 
-        RvrExperienceRewards.Award(killedBot);
         long now = GameLoop.GameLoopTime;
         long previousDeath = killedBot.TempProperties.GetProperty<long>(
             LastRealmPointDeathTickProperty, -1);
@@ -135,7 +134,10 @@ public static class AutonomousBotRealmPointRewards
         }
 
         if (playerContributions.Count == 0)
+        {
+            RvrExperienceRewards.Award(killedBot, isWorthRealmPoints);
             return;
+        }
 
         GameLiving creditedKiller = ResolveRootRewardOwner(killer as GameLiving);
         int victimValue = GetPlayerEquivalentRealmPointValue(killedBot.Level, killedBot.RealmLevel);
@@ -176,6 +178,8 @@ public static class AutonomousBotRealmPointRewards
                 player.UpdateKillStatsOnPlayerKill(killedBot.Realm, deathBlow, soloKill, realmPointsEarned);
             }
         }
+        // Use pre-death native worthiness: the RP death timestamp is already updated.
+        RvrExperienceRewards.Award(killedBot, isWorthRealmPoints);
     }
 
     /// <summary>

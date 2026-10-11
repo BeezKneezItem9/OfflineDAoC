@@ -9,57 +9,30 @@ namespace DOL.GS
     public static class RvrExperienceRewards
     {
         private const string LastDeathKey = "beez.rvr.xp.last.death";
-        private static readonly object HistoryLock = new();
-        private static readonly Dictionary<(string Recipient, string Victim), Queue<long>> History = new();
-        private static long _nextHistoryCleanupTick;
-
-        public static long Calculate(byte recipientLevel, byte victimLevel, int participants, double contribution)
+        /// <summary>Native PvP base after group division, cap, contribution and truncation.</summary>
+        public static long CalculateNative(byte recipientLevel, byte victimLevel, int participants, double contribution)
         {
             if (recipientLevel >= GamePlayer.MAX_LEVEL || recipientLevel < 1 || victimLevel < 1 || victimLevel > GamePlayer.MAX_LEVEL || participants < 1 ||
                 !double.IsFinite(contribution) || contribution <= 0 || ConLevels.GetConLevel(recipientLevel, victimLevel) < -2)
                 return 0;
-            // Preserve the existing real-player victim value: four same-level NPC kills.
-            long victimXp = GameServer.ServerRules.GetExperienceForLiving(victimLevel) * 4;
-            long cap = (long)(GameServer.ServerRules.GetExperienceForLiving(recipientLevel) * 4.0 * Math.Max(0, Properties.XP_PVP_CAP_PERCENT) / 100.0);
-            double reward = Math.Min(victimXp / participants, cap) * Math.Min(1, contribution);
-            return (long)Math.Min(long.MaxValue, Math.Max(0, reward));
+            // Decimal intermediates prevent overflow even with extreme cap settings.
+            decimal victimXp = Math.Max(0, GameServer.ServerRules.GetExperienceForLiving(victimLevel)) * 4m;
+            decimal cap = decimal.Truncate(Math.Max(0, GameServer.ServerRules.GetExperienceForLiving(recipientLevel)) * 4m * Math.Max(0, Properties.XP_PVP_CAP_PERCENT) / 100m);
+            decimal reward = Math.Min(decimal.Truncate(victimXp / participants), cap) * (decimal)Math.Min(1, contribution);
+            return ClampExperience(decimal.Truncate(reward));
         }
 
-        public static bool TryRecordReward(string recipient, string victim, long now)
+        private static long ClampExperience(decimal value) => (long)Math.Clamp(value, 0m, (decimal)long.MaxValue);
+
+        /// <summary>Scale the complete native reward once, bounded by signed XP storage headroom.</summary>
+        public static long ScaleReward(long nativeReward, long currentExperience)
         {
-            if (string.IsNullOrEmpty(recipient) || string.IsNullOrEmpty(victim)) return false;
-            long window = Math.Max(1, Properties.RVR_XP_REPEAT_WINDOW_SECONDS) * 1000L;
-            lock (HistoryLock)
-            {
-                // Thousands of autonomous opponents must not copy/scan the complete
-                // ledger on every member's reward. Global expiry runs once per minute;
-                // the requested pair is always expired before checking its quota.
-                if (now >= _nextHistoryCleanupTick)
-                {
-                    foreach (var pair in History.ToArray())
-                    {
-                        while (pair.Value.Count > 0 && now - pair.Value.Peek() >= window) pair.Value.Dequeue();
-                        if (pair.Value.Count == 0) History.Remove(pair.Key);
-                    }
-                    _nextHistoryCleanupTick = now + 60_000;
-                }
-                var key = (recipient, victim);
-                if (!History.TryGetValue(key, out Queue<long> kills)) History[key] = kills = new();
-                while (kills.Count > 0 && now - kills.Peek() >= window) kills.Dequeue();
-                if (kills.Count >= Math.Max(1, Properties.RVR_XP_REPEAT_MAX_KILLS)) return false;
-                kills.Enqueue(now);
-                return true;
-            }
+            decimal scaled = Math.Max(0, nativeReward) * (decimal)Math.Max(0, Properties.RVR_KILL_XP_MULTIPLIER);
+            decimal headroom = (decimal)long.MaxValue - Math.Max(0, currentExperience);
+            return ClampExperience(Math.Min(scaled, headroom));
         }
 
-        private static string Identity(GameLiving living) => living switch
-        {
-            GamePlayer player when !string.IsNullOrEmpty(player.ObjectId) => "player:" + player.ObjectId,
-            GameBot bot when bot.DatabaseID > 0 => "bot:" + bot.DatabaseID,
-            _ => null
-        };
-
-        public static void Award(GameLiving victim)
+        public static void Award(GameLiving victim, bool? nativeWorthiness = null)
         {
             if (victim is not GamePlayer && victim is not GameNPC ||
                 victim is GameNPC npcVictim && !AutonomousBotRealmPointRewards.IsEligibleVictim(npcVictim) ||
@@ -75,7 +48,8 @@ namespace DOL.GS
             }
             if (last >= 0 && now - last < Math.Max(1, Properties.RP_WORTH_SECONDS) * 1000L) return;
             if (victim is GamePlayer real && real.DeathTime + Properties.RP_WORTH_SECONDS > real.PlayedTime) return;
-            if (victim is GameBot && victim.TempProperties.GetProperty<long>(AutonomousBotRealmPointRewards.LastRealmPointDeathTickProperty, -1) is long previous &&
+            if (nativeWorthiness == false) return;
+            if (nativeWorthiness == null && victim is GameBot && victim.TempProperties.GetProperty<long>(AutonomousBotRealmPointRewards.LastRealmPointDeathTickProperty, -1) is long previous &&
                 previous >= 0 && now - previous < Math.Max(1, Properties.RP_WORTH_SECONDS) * 1000L) return;
 
             double totalDamage = raw.Sum(pair => double.IsFinite(pair.Value) ? Math.Max(0, pair.Value) : 0);
@@ -97,15 +71,23 @@ namespace DOL.GS
             foreach (var pair in eligible)
             {
                 var members = pair.Key.Group == null ? new[] { pair } : eligible.Where(other => other.Key.Group == pair.Key.Group).ToArray();
-                long xp = Calculate(pair.Key.Level, victim.Level, members.Length, members.Sum(other => other.Value) / totalDamage);
-                if (xp <= 0 || !TryRecordReward(Identity(pair.Key), Identity(victim), now)) continue;
+                long xp = CalculateNative(pair.Key.Level, victim.Level, members.Length, members.Sum(other => other.Value) / totalDamage);
+                if (xp <= 0) continue;
                 // Apply normal progression and recipient caps, without location/item multipliers on PvP XP.
                 if (pair.Key is GamePlayer player)
                 {
-                    xp += DOL.GS.ServerRules.AbstractServerRules.CalculateOutpostExperienceBonus(player, xp);
-                    lock (player.AwardLock) player.GainExperience(eXPSource.Player, xp);
+                    xp = ClampExperience((decimal)xp + DOL.GS.ServerRules.AbstractServerRules.CalculateOutpostExperienceBonus(player, xp));
+                    lock (player.AwardLock)
+                    {
+                        long reward = ScaleReward(xp, player.Experience);
+                        if (reward > 0) player.GainExperience(eXPSource.Player, reward);
+                    }
                 }
-                else pair.Key.GainExperience(eXPSource.Player, xp);
+                else if (pair.Key is GameBot bot)
+                {
+                    long reward = ScaleReward(xp, bot.Experience);
+                    if (reward > 0) bot.GainExperience(eXPSource.Player, reward);
+                }
             }
         }
     }
