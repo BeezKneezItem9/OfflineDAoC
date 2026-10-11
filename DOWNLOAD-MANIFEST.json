@@ -1,0 +1,28 @@
+{
+  "commit": "992b959fbf44a48497a4e5baae5a9937dce4a6c2",
+  "filename": "beez-online-992b959-win-x64-release.zip",
+  "bytes": 115735943,
+  "sha256": "c84eab380a394f493ad86fcd6f7b3ec5766b763ced59d730b98e93057806e942",
+  "parts": [
+    {
+      "name": "beez-online-992b959-win-x64-release.zip.part01",
+      "bytes": 33554432,
+      "sha256": "e4dba28e98fa8048e47e2740923dea7eb7c12a218ede33304f01933068d850e4"
+    },
+    {
+      "name": "beez-online-992b959-win-x64-release.zip.part02",
+      "bytes": 33554432,
+      "sha256": "b3a08d0964b955af4c676ce4c2fec4d0f70d9fbd72abf71e2736dade06256ebd"
+    },
+    {
+      "name": "beez-online-992b959-win-x64-release.zip.part03",
+      "bytes": 33554432,
+      "sha256": "96ade458de211477bb9eb185b147e0f1bfcfc9e38b4d0cd2831c03fa203ce8dc"
+    },
+    {
+      "name": "beez-online-992b959-win-x64-release.zip.part04",
+      "bytes": 15072647,
+      "sha256": "8bd26aca2595b5ad50f5ff8b1f1e1dde55168b358b9ab6b8b1a1da235875e065"
+    }
+  ]
+}

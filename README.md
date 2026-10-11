@@ -1,0 +1,1 @@
+Publication transport for validated Beez test package 992b959. The workflow verifies and reassembles the exact cloud-built ZIP and publishes it at source commit 992b959fbf44a48497a4e5baae5a9937dce4a6c2. No deployment or server launch.
