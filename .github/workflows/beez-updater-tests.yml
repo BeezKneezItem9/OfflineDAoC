@@ -26,5 +26,5 @@ jobs:
           $env:BEEZ_TEST_CLIENT = Join-Path $env:RUNNER_TEMP 'beez-ci-client.dll'
           [IO.File]::WriteAllBytes($env:BEEZ_TEST_CLIENT, [Text.Encoding]::UTF8.GetBytes('Beez CI client stand-in'))
           $env:BEEZ_TEST_MOCK_CLIENT = '1'
-          python -m unittest discover -s tools/beez/tests -v
+          python tools/beez/tests/run_ci.py
           if ($LASTEXITCODE -ne 0) { throw 'Beez tool regression tests failed' }
