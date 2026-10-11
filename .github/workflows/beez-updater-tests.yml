@@ -1,0 +1,30 @@
+name: Beez updater and Sluaghbinder recovery
+on:
+  push:
+    branches: [beez-online-six-features]
+    paths: ['tools/beez/**', '.github/workflows/beez-updater-tests.yml']
+  pull_request:
+    paths: ['tools/beez/**', '.github/workflows/beez-updater-tests.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows-powershell-51:
+    runs-on: windows-2022
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test Windows PowerShell 5.1 and built-in native SQLite
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ($PSVersionTable.PSVersion.Major -ne 5) { throw 'Expected Windows PowerShell 5.1' }
+          $env:BEEZ_TEST_POWERSHELL = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
+          $env:BEEZ_TEST_CLIENT = Join-Path $env:RUNNER_TEMP 'beez-ci-client.dll'
+          [IO.File]::WriteAllBytes($env:BEEZ_TEST_CLIENT, [Text.Encoding]::UTF8.GetBytes('Beez CI client stand-in'))
+          $env:BEEZ_TEST_MOCK_CLIENT = '1'
+          python -m unittest discover -s tools/beez/tests -v
+          if ($LASTEXITCODE -ne 0) { throw 'Beez tool regression tests failed' }
