@@ -41,6 +41,26 @@ function Get-CanonicalPath([string]$path) {
         if (!$full) { throw 'Cannot resolve cache parent.' }
     }
     $full = (Resolve-Path -LiteralPath $full).Path
+    if ($env:OS -eq 'Windows_NT') {
+        if (-not ('Beez.LongPath' -as [type])) {
+            Add-Type -TypeDefinition @'
+using System;
+using System.Text;
+using System.Runtime.InteropServices;
+namespace Beez { public static class LongPath {
+ [DllImport("kernel32.dll", CharSet=CharSet.Unicode, SetLastError=true)]
+ static extern uint GetLongPathName(string path, StringBuilder result, uint size);
+ public static string Expand(string path) {
+  var result=new StringBuilder(32768);
+  uint n=GetLongPathName(path,result,(uint)result.Capacity);
+  if(n==0 || n>=result.Capacity) throw new InvalidOperationException("Cannot resolve Windows long path");
+  return result.ToString();
+ }
+} }
+'@
+        }
+        $full = [Beez.LongPath]::Expand($full)
+    }
     foreach ($part in $tail) { $full = Join-Path $full $part }
     return [IO.Path]::GetFullPath($full).TrimEnd([IO.Path]::DirectorySeparatorChar)
 }
@@ -128,7 +148,7 @@ function Validate-Replacements([string]$stage, $info) {
 
 if (![Environment]::Is64BitOperatingSystem) { throw 'Beez Windows x64 releases require 64-bit Windows.' }
 Assert-Closed
-$InstallRoot = (Resolve-Path -LiteralPath $InstallRoot).Path.TrimEnd([IO.Path]::DirectorySeparatorChar)
+$InstallRoot = Get-CanonicalPath (Resolve-Path -LiteralPath $InstallRoot).Path.TrimEnd([IO.Path]::DirectorySeparatorChar)
 Assert-PlainPath $InstallRoot
 if (!(Test-Path -LiteralPath (Join-Path $InstallRoot 'runtime/data/opendaoc.sqlite3.db') -PathType Leaf)) { throw 'Active playable database not found.' }
 if ($EnableSluaghbinder) {
