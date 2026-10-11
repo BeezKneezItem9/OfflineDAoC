@@ -4358,22 +4358,20 @@ namespace DOL.GS
                 // Recalculate base experience.
                 expTotal -= baseXp;
 
-                if (Properties.ENABLE_ZONE_BONUSES)
+                int effectiveZoneBonus = BeezExperiencePolicy.ZoneBonus(arguments.XPSource, CurrentRegionID, CurrentZone?.BonusExperience ?? 0);
+                if (effectiveZoneBonus > 0)
                 {
-                    long zoneBonus = baseXp * ZoneBonus.GetXPBonus(this) / 100;
+                    long zoneBonus = baseXp * effectiveZoneBonus / 100;
 
                     if (zoneBonus > 0)
                     {
-                        zoneBonus = (long) (zoneBonus * Properties.XP_RATE);
+                        zoneBonus = (long) (zoneBonus * (arguments.XPSource == eXPSource.NPC && CurrentRegionID == BeezExperiencePolicy.DarknessFallsRegion ? BeezExperiencePolicy.PlayerRate(arguments.XPSource, CurrentRegionID, true) : Properties.XP_RATE));
                         Out.SendMessage(ZoneBonus.GetBonusMessage(this, (int) zoneBonus, ZoneBonusType.Xp), eChatType.CT_Important, eChatLoc.CL_SystemWindow);
                         GainExperience(new(zoneBonus, 0, 0, 0, 0, 0, false, false, eXPSource.Other), false);
                     }
                 }
 
-                if (CurrentRegion.IsRvR || CurrentZone.IsRvR)
-                    baseXp = (long) (baseXp * Properties.RvR_XP_RATE);
-                else
-                    baseXp = (long) (baseXp * Properties.XP_RATE);
+                baseXp = (long)(baseXp * BeezExperiencePolicy.PlayerRate(arguments.XPSource, CurrentRegionID, CurrentRegion?.IsRvR == true || CurrentZone?.IsRvR == true));
 
                 long xpBonus = GetModified(eProperty.XpPoints);
 

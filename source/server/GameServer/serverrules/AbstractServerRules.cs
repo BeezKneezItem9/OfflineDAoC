@@ -1911,6 +1911,7 @@ namespace DOL.GS.ServerRules
             if (Properties.ENABLE_WARMAPMGR && killer is GamePlayer && killer.CurrentRegion.ID == 163)
                 WarMapMgr.AddFight((byte) killer.CurrentZone.ID, killer.X, killer.Y, (byte) killer.Realm, (byte) killedPlayer.Realm);
 
+            RvrExperienceRewards.Award(killedPlayer);
             killedPlayer.Statistics.AddToDeaths();
             killedPlayer.LastDeathRealmPoints = 0; // Reset first in case this is a PvE death for example.
             AutonomousBotRealmPointRewards.PayGamebotsForPlayerKill(killedPlayer);
@@ -2035,23 +2036,21 @@ namespace DOL.GS.ServerRules
             double damagePercent = CalculateDamagePercent();
             int baseRpReward;
             int baseBpReward;
-            long baseXpReward;
             long baseMoneyReward;
             int realmPointsEarned = 0;
 
             if (isWorthAnything)
             {
                 // Players don't drop bags of money, it's immediately split and awarded.
-                CalculateRewardsModifiedByGroup(entityCountTotalDamagePair, out baseRpReward, out baseBpReward, out baseXpReward, out baseMoneyReward);
+                CalculateRewardsModifiedByGroup(entityCountTotalDamagePair, out baseRpReward, out baseBpReward, out baseMoneyReward);
 
                 baseRpReward = Math.Min(baseRpReward, CalculateRpCap());
                 baseBpReward = Math.Min(baseBpReward, CalculateBpCap());
-                baseXpReward = Math.Min(baseXpReward, CalculateXpCap());
                 baseMoneyReward = Math.Min(baseMoneyReward, CalculateMoneyCap());
 
                 RewardRealmPoints(out realmPointsEarned);
                 RewardBountyPoints();
-                RewardExperience();
+                // Character XP is awarded once by RvrExperienceRewards for players and gamebots.
                 RewardMoney();
             }
             else
@@ -2074,10 +2073,9 @@ namespace DOL.GS.ServerRules
                 return damagePercent;
             }
 
-            void CalculateRewardsModifiedByGroup(EntityCountTotalDamagePair entityCountTotalDamagePair, out int baseRpReward, out int baseBpReward, out long baseXpReward, out long baseMoneyReward)
+            void CalculateRewardsModifiedByGroup(EntityCountTotalDamagePair entityCountTotalDamagePair, out int baseRpReward, out int baseBpReward, out long baseMoneyReward)
             {
                 int entityCount = entityCountTotalDamagePair.Count;
-                baseXpReward = killedPlayer.ExperienceValue / entityCount;
                 baseRpReward = killedPlayer.RealmPointsValue / entityCount;
                 baseBpReward = (!Properties.ALLOW_BPS_IN_BGS && killedPlayer.CurrentZone.IsBG ? 0 : killedPlayer.BountyPointsValue) / entityCount;
                 baseMoneyReward = killedPlayer.MoneyValue / entityCount;
@@ -2091,11 +2089,6 @@ namespace DOL.GS.ServerRules
             int CalculateBpCap()
             {
                 return playerToAward.BountyPointsValue * 2;
-            }
-
-            long CalculateXpCap()
-            {
-                return playerToAward.ExperienceValue * Properties.XP_PVP_CAP_PERCENT / 100;
             }
 
             long CalculateMoneyCap()
@@ -2148,15 +2141,6 @@ namespace DOL.GS.ServerRules
                 }
             }
 
-            void RewardExperience()
-            {
-                long experience = (long) (baseXpReward * damagePercent);
-                experience += CalculateOutpostExperienceBonus(playerToAward, baseXpReward);
-
-                if (experience > 0)
-                    playerToAward.GainExperience(eXPSource.Player, experience);
-            }
-
             void RewardMoney()
             {
                 long money = (long) (baseMoneyReward * damagePercent);
@@ -2181,7 +2165,7 @@ namespace DOL.GS.ServerRules
             }
         }
 
-        private static long CalculateOutpostExperienceBonus(GamePlayer playerToAward, long baseXpReward)
+        public static long CalculateOutpostExperienceBonus(GamePlayer playerToAward, long baseXpReward)
         {
             //outpost XP
             //1.54 http://www.camelotherald.com/more/567.shtml

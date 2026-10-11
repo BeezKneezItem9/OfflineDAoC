@@ -723,6 +723,13 @@ namespace DOL.GS.ServerProperties
 		[ServerProperty("rates", "XP_PVP_Cap_Percent", "Maximum XP a player can earn killing another player, given in percent of their level. Default is 125%", 125)]
 		public static int XP_PVP_CAP_PERCENT;
 
+        [ServerProperty("rates", "darkness_falls_xp_bonus_percent", "Independent minimum NPC zone XP bonus in Darkness Falls; 0 disables this floor. Higher enabled zone bonuses are retained.", 20)]
+        public static int DARKNESS_FALLS_XP_BONUS_PERCENT = 20;
+        [ServerProperty("rates", "rvr_xp_repeat_window_seconds", "Rolling XP limit window per recipient/victim identity; separate from RP worth cooldown.", 3600)]
+        public static int RVR_XP_REPEAT_WINDOW_SECONDS = 3600;
+        [ServerProperty("rates", "rvr_xp_repeat_max_kills", "Maximum rewarded kills of one realm opponent per recipient per rolling window.", 3)]
+        public static int RVR_XP_REPEAT_MAX_KILLS = 3;
+
 		/// <summary>
 		/// The Experience Rate
 		/// </summary>

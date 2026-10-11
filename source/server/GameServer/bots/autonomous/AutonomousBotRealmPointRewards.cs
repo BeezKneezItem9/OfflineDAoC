@@ -79,6 +79,7 @@ public static class AutonomousBotRealmPointRewards
         if (!IsEligibleVictim(killedBot))
             return;
 
+        RvrExperienceRewards.Award(killedBot);
         long now = GameLoop.GameLoopTime;
         long previousDeath = killedBot.TempProperties.GetProperty<long>(
             LastRealmPointDeathTickProperty, -1);

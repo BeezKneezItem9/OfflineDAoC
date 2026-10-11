@@ -1596,15 +1596,19 @@ namespace DOL.GS
             {
                 experienceGained -= baseExperience;
 
-                if (ServerProperties.Properties.ENABLE_ZONE_BONUSES && CurrentZone != null)
+                int effectiveZoneBonus = BeezExperiencePolicy.ZoneBonus(arguments.XPSource, CurrentRegionID, CurrentZone?.BonusExperience ?? 0);
+                if (effectiveZoneBonus > 0)
                 {
-                    long zoneBonus = baseExperience * CurrentZone.BonusExperience / 100;
+                    long zoneBonus = baseExperience * effectiveZoneBonus / 100;
                     if (zoneBonus > 0)
-                        experienceGained += ScaleAutonomousExperience(zoneBonus, false);
+                        experienceGained += CurrentRegionID == BeezExperiencePolicy.DarknessFallsRegion && arguments.XPSource == eXPSource.NPC
+                            ? (long)(zoneBonus * ServerProperties.Properties.BOT_XP_RATE * Math.Max(1, ServerProperties.Properties.RvR_XP_RATE))
+                            : ScaleAutonomousExperience(zoneBonus, false);
                 }
 
-                baseExperience = ScaleAutonomousExperience(baseExperience,
-                    CurrentRegion?.IsRvR == true || CurrentZone?.IsRvR == true);
+                baseExperience = CurrentRegionID == BeezExperiencePolicy.DarknessFallsRegion && arguments.XPSource == eXPSource.NPC
+                    ? (long)(baseExperience * ServerProperties.Properties.BOT_XP_RATE * Math.Max(1, ServerProperties.Properties.RvR_XP_RATE))
+                    : ScaleAutonomousExperience(baseExperience, CurrentRegion?.IsRvR == true || CurrentZone?.IsRvR == true);
 
                 long itemExperienceBonus = GetModified(eProperty.XpPoints);
                 if (itemExperienceBonus != 0)
