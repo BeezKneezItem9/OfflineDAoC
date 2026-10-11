@@ -5,6 +5,7 @@ param(
     [string]$CacheRoot,
     [switch]$IncludeLauncher,
     [switch]$EnableSluaghbinder,
+    [switch]$RepairSluaghbinder,
     [switch]$Apply
 )
 $ErrorActionPreference = 'Stop'
@@ -151,9 +152,11 @@ Assert-Closed
 $InstallRoot = Get-CanonicalPath (Resolve-Path -LiteralPath $InstallRoot).Path.TrimEnd([IO.Path]::DirectorySeparatorChar)
 Assert-PlainPath $InstallRoot
 if (!(Test-Path -LiteralPath (Join-Path $InstallRoot 'runtime/data/opendaoc.sqlite3.db') -PathType Leaf)) { throw 'Active playable database not found.' }
-if ($EnableSluaghbinder) {
+if ($EnableSluaghbinder -and $RepairSluaghbinder) { throw 'Choose only one explicit class option.' }
+$classHelper = if ($RepairSluaghbinder) { 'Repair-Sluaghbinder.ps1' } else { 'Enable-Sluaghbinder.ps1' }
+if ($EnableSluaghbinder -or $RepairSluaghbinder) {
     # Same standalone validated logic; ordinary updates do not open a database.
-    & (Join-Path $PSScriptRoot 'Enable-Sluaghbinder.ps1') -InstallRoot $InstallRoot -CheckOnly
+    & (Join-Path $PSScriptRoot $classHelper) -InstallRoot $InstallRoot -CheckOnly
 }
 if (!$CacheRoot) { $CacheRoot = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'BeezUpdater' }
 $CacheRoot = Get-CanonicalPath $CacheRoot
@@ -210,7 +213,7 @@ $different = @($rows | Where-Object {
 Assert-Closed
 if ($different.Count -eq 0) {
     Write-Output "ALREADY INSTALLED: $($info.commit), selected components match verified release hashes."
-    if ($EnableSluaghbinder -and $Apply) { & (Join-Path $PSScriptRoot 'Enable-Sluaghbinder.ps1') -InstallRoot $InstallRoot }
+    if (($EnableSluaghbinder -or $RepairSluaghbinder) -and $Apply) { & (Join-Path $PSScriptRoot $classHelper) -InstallRoot $InstallRoot }
     return
 }
 if (!$Apply) {
@@ -242,7 +245,7 @@ try {
     ConvertTo-Json | Set-Content -LiteralPath (Join-Path $work 'INSTALLED.json') -Encoding UTF8
 Write-Output "UPDATED: $($release.tag_name), commit $($info.commit). Verified $($rows.Count) binary paths. Backup: $backup"
 Write-Output 'Database, characters, configuration, client and world assets preserved. No server or game was started.'
-if ($EnableSluaghbinder) {
-    try { & (Join-Path $PSScriptRoot 'Enable-Sluaghbinder.ps1') -InstallRoot $InstallRoot }
+if ($EnableSluaghbinder -or $RepairSluaghbinder) {
+    try { & (Join-Path $PSScriptRoot $classHelper) -InstallRoot $InstallRoot }
     catch { throw "Binaries updated successfully, but explicit Sluaghbinder enablement failed: $($_.Exception.Message)" }
 }

@@ -4,46 +4,109 @@ These tools run with **Windows PowerShell 5.1 on Windows 10/11**. They never sta
 stop or deploy to a remote installation. Close the server, launcher and client
 before using them. No permanent execution-policy change is needed.
 
-## Immediate Sluaghbinder recovery
+## Immediate Sluaghbinder repair
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Enable-Sluaghbinder.ps1 -InstallRoot 'C:\Games\Offline DAOC BEEZ Edition\playable-v0.34'
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Repair-Sluaghbinder.ps1 -InstallRoot 'C:\Games\Offline DAOC BEEZ Edition\playable-v0.34'
 ```
 
-The standalone script uses the Windows-native `winsqlite3.dll` SQLite API through
-an embedded C# P/Invoke wrapper. It does not load System.Data.SQLite, need Python,
-download any world/client, or require another program installed. Its C# uses
-syntax supported by Windows PowerShell's .NET Framework compiler.
+Keep Repair-Sluaghbinder.ps1, BeezNativeSqlite.cs and Sluaghbinder-Reference.json
+in the same directory. Install-BeezTools.ps1 downloads and verifies the complete
+maintenance tool set from an exact reviewed Git revision, then runs this repair.
+It needs no Python, SQLite editor, downloaded world, managed SQLite assembly or
+external command-line utility. SQLite uses Windows 10/11's built-in winsqlite3.dll.
 
-Before writing it verifies:
+The repair checks closed server/launcher/client processes, ordinary paths without
+junctions, database integrity, a single saved class setting, known complete DLL
+hashes, and the required catalog, pet, weapon, armor and effect file hashes. It
+only inserts missing authoritative class rows. Existing different/duplicate class
+records, unsupported clients and missing/modified required art are rejected and
+preserved for review. Shared career/ability dependencies must already exist.
+No existing character, account, inventory or progression row is imported or edited.
 
-- server/launcher/client processes are closed (including `dotnet CoreServer.dll`);
-- the active `runtime/data/opendaoc.sqlite3.db` exists and passes quick_check;
-- ClassID 63 has exactly nine ClassXSpecialization records;
-- the original Muirenn trainer row and trainer class type exist;
-- exactly one `enable_sluaghbinder` property exists;
-- the client's `runtime/client-opendaoc/app/game.dll` matches original 0.35b
-  SHA-256 `e1d471bb19108610ab9c8ca77dd41af40afe716685b03f4cdeda88c05678463b`;
-- no custom ServerProperty trigger can mutate other data during the update.
+The reference includes the nine class bindings, trainer and bound wisp, class
+specializations, spell lines/bindings/spells, pets/equipment, abilities, styles,
+start locations and class quest/reward templates from the author's public 0.35b
+world. The source database SHA-256 is
+`0fff1a26913430a9c8f258484a1e2bae69102354c5e287d7d505d200dd3fdfe6`.
+The plain edition's builder removes only the nine bindings and two mobs; a normal
+plain-edition repair therefore inserts **11 rows**, then changes the saved setting.
+Auto-generated integer row IDs are allocated locally; unrelated IDs are preserved.
+Custom triggers are refused. Missing tables/schema differences also fail safely.
 
-A single `BEGIN IMMEDIATE` transaction encloses data checks, the one-row UPDATE,
-post-update value/row-count verification and COMMIT. Errors roll back; an already
-True value rolls back without a write. `-CheckOnly` checks prerequisites without
-changing the setting. The script reports READY, ENABLED, ALREADY ENABLED or the
-blocked prerequisite. A missing/mismatched client or stripped plain-edition world
-is rejected rather than repaired by replacing saved data.
+### Verified client provenance and patch order
 
-The launcher reads this property to label the edition. Open it normally after
-success: it should show 0.35b. The server reads the setting on normal startup.
-In-game class creation, promotion, spells/pets and bot availability still need
-acceptance testing; automated SQL tests do not claim that live validation.
+| Input | SHA-256 | Result |
+|---|---|---|
+| Author v0.32 native-raid base, matching the reported installation | `67dcf68a37b95a93946a943b99d5e19b4a03e08cd6469275e25c7b909de21e99` | Class-only author DLL `691a457c…` |
+| Author plain 0.35 | `f55ed6b068e22ce8e1106871c2fad6ee10c18390bbb8b5dc772219ad8c8b83bb` | Original 0.35b DLL `e1d471bb…` |
+| Original 0.35b | `e1d471bb19108610ab9c8ca77dd41af40afe716685b03f4cdeda88c05678463b` | Unchanged |
+
+The base provenance is confirmed by tools/build-client-raid.py and exact hash
+reproduction from the published plain DLL by reversing the four documented
+unrelated patches in a diagnostic copy. **Those unrelated patches are never added,
+removed or modified by recovery.**
+
+There is an extra prerequisite beyond the two scripts mentioned in the edition
+documentation: both base and plain DLLs lack the embedded Sluaghbinder resource.
+The label script refuses them directly. The initial class registration has no
+separate source patch script in the current repository. Its five precise changes
+(two string slots and three class resource pointers) are taken from the verified
+published author client `game.sluaghbinder-label-patched-20260919-081435.dll`, SHA
+`691a457c0eb564c7ca6964e39015bd5df35c2a7965729d1572add2211c37ac78`.
+This is an explicitly documented binary-reference prerequisite, not a claim that
+an additional upstream source script exists.
+
+Recovery applies that registration first, followed by exact translations of
+[the author's class-label script](../../source/server/tools/patch_sluaghbinder_client_label.py)
+and [race-link script](../../source/server/tools/patch_sluaghbinder_client_races.py),
+in that order. Only these class bytes and the PE checksum change. Every stage
+requires the exact input hash/signatures and independently verified output hash.
+Known intermediate stages are accepted for idempotent partial recovery; unknown
+or out-of-order patch combinations are refused. The base DLL retains its older
+unrelated feature set; it is not silently upgraded to the full 0.35 client.
+
+### Transactions, backups and limitations
+
+`-CheckOnly` performs all checks and stages missing rows within a transaction,
+then rolls back; it writes no installation files. Repair creates a targeted
+`runtime/deployment-backups/sluaghbinder-<timestamp>-<unique>/` containing the
+original DLL and REPAIR.json with the prior setting and exact inserted-row
+predicates. It patches only game.dll, verifies the resulting hash and commits
+class data/True in one BEGIN IMMEDIATE SQLite transaction. Ordinary exceptions
+roll back SQLite and restore the original DLL. An unexpected rollback failure
+reports its backup and requires keeping all processes closed.
+
+Explicit targeted rollback, while the processes remain closed:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Repair-Sluaghbinder.ps1 -InstallRoot 'C:\Games\Offline DAOC BEEZ Edition\playable-v0.34' -Rollback '<reported backup directory>'
+```
+
+Rollback refuses changed DLLs, settings or inserted records. It deletes only the
+rows created by that repair and restores the prior setting/DLL; it never swaps
+the entire SQLite database. Power loss across filesystem/SQLite operations is not
+an atomic transaction; retain the reported backup and review an interrupted repair
+before launching. Ordinary handled-failure rollback is covered by tests.
+
+Catalog/art hashes are deliberately conservative. If an older installation or
+unrelated catalog modification fails a guard, the exact path/record is reported.
+The minimum next step is an asset/record-specific compatibility review against
+the author source, rather than overwriting gamedata, a skin archive or a world.
+The reported DLL hash alone cannot establish those installed assets/data.
+In-game creation, Celt/Firbolg selection, promotion, spells, pets and companions
+remain player acceptance tests; no live Windows installation was accessed.
+
+Enable-Sluaghbinder.ps1 remains a legacy setting-only helper, with its original
+strict full-0.35b prerequisite. It is not a repair for stripped edition data.
 
 Author references: [edition guidance](../../docs/DEVELOPMENT.md#editions-and-the-custom-class),
+[edition database builder](../../source/tools/build_release_035.py),
 [original release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.35b).
 
 ## Permanent command
 
-Keep `Update-Beez.cmd`, `Update-Beez.ps1` and `Enable-Sluaghbinder.ps1` together in
+Keep the verified maintenance tool set together in
 `%LOCALAPPDATA%\BeezUpdater\tools`. Obtain the scripts from a reviewed Git commit,
 checking the supplied SHA-256 hashes before executing them.
 
@@ -54,10 +117,10 @@ Beez Windows x64 test release, including the launcher:
 & "$env:LOCALAPPDATA\BeezUpdater\tools\Update-Beez.cmd" -InstallRoot 'C:\Games\Offline DAOC BEEZ Edition\playable-v0.34'
 ```
 
-Class enablement is a **separate explicit choice**:
+Class repair is a **separate explicit choice**:
 
 ```powershell
-& "$env:LOCALAPPDATA\BeezUpdater\tools\Update-Beez.cmd" -InstallRoot 'C:\Games\Offline DAOC BEEZ Edition\playable-v0.34' -EnableSluaghbinder
+& "$env:LOCALAPPDATA\BeezUpdater\tools\Update-Beez.cmd" -InstallRoot 'C:\Games\Offline DAOC BEEZ Edition\playable-v0.34' -RepairSluaghbinder
 ```
 
 For a preview, run Update-Beez.ps1 without `-Apply`:
@@ -94,9 +157,9 @@ and symbolic links/junctions in protected paths are rejected.
    If rollback cannot safely restore a file, report the failure/backup location
    and instruct keeping the server closed. Never force through that check.
 8. Ordinary updates **never open a database or change a class setting**. The
-   explicit enablement option runs the standalone preflight before deployment,
-   then the same transactional helper after success (or on an already-installed
-   build). A post-update enablement failure is reported separately.
+   explicit repair option runs the standalone preflight before deployment,
+   then the same transactional repair helper after success (or on an already-installed
+   build). A post-update class-repair failure is reported separately.
 
 Verified downloads, the package and INSTALLED.json remain in the external cache;
 backups/ROLLBACK.json remain under its backups directory. Installed-version
@@ -126,7 +189,12 @@ python -m unittest discover -s tools/beez/tests -v
 On Linux only, expose native libsqlite3.so.0 as `winsqlite3.dll` on LD_LIBRARY_PATH
 for this ABI test. This is not a claim that Linux exercises Windows' DLL loader.
 The Windows CI workflow uses **Windows PowerShell 5.1 and real winsqlite3.dll**.
-It substitutes only the hash of an identified tiny client stand-in; ZIP, package,
-payload and database behavior remain real. No game release is published by CI.
+Its identified complete-client stand-ins substitute only hash identification
+(including the repair's byte-array hash); their patch methods explicitly fail if
+called. ZIP, package, payload and SQLite operations remain real. The full binary
+patch test is explicitly skipped in CI; all eight verified real author DLL stages
+are exercised separately in the cloud. Actual author-schema validation additionally
+restored exactly 11 stripped rows and compared all 122 unrelated SQLite tables
+and unrelated rows in the affected tables against the original copy. No game release is published by CI.
 Fixture deployment/rollback scripts are the unchanged scripts from published
 beez-test-992b959, retained to test reuse of the established mechanisms.
