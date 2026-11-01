@@ -34,7 +34,7 @@ namespace DOL.GS
                 player.ItemBonus[bonus.Property] += sign * bonus.Value;
         }
 
-        public static DbItemTemplate Template(string id) => new()
+        public static DbItemTemplate Template(string id) => id == BeezCampfires.ItemId ? BeezCampfires.Template() : new()
         {
             Id_nb = id, Name = id == RingId ? "Beez's Developer Ring" : "Beez's Buff Stone",
             ClassType = id == RingId ? typeof(BeezDeveloperRing).FullName : typeof(BeezBuffStone).FullName,
@@ -48,6 +48,7 @@ namespace DOL.GS
 
         public static DbItemTemplate EnsureTemplate(string id)
         {
+            if (id == BeezCampfires.ItemId) return BeezCampfires.EnsureTemplate();
             DbItemTemplate template = GameServer.Database.FindObjectByKey<DbItemTemplate>(id);
             if (template != null)
                 return template;
@@ -65,6 +66,7 @@ namespace DOL.GS
         {
             EnsureTemplate(RingId);
             EnsureTemplate(StoneId);
+            EnsureTemplate(BeezCampfires.ItemId);
 
         }
 
@@ -76,7 +78,7 @@ namespace DOL.GS
             DbCoreCharacter character = creation.Character;
             var items = DOLDB<DbInventoryItem>.SelectObjects(DB.Column("OwnerID").IsEqualTo(character.ObjectId));
             var occupied = items.Select(item => item.SlotPosition).ToHashSet();
-            foreach (string id in new[] { RingId, StoneId })
+            foreach (string id in new[] { RingId, StoneId, BeezCampfires.ItemId })
             {
                 if (items.Any(item => item.Id_nb == id))
                     continue;
@@ -98,7 +100,7 @@ namespace DOL.GS
         {
             lock (player.Inventory.Lock)
             {
-                foreach (string id in new[] { RingId, StoneId })
+                foreach (string id in new[] { RingId, StoneId, BeezCampfires.ItemId })
                 {
                     if (player.Inventory.AllItems.Any(item => item.Id_nb == id) || HasSavedItem(player.ObjectId, id))
                         continue;

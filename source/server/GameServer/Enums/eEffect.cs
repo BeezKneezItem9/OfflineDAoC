@@ -158,6 +158,7 @@ namespace DOL.GS
         Ichor,
         // Generic parry chance buff (e.g. the Sluaghbinder's Barrow Deflection).
         ParryBuff,
-        ManaRoots
+        ManaRoots,
+        Campfire
     }
 }

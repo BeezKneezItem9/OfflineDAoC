@@ -36,6 +36,18 @@ namespace DOL.GS.ServerProperties
 		// Properties: feel free to improve the SPs in the
 		// categories below, or extend the category list.
 
+        // Beez defaults; Eden values could not be verified. Buff lifetime is always 60 seconds.
+        [ServerProperty("beez_campfire", "beez_campfire_lifetime_seconds", "Placed campfire lifetime, clamped to 1..3600 seconds.", 600)]
+        public static int BEEZ_CAMPFIRE_LIFETIME_SECONDS = 600;
+        [ServerProperty("beez_campfire", "beez_campfire_radius", "Ally and pet pulse radius, clamped to 1..2000 units.", 350)]
+        public static int BEEZ_CAMPFIRE_RADIUS = 350;
+        [ServerProperty("beez_campfire", "beez_campfire_pulse_seconds", "Refresh interval, clamped to 1..30 seconds.", 5)]
+        public static int BEEZ_CAMPFIRE_PULSE_SECONDS = 5;
+        [ServerProperty("beez_campfire", "beez_campfire_health_aid", "Health regeneration aid before native modifiers (0..100).", 5)]
+        public static int BEEZ_CAMPFIRE_HEALTH_AID = 5;
+        [ServerProperty("beez_campfire", "beez_campfire_power_aid", "Power regeneration aid before native modifiers (0..100).", 5)]
+        public static int BEEZ_CAMPFIRE_POWER_AID = 5;
+
 		#region SYSTEM / DEBUG
 		/// <summary>
 		/// TempProperties to register

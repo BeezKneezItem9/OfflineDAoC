@@ -1248,6 +1248,7 @@ namespace DOL.GS
                     if (damage < 0)
                         damage = 0;
 
+                    BeezCampfires.EnhanceMelee(ad, ref damage);
                     ad.Damage = (int) damage;
                     ad.Modifier = (int) Math.Floor(resistModifier);
                     ad.CriticalChance = CalculateCriticalChance(action);

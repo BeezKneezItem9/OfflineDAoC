@@ -420,8 +420,8 @@ namespace DOL.UnitTests
             GamePlayer player = Player();
             BeezDeveloperItems.GrantCreated(new DOL.Events.CharacterEventArgs((DbCoreCharacter)typeof(GamePlayer).GetField("m_dbCharacter", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(player), player.Client));
             var items = ((EmptyProxy)EmptyDatabase).Writes.OfType<DbInventoryItem>().ToArray();
-            Assert.That(items.Select(item => item.Id_nb), Is.EquivalentTo(new[] { BeezDeveloperItems.RingId, BeezDeveloperItems.StoneId }));
-            Assert.That(items.Select(item => item.SlotPosition).Distinct().Count(), Is.EqualTo(2));
+            Assert.That(items.Select(item => item.Id_nb), Is.EquivalentTo(new[] { BeezDeveloperItems.RingId, BeezDeveloperItems.StoneId, BeezCampfires.ItemId }));
+            Assert.That(items.Select(item => item.SlotPosition).Distinct().Count(), Is.EqualTo(3));
             Assert.That(items.All(item => item.OwnerID == player.ObjectId), Is.True);
             ((EmptyProxy)EmptyDatabase).Writes.Clear();
             var dummy = (BotDummyClient)RuntimeHelpers.GetUninitializedObject(typeof(BotDummyClient));
