@@ -1,0 +1,101 @@
+name: Publish Beez Windows test release
+on:
+  push:
+    branches: [beez-release-publisher]
+    paths: ['.github/beez-release-request.json']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: beez-test-release
+  cancel-in-progress: false
+jobs:
+  windows-release:
+    if: github.repository == 'BeezKneezItem9/OfflineDAoC'
+    runs-on: windows-2022
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: publisher
+      - name: Validate exact release request
+        id: request
+        shell: pwsh
+        run: |
+          $request = Get-Content publisher/.github/beez-release-request.json -Raw | ConvertFrom-Json
+          $sha = $request.commit
+          if ($sha -cnotmatch '^[0-9a-f]{40}$') { throw 'Expected a full commit SHA.' }
+          "sha=$sha" >> $env:GITHUB_OUTPUT
+          "short=$($sha.Substring(0,7))" >> $env:GITHUB_OUTPUT
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.request.outputs.sha }}
+          path: tree
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.403'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Release build and full Windows server regression suite
+        shell: pwsh
+        env:
+          SOURCE_SHA: ${{ steps.request.outputs.sha }}
+        run: |
+          Copy-Item tree/source/server/CoreServer/config/serverconfig.example.xml tree/source/server/CoreServer/config/serverconfig.xml
+          dotnet test tree/source/server/Tests/Tests.csproj -c Release "-p:SourceRevisionId=$env:SOURCE_SHA" --logger 'trx;LogFileName=windows-release.trx'
+          if ($LASTEXITCODE) { throw 'Full Windows regression suite failed.' }
+      - name: Publish self-contained Windows x64 server
+        shell: pwsh
+        env:
+          SOURCE_SHA: ${{ steps.request.outputs.sha }}
+        run: |
+          dotnet publish tree/source/server/CoreServer/CoreServer.csproj -c Release -r win-x64 --self-contained true "-p:SourceRevisionId=$env:SOURCE_SHA" -o "$env:RUNNER_TEMP/beez-win-x64"
+          if ($LASTEXITCODE) { throw 'Windows publish failed.' }
+      - name: Download and verify established package baseline
+        shell: pwsh
+        run: |
+          Invoke-WebRequest 'https://github.com/BeezKneezItem9/OfflineDAoC/releases/download/beez-test-992b959/beez-online-992b959-win-x64-release.zip' -OutFile "$env:RUNNER_TEMP/previous.zip"
+          if ((Get-FileHash "$env:RUNNER_TEMP/previous.zip").Hash -ne 'c84eab380a394f493ad86fcd6f7b3ec5766b763ced59d730b98e93057806e942') { throw 'Baseline checksum mismatch.' }
+      - name: Assemble hashed binary-only updater package
+        shell: pwsh
+        env:
+          SOURCE_SHA: ${{ steps.request.outputs.sha }}
+        run: |
+          python publisher/tools/beez/release/package.py --previous "$env:RUNNER_TEMP/previous.zip" --publish "$env:RUNNER_TEMP/beez-win-x64" --source tree --commit $env:SOURCE_SHA --out "$env:RUNNER_TEMP/release"
+          if ($LASTEXITCODE) { throw 'Package validation failed.' }
+      - name: Run tests against the four exact packaged managed server binaries
+        shell: pwsh
+        run: |
+          foreach ($name in 'GameServer','CoreServer','CoreBase','CoreDatabase') {
+            Copy-Item "$env:RUNNER_TEMP/release/package/payload/server/$name.dll" "tree/source/server/build/Tests/Release/lib/$name.dll" -Force
+          }
+          dotnet test tree/source/server/Tests/Tests.csproj -c Release --no-build --no-restore --logger 'trx;LogFileName=packaged-windows-release.trx'
+          if ($LASTEXITCODE) { throw 'Packaged managed binary tests failed.' }
+      - name: Verify actual deployment, persistent data preservation and rollback in disposable fixture
+        shell: powershell
+        run: |
+          & publisher/tools/beez/release/verify-deployment.ps1 -Package "$env:RUNNER_TEMP/release/package"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: beez-windows-validation
+          path: tree/source/server/Tests/TestResults/*.trx
+      - name: Publish GitHub prerelease and verify asset download
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ steps.request.outputs.sha }}
+          SHORT_SHA: ${{ steps.request.outputs.short }}
+        run: |
+          $tag = "beez-test-$env:SHORT_SHA"
+          $zip = "$env:RUNNER_TEMP/release/beez-online-$env:SHORT_SHA-win-x64-release.zip"
+          gh release create $tag $zip "$zip.sha256" --repo $env:GITHUB_REPOSITORY --target $env:SOURCE_SHA --prerelease --title "Beez Online campfire test — $env:SHORT_SHA" --notes-file "$env:RUNNER_TEMP/release/package/RELEASE-NOTES.md"
+          if ($LASTEXITCODE) { throw 'GitHub release publishing failed.' }
+          $check = "$env:RUNNER_TEMP/release-download-check"
+          gh release download $tag --repo $env:GITHUB_REPOSITORY --dir $check
+          if ($LASTEXITCODE) { throw 'Published asset download failed.' }
+          $expected = (Get-Content "$zip.sha256").Split(' ')[0]
+          if ((Get-FileHash (Join-Path $check ([IO.Path]::GetFileName($zip)))).Hash -ne $expected) { throw 'Published download checksum mismatch.' }
+          "Release: https://github.com/$env:GITHUB_REPOSITORY/releases/tag/$tag" >> $env:GITHUB_STEP_SUMMARY
+          "SHA256: $expected" >> $env:GITHUB_STEP_SUMMARY
